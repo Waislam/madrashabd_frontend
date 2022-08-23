@@ -1,9 +1,10 @@
 import React from "react";
 import Link from 'next/link'
 import Image from "next/image";
+import styles from './LoginPage.module.css'
 import loginBackground from "../../public/assets/login/loginBackground.png";
 import icon from '../../public/assets/login/icon.png'
-import styles from './LoginPage.module.css'
+
 
 const LoginPage = () => {
     return (
@@ -19,11 +20,11 @@ const LoginPage = () => {
                         <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-4 mt-4">
                             <div className={styles.loginFormWrap}>
                                 <div className={styles.loginInfo}>
-                                    <div className={styles.loginLogo}>
+                                    <div className={`${styles.loginLogo}`}>
                                         <Image src={icon} alt="" className="img-responsive" width={100} height={100}/>
                                     </div>
-                                    <h4 className={styles.loginTitle}>Welcome to</h4>
-                                    <h4 className={styles.logoSubtitle}>Ikhwanbd Management Software</h4>
+                                    <h4 className={`${styles.loginTitle} mt-3`}>Welcome to</h4>
+                                    <h4 className={`${styles.logoSubtitle}`}>Ikhwanbd Management Software</h4>
                                 </div>
                                 <div className={styles.loginForm}>
                                     <form action="#">
