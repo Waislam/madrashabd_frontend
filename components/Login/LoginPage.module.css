@@ -3,40 +3,35 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .login-image {
-        width: 100%;
-        height: 100%;
+    .loginImage {
+        display: none;
     }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 768px) {
-    .login-image {
-        width: 100%;
-        height: 100%;
+    .loginImage {
+        display: none;
     }
 }
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 992px) {
-    .login-image {
-        width: 100%;
-        height: 100%;
+    .loginImage {
+        display: block;
     }
 }
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1200px) {
-    .login-image {
-        width: 100%;
-        height: 100%;
-        position: fixed;
+    .loginImage {
+        display: block;
     }
 }
 
 /* X-Large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) and (max-width: 1400px) {
-    .login-image {
+    .loginImage {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -45,7 +40,7 @@
 
 /*XX-Large devices (larger desktops, 1400px and up)*/
 @media (min-width: 1400px) and (max-width: 1600px) {
-    .login-image {
+    .loginImage {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -57,20 +52,25 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    height: 90vh;
 }
 
-.login-info {
+.loginInfo {
     text-align: center;
 }
 
-.login-info h4 {
+.loginTitle {
+    font-family: Roboto, sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.logoSubtitle {
     font-family: Roboto, sans-serif;
     color: #5BBF66;
     font-weight: bold;
 }
 
-.login-form {
+.loginForm {
     margin: 30px;
 }
 
@@ -86,7 +86,7 @@
 
 }
 
-.forget-password {
+.forgetPassword {
     overflow: hidden;
     font-size: 14px;
 }
