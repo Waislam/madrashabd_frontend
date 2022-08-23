@@ -1,0 +1,54 @@
+import React from "react";
+import Link from 'next/link'
+import Image from "next/image";
+import loginBackground from "../../public/assets/login/loginBackground.png";
+import icon from '../../public/assets/login/icon.png'
+import styles from './LoginPage.module.css'
+
+const LoginPage = () => {
+    return (
+        <>
+            <div id="loginSection">
+                <div className="container-fluid p-0">
+                    <div className="row">
+                        <div className="col-md-8 col-lg-8 col-xl-8 mb-4">
+                            <div className={styles.loginImage}>
+                                <Image src={loginBackground} alt=""  className="img-responsive"/>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-4">
+                            <div className={styles.loginFormWrap}>
+                                <div className={styles.loginInfo}>
+                                    <div className={styles.loginLogo}>
+                                        <Image src={icon} alt="" className="img-responsive" width={100} height={100}/>
+                                    </div>
+                                    <h4 className="mt-3 login-title">Welcome to</h4>
+                                    <h4 className="logo-subtitle">Ikhwanbd Management Software</h4>
+                                </div>
+                                <div className={styles.loginForm}>
+                                    <form action="#">
+                                        <input type="text" className="form-control mb-3 " placeholder="User Name"/>
+                                        <input type="text" className="form-control mb-3" placeholder="User Password"/>
+                                        <div className="d-grid gap-2 col mx-auto">
+                                            <button className={styles.loginButton} type="button">Login</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className={styles.forgetPassword}>
+                                    <div className="text-center mb-2">
+                                        <Link href="/">Forget username</Link>
+                                    </div>
+                                    <div className="text-center">
+                                        <Link href="/">Forget Password</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+};
+
+export default LoginPage;
