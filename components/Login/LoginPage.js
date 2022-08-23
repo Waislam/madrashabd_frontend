@@ -9,21 +9,21 @@ const LoginPage = () => {
     return (
         <>
             <div id="loginSection">
-                <div className="container-fluid p-0">
+                <div className="container">
                     <div className="row">
-                        <div className="col-md-8 col-lg-8 col-xl-8 mb-4">
+                        <div className="col-md-8 col-lg-8 col-xl-8 mb-4 mt-4">
                             <div className={styles.loginImage}>
-                                <Image src={loginBackground} alt=""  className="img-responsive"/>
+                                <Image src={loginBackground} alt=""  style={{borderRadius:10}} className="img-responsive"/>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-4">
+                        <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-4 mt-4">
                             <div className={styles.loginFormWrap}>
                                 <div className={styles.loginInfo}>
                                     <div className={styles.loginLogo}>
                                         <Image src={icon} alt="" className="img-responsive" width={100} height={100}/>
                                     </div>
-                                    <h4 className="mt-3 login-title">Welcome to</h4>
-                                    <h4 className="logo-subtitle">Ikhwanbd Management Software</h4>
+                                    <h4 className={styles.loginTitle}>Welcome to</h4>
+                                    <h4 className={styles.logoSubtitle}>Ikhwanbd Management Software</h4>
                                 </div>
                                 <div className={styles.loginForm}>
                                     <form action="#">
