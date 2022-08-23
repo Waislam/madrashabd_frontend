@@ -54,6 +54,11 @@
     align-content: center;
 }
 
+.loginLogo{
+    overflow: hidden;
+    display: block;
+}
+
 .loginInfo {
     text-align: center;
 }
@@ -62,7 +67,6 @@
     font-family: Roboto, sans-serif;
     color: black;
     font-weight: bold;
-    margin-top: 10px;
 }
 
 .logoSubtitle {
