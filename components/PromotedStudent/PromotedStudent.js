@@ -18,16 +18,17 @@ const PromotedStudent = () => {
                                         <Image src={students} className="img-responsive"
                                                alt="Logo missing" height={40} width={40}/>
                                     </h4>
+                                    <hr/>
                                     <div className="card-body p-0">
-                                        <div className={styles.promotedLink}>
-                                            <Link href="/students/promoted-student">
-                                                <a className="text-center">Promoted List</a>
-                                            </Link>
-                                        </div>
                                         <div className={styles.studentLink}>
                                             <Link href="/students">
                                                 <a className="text-center">Student List</a>
                                             </Link>
+                                            <div className={styles.promotedLink}>
+                                                <Link href="/students/promoted-student">
+                                                    <a className="text-center">Promoted List</a>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
