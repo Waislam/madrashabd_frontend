@@ -1,6 +1,7 @@
-
-import StudentList from "../components/Students/StudentList";
 import React from "react";
+
+// components
+import StudentList from "../components/Students/StudentList";
 
 const students = () =>{
     return(
