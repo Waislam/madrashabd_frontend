@@ -1,14 +1,13 @@
+
+import StudentList from "../components/Students/StudentList";
 import React from "react";
 
-// components
-import StudentList from "../components/Students/StudentList";
-
-const Students = () => {
-    return (
+const students = () =>{
+    return(
         <>
-            <StudentList />
+          <StudentList/>
         </>
     )
-}
+};
 
-export default StudentList;
+export default students;
