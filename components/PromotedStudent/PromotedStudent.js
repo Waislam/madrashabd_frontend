@@ -30,6 +30,11 @@ const PromotedStudent = () => {
                                                 </Link>
                                             </div>
                                         </div>
+                                        <div className={styles.promotedLink}>
+                                            <Link href="/students/promoted-student">
+                                                <a className="text-center">Promoted List</a>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
