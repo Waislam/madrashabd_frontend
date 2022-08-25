@@ -1,15 +1,15 @@
 import React from "react";
 import Link from 'next/link'
 import Image from "next/image";
-import styles from './StudentList.module.css'
+import styles from './PromotedStudent.module.css'
 import students from '../../public/assets/admission/students.png'
 
-const StudentList = () => {
+const PromotedStudent = () => {
     return (
         <>
             <section className={styles.promotedStudentSection}>
                 <div className="container-fluid">
-                    <h3 className={styles.promotedStudentTitle}>Student List</h3>
+                    <h3 className={styles.promotedStudentTitle}>Promoted List</h3>
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.promotedStudentList}>
@@ -24,7 +24,6 @@ const StudentList = () => {
                                                 <a className="text-center">Student List</a>
                                             </Link>
                                         </div>
-
                                         <div className={styles.promotedLink}>
                                             <Link href="/students/promoted-student">
                                                 <a className="text-center">Promoted List</a>
@@ -314,4 +313,4 @@ const StudentList = () => {
     )
 };
 
-export default StudentList;
+export default PromotedStudent;
