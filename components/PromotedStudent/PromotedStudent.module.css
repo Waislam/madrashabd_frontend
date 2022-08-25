@@ -62,8 +62,7 @@
 }
 
 .studentLink a {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
+    color: black;
     display: block;
     line-height: 1.5;
     text-decoration: none;
@@ -75,12 +74,11 @@
     font-size: 1rem;
     padding: 8px;
     margin-bottom: 10px;
-    border-left-color: #803e9f;
-    border-right-color: #33ba41;
 }
 
 .promotedLink a {
-    color: black;
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: #ffffff;
     display: block;
     line-height: 1.5;
     text-decoration: none;
@@ -120,3 +118,4 @@
     width: 100%;
     border-radius: 4px;
 }
+
