@@ -3,6 +3,8 @@ import '../styles/globals.css'
 import Head from "next/head";
 import Script from "next/script";
 
+import { AuthContextProvider } from '../context/AuthContext'
+
 function MyApp({ Component, pageProps }) {
 	return (
 		<>
@@ -16,7 +18,10 @@ function MyApp({ Component, pageProps }) {
 				integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 				crossOrigin="anonymous"
 			/>
-			<Component {...pageProps} />
+
+			<AuthContextProvider>
+				<Component {...pageProps} />
+			</AuthContextProvider>
 		</>
 	);
 }
