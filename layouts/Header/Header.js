@@ -109,20 +109,15 @@ const Header = () => {
                                 <span className="navbar-toggler-icon bg-black"></span>
                             </button>
                             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                <div className="navbar-nav">
-                                    {/*<a className={`${styles.customNavLink} nav-link`}>*/}
-                                    {/*<Image src={admission} alt="Admission logo is missing"*/}
-                                    {/*className={`${styles.customNavImg}img-responsive`} width={20} height={20} />*/}
-                                    {/*Admission*/}
-                                    {/*</a>*/}
-
-                                    <Link href="" >
-                                        <a>
-                                            <Image src={admission} width={30} height={30}/>
-                                            <span>Weee</span>
-                                        </a>
-                                    </Link>
-                                </div>
+                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="/">
+                                            <a>
+                                                Admission
+                                            </a>
+                                        </Link>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </nav>

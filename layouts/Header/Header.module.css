@@ -49,20 +49,21 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-size: 14px;
-    margin:3px;
+    padding: 10px;
+}
+
+.customNavLink a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+.customNavLink a:hover{
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .customNavLink:hover {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 14px;
-    margin:3px;
-}
-
-.customNavImg {
-    width: 18px;
-    height: 18px;
-    margin-right:2px;
 }
