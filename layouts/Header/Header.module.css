@@ -1,0 +1,69 @@
+
+.headerSection {
+    overflow: hidden;
+    display: block;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.headerTop {
+    margin-top: 5px;
+}
+
+.headerLogo {
+    overflow: hidden;
+    display: block;
+}
+
+.headerLogo img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headerInfo h3 h5 {
+    font-family: Roboto, sans-serif;
+}
+
+.mainHeader {
+    overflow: hidden;
+    display: block;
+}
+
+.customNavbarBrand{
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 14px;
+    padding: 9px;
+}
+
+.customNavLink {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.customNavLink a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+.customNavLink a:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.customNavLink:hover {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+}
