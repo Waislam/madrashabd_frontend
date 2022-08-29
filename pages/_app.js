@@ -5,6 +5,8 @@ import Script from "next/script";
 
 import { AuthContextProvider } from '../context/AuthContext'
 
+import Header from '/layouts/Header/Header'
+
 function MyApp({ Component, pageProps }) {
 	return (
 		<>
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }) {
 			/>
 
 			<AuthContextProvider>
+                <Header/>
 				<Component {...pageProps} />
 			</AuthContextProvider>
 		</>
