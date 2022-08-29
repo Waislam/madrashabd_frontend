@@ -1,0 +1,122 @@
+
+.promotedStudentSection {
+    overflow: hidden;
+    display: block;
+    margin-bottom: 80px;
+}
+
+.promotedStudentList {
+    overflow: hidden;
+    display: block;
+}
+
+.promotedStudentTitle {
+    text-align: center;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.promotedStudentListTitle {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+
+.promotedStudent {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-left-color: #803e9f;
+    border-right-color: #33ba41;
+}
+
+.promotedStudent:hover {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-left-color: #803e9f;
+    border-right-color: #33ba41;
+}
+
+.studentLink a {
+    color: black;
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.promotedLink a {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: #ffffff;
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.promotedLink a:hover {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: #ffffff;
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-left-color: #803e9f;
+    border-right-color: #33ba41;
+}
+
+.searchButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 8px;
+    border: white;
+    width: 100%;
+    border-radius: 4px;
+}
+

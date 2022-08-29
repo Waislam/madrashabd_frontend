@@ -1,0 +1,97 @@
+#loginSection {
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    .loginImage {
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 768px) {
+    .loginImage {
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 992px) {
+    .loginImage {
+        display: block;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1200px) {
+    .loginImage {
+        display: block;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .loginImage {
+        display: block;
+    }
+}
+
+/*XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) and (max-width: 1600px) {
+    .loginImage {
+        display: block;
+    }
+}
+
+.loginBackground{
+    border-radius: 40px;
+}
+
+.loginFormWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.loginLogo{
+    overflow: hidden;
+    display: block;
+}
+
+.loginInfo {
+    text-align: center;
+}
+
+.loginTitle {
+    font-family: Roboto, sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.logoSubtitle {
+    font-family: Roboto, sans-serif;
+    color: #5BBF66;
+    font-weight: bold;
+}
+
+.loginForm {
+    margin: 30px;
+}
+
+.loginButton {
+    margin-top: 10px;
+    background-color: #3AB54A;
+    color: #fff;
+    padding: 6px;
+    border: 1px solid #3AB54A;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.forgetPassword {
+    overflow: hidden;
+    font-size: 14px;
+}
