@@ -17,7 +17,6 @@ function Dashboard() {
             </Head> */}
 
             <div>
-
                 {/* <DashboardLayout> */}
                     <div className="row">
                         <div className="col-md-12">
@@ -45,8 +44,6 @@ function Dashboard() {
                     </div>
         
                 {/* </DashboardLayout> */}
-
-
             </div>
         </>
     )
@@ -55,4 +52,4 @@ function Dashboard() {
 
 
 
-export default ProtectRoute(Dashboard);
+export default Dashboard;
