@@ -12,7 +12,7 @@ const StudentList = ({students}) => {
             <>
                 <section className={styles.promotedStudentSection}>
                     <div className="container-fluid">
-                        <h3 className={styles.promotedStudentTitle}>Student List</h3>
+                        {/* <h3 className={styles.promotedStudentTitle}>Student List</h3> */}
                         <div className="row">
                             <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                 <div className={styles.promotedStudentList}>
@@ -40,18 +40,19 @@ const StudentList = ({students}) => {
                             </div>
                             <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                                 <div className="card">
+                                <h3 className={styles.promotedStudentTitle}>Student List</h3> {/*waliul added here*/}
                                     <div className="card-body mt-3">
                                         <div className="student-table">
                                             <div className="table-search mb-2">
                                                 <form action="#">
                                                     <div className="row">
-                                                        <div className="col-md-2 mb-3">
-                                                            <input type="text" className="form-control"
+                                                        <div className={`col-md-2 mb-3`}>
+                                                            <input type="text" className={`form-control ${styles.heightCustomization}`}
                                                                    placeholder="Search"/>
                                                         </div>
                                                         <div className="col-md-2 mb-3 px-0">
-                                                            <div className="input-group">
-                                                                <input type="text" className="form-control"
+                                                            <div className={`input-group ${styles.heightCustomization}`}>
+                                                                <input type="text" className="form-control "
                                                                        placeholder="Department"/>
                                                                 <button type="button"
                                                                         className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
@@ -68,7 +69,7 @@ const StudentList = ({students}) => {
                                                             </div>
                                                         </div>
                                                         <div className="col-md-2 mb-3">
-                                                            <div className="input-group">
+                                                            <div className={`input-group ${styles.heightCustomization}`}>
                                                                 <input type="text" className="form-control"
                                                                        placeholder="Class"/>
                                                                 <button type="button"
@@ -86,7 +87,7 @@ const StudentList = ({students}) => {
                                                             </div>
                                                         </div>
                                                         <div className="col-md-2 mb-3">
-                                                            <div className="input-group">
+                                                            <div className={`input-group ${styles.heightCustomization}`}>
                                                                 <input type="text" className="form-control"
                                                                        placeholder="Group"/>
                                                                 <button type="button"
@@ -104,7 +105,7 @@ const StudentList = ({students}) => {
                                                             </div>
                                                         </div>
                                                         <div className="col-md-2 mb-3">
-                                                            <div className="input-group">
+                                                            <div className={`input-group ${styles.heightCustomization}`}>
                                                                 <input type="text" className="form-control"
                                                                        placeholder="Admited Student"/>
                                                                 <button type="button"
@@ -131,18 +132,18 @@ const StudentList = ({students}) => {
                                             <div className="table-responsive">
                                                 <table className="table table-bordered table-striped table-hover">
                                                     <thead className="table-dark">
-                                                    <tr>
-                                                        <th scope="col" className="text-center">Student ID</th>
-                                                        <th scope="col" className="text-center">Name</th>
-                                                        <th scope="col" className="text-center">Father</th>
-                                                        <th scope="col" className="text-center">Class</th>
-                                                        <th scope="col" className="text-center">Group</th>
-                                                        <th scope="col" className="text-center">Roll</th>
-                                                        <th scope="col" className="text-center">Address</th>
-                                                        <th scope="col" className="text-center">Contact</th>
-                                                        <th scope="col" className="text-center">Image</th>
-                                                        <th scope="col" className="text-center">Detail</th>
-                                                    </tr>
+                                                        <tr className={styles.tableheadersize}>
+                                                            <th scope="col" className="text-center">Student ID</th>
+                                                            <th scope="col" className="text-center">Name</th>
+                                                            <th scope="col" className="text-center">Father</th>
+                                                            <th scope="col" className="text-center">Class</th>
+                                                            <th scope="col" className="text-center">Group</th>
+                                                            <th scope="col" className="text-center">Roll</th>
+                                                            <th scope="col" className="text-center">Address</th>
+                                                            <th scope="col" className="text-center">Contact</th>
+                                                            <th scope="col" className="text-center">Image</th>
+                                                            <th scope="col" className="text-center">Detail</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
                                                     {
@@ -217,7 +218,7 @@ const StudentList = ({students}) => {
                                                             </div>
                                                             <div className="col">
                                                                 <button type="submit"
-                                                                        className={styles.searchButton}>Search
+                                                                        className={styles.searchButton}>Download
                                                                 </button>
                                                             </div>
                                                             <div className="col">
