@@ -120,7 +120,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/teachers">
                                             <a>
                                             <Image src={teacherStaff} alt="good" className={styles.imgclass}/>
                                                 TeacherStaff
@@ -128,7 +128,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/students">
                                             <a>
                                             <Image src={students} alt="good" className={styles.imgclass}/>
                                                 Students

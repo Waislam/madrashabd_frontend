@@ -1,0 +1,10 @@
+
+.addButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 10px;
+    border: white;
+    width: 100px;
+    border-radius: 4px;
+    text-decoration: none;
+}

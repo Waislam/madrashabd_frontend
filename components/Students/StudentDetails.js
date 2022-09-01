@@ -3,18 +3,14 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from './StudentDetails.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
+import teacher from '../../public/assets/login/teacher-2.jpg'
 
 const StudentDetails = () => {
         return (
             <>
                 <section className={styles.mainSection}>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-3 col-lg-3 col-xl-3"/>
-                            <div className="col-md-9 col-lg-9 col-xl-9">
-                                <h3 className={styles.mainTitle}>Student List</h3>
-                            </div>
-                        </div>
+                        <h3 className={styles.mainTitle}>Student List</h3>
                         <div className="row">
                             <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                 <div className={styles.sidebarList}>
@@ -39,127 +35,411 @@ const StudentDetails = () => {
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                                <div className="card mb-5">
-                                    <div className="card-body">
-                                        {/*Student Information*/}
-                                        <div className="studentInformation mb-3">
-                                            <h3 className="mb-2">Student Information</h3>
-                                            <div className="row">
-                                                <div className="col-sm-12 col-md-9">
-                                                    <div className="studentDetail">
-                                                        <h6>Name of student : Jibon Ahmed</h6>
+                                <div className="row">
+                                    <div className="col">
+                                        <div className="card mb-4">
+                                            <div className="card-body">
+                                                <h4>Student Information</h4>
+                                                <hr/>
+                                                <div className="row">
+                                                    <div className="col-md-9">
                                                         <div className="row">
-                                                            <div className="col-md-6">
-                                                                <p>Birth Certificate : test</p>
+                                                            <div className="col-md-7">
+                                                                <dl className="row">
+                                                                    <dt className="col-sm-6">
+                                                                        Name of student
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        Maksud Reza
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Date of birth
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        5th june, 2010
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Father name
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        Sk abul kashem
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Motheer name
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        Momotaz begum
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Blood group
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        o(+)
+                                                                    </dd>
+                                                                </dl>
                                                             </div>
-                                                            <div className="col-md-6">
-                                                                <p>NID : test</p>
+                                                            <div className="col-md-5">
+                                                                <dl className="row">
+                                                                    <dt className="col-sm-6">
+                                                                        Religion
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        Islam
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Marital status
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        Married
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Gender
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        PPP
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Contact
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        01923726372
+                                                                    </dd>
+                                                                </dl>
                                                             </div>
                                                         </div>
-                                                        <div className="row">
-                                                            <div className="col-md-6">
-                                                                <p>Date of Birth : 22-03-1996</p>
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <p>Nationality : Bangladeshi</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col-md-6">
-                                                                <p>Religion : Islam</p>
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <p>Gender : PPP</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col-md-4">
-                                                                <p>Blood Group 0(+)</p>
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <p>Contact : 01987132107</p>
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <p>Age : 27</p>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-3">Image</div>
-                                            </div>
-                                        </div>
-                                        {/*studentAddress*/}
-                                        <div className="studentAddress mb-3">
-                                            <div className="row">
-                                                <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                    <div className="presentAddress">
-                                                        <h4>Present Address</h4>
-                                                        <p>Address : 69/A, Dhaka, Bangladesh</p>
-                                                        <p>Post Office : Dhaka</p>
-                                                        <p>Post Code : Dhaka</p>
-                                                        <p>P.S/Upazila : Dhaka</p>
-                                                        <p>District : Dhaka</p>
-                                                        <p>Division : Dhaka</p>
+                                                    <div className="col-md-3">
+                                                        <Image src={teacher} className="img-responsive" width={400}
+                                                               height={300}/>
                                                     </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                    <div className="permanentAddress">
-                                                        <h4>Permanent Address</h4>
-                                                        <p>Address : 69/A, Dhaka, Bangladesh</p>
-                                                        <p>Post Office : Dhaka</p>
-                                                        <p>Post Code : Dhaka</p>
-                                                        <p>P.S/Upazila : Dhaka</p>
-                                                        <p>District : Dhaka</p>
-                                                        <p>Division : Dhaka</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/*guardiansInformation*/}
-                                        <div className="guardiansInformation">
-                                            <div className="row">
-                                                <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                                    <div className="studentFatherInformation">
-                                                        <h4>Father</h4>
-                                                        <p>Name : Ahmed</p>
-                                                        <p>Occupation : Business Man</p>
-                                                        <p>NID : </p>
-                                                        <p>Birth Certificate : </p>
-                                                        <p>Education : </p>
-                                                        <p>Contact : 01987132107</p>
-                                                        <p>Email : help@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                                    <div className="studentMotherInformation">
-                                                        <h4>Mother</h4>
-                                                        <p>Name : </p>
-                                                        <p>Occupation : Business Man</p>
-                                                        <p>NID : </p>
-                                                        <p>Birth Certificate : </p>
-                                                        <p>Education : </p>
-                                                        <p>Contact : 0198000000</p>
-                                                        <p>Email : help@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                                    <h4>Guardian</h4>
-                                                    <p>Name : Waliul Islam</p>
-                                                    <p>Relation : Brother</p>
-                                                    <p>Birth Certificate : </p>
-                                                    <p>Occupation : Business Man</p>
-                                                    <p>Yearly Income : 1k</p>
-                                                    <p>Contact : 0198000000</p>
-                                                    <p>Email : help@gmail.com</p>
-                                                    <p>2nd contact person : </p>
-                                                    <p>2nd contact relation : </p>
-                                                    <p>2nd contact number : 0198000000</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/*Academic Information*/}
-                                        <div className="academicInformation mb-3">
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6 mb-4">
+                                        <div className="card">
+                                            <div className="card-body pb-0">
+                                                <h4>Present Address</h4>
+                                                <hr/>
+                                                <dl className="row">
+                                                    <dt className="col-sm-3">Address</dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Shiromini abashik, Shiromoni, Khulna
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Post Office
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Shiromoni
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Post Code
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        9204
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        P.S./Upazilla
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Fultala
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        District
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Khulna
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Division
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Khulna
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 mb-4">
+                                        <div className="card">
+                                            <div className="card-body pb-0">
+                                                <h4>Permanent Address</h4>
+                                                <hr/>
+                                                <dl className="row">
+                                                    <dt className="col-sm-3">Address</dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Shiromini abashik, Shiromoni, Khulna
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Post Office
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Shiromoni
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Post Code
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        9204
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        P.S./Upazilla
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Fultala
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        District
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Khulna
+                                                    </dd>
+                                                    <dt className="col-sm-3">
+                                                        Division
+                                                    </dt>
+                                                    <dd className="col-sm-9">
+                                                        <span className="mx-2">:</span>
+                                                        Khulna
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="guardianInformation">
+                                    <h4>Guardian Information</h4>
+                                    <hr/>
+                                    <div className="row">
+                                        <div className="col-md-6 mb-4">
+                                            <div className="card">
+                                                <div className="card-body  pb-0">
+                                                    <h4>Father</h4>
+                                                    <hr/>
+                                                    <dl className="row">
+                                                        <dt className="col-sm-3">Name</dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            Maksud Reza
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Occupation
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            Business Man
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            NID
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            9204
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Birth Certificate
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            12345678
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Education
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            No
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Contact
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            12345678
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Email
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            no@gmail.com
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 mb-4">
+                                            <div className="card">
+                                                <div className="card-body pb-0">
+                                                    <h4>Mother</h4>
+                                                    <hr/>
+                                                    <dl className="row">
+                                                        <dt className="col-sm-3">Name</dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            Momotaz Begum
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Occupation
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            Business Man
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            NID
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            9204
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Birth Certificate
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            12345678
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Education
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            No
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Contact
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            12345678
+                                                        </dd>
+                                                        <dt className="col-sm-3">
+                                                            Email
+                                                        </dt>
+                                                        <dd className="col-sm-9">
+                                                            <span className="mx-2">:</span>
+                                                            no@gmail.com
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <h4>Guardian</h4>
+                                        <hr/>
+                                        <div className="col-md-6 mb-4">
+                                            <div className="card">
+                                                <div className="card-body pb-0">
+                                                    <dl className="row">
+                                                        <dt className="col-sm-4">Name</dt>
+                                                        <dd className="col-sm-8">
+                                                            <span className="mx-2">:</span>
+                                                            Maksud Reza
+                                                        </dd>
+                                                        <dt className="col-sm-4">
+                                                            Relation
+                                                        </dt>
+                                                        <dd className="col-sm-8">
+                                                            <span className="mx-2">:</span>
+                                                            Brother
+                                                        </dd>
+                                                        <dt className="col-sm-4">
+                                                            Birth Certificate
+                                                        </dt>
+                                                        <dd className="col-sm-8">
+                                                            <span className="mx-2">:</span>
+                                                            9204122123132132
+                                                        </dd>
+                                                        <dt className="col-sm-4">
+                                                            Occupation
+                                                        </dt>
+                                                        <dd className="col-sm-8">
+                                                            <span className="mx-2">:</span>
+                                                            Business Man
+                                                        </dd>
+                                                        <dt className="col-sm-4">
+                                                            Yearly Income
+                                                        </dt>
+                                                        <dd className="col-sm-8">
+                                                            <span className="mx-2">:</span>
+                                                            1,0000000 Taka
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 mb-4">
+                                            <div className="card">
+                                                <div className="card-body pb-0">
+                                                    <dl className="row">
+                                                        <dt className="col-sm-5">Contact</dt>
+                                                        <dd className="col-sm-7">
+                                                            <span className="mx-2">:</span>
+                                                            019992323
+                                                        </dd>
+                                                        <dt className="col-sm-5">
+                                                            Email
+                                                        </dt>
+                                                        <dd className="col-sm-7">
+                                                            <span className="mx-2">:</span>
+                                                            email@gmail.com
+                                                        </dd>
+                                                        <dt className="col-sm-5">
+                                                            2nd Contact Person
+                                                        </dt>
+                                                        <dd className="col-sm-7">
+                                                            <span className="mx-2">:</span>
+                                                            9204122123132132
+                                                        </dd>
+                                                        <dt className="col-sm-5">
+                                                            2nd Contact relation
+                                                        </dt>
+                                                        <dd className="col-sm-7">
+                                                            <span className="mx-2">:</span>
+                                                            Brother
+                                                        </dd>
+                                                        <dt className="col-sm-5">
+                                                            2nd Contact number
+                                                        </dt>
+                                                        <dd className="col-sm-7">
+                                                            <span className="mx-2">:</span>
+                                                            017400000000
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="academicInformation mb-4">
+                                    <div className="card">
+                                        <div className="card-body pb-0">
                                             <h4>Academic Information</h4>
+                                            <hr/>
                                             <div className="row">
                                                 <div className="col-md-4">
                                                     <p>Class : Six</p>
@@ -167,7 +447,7 @@ const StudentDetails = () => {
                                                 </div>
                                                 <div className="col-md-4">
                                                     <p>Section : A</p>
-                                                    <p>Class Roll : 9</p>
+                                                    <p>Class Roll : 2022</p>
                                                 </div>
                                                 <div className="col-md-4">
                                                     <p>Group : None</p>
@@ -175,9 +455,13 @@ const StudentDetails = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/*Attendance*/}
-                                        <div className="attendance mb-5">
-                                            <h4 className="mb-3">Attendance</h4>
+                                    </div>
+                                </div>
+                                <div className="attendance mb-4">
+                                    <div className="card">
+                                        <div className="card-body pb-0">
+                                            <h4>Attendance</h4>
+                                            <hr/>
                                             <table className="table">
                                                 <thead>
                                                 <tr>
@@ -191,12 +475,12 @@ const StudentDetails = () => {
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td>2022</td>
-                                                    <td>March</td>
-                                                    <td>30</td>
-                                                    <td>25</td>
-                                                    <td>05</td>
-                                                    <td>Bad</td>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
