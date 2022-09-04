@@ -20,6 +20,7 @@ import userManager from '../../public/assets/header-icon/user-manager.png';
 import members from '../../public/assets/header-icon/members.png';
 import accounts from '../../public/assets/header-icon/accounts.png';
 import payments from '../../public/assets/header-icon/payments.png';
+import {Main} from "next/document";
 
 
 const Header = () => {

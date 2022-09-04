@@ -6,10 +6,13 @@ import api from './api/api'
 import useAuth, { ProtectRoute } from '../context/AuthContext'
 import Skeleton from 'react-loading-skeleton';
 
+import Layout from "../components/Layout/Layout";
+
 function Dashboard() {
 
     return (
         <>
+            {/*<Header />*/}
             {/* <Head>
                 <title>
                     Dashboard | MarsJupyter
@@ -49,7 +52,13 @@ function Dashboard() {
     )
 }
 
+export default Dashboard
 
+Dashboard.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            {page}
+        </Layout>
+    )
+}
 
-
-export default Dashboard;
