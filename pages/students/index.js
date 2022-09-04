@@ -9,29 +9,20 @@ import studentLogo from "../../public/assets/admission/students.png";
 import Link from "next/link";
 import students from "../../public/assets/admission/students.png";
 
-// const Index = () => {
-//
-//     return (
-//         <>
-//             <StudentList/>
-//         </>
-//     )
-// };
-//
-//
-// export default Index;
+const Index = () => {
 
-const Students = () => {
     return (
-      <>
-          <StudentList />
-      </>
+        <>
+            <StudentList/>
+        </>
     )
-}
+};
 
-export default Students
 
-Students.getLayout = (page) => {
+export default Index;
+
+
+Index.getLayout = (page) => {
     return(
         <Layout>
             { page }
