@@ -1,18 +1,13 @@
 
-.accountListSection {
+.khabarDistributionSection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.listRightSide {
+.khabarDistributionRightSide {
     overflow: hidden;
     display: block;
-}
-
-.accountListTitle {
-    font-weight: bold;
-    text-align: center;
 }
 
 .activeLink a {
@@ -66,78 +61,12 @@
     border-right-color: #33ba41;
 }
 
-.submitBtn {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    padding: 10px;
-    border: white;
-    width: 100px;
-    border-radius: 4px;
-    margin: 2px
-}
-
-.printBtn {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    padding: 10px;
-    border: white;
-    width: 100px;
-    border-radius: 4px;
-    margin: 2px;
-}
-
-.instituteName {
-    border: 10px solid #c2c2c2;
-    padding: 20px;
-    overflow: hidden;
-    display: block;
-    border-radius: 4px;
-}
-
-.instituteLogo {
-    /*background-image: url("../../public/assets/login/icon.png");*/
-    /*background-repeat: no-repeat;*/
-    opacity: 1.9;
-    height: 100px;
-    width: 100%;
-
-}
-
-.receivedSign {
-    position: absolute;
-    right: 35px;
-    bottom: 80px;
-}
-
-.searchButton {
+.searchBtn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     padding: 7px;
     border: white;
-    width: 150px;
+    width: 140px;
     border-radius: 4px;
     margin: 2px
-}
-
-.instituteNamePdf {
-    border: 1px solid #333333;
-    padding: 20px;
-    height: 250px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.instituteList {
-    text-align: center;
-}
-
-.institutePrintBtn {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    padding: 7px;
-    border: white;
-    border-radius: 4px;
-    margin-top: 50px;
-
 }
