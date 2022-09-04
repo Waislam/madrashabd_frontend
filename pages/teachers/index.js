@@ -1,5 +1,5 @@
 import React from "react";
-import api from '/pages/api/api';
+
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
