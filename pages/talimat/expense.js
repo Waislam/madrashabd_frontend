@@ -1,23 +1,23 @@
 import React from "react";
 
-// StudentList Component
-import StudentList from "../../components/Students/StudentList";
+// Expense Component
+import Expense from "../../components/Talimat/Expense";
 import Layout from "../../components/Layout/Layout";
 
-const Index = () => {
+const ExpensePage = () => {
 
     return (
         <>
-            <StudentList/>
+            <Expense/>
         </>
     )
 };
 
 
-export default Index;
+export default ExpensePage;
 
 
-Index.getLayout = (page) => {
+ExpensePage.getLayout = (page) => {
     return(
         <Layout>
             { page }

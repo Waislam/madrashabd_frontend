@@ -3,7 +3,7 @@ import React from "react";
 // PromotedStudent Components
 import PromotedStudent from "../../components/PromotedStudent/PromotedStudent";
 import Layout from "../../components/Layout/Layout";
-import Students from "./index";
+
 
 const promotedStudent = () => {
     return (
@@ -21,4 +21,4 @@ promotedStudent.getLayout = (page) => {
             { page }
         </Layout>
     )
-}
+};
