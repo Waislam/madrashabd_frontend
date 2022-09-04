@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Login/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Login/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Layout/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Layout/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/[...slug].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/[...slug].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/promoted-student.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/promoted-student.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,12 +163,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/mhmasuk/coding/nextjs_project/Ikhwan/madrashabd_frontend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mhmasuk/coding/nextjs_project/Ikhwan/madrashabd_frontend&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Professional\ikhwanbd\Frontend\madrashabd_frontend\pages\students" />
@@ -187,7 +185,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661178113253</updated>
-      <workItem from="1662195391856" duration="4825000" />
+      <workItem from="1662195391856" duration="7387000" />
+      <workItem from="1662218054352" duration="88000" />
+      <workItem from="1662262182816" duration="3267000" />
     </task>
     <servers />
   </component>
