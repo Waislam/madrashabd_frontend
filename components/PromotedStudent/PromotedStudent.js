@@ -120,125 +120,89 @@ const PromotedStudent = () => {
                                             </form>
                                         </div>
                                         <div className="table-responsive">
-                                            <table className="table table-bordered table-striped table-hover">
-                                                <thead className="table-dark">
+                                            <table className="table table-striped ">
+                                                <thead className={styles.test}>
                                                 <tr>
-                                                    <th scope="col" className="text-center">Student ID</th>
-                                                    <th scope="col" className="text-center">Name</th>
-                                                    <th scope="col" className="text-center">Father</th>
-                                                    <th scope="col" className="text-center">Class</th>
-                                                    <th scope="col" className="text-center">Group</th>
-                                                    <th scope="col" className="text-center">Roll</th>
-                                                    <th scope="col" className="text-center">Address</th>
-                                                    <th scope="col" className="text-center">Contact</th>
-                                                    <th scope="col" className="text-center">Image</th>
-                                                    <th scope="col" className="text-center">Detail</th>
+                                                    <th scope="col">Student ID</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Father</th>
+                                                    <th scope="col">Class</th>
+                                                    <th scope="col">Group</th>
+                                                    <th scope="col">Roll</th>
+                                                    <th scope="col">Address</th>
+                                                    <th scope="col">Contact</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Detail</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
+                                                    <th scope="row">101</th>
+                                                    <td className="text-sm">Reza</td>
+                                                    <td className="text-sm">Abul Kashem</td>
+                                                    <td className="text-sm">Dawra</td>
+                                                    <td className="text-sm">Null</td>
+                                                    <td className="text-sm">99</td>
+                                                    <td className="text-sm">Tala</td>
+                                                    <td className="text-sm">+88 01987132107</td>
+                                                    <td className="text-center text-sm">
                                                         <Image src={students} alt="" width="25" height="25"/>
                                                     </td>
-                                                    <td style={{color: "#5CBD67"}}>
+                                                    <td className="text-sm" style={{color: "#5CBD67"}}>
                                                         <Link href="/">
                                                             View Details
                                                         </Link>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
+                                                    <th scope="row">101</th>
+                                                    <td className="text-sm">Reza</td>
+                                                    <td className="text-sm">Abul Kashem</td>
+                                                    <td className="text-sm">Dawra</td>
+                                                    <td className="text-sm">Null</td>
+                                                    <td className="text-sm">99</td>
+                                                    <td className="text-sm">Tala</td>
+                                                    <td className="text-sm">+88 01987132107</td>
+                                                    <td className="text-center text-sm">
                                                         <Image src={students} alt="" width="25" height="25"/>
                                                     </td>
-                                                    <td style={{color: "#5CBD67"}}>
+                                                    <td className="text-sm" style={{color: "#5CBD67"}}>
                                                         <Link href="/">
                                                             View Details
                                                         </Link>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
+                                                    <th scope="row">101</th>
+                                                    <td className="text-sm">Reza</td>
+                                                    <td className="text-sm">Abul Kashem</td>
+                                                    <td className="text-sm">Dawra</td>
+                                                    <td className="text-sm">Null</td>
+                                                    <td className="text-sm">99</td>
+                                                    <td className="text-sm">Tala</td>
+                                                    <td className="text-sm">+88 01987132107</td>
+                                                    <td className="text-center text-sm">
                                                         <Image src={students} alt="" width="25" height="25"/>
                                                     </td>
-                                                    <td style={{color: "#5CBD67"}}>
+                                                    <td className="text-sm" style={{color: "#5CBD67"}}>
                                                         <Link href="/">
                                                             View Details
                                                         </Link>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
+                                                    <th scope="row">101</th>
+                                                    <td className="text-sm">Reza</td>
+                                                    <td className="text-sm">Abul Kashem</td>
+                                                    <td className="text-sm">Dawra</td>
+                                                    <td className="text-sm">Null</td>
+                                                    <td className="text-sm">99</td>
+                                                    <td className="text-sm">Tala</td>
+                                                    <td className="text-sm">+88 01987132107</td>
+                                                    <td className="text-center text-sm">
                                                         <Image src={students} alt="" width="25" height="25"/>
                                                     </td>
-                                                    <td style={{color: "#5CBD67"}}>
-                                                        <Link href="/">
-                                                            View Details
-                                                        </Link>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
-                                                        <Image src={students} alt="" width="25" height="25"/>
-                                                    </td>
-                                                    <td style={{color: "#5CBD67"}}>
-                                                        <Link href="/">
-                                                            View Details
-                                                        </Link>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row" className="text-center">101</th>
-                                                    <td>Reza</td>
-                                                    <td>Abul Kashem</td>
-                                                    <td>Dawra</td>
-                                                    <td>Null</td>
-                                                    <td>99</td>
-                                                    <td>Tala</td>
-                                                    <td>+88 01987132107</td>
-                                                    <td className="text-center">
-                                                        <Image src={students} alt="" width="25" height="25"/>
-                                                    </td>
-                                                    <td style={{color: "#5CBD67"}}>
+                                                    <td className="text-sm" style={{color: "#5CBD67"}}>
                                                         <Link href="/">
                                                             View Details
                                                         </Link>

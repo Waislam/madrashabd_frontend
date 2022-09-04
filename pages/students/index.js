@@ -1,27 +1,27 @@
 import React from "react";
-import api from '/pages/api/api';
 
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
+import Layout from "../../components/Layout/Layout";
 
-const index = ({students}) => {
-    console.log("Student", students);
+const Index = () => {
+
     return (
         <>
-            <StudentList students={students}/>
+            <StudentList/>
         </>
     )
 };
 
-// Fetching Data
-export const getStaticProps = async () => {
-    const res = await api.get(`students/`);
-    return {
-        props: {
-            "students": res.data
-        }
-    }
-};
 
-export default index;
+export default Index;
+
+
+Index.getLayout = (page) => {
+    return(
+        <Layout>
+            { page }
+        </Layout>
+    )
+};
 

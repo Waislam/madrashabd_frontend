@@ -2,6 +2,7 @@ import React from "react";
 
 // StudentDetails
 import StudentDetails from "../../components/Students/StudentDetails";
+import Layout from "../../components/Layout/Layout";
 
 const StudentDetail = () => {
     return (
@@ -12,3 +13,9 @@ const StudentDetail = () => {
 };
 
 export default StudentDetail;
+
+StudentDetail.getLayout = function getLayout({page}) {
+    return (
+        <Layout>{page}</Layout>
+    )
+}

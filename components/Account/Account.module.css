@@ -1,32 +1,21 @@
 
-.promotedStudentSection {
+.accountListSection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.promotedStudentList {
+.listRightSide {
     overflow: hidden;
     display: block;
 }
 
-.promotedStudentTitle {
-    text-align: center;
+.accountListTitle {
     font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    text-align: center;
 }
 
-.promotedStudentListTitle {
-    margin-top: 5px;
-    text-align: center;
-    font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-
-.promotedStudent {
+.activeLink a {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     display: block;
@@ -38,31 +27,13 @@
     user-select: none;
     border: 1px solid transparent;
     font-size: 1rem;
-    padding: 6px;
+    padding: 8px;
     margin-bottom: 10px;
     border-left-color: #803e9f;
     border-right-color: #33ba41;
 }
 
-.promotedStudent:hover {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    display: block;
-    line-height: 1.5;
-    text-decoration: none;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    font-size: 1rem;
-    padding: 6px;
-    margin-bottom: 10px;
-    border-left-color: #803e9f;
-    border-right-color: #33ba41;
-}
-
-.studentLink a {
+.inActiveLink a {
     color: black;
     display: block;
     line-height: 1.5;
@@ -77,23 +48,7 @@
     margin-bottom: 10px;
 }
 
-.promotedLink a {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: #ffffff;
-    display: block;
-    line-height: 1.5;
-    text-decoration: none;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    font-size: 1rem;
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-.promotedLink a:hover {
+.inActiveLink a:hover {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: #ffffff;
     display: block;
@@ -111,17 +66,78 @@
     border-right-color: #33ba41;
 }
 
-.searchButton {
+.submitBtn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 8px;
+    padding: 10px;
     border: white;
-    width: 100%;
+    width: 100px;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.printBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 10px;
+    border: white;
+    width: 100px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.instituteName {
+    border: 10px solid #c2c2c2;
+    padding: 20px;
+    overflow: hidden;
+    display: block;
     border-radius: 4px;
 }
 
+.instituteLogo {
+    /*background-image: url("../../public/assets/login/icon.png");*/
+    /*background-repeat: no-repeat;*/
+    opacity: 1.9;
+    height: 100px;
+    width: 100%;
 
-.test{
-    background-color: #35B843;
+}
+
+.receivedSign {
+    position: absolute;
+    right: 35px;
+    bottom: 80px;
+}
+
+.searchButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.instituteNamePdf {
+    border: 1px solid #333333;
+    padding: 20px;
+    height: 250px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.instituteList {
+    text-align: center;
+}
+
+.institutePrintBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    border-radius: 4px;
+    margin-top: 50px;
+
 }

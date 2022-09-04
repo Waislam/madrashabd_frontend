@@ -3,12 +3,18 @@ import '../styles/globals.css'
 import Head from "next/head";
 import Script from "next/script";
 
-import { AuthContextProvider } from '../context/AuthContext'
+import {AuthContextProvider} from '../context/AuthContext'
 
 import Header from '/layouts/Header/Header'
 
-function MyApp({ Component, pageProps }) {
-	return (
+import { SessionProvider } from "next-auth/react"
+
+function MyApp({
+	Component,
+	pageProps: { session, ...pageProps },
+}) {
+	const getLayout = Component.getLayout || ((page) => page)
+	return getLayout(
 		<>
 			<Head>
 				<meta charSet="utf-8" />
@@ -20,12 +26,14 @@ function MyApp({ Component, pageProps }) {
 				integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 				crossOrigin="anonymous"
 			/>
-
-			<AuthContextProvider>
-                <Header/>
-				<Component {...pageProps} />
-			</AuthContextProvider>
+			<SessionProvider session={session}>
+				<AuthContextProvider>
+					{/*<Header />*/}
+					<Component {...pageProps} />
+				</AuthContextProvider>
+			</SessionProvider>
 		</>
 	);
 }
+
 export default MyApp;

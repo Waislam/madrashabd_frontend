@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import Image from "next/image";
+// import Image from "next/image";
+import Image from "next/future/image";
 import styles from './Header.module.css'
 
 // Header Icon
@@ -19,6 +20,7 @@ import userManager from '../../public/assets/header-icon/user-manager.png';
 import members from '../../public/assets/header-icon/members.png';
 import accounts from '../../public/assets/header-icon/accounts.png';
 import payments from '../../public/assets/header-icon/payments.png';
+import {Main} from "next/document";
 
 
 const Header = () => {
@@ -40,7 +42,7 @@ const Header = () => {
                                             <h3 className="header-title">
                                                 Welcome to <span style={{color: "#3AB54A"}}> Darul Ulum Madrasha</span>
                                             </h3>
-                                            <h5 className="text-center">220 Mabibug, Dhaka</h5>
+                                            <h5 className="text-center">220 Malibug, Dhaka</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -108,21 +110,81 @@ const Header = () => {
                                     aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon bg-black"></span>
                             </button>
-                            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                <div className="navbar-nav">
-                                    {/*<a className={`${styles.customNavLink} nav-link`}>*/}
-                                    {/*<Image src={admission} alt="Admission logo is missing"*/}
-                                    {/*className={`${styles.customNavImg}img-responsive`} width={20} height={20} />*/}
-                                    {/*Admission*/}
-                                    {/*</a>*/}
-
-                                    <Link href="" >
-                                        <a>
-                                            <Image src={admission} width={30} height={30}/>
-                                            <span>Weee</span>
-                                        </a>
-                                    </Link>
-                                </div>
+                            <div className={`collapse navbar-collapse ${styles.linknav}`} id="navbarNavAltMarkup">
+                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="/">
+                                            <a>
+                                                <Image src={admission} alt="good" className={styles.imgclass}/>
+                                                Admission
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="/teachers">
+                                            <a>
+                                            <Image src={teacherStaff} alt="good" className={styles.imgclass}/>
+                                                TeacherStaff
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="/students">
+                                            <a>
+                                            <Image src={students} alt="good" className={styles.imgclass}/>
+                                                Students
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={talimat} alt="good" className={styles.imgclass}/>
+                                                Talimat
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={darulEkhma} alt="good" className={styles.imgclass}/>
+                                                DarulEkama
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={accounts} alt="good" className={styles.imgclass}/>
+                                                Accounts
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={accounts} alt="good" className={styles.imgclass}/>
+                                                Library
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={boarding} alt="good" className={styles.imgclass}/>
+                                                Boarding
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    <li className={`${styles.customNavLink} nav-item`}>
+                                        <Link href="">
+                                            <a>
+                                            <Image src={members} alt="good" className={styles.imgclass}/>
+                                                Members
+                                            </a>
+                                        </Link>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </nav>
