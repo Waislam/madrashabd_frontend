@@ -26,12 +26,17 @@ const Talimat = () => {
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="">
-                                                <a className="text-center">Expense</a>
+                                                <a className="text-center">Examination</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="">
-                                                <a className="text-center">Payment</a>
+                                                <a className="text-center">Dawah</a>
+                                            </Link>
+                                        </div>
+                                        <div className={styles.inActiveLink}>
+                                            <Link href="">
+                                                <a className="text-center">Extra-Activity</a>
                                             </Link>
                                         </div>
                                     </div>

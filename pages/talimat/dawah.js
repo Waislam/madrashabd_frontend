@@ -1,23 +1,23 @@
 import React from "react";
 
-// Payment Component
-import Payment from "../../components/Talimat/Payment";
+// Dawah Component
+import Dawah from "../../components/Talimat/Dawah";
 import Layout from "../../components/Layout/Layout";
 
-const PaymentPage = () => {
+const DawahPage = () => {
 
     return (
         <>
-            <Payment/>
+            <Dawah/>
         </>
     )
 };
 
 
-export default PaymentPage;
+export default DawahPage;
 
 
-PaymentPage.getLayout = (page) => {
+DawahPage.getLayout = (page) => {
     return(
         <Layout>
             { page }
