@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import Head from "next/head";
 import Script from "next/script";
 
-import { AuthContextProvider } from '../context/AuthContext'
+import {AuthContextProvider} from '../context/AuthContext'
 
 import Header from '/layouts/Header/Header'
 
@@ -35,4 +35,5 @@ function MyApp({
 		</>
 	);
 }
+
 export default MyApp;
