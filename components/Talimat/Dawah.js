@@ -1,17 +1,17 @@
 import React from "react";
 import Link from 'next/link'
 import Image from "next/image";
-import styles from './Payment.module.css'
+import styles from './Dawah.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
-const Payment = () => {
+const Dawah = () => {
     return (
         <>
-            <section className={styles.paymentSection}>
+            <section className={styles.dawahSection}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.paymentRightSide}>
+                            <div className={styles.dawahRightSide}>
                                 <div className="card">
                                     <h4 className="text-center mt-3">
                                         <Image src={studentLogo} className="img-responsive"
@@ -26,12 +26,17 @@ const Payment = () => {
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="">
-                                                <a className="text-center">Expense</a>
+                                                <a className="text-center">Examination</a>
                                             </Link>
                                         </div>
                                         <div className={styles.activeLink}>
                                             <Link href="">
-                                                <a className="text-center">Payment</a>
+                                                <a className="text-center">Dawah</a>
+                                            </Link>
+                                        </div>
+                                        <div className={styles.inActiveLink}>
+                                            <Link href="">
+                                                <a className="text-center">Extra-Activity</a>
                                             </Link>
                                         </div>
                                     </div>
@@ -44,6 +49,7 @@ const Payment = () => {
                                     <div className="card-body">
                                         <h4>Books Distribution to teacher</h4>
                                         <hr/>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +63,7 @@ const Payment = () => {
 };
 
 
-export default Payment;
+export default Dawah;
 
 
 
