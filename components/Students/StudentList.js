@@ -7,8 +7,8 @@ import students from '../../public/assets/admission/students.png'
 import Header from "../../layouts/Header/Header";
 
 
-const StudentList = ({students}) => {
-    console.log("students", students)
+const StudentList = ({students, handleStudentListPageNum, studentListPageNum, nextPage, prevPage, setSearchStudent}) => {
+    console.log("students", students, studentListPageNum,)
 
     return (
         <>
@@ -48,8 +48,12 @@ const StudentList = ({students}) => {
                                             <form action="#">
                                                 <div className="row">
                                                     <div className="col-md-2 mb-3">
-                                                        <input type="text" className="form-control"
-                                                               placeholder="Search"/>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            placeholder="Search"
+                                                            onChange={(event) => setSearchStudent(event.target.value)}
+                                                        />
                                                     </div>
                                                     <div className="col-md-2 mb-3 px-0">
                                                         <div className="input-group">
@@ -226,17 +230,21 @@ const StudentList = ({students}) => {
                                             <div className="col-md-8">
                                                 <nav aria-label="Page navigation example">
                                                     <ul className="pagination">
-                                                        <li className="page-item"><a className="page-link"
-                                                                                     href="#">Previous</a>
+                                                        <li className="page-item">
+                                                            <a className="page-link" onClick={prevPage} href="#">
+                                                                Previous
+                                                            </a>
                                                         </li>
                                                         <li className="page-item"><a className="page-link"
-                                                                                     href="#">1</a></li>
+                                                                                     href="#">{studentListPageNum}</a></li>
                                                         <li className="page-item"><a className="page-link"
-                                                                                     href="#">2</a></li>
+                                                                                     href="#" onClick={handleStudentListPageNum}>{studentListPageNum + 1}</a></li>
                                                         <li className="page-item"><a className="page-link"
-                                                                                     href="#">3</a></li>
-                                                        <li className="page-item"><a className="page-link"
-                                                                                     href="#">Next</a>
+                                                                                     href="#" onClick={handleStudentListPageNum}>{studentListPageNum + 2}</a></li>
+                                                        <li className="page-item">
+                                                            <a className="page-link" onClick={nextPage} href="#">
+                                                                Next
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>

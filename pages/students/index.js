@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
-import api from "../api/api";
+import api, {BASE_URL} from "../api/api";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 const Index = () => {
     const [students, setStudents] = useState(null)
     const [isLoading, setLoading] = useState(false)
+    const [studentId, setStudentID] = useState('')
+    const [searchStudent, setSearchStudent] = useState('')
+    const [studentListPageNum, setStudentListPageNum] = useState(1)
+    const [studentListRecords, setStudentListRecords] = useState('')
 
-    useEffect(() => {
+    const getStudents = () => {
         setLoading(true)
         // fetch('/api/profile-data')
         //     .then((res) => res.json())
@@ -18,7 +23,9 @@ const Index = () => {
         //         setLoading(false)
         //     })
 
-        api.get('students/')
+        console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+            // api.get('students/')
             .then((response) => {
                 console.log("response", response.data)
                 setStudents(response.data)
@@ -28,7 +35,26 @@ const Index = () => {
                 console.log("error", error)
                 setLoading(false)
             })
-    }, [])
+    }
+
+    useEffect(() => {
+        getStudents()
+    }, [studentListPageNum])
+
+    console.log("searchStudent", searchStudent)
+
+    const handleStudentListPageNum = () => {
+        console.log("handleStudentListPageNum() called")
+        setStudentListPageNum(studentListPageNum + 1)
+    }
+
+    const nextPage = () => {
+        setStudentListPageNum(studentListPageNum + 1)
+    }
+
+    const prevPage = () => {
+        setStudentListPageNum(studentListPageNum - 1)
+    }
 
     if (isLoading) {
         return (
@@ -48,7 +74,14 @@ const Index = () => {
 
     return (
         <>
-            <StudentList students={students.results}/>
+            <StudentList
+                students={students.results}
+                handleStudentListPageNum={handleStudentListPageNum}
+                studentListPageNum={studentListPageNum}
+                setSearchStudent={setSearchStudent}
+                nextPage={nextPage}
+                prevPage={prevPage}
+            />
         </>
     )
 };
@@ -65,12 +98,20 @@ Index.getLayout = (page) => {
     )
 }
 
-export async function getStaticProps() {
-    // const categories = await ();
-    const categories =  []
-
-    return {
-        props: {categories},
-    };
-}
+// export async function getStaticProps(ctx) {
+//     // const categories = await ();
+//     // const students =  api('students/')
+//
+//     console.log("ctx", ctx)
+//
+//     const res = await fetch(`${BASE_URL}students`)
+//     const students = await res.json()
+//     // console.log("students", students)
+//
+//     return {
+//         props: {
+//             students
+//         },
+//     };
+// }
 
