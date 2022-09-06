@@ -8,7 +8,7 @@ const Index = () => {
 
     return (
         <>
-            <StudentList/>
+            <StudentList />
         </>
     )
 };
@@ -24,4 +24,5 @@ Index.getLayout = (page) => {
         </Layout>
     )
 };
+
 
