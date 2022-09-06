@@ -1,28 +1,27 @@
 import React from "react";
 
-// StudentList Component
-import StudentList from "../../components/Students/StudentList";
+// Dawah Component
+import Dawah from "../../components/Talimat/Dawah";
 import Layout from "../../components/Layout/Layout";
 
-const Index = () => {
+const DawahPage = () => {
 
     return (
         <>
-            <StudentList />
+            <Dawah/>
         </>
     )
 };
 
 
-export default Index;
+export default DawahPage;
 
 
-Index.getLayout = (page) => {
+DawahPage.getLayout = (page) => {
     return(
         <Layout>
             { page }
         </Layout>
     )
 };
-
 

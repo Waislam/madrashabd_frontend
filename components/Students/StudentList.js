@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from './StudentList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 import students from '../../public/assets/admission/students.png'
-import Header from "../../layouts/Header/Header";
 
 
 const StudentList = () => {
