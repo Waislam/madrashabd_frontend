@@ -1,0 +1,49 @@
+/* =============
+1. Training header
+2. body
+=================*/
+
+
+/* ============== 1. Training header ============= */
+
+.syllabus h2 {
+    font-size: 1em;
+    padding-top: 10px;
+    text-decoration: underline;
+}
+
+.defaultBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+/* =========== 2. body =============== */
+
+.textBox {
+    border: solid 1px;
+    min-height: 50px;
+    margin: 26px 0px 0px 13px;
+    width: 928px;
+}
+
+.customButton{
+    margin-top: 10px;
+}
+
+.customButton button{
+    float: left;
+}
+
+.trainingAdd {
+    margin: 20px 0px 0px 15px;
+    width: 903px;
+
+}
+
+.trainingAdd textarea{}
+

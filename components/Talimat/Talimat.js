@@ -4,12 +4,13 @@ import Image from "next/image";
 import styles from './Talimat.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
+
 const Talimat = () => {
     return (
         <>
-            <section className={styles.talimatSection}>
+            {/* <section className={styles.talimatSection}>
                 <div className="container-fluid">
-                    <div className="row">
+                    <div className="row"> */}
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.talimatRightSide}>
                                 <div className="card">
@@ -43,19 +44,10 @@ const Talimat = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                            <div className="talimat">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4>Books Distribution to teacher</h4>
-                                        <hr/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
+                    {/* </div>
                 </div>
-            </section>
+            </section> */}
         </>
     )
 
