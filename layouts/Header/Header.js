@@ -57,7 +57,7 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">
+                                            <a className="nav-link" href="/transport">
                                                 <Image src={transport} alt="" className="img-responsive" width={30}
                                                        height={30}/>
                                             </a>
@@ -69,7 +69,7 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">
+                                            <a className="nav-link" href="/setting">
                                                 <Image src={setting} alt="" className="img-responsive" width={30}
                                                        height={30}/>
                                             </a>
@@ -137,7 +137,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/talimat/syllabus">
                                             <a>
                                             <Image src={talimat} alt="good" className={styles.imgclass}/>
                                                 Talimat

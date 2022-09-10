@@ -1,4 +1,4 @@
-import Talimat from '../Talimat';
+import SideMenu from './ExamSideMenu';
 import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
@@ -9,7 +9,7 @@ const HallNigran = () =>{
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                    <Talimat/>
+                    <SideMenu/>
                     <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                         <div className="talimat">
                             <div className="card">

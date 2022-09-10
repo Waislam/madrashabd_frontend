@@ -1,11 +1,11 @@
 import React from "react";
 import Link from 'next/link'
 import Image from "next/image";
-import styles from './Talimat.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
+import styles from '../Talimat.module.css'
+import studentLogo from '../../../public/assets/admission/students.png'
 
 
-const Talimat = () => {
+const ExamSideMenu = () => {
     return (
         <>
             {/* <section className={styles.talimatSection}>
@@ -20,12 +20,12 @@ const Talimat = () => {
                                     </h4>
                                     <hr/>
                                     <div className="card-body p-0">
-                                        <div className={styles.activeLink}>
+                                        <div className={styles.inActiveLink}>
                                             <Link href="/talimat/syllabus">
                                                 <a className="text-center">Syllabus</a>
                                             </Link>
                                         </div>
-                                        <div className={styles.inActiveLink}>
+                                        <div className={styles.activeLink}>
                                             <Link href="/talimat/exam">
                                                 <a className="text-center">Examination</a>
                                             </Link>
@@ -54,7 +54,7 @@ const Talimat = () => {
 };
 
 
-export default Talimat;
+export default ExamSideMenu;
 
 
 
