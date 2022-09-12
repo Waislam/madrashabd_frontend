@@ -177,7 +177,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/members">
                                             <a>
                                             <Image src={members} alt="good" className={styles.imgclass}/>
                                                 Members

@@ -18,6 +18,7 @@ const Transport = () => {
                                     <h4 className="text-center mt-3">
                                         <Image src={studentLogo} className="img-responsive" alt="Logo missing" height={40} width={40} />
                                     </h4>
+                                    <hr/>
                                     <div className="card-body p-0">
                                         <div className={styles.activeLink}>
                                             <Link href="/transport">

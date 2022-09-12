@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./Setting.module.css";
+import styles from "./Members.module.css";
 import studentLogo from '../../public/assets/admission/students.png'
-const Department = () =>{
+const PermanentMembers = () =>{
     return (
         <>
             <section className={styles.settingSection}>
@@ -17,49 +17,19 @@ const Department = () =>{
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className="left-menu">
+                                            <div className={styles.inActiveLink}>
+                                                <Link href="/members">
+                                                    <a className="ps-5">Committee</a>
+                                                </Link>
+                                            </div>
                                             <div className={styles.activeLink}>
-                                                <Link href="/setting">
-                                                    <a className="ps-5">Department</a>
+                                                <Link href="/members/permanentm">
+                                                    <a className="ps-5">Bodri/Permanent Members</a>
                                                 </Link>
                                             </div>
                                             <div className={styles.inActiveLink}>
-                                                <Link href="/setting/designation">
-                                                    <a className="ps-5">Post/Designation</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/classs">
-                                                    <a className="ps-5">Class</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/books">
-                                                    <a className="ps-5">Books</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/session">
-                                                    <a className="ps-5">Session</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/groups">
-                                                    <a className="ps-5">Group</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/shift">
-                                                    <a className="ps-5">Shift</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/fees">
-                                                    <a className="ps-5">Fees</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/exam-rules">
-                                                    <a className="ps-5">Examination Rules</a>
+                                                <Link href="/members/othermembers">
+                                                    <a className="ps-5">Other Members</a>
                                                 </Link>
                                             </div>
                                         </div>
@@ -74,62 +44,73 @@ const Department = () =>{
                                         <div className={styles.department}>
                                             <div className="row">
                                                 <div className="col-md-6 mt-3">
-                                                    <h2><u>Deparments</u></h2>
+                                                    <h2><u>Permanent Members</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
                                                 </div>
                                             </div>
-                                            <div className="department-table mt-3">
+                                            <div className="books-table mt-3">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">Department Name</th>
+                                                                <th scope="col">Member's Name</th>
+                                                                <th scope="col">Address</th>
+                                                                <th scope="col">Phone</th>
                                                                 <th scope="col" className="text-center">Edit</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Abdullah</td>
+                                                                <td className="text-sm">malibug, dhaka</td>
+                                                                <td className="text-sm">55414545</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Abdullah</td>
+                                                                <td className="text-sm">malibug, dhaka</td>
+                                                                <td className="text-sm">55414545</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Abdullah</td>
+                                                                <td className="text-sm">malibug, dhaka</td>
+                                                                <td className="text-sm">55414545</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Abdullah</td>
+                                                                <td className="text-sm">malibug, dhaka</td>
+                                                                <td className="text-sm">55414545</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-department mt-4">
-                                                <h2><u>Add Department</u></h2>
+                                            <div className="add-class mt-4">
+                                                <h2><u>Add Members</u></h2>
                                                 <form action="#" method="POST">
                                                     <div className="row">
-                                                        <div className="col-md-7 my-4">
-                                                            <input type="text" className="form-control" placeholder="Deparment Name" />
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="Member's Name" />
+                                                        </div>
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="Member's Addres" />
+                                                        </div>
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="phone Number" />
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-4">
+                                                    <div className="col-md-7 mt-3">
                                                         <button type="submit" className={styles.defaultBtn}>Save</button>
                                                     </div>
                                                 </form>
@@ -146,4 +127,4 @@ const Department = () =>{
     )
 }
 
-export default Department;
+export default PermanentMembers;

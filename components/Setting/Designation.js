@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Setting.module.css";
 import studentLogo from '../../public/assets/admission/students.png'
-const Department = () =>{
+const Designation = () =>{
     return (
         <>
             <section className={styles.settingSection}>
@@ -17,12 +17,12 @@ const Department = () =>{
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className="left-menu">
-                                            <div className={styles.activeLink}>
+                                            <div className={styles.inActiveLink}>
                                                 <Link href="/setting">
                                                     <a className="ps-5">Department</a>
                                                 </Link>
                                             </div>
-                                            <div className={styles.inActiveLink}>
+                                            <div className={styles.activeLink}>
                                                 <Link href="/setting/designation">
                                                     <a className="ps-5">Post/Designation</a>
                                                 </Link>
@@ -74,18 +74,19 @@ const Department = () =>{
                                         <div className={styles.department}>
                                             <div className="row">
                                                 <div className="col-md-6 mt-3">
-                                                    <h2><u>Deparments</u></h2>
+                                                    <h2><u>Designation</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
                                                 </div>
                                             </div>
-                                            <div className="department-table mt-3">
+                                            <div className="designation-table mt-3">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
+                                                                <th scope="col">Designation Name</th>
                                                                 <th scope="col">Department Name</th>
                                                                 <th scope="col" className="text-center">Edit</th>
                                                             </tr>
@@ -93,26 +94,31 @@ const Department = () =>{
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row">1</th>
+                                                                <td className="text-sm">Namem-e Talimat</td>
                                                                 <td className="text-sm">Jamat Deparment</td>
                                                                 <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">2</th>
+                                                                <td className="text-sm">Namem-e Talimat</td>
                                                                 <td className="text-sm">Jamat Deparment</td>
                                                                 <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">3</th>
+                                                                <td className="text-sm">Namem-e Talimat</td>
                                                                 <td className="text-sm">Jamat Deparment</td>
                                                                 <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">4</th>
+                                                                <td className="text-sm">Namem-e Talimat</td>
                                                                 <td className="text-sm">Jamat Deparment</td>
                                                                 <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">5</th>
+                                                                <td className="text-sm">Namem-e Talimat</td>
                                                                 <td className="text-sm">Jamat Deparment</td>
                                                                 <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
                                                             </tr>
@@ -121,15 +127,34 @@ const Department = () =>{
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-department mt-4">
-                                                <h2><u>Add Department</u></h2>
+                                            <div className="add-designation mt-4">
+                                                <h2><u>Add Designation</u></h2>
                                                 <form action="#" method="POST">
                                                     <div className="row">
-                                                        <div className="col-md-7 my-4">
-                                                            <input type="text" className="form-control" placeholder="Deparment Name" />
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="Designation Name" />
+                                                        </div>
+                                                        <div className="col-md-7 mt-4">
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="select department"/>
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">department 1</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">department 2</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">department 3</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-4">
+                                                    <div className="col-md-7 mt-3">
                                                         <button type="submit" className={styles.defaultBtn}>Save</button>
                                                     </div>
                                                 </form>
@@ -146,4 +171,4 @@ const Department = () =>{
     )
 }
 
-export default Department;
+export default Designation;

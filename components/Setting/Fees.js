@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Setting.module.css";
 import studentLogo from '../../public/assets/admission/students.png'
-const Department = () =>{
+const Fees = () =>{
     return (
         <>
             <section className={styles.settingSection}>
@@ -17,7 +17,7 @@ const Department = () =>{
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className="left-menu">
-                                            <div className={styles.activeLink}>
+                                            <div className={styles.inActiveLink}>
                                                 <Link href="/setting">
                                                     <a className="ps-5">Department</a>
                                                 </Link>
@@ -52,7 +52,7 @@ const Department = () =>{
                                                     <a className="ps-5">Shift</a>
                                                 </Link>
                                             </div>
-                                            <div className={styles.inActiveLink}>
+                                            <div className={styles.activeLink}>
                                                 <Link href="/setting/fees">
                                                     <a className="ps-5">Fees</a>
                                                 </Link>
@@ -74,62 +74,102 @@ const Department = () =>{
                                         <div className={styles.department}>
                                             <div className="row">
                                                 <div className="col-md-6 mt-3">
-                                                    <h2><u>Deparments</u></h2>
+                                                    <h2><u>Different Fees</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
                                                 </div>
                                             </div>
-                                            <div className="department-table mt-3">
+                                            <div className="books-table mt-3">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">Department Name</th>
+                                                                <th scope="col">Fees Name</th>
+                                                                <th scope="col">Class</th>
+                                                                <th scope="col">Amount</th>
                                                                 <th scope="col" className="text-center">Edit</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Monthly Fees</td>
+                                                                <td className="text-sm">Dar-ul Hadis</td>
+                                                                <td className="text-sm">500</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Boarding Fees</td>
+                                                                <td className="text-sm">Dar-ul Hadis</td>
+                                                                <td className="text-sm">500</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Monthly Fees</td>
+                                                                <td className="text-sm">Dar-ul Hadis</td>
+                                                                <td className="text-sm">500</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-end`}>Edit</button></td>
+                                                                <td className="text-sm">Boarding Fees</td>
+                                                                <td className="text-sm">Dar-ul Hadis</td>
+                                                                <td className="text-sm">500</td>
+                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-department mt-4">
-                                                <h2><u>Add Department</u></h2>
+                                            <div className="add-class mt-4">
+                                                <h2><u>Add Shift</u></h2>
                                                 <form action="#" method="POST">
                                                     <div className="row">
-                                                        <div className="col-md-7 my-4">
-                                                            <input type="text" className="form-control" placeholder="Deparment Name" />
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="Fees Name" />
+                                                        </div>
+                                                        <div className="col-md-7 mt-3">
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="Select department" />
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">department 1</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">department 1</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-7 mt-3">
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="Select Class" />
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">Class 1</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">Class 2</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-7 mt-4">
+                                                            <input type="text" className="form-control" placeholder="Amount" />
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-4">
+                                                    <div className="col-md-7 mt-3">
                                                         <button type="submit" className={styles.defaultBtn}>Save</button>
                                                     </div>
                                                 </form>
@@ -146,4 +186,4 @@ const Department = () =>{
     )
 }
 
-export default Department;
+export default Fees;
