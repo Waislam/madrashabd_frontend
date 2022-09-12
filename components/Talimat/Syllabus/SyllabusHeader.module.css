@@ -1,0 +1,10 @@
+.syllabus h2 {
+    font-size: 1em;
+    padding-top: 10px;
+    text-decoration: underline;
+}
+
+.breadcumCustom ol li a {
+    font-size: 14px;
+
+}

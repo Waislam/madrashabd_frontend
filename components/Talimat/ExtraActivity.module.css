@@ -3,13 +3,13 @@
 =========================== */
 
 
-.dawahSection {
+.extraActivitySection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.dawahRightSide {
+.extraActivityRightSide {
     overflow: hidden;
     display: block;
 }
@@ -67,7 +67,7 @@
 
 /* ============ dawah body ================ */
 
-.dawahBody h2{
+.extraActivityBody h2{
     font-size: 1em;
 }
 

@@ -1,15 +1,15 @@
-/* ==================
-1. dawah body
-=========================== */
+/* ==============
+1. body section
 
+==================*/
 
-.dawahSection {
+.transportSection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.dawahRightSide {
+.transportRightSide {
     overflow: hidden;
     display: block;
 }
@@ -31,6 +31,7 @@
     border-left-color: #803e9f;
     border-right-color: #33ba41;
 }
+
 
 .inActiveLink a {
     color: black;
@@ -65,10 +66,9 @@
     border-right-color: #33ba41;
 }
 
-/* ============ dawah body ================ */
-
-.dawahBody h2{
-    font-size: 1em;
+/* =============== 1. body section ================= */
+.transportBody h2{
+    font-size: 1rem;
 }
 
 .defaultBtn {
@@ -77,6 +77,26 @@
     padding: 7px;
     border: white;
     width: 150px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.defaultBtnReg {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 129px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.defaultBtnResult {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 50px;
     border-radius: 4px;
     margin: 2px;
 }
@@ -90,7 +110,3 @@
     width: 100%;
     border-radius: 4px;
 }
-
-
-
-

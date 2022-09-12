@@ -1,0 +1,51 @@
+/* =============
+1. syllabus body
+=================*/
+
+
+/* ============== 1. syllabus body ============= */
+.syllabus h2 {
+    font-size: 1em;
+    padding-top: 10px;
+}
+
+.searchButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 8px;
+    border: white;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.searchTable form button {
+    width: 120px;
+}
+.searchTable form button:last-child {
+    float: right;
+    margin-right: 20px;
+}
+
+.defaultBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.hearderCustom tr{
+    text-align: center;
+}
+
+.hearderCustom tr th:before {
+    content: "|";
+    margin-right: 5px;
+    font-size: 19px;
+}
+
+.tbodyCustom tr{
+    text-align: center;
+}
