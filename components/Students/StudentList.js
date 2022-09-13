@@ -7,7 +7,17 @@ import students from '../../public/assets/admission/students.png'
 import Header from "../../layouts/Header/Header";
 
 
-const StudentList = () => {
+const StudentList =
+    ({
+         students,
+         handleStudentListPageNum,
+         studentListPageNum,
+         nextPage,
+         prevPage,
+         setSearchStudent,
+         handleSearchBtn
+     }) => {
+        console.log("students", students, studentListPageNum,)
 
         return (
             <>
@@ -47,8 +57,12 @@ const StudentList = () => {
                                                 <form action="#">
                                                     <div className="row">
                                                         <div className="col-md-2 mb-3">
-                                                            <input type="text" className="form-control"
-                                                                   placeholder="Search"/>
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
+                                                                placeholder="Search"
+                                                                onChange={(event) => setSearchStudent(event.target.value)}
+                                                            />
                                                         </div>
                                                         <div className="col-md-2 mb-3 px-0">
                                                             <div className="input-group">
@@ -57,7 +71,8 @@ const StudentList = () => {
                                                                 <button type="button"
                                                                         className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                                                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span className="visually-hidden">Toggle Dropdown</span>
+                                                                    <span
+                                                                        className="visually-hidden">Toggle Dropdown</span>
                                                                 </button>
                                                                 <ul className="dropdown-menu dropdown-menu-end">
                                                                     <li><a className="dropdown-item" href="#">Name 1</a>
@@ -74,7 +89,8 @@ const StudentList = () => {
                                                                 <button type="button"
                                                                         className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                                                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span className="visually-hidden">Toggle Dropdown</span>
+                                                                    <span
+                                                                        className="visually-hidden">Toggle Dropdown</span>
                                                                 </button>
                                                                 <ul className="dropdown-menu dropdown-menu-end">
                                                                     <li><a className="dropdown-item" href="#">Name 1</a>
@@ -87,16 +103,21 @@ const StudentList = () => {
                                                         <div className="col-md-2 mb-3">
                                                             <div className="input-group">
                                                                 <input type="text" className="form-control"
-                                                                       placeholder="Group"/>
+                                                                       placeholder="Group"
+                                                                />
                                                                 <button type="button"
                                                                         className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                                                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span className="visually-hidden">Toggle Dropdown</span>
+                                                                    <span className="visually-hidden">
+                                                                        Toggle Dropdown
+                                                                    </span>
                                                                 </button>
                                                                 <ul className="dropdown-menu dropdown-menu-end">
-                                                                    <li><a className="dropdown-item" href="#">Name 1</a>
+                                                                    <li>
+                                                                        <a className="dropdown-item" href="#">Name 1</a>
                                                                     </li>
-                                                                    <li><a className="dropdown-item" href="#">Name 2</a>
+                                                                    <li>
+                                                                        <a className="dropdown-item" href="#">Name 2</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -108,7 +129,8 @@ const StudentList = () => {
                                                                 <button type="button"
                                                                         className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                                                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span className="visually-hidden">Toggle Dropdown</span>
+                                                                    <span
+                                                                        className="visually-hidden">Toggle Dropdown</span>
                                                                 </button>
                                                                 <ul className="dropdown-menu dropdown-menu-end">
                                                                     <li><a className="dropdown-item" href="#">Name 1</a>
@@ -119,14 +141,18 @@ const StudentList = () => {
                                                             </div>
                                                         </div>
                                                         <div className="col-md-2 mb-3">
-                                                            <button type="submit" className={styles.searchButton}>Search
+                                                            <button type="submit"
+                                                                    className={styles.searchButton}
+                                                                    onClick={handleSearchBtn}
+                                                            >
+                                                                Search
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div className="table-responsive">
-                                                <table className="table table-striped ">
+                                                <table className="table table-striped table-borderless">
                                                     <thead className={styles.test}>
                                                     <tr>
                                                         <th scope="col">Student ID</th>
@@ -142,78 +168,81 @@ const StudentList = () => {
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <th scope="row">101</th>
-                                                        <td className="text-sm">Reza</td>
-                                                        <td className="text-sm">Abul Kashem</td>
-                                                        <td className="text-sm">Dawra</td>
-                                                        <td className="text-sm">Null</td>
-                                                        <td className="text-sm">99</td>
-                                                        <td className="text-sm">Tala</td>
-                                                        <td className="text-sm">+88 01987132107</td>
-                                                        <td className="text-center text-sm">
-                                                            <Image src={students} alt="" width="25" height="25"/>
-                                                        </td>
-                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link href="/">
-                                                                View Details
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">101</th>
-                                                        <td className="text-sm">Reza</td>
-                                                        <td className="text-sm">Abul Kashem</td>
-                                                        <td className="text-sm">Dawra</td>
-                                                        <td className="text-sm">Null</td>
-                                                        <td className="text-sm">99</td>
-                                                        <td className="text-sm">Tala</td>
-                                                        <td className="text-sm">+88 01987132107</td>
-                                                        <td className="text-center text-sm">
-                                                            <Image src={students} alt="" width="25" height="25"/>
-                                                        </td>
-                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link href="/">
-                                                                View Details
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">101</th>
-                                                        <td className="text-sm">Reza</td>
-                                                        <td className="text-sm">Abul Kashem</td>
-                                                        <td className="text-sm">Dawra</td>
-                                                        <td className="text-sm">Null</td>
-                                                        <td className="text-sm">99</td>
-                                                        <td className="text-sm">Tala</td>
-                                                        <td className="text-sm">+88 01987132107</td>
-                                                        <td className="text-center text-sm">
-                                                            <Image src={students} alt="" width="25" height="25"/>
-                                                        </td>
-                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link href="/">
-                                                                View Details
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">101</th>
-                                                        <td className="text-sm">Reza</td>
-                                                        <td className="text-sm">Abul Kashem</td>
-                                                        <td className="text-sm">Dawra</td>
-                                                        <td className="text-sm">Null</td>
-                                                        <td className="text-sm">99</td>
-                                                        <td className="text-sm">Tala</td>
-                                                        <td className="text-sm">+88 01987132107</td>
-                                                        <td className="text-center text-sm">
-                                                            <Image src={students} alt="" width="25" height="25"/>
-                                                        </td>
-                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link href="/">
-                                                                View Details
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
+                                                    {students.results.map((student) => (
+                                                        <tr>
+                                                            <th scope="text-sm align-middle">{student.student_id}</th>
+                                                            <td className="text-sm">{student.user.first_name} {student.user.last_name}</td>
+                                                            <td className="text-sm">Abul Kashem</td>
+                                                            <td className="text-sm">Dawra</td>
+                                                            <td className="text-sm">Null</td>
+                                                            <td className="text-sm">99</td>
+                                                            <td className="text-sm">Tala</td>
+                                                            <td className="text-sm">+88 01987132107</td>
+                                                            <td className="text-center text-sm">
+                                                                <Image src={students} alt="" width="25" height="25"/>
+                                                            </td>
+                                                            <td className="text-sm" style={{color: "#5CBD67"}}>
+                                                                <Link href="/">
+                                                                    View Details
+                                                                </Link>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
 
                                                     </tbody>
                                                 </table>
@@ -222,17 +251,50 @@ const StudentList = () => {
                                                 <div className="col-md-8">
                                                     <nav aria-label="Page navigation example">
                                                         <ul className="pagination">
-                                                            <li className="page-item"><a className="page-link"
-                                                                                         href="#">Previous</a>
+                                                            <li className="page-item">
+                                                                <a className={students.previous
+                                                                    ? "btn page-link"
+                                                                    : "btn page-link disabled"
+                                                                }
+                                                                   onClick={prevPage} href="#">
+                                                                    Previous
+                                                                </a>
                                                             </li>
-                                                            <li className="page-item"><a className="page-link"
-                                                                                         href="#">1</a></li>
-                                                            <li className="page-item"><a className="page-link"
-                                                                                         href="#">2</a></li>
-                                                            <li className="page-item"><a className="page-link"
-                                                                                         href="#">3</a></li>
-                                                            <li className="page-item"><a className="page-link"
-                                                                                         href="#">Next</a>
+                                                            {students.previous &&
+                                                                <li className="page-item">
+                                                                    <a
+                                                                        className="page-link"
+                                                                        href="#"
+                                                                        onClick={handleStudentListPageNum}
+                                                                    >
+                                                                        {studentListPageNum - 1}
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                            <li className="page-item">
+                                                                <a className="page-link" href="#"
+                                                                   onClick={handleStudentListPageNum}
+                                                                >
+                                                                    {studentListPageNum}
+                                                                </a>
+                                                            </li>
+                                                            {students.next &&
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="#"
+                                                                       onClick={handleStudentListPageNum}
+                                                                    >
+                                                                        {studentListPageNum + 1}
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                            <li className="page-item">
+                                                                <a className={students.next
+                                                                    ? "btn page-link"
+                                                                    : "btn page-link disabled"
+                                                                }
+                                                                   onClick={nextPage} href="#">
+                                                                    Next
+                                                                </a>
                                                             </li>
                                                         </ul>
                                                     </nav>
@@ -252,20 +314,24 @@ const StudentList = () => {
                                                                             <span className="visually-hidden">Toggle Dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
-                                                                            <li><a className="dropdown-item" href="#">1</a>
+                                                                            <li><a className="dropdown-item"
+                                                                                   href="#">1</a>
                                                                             </li>
-                                                                            <li><a className="dropdown-item" href="#">2</a>
+                                                                            <li><a className="dropdown-item"
+                                                                                   href="#">2</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div className="col">
-                                                                <button type="submit" className={styles.searchButton}>Search
+                                                                <button type="submit"
+                                                                        className={styles.searchButton}>Search
                                                                 </button>
                                                             </div>
                                                             <div className="col">
-                                                                <button type="submit" className={styles.searchButton}>Print
+                                                                <button type="submit"
+                                                                        className={styles.searchButton}>Print
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -281,9 +347,7 @@ const StudentList = () => {
                 </section>
             </>
         )
-
-    }
-;
+    };
 
 
 export default StudentList;
