@@ -48,6 +48,10 @@ const Index = () => {
         setStudentListPageNum(studentListPageNum + 1)
     }
 
+    const handleSearchBtn = () => {
+        getStudents()
+    }
+
     const nextPage = () => {
         setStudentListPageNum(studentListPageNum + 1)
     }
@@ -75,12 +79,13 @@ const Index = () => {
     return (
         <>
             <StudentList
-                students={students.results}
+                students={students}
                 handleStudentListPageNum={handleStudentListPageNum}
                 studentListPageNum={studentListPageNum}
                 setSearchStudent={setSearchStudent}
                 nextPage={nextPage}
                 prevPage={prevPage}
+                handleSearchBtn={handleSearchBtn}
             />
         </>
     )
