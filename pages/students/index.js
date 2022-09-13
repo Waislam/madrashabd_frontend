@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
+
 import api, {BASE_URL} from "../api/api";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 const Index = () => {
     const [students, setStudents] = useState(null)
@@ -101,7 +101,7 @@ Index.getLayout = (page) => {
             {page}
         </Layout>
     )
-}
+};
 
 // export async function getStaticProps(ctx) {
 //     // const categories = await ();
