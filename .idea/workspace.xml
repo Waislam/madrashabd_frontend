@@ -2,92 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Members/Committee.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Members/Members.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Members/OtherMembers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Members/Permanentm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Books.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Classs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Department.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Designation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Fees.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Groups.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Session.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Setting.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Setting/Shift.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/ExamHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/ExamHeader.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/ExamSideMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/Examination.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/Examination.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/HallNigran.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/PaperMonitoring.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/Registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/ResultSheet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/Routine.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Examination/SeatPlan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/ExtraActivity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/ExtraActivity.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Calendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Calendar.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Createsyllabus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Createsyllabus.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Syllabus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Syllabus.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/SyllabusHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/SyllabusHeader.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/TeacherAndStaffResponsibility.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/TeacherAndStaffResponsibility.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Transport/GariAdd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Transport/Transport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Transport/Transport.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/members/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/members/othermembers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/members/permanentm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/books.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/classs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/designation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/fees.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/groups.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/session.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/setting/shift.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/hallnigran.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/papermonitoring.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/result.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/routine.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/exam/seatplan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/extraActivity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/syllabus/calendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/syllabus/create.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/syllabus/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/syllabus/responsibility.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/talimat/syllabus/training.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/transport/gariadd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/transport/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Account/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Account/Expense.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/Expense.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Account/PaymentPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/PaymentPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Login/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Login/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Students/StudentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Dawah.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Dawah.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Dawah.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Dawah.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Talimat.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Talimat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Talimat.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Talimat.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/Header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/accounts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/accounts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/students/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Account/Account.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/Account.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Account/AccountSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/AccountSidebar.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -101,21 +18,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Layout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Layout/Layout.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Layout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/layouts/Layout.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Header.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/layouts/Header/Header.js">
+      <file leaf-file-name="AccountSidebar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/Account/AccountSidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="169" column="47" lean-forward="true" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
+            <state relative-caret-position="660">
+              <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Account.module.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="35" column="10" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -153,7 +72,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pages/admission/index.js" />
         <option value="$PROJECT_DIR$/components/Admission/Admission.module.css" />
         <option value="$PROJECT_DIR$/components/Admission/Admission.js" />
         <option value="$PROJECT_DIR$/components/Admission/OldAdmission.module.css.js" />
@@ -202,8 +120,9 @@
         <option value="$PROJECT_DIR$/components/Account/PaymentPage.js" />
         <option value="$PROJECT_DIR$/components/Account/Expense.js" />
         <option value="$PROJECT_DIR$/components/Account/Account.js" />
-        <option value="$PROJECT_DIR$/components/Account/AccountSidebar.js" />
         <option value="$PROJECT_DIR$/layouts/Header/Header.js" />
+        <option value="$PROJECT_DIR$/components/Account/Account.module.css" />
+        <option value="$PROJECT_DIR$/components/Account/AccountSidebar.js" />
       </list>
     </option>
   </component>
@@ -223,10 +142,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1539" />
-    <option name="y" value="346" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="1358" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -234,7 +153,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,38 +169,18 @@
               <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-              <item name="Header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="Account" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="G:/BelafaceLimited/Belasea/BelaseaApps/BelaseaApp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -339,7 +237,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.4433551" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.14925373" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.15085287" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -367,20 +265,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/components/Talimat/Examination.module.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Talimat/Dawah.module.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/talimat/examination.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -547,9 +431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-264">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -581,9 +462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="42" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -591,9 +469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#54#120#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -606,11 +481,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-198" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/talimat/dawah.js">
@@ -624,31 +495,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="827">
           <caret line="98" selection-start-line="98" selection-end-line="104" selection-end-column="2" />
-          <folding>
-            <element signature="e#76#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/accounts/expense.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/accounts/payment.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/accounts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#53#108#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Account/Expense.module.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -665,9 +516,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Account/Expense.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -686,24 +534,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Account/AccountSidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/boarding/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Layout/Layout.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -713,8 +545,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/layouts/Header/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="169" column="47" lean-forward="true" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
+        <state relative-caret-position="1188">
+          <caret line="174" column="107" selection-start-line="174" selection-start-column="99" selection-end-line="174" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/accounts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/accounts/expense.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/Admission.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/Admission.module.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Account/AccountSidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

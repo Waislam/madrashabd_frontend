@@ -1,9 +1,13 @@
 import styles from './Account.module.css'
 import Image from "next/image";
 import Link from 'next/link'
+import {useRouter} from "next/router";
+
 import studentLogo from '../../public/assets/admission/students.png'
 
 const AccountSidebar = () => {
+    const router = useRouter();
+
     return (
         <>
             <div className={styles.listRightSide}>
@@ -14,18 +18,18 @@ const AccountSidebar = () => {
                     </h4>
                     <hr/>
                     <div className="card-body p-0">
-                        <div className={styles.activeLink}>
+                        <div className={router.pathname == "/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts">
                                 <a className="text-center">Income</a>
                             </Link>
                         </div>
 
-                        <div className={styles.inActiveLink}>
+                        <div className={router.pathname == "/accounts/expense" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/expense">
                                 <a className="text-center">Expense</a>
                             </Link>
                         </div>
-                        <div className={styles.inActiveLink}>
+                        <div className={router.pathname == "/accounts/payment" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/payment">
                                 <a className="text-center">Payment</a>
                             </Link>
