@@ -20,22 +20,22 @@ const Dawah = () => {
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className={styles.inActiveLink}>
-                                            <Link href="/">
+                                            <Link href="/talimat/syllabus">
                                                 <a className="text-center">Syllabus</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
-                                            <Link href="">
+                                            <Link href="/talimat/exam">
                                                 <a className="text-center">Examination</a>
                                             </Link>
                                         </div>
                                         <div className={styles.activeLink}>
-                                            <Link href="">
+                                            <Link href="/talimat/dawah">
                                                 <a className="text-center">Dawah</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
-                                            <Link href="">
+                                            <Link href="/talimat/extraActivity">
                                                 <a className="text-center">Extra-Activity</a>
                                             </Link>
                                         </div>
@@ -47,7 +47,98 @@ const Dawah = () => {
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <h4>Books Distribution to teacher</h4>
+                                        <div className={styles.dawahBody}>
+                                            <div className="row">
+                                                <div className="col-md-6 mt-3">
+                                                    <h2>Dawah details</h2>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add</button>
+                                                </div>
+                                            </div>
+                                            <div className="details-table mt-4">
+                                                <div className="table-responsive">
+                                                    <table className="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">Category</th>
+                                                                <th scope="col">Duration</th>
+                                                                <th scope="col">start Time</th>
+                                                                <th scope="col">place</th>
+                                                                <th scope="col">Managed By</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">10/10/2022</th>
+                                                                <td className="text-sm">Tablig</td>
+                                                                <td className="text-sm">3 days</td>
+                                                                <td className="text-sm">9.00 am</td>
+                                                                <td className="text-sm">Malibug Mosque</td>
+                                                                <td className="text-sm">Amir Shaheb</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">10/10/2022</th>
+                                                                <td className="text-sm">Tablig</td>
+                                                                <td className="text-sm">3 days</td>
+                                                                <td className="text-sm">9.00 am</td>
+                                                                <td className="text-sm">Malibug Mosque</td>
+                                                                <td className="text-sm">Amir Shaheb</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">10/10/2022</th>
+                                                                <td className="text-sm">Tablig</td>
+                                                                <td className="text-sm">3 days</td>
+                                                                <td className="text-sm">9.00 am</td>
+                                                                <td className="text-sm">Malibug Mosque</td>
+                                                                <td className="text-sm">Amir Shaheb</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">10/10/2022</th>
+                                                                <td className="text-sm">Tablig</td>
+                                                                <td className="text-sm">3 days</td>
+                                                                <td className="text-sm">9.00 am</td>
+                                                                <td className="text-sm">Malibug Mosque</td>
+                                                                <td className="text-sm">Amir Shaheb</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {/* === dawag add form ==== */}
+                                            <div className="dawah-add mt-5">
+                                                <h2>Dawa info add</h2>
+                                                <form action="#" method="POST">
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="date"/>
+                                                    </div>
+
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="Category"/>
+                                                    </div>
+
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="Duration"/>
+                                                    </div>
+
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="Start Time"/>
+                                                    </div>
+
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="Location"/>
+                                                    </div>
+
+                                                    <div className="col-md-7 mt-3">
+                                                        <input type="text" className="form-control" placeholder="Managed by"/>
+                                                    </div>
+                                                    <div className="mt-3">
+                                                        <button type="submit" className={styles.defaultBtn}>Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <hr/>
                                         
                                     </div>

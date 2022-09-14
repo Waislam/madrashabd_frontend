@@ -6,6 +6,8 @@ import styles from '../styles/Home.module.css'
 import AuthContext from '../context/AuthContext'
 
 import { signIn, signOut, useSession } from 'next-auth/react'
+import Layout from "../components/Layout/Layout";
+import Dashboard from "./dashboard";
 
 export default function Home() {
 	const { user, login } = useContext(AuthContext);
@@ -46,3 +48,12 @@ export default function Home() {
 		</>
 	)
 }
+
+Home.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            {page}
+        </Layout>
+    )
+}
+
