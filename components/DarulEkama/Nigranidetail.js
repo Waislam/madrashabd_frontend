@@ -1,6 +1,6 @@
 import React from "react";
-import Link from 'next/link'
 import Image from "next/image";
+import DarulEkmaNav from './DarulEkmaNav'
 import styles from './DarulEkam.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
@@ -17,28 +17,8 @@ const Nigranidetail = () => {
                                         <Image src={studentLogo} className="img-responsive"
                                                alt="Logo missing" height={40} width={40}/>
                                     </div>
-                                    <nav className="nav flex-column">
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Darul Ekma
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Seat Booking
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Nigrani Detail
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Sutir Abedon Form
-                                            </a>
-                                        </Link>
-                                    </nav>
+                                    {/* DarulEkma Nav*/}
+                                    <DarulEkmaNav/>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +26,8 @@ const Nigranidetail = () => {
                             <div className="darulEkam">
                                 <div className="card">
                                     <div className="card-body">
+                                        <h4>Nigrani Detail</h4>
+                                        <hr/>
                                         <div className="search mb-5">
                                             <form action="#">
                                                 <div className="row">
@@ -56,7 +38,7 @@ const Nigranidetail = () => {
                                                                 <input
                                                                     type="text"
                                                                     name="id"
-                                                                    placeholder="ID"
+                                                                    placeholder="Student ID"
                                                                     className="form-control"
 
                                                                 />
@@ -111,7 +93,7 @@ const Nigranidetail = () => {
                                                                 <input
                                                                     type="text"
                                                                     name="class"
-                                                                    placeholder="Class"
+                                                                    placeholder="Start Date"
                                                                     className="form-control"
                                                                 />
                                                             </div>
@@ -120,43 +102,16 @@ const Nigranidetail = () => {
                                                                 <input
                                                                     type="text"
                                                                     name="present"
-                                                                    placeholder="Present"
+                                                                    placeholder="End Date"
                                                                     className="form-control"
                                                                 />
                                                             </div>
                                                             <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                                className="col-sm-12 col-md-8 col-lg-8 col-xl-8 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="cost"
-                                                                    placeholder="Cost"
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
-                                                                <input
-                                                                    type="text"
-                                                                    name="leave"
-                                                                    placeholder="Leave"
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
-                                                                <input
-                                                                    type="text"
-                                                                    name="boading"
-                                                                    placeholder="Boading"
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
-                                                                <input
-                                                                    type="text"
-                                                                    name="others"
-                                                                    placeholder="Others"
+                                                                    placeholder="Karon / reason of leave"
                                                                     className="form-control"
                                                                 />
                                                             </div>
@@ -176,16 +131,14 @@ const Nigranidetail = () => {
                                                             <thead className="bg-dark text-white">
                                                             <tr className="text-center">
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">Name</th>
+                                                                <th scope="col">Teacher Name</th>
                                                                 <th scope="col">Building</th>
                                                                 <th scope="col">Floor</th>
                                                                 <th scope="col">Room</th>
-                                                                <th scope="col">Seat</th>
-                                                                <th scope="col">Class</th>
-                                                                <th scope="col">Cost Per Bed</th>
-                                                                <th scope="col">Present</th>
-                                                                <th scope="col">Leave</th>
-                                                                <th scope="col">Boading</th>
+                                                                <th scope="col">Jamat</th>
+                                                                <th scope="col">Start Time</th>
+                                                                <th scope="col">End Time</th>
+                                                                <th scope="col">Status</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -195,66 +148,44 @@ const Nigranidetail = () => {
                                                                 <td>Ad Buailding</td>
                                                                 <td>3rd Floor</td>
                                                                 <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
+                                                                <td>Dawra</td>
+                                                                <td>9.30</td>
+                                                                <td>6.30</td>
                                                                 <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
                                                             </tr>
                                                             <tr className="text-center">
-                                                                <th scope="row">2</th>
+                                                                <th scope="row">1</th>
                                                                 <td>Masuk</td>
                                                                 <td>Ad Buailding</td>
                                                                 <td>3rd Floor</td>
                                                                 <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
+                                                                <td>Dawra</td>
+                                                                <td>9.30</td>
+                                                                <td>6.30</td>
                                                                 <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
                                                             </tr>
                                                             <tr className="text-center">
-                                                                <th scope="row">3</th>
+                                                                <th scope="row">1</th>
                                                                 <td>Masuk</td>
                                                                 <td>Ad Buailding</td>
                                                                 <td>3rd Floor</td>
                                                                 <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
+                                                                <td>Dawra</td>
+                                                                <td>9.30</td>
+                                                                <td>6.30</td>
                                                                 <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
                                                             </tr>
                                                             <tr className="text-center">
-                                                                <th scope="row">4</th>
+                                                                <th scope="row">1</th>
                                                                 <td>Masuk</td>
                                                                 <td>Ad Buailding</td>
                                                                 <td>3rd Floor</td>
                                                                 <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
+                                                                <td>Dawra</td>
+                                                                <td>9.30</td>
+                                                                <td>6.30</td>
                                                                 <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
                                                             </tr>
-                                                            <tr className="text-center">
-                                                                <th scope="row">5</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-
                                                             </tbody>
                                                         </table>
                                                     </div>

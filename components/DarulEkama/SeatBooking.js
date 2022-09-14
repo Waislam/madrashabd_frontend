@@ -1,6 +1,6 @@
 import React from "react";
-import Link from 'next/link'
 import Image from "next/image";
+import DarulEkmaNav from './DarulEkmaNav'
 import styles from './DarulEkam.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
@@ -16,28 +16,8 @@ const SeatBooking = () => {
                                     <Image src={studentLogo} className="img-responsive"
                                            alt="Logo missing" height={40} width={40}/>
                                 </div>
-                                <nav className="nav flex-column">
-                                    <Link href="/">
-                                        <a className={`${styles.customNavLink} nav-link`}>
-                                            Darul Ekma
-                                        </a>
-                                    </Link>
-                                    <Link href="/">
-                                        <a className={`${styles.customNavLink} nav-link`}>
-                                            Seat Booking
-                                        </a>
-                                    </Link>
-                                    <Link href="/">
-                                        <a className={`${styles.customNavLink} nav-link`}>
-                                            Nigrani Detail
-                                        </a>
-                                    </Link>
-                                    <Link href="/">
-                                        <a className={`${styles.customNavLink} nav-link`}>
-                                            Sutir Abedon Form
-                                        </a>
-                                    </Link>
-                                </nav>
+                                {/* DarulEkma Nav*/}
+                                <DarulEkmaNav/>
                             </div>
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
@@ -57,7 +37,7 @@ const SeatBooking = () => {
                                                             <option value="3">Three</option>
                                                         </select>
                                                     </div>
-                                                    <div className="col-md-4">
+                                                    <div className="col-md-3">
                                                         <select className="form-select"
                                                                 aria-label="Default select example">
                                                             <option selected>Select Floor</option>
@@ -66,7 +46,7 @@ const SeatBooking = () => {
                                                             <option value="3">Three</option>
                                                         </select>
                                                     </div>
-                                                    <div className="col-md-4">
+                                                    <div className="col-md-3">
                                                         <select className="form-select"
                                                                 aria-label="Default select example">
                                                             <option selected>Select Room</option>
@@ -75,54 +55,61 @@ const SeatBooking = () => {
                                                             <option value="3">Three</option>
                                                         </select>
                                                     </div>
+                                                    <div className="col-md-2">
+                                                        <button className={styles.defaultBtn}>Submit</button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div className="seatNumber">
-                                            <div className="table-responsive">
-                                                <table className="table table-bordered table-striped">
-                                                    <thead className="bg-dark text-white">
-                                                    <tr className="text-center">
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Building</th>
-                                                        <th scope="col">Floor</th>
-                                                        <th scope="col">Room</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr className="text-center">
-                                                        <th scope="row">1</th>
-                                                        <td>Buailding</td>
-                                                        <td>3rd Floor</td>
-                                                        <td>208</td>
-                                                    </tr>
-                                                    <tr className="text-center">
-                                                        <th scope="row">2</th>
-                                                        <td>Buailding</td>
-                                                        <td>3rd Floor</td>
-                                                        <td>208</td>
-                                                    </tr>
-                                                    <tr className="text-center">
-                                                        <th scope="row">3</th>
-                                                        <td>Buailding</td>
-                                                        <td>3rd Floor</td>
-                                                        <td>208</td>
-                                                    </tr>
-                                                    <tr className="text-center">
-                                                        <th scope="row">4</th>
-                                                        <td>Buailding</td>
-                                                        <td>3rd Floor</td>
-                                                        <td>208</td>
-                                                    </tr>
-                                                    <tr className="text-center">
-                                                        <th scope="row">5</th>
-                                                        <td>Buailding</td>
-                                                        <td>3rd Floor</td>
-                                                        <td>208</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <form action="#">
+                                                <div className="card">
+                                                    <div className="card-body">
+                                                        <h4 className="mb-4 text-center">Seat Booking</h4>
+                                                        <hr/>
+                                                        <div className="row">
+                                                            <div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    1
+                                                                </button>
+                                                            </div><div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    2
+                                                                </button>
+                                                            </div><div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    3
+                                                                </button>
+                                                            </div>
+                                                            <div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    4
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    5
+                                                                </button>
+                                                            </div><div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    6
+                                                                </button>
+                                                            </div><div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    7
+                                                                </button>
+                                                            </div>
+                                                            <div className="col-md-3 mb-4">
+                                                                <button type="button" className={styles.seatBookingBox}>
+                                                                    8
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
