@@ -3,6 +3,8 @@ import React from "react";
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
+import Layout from '../../layouts/Layout';
+
 
 const index = () => {
     return (
@@ -27,4 +29,12 @@ export const getStaticProps = async () => {
 */
 
 export default index;
+
+index.getLayout = (page) => {
+    return(
+        <Layout>
+            { page }
+        </Layout>
+    )
+};
 
