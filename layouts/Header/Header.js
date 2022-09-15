@@ -101,7 +101,7 @@ const Header = () => {
                 <div className={styles.mainHeader}>
                     <nav className="navbar navbar-expand-lg">
                         <div className="container-fluid">
-                            <Link href="">
+                            <Link href="/">
                                 <a className={`${styles.customNavbarBrand} navbar-brand `}>
                                     Dashboard
                                 </a>
