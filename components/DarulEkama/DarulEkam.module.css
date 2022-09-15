@@ -15,8 +15,6 @@
 }
 
 .customCardHeader {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
     text-align: center;
 }
 
@@ -109,7 +107,7 @@
 .defaultBtn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 6px;
+    padding: 7px;
     border: white;
     width: 129px;
     border-radius: 4px;

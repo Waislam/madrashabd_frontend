@@ -33,27 +33,17 @@ const Nigranidetail = () => {
                                                 <div className="row">
                                                     <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
                                                         <div className="row">
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
-                                                                    name="id"
-                                                                    placeholder="Student ID"
+                                                                    name="teacher_name"
+                                                                    placeholder="Teacher Name"
                                                                     className="form-control"
 
                                                                 />
                                                             </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
-                                                                <input
-                                                                    type="text"
-                                                                    name="name"
-                                                                    placeholder="Name"
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="building"
@@ -61,8 +51,7 @@ const Nigranidetail = () => {
                                                                     className="form-control"
                                                                 />
                                                             </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="floor"
@@ -70,8 +59,7 @@ const Nigranidetail = () => {
                                                                     className="form-control"
                                                                 />
                                                             </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="room"
@@ -79,17 +67,15 @@ const Nigranidetail = () => {
                                                                     className="form-control"
                                                                 />
                                                             </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
-                                                                    name="seat"
-                                                                    placeholder="Seat"
+                                                                    name="jamat"
+                                                                    placeholder="Jamat"
                                                                     className="form-control"
                                                                 />
                                                             </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                            <div className="col-sm-12 col-md-3 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="class"
@@ -98,20 +84,11 @@ const Nigranidetail = () => {
                                                                 />
                                                             </div>
                                                             <div
-                                                                className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2 p-1">
+                                                                className="col-sm-12 col-md-6 mb-2 p-1">
                                                                 <input
                                                                     type="text"
                                                                     name="present"
                                                                     placeholder="End Date"
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className="col-sm-12 col-md-8 col-lg-8 col-xl-8 mb-2 p-1">
-                                                                <input
-                                                                    type="text"
-                                                                    name="cost"
-                                                                    placeholder="Karon / reason of leave"
                                                                     className="form-control"
                                                                 />
                                                             </div>

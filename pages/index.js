@@ -7,13 +7,12 @@ import AuthContext from '../context/AuthContext'
 
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Layout from "../components/Layout/Layout";
-import Dashboard from "./dashboard";
 
 export default function Home() {
 	const { user, login } = useContext(AuthContext);
 	console.log(user);
 
-	const { data: session } = useSession()
+	const { data: session } = useSession();
 
 	const handleLogin = () => {
 		// let username = 'kminchelle'
@@ -55,5 +54,5 @@ Home.getLayout = function getLayout(page) {
             {page}
         </Layout>
     )
-}
+};
 
