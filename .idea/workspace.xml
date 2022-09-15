@@ -3,8 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Account/Account.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/Account.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Account/AccountSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/AccountSidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Account/PaymentPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Account/PaymentPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Admission/Admission.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Admission/Admission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Admission/OldAdmission.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Admission/OldAdmission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/library/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/library/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,12 +26,12 @@
     <favorites_list name="madrashabd_frontend" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="AccountSidebar.js" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AccountSidebar.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Account/AccountSidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="528">
+              <caret line="24" column="30" selection-end-line="43" selection-end-column="30" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -30,11 +39,74 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Account.module.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
+      <file leaf-file-name="Nigranidetail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="35" column="10" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="10" />
+            <state relative-caret-position="198">
+              <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DarulEkmaNav.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="858">
+              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DarulEkam.module.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PaymentPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Account/PaymentPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="50" column="74" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="74" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/library/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/layouts/Header/Header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-145">
+              <caret line="164" column="41" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeatBooking.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/DarulEkama/SeatBooking.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="58" column="87" selection-start-line="58" selection-start-column="87" selection-end-line="58" selection-end-column="87" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,14 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/Admission/Admission.module.css" />
-        <option value="$PROJECT_DIR$/components/Admission/Admission.js" />
-        <option value="$PROJECT_DIR$/components/Admission/OldAdmission.module.css.js" />
-        <option value="$PROJECT_DIR$/components/Admission/OldAdmission.module.css" />
-        <option value="$PROJECT_DIR$/pages/admission/old-admission.js" />
-        <option value="$PROJECT_DIR$/components/Admission/OldAdmission.js" />
-        <option value="$PROJECT_DIR$/pages/students/[...slug].js" />
-        <option value="$PROJECT_DIR$/pages/students/promoted-student.js" />
         <option value="$PROJECT_DIR$/components/Talimat/Talimat.module.css" />
         <option value="$PROJECT_DIR$/pages/talimat/index.js" />
         <option value="$PROJECT_DIR$/components/Talimat/Expense.js" />
@@ -107,22 +171,30 @@
         <option value="$PROJECT_DIR$/components/DarulEkama/StudentsOnLeave.js" />
         <option value="$PROJECT_DIR$/pages/darulekama/studentsonleave.js" />
         <option value="$PROJECT_DIR$/components/DarulEkama/darulekmanav.js" />
-        <option value="$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js" />
         <option value="$PROJECT_DIR$/components/DarulEkama/DarulEkam.js" />
         <option value="$PROJECT_DIR$/components/DarulEkama/SutirAbedon.js" />
-        <option value="$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css" />
         <option value="$PROJECT_DIR$/components/DarulEkama/SeatBooking.js" />
-        <option value="$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js" />
         <option value="$PROJECT_DIR$/pages/students/index.js" />
         <option value="$PROJECT_DIR$/components/Students/StudentList.js" />
         <option value="$PROJECT_DIR$/pages/teachers/index.js" />
         <option value="$PROJECT_DIR$/pages/accounts/index.js" />
-        <option value="$PROJECT_DIR$/components/Account/PaymentPage.js" />
         <option value="$PROJECT_DIR$/components/Account/Expense.js" />
         <option value="$PROJECT_DIR$/components/Account/Account.js" />
-        <option value="$PROJECT_DIR$/layouts/Header/Header.js" />
         <option value="$PROJECT_DIR$/components/Account/Account.module.css" />
         <option value="$PROJECT_DIR$/components/Account/AccountSidebar.js" />
+        <option value="$PROJECT_DIR$/pages/dashboard/dashboard.js" />
+        <option value="$PROJECT_DIR$/pages/dashboard/index.js" />
+        <option value="$PROJECT_DIR$/pages/index.js" />
+        <option value="$PROJECT_DIR$/components/Admission/Admission.js" />
+        <option value="$PROJECT_DIR$/components/Admission/OldAdmission.js" />
+        <option value="$PROJECT_DIR$/components/Admission/AdmissionSidebar.js" />
+        <option value="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.module.css" />
+        <option value="$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js" />
+        <option value="$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js" />
+        <option value="$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css" />
+        <option value="$PROJECT_DIR$/components/Account/PaymentPage.js" />
+        <option value="$PROJECT_DIR$/layouts/Header/Header.js" />
+        <option value="$PROJECT_DIR$/pages/library/index.js" />
       </list>
     </option>
   </component>
@@ -142,10 +214,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -163,13 +235,24 @@
             <path>
               <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Account" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="Header" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="madrashabd_frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="madrashabd_frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -180,7 +263,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="G:/BelafaceLimited/Belasea/BelaseaApps/BelaseaApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -227,7 +310,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -236,10 +319,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.4433551" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.15085287" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.44224423" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.19591528" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32673267" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50165015" side_tool="true" weight="0.14674735" />
@@ -250,7 +334,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32673267" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,69 +348,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/talimat/examination.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Talimat/Examination.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Talimat/Talimat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="31" column="77" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Talimat/Dawah.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notes/component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notes/example.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notes/example.module.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="15" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/library/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="12" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Boarding/Boarding.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-66">
@@ -399,34 +419,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="128" column="29" selection-start-line="128" selection-start-column="29" selection-end-line="128" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/DarulEkama/SeatBooking.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="105" column="69" selection-start-line="105" selection-start-column="69" selection-end-line="105" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="172" column="33" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Students/StudentList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-264">
@@ -458,13 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/admission/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/teachers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -477,11 +462,6 @@
         <state relative-caret-position="176">
           <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/talimat/dawah.js">
@@ -507,16 +487,6 @@
     <entry file="file://$PROJECT_DIR$/components/Account/Payment.module.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Account/PaymentPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Account/Expense.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -540,16 +510,6 @@
     <entry file="file://$PROJECT_DIR$/components/Layout/Layout.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/layouts/Layout.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layouts/Header/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="174" column="107" selection-start-line="174" selection-start-column="99" selection-end-line="174" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/accounts/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -564,11 +524,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Admission/Admission.js">
+    <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/dashboard/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layouts/Layout.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/admission/old-admission.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -576,20 +570,128 @@
     <entry file="file://$PROJECT_DIR$/components/Admission/Admission.module.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Account/Account.module.css">
+    <entry file="file://$PROJECT_DIR$/pages/admission/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="35" column="10" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="10" />
+        <state>
+          <caret selection-end-line="1" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/OldAdmission.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/AdmissionSidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/OldAdmission.module.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Admission/Admission.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.module.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Account/AccountSidebar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="528">
+          <caret line="24" column="30" selection-end-line="43" selection-end-column="30" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkmaNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/DarulEkama/Nigranidetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/DarulEkama/SeatBooking.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="58" column="87" selection-start-line="58" selection-start-column="87" selection-end-line="58" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/DarulEkama/DarulEkam.module.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Account/PaymentPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="50" column="74" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layouts/Header/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145">
+          <caret line="164" column="41" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/library/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>

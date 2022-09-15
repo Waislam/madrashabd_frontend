@@ -49,17 +49,10 @@ const PaymentPage = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <div className="row">
-                                                        <div className="col-md-6">
-                                                            <button type="submit" className={styles.defaultBtn}>Pay
-                                                                Now
-                                                            </button>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <button type="submit" className={styles.defaultBtn}>Pay
-                                                                Now
-                                                            </button>
-                                                        </div>
+                                                    <div className="col">
+                                                        <button type="submit" className={styles.defaultBtn}>Pay
+                                                            Now
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

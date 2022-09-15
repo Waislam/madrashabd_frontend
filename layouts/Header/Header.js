@@ -101,9 +101,11 @@ const Header = () => {
                 <div className={styles.mainHeader}>
                     <nav className="navbar navbar-expand-lg">
                         <div className="container-fluid">
-                            <a className={`${styles.customNavbarBrand} navbar-brand `} href="#">
-                                Dashboard
-                            </a>
+                            <Link href="">
+                                <a className={`${styles.customNavbarBrand} navbar-brand `}>
+                                    Dashboard
+                                </a>
+                            </Link>
                             <button className="navbar-toggler bg-info text-danger" type="button"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -113,7 +115,7 @@ const Header = () => {
                             <div className={`collapse navbar-collapse ${styles.linknav}`} id="navbarNavAltMarkup">
                                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/">
+                                        <Link href="/admission">
                                             <a>
                                                 <Image src={admission} alt="admission" className={styles.imgclass}/>
                                                 Admission
@@ -162,7 +164,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/library">
                                             <a>
                                                 <Image src={accounts} alt="good" className={styles.imgclass}/>
                                                 Library
