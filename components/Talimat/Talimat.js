@@ -22,22 +22,22 @@ const Talimat = () => {
                                     <div className="card-body p-0">
                                         <div className={styles.activeLink}>
                                             <Link href="/talimat/syllabus">
-                                                <a className="text-center">Syllabus</a>
+                                                <a>Syllabus</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="/talimat/exam">
-                                                <a className="text-center">Examination</a>
+                                                <a>Examination</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="/talimat/dawah">
-                                                <a className="text-center">Dawah</a>
+                                                <a>Dawah</a>
                                             </Link>
                                         </div>
                                         <div className={styles.inActiveLink}>
                                             <Link href="/talimat/extraActivity">
-                                                <a className="text-center">Extra-Activity</a>
+                                                <a>Extra-Activity</a>
                                             </Link>
                                         </div>
                                     </div>
