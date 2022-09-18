@@ -1,8 +1,6 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
 import styles from './Admission.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
+import AdmissionSidebar from './AdmissionSidebar'
 
 const Admission = () => {
     return (
@@ -11,28 +9,7 @@ const Admission = () => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.admissionRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className={styles.activeLink}>
-                                            <Link href="/">
-                                                <a className="text-center">New Student</a>
-                                            </Link>
-                                        </div>
-
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Old Student</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <AdmissionSidebar/>
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             {/*Student Details*/}

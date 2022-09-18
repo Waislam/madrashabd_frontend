@@ -101,9 +101,11 @@ const Header = () => {
                 <div className={styles.mainHeader}>
                     <nav className="navbar navbar-expand-lg">
                         <div className="container-fluid">
-                            <a className={`${styles.customNavbarBrand} navbar-brand `} href="#">
-                                Dashboard
-                            </a>
+                            <Link href="/">
+                                <a className={`${styles.customNavbarBrand} navbar-brand `}>
+                                    Dashboard
+                                </a>
+                            </Link>
                             <button className="navbar-toggler bg-info text-danger" type="button"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -113,9 +115,9 @@ const Header = () => {
                             <div className={`collapse navbar-collapse ${styles.linknav}`} id="navbarNavAltMarkup">
                                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/">
+                                        <Link href="/admission">
                                             <a>
-                                                <Image src={admission} alt="good" className={styles.imgclass}/>
+                                                <Image src={admission} alt="admission" className={styles.imgclass}/>
                                                 Admission
                                             </a>
                                         </Link>
@@ -123,7 +125,8 @@ const Header = () => {
                                     <li className={`${styles.customNavLink} nav-item`}>
                                         <Link href="/teachers">
                                             <a>
-                                            <Image src={teacherStaff} alt="good" className={styles.imgclass}/>
+                                                <Image src={teacherStaff} alt="teacherStaff"
+                                                       className={styles.imgclass}/>
                                                 TeacherStaff
                                             </a>
                                         </Link>
@@ -131,7 +134,7 @@ const Header = () => {
                                     <li className={`${styles.customNavLink} nav-item`}>
                                         <Link href="/students">
                                             <a>
-                                            <Image src={students} alt="good" className={styles.imgclass}/>
+                                                <Image src={students} alt="Students" className={styles.imgclass}/>
                                                 Students
                                             </a>
                                         </Link>
@@ -139,39 +142,39 @@ const Header = () => {
                                     <li className={`${styles.customNavLink} nav-item`}>
                                         <Link href="/talimat/syllabus">
                                             <a>
-                                            <Image src={talimat} alt="good" className={styles.imgclass}/>
+                                                <Image src={talimat} alt="good" className={styles.imgclass}/>
                                                 Talimat
                                             </a>
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/darulekama">
                                             <a>
-                                            <Image src={darulEkhma} alt="good" className={styles.imgclass}/>
+                                                <Image src={darulEkhma} alt="good" className={styles.imgclass}/>
                                                 DarulEkama
                                             </a>
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/accounts">
                                             <a>
-                                            <Image src={accounts} alt="good" className={styles.imgclass}/>
+                                                <Image src={accounts} alt="good" className={styles.imgclass}/>
                                                 Accounts
                                             </a>
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/library">
                                             <a>
-                                            <Image src={accounts} alt="good" className={styles.imgclass}/>
+                                                <Image src={accounts} alt="good" className={styles.imgclass}/>
                                                 Library
                                             </a>
                                         </Link>
                                     </li>
                                     <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="">
+                                        <Link href="/boarding">
                                             <a>
-                                            <Image src={boarding} alt="good" className={styles.imgclass}/>
+                                                <Image src={boarding} alt="good" className={styles.imgclass}/>
                                                 Boarding
                                             </a>
                                         </Link>
@@ -179,7 +182,7 @@ const Header = () => {
                                     <li className={`${styles.customNavLink} nav-item`}>
                                         <Link href="/members">
                                             <a>
-                                            <Image src={members} alt="good" className={styles.imgclass}/>
+                                                <Image src={members} alt="good" className={styles.imgclass}/>
                                                 Members
                                             </a>
                                         </Link>

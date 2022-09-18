@@ -28,7 +28,6 @@ function MyApp({
 			/>
 			<SessionProvider session={session}>
 				<AuthContextProvider>
-					{/*<Header />*/}
 					<NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
 					<Component {...pageProps} />
 				</AuthContextProvider>

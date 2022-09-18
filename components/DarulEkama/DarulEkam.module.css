@@ -1,18 +1,34 @@
 
-.accountListSection {
+.darulEkamSection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.listRightSide {
+.darulEkamRightSide {
     overflow: hidden;
     display: block;
 }
 
-.accountListTitle {
-    font-weight: bold;
+.customCard {
+    color: white;
+}
+
+.customCardHeader {
     text-align: center;
+}
+
+.customNavLink {
+    border-bottom: 1px solid #C8C9CA;
+    text-align: center;
+    color: #111111;
+    padding: 10px;
+}
+
+.customNavLink:hover {
+    border-top: 1px solid red;
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
 }
 
 .activeLink a {
@@ -31,20 +47,7 @@
     margin-bottom: 10px;
     border-left-color: #803e9f;
     border-right-color: #33ba41;
-}
 
-.adjusment{
-    display: block;
-    line-height: 1.5;
-    text-decoration: none;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    font-size: 1rem;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-left-color: #803e9f;
-    border-right-color: #33ba41;
 }
 
 .inActiveLink a {
@@ -80,50 +83,18 @@
     border-right-color: #33ba41;
 }
 
-.submitBtn {
+.search {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 10px;
+    padding: 7px;
     border: white;
-    width: 100px;
+    width: 140px;
+    height: 90px;
     border-radius: 4px;
     margin: 2px
 }
 
-.printBtn {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    padding: 10px;
-    border: white;
-    width: 100px;
-    border-radius: 4px;
-    margin: 2px;
-}
-
-.instituteName {
-    border: 10px solid #c2c2c2;
-    padding: 20px;
-    overflow: hidden;
-    display: block;
-    border-radius: 4px;
-}
-
-.instituteLogo {
-    /*background-image: url("../../public/assets/login/icon.png");*/
-    /*background-repeat: no-repeat;*/
-    opacity: 1.9;
-    height: 100px;
-    width: 100%;
-
-}
-
-.receivedSign {
-    position: absolute;
-    right: 35px;
-    bottom: 80px;
-}
-
-.searchButton {
+.pdfButton {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     padding: 7px;
@@ -133,25 +104,25 @@
     margin: 2px
 }
 
-.instituteNamePdf {
-    border: 1px solid #333333;
-    padding: 20px;
-    height: 250px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.instituteList {
-    text-align: center;
-}
-
-.institutePrintBtn {
+.defaultBtn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     padding: 7px;
     border: white;
+    width: 129px;
     border-radius: 4px;
-    margin-top: 50px;
+    margin: 2px;
+    float: right;
+}
 
+.seatBookingBox {
+    padding: 5px;
+    border: 1px solid #ACACAC;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #ACACAC;
 }

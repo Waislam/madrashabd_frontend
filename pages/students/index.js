@@ -78,6 +78,7 @@ const Index = () => {
 
     return (
         <>
+
             <StudentList
                 students={students}
                 handleStudentListPageNum={handleStudentListPageNum}
@@ -103,6 +104,7 @@ Index.getLayout = (page) => {
     )
 };
 
+
 // export async function getStaticProps(ctx) {
 //     // const categories = await ();
 //     // const students =  api('students/')
@@ -119,4 +121,5 @@ Index.getLayout = (page) => {
 //         },
 //     };
 // }
+
 
