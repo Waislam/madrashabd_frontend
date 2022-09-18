@@ -3,6 +3,7 @@ import styles from './TeacherAndStaffResponsibility.module.css';
 import Talimat from '../Talimat';
 import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
+import SyllabuSideMenu from './SyllabusSideMenu';
 
 const TeacherAndStaffResponsibility = () =>{
     return (
@@ -10,7 +11,7 @@ const TeacherAndStaffResponsibility = () =>{
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                    <Talimat/>
+                    <SyllabuSideMenu/>
                     <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                         <div className="talimat">
                             <div className="card">
