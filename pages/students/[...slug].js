@@ -14,8 +14,10 @@ const StudentDetail = () => {
 
 export default StudentDetail;
 
-StudentDetail.getLayout = function getLayout({page}) {
+StudentDetail.getLayout = (page) => {
     return (
-        <Layout>{page}</Layout>
+        <Layout>
+            {page}
+        </Layout>
     )
 };
