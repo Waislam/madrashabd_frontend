@@ -3,9 +3,9 @@ import '../styles/globals.css'
 import Head from "next/head";
 import Script from "next/script";
 
-import {AuthContextProvider} from '../context/AuthContext'
+import NextNProgress from "nextjs-progressbar";
 
-import Header from '/layouts/Header/Header'
+import {AuthContextProvider} from '../context/AuthContext'
 
 import { SessionProvider } from "next-auth/react"
 
@@ -29,6 +29,7 @@ function MyApp({
 			<SessionProvider session={session}>
 				<AuthContextProvider>
 					{/*<Header />*/}
+					<NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
 					<Component {...pageProps} />
 				</AuthContextProvider>
 			</SessionProvider>
