@@ -4,8 +4,8 @@ import Image from "next/image";
 import styles from './StudentList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 import students from '../../public/assets/admission/students.png'
-
-
+​
+​
 const StudentList =
     ({
          students,
@@ -17,7 +17,7 @@ const StudentList =
          handleSearchBtn
      }) => {
         // console.log("students", students, studentListPageNum,)
-
+​
         return (
             <>
                 <section className={styles.promotedStudentSection}>
@@ -38,7 +38,7 @@ const StudentList =
                                                     <a className="text-center">Student List</a>
                                                 </Link>
                                             </div>
-
+​
                                             <div className={styles.promotedLink}>
                                                 <Link href="/students/promoted-student">
                                                     <a className="text-center">Promoted List</a>
@@ -187,7 +187,7 @@ const StudentList =
                                                             </td>
                                                         </tr>
                                                     ))}
-
+​
                                                     {/*<tr>*/}
                                                     {/*    <th scope="row">101</th>*/}
                                                     {/*    <td className="text-sm">Reza</td>*/}
@@ -242,7 +242,7 @@ const StudentList =
                                                     {/*        </Link>*/}
                                                     {/*    </td>*/}
                                                     {/*</tr>*/}
-
+​
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -347,10 +347,6 @@ const StudentList =
             </>
         )
     };
-
-
+​
+​
 export default StudentList;
-
-
-
-

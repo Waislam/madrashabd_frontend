@@ -5,7 +5,7 @@ import styles from '../Talimat.module.css'
 import studentLogo from '../../../public/assets/admission/students.png'
 
 
-const ExamSideMenu = () => {
+const SyllabuSideMenu = () => {
     return (
         <>
 
@@ -18,12 +18,12 @@ const ExamSideMenu = () => {
                         </h4>
                         <hr/>
                         <div className="card-body p-0">
-                            <div className={styles.inActiveLink}>
+                            <div className={styles.activeLink}>
                                 <Link href="/talimat/syllabus">
                                     <a className="text-center">Syllabus</a>
                                 </Link>
                             </div>
-                            <div className={styles.activeLink}>
+                            <div className={styles.inActiveLink}>
                                 <Link href="/talimat/exam">
                                     <a className="text-center">Examination</a>
                                 </Link>
@@ -49,7 +49,7 @@ const ExamSideMenu = () => {
 };
 
 
-export default ExamSideMenu;
+export default SyllabuSideMenu;
 
 
 
