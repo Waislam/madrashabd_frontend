@@ -104,7 +104,12 @@ const Index = ({data}) => {
 
     return (
         <>
+<<<<<<< HEAD
             {/* <StudentList
+=======
+
+            <StudentList
+>>>>>>> 83de1b90a7ffa99ae3cb47caa09092f2709133b9
                 students={students}
                 handleStudentListPageNum={handleStudentListPageNum}
                 studentListPageNum={studentListPageNum}
@@ -132,6 +137,7 @@ Index.getLayout = (page) => {
     )
 };
 
+
 // export async function getStaticProps(ctx) {
 //     // const categories = await ();
 //     // const students =  api('students/')
@@ -148,4 +154,5 @@ Index.getLayout = (page) => {
 //         },
 //     };
 // }
+
 

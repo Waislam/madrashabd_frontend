@@ -3,23 +3,21 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from './StudentList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
-// import students from '../../public/assets/admission/students.png'
-import Header from "../../layouts/Header/Header";
-
-
+import students from '../../public/assets/admission/students.png'
+​
+​
 const StudentList =
     ({
-        students
-        //  handleStudentListPageNum,
-        //  studentListPageNum,
-        //  nextPage,
-        //  prevPage,
-        //  setSearchStudent,
-        //  handleSearchBtn
+         students,
+         handleStudentListPageNum,
+         studentListPageNum,
+         nextPage,
+         prevPage,
+         setSearchStudent,
+         handleSearchBtn
      }) => {
         // console.log("students", students, studentListPageNum,)
-        console.log("students", students)
-
+​
         return (
             <>
                 <section className={styles.promotedStudentSection}>
@@ -40,7 +38,7 @@ const StudentList =
                                                     <a className="text-center">Student List</a>
                                                 </Link>
                                             </div>
-
+​
                                             <div className={styles.promotedLink}>
                                                 <Link href="/students/promoted-student">
                                                     <a className="text-center">Promoted List</a>
@@ -62,7 +60,7 @@ const StudentList =
                                                                 type="text"
                                                                 className="form-control"
                                                                 placeholder="Search"
-                                                                // onChange={(event) => setSearchStudent(event.target.value)}
+                                                                onChange={(event) => setSearchStudent(event.target.value)}
                                                             />
                                                         </div>
                                                         <div className="col-md-2 mb-3 px-0">
@@ -144,7 +142,7 @@ const StudentList =
                                                         <div className="col-md-2 mb-3">
                                                             <button type="submit"
                                                                     className={styles.searchButton}
-                                                                    // onClick={handleSearchBtn}
+                                                                    onClick={handleSearchBtn}
                                                             >
                                                                 Search
                                                             </button>
@@ -168,20 +166,19 @@ const StudentList =
                                                         <th scope="col">Detail</th>
                                                     </tr>
                                                     </thead>
-                                                    {students.results.map((single)=>(
                                                     <tbody>
-                                                    {/* {students.results.map((student) => ( */}
-                                                        <tr key={single.student_id}>
-                                                            <th scope="text-sm align-middle">{single.student_id}</th>
-                                                            <td className="text-sm">student name</td>
-                                                            <td className="text-sm">{single.father_info.parent_name}</td>
-                                                            <td className="text-sm">{single.admitted_class}</td>
-                                                            <td className="text-sm">{single.admitted_group}</td>
-                                                            <td className="text-sm">{single.student_roll_id}    </td>
-                                                            <td className="text-sm">{single.present_address.thana}</td>
-                                                            <td className="text-sm">{single.user.phone}</td>
+                                                    {students.results.map((student) => (
+                                                        <tr>
+                                                            <th scope="text-sm align-middle">{student.student_id}</th>
+                                                            <td className="text-sm">{student.user.first_name} {student.user.last_name}</td>
+                                                            <td className="text-sm">Abul Kashem</td>
+                                                            <td className="text-sm">Dawra</td>
+                                                            <td className="text-sm">Null</td>
+                                                            <td className="text-sm">99</td>
+                                                            <td className="text-sm">Tala</td>
+                                                            <td className="text-sm">+88 01987132107</td>
                                                             <td className="text-center text-sm">
-                                                                <Image src={studentLogo} alt="" width="25" height="25"/>
+                                                                <Image src={students} alt="" width="25" height="25"/>
                                                             </td>
                                                             <td className="text-sm" style={{color: "#5CBD67"}}>
                                                                 <Link href="/">
@@ -189,68 +186,67 @@ const StudentList =
                                                                 </Link>
                                                             </td>
                                                         </tr>
-                                                     {/* ))} */}
-
-                                                    {/*<tr>*/}
-                                                    {/*    <th scope="row">101</th>*/}
-                                                    {/*    <td className="text-sm">Reza</td>*/}
-                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
-                                                    {/*    <td className="text-sm">Dawra</td>*/}
-                                                    {/*    <td className="text-sm">Null</td>*/}
-                                                    {/*    <td className="text-sm">99</td>*/}
-                                                    {/*    <td className="text-sm">Tala</td>*/}
-                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
-                                                    {/*    <td className="text-center text-sm">*/}
-                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
-                                                    {/*    </td>*/}
-                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
-                                                    {/*        <Link href="/">*/}
-                                                    {/*            View Details*/}
-                                                    {/*        </Link>*/}
-                                                    {/*    </td>*/}
-                                                    {/*</tr>*/}
-                                                    {/*<tr>*/}
-                                                    {/*    <th scope="row">101</th>*/}
-                                                    {/*    <td className="text-sm">Reza</td>*/}
-                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
-                                                    {/*    <td className="text-sm">Dawra</td>*/}
-                                                    {/*    <td className="text-sm">Null</td>*/}
-                                                    {/*    <td className="text-sm">99</td>*/}
-                                                    {/*    <td className="text-sm">Tala</td>*/}
-                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
-                                                    {/*    <td className="text-center text-sm">*/}
-                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
-                                                    {/*    </td>*/}
-                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
-                                                    {/*        <Link href="/">*/}
-                                                    {/*            View Details*/}
-                                                    {/*        </Link>*/}
-                                                    {/*    </td>*/}
-                                                    {/*</tr>*/}
-                                                    {/*<tr>*/}
-                                                    {/*    <th scope="row">101</th>*/}
-                                                    {/*    <td className="text-sm">Reza</td>*/}
-                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
-                                                    {/*    <td className="text-sm">Dawra</td>*/}
-                                                    {/*    <td className="text-sm">Null</td>*/}
-                                                    {/*    <td className="text-sm">99</td>*/}
-                                                    {/*    <td className="text-sm">Tala</td>*/}
-                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
-                                                    {/*    <td className="text-center text-sm">*/}
-                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
-                                                    {/*    </td>*/}
-                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
-                                                    {/*        <Link href="/">*/}
-                                                    {/*            View Details*/}
-                                                    {/*        </Link>*/}
-                                                    {/*    </td>*/}
-                                                    {/*</tr>*/}
-
-                                                    </tbody>
                                                     ))}
+​
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+                                                    {/*<tr>*/}
+                                                    {/*    <th scope="row">101</th>*/}
+                                                    {/*    <td className="text-sm">Reza</td>*/}
+                                                    {/*    <td className="text-sm">Abul Kashem</td>*/}
+                                                    {/*    <td className="text-sm">Dawra</td>*/}
+                                                    {/*    <td className="text-sm">Null</td>*/}
+                                                    {/*    <td className="text-sm">99</td>*/}
+                                                    {/*    <td className="text-sm">Tala</td>*/}
+                                                    {/*    <td className="text-sm">+88 01987132107</td>*/}
+                                                    {/*    <td className="text-center text-sm">*/}
+                                                    {/*        <Image src={students} alt="" width="25" height="25"/>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                    {/*        <Link href="/">*/}
+                                                    {/*            View Details*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+​
+                                                    </tbody>
                                                 </table>
                                             </div>
-                                            {/* <div className="row">
+                                            <div className="row">
                                                 <div className="col-md-8">
                                                     <nav aria-label="Page navigation example">
                                                         <ul className="pagination">
@@ -340,7 +336,7 @@ const StudentList =
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -351,10 +347,6 @@ const StudentList =
             </>
         )
     };
-
-
+​
+​
 export default StudentList;
-
-
-
-

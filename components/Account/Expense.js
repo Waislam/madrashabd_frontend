@@ -1,44 +1,15 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
 import styles from './Expense.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
-
+import AccountSideBar from './AccountSidebar'
 
 const Expense = () => {
     return (
         <div>
             <section className={styles.expenseListSection}>
                 <div className="container-fluid">
-                    {/* <h3 className={styles.promotedStudentTitle}>Student List</h3> */}
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.expenseRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Income</a>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.activeLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Expense</a>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Payment</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <AccountSideBar/>
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="card">
