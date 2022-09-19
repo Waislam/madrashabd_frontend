@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/students/[...slug].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/[...slug].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Admission/Admission.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Admission/Admission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/[...slug].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/[slug].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
