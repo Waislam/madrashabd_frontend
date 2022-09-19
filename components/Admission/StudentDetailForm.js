@@ -16,6 +16,7 @@ const StudentDetailForm = ({nextStep}) => {
 
     const onSubmit = (values) => {
         setAdmissionFormValues(values);
+        nextStep();
     };
 
     const Continue = e => {
