@@ -1,72 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
 import styles from "./Setting.module.css";
-import studentLogo from '../../public/assets/admission/students.png'
+import SettingSideMenu from "./SettingSideMenu";
+
 const Department = () =>{
     return (
         <>
             <section className={styles.settingSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.settingRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive" alt="missing img" height={40} width={40} />
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className="left-menu">
-                                            <div className={styles.activeLink}>
-                                                <Link href="/setting">
-                                                    <a className="ps-5">Department</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/designation">
-                                                    <a className="ps-5">Post/Designation</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/classs">
-                                                    <a className="ps-5">Class</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/books">
-                                                    <a className="ps-5">Books</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/session">
-                                                    <a className="ps-5">Session</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/groups">
-                                                    <a className="ps-5">Group</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/shift">
-                                                    <a className="ps-5">Shift</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/fees">
-                                                    <a className="ps-5">Fees</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/exam-rules">
-                                                    <a className="ps-5">Examination Rules</a>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SettingSideMenu/>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="department-body">
                                 <div className="card">
