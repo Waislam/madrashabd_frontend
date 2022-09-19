@@ -2,32 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/components/Members/Committee.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Members/Committee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Members/OtherMembers.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Members/OtherMembers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Members/Permanentm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Members/Permanentm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Books.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Classs.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Classs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Department.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Department.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Designation.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Designation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Fees.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Fees.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Groups.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Groups.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Setting/Session.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Setting/Session.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Admission/Admission.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Admission/Admission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Students/StudentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Dawah.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Dawah.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Examination.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Examination.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Examination/ExamSideMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Examination/ExamSideMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/ExtraActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/ExtraActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/Createsyllabus.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Createsyllabus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/Syllabus.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Syllabus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/TeacherAndStaffResponsibility.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/TeacherAndStaffResponsibility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Syllabus/Teachertraining.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Talimat/Talimat.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Talimat/Talimat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Transport/GariAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Transport/GariAdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Transport/Transport.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Transport/Transport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/students/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/[...slug].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/[slug].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -122,6 +107,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
@@ -137,7 +125,7 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectId" id="2EwK5thxaCVs0MjRzrYXvkcFf6Q" />
+  <component name="ProjectId" id="2EiSeVJ2cHcnChazgyMvs8zNeIs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -178,11 +166,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "/home/waliul/Desktop/nextjs/madrashabd_frontend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\Professional\ikhwanbd\Frontend\madrashabd_frontend\components\Admission" />
@@ -203,6 +195,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661178113253</updated>
+      <workItem from="1663077020955" duration="984000" />
+      <workItem from="1663243497766" duration="2452000" />
+      <workItem from="1663247507668" duration="5877000" />
+      <workItem from="1663316995444" duration="4763000" />
+      <workItem from="1663400141824" duration="14356000" />
+      <workItem from="1663502831073" duration="2956000" />
     </task>
     <servers />
   </component>
@@ -234,7 +232,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -246,9 +244,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/components/Students/StudentDetails.module.css">
