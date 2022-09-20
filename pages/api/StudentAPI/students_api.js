@@ -5,3 +5,9 @@ export const getStudentDetailApi = async (slug) => {
     // console.log("getStudentDetail(): response", response)
     return response.data
 }
+
+export const getAllStudents = async () => {
+    const response = await api.get(`students/`)
+    // console.log("getStudentDetail(): response", response)
+    return response.data
+}
