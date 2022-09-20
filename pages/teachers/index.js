@@ -11,24 +11,21 @@ import Layout from '../../layouts/Layout';
 
 const index = () => {
     
-    const [teachers, setTeahers] = useState(null)
+    const [teachers, setTeachers]=useState(null)
 
-    const getTeacherData = () => {
+    const getTeachers=()=>{
         api.get(`teachers/`)
-            .then((response)=>{
-                // console.log(response.data)
-                setTeahers(response.data)
-                
-            }).catch((error)=>{
-                console.log(error)
-            })
+        .then((response)=>{
+            // console.log(response.data)
+            setTeachers(response.data)
+        })
     }
 
     useEffect(()=>{
-        getTeacherData();
-
-    },[]);
+        getTeachers()
+    },[])
     
+
 
     // useEffect(() => {
     //     const getPost= async()=> {
@@ -38,12 +35,12 @@ const index = () => {
     //     getPost();
     //   }, []);
 
-    // console.log(teachers) //result null
 
     return (
         <>
            <TeacherLists 
-           teachers={teachers}/>
+                teachers={teachers}
+           />
         </>
     )
 };

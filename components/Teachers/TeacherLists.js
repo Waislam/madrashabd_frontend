@@ -7,7 +7,7 @@ import studentLogo from '../../public/assets/admission/students.png'
 const TeacherList = ({teachers}
 
 ) => {
-    console.log('result:',teachers)
+    // console.log('result:',teachers)
     
     return (
         <div>
@@ -83,7 +83,7 @@ const TeacherList = ({teachers}
                                             </thead>
                                             <tbody>
                                                 
-                                            {/* {teachers.results.map((data)=>( */}
+                                        {teachers.results.map((data)=>(
 
                                             
                                             <tr>
@@ -96,7 +96,7 @@ const TeacherList = ({teachers}
                                                 <td>@mdo</td>
                                                 <td>@mdo</td>
                                             </tr>
-                                            {/* ))} */}
+                                            ))}
                                             <tr>
                                                 <th scope="row">1</th>
                                                 <td>Mark</td>
