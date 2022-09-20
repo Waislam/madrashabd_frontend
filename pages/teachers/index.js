@@ -4,7 +4,10 @@ import React from "react";
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 
-const index = () => {
+import Layout from "../../components/Layout/Layout";
+
+
+const Index = () => {
     return (
         <>
            <TeacherLists/>
@@ -13,18 +16,15 @@ const index = () => {
 };
 
 
-// Fetching Data
 
-/*
-export const getStaticProps = async () => {
-    const res = await api.get(`students/`);
-    return {
-        props: {
-            "students": res.data
-        }
-    }
+
+export default Index;
+
+
+Index.getLayout = (page) => {
+    return(
+        <Layout>
+            { page }
+        </Layout>
+    )
 };
-*/
-
-export default index;
-
