@@ -1,56 +1,72 @@
 import axios from "axios";
 import React from "react";
 import api from "../api/api";
-import { useState, useEffect } from "react";
-
+import React, {useEffect, useState} from "react";
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
 
 
-const index = () => {
-    
-    const [teachers, setTeachers]=useState(null)
+// Call base urls
+import api, {BASE_URL} from "../api/api";
 
-    const getTeachers=()=>{
+
+const Index = () => {
+    const [teachers, setTeachers] = useState(null);
+    const [isLoading, setLoading] = useState(false);
+
+    const getTeachers = () => {
+        setLoading(true);
         api.get(`teachers/`)
-        .then((response)=>{
-            // console.log(response.data)
-            setTeachers(response.data)
-        })
+            .then((response) => {
+                setTeachers(response.data);
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log("error", error);
+                setLoading(false)
+            })
+    };
+
+    useEffect(() => {
+        getTeachers()
+    }, []);
+
+
+    if (isLoading) {
+        return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        )
     }
 
-    useEffect(()=>{
-        getTeachers()
-    },[])
-    
-
-
-    // useEffect(() => {
-    //     const getPost= async()=> {
-    //       const response = await api.get("teachers/");
-    //       setTeahers(response.data);
-    //     }
-    //     getPost();
-    //   }, []);
+    if (!teachers) {
+        return (
+            <h1 className="text-center">No teachers data found</h1>
+        )
+    }
 
 
     return (
         <>
-           <TeacherLists 
-                teachers={teachers}
-           />
+            <TeacherLists teachers={teachers}/>
         </>
     )
 };
 
-export default index;
 
-index.getLayout = (page) => {
-    return(
+export default Index;
+
+
+Index.getLayout = (page) => {
+
+    return (
         <Layout>
-            { page }
+            {page}
         </Layout>
     )
 };

@@ -40,7 +40,7 @@ export default function Home() {
                         </>}
 
                         {session && <>
-                            /!* <h1>Signed in as {session.user.name} </h1> <br/> *!/
+                            {/* <h1>Signed in as {session.user.name} </h1> <br/> */}
                             <button onClick={signOut}>Sign out</button>
                         </>}
 

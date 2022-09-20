@@ -15,7 +15,6 @@ function MyApp({
                    pageProps: {session, ...pageProps},
                }) {
     const getLayout = Component.getLayout || ((page) => page)
-    const router = useRouter()
     return getLayout(
         <>
             <Head>
@@ -32,7 +31,7 @@ function MyApp({
                 <AuthContextProvider>
                     <AdmissionFormProvider>
                         <NextNProgress color="#5B68E4" options={{showSpinner: false}}/>
-                        <Component key={router.asPath} {...pageProps} />
+                        <Component {...pageProps} />
                     </AdmissionFormProvider>
                 </AuthContextProvider>
             </SessionProvider>
