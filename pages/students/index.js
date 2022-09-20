@@ -3,24 +3,29 @@ import React, {useEffect, useState} from "react";
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
-
 import api, {BASE_URL} from "../api/api";
-import axios from "axios";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
-const Index = ({data}) => {
-
+const Index = () => {
     const [students, setStudents] = useState(null)
     const [isLoading, setLoading] = useState(false)
     const [studentId, setStudentID] = useState('')
     const [searchStudent, setSearchStudent] = useState('')
     const [studentListPageNum, setStudentListPageNum] = useState(1)
     const [studentListRecords, setStudentListRecords] = useState('')
-    
+
     const getStudents = () => {
         setLoading(true)
+        // fetch('/api/profile-data')
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         setData(data)
+        //         setLoading(false)
+        //     })
 
         console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+            // api.get('students/')
             .then((response) => {
                 console.log("response", response.data)
                 setStudents(response.data)
@@ -36,7 +41,7 @@ const Index = ({data}) => {
         getStudents()
     }, [studentListPageNum])
 
-
+    console.log("searchStudent", searchStudent)
 
     const handleStudentListPageNum = () => {
         console.log("handleStudentListPageNum() called")
@@ -72,15 +77,17 @@ const Index = ({data}) => {
     }
 
     return (
-        <StudentList
-            students={students}
-            handleStudentListPageNum={handleStudentListPageNum}
-            studentListPageNum={studentListPageNum}
-            setSearchStudent={setSearchStudent}
-            nextPage={nextPage}
-            prevPage={prevPage}
-            handleSearchBtn={handleSearchBtn}
-        />
+        <>
+            <StudentList
+                students={students}
+                handleStudentListPageNum={handleStudentListPageNum}
+                studentListPageNum={studentListPageNum}
+                setSearchStudent={setSearchStudent}
+                nextPage={nextPage}
+                prevPage={prevPage}
+                handleSearchBtn={handleSearchBtn}
+            />
+        </>
     )
 };
 
@@ -94,8 +101,21 @@ Index.getLayout = (page) => {
             {page}
         </Layout>
     )
-};
+}
 
-
-
-
+// export async function getStaticProps(ctx) {
+//     // const categories = await ();
+//     // const students =  api('students/')
+//
+//     console.log("ctx", ctx)
+//
+//     const res = await fetch(`${BASE_URL}students`)
+//     const students = await res.json()
+//     // console.log("students", students)
+//
+//     return {
+//         props: {
+//             students
+//         },
+//     };
+// }

@@ -1,4 +1,7 @@
+import axios from "axios";
 import React from "react";
+import api from "../api/api";
+import { useState, useEffect } from "react";
 
 
 // TeacherList Component
@@ -7,26 +10,43 @@ import Layout from '../../layouts/Layout';
 
 
 const index = () => {
+    
+    const [teachers, setTeahers] = useState(null)
+
+    const getTeacherData = () => {
+        api.get(`teachers/`)
+            .then((response)=>{
+                // console.log(response.data)
+                setTeahers(response.data)
+                
+            }).catch((error)=>{
+                console.log(error)
+            })
+    }
+
+    useEffect(()=>{
+        getTeacherData();
+
+    },[]);
+    
+
+    // useEffect(() => {
+    //     const getPost= async()=> {
+    //       const response = await api.get("teachers/");
+    //       setTeahers(response.data);
+    //     }
+    //     getPost();
+    //   }, []);
+
+    // console.log(teachers) //result null
+
     return (
         <>
-           <TeacherLists/>
+           <TeacherLists 
+           teachers={teachers}/>
         </>
     )
 };
-
-
-// Fetching Data
-
-/*
-export const getStaticProps = async () => {
-    const res = await api.get(`students/`);
-    return {
-        props: {
-            "students": res.data
-        }
-    }
-};
-*/
 
 export default index;
 
