@@ -5,14 +5,13 @@ import styles from './StudentDetails.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
 
-const StudentDetails = ({student, loader}) => {
-    console.log("student", student)
+const StudentDetails = ({student}) => {
 
-    if (loader) {
-        return (
-            <h1>Loadder data</h1>
-        )
-    }
+    // if (loader) {
+    //     return (
+    //         <h1>Loadder data</h1>
+    //     )
+    // }
     return (
         <>
             <section className={styles.mainSection}>
@@ -42,9 +41,9 @@ const StudentDetails = ({student, loader}) => {
                             </div>
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                            {loader ?
-                                <h1>Loading</h1>
-                                :
+                            {/*{loader ?*/}
+                            {/*    <h1>Loading</h1>*/}
+                            {/*    :*/}
                                 <div>
                                     <div className="row">
                                         <div className="col">
@@ -499,7 +498,7 @@ const StudentDetails = ({student, loader}) => {
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            {/*}*/}
 
                         </div>
                     </div>
