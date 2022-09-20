@@ -4,8 +4,16 @@
     <list default="true" id="7caba9e2-d6ce-4889-8123-368280482890" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Admission/StudentDetailForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Admission/StudentDetailForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Students/StudentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Students/StudentList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/context/AdmissionFormProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/context/AdmissionFormProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/students/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/StudentAPI/students_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/madrasha/madrashaApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/madrasha/madrashaApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/madrasha/create-madrasha.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/madrasha/create-madrasha.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/students/[slug].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/students/[slug].js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +203,9 @@
       <workItem from="1663316995444" duration="4763000" />
       <workItem from="1663400141824" duration="14356000" />
       <workItem from="1663502831073" duration="2956000" />
+      <workItem from="1663594248210" duration="6780000" />
+      <workItem from="1663656193388" duration="4846000" />
+      <workItem from="1663674434816" duration="3758000" />
     </task>
     <servers />
   </component>
@@ -249,6 +260,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/Students/StudentDetails.js</url>
+          <line>502</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/components/Students/StudentDetails.module.css">

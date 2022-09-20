@@ -30,23 +30,23 @@ export default function Home() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        {/*<p className='text-thin'>*/}
-                            {/*MH Masuk*/}
-                        {/*</p>*/}
+                        <p className='text-thin'>
+                            MH Masuk
+                        </p>
 
-                        {/*{!session && <>*/}
-                            {/*<h1>You are not signed in</h1> <br/>*/}
-                            {/*<button onClick={signIn}>Sign in</button>*/}
-                        {/*</>}*/}
+                        {!session && <>
+                            <h1>You are not signed in</h1> <br/>
+                            <button onClick={signIn}>Sign in</button>
+                        </>}
 
-                        {/*{session && <>*/}
-                            {/*/!* <h1>Signed in as {session.user.name} </h1> <br/> *!/*/}
-                            {/*<button onClick={signOut}>Sign out</button>*/}
-                        {/*</>}*/}
+                        {session && <>
+                            {/* <h1>Signed in as {session.user.name} </h1> <br/> */}
+                            <button onClick={signOut}>Sign out</button>
+                        </>}
 
-                        {/*<button onClick={handleLogin}>*/}
-                            {/*Login*/}
-                        {/*</button>*/}
+                        <button onClick={handleLogin}>
+                            Login
+                        </button>
 
                         <h3 className="text-center">Dashboard is coming soon ......</h3>
                         <hr/>

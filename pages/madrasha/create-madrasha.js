@@ -33,54 +33,67 @@ const CreateMadrasha = () => {
         getDivisionApi()
             .then((data) => {
                 console.log("getDivisionApi(): results", data)
-                setDivisionList(data.results)
+                setDivisionList(data)
                 setLoading(false)
             })
             .catch((error) => {
                 console.log("getDivision", error)
             })
 
-        // call district api
-        getDistrictApi()
-            .then((data) => {
-                setDistricts(data.results)
-                setLoading(false)
-            })
-            .catch((error) => {
-                console.log("getDistrictApi", error)
-            })
+    }, [])
+
+    useEffect( () => {
 
         // call post Office api
-        getPostOfficeApi()
+        getPostOfficeApi(selectPostOffice)
             .then((data) => {
-                setPostOfficeList(data.results)
+                setPostOfficeList(data)
                 setLoading(true)
             })
             .catch((error) => {
                 console.log("getPostOfficeApi(): error", error)
             })
+    }, [selectPostOffice])
+
+
+    useEffect( () => {
+        // call district api
+        getDistrictApi(selectDivision)
+            .then((data) => {
+                setDistricts(data)
+            })
+            .catch((error) => {
+                console.log("getDistrictApi", error)
+            })
+    }, [selectDivision])
+
+
+    useEffect( () => {
 
         // call post code api
-        getPostCodeApi()
+        getPostCodeApi(selectPostCode)
             .then((data) => {
-                setPostCodeList(data.results)
+                setPostCodeList(data)
                 setLoading(true)
             })
             .catch((error) => {
                 console.log("getPostCodeApi(): error", error)
             })
+    }, [selectPostCode])
 
+
+    useEffect( () => {
         // call thana api
-        getThanaApi()
+        getThanaApi(selectThana)
             .then((data) => {
-                setThanaList(data.results)
+                setThanaList(data)
                 setLoading(true)
             })
             .catch((error) => {
                 console.log("getThanaApi(): error", error)
             })
+    }, [selectThana])
 
-    }, [])
 
     const handleMadrashaSubmit = (event) => {
         event.preventDefault()
@@ -220,7 +233,8 @@ const CreateMadrasha = () => {
                         >
                             Address Info
                         </label>
-                        <input type="text" className="form-control" id="inputAddressInfo" onChange={(e) => setAddressInfo(e.target.value)}/>
+                        <input type="text" className="form-control" id="inputAddressInfo"
+                               onChange={(e) => setAddressInfo(e.target.value)}/>
                     </div>
 
                     <div className="col-12">

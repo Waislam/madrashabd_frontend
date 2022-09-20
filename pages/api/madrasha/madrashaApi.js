@@ -6,23 +6,23 @@ export const getDivisionApi = async () => {
     return response.data
 }
 
-export const getDistrictApi = async () => {
-    const response = await api.get('accounts/district/')
+export const getDistrictApi = async (division) => {
+    const response = await api.get(`accounts/district/?division=${division}`)
     return response.data
 }
 
-export const getPostOfficeApi = async () => {
-    const response = await api.get('accounts/post-office/')
+export const getPostOfficeApi = async (district) => {
+    const response = await api.get(`accounts/post-office/?district=${district}`)
     return response.data
 }
 
-export const getThanaApi = async () => {
-    const response = await api.get('accounts/thana/')
+export const getThanaApi = async (district) => {
+    const response = await api.get(`accounts/thana/?district=${district}`)
     return response.data
 }
 
-export const getPostCodeApi = async () => {
-    const response = await api.get('accounts/post-code/')
+export const getPostCodeApi = async (post_office) => {
+    const response = await api.get(`accounts/post-code/?post_office=${post_office}`)
     return response.data
 }
 
