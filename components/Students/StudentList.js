@@ -185,13 +185,7 @@ const StudentList = ({
                                                         </td>
                                                         <td className="text-sm" style={{color: "#5CBD67"}}>
                                                             <Link
-                                                                href="/students/[slug]?slug=S101"
-                                                                // onClick={() => {
-                                                                //     router.push({
-                                                                //         pathname: '/students/student-detail',
-                                                                //         query: {slug: student.slug},
-                                                                //     })
-                                                                // }}
+                                                                href={`/students/${student.slug}`}
                                                             >
                                                                 View Details
                                                             </Link>
