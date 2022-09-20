@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 
 // TeacherList Component
@@ -6,34 +6,65 @@ import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
 
 
-const index = () => {
+// Call base urls
+import api, {BASE_URL} from "../api/api";
+
+
+const Index = () => {
+    const [teachers, setTeachers] = useState(null);
+    const [isLoading, setLoading] = useState(false);
+
+    const getTeachers = () => {
+        setLoading(true);
+        api.get(`teachers/`)
+            .then((response) => {
+                setTeachers(response.data);
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log("error", error);
+                setLoading(false)
+            })
+    };
+
+    useEffect(() => {
+        getTeachers()
+    }, []);
+
+
+    if (isLoading) {
+        return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        )
+    }
+
+    if (!teachers) {
+        return (
+            <h1 className="text-center">No teachers data found</h1>
+        )
+    }
+
+
     return (
         <>
-           <TeacherLists/>
+            <TeacherLists teachers={teachers}/>
         </>
     )
 };
 
 
-// Fetching Data
+export default Index;
 
-/*
-export const getStaticProps = async () => {
-    const res = await api.get(`students/`);
-    return {
-        props: {
-            "students": res.data
-        }
-    }
-};
-*/
 
-export default index;
+Index.getLayout = (page) => {
 
-index.getLayout = (page) => {
-    return(
+    return (
         <Layout>
-            { page }
+            {page}
         </Layout>
     )
 };

@@ -7,22 +7,25 @@ import Layout from "../../components/Layout/Layout";
 import {getStudentDetail, getStudentDetailApi} from "../api/StudentAPI/students_api";
 
 const StudentDetail = (props) => {
-    const [student, setStudent] = useState({})
+    const [student, setStudent] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const router = useRouter()
     console.log("router data", router)
 
     useEffect(() => {
+        setLoading(true)
         console.log("router.query.slug", router.query.slug);
         getStudentDetailApi(router.query.slug).then((data) => {
-            setStudent(data)
+            setStudent(data.data)
+            setLoading(false)
         })
     }, [router.query.slug]);
 
     return (
         <>
             <h1>{router.query.slug}</h1>
-            <StudentDetails student={student}/>
+            <StudentDetails student={student} loading={loading}/>
         </>
     )
 };
