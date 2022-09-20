@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from './TeacherList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
-const TeacherList = () => {
+const TeacherList = ({teachers}) => {
     return (
         <div>
             <div className="teacherListSection">
@@ -69,65 +69,34 @@ const TeacherList = () => {
                                             <tr>
                                                 <th scope="col">Teacher ID</th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">POST</th>
+                                                <th scope="col">Father Name</th>
+                                                <th scope="col">Mother Name</th>
                                                 <th scope="col">Department</th>
-                                                <th scope="col">Contact</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Contact</th>
                                                 <th scope="col">Picture</th>
                                                 <th scope="col">Detail</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
+                                            {teachers.map(teacher => (
+                                                <tr key={teacher.id}>
+                                                    <th scope="row">{teacher.id}</th>
+                                                    <td>Name</td>
+                                                    <td>{teacher.father_name}</td>
+                                                    <td>{teacher.mother_name}</td>
+                                                    <td>{teacher.department}</td>
+                                                    <td>{teacher.marital_status}</td>
+                                                    <td>{teacher.phone_home}</td>
+                                                    <td>Image</td>
+                                                    <td>
+                                                        <Link href="/teachers/[slug]?slug=t101">
+                                                            View Details
+                                                        </Link>
+                                                    </td>
+                                                </tr>
+                                            ))}
+
                                             </tbody>
                                         </table>
                                     </div>
