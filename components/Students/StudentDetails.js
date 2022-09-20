@@ -6,8 +6,7 @@ import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
 
 const StudentDetails = ({student, loading}) => {
-    console.log("student :", student.user.first_name)
-
+    
     return (
         <>
             <section className={styles.mainSection}>
@@ -159,7 +158,7 @@ const StudentDetails = ({student, loading}) => {
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            9204
+                                                            {student.present_address.post_code.name}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             P.S./Upazilla
