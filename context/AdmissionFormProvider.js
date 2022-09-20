@@ -5,8 +5,6 @@ export const AdmissionFormContext = createContext();
 export default function AdmissionFormProvider({ children }) {
   const [admissionData, setAdmissionData] = useState({});
 
-  console.log('admissionData', admissionData)
-
   const setAdmissionFormValues = (values) => {
     setAdmissionData((prevValues) => ({
       ...prevValues,
