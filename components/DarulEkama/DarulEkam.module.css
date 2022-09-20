@@ -15,8 +15,6 @@
 }
 
 .customCardHeader {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
     text-align: center;
 }
 
@@ -104,4 +102,27 @@
     width: 150px;
     border-radius: 4px;
     margin: 2px
+}
+
+.defaultBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 129px;
+    border-radius: 4px;
+    margin: 2px;
+    float: right;
+}
+
+.seatBookingBox {
+    padding: 5px;
+    border: 1px solid #ACACAC;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #ACACAC;
 }

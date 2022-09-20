@@ -4,7 +4,14 @@ const library = () => {
 
     return (
         <div>
-            <h3>Hello library</h3>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h3 className="text-center">Library is coming soon .....</h3>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };

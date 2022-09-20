@@ -1,6 +1,6 @@
 import React from "react";
-import Link from 'next/link'
 import Image from "next/image";
+import DarulEkmaNav from './DarulEkmaNav'
 import styles from './DarulEkam.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
@@ -17,28 +17,8 @@ const DarulEkam = () => {
                                         <Image src={studentLogo} className="img-responsive"
                                                alt="Logo missing" height={40} width={40}/>
                                     </div>
-                                    <nav className="nav flex-column">
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Darul Ekma
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Seat Booking
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Nigrani Detail
-                                            </a>
-                                        </Link>
-                                        <Link href="/">
-                                            <a className={`${styles.customNavLink} nav-link`}>
-                                                Sutir Abedon Form
-                                            </a>
-                                        </Link>
-                                    </nav>
+                                    {/* DarulEkma Nav*/}
+                                    <DarulEkmaNav/>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { getCsrfToken } from "next-auth/react"
-import axios from "axios"
+import api, {BASE_URL} from '../api'
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -86,7 +86,7 @@ export default async function auth(req, res) {
                 // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
-                  const res = await fetch("http://127.0.0.1:8000/accounts/api-token-auth/", {
+                  const res = await fetch(`${BASE_URL}accounts/api-token-auth/`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: { "Content-Type": "application/json" }
@@ -100,6 +100,16 @@ export default async function auth(req, res) {
                   if (res.ok && user) {
                     return user
                   }
+                //   api.post('accounts/api-token-auth/', {
+                //     username: credentials['username'],
+                //       password: credentials['password']
+                // })
+                //     .then(function (response) {
+                //        return response.data
+                //     })
+                //     .catch(function (error) {
+                //         return null
+                //     });
                 // Return null if user data could not be retrieved
                 // return {
                 //     id: 1,
@@ -107,6 +117,7 @@ export default async function auth(req, res) {
                 //     email: "jsmith@example.com",
                 // }
                 return null
+                // throw new Error( JSON.stringify({ errors: "GDGDG DGD GDGD GD DDG DG", status: false }))
             }
         })
     ]
