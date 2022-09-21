@@ -9,17 +9,17 @@ import { useForm } from "react-hook-form";
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 const AdmissionForm = () => {
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(1);
 
-    const { setAdmissionFormValues } = useAdmissionFormData()
+    const { setAdmissionFormValues } = useAdmissionFormData();
 
     const prevStep = () => {
         setStep(step - 1)
-    }
+    };
 
     const nextStep = () => {
         setStep(step + 1)
-    }
+    };
 
     switch (step) {
         case 1:
@@ -27,19 +27,19 @@ const AdmissionForm = () => {
                 <StudentDetailForm
                     nextStep={nextStep}
                 />
-            )
+            );
         case 2:
             return (
                  <ParentInformationForm
                      nextStep={nextStep}
                  />
-            )
+            );
         case 3:
             return (
                 <PreviousInstitutionForm
                     nextStep={nextStep}
                 />
-            )
+            );
         default:
 
     }
