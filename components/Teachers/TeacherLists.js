@@ -79,7 +79,7 @@ const TeacherList = ({teachers}) => {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {teachers.map(teacher => (
+                                            {teachers.results.map(teacher => (
                                                 <tr key={teacher.id}>
                                                     <th scope="row">{teacher.id}</th>
                                                     <td>Name</td>
