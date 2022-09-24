@@ -1,6 +1,3 @@
-import axios from "axios";
-import React from "react";
-import api from "../api/api";
 import React, {useEffect, useState} from "react";
 
 // TeacherList Component

@@ -4,6 +4,8 @@ import React from "react";
 import TeacherDetails from "../../components/Teachers/TeacherDetails";
 
 const TeacherDetail = () => {
+
+
     return (
         <>
             <TeacherDetails/>

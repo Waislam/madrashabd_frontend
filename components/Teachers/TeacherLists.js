@@ -79,14 +79,14 @@ const TeacherList = ({teachers}) => {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {teachers.map(teacher => (
-                                                <tr key={teacher.id}>
-                                                    <th scope="row">{teacher.id}</th>
-                                                    <td>Name</td>
-                                                    <td>{teacher.father_name}</td>
-                                                    <td>{teacher.mother_name}</td>
-                                                    <td>{teacher.department}</td>
-                                                    <td>{teacher.marital_status}</td>
+                                            {teachers.results.map((teacher) => (
+                                                <tr key={teacher.teacher_id}>
+                                                    <th scope="row">{teacher.teacher_id}</th>
+                                                    <td>Teacher Name</td>
+                                                    <td>Father Name</td>
+                                                    <td>Mother Name</td>
+                                                    <td>{teacher.department.name}</td>
+                                                    <td>dfadfd</td>
                                                     <td>{teacher.phone_home}</td>
                                                     <td>Image</td>
                                                     <td>
