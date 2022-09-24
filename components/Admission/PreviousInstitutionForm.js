@@ -1,45 +1,83 @@
 import React from "react";
 import styles from './Admission.module.css'
+import {useForm} from "react-hook-form";
 
 const PreviousInstitutionForm = () => {
+
+    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+
+    const {
+        handleSubmit,
+        formState: {errors},
+        register,
+    } = useForm({mode: "all"});
+
+    const onSubmit = (values) => {
+        setAdmissionFormValues(values);
+        nextStep();
+    };
+
+    const Continue = e => {
+        e.preventDefault();
+        nextStep();
+    };
+
     return (
         <>
             <div className="previous-institution-wrap">
                 <div className="card">
                     <div className="card-body">
-                        <form action="#">
+                        <form action="#" onSubmit={handleSubmit(onSubmit)}>
                             {/*Previous Institution ************************************/}
                             <div className="previous-institution mb-5">
                                 <h4>Part B</h4>
                                 <h5>Previous Institution</h5>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
-                                        <input type="text" placeholder="Name of institution"
-                                               className="form-control"/>
+                                        <input
+                                            type="text"
+                                            placeholder="Name of institution"
+                                            className="form-control"
+                                        />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="text" placeholder="Institution Contact Number"
-                                               className="form-control"/>
-                                    </div>
-                                </div>
-                                <div className="row mb-3">
-                                    <div className="col-md-6">
-                                        <input type="text" placeholder="Start Date"
-                                               className="form-control"/>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <input type="text" placeholder="Finished Date"
-                                               className="form-control "/>
+                                        <input
+                                            type="text"
+                                            placeholder="Institution Contact Number"
+                                            className="form-control"
+                                        />
                                     </div>
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
-                                        <input type="text" placeholder="Finished Class"
-                                               className="form-control"/>
+                                        <input
+                                            type="text"
+                                            placeholder="Start Date"
+                                            className="form-control"
+                                        />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="text" placeholder="Results/Marks"
-                                               className="form-control"/>
+                                        <input
+                                            type="text"
+                                            placeholder="Finished Date"
+                                            className="form-control"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-md-6">
+                                        <input
+                                            type="text"
+                                            placeholder="Finished Class"
+                                            className="form-control"
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <input
+                                            type="text"
+                                            placeholder="Results/Marks"
+                                            className="form-control"
+                                        />
                                     </div>
                                 </div>
                             </div>
