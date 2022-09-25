@@ -1,19 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useRouter} from 'next/router'
 
 // StudentDetails
 import StudentDetails from "../../components/Students/StudentDetails";
 import Layout from "../../components/Layout/Layout";
-import {getAllStudents, getStudentDetail, getStudentDetailApi} from "../api/StudentAPI/students_api";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
-import api from "../api/api";
-import axios from "axios";
+import {getStudentDetailApi} from "../api/StudentAPI/students_api";
 
 const StudentDetail = ({student}) => {
-
     const router = useRouter()
-    // console.log("router data", router)
-    // console.log("router student", student)
 
     if (router.isFallback) {
         return (
@@ -23,7 +17,6 @@ const StudentDetail = ({student}) => {
 
     return (
         <>
-            <h1>{router.query.slug}</h1>
             <StudentDetails student={student}/>
         </>
     )

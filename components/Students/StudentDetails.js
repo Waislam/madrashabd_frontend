@@ -55,7 +55,7 @@ const StudentDetails = ({student}) => {
                                                                         </dt>
                                                                         <dd className="col-sm-6">
                                                                             <span className="mx-2">:</span>
-                                                                            {student.data.user}
+                                                                            {student.data.user.username}
                                                                         </dd>
                                                                         <dt className="col-sm-6">
                                                                             Date of birth
@@ -115,7 +115,7 @@ const StudentDetails = ({student}) => {
                                                                         </dt>
                                                                         <dd className="col-sm-6">
                                                                             <span className="mx-2">:</span>
-                                                                           
+                                                                            {student.data.user.username}
                                                                         </dd>
                                                                     </dl>
                                                                 </div>
@@ -140,42 +140,42 @@ const StudentDetails = ({student}) => {
                                                         <dt className="col-sm-3">Address</dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.address_info}
+                                                            {/*{student.data.present_address.address_info}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Post Office
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.post_office}
+                                                            {/*{student.data.present_address.post_office.name}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Post Code
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.post_code}
+                                                            {/*{student.data.present_address.post_code.name}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             P.S./Upazilla
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.thana}
+                                                            {/*{student.data.present_address.thana.name}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             District
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.district}
+                                                            {/*{student.data.present_address.district.name}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Division
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.present_address.division}
+                                                            {/*{student.data.present_address.division}*/}
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -190,42 +190,42 @@ const StudentDetails = ({student}) => {
                                                         <dt className="col-sm-3">Address</dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.address_info}
+                                                            {/*{student.data.permanent_address.address_info}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Post Office
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.post_office}
+                                                            {/*{student.data.permanent_address.post_office}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Post Code
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.post_code}
+                                                            {/*{student.data.permanent_address.post_code}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             P.S./Upazilla
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.thana}
+                                                            {/*{student.data.permanent_address.thana}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             District
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.district}
+                                                            {/*{student.data.permanent_address.district}*/}
                                                         </dd>
                                                         <dt className="col-sm-3">
                                                             Division
                                                         </dt>
                                                         <dd className="col-sm-9">
                                                             <span className="mx-2">:</span>
-                                                            {student.data.permanent_address.division}
+                                                            {/*{student.data.permanent_address.division}*/}
                                                         </dd>
                                                     </dl>
                                                 </div>
