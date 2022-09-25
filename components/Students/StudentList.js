@@ -15,7 +15,7 @@ const StudentList = ({
                          setSearchStudent,
                          handleSearchBtn
                      }) => {
-    const router = useRouter()
+    const router = useRouter();
 
     // const handleStudentDetailBtn = () => {
     //     router.push({})
