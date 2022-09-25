@@ -154,8 +154,8 @@ const StudentList = ({
                                             </form>
                                         </div>
                                         <div className="table-responsive">
-                                            <table className="table table-striped table-borderless">
-                                                <thead className={styles.test}>
+                                            <table className="table table-striped table-bordered">
+                                                <thead className="table-dark text-center">
                                                 <tr>
                                                     <th scope="col">Student ID</th>
                                                     <th scope="col">Name</th>
