@@ -19,7 +19,7 @@ const Index = () => {
         api.get(`teachers/`)
             .then((response) => {
                 setTeachers(response.data);
-                setLoading(false)
+                setLoading(false);
             })
             .catch((error) => {
                 console.log("error", error);
