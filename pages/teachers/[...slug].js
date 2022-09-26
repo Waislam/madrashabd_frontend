@@ -20,7 +20,8 @@ const TeacherDetail = ({teacher}) => {
             <TeacherDetails teacher={teacher} />
         </>
     )
-};
+    }
+
 
 export async function getServerSideProps(context) {
     const teacher = await getTeacherDetailApi(context.params.slug);
@@ -30,8 +31,6 @@ export async function getServerSideProps(context) {
         },
     };
 }
-
-
 
 
 

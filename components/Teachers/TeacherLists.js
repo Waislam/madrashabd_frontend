@@ -167,8 +167,8 @@ const TeacherList = ({teachers}) => {
                                                 />
                                             </div>
                                             <div className="col-md-4 mb-3">
-                                                <select className="form-select">
-                                                    <option selected>Gender</option>
+                                                <select className="form-select" defaultValue={'DEFAULT'}>
+                                                    <option value="DEFAULT" disabled>Gender</option>
                                                     <option value="1">Man</option>
                                                     <option value="2">Women</option>
                                                     <option value="3">Others</option>
@@ -411,7 +411,7 @@ const TeacherList = ({teachers}) => {
                                             <input
                                                 className="form-check-input"
                                                 type="checkbox" value=""
-                                                id="flexCheckChecked" checked/>
+                                                id="flexCheckChecked" defaultChecked={true}/>
                                             <label className="form-check-label"
                                                    htmlFor="flexCheckChecked">
                                                 Check the box if you are working
