@@ -1,6 +1,7 @@
 import React from "react";
-import styles from './Expense.module.css'
+import styles from './Account.module.css'
 import AccountSideBar from './AccountSidebar'
+import Link from "next/link";
 
 const Expense = () => {
     return (
@@ -15,375 +16,365 @@ const Expense = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="expense mb-4">
-                                        <form action="#">
-                                            <h4>Add Expense</h4>
+                                        <div className="get-list">
+                                            <div className="row">
+                                                <div className="col-md-8">
+                                                    <h4>All Expense</h4>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get Summary</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add Income</button>
+                                                </div>
+                                            </div>
                                             <hr/>
-                                            <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="category"
-                                                        placeholder="Category"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="subcategory"
-                                                        placeholder="Sub Category"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="amount"
-                                                        placeholder="Amount"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="amount"
-                                                        placeholder="Date"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="purpose"
-                                                        placeholder="Purpose"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="description"
-                                                        placeholder="Description"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="expense"
-                                                        placeholder="Expense by"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="number"
-                                                        placeholder="Number"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <button type="submit" className={styles.defaultBtn}>Print</button>
-                                        </form>
-                                    </div>
-                                    {/*instituteName*/}
-                                    <div className={`${styles.instituteName} mb-5`}>
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <ul className="list-unstyled">
-                                                    <li className="mb-2">Category :</li>
-                                                    <li className="mb-2">Sub Category :</li>
-                                                    <li className="mb-2">Description :</li>
-                                                    <li className="mb-2">Expense By :</li>
-                                                    <li className="mb-2">Month :</li>
-                                                    <li className="mb-2">Amount :</li>
-                                                    <li className="mb-2">Status :</li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-4">
-                                                <div className={styles.instituteAddress}>
-                                                    <h4>Institute Name</h4>
-                                                    <p>Address</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-4">
-                                                <div className={styles.instituteSign}>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                    <div className={styles.approved}>
-                                                        <ul className="list-unstyled">
-                                                            <li>Approved By : Masuk</li>
-                                                            <li>Date : 09-09-22</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/*getSummary*/}
-                                    <div className={`${styles.getSummary} mb-5`}>
-                                        <h4>Get Summary</h4>
-                                        <hr/>
-                                        <form action="#">
-                                            <div className="row">
-                                                <div className="row">
-                                                    <div className="col-md-2 mb-3">
-                                                        <input
-                                                            type="text"
-                                                            name="category"
-                                                            placeholder="Category"
-                                                            className="form-control"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-2 mb-3">
-                                                        <input
-                                                            type="text"
-                                                            name="subcategory"
-                                                            placeholder="Sub Category"
-                                                            className="form-control"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-2 mb-3">
-                                                        <input
-                                                            type="text"
-                                                            name="expense_by"
-                                                            placeholder="Expense By"
-                                                            className="form-control"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-2 mb-3">
-                                                        <input
-                                                            type="text"
-                                                            name="from_date"
-                                                            placeholder="From date"
-                                                            className="form-control"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-2 mb-3">
-                                                        <input
-                                                            type="text"
-                                                            name="to_date"
-                                                            placeholder="To date"
-                                                            className="form-control"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-2 mb-3">
-                                                        <button className={styles.defaultBtn}>Search</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    {/*instituteName*/}
-                                    <div className={`${styles.instituteNameAndForm} mb-5`}>
-                                        <div className="text-center mb-5">
-                                            <h4 className="mb-3">Institute Name</h4>
-                                            <ul className="list-unstyled">
-                                                <li className="mb-2">From date - to date</li>
-                                                <li className="mb-2">Category :</li>
-                                                <li className="mb-2">Expense By : Masuk</li>
-                                                <li className="mb-2">Total Amount : 2000 Taka</li>
-                                            </ul>
-                                        </div>
-                                        <form action="#" method="POST">
-                                            <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="category"
-                                                        placeholder="Category"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="amount"
-                                                        placeholder="Amount"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="description"
-                                                        placeholder="Description"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="to_date"
-                                                        placeholder="To Date"
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="category"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="amount"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="description"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="to_date"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="category"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="amount"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="description"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <input
-                                                        type="text"
-                                                        name="to_date"
-                                                        placeholder=""
-                                                        className="form-control"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div style={{float: "right"}}>
-                                                <button type="type" className={styles.defaultBtn}>Print as PDF</button>
-                                            </div>
-                                            <br/>
-                                        </form>
-                                    </div>
-
-                                    {/*list-output*/}
-                                    <div className="get-list mb-4">
-                                        <h4>Get List</h4>
-                                        <hr/>
-                                        <form action="#">
-                                            <div className="row">
-                                                <div className="col-md-10">
+                                            <div className="search-section">
+                                                <form action="#">
                                                     <div className="row">
-                                                        <div className="col-md-3 mb-3">
-                                                            <input
-                                                                type="text"
-                                                                name="category"
-                                                                placeholder="Category"
-                                                                className="form-control"
-                                                            />
+                                                        <div className="col-md-10">
+                                                            <div className="row">
+                                                                <div className="col-md-3 mb-3">
+                                                                    <div className="input-group">
+                                                                        <input
+                                                                            type="text"
+                                                                            name="category"
+                                                                            placeholder="Category"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <span className="visually-hidden">Toggle dropdown</span>
+                                                                        </button>
+                                                                        <ul className="dropdown-menu dropdown-menu-end">
+                                                                            <li>
+                                                                                <a className="dropdown-item">category one</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a className="dropdown-item">category two</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <div className="input-group">
+                                                                        <input
+                                                                            type="text"
+                                                                            name="subcategory"
+                                                                            placeholder="Sub Category"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <span className="visually-hidden">Toggle dropdown</span>
+                                                                        </button>
+                                                                        <ul className="dropdown-menu dropdown-menu-end">
+                                                                            <li>
+                                                                                <a className="dropdown-item">category one</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a className="dropdown-item">category two</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <input
+                                                                        type="text"
+                                                                        name="from_date"
+                                                                        placeholder="From date"
+                                                                        onChange={(e) => console.log(e.target.value)}
+                                                                        onFocus={(e) => (e.target.type = "date")}
+                                                                        onBlur={(e) => (e.target.type = "text")}
+                                                                        className="form-control"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <input
+                                                                        type="text"
+                                                                        name="from_date"
+                                                                        placeholder="To date"
+                                                                        onChange={(e) => console.log(e.target.value)}
+                                                                        onFocus={(e) => (e.target.type = "date")}
+                                                                        onBlur={(e) => (e.target.type = "text")}
+                                                                        className="form-control"
+                                                                    />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="col-md-3 mb-3">
-                                                            <input
-                                                                type="text"
-                                                                name="subcategory"
-                                                                placeholder="Sub Category"
-                                                                className="form-control"
-                                                            />
+                                                        <div className="col-md-2">
+                                                            <button className={styles.searchButton}>Search</button>
                                                         </div>
-                                                        <div className="col-md-3 mb-3">
-                                                            <input
-                                                                type="text"
-                                                                name="from_date"
-                                                                placeholder="From date"
-                                                                className="form-control"
-                                                            />
-                                                        </div>
-                                                        <div className="col-md-3 mb-3">
-                                                            <input
-                                                                type="text"
-                                                                name="expense"
-                                                                placeholder="Expense"
-                                                                className="form-control"
-                                                            />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div className="get-list mt-4">
+                                                <div className="table-responsive">
+                                                    <table className="table table-striped table-bordered">
+                                                        <thead className="bg-gray text-dark">
+                                                        <tr>
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Description</th>
+                                                            <th scope="col">Amount</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Receipt Number</th>
+                                                            <th scope="col">Expense by</th>
+                                                            <th scope="col">Approved By</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        1
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Income</td>
+                                                                <td>Building</td>
+                                                                <td>5000</td>
+                                                                <td>Jibon Ahmed</td>
+                                                                <td>22/09/2022</td>
+                                                                <td>54</td>
+                                                                <td>4</td>
+                                                                <td>Dev Team</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        1
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Income</td>
+                                                                <td>Building</td>
+                                                                <td>5000</td>
+                                                                <td>Jibon Ahmed</td>
+                                                                <td>22/09/2022</td>
+                                                                <td>54</td>
+                                                                <td>4</td>
+                                                                <td>Dev Team</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        1
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Income</td>
+                                                                <td>Building</td>
+                                                                <td>5000</td>
+                                                                <td>Jibon Ahmed</td>
+                                                                <td>22/09/2022</td>
+                                                                <td>54</td>
+                                                                <td>4</td>
+                                                                <td>Dev Team</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-md-7">
+                                                        <button className={styles.searchButton}>Download PDF</button>
+                                                    </div>
+                                                    <div className="pagination-class col-md-4">
+                                                        <nav aria-label="page navigation" className="">
+                                                            <ul className="pagination float-end">
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Previous</a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">1</a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Next</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                    <div className="page-size col-md-1">
+                                                        <div className="float-end" style={{width:80}}>
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="10"/>
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">10</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">20</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-2">
-                                                    <button className={styles.defaultBtn}>Search</button>
-                                                </div>
                                             </div>
-                                        </form>
-                                        <div className="get-list mt-4">
-                                            <div className="table-responsive">
-                                                <table className="table table-striped table-bordered">
-                                                    <thead className="bg-gray text-dark">
-                                                    <tr>
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Category</th>
-                                                        <th scope="col">Description</th>
-                                                        <th scope="col">Total amount (tk)</th>
-                                                        <th scope="col">Expense By</th>
-                                                        <th scope="col">Date</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                            {/* Add section */}
+                                            <div className="expense-form my-4">
+                                                <form action="" method="post">
+                                                    <div className="row">
+                                                        <div className="col-md-4 mb-3">
+                                                            <div className="form-group">
+                                                                <label className="mb-2">Category</label>
+                                                                <select class="form-control form-select">
+                                                                    <option>Category one</option>
+                                                                    <option>Category two</option>
+                                                                    <option>Category three</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <div className="form-group">
+                                                                <label className="mb-2">Sub-Category</label>
+                                                                <select class="form-control form-select">
+                                                                    <option>sub-Category one</option>
+                                                                    <option>sub-Category two</option>
+                                                                    <option>sub-Category three</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">Expense By</label>
+                                                            <input type="text" className="form-control" placeholder="Expense By" />
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">Amount</label>
+                                                            <input type="text" className="form-control" placeholder="5000" />
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <div className="form-group">
+                                                                <label className="mb-2">For Month</label>
+                                                                <select className="form-control form-select" defaultValue={'DEFAULT'}>
+                                                                    <option value="DEFAULT" disabled>Select Month</option>
+                                                                    <option>January</option>
+                                                                    <option>February</option>
+                                                                    <option>March</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">For Months</label>
+                                                            <input type="text" className="form-control" placeholder="january - march" />
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">Description</label>
+                                                            <input type="text" className="form-control" placeholder="Building construction" />
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">Expense By</label>
+                                                            <input type="text" className="form-control" placeholder="Expense by" />
+                                                        </div>
+                                                        <div className="col-md-4 mb-3">
+                                                            <label className="mb-2">Date</label>
+                                                                <input
+                                                                    type="text"
+                                                                    name="date"
+                                                                    placeholder="date"
+                                                                    onChange={(e) => console.log(e.target.value)}
+                                                                    onFocus={(e) => (e.target.type = "date")}
+                                                                    onBlur={(e) => (e.target.type = "text")}
+                                                                    className="form-control"
+                                                                />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            {/*Get Summary*/}
+                                            <div className="get-summary mb-4">
+                                                <h4>Get Summary</h4>
+                                                <hr/>
+                                                <form action="#">
+                                                    <div className="row">
+                                                        <div className="col-md-10">
+                                                            <div className="row">
+                                                                <div className="col-md-3 mb-3">
+                                                                    <div className="input-group">
+                                                                        <input
+                                                                            type="text"
+                                                                            name="category"
+                                                                            placeholder="Category"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <span className="visually-hidden">Toggle dropdown</span>
+                                                                        </button>
+                                                                        <ul className="dropdown-menu dropdown-menu-end">
+                                                                            <li>
+                                                                                <a className="dropdown-item">category one</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a className="dropdown-item">category two</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <div className="input-group">
+                                                                        <input
+                                                                            type="text"
+                                                                            name="subcategory"
+                                                                            placeholder="Sub Category"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <span className="visually-hidden">Toggle dropdown</span>
+                                                                        </button>
+                                                                        <ul className="dropdown-menu dropdown-menu-end">
+                                                                            <li>
+                                                                                <a className="dropdown-item">category one</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a className="dropdown-item">category two</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <input
+                                                                        type="text"
+                                                                        name="from_date"
+                                                                        placeholder="From date"
+                                                                        onChange={(e) => console.log(e.target.value)}
+                                                                        onFocus={(e) => (e.target.type = "date")}
+                                                                        onBlur={(e) => (e.target.type = "text")}
+                                                                        className="form-control"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-md-3 mb-3">
+                                                                    <input
+                                                                        type="text"
+                                                                        name="to_date"
+                                                                        placeholder="To date"
+                                                                        onChange={(e) => console.log(e.target.value)}
+                                                                        onFocus={(e) => (e.target.type = "date")}
+                                                                        onBlur={(e) => (e.target.type = "text")}
+                                                                        className="form-control"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-2">
+                                                            <button className={styles.searchButton}>Search</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            {/*institute-name*/}
+                                            <div className={styles.instituteNamePdf}>
+                                                <div className={styles.instituteList}>
+                                                    <h4>Get Name</h4>
+                                                    <ul className="list-unstyled">
+                                                        <li>From date - to date</li>
+                                                        <li>Category Name</li>
+                                                        <li>Total amount : 10 Taka</li>
+                                                    </ul>
+                                                </div>
+                                                <div style={{float: "right"}}>
+                                                    <button className={styles.institutePrintBtn}>Print as PDF</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
