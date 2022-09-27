@@ -16,13 +16,6 @@ const Index = () => {
 
     const getStudents = () => {
         setLoading(true);
-        // fetch('/api/profile-data')
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         setData(data)
-        //         setLoading(false)
-        //     })
-
         console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
         api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         // api.get('students/')

@@ -70,3 +70,6 @@ venv.bak/
 .idea/
 /.idea/
 .idea
+
+/tryNextjs
+.tryNextjs

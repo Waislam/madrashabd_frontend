@@ -1,8 +1,6 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
-import styles from './KhabarDistribution.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
+import styles from './Boarding.module.css'
+import BoardingSidebar from './BoardingSidebar'
 
 const KhabarDistribution = () => {
     return (
@@ -10,31 +8,10 @@ const KhabarDistribution = () => {
             <section className={styles.khabarDistributionSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.khabarDistributionRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="">
-                                                <a className="text-center">khabar Distribution</a>
-                                            </Link>
-                                        </div>
-
-                                        <div className={styles.activeLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Bazar List</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                            <BoardingSidebar/>
                         </div>
-                        <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
                             <div className="card">
                                 <div className="card-body">
                                     <h4>Khabar Distribution</h4>

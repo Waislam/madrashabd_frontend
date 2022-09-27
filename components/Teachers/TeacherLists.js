@@ -30,7 +30,9 @@ const TeacherList = ({teachers}) => {
                                     <div className="row">
                                         <div className="col col-md-8">
                                             <div style={{float: "right"}}>
-                                                <a href="" className="btn btn-success">Add</a>
+                                                <Link href="teachers/add-teacher">
+                                                    <a className="btn btn-success">Add</a>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className="col col-md-4">
@@ -83,12 +85,12 @@ const TeacherList = ({teachers}) => {
                                                 teachers.results.map((teacher) => (
                                                     <tr key={teacher.teacher_id}>
                                                         <th scope="row">1</th>
-                                                        {/*<td>{teacher.user.username}</td>*/}
-                                                        <td>{teacher.father_name}</td>
-                                                        <td>{teacher.father_name}</td>
+                                                        <td>{teacher.user.username}</td>
+                                                        <td>{teacher.user.father_name}</td>
+                                                        <td>{teacher.user.father_name}</td>
                                                         <td></td>
                                                         <td></td>
-                                                        {/*<td>{teacher.user.phone}</td>*/}
+                                                        <td>{teacher.user.phone}</td>
                                                         <td></td>
 
                                                         <td className="text-sm" style={{color: "#5CBD67"}}>
