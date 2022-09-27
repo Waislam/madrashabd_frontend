@@ -4,6 +4,7 @@ import styles from './Account.module.css'
 import icon from '../../public/assets/login/icon.png'
 import AccountSideBar from './AccountSidebar'
 import Header from './IncomeHeader'
+import Link from "next/link";
 
 const StudentIncome = () => {
     return (
@@ -87,6 +88,9 @@ const StudentIncome = () => {
                                                                     type="text"
                                                                     name="from_date"
                                                                     placeholder="From date"
+                                                                    onChange={(e) => console.log(e.target.value)}
+                                                                    onFocus={(e) => (e.target.type = "date")}
+                                                                    onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
                                                                 />
                                                             </div>
@@ -95,6 +99,9 @@ const StudentIncome = () => {
                                                                     type="text"
                                                                     name="to_date"
                                                                     placeholder="To date"
+                                                                    onChange={(e) => console.log(e.target.value)}
+                                                                    onFocus={(e) => (e.target.type = "date")}
+                                                                    onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
                                                                 />
                                                             </div>
@@ -121,7 +128,11 @@ const StudentIncome = () => {
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <th scope="row">15231</th>
+                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
+                                                                <Link href="">
+                                                                    15231
+                                                                </Link>
+                                                                </th>
                                                                 <td>Student</td>
                                                                 <td>Monthly</td>
                                                                 <td>500</td>
@@ -130,7 +141,11 @@ const StudentIncome = () => {
                                                                 <td>waliul islam</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">15231</th>
+                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
+                                                                <Link href="">
+                                                                    15231
+                                                                </Link>
+                                                                </th>
                                                                 <td>Student</td>
                                                                 <td>Monthly</td>
                                                                 <td>500</td>
@@ -139,7 +154,11 @@ const StudentIncome = () => {
                                                                 <td>waliul islam</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">15231</th>
+                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
+                                                                <Link href="">
+                                                                    15231
+                                                                </Link>
+                                                                </th>
                                                                 <td>Student</td>
                                                                 <td>Monthly</td>
                                                                 <td>500</td>
@@ -150,7 +169,44 @@ const StudentIncome = () => {
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <button className={styles.searchButton}>Download PDF</button>
+                                                <div className="row">
+                                                    <div className="col-md-7">
+                                                        <button className={styles.searchButton}>Download PDF</button>
+                                                    </div>
+                                                    <div className="pagination-class col-md-4">
+                                                        <nav aria-label="page navigation" className="">
+                                                            <ul className="pagination float-end">
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Previous</a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">1</a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Next</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                    <div className="page-size col-md-1">
+                                                        <div className="float-end" style={{width:80}}>
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="10"/>
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">10</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">20</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -206,6 +262,18 @@ const StudentIncome = () => {
                                                     <div className="col-md-4 mb-3">
                                                         <label className="mb-2">For Months</label>
                                                         <input type="text" className="form-control" placeholder="january - march" />
+                                                    </div>
+                                                    <div className="col-md-4 mb-3">
+                                                        <label className="mb-2">Date</label>
+                                                            <input
+                                                                type="text"
+                                                                name="date"
+                                                                placeholder="date"
+                                                                onChange={(e) => console.log(e.target.value)}
+                                                                onFocus={(e) => (e.target.type = "date")}
+                                                                onBlur={(e) => (e.target.type = "text")}
+                                                                className="form-control"
+                                                            />
                                                     </div>
                                                 </div>
                                                 <div>
@@ -269,6 +337,9 @@ const StudentIncome = () => {
                                                                     type="text"
                                                                     name="from_date"
                                                                     placeholder="From date"
+                                                                    onChange={(e) => console.log(e.target.value)}
+                                                                    onFocus={(e) => (e.target.type = "date")}
+                                                                    onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
                                                                 />
                                                             </div>
@@ -277,6 +348,9 @@ const StudentIncome = () => {
                                                                     type="text"
                                                                     name="to_date"
                                                                     placeholder="To date"
+                                                                    onChange={(e) => console.log(e.target.value)}
+                                                                    onFocus={(e) => (e.target.type = "date")}
+                                                                    onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
                                                                 />
                                                             </div>
