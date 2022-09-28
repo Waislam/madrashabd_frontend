@@ -70,3 +70,70 @@
     border-radius: 4px;
     margin: 2px
 }
+
+.boardingAddButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    width: 140px;
+    border: white;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.boardingDownloadButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    width: 140px;
+    border: white;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.boardingText {
+    display: block;
+    word-break: break-all;
+    white-space: normal;
+    overflow: hidden;
+    width: 260px;
+    border-right-style: none;
+}
+
+.paginationSection {
+    float: right;
+}
+
+.listRightSide {
+    overflow: hidden;
+    display: block;
+}
+
+.khabarDistributionSection {
+    overflow: hidden;
+    display: block;
+    margin-bottom: 80px;
+}
+
+.khabarDistributionRightSide {
+    overflow: hidden;
+    display: block;
+}
+
+.searchBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 140px;
+    border-radius: 4px;
+    margin: 2px
+}
+
+.boardingSearch {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 10px;
+    border: white;
+    border-radius: 4px;
+}
