@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 import styles from './Boarding.module.css'
 import BoardingSidebar from './BoardingSidebar'
 
@@ -52,8 +53,9 @@ const Boarding = (
                                             <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                                 <div className="row g-1">
                                                     <div className="col">
-                                                        <button className={styles.boardingAddButton}>Add New Bazar
-                                                        </button>
+                                                        <Link href="/boarding/add-bazar">
+                                                            <button className={styles.boardingAddButton}>Add New Bazar</button>
+                                                        </Link>
                                                     </div>
                                                     <div className="col">
                                                         <button className={styles.boardingDownloadButton}>Download PDF
