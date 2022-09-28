@@ -1,6 +1,7 @@
 import styles from './BookList.module.css'
 import Sidemenu from './LibrarySideMenu'
 import Modal from './BookDistributionListModal'
+import Link from 'next/link'
 
 
 
@@ -44,41 +45,66 @@ const BookList = ({showmodal, shown}) =>{
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th scope="col">ID</th>
-                                                                <th scope="col">Book Number</th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Part</th>
-                                                                <th scope="col">origin Writer</th>
-                                                                <th scope="col">Language</th>
+                                                                <th scope="col">Student ID</th>
+                                                                <th scope="col">Name</th>
                                                                 <th scope="col">Class</th>
+                                                                <th scope="col">Contact</th>
+                                                                <th scope="col">Book Number</th>
+                                                                <th scope="col">Book Name</th>
+                                                                <th scope="col">Taken Date</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        132121
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Waliul Islam</td>
+                                                                <td>Dawrah/takmil</td>
+                                                                <td>017255xxx</td>
+                                                                <td>54654</td>
                                                                 <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
                                                                 <td>Dawrah/takmil</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        132121
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Waliul Islam</td>
+                                                                <td>Dawrah/takmil</td>
+                                                                <td>017255xxx</td>
+                                                                <td>54654</td>
                                                                 <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
                                                                 <td>Dawrah/takmil</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">1</th>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        132121
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Waliul Islam</td>
+                                                                <td>Dawrah/takmil</td>
+                                                                <td>017255xxx</td>
+                                                                <td>54654</td>
                                                                 <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
+                                                                <td>Dawrah/takmil</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                        132121
+                                                                    </Link>
+                                                                </th>
+                                                                <td>Waliul Islam</td>
+                                                                <td>Dawrah/takmil</td>
+                                                                <td>017255xxx</td>
+                                                                <td>54654</td>
+                                                                <td>bokhari shorif</td>
                                                                 <td>Dawrah/takmil</td>
                                                             </tr>
                                                         </tbody>
