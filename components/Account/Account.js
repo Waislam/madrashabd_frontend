@@ -361,15 +361,15 @@ const Account = () => {
                                                 <div className="table-responsive">
                                                     <table className="table table-striped table-bordered">
                                                         <thead className="bg-gray text-dark">
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Category</th>
-                                                            <th scope="col">Amount</th>
-                                                            <th scope="col">Doner</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Money Receipt</th>
-                                                            <th scope="col">Taken by</th>
-                                                        </tr>
+                                                            <tr>
+                                                                <th scope="col">ID</th>
+                                                                <th scope="col">Category</th>
+                                                                <th scope="col">Amount</th>
+                                                                <th scope="col">Doner</th>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">Money Receipt</th>
+                                                                <th scope="col">Taken by</th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
                                                         <tr>
