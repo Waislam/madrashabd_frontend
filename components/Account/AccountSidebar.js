@@ -20,18 +20,18 @@ const AccountSidebar = () => {
                     <div className="card-body p-0">
                         <div className={router.pathname == "/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts">
-                                <a className="text-center">Income</a>
+                                <a className="text-left ps-4">Income</a>
                             </Link>
                         </div>
 
                         <div className={router.pathname == "/accounts/expense" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/expense">
-                                <a className="text-center">Expense</a>
+                                <a className="text-left ps-4">Expense</a>
                             </Link>
                         </div>
                         <div className={router.pathname == "/accounts/payment" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/payment">
-                                <a className="text-center">Payment</a>
+                                <a className="text-left ps-4">Payment</a>
                             </Link>
                         </div>
                     </div>

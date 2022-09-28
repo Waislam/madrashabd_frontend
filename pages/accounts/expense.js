@@ -1,7 +1,7 @@
 import React from "react";
 
 // Expense Component
-import Expense from "../../components/Account/Expense";
+import Expense from "../../components/Account/AllExpense";
 import Layout from "../../components/Layout/Layout";
 
 const expense = () =>{

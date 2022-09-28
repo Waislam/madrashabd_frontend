@@ -1,10 +1,10 @@
 import { useState} from 'react';
 
 // component for Library
-import Booklist from '../../components/Library/BookList'
+import BookDist from '../../components/Library/BookDistributionList'
 import Layout from '../../layouts/Layout';
 
-const library = () => {
+const BookDistribution = () => {
     const [showModal, setShowModal] = useState(false)
 
     const handleModalShow=()=>{
@@ -13,7 +13,7 @@ const library = () => {
 
     return (
         <>
-            <Booklist
+            <BookDist
                 showmodal={handleModalShow}
                 shown={showModal}
             />
@@ -22,10 +22,10 @@ const library = () => {
 };
 
 
-export default library;
+export default BookDistribution;
 
 
-library.getLayout = (page) => {
+BookDistribution.getLayout = (page) => {
     return (
         <Layout>{page}</Layout>
     )

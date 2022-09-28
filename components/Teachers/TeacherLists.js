@@ -19,8 +19,8 @@ const TeacherList = ({teachers}) => {
                                                 <input type="text" className="form-control" placeholder="Search"
                                                        aria-label="Username" aria-describedby="basic-addon1"/>
                                                 <span className="input-group-text" id="basic-addon1">
-                                            <i className="fa fa-search"/>
-                                        </span>
+                                                    <i className="fa fa-search"/>
+                                                </span>
                                             </div>
                                         </form>
                                     </div>
@@ -94,9 +94,7 @@ const TeacherList = ({teachers}) => {
                                                         <td></td>
 
                                                         <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link
-                                                                href={`/teachers/${teacher.slug}`}
-                                                            >
+                                                            <Link href={`/teachers/${teacher.slug}`}>
                                                                 View Details
                                                             </Link>
 

@@ -1,23 +1,23 @@
 import React from "react";
 
 // StudentList Component
-import Account from "../../components/Account/StudentIncome";
+import OtherIncome from "../../components/Account/OtherIncome";
 import Layout from "../../components/Layout/Layout";
 
-const Accounts = () => {
+const OtherIncomePage = () => {
 
     return (
         <>
-            <Account/>
+            <OtherIncome/>
         </>
     )
 };
 
 
-export default Accounts;
+export default OtherIncomePage;
 
 
-Accounts.getLayout = (page) => {
+OtherIncomePage.getLayout = (page) => {
     return (
         <Layout>
             {page}
