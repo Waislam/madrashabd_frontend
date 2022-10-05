@@ -14,47 +14,41 @@ const modalpage=({show})=>{
                     <div className="card-body">
                          <form action="#" method="post">
                             <div className="row">
+                                <div className="col-md-3 mb-3">
+                                    <label className="mb-2">Student ID</label>
+                                    <input type="text" className="form-control" placeholder="32165165"/>
+                                </div>
+                                <div className="col-md-3 mb-3">
+                                    <label className="mb-2">Student Name</label>
+                                    <input type="text" className="form-control" placeholder="Auto"/>
+                                </div>
+                                <div className="col-md-3 mb-3">
+                                    <label className="mb-2">Student Class</label>
+                                    <input type="text" className="form-control" placeholder="auto"/>
+                                </div>
+                                <div className="col-md-3 mb-3">
+                                    <label className="mb-2">Contact</label>
+                                    <input type="text" className="form-control" placeholder="auto"/>
+                                </div>
                                 <div className="col-md-4 mb-3">
                                     <label className="mb-2">Book Number</label>
-                                    <input type="text" className="form-control" placeholder="Book Number"/>
+                                    <input type="text" className="form-control" placeholder="35461"/>
                                 </div>
                                 <div className="col-md-4 mb-3">
                                     <label className="mb-2">Book Name</label>
-                                    <input type="text" className="form-control" placeholder="Book Name"/>
+                                    <input type="text" className="form-control" placeholder="Auto"/>
                                 </div>
                                 <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book part</label>
-                                    <input type="text" className="form-control" placeholder="Book part"/>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Category</label>
-                                    <div className="input-group">
-                                        <select className="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book for class</label>
-                                    <input type="text" className="form-control" placeholder="class Name"/>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book Translator</label>
-                                    <input type="text" className="form-control" placeholder="Book Translator"/>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book Publication</label>
-                                    <input type="text" className="form-control" placeholder="Book Publication"/>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book Origianl writter</label>
-                                    <input type="text" className="form-control" placeholder="Book writter"/>
-                                </div>
-                                <div className="col-md-4 mb-3">
-                                    <label className="mb-2">Book Language</label>
-                                    <input type="text" className="form-control" placeholder="Book Language"/>
+                                    <label className="mb-2">Taken Date</label>
+                                    <input
+                                                                type="text"
+                                                                name="date"
+                                                                placeholder="date"
+                                                                onChange={(e) => console.log(e.target.value)}
+                                                                onFocus={(e) => (e.target.type = "date")}
+                                                                onBlur={(e) => (e.target.type = "text")}
+                                                                className="form-control"
+                                                            />
                                 </div>
                                 <div className="mt-3">
                                     <button type="submit" className={`${styles.defaultBtn}`}>Save</button>

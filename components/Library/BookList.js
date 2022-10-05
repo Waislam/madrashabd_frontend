@@ -4,7 +4,22 @@ import Modal from './BookListModal'
 
 
 
-const BookList = ({showmodal, shown}) =>{
+
+
+const BookList = ({
+                    showmodal,
+                    shown,
+                    books,
+                }) =>{
+
+    if(!books){
+        return(
+            <>
+            <h1>Loading.. please refresh the page</h1>
+            </>
+        )
+    }
+
     return(
         <>
             <section>
@@ -89,38 +104,61 @@ const BookList = ({showmodal, shown}) =>{
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
-                                                                <td>Dawrah/takmil</td>
+                                                        {/* {books?.results.map((book)=> ( */}
+                                                        {/* {books && books.results.map((book)=> ( */}
+                                                        {books && books.results.map((book)=> (
+                                                            <tr key={book.id}>
+                                                                <th scope="row">{book.id}</th>
+                                                                <td>{book?.name}</td>
+                                                                <td>{book?.category}</td>
+                                                                <td>{book?.part}</td>
+                                                                <td>{book?.original_writer}</td>
+                                                                <td>{book?.language}</td>
+                                                                <td>{book?.book_for_class}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
-                                                                <td>Dawrah/takmil</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>bokhari shorif</td>
-                                                                <td>Hadis</td>
-                                                                <td>2nd</td>
-                                                                <td>Imam Bokhari</td>
-                                                                <td>urdu</td>
-                                                                <td>Dawrah/takmil</td>
-                                                            </tr>
+                                                        ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div>
-                                                    <button type="button" className={`${styles.defaultBtn}`}>Download</button>
+                                                <div className="row">
+                                                    <div className="col-md-7">
+                                                        <button type="button" className={`${styles.defaultBtn}`}>Download</button>
+                                                    </div>
+                                                    <div className="pagination-class col-md-4">
+                                                        <nav aria-label="page navigation" className="">
+                                                            <ul className="pagination float-end">
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Previous</a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">
+                                                                        1
+                                                                    </a>
+                                                                </li>
+                                                                <li className="page-item">
+                                                                    <a className="page-link" href="">Next</a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                    <div className="page-size col-md-1">
+                                                        <div className="float-end" style={{width:80}}>
+                                                            <div className="input-group">
+                                                                <input type="text" className="form-control" placeholder="10"/>
+                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                </button>
+                                                                <ul className="dropdown-menu dropdown-menu-end">
+                                                                    <li>
+                                                                        <a className="dropdown-item">10</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a className="dropdown-item">20</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             
