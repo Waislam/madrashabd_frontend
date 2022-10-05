@@ -17,7 +17,7 @@ const Index = () => {
     const getStudents = () => {
         setLoading(true);
         console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
-        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        api.get(`100/students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         // api.get('students/')
             .then((response) => {
                 console.log("response", response.data);

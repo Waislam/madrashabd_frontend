@@ -5,6 +5,8 @@ import icon from '../../public/assets/login/icon.png'
 import AccountSideBar from './AccountSidebar'
 
 const Account = () => {
+
+
     return (
         <div>
             <section className={styles.accountListSection}>

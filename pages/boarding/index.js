@@ -68,15 +68,15 @@ const BoardingPage = () => {
     return (
         <>
             <Boarding
-                bazerList={bazerList}
-                handleBazarListPageNum={handleBazarListPageNum}
-                setBazerListPageNum={setBazerListPageNum}
-                setSearchBazerList={setSearchBazerList}
-                setBazerListRecords={setBazerListRecords}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                handleSearchBtn={handleSearchBtn}
-                bazarListPageNum={bazarListPageNum}
+                // bazerList={bazerList}
+                // handleBazarListPageNum={handleBazarListPageNum}
+                // setBazerListPageNum={setBazerListPageNum}
+                // setSearchBazerList={setSearchBazerList}
+                // setBazerListRecords={setBazerListRecords}
+                // nextPage={nextPage}
+                // prevPage={prevPage}
+                // handleSearchBtn={handleSearchBtn}
+                // bazarListPageNum={bazarListPageNum}
             />
         </>
     )

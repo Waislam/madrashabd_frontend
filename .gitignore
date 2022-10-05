@@ -77,3 +77,6 @@ venv.bak/
 
 /tryNextjs
 .tryNextjs
+
+# root api file 
+pages/api/api.js

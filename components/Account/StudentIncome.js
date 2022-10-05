@@ -6,7 +6,19 @@ import AccountSideBar from './AccountSidebar'
 import Header from './IncomeHeader'
 import Link from "next/link";
 
-const StudentIncome = () => {
+const StudentIncome = ({
+    studentIncomeList
+}) => {
+    console.log(studentIncomeList)
+
+    if(!studentIncomeList){
+        return(
+            <>
+            <h1>Loading.. please refresh the page</h1>
+            </>
+        )
+    }
+
     return (
         <div>
             <section className={styles.accountListSection}>
@@ -127,45 +139,21 @@ const StudentIncome = () => {
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            {studentIncomeList && studentIncomeList.results.map((stincome)=>(
+                                                            <tr key={stincome.id}>
                                                                 <th scope="row" style={{color: "#5CBD67"}}ss>
                                                                 <Link href="">
-                                                                    15231
+                                                                    {stincome.student_class_id}
                                                                 </Link>
                                                                 </th>
-                                                                <td>Student</td>
-                                                                <td>Monthly</td>
-                                                                <td>500</td>
-                                                                <td>25/09/2022</td>
-                                                                <td>52454</td>
-                                                                <td>waliul islam</td>
+                                                                <td>{stincome.category.name}</td>
+                                                                <td>{stincome.sub_category.name}</td>
+                                                                <td>{stincome.amount.amount}</td>
+                                                                <td>{stincome.paid_date}</td>
+                                                                <td>{stincome.receipt_number}</td>
+                                                                <td>let it</td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
-                                                                <Link href="">
-                                                                    15231
-                                                                </Link>
-                                                                </th>
-                                                                <td>Student</td>
-                                                                <td>Monthly</td>
-                                                                <td>500</td>
-                                                                <td>25/09/2022</td>
-                                                                <td>52454</td>
-                                                                <td>waliul islam</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
-                                                                <Link href="">
-                                                                    15231
-                                                                </Link>
-                                                                </th>
-                                                                <td>Student</td>
-                                                                <td>Monthly</td>
-                                                                <td>500</td>
-                                                                <td>25/09/2022</td>
-                                                                <td>52454</td>
-                                                                <td>waliul islam</td>
-                                                            </tr>
+                                                            ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -173,7 +161,7 @@ const StudentIncome = () => {
                                                     <div className="col-md-7">
                                                         <button className={styles.searchButton}>Download PDF</button>
                                                     </div>
-                                                    <div className="pagination-class col-md-4">
+                                                    <div className="pagination-page col-md-4">
                                                         <nav aria-label="page navigation" className="">
                                                             <ul className="pagination float-end">
                                                                 <li className="page-item">
@@ -217,7 +205,7 @@ const StudentIncome = () => {
                                                     <div className="col-md-4 mb-3">
                                                         <div className="form-group">
                                                             <label className="mb-2">Category</label>
-                                                            <select class="form-control form-select">
+                                                            <select className="form-control form-select">
                                                                 <option>Category one</option>
                                                                 <option>Category two</option>
                                                                 <option>Category three</option>
@@ -227,7 +215,7 @@ const StudentIncome = () => {
                                                     <div className="col-md-4 mb-3">
                                                         <div className="form-group">
                                                             <label className="mb-2">Sub-Category</label>
-                                                            <select class="form-control form-select">
+                                                            <select className="form-control form-select">
                                                                 <option>sub-Category one</option>
                                                                 <option>sub-Category two</option>
                                                                 <option>sub-Category three</option>

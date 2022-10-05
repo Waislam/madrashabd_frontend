@@ -4,16 +4,16 @@ import styles from './Boarding.module.css'
 import BoardingSidebar from './BoardingSidebar'
 
 const Boarding = (
-    {
-        bazerList,
-        handleBazarListPageNum,
-        setSearchBazerList,
-        setBazerListRecords,
-        nextPage,
-        prevPage,
-        handleSearchBtn,
-        bazarListPageNum
-    }) => {
+    
+        // bazerList,
+        // handleBazarListPageNum,
+        // setSearchBazerList,
+        // setBazerListRecords,
+        // nextPage,
+        // prevPage,
+        // handleSearchBtn,
+        // bazarListPageNum
+    ) => {
 
     return (
         <>
@@ -80,19 +80,19 @@ const Boarding = (
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {bazerList.results.map((bazar) => (
-                                                    <tr className="text-center" key={bazar.id}>
-                                                        <th scope="row">{bazar.id}</th>
-                                                        <td>{bazar.date}</td>
+                                                {/* {bazerList.results.map((bazar) => ( */}
+                                                    <tr className="text-center">
+                                                        <th scope="row"></th>
+                                                        <td></td>
                                                         <td className={styles.boardingText}>
-                                                            {bazar.bazar_item_name}
+                                                            
                                                         </td>
-                                                        <td>{bazar.quantity}</td>
-                                                        <td>{bazar.amount}</td>
-                                                        <td>{bazar.consumption}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
                                                         <td>0k</td>
                                                     </tr>
-                                                ))}
+                                                {/* ))} */}
                                                 </tbody>
                                             </table>
                                         </div>

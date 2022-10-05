@@ -5,7 +5,19 @@ import Header from './IncomeHeader'
 import studentLogo from '../../public/assets/admission/students.png'
 import Link from "next/link";
 
-const StudentIncome = () => {
+const StudentIncome = ({
+    otherIncomeList
+
+}) => {
+    
+    if(!otherIncomeList){
+        return(
+
+            <>
+                <h1>Loading... please refresh your page</h1>
+            </>
+        )
+    }
     return (
         <div>
             <section className={styles.accountListSection}>
@@ -144,7 +156,7 @@ const StudentIncome = () => {
                                                         <tr>
                                                             <th scope="col">ID</th>
                                                             <th scope="col">Category</th>
-                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Sub_Category</th>
                                                             <th scope="col">Amount</th>
                                                             <th scope="col">Donor</th>
                                                             <th scope="col">Date</th>
@@ -154,51 +166,23 @@ const StudentIncome = () => {
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            {otherIncomeList && otherIncomeList.results.map((otherincome)=>(
+                                                            <tr key={otherincome.id}>
                                                                 <th scope="row">
                                                                     <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
+                                                                        {otherincome.id}
                                                                     </Link>
                                                                 </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
+                                                                <td>{otherincome.category.name}</td>
+                                                                <td>{otherincome.sub_category.name}</td>
+                                                                <td>{otherincome.amount}</td>
+                                                                <td>{otherincome.donar_name}</td>
+                                                                <td>{otherincome.paid_date}</td>
+                                                                <td>{otherincome.receipt_page_number}</td>
+                                                                <td>{otherincome.receipt_book_number}</td>
                                                                 <td>Dev Team</td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">
-                                                                    <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
-                                                                    </Link>
-                                                                </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
-                                                                <td>Dev Team</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">
-                                                                    <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
-                                                                    </Link>
-                                                                </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
-                                                                <td>Dev Team</td>
-                                                            </tr>
+                                                            ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
