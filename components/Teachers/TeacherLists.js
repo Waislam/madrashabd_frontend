@@ -79,23 +79,29 @@ const TeacherList = ({teachers}) => {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {teachers.results.map(teacher => (
-                                                <tr key={teacher.id}>
-                                                    <th scope="row">{teacher.id}</th>
-                                                    <td>Name</td>
-                                                    <td>{teacher.father_name}</td>
-                                                    <td>{teacher.mother_name}</td>
-                                                    <td>{teacher.department}</td>
-                                                    <td>{teacher.marital_status}</td>
-                                                    <td>{teacher.phone_home}</td>
-                                                    <td>Image</td>
-                                                    <td>
-                                                        <Link href="/teachers/[slug]?slug=t101">
-                                                            View Details
-                                                        </Link>
-                                                    </td>
-                                                </tr>
-                                            ))}
+                                            {
+                                                teachers.results.map((teacher) => (
+                                                    <tr key={teacher.teacher_id}>
+                                                        <th scope="row">1</th>
+                                                        <td>{teacher.user.username}</td>
+                                                        <td>{teacher.father_name}</td>
+                                                        <td>{teacher.mother_name}</td>
+                                                        <td>{teacher.department.name}</td>
+                                                        <td></td>
+                                                        <td>{teacher.user.phone}</td>
+                                                        <td></td>
+
+                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
+                                                            <Link
+                                                                href={`/teachers/${teacher.slug}`}
+                                                            >
+                                                                View Details
+                                                            </Link>
+
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            }
 
                                             </tbody>
                                         </table>

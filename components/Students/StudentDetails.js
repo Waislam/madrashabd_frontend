@@ -7,7 +7,6 @@ import teacher from '../../public/assets/login/teacher-2.jpg'
 
 
 const StudentDetails = ({student}) => {
-    console.log("student :", student)
 
     return (
         <>

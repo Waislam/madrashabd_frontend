@@ -1,63 +1,178 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styles from './Admission.module.css'
 import AdmissionSidebar from './AdmissionSidebar'
 import StudentDetailForm from "./StudentDetailForm";
 import ParentInformationForm from "./ParentInformationForm";
 import PreviousInstitutionForm from "./PreviousInstitutionForm";
 
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import {
+    getDistrictApi,
+    getDivisionApi,
+    getPostCodeApi,
+    getPostOfficeApi,
+    getThanaApi
+} from "../../pages/api/madrasha/madrashaApi";
 
 const AdmissionForm = () => {
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(1);
 
-    const { setAdmissionFormValues } = useAdmissionFormData()
+    const [divisionList, setDivisionList] = useState([]);
+    const [postOfficeList, setPostOfficeList] = useState([]);
+    const [postCodeList, setPostCodeList] = useState([]);
+    const [districtList, setDistricts] = useState([]);
+    const [thanaList, setThanaList] = useState([]);
+
+    const [selectPresentAddressDistrict, setSelectPresentAddressDistrict] = useState('');
+    const [selectPresentAddressDivision, setSelectPresentAddressDivision] = useState('');
+    const [selectPresentAddressThana, setSelectPresentAddressThana] = useState('');
+    const [selectPresentAddressPostOffice, setSelectPresentAddressPostOffice] = useState('');
+    const [selectPresentAddressPostCode, setSelectPresentAddressPostCode] = useState('');
+    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
+    const [selectPermanentAddressDistrict, setSelectPermanentAddressDistrict] = useState('');
+    const [selectPermanentAddressDivision, setSelectPermanentAddressDivision] = useState('');
+    const [selectPermanentAddressThana, setSelectPermanentAddressThana] = useState('');
+    const [selectPermanentAddressPostOffice, setSelectPermanentAddressPostOffice] = useState('');
+    const [selectPermanentAddressPostCode, setSelectPermanentAddressPostCode] = useState('');
+    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
+
+    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
 
     const prevStep = () => {
         setStep(step - 1)
-    }
+    };
 
     const nextStep = () => {
         setStep(step + 1)
+    };
+
+    const userAge = () => {
+        const todayDate = new Date().getTime();
+        console.log("todayDate", todayDate)
+        const birthDate = new Date().getTime("2012-05-07");
+        const age = (todayDate - birthDate) / (1000 * 60 * 60 * 24 * 365)
+
+        return age;
     }
+
+    console.log("userAge", userAge())
+
+    useEffect(() => {
+
+        const divitionDataLoad = async () => {
+            // call division api
+            getDivisionApi()
+                .then((data) => {
+                    console.log("getDivisionApi(): results", data)
+                    setDivisionList(data)
+                })
+                .catch((error) => {
+                    console.log("getDivisionApi():", error)
+                })
+        }
+
+        divitionDataLoad().then(() => {
+
+        })
+
+
+    }, [])
+
+    useEffect(() => {
+
+        console.log("admissionData?.present_address_post_office", admissionData?.present_address_post_office)
+        // call post Office api
+        getPostOfficeApi(selectPresentAddressDistrict)
+            .then((data) => {
+                console.log("getPostOfficeApi(): results", data)
+                setPostOfficeList(data)
+            })
+            .catch((error) => {
+                console.log("getPostOfficeApi(): error", error)
+            })
+    }, [selectPresentAddressDistrict])
+
+
+    useEffect(() => {
+
+        // call district api
+        getDistrictApi(selectPresentAddressDivision)
+            .then((data) => {
+                console.log("getDistrictApi(): results", data)
+                setDistricts(data)
+            })
+            .catch((error) => {
+                console.log("getDistrictApi", error)
+            })
+    }, [selectPresentAddressDivision])
+
+
+    useEffect(() => {
+
+        // call post code api
+        getPostCodeApi(selectPresentAddressPostOffice)
+            .then((data) => {
+                setPostCodeList(data)
+            })
+            .catch((error) => {
+                console.log("getPostCodeApi(): error", error)
+            })
+    }, [selectPresentAddressPostOffice])
+
+
+    useEffect(() => {
+
+        // call thana api
+        getThanaApi(selectPresentAddressDistrict)
+            .then((data) => {
+                setThanaList(data)
+            })
+            .catch((error) => {
+                console.log("getThanaApi(): error", error)
+            })
+    }, [selectPresentAddressDistrict])
 
     switch (step) {
         case 1:
             return (
                 <StudentDetailForm
                     nextStep={nextStep}
+                    prevStep={prevStep}
+                    divisionList={divisionList}
+                    districtList={districtList}
+                    postOfficeList={postOfficeList}
+                    postCodeList={postCodeList}
+                    thanaList={thanaList}
+                    setSelectPresentAddressDistrict={setSelectPresentAddressDistrict}
+                    setSelectPresentAddressDivision={setSelectPresentAddressDivision}
+                    setSelectPresentAddressThana={setSelectPresentAddressThana}
+                    setSelectPresentAddressPostCode={setSelectPresentAddressPostCode}
+                    setSelectPresentAddressPostOffice={setSelectPresentAddressPostOffice}
+                    setSelectPermanentAddressDistrict={setSelectPermanentAddressDistrict}
+                    setSelectPermanentAddressDivision={setSelectPermanentAddressDivision}
+                    setSelectPermanentAddressThana={setSelectPermanentAddressThana}
+                    setSelectPermanentAddressPostCode={setSelectPermanentAddressPostCode}
+                    setSelectPermanentAddressPostOffice={setSelectPermanentAddressPostOffice}
                 />
-            )
+            );
         case 2:
             return (
-                 <ParentInformationForm
-                     nextStep={nextStep}
-                 />
-            )
+                <ParentInformationForm
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                />
+            );
         case 3:
             return (
                 <PreviousInstitutionForm
                     nextStep={nextStep}
+                    prevStep={prevStep}
                 />
-            )
+            );
         default:
 
     }
-
-    // return (
-    //     <>
-    //         {/*Student Details*/}
-    //         <StudentDetailForm/>
-    //         <br/>
-    //         <br/>
-    //         {/*parents-information **************************/}
-    //         <ParentInformationForm/>
-    //         <br/>
-    //         <br/>
-    //         {/*previous-institution *************************/}
-    //         <PreviousInstitutionForm/>
-    //     </>
-    // )
 };
 
 
