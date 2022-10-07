@@ -11,27 +11,28 @@ const BoardingSidebar = () => {
     return (
         <>
             <div className={styles.listRightSide}>
-                <div className="card">
-                    <h4 className="text-center mt-3">
-                        <Image src={studentLogo} className="img-responsive"
-                               alt="Logo missing" height={40} width={40}/>
-                    </h4>
+                <div className="card pb-0">
+                    <div className="pb-0 mt-2 text-center">
+                        <Image
+                            src={studentLogo}
+                            className="card-img-top"
+                            alt="..."
+                            width="40"
+                            height="40"
+                        />
+                    </div>
                     <hr/>
                     <div className="card-body p-0">
-                        <div className={router.pathname == "/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                            <Link href="/accounts">
-                                <a className="text-center">Income</a>
+                        <div
+                            className={router.pathname == "/boarding" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                            <Link href="/boarding">
+                                <a className="ps-3">Bazar List</a>
                             </Link>
                         </div>
-
-                        <div className={router.pathname == "/accounts/expense" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                            <Link href="/accounts/expense">
-                                <a className="text-center">Expense</a>
-                            </Link>
-                        </div>
-                        <div className={router.pathname == "/accounts/payment" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                            <Link href="/accounts/payment">
-                                <a className="text-center">Payment</a>
+                        <div
+                            className={router.pathname == "/boarding/khabar-distribution" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                            <Link href="/boarding/khabar-distribution">
+                                <a className="ps-3">Khabar Distribution</a>
                             </Link>
                         </div>
                     </div>

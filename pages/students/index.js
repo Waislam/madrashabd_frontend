@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
+import api from '../api/api'
 
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
-import api, {BASE_URL} from "../api/api";
 import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 const Index = () => {
@@ -16,15 +16,8 @@ const Index = () => {
 
     const getStudents = () => {
         setLoading(true);
-        // fetch('/api/profile-data')
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         setData(data)
-        //         setLoading(false)
-        //     })
-
-        console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
-        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        console.log(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
+        api.get(`100/students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         // api.get('students/')
             .then((response) => {
                 console.log("response", response.data);
