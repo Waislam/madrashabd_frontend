@@ -1,11 +1,12 @@
 import React from "react";
-import Link from 'next/link'
 import Image from "next/image";
 import styles from './Account.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
 import icon from '../../public/assets/login/icon.png'
+import AccountSideBar from './AccountSidebar'
 
 const Account = () => {
+
+
     return (
         <div>
             <section className={styles.accountListSection}>
@@ -14,33 +15,7 @@ const Account = () => {
                     <hr/>
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.listRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className={styles.activeLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Income</a>
-                                            </Link>
-                                        </div>
-
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Expense</a>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.inActiveLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Payment</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <AccountSideBar/>
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="income">
@@ -388,15 +363,15 @@ const Account = () => {
                                                 <div className="table-responsive">
                                                     <table className="table table-striped table-bordered">
                                                         <thead className="bg-gray text-dark">
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Category</th>
-                                                            <th scope="col">Amount</th>
-                                                            <th scope="col">Doner</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Money Receipt</th>
-                                                            <th scope="col">Taken by</th>
-                                                        </tr>
+                                                            <tr>
+                                                                <th scope="col">ID</th>
+                                                                <th scope="col">Category</th>
+                                                                <th scope="col">Amount</th>
+                                                                <th scope="col">Doner</th>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">Money Receipt</th>
+                                                                <th scope="col">Taken by</th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
                                                         <tr>

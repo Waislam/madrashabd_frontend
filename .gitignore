@@ -67,6 +67,16 @@ env.bak/
 venv.bak/
 /notes
 
+*.so
 .idea/
-/.idea/
-.idea
+*.idea
+.idea/workspace.xml
+.vscode
+.bash_history
+.PyCharm2018.
+
+/tryNextjs
+.tryNextjs
+
+# root api file 
+pages/api/api.js

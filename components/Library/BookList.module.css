@@ -1,13 +1,25 @@
-
-.khabarDistributionSection {
+.booklistSection {
     overflow: hidden;
     display: block;
     margin-bottom: 80px;
 }
 
-.khabarDistributionRightSide {
+.leftSide {
     overflow: hidden;
     display: block;
+}
+
+.customNavLink {
+    border-bottom: 1px solid #C8C9CA;
+    text-align: center;
+    color: #111111;
+    padding: 10px;
+}
+
+.customNavLink:hover {
+    border-top: 1px solid red;
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
 }
 
 .activeLink a {
@@ -61,12 +73,35 @@
     border-right-color: #33ba41;
 }
 
-.searchBtn {
+.defaultBtn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     padding: 7px;
     border: white;
-    width: 140px;
+    width: 150px;
     border-radius: 4px;
     margin: 2px
+}
+
+/* modal style */
+.modalBody{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 2;
+    height: 100%;
+    width:100%;
+    background: rgba(155, 148, 148, 0.9);
+}
+
+.modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }

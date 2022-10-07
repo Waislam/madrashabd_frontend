@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  madrasha-nexjs-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: madrasha_nextjs
+    ports:
+      - '3001:3000'

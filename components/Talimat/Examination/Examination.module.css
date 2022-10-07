@@ -1,0 +1,84 @@
+
+.exam h2 {
+    font-size: 1em;
+    padding-top: 10px;
+}
+
+.defaultBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.defaultBtnReg {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 129px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.defaultBtnResult {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 50px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+
+.searchButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 8px;
+    border: white;
+    width: 100%;
+    border-radius: 4px;
+}
+
+
+.textBox {
+    border: solid 1px;
+    min-height: 50px;
+    margin: 26px 0px 0px 13px;
+    width: 928px;
+}
+
+.customButton{
+    margin-top: 10px;
+}
+
+.customButton button{
+    float: left;
+}
+
+.trainingAdd {
+    margin: 20px 0px 0px 15px;
+    width: 903px;
+
+}
+
+/* ====== custom search button ========== */
+.searchIcon{
+    height: 37px;
+    width: 40px;
+    border: 1px solid lightgray;
+
+}
+.searchicon{
+    height: 14px;
+    width: 15px;
+    border: 1px solid black;
+    visibility: visible;
+    position: absolute;
+    margin: -6px 7px 0px -7px;
+    border-radius: 50%;
+}
