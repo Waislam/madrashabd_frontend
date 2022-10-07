@@ -12,6 +12,7 @@ const api = Axios.create({
 
     // baseURL: "http://192.168.0.107:8086/",
     baseURL: "http://192.168.0.108:8087/",
+    // baseURL: "http://178.128.94.215:1337/",
 
     headers: {
         'Accept': 'application/json',
