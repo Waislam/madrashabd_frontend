@@ -14,7 +14,7 @@ const library = () => {
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await api.get(`100/library/`)
+        const list = await api.get(`library/`)
         const data = list.data
         setBooks(data)      
     };
