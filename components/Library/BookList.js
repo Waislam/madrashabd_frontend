@@ -11,7 +11,13 @@ const BookList = ({
                     books,
                 }) =>{
 
-    if(!books) return "please reaload"
+    if (!books){
+        return(
+            <>
+            <h1>reload page</h1>
+            </>
+        )
+    }
 
     return(
         <>
@@ -99,7 +105,7 @@ const BookList = ({
                                                         <tbody>
                                                         {/* {books?.results.map((book)=> ( */}
                                                         {/* {books && books.results.map((book)=> ( */}
-                                                        {books && books.results.map((book)=> (
+                                                        {books && books.results?.map((book)=> (
                                                             <tr key={book.id}>
                                                                 <th scope="row">{book.id}</th>
                                                                 <td>{book?.name}</td>

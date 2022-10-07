@@ -14,32 +14,33 @@ const library = () => {
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await api.get(`100/library/`)
+        const list = await api.get(`library/`)
         const data = list.data
         setBooks(data)      
     };
 
     // Post book from here
-    const addBook= async () => {
-        const book = await api.post(`100/library/`, {
-            "madrasha": 1,
-            "number": "4506",
-            "name": "new kitab 222",
-            "part": "2",
-            "category": "nesabi",
-            "book_for_class": "kafia",
-            "translator": null,
-            "publication": "islamic publication",
-            "original_writer": "lekhok",
-            "language": "Bangla"
-          })
-        const data = list.data
-        setBooks(data)
-    }
+    // const addBook= async () => {
+    //     const book = await api.post(`library/100/`, {
+    //         "madrasha": 1,
+    //         "number": "4506",
+    //         "name": "new kitab 222",
+    //         "part": "2",
+    //         "category": "nesabi",
+    //         "book_for_class": "kafia",
+    //         "translator": null,
+    //         "publication": "islamic publication",
+    //         "original_writer": "lekhok",
+    //         "language": "Bangla"
+    //       })
+    //     const data = list.data
+    //     setBooks(data)
+    // }
 
 
     useEffect(()=>{
         getBooks()
+        
     }, []);
 
 
@@ -47,9 +48,9 @@ const library = () => {
         setShowModal(true)
     }
 
-    const handlePostRequest=()=>{
-        addBook()
-    }
+    // const handlePostRequest=()=>{
+    //     addBook()
+    // }
 
 
     return (
@@ -58,7 +59,7 @@ const library = () => {
                 books={books}
                 showmodal={handleModalShow}
             />
-            <BookListModal  shown={showModal} close={()=>setShowModal(false)} addBook={handlePostRequest} book={books}>
+            <BookListModal  shown={showModal} close={()=>setShowModal(false)}>
 
             </BookListModal>
         </>
