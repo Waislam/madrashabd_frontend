@@ -12,7 +12,7 @@ const api = Axios.create({
 
     // baseURL: "http://192.168.0.107:8086/",
     // baseURL: "http://192.168.0.108:8087/",
-    baseURL: "http://178.128.94.215:1337/",
+    baseURL: process.env.BACKEND_API_URL,
 
     headers: {
         'Accept': 'application/json',
@@ -26,5 +26,5 @@ export default api;
 // export const BASE_URL = 'http://192.168.0.110:8080/'
 // export const BASE_URL = 'http://192.168.0.107:8086/'
 
-export const BASE_URL = 'http://192.168.0.108:8080/'
+export const BASE_URL = process.env.BACKEND_API_URL
 
