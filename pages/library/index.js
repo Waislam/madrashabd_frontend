@@ -14,14 +14,14 @@ const library = () => {
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await api.get(`100/library/`)
+        const list = await api.get(`library/`)
         const data = list.data
         setBooks(data)      
     };
 
     // Post book from here
     const addBook= async () => {
-        const book = await api.post(`100/library/`, {
+        const book = await api.post(`library/`, {
             "madrasha": 1,
             "number": "4506",
             "name": "new kitab 222",
