@@ -5,7 +5,6 @@ import React from "react";
 import Examination from "../../components/Talimat/Examination/Examination"
 import Layout from "../../components/Layout/Layout";
 
-
 const ExaminationPage = () => {
 
     return (
