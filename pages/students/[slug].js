@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useRouter} from 'next/router'
 
 // StudentDetails
 import StudentDetails from "../../components/Students/StudentDetails";
 import Layout from "../../components/Layout/Layout";
-import {getAllStudents, getStudentDetailApi} from "../api/StudentAPI/students_api";
+import {getStudentDetailApi} from "../api/StudentAPI/students_api";
 
 const StudentDetail = ({student}) => {
+    const router = useRouter()
 
-    const router = useRouter();
+    if (router.isFallback) {
+        return (
+            <h1>Loading....</h1>
+        )
+    }
 
     return (
         <>
@@ -17,26 +22,15 @@ const StudentDetail = ({student}) => {
     )
 };
 
-// This function gets called at build time
-export async function getStaticPaths() {
-    const students = await getAllStudents();
-    const paths = students.results.map((student) => ({
-        params: {slug: student.slug},
-    }));
 
-    return {paths, fallback: false}
-}
+export async function getServerSideProps(context) {
+    const student = await getStudentDetailApi(context.params.slug)
 
-
-export async function getStaticProps({params}) {
-
-    const student = await getStudentDetailApi(params.slug);
     return {
         props: {
             student,
         },
-        revalidate: 1,
-    }
+    };
 }
 
 export default StudentDetail;
