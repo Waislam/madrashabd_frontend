@@ -5,6 +5,8 @@ import api from '../api/api'
 // component for Library
 import Booklist from '../../components/Library/BookList'
 import Layout from '../../layouts/Layout';
+// import modal file
+import BookListModal from '../../components/Library/BookListModal'
 
 const library = () => {
     const [showModal, setShowModal] = useState(false);
@@ -17,6 +19,24 @@ const library = () => {
         setBooks(data)      
     };
 
+    // Post book from here
+    const addBook= async () => {
+        const book = await api.post(`100/library/`, {
+            "madrasha": 1,
+            "number": "4506",
+            "name": "new kitab 222",
+            "part": "2",
+            "category": "nesabi",
+            "book_for_class": "kafia",
+            "translator": null,
+            "publication": "islamic publication",
+            "original_writer": "lekhok",
+            "language": "Bangla"
+          })
+        const data = list.data
+        setBooks(data)
+    }
+
 
     useEffect(()=>{
         getBooks()
@@ -27,13 +47,20 @@ const library = () => {
         setShowModal(true)
     }
 
+    const handlePostRequest=()=>{
+        addBook()
+    }
+
+
     return (
         <>
             <Booklist
-                showmodal={handleModalShow}
-                shown={showModal}
                 books={books}
+                showmodal={handleModalShow}
             />
+            <BookListModal  shown={showModal} close={()=>setShowModal(false)} addBook={handlePostRequest} book={books}>
+
+            </BookListModal>
         </>
     )
 };

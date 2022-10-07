@@ -1,9 +1,11 @@
 import styles from './BookList.module.css'
 import { useRouter } from 'next/router';
 
-const modalpage=({show})=>{
+const modalpage=({shown, close, addBook, book})=>{
+
+
     const router = useRouter()
-    return show ? (
+    return shown ? (
         <>
             <div className={styles.modalBody}>
                 <div className={styles.modalContent}>
@@ -57,8 +59,9 @@ const modalpage=({show})=>{
                                     <input type="text" className="form-control" placeholder="Book Language"/>
                                 </div>
                                 <div className="mt-3">
-                                    <button type="submit" className={`${styles.defaultBtn}`}>Save</button>
-                                    <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button>
+                                    <button type="submit" className={`${styles.defaultBtn}`} onClick={addBook}>Save</button>
+                                    {/* <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button> */}
+                                    <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={close}>Cancel</button>
                                 </div>
                             </div>
                          </form>

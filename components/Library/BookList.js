@@ -8,17 +8,10 @@ import Modal from './BookListModal'
 
 const BookList = ({
                     showmodal,
-                    shown,
                     books,
                 }) =>{
 
-    if(!books){
-        return(
-            <>
-            <h1>Loading.. please refresh the page</h1>
-            </>
-        )
-    }
+    if(!books) return "please reaload"
 
     return(
         <>
@@ -39,7 +32,7 @@ const BookList = ({
                                                     <h4><u>Book List</u></h4>
                                                 </div>
                                                 <div className='col-md-6'>
-                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={showmodal} data-target="#bookadd" data-toggle="modal">Add Book</button>
+                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={showmodal}>Add Book</button>
                                                 </div>
                                             </div>
                                             <div className='search-option'>
@@ -160,10 +153,7 @@ const BookList = ({
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
-                                            <Modal show={shown}/>
-                                            
+                                            </div>                                           
                                         </div>
                                     </div>
                                 </div>
