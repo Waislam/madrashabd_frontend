@@ -10,10 +10,14 @@ const BookList = ({
                     showmodal,
                     books,
                 }) =>{
-                    
-    console.log('books result', books)
 
-    if(!books) return "please reaload"
+    if (!books){
+        return(
+            <>
+            <h1>reload page</h1>
+            </>
+        )
+    }
 
     return(
         <>

@@ -16,7 +16,6 @@ const library = () => {
         // setLoading(true);
         const list = await api.get(`library/`)
         const data = list.data
-        console.log('inside get books',data)
         setBooks(data)      
     };
 
@@ -41,6 +40,7 @@ const library = () => {
 
     useEffect(()=>{
         getBooks()
+        
     }, []);
 
 
