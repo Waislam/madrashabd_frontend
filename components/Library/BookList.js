@@ -99,7 +99,7 @@ const BookList = ({
                                                         <tbody>
                                                         {/* {books?.results.map((book)=> ( */}
                                                         {/* {books && books.results.map((book)=> ( */}
-                                                        {books && books.results.map((book)=> (
+                                                        {books && books.results?.map((book)=> (
                                                             <tr key={book.id}>
                                                                 <th scope="row">{book.id}</th>
                                                                 <td>{book?.name}</td>
