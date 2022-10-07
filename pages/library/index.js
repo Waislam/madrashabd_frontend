@@ -6,7 +6,7 @@ import api from '../api/api'
 import Booklist from '../../components/Library/BookList'
 import Layout from '../../layouts/Layout';
 
-const library = () => {
+const Library = () => {
     const [showModal, setShowModal] = useState(false);
     const [books, setBooks] = useState(null);
 
@@ -19,7 +19,9 @@ const library = () => {
 
 
     useEffect(()=>{
-        getBooks()
+        getBooks().then(() => {
+
+        })
     }, []);
 
 
@@ -39,10 +41,10 @@ const library = () => {
 };
 
 
-export default library;
+export default Library;
 
 
-library.getLayout = (page) => {
+Library.getLayout = (page) => {
     return (
         <Layout>{page}</Layout>
     )

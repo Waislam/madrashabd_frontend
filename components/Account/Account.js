@@ -235,7 +235,7 @@ const Account = () => {
                                                     <div className={`${styles.instituteLogo} text-center`}>
                                                         <h4 className="text-center">Institute Name</h4>
                                                         <p className="text-center">Address</p>
-                                                        <Image src={icon} width={120} height={120}/>
+                                                        <Image src={icon} width={120} height={120} alt="alte Image"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-4">

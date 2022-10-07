@@ -13,7 +13,7 @@ const BoardingPage = () => {
     const [bazarListPageNum, setBazerListPageNum] = useState(1);
     const [bazarListRecords, setBazerListRecords] = useState('');
 
-    const getAllBazarList = () => {
+    const getAllBazarList = async () => {
         setLoading(true);
         // console.log(`boarding/bazarlist/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}`);
 
@@ -30,7 +30,9 @@ const BoardingPage = () => {
     };
 
     useEffect(() => {
-        getAllBazarList()
+        getAllBazarList().then(() => {
+
+        })
     }, [bazarListPageNum]);
 
     const handleBazarListPageNum = () => {

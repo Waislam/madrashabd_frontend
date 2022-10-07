@@ -1,8 +1,8 @@
 import React from "react";
 
 // Examination Component
-import Examination from "../../components/Talimat/Examination";
 import Layout from "../../components/Layout/Layout";
+import Examination from "../../components/Talimat/Examination/Examination";
 
 const ExaminationPage = () => {
 
