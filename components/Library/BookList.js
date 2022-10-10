@@ -9,6 +9,7 @@ import Modal from './BookListModal'
 const BookList = ({
                     showmodal,
                     books,
+                    idshow
                 }) =>{
 
     if (!books){
@@ -100,6 +101,7 @@ const BookList = ({
                                                                 <th scope="col">origin Writer</th>
                                                                 <th scope="col">Language</th>
                                                                 <th scope="col">Class</th>
+                                                                <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -114,6 +116,7 @@ const BookList = ({
                                                                 <td>{book?.original_writer}</td>
                                                                 <td>{book?.language}</td>
                                                                 <td>{book?.book_for_class}</td>
+                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)} defaultValue={book.id}>Edit</a></td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
