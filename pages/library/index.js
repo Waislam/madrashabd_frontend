@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import api from '../api/api'
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 
 // component for Library
@@ -9,12 +9,17 @@ import Booklist from '../../components/Library/BookList'
 import Layout from '../../layouts/Layout';
 // import modal file
 import BookListModal from '../../components/Library/BookListModal'
+import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateModal";
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const library = () => {
 
     const router = useRouter()
 
     const [showModal, setShowModal] = useState(false);
+    const [libraryBookUpdateModalShow, setLibraryBookUpdateModalShow] = useState(false);
     const [books, setBooks] = useState(null);
     const [postData, setPostData] = useState({
         madrasha: 1,
@@ -52,7 +57,7 @@ const library = () => {
 
     const handleOnChange = (event) => {
         const value = event.target.value
-        setPostData({ ...postData, [event.target.name]: value })
+        setPostData({...postData, [event.target.name]: value})
 
     }
 
@@ -83,7 +88,7 @@ const library = () => {
             .then((response) => {
                 const data = response.data
                 console.log(data)
-                
+
                 setUpdateData(
                     data
                 )
@@ -102,9 +107,20 @@ const library = () => {
                 showmodal={handleModalShow}
                 idshow={update}
             />
-            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange} post={updateData} submit={addBookHandle}>
+            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange}
+                           post={updateData} submit={addBookHandle}>
 
             </BookListModal>
+
+
+            <Button variant="primary" onClick={() => setLibraryBookUpdateModalShow(true)}>
+                Launch vertically centered modal
+            </Button>
+
+            <LibraryBookUpdateModal
+                show={libraryBookUpdateModalShow}
+                onHide={() => setLibraryBookUpdateModalShow(false)}
+            />
         </>
     )
 };
