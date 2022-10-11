@@ -26,31 +26,22 @@ const library = () => {
         translator: "",
         publication: "",
         original_writer: "",
-        language: "mashuk vai"
-    })
-
-    const [updateData, setUpdateData] = useState({
-        number: "",
-        name: "",
-        part: "",
-        category: "nesabi",
-        book_for_class: "",
-        translator: "",
-        publication: "",
-        original_writer: "",
         language: ""
     })
+
     const [updateId, setUpdateId] = useState(1)
 
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await api.get(`library/100/`)
+        const list = await axios.get(` http://127.0.0.1:8000/library/100/`)
         const data = list.data
         setBooks(data)
     };
 
     const handleOnChange = (event) => {
+        event.preventDefault()
+        event.stopPropagation();
         const value = event.target.value
         setPostData({ ...postData, [event.target.name]: value })
 
@@ -79,21 +70,21 @@ const library = () => {
 
     const update = (id) => {
         console.log('id: ', id)
-        axios.get(`http://192.168.0.108:8087/library/detail/2/`)
+        axios.get(`http://127.0.0.1:8000/library/detail/${id}/`)
             .then((response) => {
                 const data = response.data
-                console.log(data)
+                console.log('inside update',data)
+                console.log('number before set:',data.data.id)
                 
-                setUpdateData(
-                    data
-                )
+                // setPostData(prevValue =>())
+                setPostData(data.data);
+
             })
         setShowModal(true)
 
     };
 
-    console.log(updateData)
-
+    console.log("after chaning data:", postData)
 
     return (
         <>
@@ -102,7 +93,7 @@ const library = () => {
                 showmodal={handleModalShow}
                 idshow={update}
             />
-            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange} post={updateData} submit={addBookHandle}>
+            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange} post={postData} submit={addBookHandle}>
 
             </BookListModal>
         </>
