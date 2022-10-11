@@ -8,7 +8,7 @@ const modalpage=({shown, close, onChange, post, submit})=>{
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const router = useRouter()
-    
+
     return shown ? (
         <>
             <div className={styles.modalBody}>

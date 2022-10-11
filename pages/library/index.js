@@ -75,7 +75,7 @@ const library = () => {
                 const data = response.data
                 console.log('inside update',data)
                 console.log('number before set:',data.data.id)
-                
+
                 // setPostData(prevValue =>())
                 setPostData(data.data);
 
