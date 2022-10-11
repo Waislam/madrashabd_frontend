@@ -1,50 +1,119 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import api from '../api/api'
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 
 // component for Library
 import Booklist from '../../components/Library/BookList'
 import Layout from '../../layouts/Layout';
+// import modal file
+import BookListModal from '../../components/Library/BookListModal'
 
-const Library = () => {
+const library = () => {
+
+    const router = useRouter()
+
     const [showModal, setShowModal] = useState(false);
     const [books, setBooks] = useState(null);
+    const [postData, setPostData] = useState({
+        madrasha: 1,
+        number: "",
+        name: "",
+        part: "",
+        category: "nesabi",
+        book_for_class: "",
+        translator: "",
+        publication: "",
+        original_writer: "",
+        language: "mashuk vai"
+    })
+
+    const [updateData, setUpdateData] = useState({
+        number: "",
+        name: "",
+        part: "",
+        category: "nesabi",
+        book_for_class: "",
+        translator: "",
+        publication: "",
+        original_writer: "",
+        language: ""
+    })
+    const [updateId, setUpdateId] = useState(1)
+
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await api.get(`100/library/`)
+        const list = await api.get(`library/100/`)
         const data = list.data
-        setBooks(data)      
+        setBooks(data)
     };
 
+    const handleOnChange = (event) => {
+        const value = event.target.value
+        setPostData({ ...postData, [event.target.name]: value })
 
-    useEffect(()=>{
-        getBooks().then(() => {
+    }
 
-        })
+
+    // Post book from here
+    const addBookHandle = async (event) => {
+        event.preventDefault()
+        const data = postData;
+        await axios.post(`http://192.168.0.108:8087/library/100/`, data)
+        setShowModal(false) // it should be like router.push('/library') but not working
+
+    }
+
+
+    useEffect(() => {
+        getBooks()
+
     }, []);
 
 
-    const handleModalShow=()=>{
+    const handleModalShow = () => {
         setShowModal(true)
     }
+
+    const update = (id) => {
+        console.log('id: ', id)
+        axios.get(`http://192.168.0.108:8087/library/detail/2/`)
+            .then((response) => {
+                const data = response.data
+                console.log(data)
+                
+                setUpdateData(
+                    data
+                )
+            })
+        setShowModal(true)
+
+    };
+
+    console.log(updateData)
+
 
     return (
         <>
             <Booklist
-                showmodal={handleModalShow}
-                shown={showModal}
                 books={books}
+                showmodal={handleModalShow}
+                idshow={update}
             />
+            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange} post={updateData} submit={addBookHandle}>
+
+            </BookListModal>
         </>
     )
 };
 
 
-export default Library;
+export default library;
 
 
-Library.getLayout = (page) => {
+library.getLayout = (page) => {
     return (
         <Layout>{page}</Layout>
     )

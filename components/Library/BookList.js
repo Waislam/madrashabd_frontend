@@ -8,14 +8,14 @@ import Modal from './BookListModal'
 
 const BookList = ({
                     showmodal,
-                    shown,
                     books,
+                    idshow
                 }) =>{
 
-    if(!books){
+    if (!books){
         return(
             <>
-            <h1>Loading.. please refresh the page</h1>
+            <h1>reload page</h1>
             </>
         )
     }
@@ -39,7 +39,7 @@ const BookList = ({
                                                     <h4><u>Book List</u></h4>
                                                 </div>
                                                 <div className='col-md-6'>
-                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={showmodal} data-target="#bookadd" data-toggle="modal">Add Book</button>
+                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={showmodal}>Add Book</button>
                                                 </div>
                                             </div>
                                             <div className='search-option'>
@@ -101,12 +101,13 @@ const BookList = ({
                                                                 <th scope="col">origin Writer</th>
                                                                 <th scope="col">Language</th>
                                                                 <th scope="col">Class</th>
+                                                                <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                         {/* {books?.results.map((book)=> ( */}
                                                         {/* {books && books.results.map((book)=> ( */}
-                                                        {books && books.results.map((book)=> (
+                                                        {books && books.results?.map((book)=> (
                                                             <tr key={book.id}>
                                                                 <th scope="row">{book.id}</th>
                                                                 <td>{book?.name}</td>
@@ -115,6 +116,7 @@ const BookList = ({
                                                                 <td>{book?.original_writer}</td>
                                                                 <td>{book?.language}</td>
                                                                 <td>{book?.book_for_class}</td>
+                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)} defaultValue={book.id}>Edit</a></td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
@@ -160,10 +162,7 @@ const BookList = ({
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
-                                            <Modal show={shown}/>
-                                            
+                                            </div>                                           
                                         </div>
                                     </div>
                                 </div>

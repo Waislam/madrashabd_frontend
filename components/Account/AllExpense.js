@@ -3,7 +3,19 @@ import styles from './Account.module.css'
 import AccountSideBar from './AccountSidebar'
 import Link from "next/link";
 
-const Expense = () => {
+const Expense = ({
+    expenseList,
+    approved
+}) => {
+    
+    if(!expenseList){
+        return(
+            <>
+                <h1>Loading data.. please refresh your page</h1>
+            </>
+        )
+    }
+
     return (
         <div>
             <section className={styles.expenseListSection}>
@@ -111,7 +123,7 @@ const Expense = () => {
                                                         <tr>
                                                             <th scope="col">ID</th>
                                                             <th scope="col">Category</th>
-                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Sub-Category</th>
                                                             <th scope="col">Description</th>
                                                             <th scope="col">Amount</th>
                                                             <th scope="col">Date</th>
@@ -121,51 +133,23 @@ const Expense = () => {
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            {expenseList && expenseList.results.map((expense)=>(
+                                                            <tr key={expense.id}>
                                                                 <th scope="row">
                                                                     <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
+                                                                        {expense.id}
                                                                     </Link>
                                                                 </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
-                                                                <td>Dev Team</td>
+                                                                <td>{expense.category.name}</td>
+                                                                <td>{expense.sub_category.name}</td>
+                                                                <td>{expense.description}</td>
+                                                                <td>{expense.amount}</td>
+                                                                <td>{expense.date}</td>
+                                                                <td>{expense.receipt_number}</td>
+                                                                <td>{expense.expense_by}</td>
+                                                                <td>{approved}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">
-                                                                    <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
-                                                                    </Link>
-                                                                </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
-                                                                <td>Dev Team</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">
-                                                                    <Link href="" style={{color:"#5CBD67"}}>
-                                                                        1
-                                                                    </Link>
-                                                                </th>
-                                                                <td>Income</td>
-                                                                <td>Building</td>
-                                                                <td>5000</td>
-                                                                <td>Jibon Ahmed</td>
-                                                                <td>22/09/2022</td>
-                                                                <td>54</td>
-                                                                <td>4</td>
-                                                                <td>Dev Team</td>
-                                                            </tr>
+                                                            ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
