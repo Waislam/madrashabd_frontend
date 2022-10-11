@@ -4,7 +4,19 @@ import Image from "next/image";
 import styles from './TeacherList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 
-const TeacherList = ({teachers}) => {
+const TeacherList = (
+    {
+        teachers,
+        teacherId,
+        setSearchTeacher,
+        handleSearch,
+        handleTeacherListPageNum,
+        nextPage,
+        prevPage,
+    }
+    ) => {
+
+    console.log(teachers)
     return (
         <div>
             <div className="teacherListSection">
@@ -81,27 +93,27 @@ const TeacherList = ({teachers}) => {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {
-                                                teachers.results.map((teacher) => (
-                                                    <tr key={teacher.teacher_id}>
-                                                        <th scope="row">{teacher.teacher_id}</th>
-                                                        <td>{teacher.user?.username}</td>
-                                                        <td>{teacher.user?.father_name}</td>
-                                                        <td>{teacher.user?.father_name}</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>{teacher.user?.phone}</td>
-                                                        <td></td>
+                                            {/*{*/}
+                                                {/*teachers.results.map((teacher) => (*/}
+                                                    {/*<tr key={teacher.teacher_id}>*/}
+                                                        {/*<th scope="row">{teacher.teacher_id}</th>*/}
+                                                        {/*<td>{teacher.user?.username}</td>*/}
+                                                        {/*<td>{teacher.user?.father_name}</td>*/}
+                                                        {/*<td>{teacher.user?.father_name}</td>*/}
+                                                        {/*<td></td>*/}
+                                                        {/*<td></td>*/}
+                                                        {/*<td>{teacher.user?.phone}</td>*/}
+                                                        {/*<td></td>*/}
 
-                                                        <td className="text-sm" style={{color: "#5CBD67"}}>
-                                                            <Link href={`/teachers/${teacher.slug}`}>
-                                                                View Details
-                                                            </Link>
+                                                        {/*<td className="text-sm" style={{color: "#5CBD67"}}>*/}
+                                                            {/*<Link href={`/teachers/${teacher.slug}`}>*/}
+                                                                {/*View Details*/}
+                                                            {/*</Link>*/}
 
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            }
+                                                        {/*</td>*/}
+                                                    {/*</tr>*/}
+                                                {/*))*/}
+                                            {/*}*/}
 
                                             </tbody>
                                         </table>

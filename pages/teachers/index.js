@@ -3,22 +3,22 @@ import React, {useEffect, useState} from "react";
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-
-
-// Call base urls
-import api, {BASE_URL} from "../api/api";
+import api from '../api/api'
 
 
 const Index = () => {
+    const [isLoading, setLoading] = useState(null);
     const [teachers, setTeachers] = useState(null);
-    const [isLoading, setLoading] = useState(false);
+    const [teacherId, setTeacherId] = useState('');
+    const [searchTeacher, setSearchTeacher] = useState('');
+    const [teacherListPageNum, setTeacherListPageNum] = useState(1);
 
-    const getTeachers = () => {
-        setLoading(true);
-        api.get(`teachers/`)
+
+    const getTeacher = () => {
+        api.get(`http://192.168.0.108:8087/teachers/100/?teacher_id=${teacherId && teacherId}&search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`)
             .then((response) => {
-                setTeachers(response.data);
-                setLoading(false);
+                console.log("response", response.data);
+                setTeachers(response.data)
             })
             .catch((error) => {
                 console.log("error", error);
@@ -27,30 +27,40 @@ const Index = () => {
     };
 
     useEffect(() => {
-        getTeachers()
-    }, []);
+        getTeacher()
+    }, [teacherListPageNum]);
 
 
-    if (isLoading) {
-        return (
-            <div className="text-center">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        )
-    }
+    // Search
+    const handleSearch = ()=>{
+         getTeacher()
+    };
 
-    if (!teachers) {
-        return (
-            <h1 className="text-center">No teachers data found</h1>
-        )
-    }
+    // Pagination
+    const handleTeacherListPageNum  = () =>{
+        setTeacherListPageNum(teacherListPageNum + 1)
+    };
+
+    const nextPage = ()=>{
+      setTeacherListPageNum(teacherListPageNum + 1)
+    };
+
+    const prevPage =()=>{
+        setTeacherListPageNum(teacherListPageNum - 1)
+    };
 
 
     return (
         <>
-            <TeacherLists teachers={teachers}/>
+            <TeacherLists
+                teachers={teachers}
+                setSearchTeacher={setSearchTeacher}
+                handleSearch={handleSearch}
+                handleTeacherListPageNum={handleTeacherListPageNum}
+                nextPage={nextPage}
+                prevPage={prevPage}
+
+            />
         </>
     )
 };
