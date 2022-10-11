@@ -14,6 +14,7 @@ const library = () => {
 
     const router = useRouter()
 
+    const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false);
     const [books, setBooks] = useState(null);
     const [postData, setPostData] = useState({
@@ -34,14 +35,13 @@ const library = () => {
 
     const getBooks = async () => {
         // setLoading(true);
-        const list = await axios.get(` http://127.0.0.1:8000/library/100/`)
+        const list = await api.get(`library/100/`)
         const data = list.data
         setBooks(data)
     };
 
     const handleOnChange = (event) => {
-        event.preventDefault()
-        event.stopPropagation();
+        // event.preventDefault()
         const value = event.target.value
         setPostData({ ...postData, [event.target.name]: value })
 
@@ -50,7 +50,8 @@ const library = () => {
 
     // Post book from here
     const addBookHandle = async (event) => {
-        event.preventDefault()
+        // event.preventDefault()
+        event.target.reset()
         const data = postData;
         await axios.post(`http://192.168.0.108:8087/library/100/`, data)
         setShowModal(false) // it should be like router.push('/library') but not working
@@ -68,9 +69,10 @@ const library = () => {
         setShowModal(true)
     }
 
-    const update = (id) => {
-        console.log('id: ', id)
-        axios.get(`http://127.0.0.1:8000/library/detail/${id}/`)
+    const update = (id, event) => {
+
+        setLoading(true)
+        axios.get(`http://192.168.0.108:8087/library/detail/${id}/`)
             .then((response) => {
                 const data = response.data
                 console.log('inside update',data)
@@ -78,13 +80,13 @@ const library = () => {
                 
                 // setPostData(prevValue =>())
                 setPostData(data.data);
+                setLoading(false)
 
             })
         setShowModal(true)
 
     };
 
-    console.log("after chaning data:", postData)
 
     return (
         <>

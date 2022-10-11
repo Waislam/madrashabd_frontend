@@ -118,7 +118,7 @@ const BookList = ({
                                                                 <td>{book?.original_writer}</td>
                                                                 <td>{book?.language}</td>
                                                                 <td>{book?.book_for_class}</td>
-                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)} defaultValue={book.id}>Edit</a></td>
+                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)}>Edit</a></td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
