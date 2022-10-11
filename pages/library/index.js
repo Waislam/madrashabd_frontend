@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import api from '../api/api'
+import api, {BASE_URL} from '../api/api'
 import axios from 'axios';
 import {useRouter} from 'next/router';
 
@@ -14,11 +14,14 @@ import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateMo
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+
 const library = () => {
 
     const router = useRouter()
 
     const [showModal, setShowModal] = useState(false);
+    const [loader, setLoader] = useState(true);
+    const [library, setLibrary] = useState({});
     const [libraryBookUpdateModalShow, setLibraryBookUpdateModalShow] = useState(false);
     const [books, setBooks] = useState(null);
     const [postData, setPostData] = useState({
@@ -33,6 +36,7 @@ const library = () => {
         original_writer: "",
         language: "mashuk vai"
     })
+
 
     const [updateData, setUpdateData] = useState({
         number: "",
@@ -73,54 +77,74 @@ const library = () => {
 
 
     useEffect(() => {
-        getBooks()
+        getBooks().then(() => {
+
+        })
+
 
     }, []);
+
 
 
     const handleModalShow = () => {
         setShowModal(true)
     }
 
-    const update = (id) => {
-        console.log('id: ', id)
-        axios.get(`http://192.168.0.108:8087/library/detail/2/`)
+    const handleBookUpdate = (book_id) => {
+        setLoader(true)
+
+        axios.get(`${BASE_URL}/library/detail/${book_id}/`)
             .then((response) => {
-                const data = response.data
-                console.log(data)
-
-                setUpdateData(
-                    data
-                )
+                const data = response.data.data
+                setLibrary(data)
+                setLoader(false)
             })
-        setShowModal(true)
-
+        setLibraryBookUpdateModalShow(true)
     };
 
-    console.log(updateData)
+
+    const getLibrary = () => {
+        setLoader(false)
+        axios.get(`${BASE_URL}/library/detail/1/`)
+            .then((response) => {
+                const data = response.data
+                // console.log(data)
+                setLibrary(data.data)
+                setLoader(false)
+            })
+    }
 
 
     return (
         <>
             <Booklist
                 books={books}
-                showmodal={handleModalShow}
-                idshow={update}
+                libraryBookUpdateModalShow={libraryBookUpdateModalShow}
+                handleBookUpdate={handleBookUpdate}
             />
-            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange}
-                           post={updateData} submit={addBookHandle}>
+
+            <BookListModal
+                shown={showModal}
+                close={() => setShowModal(false)}
+                onChange={handleOnChange}
+                post={updateData} submit={addBookHandle}
+            >
 
             </BookListModal>
 
 
-            <Button variant="primary" onClick={() => setLibraryBookUpdateModalShow(true)}>
-                Launch vertically centered modal
-            </Button>
+            {
+                loader ?
+                    <h1>Loading</h1>
+                    :
+                    <LibraryBookUpdateModal
+                        show={libraryBookUpdateModalShow}
+                        onHide={() => setLibraryBookUpdateModalShow(false)}
+                        library={library}
+                    />
+            }
 
-            <LibraryBookUpdateModal
-                show={libraryBookUpdateModalShow}
-                onHide={() => setLibraryBookUpdateModalShow(false)}
-            />
+             {/* For test  data */}
         </>
     )
 };
