@@ -9,9 +9,16 @@ import Modal from './BookListModal'
 const BookList = ({
                     showmodal,
                     books,
+                    idshow
                 }) =>{
 
-    if(!books) return "please reaload"
+    if (!books){
+        return(
+            <>
+            <h1>reload page</h1>
+            </>
+        )
+    }
 
     return(
         <>
@@ -89,11 +96,13 @@ const BookList = ({
                                                             <tr>
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Book Number</th>
+                                                                <th scope="col">Book Name</th>
                                                                 <th scope="col">Category</th>
                                                                 <th scope="col">Part</th>
                                                                 <th scope="col">origin Writer</th>
                                                                 <th scope="col">Language</th>
                                                                 <th scope="col">Class</th>
+                                                                <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -102,12 +111,14 @@ const BookList = ({
                                                         {books && books.results?.map((book)=> (
                                                             <tr key={book.id}>
                                                                 <th scope="row">{book.id}</th>
+                                                                <td>{book?.number}</td>
                                                                 <td>{book?.name}</td>
                                                                 <td>{book?.category}</td>
                                                                 <td>{book?.part}</td>
                                                                 <td>{book?.original_writer}</td>
                                                                 <td>{book?.language}</td>
                                                                 <td>{book?.book_for_class}</td>
+                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)} defaultValue={book.id}>Edit</a></td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
