@@ -234,7 +234,7 @@ const StudentIncome = ({
                                                     <div className="col-md-4 mb-3">
                                                         <div className="form-group">
                                                             <label className="mb-2">Category</label>
-                                                            <select class="form-control form-select">
+                                                            <select className="form-control form-select">
                                                                 <option>Category one</option>
                                                                 <option>Category two</option>
                                                                 <option>Category three</option>
@@ -244,7 +244,7 @@ const StudentIncome = ({
                                                     <div className="col-md-4 mb-3">
                                                         <div className="form-group">
                                                             <label className="mb-2">Sub-Category</label>
-                                                            <select class="form-control form-select">
+                                                            <select className="form-control form-select">
                                                                 <option>sub-Category one</option>
                                                                 <option>sub-Category two</option>
                                                                 <option>sub-Category three</option>

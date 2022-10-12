@@ -6,15 +6,15 @@ const IncomeHeader = () =>{
         <>
             <div className={styles.breadcumCustom}>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/accounts">
                                 <a>
                                     Student Income
                                 </a> 
                             </Link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/accounts/other_income">
                                 <a>
                                     Other Income

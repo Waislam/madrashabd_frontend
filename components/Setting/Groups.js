@@ -16,7 +16,7 @@ const Groups = () =>{
                                         <div className={styles.department}>
                                             <div className="row">
                                                 <div className="col-md-6 mt-3">
-                                                    <h2><u>Class' Group</u></h2>
+                                                    <h2><u>Class Group</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
