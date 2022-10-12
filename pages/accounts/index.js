@@ -8,18 +8,18 @@ import Layout from "../../components/Layout/Layout";
  import api from '../api/api'
 
 const Accounts = () => {
-    const [studentIncome, setStudentIncome] = useState(null)
+    const [studentIncome, setStudentIncome] = useState(null);
     
 
     const getStudentIncomeData= async()=>{
-        const list = await api.get(`transactions/100/student-income/`)
-        const data = list.data
+        const list = await api.get(`transactions/100/student-income/`);
+        const data = list.data;
         setStudentIncome(data)
-    }
+    };
 
     useEffect(()=>{
         getStudentIncomeData()
-    },[])
+    },[]);
 
 
     return (

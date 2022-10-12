@@ -3,32 +3,43 @@ import React, {useEffect, useState} from "react";
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-
-
-// Call base urls
-import api, {BASE_URL} from "../api/api";
-
+import api from '../api/api'
 
 const Index = () => {
+    const [isLoading, setLoading] = useState(null);
     const [teachers, setTeachers] = useState(null);
-    const [isLoading, setLoading] = useState(false);
+    const [searchTeacher, setSearchTeacher] = useState('');
+    const [teacherListPageNum, setTeacherListPageNum] = useState(1);
 
-    const getTeachers = () => {
-        setLoading(true);
-        api.get(`teachers/`)
-            .then((response) => {
-                setTeachers(response.data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.log("error", error);
-                setLoading(false)
-            })
+    const getTeacher= async()=>{
+        const list = await api.get(`teachers/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
+        const data = list.data;
+        setTeachers(data);
+        setLoading(false);
     };
 
-    useEffect(() => {
-        getTeachers()
-    }, []);
+    useEffect(()=>{
+        getTeacher()
+    },[teacherListPageNum]);
+
+
+    // Search
+    const handleSearch = () => {
+        getTeacher()
+    };
+
+    // Pagination
+    const handleTeacherListPageNum = () => {
+        setTeacherListPageNum(teacherListPageNum + 1)
+    };
+
+    const nextPage = () => {
+        setTeacherListPageNum(teacherListPageNum + 1)
+    };
+
+    const prevPage = () => {
+        setTeacherListPageNum(teacherListPageNum - 1)
+    };
 
 
     if (isLoading) {
@@ -41,18 +52,39 @@ const Index = () => {
         )
     }
 
-    if (!teachers) {
+
+    if (teachers) {
         return (
-            <h1 className="text-center">No teachers data found</h1>
+            <>
+                <TeacherLists
+                    teachers={teachers}
+                    setSearchTeacher={setSearchTeacher}
+                    handleSearch={handleSearch}
+                    handleTeacherListPageNum={handleTeacherListPageNum}
+                    teacherListPageNum={teacherListPageNum}
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+
+                />
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <div className="container">
+                    <div className="row">
+                        <div className="col col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-5">
+                            <p className='text-center'>
+                                No Teacher Information Found
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </>
         )
     }
 
-
-    return (
-        <>
-            <TeacherLists teachers={teachers}/>
-        </>
-    )
 };
 
 

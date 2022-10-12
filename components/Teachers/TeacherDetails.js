@@ -6,11 +6,11 @@ import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
 
 const TeacherDetail = ({teacher}) => {
+
     return (
         <>
             <section className={styles.mainSection}>
                 <div className="container-fluid">
-                    <h3 className={styles.mainTitle}>Student List</h3>
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.sidebarList}>
@@ -124,7 +124,7 @@ const TeacherDetail = ({teacher}) => {
                                                 </div>
                                                 <div className="col-md-3">
                                                     <Image src={teacher} className="img-responsive" width={400}
-                                                           height={300} alt='all data'/>
+                                                           height={300}/>
                                                 </div>
                                             </div>
                                         </div>
