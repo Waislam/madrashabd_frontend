@@ -37,7 +37,9 @@ export const AuthContextProvider = ({children}) => {
 
         async function loadUserFromCookies() {
             const token = Cookies.get('token')
-            console.log("loadUserFromCookies(): token", token)
+            const mainUserCookie = Cookies.get('mainUserCookie')
+            console.log("loadUserFromCookies(): context token", token)
+            console.log("loadUserFromCookies(): context mainUserCookie", mainUserCookie)
             // const user_info = Cookies.get('userInfo')
 
             if (token) {

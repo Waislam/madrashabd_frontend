@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import api, {BASE_URL} from '../api'
+import Cookies from "js-cookie";
+
 
 let mainUser
 export default async function auth(req, res) {
@@ -21,6 +23,8 @@ export default async function auth(req, res) {
                 // If no error and we have user data, return it
                 if (res.ok && user) {
                     mainUser = user
+                    // setCookie(res, JSON.stringify(mainUser))
+                    Cookies.set('mainUserCookie', mainUser, {expires: 60})
                     return user
                 }
 
@@ -30,6 +34,7 @@ export default async function auth(req, res) {
     ]
 
     const someCookie = req.cookies["token"]
+    const mainUserCookie = req.cookies["mainUserCookie"]
 
 
     return await NextAuth(req, res, {
@@ -37,6 +42,7 @@ export default async function auth(req, res) {
             session({session, token}) {
                 session.someCookie = someCookie
                 session.useInfo = mainUser
+                // console.log(session)
 
                 return session
             }

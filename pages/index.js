@@ -6,39 +6,41 @@ import Layout from "../components/Layout/Layout";
 export default function Home() {
     const {data: session, status} = useSession();
 
-    if (status === "loading") {
-        return (
-            <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <p className='text-thin'>
-                                LOading.......
-                            </p>
+    console.log("session", session)
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-    if (status === "unauthenticated") {
-        return (
-            <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <p className='text-thin'>
-                                Access Denied
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    // if (status === "loading") {
+    //     return (
+    //         <div>
+    //             <div className="container">
+    //                 <div className="row">
+    //                     <div className="col">
+    //                         <p className='text-thin'>
+    //                             LOading.......
+    //                         </p>
+    //
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+    //
+    // if (status === "unauthenticated") {
+    //     return (
+    //         <div>
+    //             <div className="container">
+    //                 <div className="row">
+    //                     <div className="col">
+    //                         <p className='text-thin'>
+    //                             Access Denied
+    //                         </p>
+    //
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
     if (session) {
         return (
