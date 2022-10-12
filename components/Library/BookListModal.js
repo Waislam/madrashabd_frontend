@@ -1,9 +1,7 @@
 import styles from './BookList.module.css'
-import { useRouter } from 'next/router';
 
 const modalpage=({shown, close, onChange, post, submit})=>{
 
-    const router = useRouter()
     return shown ? (
         <>
             <div className={styles.modalBody}>

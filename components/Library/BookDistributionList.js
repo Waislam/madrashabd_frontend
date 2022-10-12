@@ -3,8 +3,6 @@ import Sidemenu from './LibrarySideMenu'
 import Modal from './BookDistributionListModal'
 import Link from 'next/link'
 
-
-
 const BookList = ({showmodal, shown}) =>{
     return(
         <>
@@ -26,7 +24,7 @@ const BookList = ({showmodal, shown}) =>{
                                                 </div>
                                             </div>
                                             <div className='search-option'>
-                                                <form cation="#">
+                                                <form>
                                                     <div className='row'>
                                                         <div className="col-md-6 my-2">
                                                             <input type="text" className="form-control" placeholder="search input" />

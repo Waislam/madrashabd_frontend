@@ -141,7 +141,7 @@ const StudentIncome = ({
                                                         <tbody>
                                                             {studentIncomeList && studentIncomeList.results.map((stincome)=>(
                                                             <tr key={stincome.id}>
-                                                                <th scope="row" style={{color: "#5CBD67"}}ss>
+                                                                <th scope="row" style={{color: "#5CBD67"}}>
                                                                 <Link href="">
                                                                     {stincome.student_class_id}
                                                                 </Link>

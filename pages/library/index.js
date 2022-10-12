@@ -15,10 +15,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-const library = () => {
-
+const Library = () => {
     const router = useRouter()
-
     const [showModal, setShowModal] = useState(false);
     const [loader, setLoader] = useState(true);
     const [library, setLibrary] = useState({});
@@ -150,10 +148,10 @@ const library = () => {
 };
 
 
-export default library;
+export default Library;
 
 
-library.getLayout = (page) => {
+Library.getLayout = (page) => {
     return (
         <Layout>{page}</Layout>
     )
