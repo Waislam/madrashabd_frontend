@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let urls = {
-    test: `http://192.168.0.108:8080/`,
+    test: `http://178.128.94.215:1337/`,
     development: 'http://localhost:3333/',
     production: 'https://your-production-url.com/'
 };
@@ -13,7 +13,7 @@ const api = axios.create({
     // baseURL: "http://192.168.0.107:8086/",
     // baseURL: "http://192.168.0.108:8087/",
     // baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
-    baseURL: "http://10.160.23.87:8086/",
+    baseURL: "http://178.128.94.215:1337/",
 
 
     headers: {
