@@ -7,7 +7,6 @@ import Layout from "../../components/Layout/Layout";
 import {getTeacherDetailApi} from "../api/TeacherAPI/teacher_api";
 
 
-
 const TeacherDetail = ({teacher}) => {
     const router = useRouter();
     if (router.isFallback) {
@@ -17,10 +16,10 @@ const TeacherDetail = ({teacher}) => {
     }
     return (
         <>
-            <TeacherDetails teacher={teacher} />
+            <TeacherDetails teacher={teacher}/>
         </>
     )
-    }
+};
 
 
 export async function getServerSideProps(context) {
@@ -31,7 +30,6 @@ export async function getServerSideProps(context) {
         },
     };
 }
-
 
 
 export default TeacherDetail;
