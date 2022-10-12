@@ -389,7 +389,7 @@ const StudentDetails = ({student}) => {
                                                             Relation
                                                         </dt>
                                                         <dd className="col-sm-8">
-                                                            <span className="mx-2">:</span>
+                                                            <span className="mx-2 text-capitalize">:</span>
                                                             {student.data.guardian_relation}
                                                         </dd>
                                                         <dt className="col-sm-4">

@@ -6,11 +6,12 @@ import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
 
 const TeacherDetail = ({teacher}) => {
+
     return (
         <>
             <section className={styles.mainSection}>
                 <div className="container-fluid">
-                    <h3 className={styles.mainTitle}>Student List</h3>
+                    <h3 className={styles.mainTitle}>Teacher List</h3>
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.sidebarList}>
@@ -22,7 +23,7 @@ const TeacherDetail = ({teacher}) => {
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
                                             <Link href="/">
-                                                <a className="text-center">Student List</a>
+                                                <a className="text-center">Teacher List</a>
                                             </Link>
                                         </div>
                                         <div className={styles.promotedLink}>
@@ -49,37 +50,38 @@ const TeacherDetail = ({teacher}) => {
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.user.first_name}
-                                                                    <span
-                                                                        className="mx-1">{teacher.data.user.last_name}</span>
+                                                                    {teacher?.data.user.first_name}
+                                                                    <span className="mx-1">
+                                                                        {teacher?.data.user.last_name}
+                                                                    </span>
                                                                 </dd>
                                                                 <dt className="col-sm-6">
                                                                     Date of birth
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.date_of_birth}
+                                                                    {teacher?.data.date_of_birth}
                                                                 </dd>
                                                                 <dt className="col-sm-6">
                                                                     Father name
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.father_name}
+                                                                    {teacher?.data.father_name}
                                                                 </dd>
                                                                 <dt className="col-sm-6">
                                                                     Mother name
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.mother_name}
+                                                                    {teacher?.data.mother_name}
                                                                 </dd>
                                                                 <dt className="col-sm-6">
                                                                     Blood group
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.blood_group}
+                                                                    {teacher?.data.blood_group}
                                                                 </dd>
                                                             </dl>
                                                         </div>
@@ -91,7 +93,7 @@ const TeacherDetail = ({teacher}) => {
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
                                                                     <span
-                                                                        className="text-capitalize">{teacher.data.religion}</span>
+                                                                        className="text-capitalize">{teacher?.data.religion}</span>
                                                                 </dd>
                                                                 <dt className="col-sm-6">
                                                                     Marital status
@@ -99,7 +101,7 @@ const TeacherDetail = ({teacher}) => {
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
                                                                     <span className="text-capitalize">
-                                                                        {teacher.data.marital_status}
+                                                                        {teacher?.data.marital_status}
                                                                     </span>
                                                                 </dd>
                                                                 <dt className="col-sm-6">
@@ -108,7 +110,7 @@ const TeacherDetail = ({teacher}) => {
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
                                                                     <span className="text-capitalize">
-                                                                        {teacher.data.gender}
+                                                                        {teacher?.data.gender}
                                                                     </span>
                                                                 </dd>
                                                                 <dt className="col-sm-6">
@@ -116,15 +118,18 @@ const TeacherDetail = ({teacher}) => {
                                                                 </dt>
                                                                 <dd className="col-sm-6">
                                                                     <span className="mx-2">:</span>
-                                                                    {teacher.data.user.phone}
+                                                                    {teacher?.data.user.phone}
                                                                 </dd>
                                                             </dl>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <Image src={teacher} className="img-responsive" width={400}
-                                                           height={300}/>
+                                                    <Image
+                                                        src={teacher}
+                                                        className="img-responsive" width={400}
+                                                        height={300}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +147,7 @@ const TeacherDetail = ({teacher}) => {
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
                                                     <span className="text-capitalize">
-                                                        {teacher.data.present_address.address_info}
+                                                        {teacher?.data.present_address.address_info}
                                                     </span>
                                                 </dd>
                                                 <dt className="col-sm-3">
@@ -150,35 +155,35 @@ const TeacherDetail = ({teacher}) => {
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.present_address.post_office.name}
+                                                    {teacher?.data.present_address.post_office.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     Post Code
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.present_address.post_code.name}
+                                                    {teacher?.data.present_address.post_code.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     P.S./Upazilla
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.present_address.thana.name}
+                                                    {teacher?.data.present_address.thana.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     District
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.present_address.district.name}
+                                                    {teacher?.data.present_address.district.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     Division
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.present_address.division.name}
+                                                    {teacher?.data.present_address.division.name}
                                                 </dd>
                                             </dl>
                                         </div>
@@ -194,7 +199,7 @@ const TeacherDetail = ({teacher}) => {
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
                                                     <span className="text-capitalize">
-                                                        {teacher.data.permanent_address.address_info}
+                                                        {teacher?.data.permanent_address.address_info}
                                                     </span>
                                                 </dd>
                                                 <dt className="col-sm-3">
@@ -202,35 +207,35 @@ const TeacherDetail = ({teacher}) => {
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.permanent_address.post_office.name}
+                                                    {teacher?.data.permanent_address.post_office.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     Post Code
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.permanent_address.post_code.name}
+                                                    {teacher?.data.permanent_address.post_code.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     P.S./Upazilla
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.permanent_address.thana.name}
+                                                    {teacher?.data.permanent_address.thana.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     District
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.permanent_address.district.name}
+                                                    {teacher?.data.permanent_address.district.name}
                                                 </dd>
                                                 <dt className="col-sm-3">
                                                     Division
                                                 </dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.permanent_address.division.name}
+                                                    {teacher?.data.permanent_address.division.name}
                                                 </dd>
                                             </dl>
                                         </div>
@@ -255,10 +260,10 @@ const TeacherDetail = ({teacher}) => {
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td>{teacher.data.education.institution_name}</td>
-                                                        <td>{teacher.data.education.degree_name}</td>
-                                                        <td>{teacher.data.education.passing_year}</td>
-                                                        <td>{teacher.data.education.result}</td>
+                                                        <td>{teacher?.data.education.institution_name}</td>
+                                                        <td>{teacher?.data.education.degree_name}</td>
+                                                        <td>{teacher?.data.education.passing_year}</td>
+                                                        <td>{teacher?.data.education.result}</td>
                                                         <td>-----------</td>
                                                     </tr>
                                                     </tbody>
@@ -279,13 +284,12 @@ const TeacherDetail = ({teacher}) => {
                             <div className="row">
                                 <div className="col mb-4">
                                     <h4>Skills </h4>
-                                    <p>{teacher.data.skill.skill_name}</p>
+                                    <p>{teacher?.data.skill.skill_name}</p>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 mb-4">
                                     <div className="card">
-
                                         <div className="card-body">
                                             <h4>Contact </h4>
                                             <hr/>
@@ -293,17 +297,17 @@ const TeacherDetail = ({teacher}) => {
                                                 <dt className="col-sm-4">Phone</dt>
                                                 <dd className="col-sm-8">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.user.phone}
+                                                    {teacher?.data.user.phone}
                                                 </dd>
                                                 <dt className="col-sm-4">Phone Home</dt>
                                                 <dd className="col-sm-8">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.phone_home}
+                                                    {teacher?.data.phone_home}
                                                 </dd>
                                                 <dt className="col-sm-4">Email</dt>
                                                 <dd className="col-sm-8">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.user.email}
+                                                    {teacher?.data.user.email}
                                                 </dd>
                                             </dl>
                                         </div>
@@ -318,19 +322,19 @@ const TeacherDetail = ({teacher}) => {
                                                 <dt className="col-sm-3">NID</dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.nid}
+                                                    {teacher?.data.nid}
                                                 </dd>
 
                                                 <dt className="col-sm-3">Birth:</dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
-                                                    {teacher.data.date_of_birth}
+                                                    {teacher?.data.date_of_birth}
                                                 </dd>
                                                 <dt className="col-sm-3">Nationality</dt>
                                                 <dd className="col-sm-9">
                                                     <span className="mx-2">:</span>
                                                     <span className="text-capitalize">
-                                                        {teacher.data.nationality}
+                                                        {teacher?.data.nationality}
                                                     </span>
                                                 </dd>
                                             </dl>
@@ -346,13 +350,13 @@ const TeacherDetail = ({teacher}) => {
                                         <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-4">
                                             <p>
                                                 <span className="mx-2">Starting date : </span>
-                                                {teacher.data.starting_date}
+                                                {teacher?.data.starting_date}
                                             </p>
                                         </div>
                                         <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-4">
                                             <p>
                                                 <span className="mx-2">Ending date : </span>
-                                                {teacher.data.ending_date}
+                                                {teacher?.data.ending_date}
                                             </p>
                                         </div>
                                     </div>
