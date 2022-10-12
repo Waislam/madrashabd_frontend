@@ -2,9 +2,9 @@
 .addButton {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 10px;
+    padding: 4px;
     border: white;
-    width: 100px;
+    width: 70px;
     border-radius: 4px;
     text-decoration: none;
 }

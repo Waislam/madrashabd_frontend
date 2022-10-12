@@ -7,7 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import {getStudentDetailApi} from "../api/StudentAPI/students_api";
 
 const StudentDetail = ({student}) => {
-    const router = useRouter()
+    const router = useRouter();
 
     if (router.isFallback) {
         return (
