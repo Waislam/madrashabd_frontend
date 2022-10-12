@@ -71,7 +71,7 @@ const SyllabusCreation = () =>{
                                                     </form>
                                                 </div>
                                                 <div className="syllabus-table">
-                                                    <div class="table-responsive">
+                                                    <div className="table-responsive">
                                                         <table className="table table-striped">
                                                             <thead>
                                                                 <tr>
