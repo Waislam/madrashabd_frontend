@@ -48,7 +48,6 @@ const Index = () => {
 
         })
     };
-
     const nextPage = () => {
         setStudentListPageNum(studentListPageNum + 1)
     };
