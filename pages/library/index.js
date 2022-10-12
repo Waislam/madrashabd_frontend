@@ -70,7 +70,7 @@ const library = () => {
     const addBookHandle = async (event) => {
         event.preventDefault()
         const data = postData;
-        await axios.post(`http://192.168.0.108:8087/library/100/`, data)
+        await axios.post(`${BASE_URL}/library/100/`, data)
         setShowModal(false) // it should be like router.push('/library') but not working
 
     }
