@@ -93,6 +93,7 @@ const BookList = ({
                                                             <tr>
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Book Number</th>
+                                                                <th scope="col">Book Name</th>
                                                                 <th scope="col">Category</th>
                                                                 <th scope="col">Part</th>
                                                                 <th scope="col">origin Writer</th>
@@ -107,6 +108,7 @@ const BookList = ({
                                                         {books && books.results?.map((book)=> (
                                                             <tr key={book.id}>
                                                                 <th scope="row">{book.id}</th>
+                                                                <td>{book?.number}</td>
                                                                 <td>{book?.name}</td>
                                                                 <td>{book?.category}</td>
                                                                 <td>{book?.part}</td>

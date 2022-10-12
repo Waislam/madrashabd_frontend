@@ -1,9 +1,4 @@
-import React, {useContext} from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
-import AuthContext from '../context/AuthContext'
+import React from 'react'
 
 import {signIn, signOut, useSession} from 'next-auth/react'
 import Layout from "../components/Layout/Layout";
@@ -69,7 +64,6 @@ export default function Home() {
 
                             <h3 className="text-center">Dashboard is coming soon ......</h3>
                             <hr/>
-
                         </div>
                     </div>
                 </div>
