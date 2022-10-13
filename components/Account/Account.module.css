@@ -126,11 +126,6 @@
 .searchButton {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 7px;
-    border: white;
-    width: 150px;
-    border-radius: 4px;
-    margin: 2px
 }
 
 .instituteNamePdf {

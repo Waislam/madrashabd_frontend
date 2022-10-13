@@ -11,8 +11,8 @@ import AddStudentIncomeModal from "../../components/Account/AddStudentIncomeModa
 const Accounts = () => {
     const [studentIncome, setStudentIncome] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    
-    
+
+
 
     const getStudentIncomeData= async()=>{
         const list = await api.get(`transactions/100/student-income/`);

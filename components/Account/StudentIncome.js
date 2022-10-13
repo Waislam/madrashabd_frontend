@@ -202,7 +202,7 @@ const StudentIncome = ({
                                         {/*<div className="Student-income-form my-4">*/}
                                             {/*<form action="" method="post">*/}
                                                 {/*<div className="row">*/}
- 
+
                                                 {/*</div>*/}
                                                 {/*<div>*/}
                                                     {/*<button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>*/}
