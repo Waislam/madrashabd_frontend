@@ -6,7 +6,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../pages/api/api';
 
 
-const modalpage=({shown, close})=>{
+const modalpage=({close, shown})=>{
     // const [newBook, setNewBook] = useState(null)
 
     const {handleSubmit, formState: { errors }, register,} = useForm({

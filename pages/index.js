@@ -8,39 +8,39 @@ export default function Home() {
 
     console.log("session", session)
 
-    // if (status === "loading") {
-    //     return (
-    //         <div>
-    //             <div className="container">
-    //                 <div className="row">
-    //                     <div className="col">
-    //                         <p className='text-thin'>
-    //                             LOading.......
-    //                         </p>
-    //
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     )
-    // }
-    //
-    // if (status === "unauthenticated") {
-    //     return (
-    //         <div>
-    //             <div className="container">
-    //                 <div className="row">
-    //                     <div className="col">
-    //                         <p className='text-thin'>
-    //                             Access Denied
-    //                         </p>
-    //
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     )
-    // }
+    if (status === "loading") {
+        return (
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <p className='text-thin'>
+                                LOading.......
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if (status === "unauthenticated") {
+        return (
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <p className='text-thin'>
+                                Access Denied
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     if (session) {
         return (
@@ -58,9 +58,9 @@ export default function Home() {
                             </>}
 
                             {session && <>
-                                <h1>user token {session.useInfo.token} </h1> <br/>
-                                <h1>madrasha user {session.useInfo.user} </h1> <br/>
-                                <h1>madrasha slug {session.useInfo.user_madrasha_slug} </h1> <br/>
+                                <h1>user token {session.user.madrasha_slug} </h1> <br/>
+                                {/*<h1>madrasha user {session.useInfo.user} </h1> <br/>*/}
+                                {/*<h1>madrasha slug {session.useInfo.user_madrasha_slug} </h1> <br/>*/}
                                 <button onClick={signOut}>Sign out</button>
                             </>}
 
