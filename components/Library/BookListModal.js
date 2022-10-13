@@ -177,9 +177,9 @@ const modalpage=({close, shown})=>{
                                     <p className="text-danger">{errors.language?.message}</p>
                                 </div>
                                 <div className="mt-3">
-                                    <button type="submit" className={`${styles.defaultBtn}`}>Save</button>
+                                    <button type="submit" className={`${styles.modalBtn}`}>Save</button>
                                     {/* <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button> */}
-                                    <button type="button" className={`${styles.defaultBtn} ms-3`} onClick={close}>Cancel</button>
+                                    <button type="button" className={`${styles.modalBtn} ms-3`} onClick={close}>Cancel</button>
                                 </div>
                             </div>
                          </form>

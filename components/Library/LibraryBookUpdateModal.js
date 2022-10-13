@@ -152,8 +152,8 @@ const LibraryBookUpdateModal = (props) => {
                             <p className="text-danger">{errors.language?.message}</p>
                         </div>
                     </div>
-                    <button type="submit" className={`${styles.defaultBtn}`}>Save</button>
-                    <button type="button" className={`${styles.defaultBtn} ms-3`} onClick={props.onHide}>Cancel</button>
+                    <button type="submit" className={`${styles.modalBtn}`}>Save</button>
+                    <button type="button" className={`${styles.modalBtn} ms-3`} onClick={props.onHide}>Cancel</button>
                 </form>
             </Modal.Body>
         </Modal>
