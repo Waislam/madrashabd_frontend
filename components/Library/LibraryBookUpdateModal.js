@@ -1,31 +1,40 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import styles from "./BookList.module.css";
-import {useForm} from "react-hook-form";
-import {useEffect, useState} from "react";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { BASE_URL } from '../../pages/api/api';
+import axios from 'axios';
 
 
 const LibraryBookUpdateModal = (props) => {
-    console.log("LibraryBookUpdateModal(): props.library", props.library)
-
     const preLoadedValues = {
-        "book_number": props.library.number,
-        "book_name": props.library.name,
+        number: props.library.number,
+        name: props.library.name,
+        part: props.library.part,
+        category: props.library.category,
+        book_for_class: props.library.book_for_class,
+        translator: props.library.translator,
+        publication: props.library.publication,
+        original_writer: props.library.original_writer,
+        language: props.library.language
 
     }
 
+    const {handleSubmit, formState: { errors }, register,} = useForm({
+                                                                mode: "onChange",
+                                                                defaultValues: preLoadedValues
+                                                            });
 
-    const {
-        handleSubmit,
-        formState: {errors},
-        register,
-    } = useForm({
-        mode: "onChange",
-        defaultValues: preLoadedValues
-    });
 
     const onSubmit = (values) => {
-        console.log("values", values)
+        const current_id = props.library.id
+        axios.put(`${BASE_URL}/library/detail/${current_id}/`, values)
+            .then((response)=>{
+                console.log('this is database updatd response: ', response.data)
+            })
+        
+        props.onHide()
     };
 
     return (
@@ -41,53 +50,50 @@ const LibraryBookUpdateModal = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Number</label>
                             <input
                                 type="text"
-                                name="book_number"
+                                name="number"
                                 className="form-control"
                                 placeholder="Book Number"
-                                {...register("book_number")}
+                                {...register("number", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.number?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Name</label>
                             <input
                                 type="text"
-                                name="book_name"
-                                defaultValue=''
+                                name="name"
                                 className="form-control"
                                 placeholder="Book Name"
-                                {...register("book_name")}
+                                {...register("name", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.name?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book part</label>
                             <input
                                 type="text"
                                 name="book_part"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="Book part"
-                                {...register("book_part")}
+                                {...register("part", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.part?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Category</label>
                             <div className="input-group">
-                                <select
-                                    className="form-select"
-                                    name="book_category"
-                                    {...register("book_category")}
-                                >
-                                    <option value="1">One</option>
+                                <select className="form-select" name="category" {...register("book_category", {required:"this field is required"})}>
+                                    <option value="nesabi">Nesabi</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
+                                <p className="text-danger">{errors.category?.message}</p>
                             </div>
                         </div>
                         <div className="col-md-4 mb-3">
@@ -95,58 +101,61 @@ const LibraryBookUpdateModal = (props) => {
                             <input
                                 type="text"
                                 name="book_for_class"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="class Name"
+                                {...register("book_for_class", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.book_for_class?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Translator</label>
                             <input
                                 type="text"
                                 name="translator"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="Book Translator"
+                                {...register("translator", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.translator?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Publication</label>
                             <input
                                 type="text"
                                 name="publication"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="Book Publication"
+                                {...register("publication", {required:"this field is required"})}
                             />
+                             <p className="text-danger">{errors.publication?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Origianl writter</label>
                             <input
                                 type="text"
                                 name="original_writer"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="Book writter"
+                                {...register("original_writer", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.original_writer?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Language</label>
                             <input
                                 type="text"
                                 name="language"
-                                defaultValue=''
                                 className="form-control"
                                 placeholder="Book Language"
+                                {...register("language", {required:"this field is required"})}
                             />
+                            <p className="text-danger">{errors.language?.message}</p>
                         </div>
                     </div>
-                    <button>Submit</button>
+                    <button type="submit" className={`${styles.defaultBtn}`}>Save</button>
+                    <button type="button" className={`${styles.defaultBtn} ms-3`} onClick={props.onHide}>Cancel</button>
                 </form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 }

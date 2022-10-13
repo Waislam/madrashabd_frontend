@@ -18,6 +18,7 @@ export const AuthContextProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        setLoading(true)
         // init netlify identity connection
         // fetch('https://dummyjson.com/auth/login', {
         //     method: 'POST',
@@ -37,7 +38,11 @@ export const AuthContextProvider = ({children}) => {
 
         async function loadUserFromCookies() {
             const token = Cookies.get('token')
-            console.log("loadUserFromCookies(): token", token)
+            const mainUserCookie = Cookies.get('mainUserCookie')
+            const LastVisit = Cookies.get('LastVisit')
+            console.log("loadUserFromCookies(): context token", token)
+            console.log("loadUserFromCookies(): context LastVisit", LastVisit)
+            console.log("loadUserFromCookies(): context mainUserCookie", mainUserCookie)
             // const user_info = Cookies.get('userInfo')
 
             if (token) {
