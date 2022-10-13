@@ -1,10 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import api, {BASE_URL} from '../api'
-import Cookies from "js-cookie";
 
-
-let mainUser
 export default async function auth(req, res) {
     const providers = [
         CredentialsProvider({
@@ -14,6 +11,7 @@ export default async function auth(req, res) {
                 password: {label: "Password", type: "password"}
             },
             async authorize(credentials, req) {
+
                 const res = await fetch(`${BASE_URL}accounts/api-token-auth/`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
@@ -22,30 +20,46 @@ export default async function auth(req, res) {
                 const user = await res.json()
                 // If no error and we have user data, return it
                 if (res.ok && user) {
-                    mainUser = user
-                    // setCookie(res, JSON.stringify(mainUser))
-                    Cookies.set('mainUserCookie', mainUser, {expires: 60})
-                    return user
+                    // return user
+                    console.log("user in next auth", user)
+                    return {
+                        'id': 45,
+                        "madrasha_slug": user.user_madrasha_slug,
+                        "token": "token data",
+                        "role": "admin"
+                    }
                 }
-
                 return null
             }
         })
     ]
 
-    const someCookie = req.cookies["token"]
-    const mainUserCookie = req.cookies["mainUserCookie"]
+    // const someCookie = req.cookies["token"]
+    // let mainUserCookie = req.cookies["mainUserCookie"]
 
 
     return await NextAuth(req, res, {
         callbacks: {
-            session({session, token}) {
-                session.someCookie = someCookie
-                session.useInfo = mainUser
-                // console.log(session)
-
-                return session
-            }
+            jwt(params) {
+                // update token
+                if (params.user?.role) {
+                    params.token.role = params.user.role;
+                    params.token.id = params.user.id;
+                    params.token.madrasha_slug = params.user.madrasha_slug;
+                }
+                console.log("params", params)
+                // return final_token
+                return params.token;
+            },
+            session: async ({session, token}) => {
+                if (session?.user) {
+                    session.user.id = token.id;
+                    session.user.role = token.role;
+                    session.user.madrasha_slug = token.madrasha_slug;
+                }
+                console.log('sesion: ', session)
+                return session;
+            },
         },
         providers,
         pages: {
