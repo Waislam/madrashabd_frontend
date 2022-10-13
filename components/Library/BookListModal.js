@@ -52,7 +52,7 @@ const modalpage=({shown, close})=>{
     
     
     const router = useRouter()
-    
+
     return shown ? (
         <>
             <div className={styles.modalBody}>
@@ -99,8 +99,26 @@ const modalpage=({shown, close})=>{
                                     <div className="input-group">
                                         <select className="form-select" name="category" {...register("book_category", {required:"this field is required"})}>
                                             <option value="nesabi">Nesabi</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="2">Hadis/Usolehadis</option>
+                                            <option value="3">Fekah/Usolefekhan</option>
+                                            <option value="3">Tafsir</option>
+                                            <option value="3">Mantek</option>
+                                            <option value="3">Quran</option>
+                                            <option value="3">Akida</option>
+                                            <option value="3">Etihash</option>
+                                            <option value="3">Orthoniti</option>
+                                            <option value="3">Vugol</option>
+                                            <option value="3">Arbi shahitto</option>
+                                            <option value="3">Nahu</option>
+                                            <option value="3">Sorof</option>
+                                            <option value="3">Sirat</option>
+                                            <option value="3">Eslah</option>
+                                            <option value="3">Ovidhan</option>
+                                            <option value="3">Golpo shahitto</option>
+                                            <option value="3">Fatwa</option>
+                                            <option value="3">Balagad</option>
+                                            <option value="3">Rasayel</option>
+                                            <option value="3">Other</option>
                                         </select>
                                         <p className="text-danger">{errors.category?.message}</p>
                                     </div>

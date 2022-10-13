@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import {createContext, useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 
 import api from '../pages/api/api'
@@ -6,17 +6,16 @@ import api from '../pages/api/api'
 
 const AuthContext = createContext({
     user: null,
-    login: () => { },
-    logout: () => { },
+    login: () => {
+    },
+    logout: () => {
+    },
     authReady: false
 })
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-
-    let username = 'kminchelle'
-    let password = '0lelplR'
 
     useEffect(() => {
         // init netlify identity connection
@@ -38,37 +37,43 @@ export const AuthContextProvider = ({ children }) => {
 
         async function loadUserFromCookies() {
             const token = Cookies.get('token')
+            const mainUserCookie = Cookies.get('mainUserCookie')
+            console.log("loadUserFromCookies(): context token", token)
+            console.log("loadUserFromCookies(): context mainUserCookie", mainUserCookie)
+            // const user_info = Cookies.get('userInfo')
+
             if (token) {
-                console.log("Got a token in the cookies, let's see if it is valid")
-                api.defaults.headers.Authorization = `Token ${token}`
+                // api.defaults.headers.Authorization = `Token ${token}`
                 // const { data: user } = await api.get('users/me')
                 // if (user) setUser(user);
             }
             setLoading(false)
         }
-        loadUserFromCookies()
+
+        loadUserFromCookies().then(() => {
+
+        })
 
     }, [])
 
 
     const login = async (username, password) => {
-        const { data } = await api.post('accounts/api-token-auth/', {
+        const {data} = await api.post('accounts/api-token-auth/', {
             username,
-            password 
+            password
         })
 
-        console.log("LOgin data", data.token)
         if (data) {
-            console.log("Got token")
-            Cookies.set('token', data.token, { expires: 60 })
-            api.defaults.headers.Authorization = `Token ${data.token}`
+            Cookies.set('token', data.token, {expires: 60})
+            // Cookies.set('userInfo', data, {expires: 60})
+            // api.defaults.headers.Authorization = `Token ${data.token}`
             // const { data: user } = await api.get('users/me')
             setUser(data)
-            console.log("Got user", user)
+
         }
     }
 
-    const context = { user, login }
+    const context = {user, login}
 
     return (
         <AuthContext.Provider value={context}>

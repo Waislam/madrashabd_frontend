@@ -16,8 +16,7 @@ import { set } from 'react-hook-form';
 // import Modal from 'react-bootstrap/Modal';
 
 
-const library = () => {
-
+const Library = () => {
     const router = useRouter()
 
     const [loading, setLoading] = useState(false)
@@ -97,10 +96,10 @@ const library = () => {
 };
 
 
-export default library;
+export default Library;
 
 
-library.getLayout = (page) => {
+Library.getLayout = (page) => {
     return (
         <Layout>{page}</Layout>
     )

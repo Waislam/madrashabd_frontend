@@ -9,7 +9,7 @@ import Layout from "../../components/Layout/Layout";
 // import api
 import api from '../api/api'
 
-const expense = () =>{
+const ExpensePage = () =>{
     const [expenseList, setExpenseList] = useState(null)
 
     const getExpenseList = async() => {
@@ -32,9 +32,9 @@ const expense = () =>{
     )
 };
 
-export default  expense;
+export default  ExpensePage;
 
-expense.getLayout = (page) => {
+ExpensePage.getLayout = (page) => {
     return(
         <Layout>
             { page }
