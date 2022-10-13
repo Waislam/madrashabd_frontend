@@ -7,9 +7,9 @@ import Header from './IncomeHeader'
 import Link from "next/link";
 
 const StudentIncome = ({
-    studentIncomeList
+    studentIncomeList,
+    addStudentIncomekModalShow
 }) => {
-    console.log(studentIncomeList)
 
     if(!studentIncomeList){
         return(
@@ -45,7 +45,7 @@ const StudentIncome = ({
                                                 </div>
                                                 <div className="col-md-4">
                                                     <button type="button" className={`${styles.defaultBtn} ms-2`}>Get Summary</button>
-                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add Income</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={addStudentIncomekModalShow}>Add Income</button>
                                                 </div>
                                             </div>
                                             <hr/>
@@ -202,67 +202,7 @@ const StudentIncome = ({
                                         {/*<div className="Student-income-form my-4">*/}
                                             {/*<form action="" method="post">*/}
                                                 {/*<div className="row">*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<div className="form-group">*/}
-                                                            {/*<label className="mb-2">Category</label>*/}
-                                                            {/*<select className="form-control form-select">*/}
-                                                                {/*<option>Category one</option>*/}
-                                                                {/*<option>Category two</option>*/}
-                                                                {/*<option>Category three</option>*/}
-                                                            {/*</select>*/}
-                                                        {/*</div>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<div className="form-group">*/}
-                                                            {/*<label className="mb-2">Sub-Category</label>*/}
-                                                            {/*<select className="form-control form-select">*/}
-                                                                {/*<option>sub-Category one</option>*/}
-                                                                {/*<option>sub-Category two</option>*/}
-                                                                {/*<option>sub-Category three</option>*/}
-                                                            {/*</select>*/}
-                                                        {/*</div>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<label className="mb-2">student id</label>*/}
-                                                        {/*<input type="text" className="form-control" placeholder="Student Id" />*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<div className="form-group">*/}
-                                                            {/*<label className="mb-2">Amount</label>*/}
-                                                            {/*<select className="form-control form-select" defaultValue={`DEFAULT`}>*/}
-                                                                {/*<option value="DEFAULT">500</option>*/}
-                                                                {/*<option>700</option>*/}
-                                                                {/*<option>200</option>*/}
-                                                            {/*</select>*/}
-                                                        {/*</div>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<div className="form-group">*/}
-                                                            {/*<label className="mb-2">For Month</label>*/}
-                                                            {/*<select className="form-control form-select" defaultValue={'DEFAULT'}>*/}
-                                                                {/*<option value="DEFAULT" disabled>Select Month</option>*/}
-                                                                {/*<option>January</option>*/}
-                                                                {/*<option>February</option>*/}
-                                                                {/*<option>March</option>*/}
-                                                            {/*</select>*/}
-                                                        {/*</div>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<label className="mb-2">For Months</label>*/}
-                                                        {/*<input type="text" className="form-control" placeholder="january - march" />*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-4 mb-3">*/}
-                                                        {/*<label className="mb-2">Date</label>*/}
-                                                            {/*<input*/}
-                                                                {/*type="text"*/}
-                                                                {/*name="date"*/}
-                                                                {/*placeholder="date"*/}
-                                                                {/*onChange={(e) => console.log(e.target.value)}*/}
-                                                                {/*onFocus={(e) => (e.target.type = "date")}*/}
-                                                                {/*onBlur={(e) => (e.target.type = "text")}*/}
-                                                                {/*className="form-control"*/}
-                                                            {/*/>*/}
-                                                    {/*</div>*/}
+ 
                                                 {/*</div>*/}
                                                 {/*<div>*/}
                                                     {/*<button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>*/}

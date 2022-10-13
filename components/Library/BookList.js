@@ -4,18 +4,18 @@ import Modal from './BookListModal'
 
 
 const BookList = ({
-                    libraryBookUpdateModalShow,
                     books,
-                    handleBookUpdate
+                    handleBookUpdate,
+                    addBookModalShow
                 }) =>{
 
-    if (!books){
-        return(
-            <>
-            <h1>reload page</h1>
-            </>
-        )
-    }
+    // if (!books){
+    //     return(
+    //         <>
+    //         <h1>reload page</h1>
+    //         </>
+    //     )
+    // }
 
     return(
         <>
@@ -36,7 +36,7 @@ const BookList = ({
                                                     <h4><u>Book List</u></h4>
                                                 </div>
                                                 <div className='col-md-6'>
-                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={libraryBookUpdateModalShow}>Add Book</button>
+                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={addBookModalShow}>Add Book</button>
                                                 </div>
                                             </div>
                                             <div className='search-option'>
