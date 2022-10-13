@@ -8,24 +8,28 @@ import Layout from "../../components/Layout/Layout";
  import api from '../api/api'
 
 const Accounts = () => {
-    const [studentIncome, setStudentIncome] = useState(null);
-    
-
-    const getStudentIncomeData= async()=>{
-        const list = await api.get(`transactions/100/student-income/`);
-        const data = list.data;
-        setStudentIncome(data)
-    };
-
-    useEffect(()=>{
-        getStudentIncomeData()
-    },[]);
-
+    // const [studentIncome, setStudentIncome] = useState(null);
+    //
+    // const [searchStudentIncome, setSearchStudentIncome] = useState('');
+    // const [studentIncomeListPageNum, setStudentIncomePageNum] = useState(1);
+    //
+    // const getStudentIncomeData= async()=>{
+    //     const list = await api.get(`transactions/100/student-income/?search=${searchStudentIncome && searchStudentIncome}&page=${studentIncomeListPageNum}`);
+    //     const data = list.data;
+    //     setStudentIncome(data)
+    // };
+    //
+    // useEffect(()=>{
+    //     getStudentIncomeData()
+    // },[]);
+    //
+    //
+    //
 
     return (
         <>
             <Account
-                studentIncomeList={studentIncome}
+
             />
         </>
     )
