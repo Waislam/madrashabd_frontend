@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import api from '../api/api'
+import {useEffect, useState} from 'react';
+import api, {BASE_URL} from '../api/api'
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 
 // component for Library
@@ -9,6 +9,12 @@ import Booklist from '../../components/Library/BookList'
 import Layout from '../../layouts/Layout';
 // import modal file
 import BookListModal from '../../components/Library/BookListModal'
+import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateModal";
+import { set } from 'react-hook-form';
+
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
+
 
 const library = () => {
 
@@ -16,21 +22,10 @@ const library = () => {
 
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false);
+    const [loader, setLoader] = useState(true);
+    const [library, setLibrary] = useState({});
+    const [libraryBookUpdateModalShow, setLibraryBookUpdateModalShow] = useState(false);
     const [books, setBooks] = useState(null);
-    const [postData, setPostData] = useState({
-        madrasha: 1,
-        number: "",
-        name: "",
-        part: "",
-        category: "nesabi",
-        book_for_class: "",
-        translator: "",
-        publication: "",
-        original_writer: "",
-        language: ""
-    })
-
-    const [updateId, setUpdateId] = useState(1)
 
 
     const getBooks = async () => {
@@ -39,52 +34,32 @@ const library = () => {
         const data = list.data
         setBooks(data)
     };
-
-    const handleOnChange = (event) => {
-        // event.preventDefault()
-        const value = event.target.value
-        setPostData({ ...postData, [event.target.name]: value })
-
-    }
-
-
-    // Post book from here
-    const addBookHandle = async (event) => {
-        // event.preventDefault()
-        event.target.reset()
-        const data = postData;
-        await axios.post(`http://192.168.0.108:8087/library/100/`, data)
-        setShowModal(false) // it should be like router.push('/library') but not working
-
-    }
-
+    
 
     useEffect(() => {
         getBooks()
-
     }, []);
+
 
 
     const handleModalShow = () => {
         setShowModal(true)
     }
 
-    const update = (id, event) => {
+    const handleModalClose=(event)=>{
+        // setPostData(updateData)
+        setShowModal(false)
+    }
 
-        setLoading(true)
-        axios.get(`http://192.168.0.108:8087/library/detail/${id}/`)
+    const handleBookUpdate = (book_id) => {
+        setLoader(true)
+        axios.get(`${BASE_URL}/library/detail/${book_id}/`)
             .then((response) => {
-                const data = response.data
-                console.log('inside update',data)
-                console.log('number before set:',data.data.id)
-                
-                // setPostData(prevValue =>())
-                setPostData(data.data);
-                setLoading(false)
-
+                const data = response.data.data
+                setLibrary(data)
+                setLoader(false)
             })
-        setShowModal(true)
-
+        setLibraryBookUpdateModalShow(true)
     };
 
 
@@ -92,12 +67,31 @@ const library = () => {
         <>
             <Booklist
                 books={books}
-                showmodal={handleModalShow}
-                idshow={update}
+                libraryBookUpdateModalShow={libraryBookUpdateModalShow}
+                handleBookUpdate={handleBookUpdate}
+                addBookModalShow={handleModalShow}
             />
-            <BookListModal shown={showModal} close={() => setShowModal(false)} onChange={handleOnChange} post={postData} submit={addBookHandle}>
+
+            <BookListModal
+                shown={showModal}
+                close={handleModalClose}
+            >
 
             </BookListModal>
+
+
+            {
+                loader ?
+                    <h1></h1>
+                    :
+                    <LibraryBookUpdateModal
+                        show={libraryBookUpdateModalShow}
+                        onHide={() => setLibraryBookUpdateModalShow(false)}
+                        library={library}
+                    />
+            }
+
+             {/* For test  data */}
         </>
     )
 };

@@ -8,36 +8,36 @@ const SyllabusHeader = () =>{
         <>
             <div className={styles.breadcumCustom}>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/talimat/syllabus">
                                 <a>
                                     Book distribution to Teacher
                                 </a> 
                             </Link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/talimat/syllabus/training">
                                 <a>
                                     Teacher’s Training
                                 </a> 
                             </Link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/talimat/syllabus/create">
                                 <a>
                                     Syllabus Creation
                                 </a> 
                             </Link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/talimat/syllabus/responsibility">
                                 <a>
                                     Teacher and staff responsibility distribution
                                 </a> 
                             </Link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li className="breadcrumb-item active" aria-current="page">
                             <Link href="#">
                                 <a>
                                     Academic calender

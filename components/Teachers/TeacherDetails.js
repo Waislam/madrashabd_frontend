@@ -124,7 +124,7 @@ const TeacherDetail = ({teacher}) => {
                                                 </div>
                                                 <div className="col-md-3">
                                                     <Image src={teacher} className="img-responsive" width={400}
-                                                           height={300}/>
+                                                           height={300} alt='all data'/>
                                                 </div>
                                             </div>
                                         </div>

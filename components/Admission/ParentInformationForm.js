@@ -38,7 +38,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_father_name}
-                                                placeholder="Father's Name"
+                                                placeholder="Father Name"
                                                 className="form-control"
                                                 id="parents_information_father_name"
                                                 {...register("parents_information_father_name", {required: true})}
@@ -46,7 +46,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_father_name && (
-                                                <p className="text-danger">Father's name is required</p>
+                                                <p className="text-danger">Father name is required</p>
                                             )}
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_mother_name}
-                                                placeholder="Mother's Name"
+                                                placeholder="Mother Name"
                                                 className="form-control"
                                                 id="parents_information_mother_name"
                                                 {...register("parents_information_mother_name", {required: true})}
@@ -63,7 +63,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_mother_name && (
-                                                <p className="text-danger">Mother's name is required</p>
+                                                <p className="text-danger">Mother name is required</p>
                                             )}
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.parents_information_father_date_of_birth}
-                                                placeholder="Father's Date of birth"
+                                                placeholder="Father Date of birth"
                                                 className="form-control"
                                                 id="parents_information_father_date_of_birth"
                                                 {...register("parents_information_father_date_of_birth")}
@@ -91,7 +91,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.parents_information_mother_date_of_birth}
-                                                placeholder="Mother's Date Of Birth"
+                                                placeholder="Mother Date Of Birth"
                                                 className="form-control"
                                                 id="parents_information_mother_date_of_birth"
                                                 {...register("parents_information_mother_date_of_birth")}
@@ -110,7 +110,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="name"
                                                 defaultValue={admissionData.parents_information_father_nid}
-                                                placeholder="Father's NID"
+                                                placeholder="Father NID"
                                                 className="form-control"
                                                 id="parents_information_father_nid"
                                                 {...register("parents_information_father_nid")}
@@ -127,7 +127,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="name"
                                                 defaultValue={admissionData.parents_information_mother_nid}
-                                                placeholder="Mothers's NID"
+                                                placeholder="Mothers NID"
                                                 className="form-control"
                                                 id="parents_information_mother_nid"
                                                 {...register("parents_information_mother_nid")}
@@ -157,7 +157,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_father_occupation && (
-                                                <p className="text-danger">Father's occupation is required</p>
+                                                <p className="text-danger">Father occupation is required</p>
                                             )}
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_mother_occupation && (
-                                                <p className="text-danger">Mother's occupation is required</p>
+                                                <p className="text-danger">Mother occupation is required</p>
                                             )}
                                         </div>
                                     </div>
@@ -245,7 +245,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_father_contact}
-                                                placeholder="Father's Contact"
+                                                placeholder="Father Contact"
                                                 className="form-control"
                                                 id="parents_information_father_contact"
                                                 {...register("parents_information_father_contact", {required: true})}
@@ -253,7 +253,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_father_contact && (
-                                                <p className="text-danger">Father's Contact is required</p>
+                                                <p className="text-danger">Father Contact is required</p>
                                             )}
                                         </div>
 
@@ -263,7 +263,7 @@ const ParentInformationForm = (props) => {
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_mother_contact}
-                                                placeholder="Mother's Contact"
+                                                placeholder="Mother Contact"
                                                 className="form-control"
                                                 id="parents_information_mother_contact"
                                                 {...register("parents_information_mother_contact", {required: true})}
@@ -271,7 +271,7 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.parents_information_mother_contact && (
-                                                <p className="text-danger">Mother's Contact is required</p>
+                                                <p className="text-danger">Mother Contact is required</p>
                                             )}
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@ const ParentInformationForm = (props) => {
                                         <input
                                             type="text"
                                             defaultValue={admissionData.father_email}
-                                            placeholder="Father's E-mail"
+                                            placeholder="Father E-mail"
                                             className="form-control"
                                             id="father_email"
                                             {...register("father_email")}
@@ -291,7 +291,7 @@ const ParentInformationForm = (props) => {
                                         <input
                                             type="text"
                                             defaultValue={admissionData.mother_email}
-                                            placeholder="Mother's E-mail"
+                                            placeholder="Mother E-mail"
                                             className="form-control"
                                             id="mother_email"
                                             {...register("mother_email")}

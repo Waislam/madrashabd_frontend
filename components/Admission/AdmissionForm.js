@@ -81,8 +81,7 @@ const AdmissionForm = () => {
 
     useEffect(() => {
 
-        console.log("admissionData?.present_address_post_office", admissionData?.present_address_post_office)
-        // call post Office api
+                // call post Office api
         getPostOfficeApi(selectPresentAddressDistrict)
             .then((data) => {
                 console.log("getPostOfficeApi(): results", data)

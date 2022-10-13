@@ -3,22 +3,19 @@ import Sidemenu from './LibrarySideMenu'
 import Modal from './BookListModal'
 
 
-
-
-
 const BookList = ({
-                    showmodal,
                     books,
-                    idshow
+                    handleBookUpdate,
+                    addBookModalShow
                 }) =>{
 
-    if (!books){
-        return(
-            <>
-            <h1>reload page</h1>
-            </>
-        )
-    }
+    // if (!books){
+    //     return(
+    //         <>
+    //         <h1>reload page</h1>
+    //         </>
+    //     )
+    // }
 
     return(
         <>
@@ -39,7 +36,7 @@ const BookList = ({
                                                     <h4><u>Book List</u></h4>
                                                 </div>
                                                 <div className='col-md-6'>
-                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={showmodal}>Add Book</button>
+                                                    <button type='button' className={`${styles.defaultBtn} float-end `} onClick={addBookModalShow}>Add Book</button>
                                                 </div>
                                             </div>
                                             <div className='search-option'>
@@ -118,7 +115,7 @@ const BookList = ({
                                                                 <td>{book?.original_writer}</td>
                                                                 <td>{book?.language}</td>
                                                                 <td>{book?.book_for_class}</td>
-                                                                <td><a className="btn btn-primary" onClick={()=>idshow(book.id)}>Edit</a></td>
+                                                                <td><a className="btn btn-primary" onClick={()=>handleBookUpdate(book.id)}>Edit</a></td>
                                                             </tr>
                                                         ))}
                                                         </tbody>

@@ -27,7 +27,7 @@ const BooksList = () =>{
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">Book's Name</th>
+                                                                <th scope="col">Book Name</th>
                                                                 <th scope="col">Class</th>
                                                                 <th scope="col">Department</th>
                                                                 <th scope="col" className="text-center">Edit</th>
