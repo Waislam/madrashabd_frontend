@@ -170,8 +170,8 @@ const StudentList = ({
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {students.results.map((student) => (
-                                                    <tr>
+                                                {students.results.map((student, index) => (
+                                                    <tr key={index}>
                                                         <th scope="text-sm align-middle">{student.student_id}</th>
                                                         <td className="text-sm">{student.user.first_name} {student.user.last_name}</td>
                                                         <td className="text-sm">Abul Kashem</td>

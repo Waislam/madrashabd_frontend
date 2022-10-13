@@ -14,10 +14,10 @@ const Index = () => {
     const [studentListPageNum, setStudentListPageNum] = useState(1);
     const [studentListRecords, setStudentListRecords] = useState('');
 
-    const getStudents = () => {
+    const getStudents = async () => {
         setLoading(true);
-        console.log(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
-        api.get(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        // console.log(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
+        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         // api.get('students/')
             .then((response) => {
                 console.log("response", response.data);
@@ -31,10 +31,12 @@ const Index = () => {
     };
 
     useEffect(() => {
-        getStudents()
+        getStudents().then(() => {
+
+        })
     }, [studentListPageNum]);
 
-    console.log("searchStudent", searchStudent);
+    // console.log("searchStudent", searchStudent);
 
     const handleStudentListPageNum = () => {
         console.log("handleStudentListPageNum() called");
@@ -42,9 +44,10 @@ const Index = () => {
     };
 
     const handleSearchBtn = () => {
-        getStudents()
-    };
+        getStudents().then(() => {
 
+        })
+    };
     const nextPage = () => {
         setStudentListPageNum(studentListPageNum + 1)
     };

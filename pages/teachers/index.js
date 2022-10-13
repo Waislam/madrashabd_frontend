@@ -5,30 +5,22 @@ import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
 import api from '../api/api'
 
-
 const Index = () => {
     const [isLoading, setLoading] = useState(null);
     const [teachers, setTeachers] = useState(null);
-    const [teacherId, setTeacherId] = useState('');
     const [searchTeacher, setSearchTeacher] = useState('');
     const [teacherListPageNum, setTeacherListPageNum] = useState(1);
 
-
-    const getTeacher = () => {
-        api.get(`http://10.160.23.87:8086/teachers/?teacher_id=${teacherId && teacherId}&search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`)
-            .then((response) => {
-                console.log("response", response.data);
-                setTeachers(response.data)
-            })
-            .catch((error) => {
-                console.log("error", error);
-                setLoading(false)
-            })
+    const getTeacher= async()=>{
+        const list = await api.get(`teachers/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
+        const data = list.data;
+        setTeachers(data);
+        setLoading(false);
     };
 
-    useEffect(() => {
+    useEffect(()=>{
         getTeacher()
-    }, [teacherListPageNum]);
+    },[teacherListPageNum]);
 
 
     // Search
