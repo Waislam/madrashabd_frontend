@@ -17,18 +17,15 @@ const modalpage=({shown, close})=>{
         console.log("form data : ", values)
         
 
-        let newBookData = {
+        let newStudetnIncome = {
             "madrasha": 1,
             "category": values.category,
             "sub_category": values.sub_category,
             "student_class_id": values.student_class_id,
-            "part": values.part,
-            "category": "nesabi",
-            "book_for_class": values.book_for_class,
-            "translator": values.translator,
-            "publication": values.publication,
-            "original_writer": values.original_writer,
-            "language": values.language
+            "amount": values.amount,
+            "for_month": values.for_month,
+            "for_months": values.for_months,
+            "date": values.date,
         }
         
 
@@ -36,8 +33,8 @@ const modalpage=({shown, close})=>{
 
         // const data = newBook;
         // console.log('book full data: ', data)
-        console.log('data to be shown', newBookData)
-        await axios.post(`${BASE_URL}/library/100/`, newBookData)
+        console.log('data to be shown', newStudetnIncome)
+        await axios.post(`${BASE_URL}/library/100/`, newStudetnIncome)
         .then((response)=>{
             console.log('Success Response: ', response.data)
         })
@@ -68,7 +65,7 @@ const modalpage=({shown, close})=>{
                                     <div className="form-group">
                                         <label className="mb-2">Category</label>
                                         <select className="form-control form-select" name="category" {...register("category", {required:"this field is required"})} >
-                                            <option>Category one</option>
+                                            <option>Student</option>
                                             <option>Category two</option>
                                             <option>Category three</option>
                                         </select>
@@ -150,8 +147,8 @@ const modalpage=({shown, close})=>{
                                             type="text"
                                             name="date"
                                             placeholder="date"
-                                            onFocus={(e) => (e.target.type = "date")}
-                                            onBlur={(e) => (e.target.type = "text")}
+                                            onFocus={(props) => (props.target.type = "date")}
+                                            onBlur={(props) => (props.target.type = "text")}
                                             className="form-control"
                                             {...register("date", {required:"this field is required"})}
                                         />
