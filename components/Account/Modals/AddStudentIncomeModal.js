@@ -1,14 +1,13 @@
-import styles from './Account.module.css'
+import styles from '../Account.module.css'
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import { BASE_URL } from '../../pages/api/api';
+import { BASE_URL } from '../../../pages/api/api';
+import Modal from 'react-bootstrap/Modal';
 
 
-const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory }) => {
-    console.log("income cateogry in modal page: ", incomeCategoryList)
-    console.log("income cateogry in modal transactionSubCaterory: ", transactionSubCaterory)
+const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees }) => {
 
     const { handleSubmit, formState: { errors }, register, } = useForm({
         mode: "all",
@@ -16,11 +15,6 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
     });
 
     const onSubmit = async (values) => {
-        toast.success('Success Notification !', {
-            position: toast.POSITION.TOP_RIGHT
-        });
-        console.log("form data : ", values)
-
 
         let newStudetnIncome = {
             "madrasha": 1,
@@ -33,25 +27,13 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
             "date": values.date,
         }
 
-
-        // setNewBook(newBookData)
-
-        // const data = newBook;
-        // console.log('book full data: ', data)
         console.log('data to be shown', newStudetnIncome)
         await axios.post(`${BASE_URL}/transactions/100/student-income/`, newStudetnIncome)
             .then((response) => {
                 console.log('Success Response: ', response.data)
-                toast.success('Success Notification !', {
-                    position: toast.POSITION.TOP_RIGHT
-                });
             })
             .catch((error) => {
                 console.log('Error Message: ', error.response.data.number)
-                toast.error('Success Notification !', {
-                    position: toast.POSITION.TOP_RIGHT
-                });
-
             })
 
         close()
@@ -61,9 +43,10 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
 
 
     const router = useRouter()
-
-    return shown ? (
+    //return shown ? (): null
+    return (
         <>
+        <Modal show={shown}>
             <div className={styles.modalBody}>
                 <div className={styles.modalContent}>
                     <div className="card">
@@ -81,7 +64,8 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                                                 name="category" {...register("category", { required: "this field is required" })}
                                                 onChange={(event) => setTransactionCaterory(event.target.value)}
                                             >
-                                                {incomeCategoryList.map((category) => (
+                                                <option>Select Category</option>
+                                                {incomeCategoryList && incomeCategoryList.map((category) => (
                                                     <option value={category.id} key={category.name}>{category.name}</option>
                                                 ))}
                                             </select>
@@ -96,7 +80,7 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                                                 className="form-control form-select"
                                                 name="sub_category" {...register("sub_category", { required: "this field is required" })}
                                             >
-                                                <option value="">Select sub category</option>
+                                                <option>Select sub category</option>
                                                 {transactionSubCaterory && transactionSubCaterory.map((subCategory) => (
                                                     <option value={subCategory?.id} key={subCategory?.name}>{subCategory?.name}</option>
                                                 ))}
@@ -119,12 +103,11 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                                             <label className="mb-2">Amount</label>
                                             <select className="form-control form-select"
                                                 name="amount"
-                                                defaultValue={`DEFAULT`}
                                                 {...register("amount", { required: "this field is required" })}
                                             >
-                                                <option value="1">500</option>
-                                                <option>700</option>
-                                                <option>400</option>
+                                                {studentFees && studentFees.map((fees) => (
+                                                    <option value={fees?.id} key={fees?.amount}>{fees.amount}</option>
+                                                ))}
                                             </select>
                                             <p className="text-danger">{errors.amount?.message}</p>
                                         </div>
@@ -134,10 +117,9 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                                             <label className="mb-2">For Month</label>
                                             <select className="form-control form-select"
                                                 name="for_month"
-                                                defaultValue={`DEFAULT`}
                                                 {...register("for_month")}
                                             >
-                                                <option value="DFAULT"></option>
+                                                <option></option>
                                                 <option value="january">January</option>
                                                 <option value="february">February</option>
                                                 <option value="march">March</option>
@@ -186,9 +168,10 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                     </div>
                 </div>
             </div>
+            </Modal>
         </>
 
-    ) : null;
+    );
 }
 
 
