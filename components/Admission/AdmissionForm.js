@@ -29,13 +29,11 @@ const AdmissionForm = () => {
     const [selectPresentAddressThana, setSelectPresentAddressThana] = useState('');
     const [selectPresentAddressPostOffice, setSelectPresentAddressPostOffice] = useState('');
     const [selectPresentAddressPostCode, setSelectPresentAddressPostCode] = useState('');
-    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
     const [selectPermanentAddressDistrict, setSelectPermanentAddressDistrict] = useState('');
     const [selectPermanentAddressDivision, setSelectPermanentAddressDivision] = useState('');
     const [selectPermanentAddressThana, setSelectPermanentAddressThana] = useState('');
     const [selectPermanentAddressPostOffice, setSelectPermanentAddressPostOffice] = useState('');
     const [selectPermanentAddressPostCode, setSelectPermanentAddressPostCode] = useState('');
-    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
 
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
 
@@ -46,17 +44,6 @@ const AdmissionForm = () => {
     const nextStep = () => {
         setStep(step + 1)
     };
-
-    const userAge = () => {
-        const todayDate = new Date().getTime();
-        console.log("todayDate", todayDate)
-        const birthDate = new Date().getTime("2012-05-07");
-        const age = (todayDate - birthDate) / (1000 * 60 * 60 * 24 * 365)
-
-        return age;
-    }
-
-    console.log("userAge", userAge())
 
     useEffect(() => {
 

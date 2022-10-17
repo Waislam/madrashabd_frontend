@@ -36,10 +36,7 @@ const Index = () => {
         })
     }, [studentListPageNum]);
 
-    // console.log("searchStudent", searchStudent);
-
     const handleStudentListPageNum = () => {
-        console.log("handleStudentListPageNum() called");
         setStudentListPageNum(studentListPageNum + 1)
     };
 
