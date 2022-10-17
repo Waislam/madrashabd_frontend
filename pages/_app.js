@@ -10,6 +10,7 @@ import {AuthContextProvider} from '../context/AuthContext'
 import {SessionProvider} from "next-auth/react"
 import AdmissionFormProvider from "../context/AdmissionFormProvider";
 
+
 function MyApp({
                    Component,
                    pageProps: {session, ...pageProps},

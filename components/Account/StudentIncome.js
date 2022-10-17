@@ -8,7 +8,8 @@ import Link from "next/link";
 
 const StudentIncome = ({
     studentIncomeList,
-    addStudentIncomekModalShow
+    addStudentIncomekModalShow,
+    handleModalShowandId
 }) => {
 
     if(!studentIncomeList){
@@ -120,7 +121,7 @@ const StudentIncome = ({
                                                         </div>
                                                     </div>
                                                     <div className="col-md-2">
-                                                        <button className={styles.searchButton}>Search</button>
+                                                        <button className={`${styles.defaultBtn} float-md-end`}>Search</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -136,6 +137,7 @@ const StudentIncome = ({
                                                             <th scope="col">Date</th>
                                                             <th scope="col">Money Receipt</th>
                                                             <th scope="col">Taken by</th>
+                                                            <th scope="col">Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -152,6 +154,9 @@ const StudentIncome = ({
                                                                 <td>{stincome.paid_date}</td>
                                                                 <td>{stincome.receipt_number}</td>
                                                                 <td>let it</td>
+                                                                <td className="text-center">
+                                                                    <a className="btn btn-primary" onClick={() => handleModalShowandId(stincome.id)}>Edit</a>
+                                                                </td>
                                                             </tr>
                                                             ))}
                                                         </tbody>
@@ -159,7 +164,7 @@ const StudentIncome = ({
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-7">
-                                                        <button className={styles.searchButton}>Download PDF</button>
+                                                        <button className={styles.defaultBtn}>Download PDF</button>
                                                     </div>
                                                     <div className="pagination-page col-md-4">
                                                         <nav aria-label="page navigation" className="">
@@ -202,7 +207,7 @@ const StudentIncome = ({
                                         {/*<div className="Student-income-form my-4">*/}
                                             {/*<form action="" method="post">*/}
                                                 {/*<div className="row">*/}
- 
+
                                                 {/*</div>*/}
                                                 {/*<div>*/}
                                                     {/*<button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>*/}

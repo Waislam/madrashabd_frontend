@@ -26,7 +26,8 @@ export default async function auth(req, res) {
                         'id': 45,
                         "madrasha_slug": user.user_madrasha_slug,
                         "token": "token data",
-                        "role": "admin"
+                        "role": "admin",
+                        'madrasha_name': "amder madrasha"
                     }
                 }
                 return null
@@ -46,6 +47,7 @@ export default async function auth(req, res) {
                     params.token.role = params.user.role;
                     params.token.id = params.user.id;
                     params.token.madrasha_slug = params.user.madrasha_slug;
+                    params.token.madrasha_name = params.user.madrasha_name;
                 }
                 console.log("params", params)
                 // return final_token
@@ -56,6 +58,7 @@ export default async function auth(req, res) {
                     session.user.id = token.id;
                     session.user.role = token.role;
                     session.user.madrasha_slug = token.madrasha_slug;
+                    session.user.madrasha_name = token.madrasha_name;
                 }
                 console.log('sesion: ', session)
                 return session;
