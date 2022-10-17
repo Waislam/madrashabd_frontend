@@ -8,15 +8,16 @@ import axios from 'axios';
 
 
 const StudentIncomeUpdate = (props) => {
-    console.log('inside update frame', props.studentIncomePreValue.category)
+    console.log('inside update frame', props.studentIncomePreValue.amount?.amount)
      const preLoadedValues = {
-         category: props.studentIncomePreValue.category,
-         sub_category: props.studentIncomePreValue.sub_category,
+         category: props.studentIncomePreValue.category?.id,
+         sub_category: props.studentIncomePreValue.sub_category?.id,
          student_class_id: props.studentIncomePreValue.student_class_id,
-         amount: props.studentIncomePreValue.amount.amount,
+         amount: props.studentIncomePreValue.amount?.id,
          for_month: props.studentIncomePreValue.for_month,
          for_months: props.studentIncomePreValue.for_months,
      }
+     console.log("preloaded vlaue consoled: ", preLoadedValues)
 
     const {handleSubmit, formState: { errors }, register,} = useForm({
                                                                 mode: "onChange",
@@ -26,7 +27,7 @@ const StudentIncomeUpdate = (props) => {
 
     const onSubmit = (values) => {
         const current_id = props.studentIncomePreValue.id
-        axios.put(`${BASE_URL}/library/detail/${current_id}/`, values)
+        axios.put(`${BASE_URL}/transactions/student-income/${current_id}/`, values)
             .then((response)=>{
                 console.log('this is database updatd response: ', response.data)
             })
@@ -47,18 +48,19 @@ const StudentIncomeUpdate = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="col-md-4 mb-3">
                             <div className="form-group">
                                 <label className="mb-2">Category</label>
                                 <select
                                     className="form-control form-select"
+                                    defaultValue={props.studentIncomePreValue.category}
                                     name="category"
                                     {...register("category", { required: "this field is required"})}
-                                    onChange={(event) => setTransactionCaterory(event.target.value)}
+                                    onChange={(event) => props.setTransactionCaterory(event.target.value)}
                                 >
-                                    <option>{props.studentIncomePreValue.category?.name}</option>
+//                                    <option>{props.studentIncomePreValue.category?.name}</option>
                                     {props.incomeCategoryList && props.incomeCategoryList.map((category) => (
                                         <option value={category.id} key={category.name}>{category.name}</option>
                                     ))}
@@ -76,7 +78,7 @@ const StudentIncomeUpdate = (props) => {
                                 >
                                     <option>Select sub category</option>
                                     {props.transactionSubCaterory && props.transactionSubCaterory.map((subCategory) => (
-                                        <option value={subCategory?.id} key={subCategory?.name}>{subCategory?.name}</option>
+                                        <option value={subCategory.id} key={subCategory?.name}>{subCategory?.name}</option>
                                     ))}
                                 </select>
                                 <p className="text-danger">{errors.sub_category?.message}</p>
@@ -99,8 +101,9 @@ const StudentIncomeUpdate = (props) => {
                                     name="amount"
                                     {...register("amount", { required: "this field is required" })}
                                 >
+                                    <option>{props.studentIncomePreValue.amount?.amount}</option>
                                     {props.studentFees && props.studentFees.map((fees) => (
-                                        <option value={fees?.id} key={fees?.amount}>{fees.amount}</option>
+                                        <option value={fees.id} key={fees?.amount}>{fees.amount}</option>
                                     ))}
                                 </select>
                                 <p className="text-danger">{errors.amount?.message}</p>
@@ -138,7 +141,7 @@ const StudentIncomeUpdate = (props) => {
                             />
                         </div>
                         <div className="mt-3">
-                            <button type="submit" className={`${styles.defaultBtn}`}>Save</button>
+                            <button className={`${styles.defaultBtn}`}>Save</button>
                             {/* <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button> */}
                             <button type="button" className={`${styles.defaultBtn} ms-3`} onClick={props.onHide}>Cancel</button>
                         </div>

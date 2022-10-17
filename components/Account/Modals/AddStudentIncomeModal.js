@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { BASE_URL } from '../../../pages/api/api';
+import Modal from 'react-bootstrap/Modal';
 
 
 const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees }) => {
@@ -42,9 +43,10 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
 
 
     const router = useRouter()
-
-    return shown ? (
+    //return shown ? (): null
+    return (
         <>
+        <Modal show={shown}>
             <div className={styles.modalBody}>
                 <div className={styles.modalContent}>
                     <div className="card">
@@ -166,9 +168,10 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                     </div>
                 </div>
             </div>
+            </Modal>
         </>
 
-    ) : null;
+    );
 }
 
 
