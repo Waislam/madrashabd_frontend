@@ -93,14 +93,14 @@ const BookList = ({
                                                 <div className="col-md-2 my-1">
                                                     <button
                                                         type="submit"
-                                                        className={styles.defaultBtn}>
+                                                        className={styles.modalBtn}>
                                                         Search
                                                     </button>
                                                 </div>
                                                 <div className="col-md-2 my-1 float-right-end">
                                                     <button
                                                         type='button'
-                                                        className={`${styles.defaultBtn}`}
+                                                        className={`${styles.modalBtn} float-md-end`}
                                                         onClick={addBookModalShow}>
                                                         Add Book
                                                     </button>
@@ -151,7 +151,7 @@ const BookList = ({
                                                     <div className="col-md-4 mb-2">
                                                         <button
                                                             type="button"
-                                                            className={`${styles.downloadBtn}`}>
+                                                            className={`${styles.modalBtn}`}>
                                                             Download
                                                         </button>
                                                     </div>
