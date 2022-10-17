@@ -110,9 +110,9 @@ const BookList = ({
                                         <hr/>
                                         <div className="book-list-table">
                                             <div className="table-responsive">
-                                                <table className="table table-striped table-bordered">
+                                                <table className="table table-striped">
                                                     <thead>
-                                                    <tr className="text-center">
+                                                    <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Book Number</th>
                                                         <th scope="col">Book Name</th>
