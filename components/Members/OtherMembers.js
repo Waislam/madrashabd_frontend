@@ -34,7 +34,7 @@ const OtherMembers = () =>{
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">Member's Name</th>
+                                                                <th scope="col">Member Name</th>
                                                                 <th scope="col">Address</th>
                                                                 <th scope="col">Phone</th>
                                                                 <th scope="col" className="text-center">Edit</th>
@@ -86,10 +86,10 @@ const OtherMembers = () =>{
                                                 <form action="#" method="POST">
                                                     <div className="row">
                                                         <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Member's Name" />
+                                                            <input type="text" className="form-control" placeholder="Member Name" />
                                                         </div>
                                                         <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Member's Addres" />
+                                                            <input type="text" className="form-control" placeholder="Member Addres" />
                                                         </div>
                                                         <div className="col-md-7 mt-4">
                                                             <input type="text" className="form-control" placeholder="phone Number" />

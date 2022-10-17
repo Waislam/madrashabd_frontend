@@ -180,38 +180,38 @@ const ExamSeatPlan = () =>{
                                                         <table className="table table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th><input class="form-check-input" type="checkbox" /></th>
+                                                                    <th><input className="form-check-input" type="checkbox" /></th>
                                                                     <th>Registration Number</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input type="checkbox" className="form-check-input me-2" id="regCheckBox" /></td>
-                                                                    <td><label className="form-check-label" for="regCheckBox">146141646984</label></td>
+                                                                    <td><label className="form-check-label" htmlFor="regCheckBox">146141646984</label></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

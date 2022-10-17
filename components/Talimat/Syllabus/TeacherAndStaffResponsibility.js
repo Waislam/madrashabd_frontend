@@ -38,7 +38,7 @@ const TeacherAndStaffResponsibility = () =>{
                                                     </form>
                                                 </div>
                                                 <div className="responsibility-table">
-                                                    <div class="table-responsive">
+                                                    <div className="table-responsive">
                                                         <table className="table table-striped">
                                                             <thead>
                                                                 <tr>

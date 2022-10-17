@@ -126,11 +126,6 @@
 .searchButton {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
-    padding: 7px;
-    border: white;
-    width: 150px;
-    border-radius: 4px;
-    margin: 2px
 }
 
 .instituteNamePdf {
@@ -171,4 +166,27 @@
 .breadcumCustom ol li a {
     font-size: 14px;
 
+}
+
+/* modal style */
+.modalBody{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 2;
+    height: 100%;
+    width:100%;
+    background: rgba(155, 148, 148, 0.9);
+}
+
+.modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
