@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const StudentIncomeUpdate = (props) => {
-    console.log('inside update frame', props.studentIncomePreValue.amount?.amount)
+
      const preLoadedValues = {
          category: props.studentIncomePreValue.category?.id,
          sub_category: props.studentIncomePreValue.sub_category?.id,

@@ -6,7 +6,9 @@ import studentLogo from '../../public/assets/admission/students.png'
 import Link from "next/link";
 
 const StudentIncome = ({
-    otherIncomeList
+    otherIncomeList,
+    openPostRequestModal,
+    passOtherIncomeId
 
 }) => {
     
@@ -70,7 +72,7 @@ const StudentIncome = ({
                                                 </div>
                                                 <div className="col-md-4">
                                                     <button type="button" className={`${styles.defaultBtn} ms-2`}>Get Summary</button>
-                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add Income</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={openPostRequestModal}>Add Income</button>
                                                 </div>
                                             </div>
                                             <hr/>
@@ -125,7 +127,6 @@ const StudentIncome = ({
                                                                     type="text"
                                                                     name="from_date"
                                                                     placeholder="From date"
-                                                                    onChange={(e) => console.log(e.target.value)}
                                                                     onFocus={(e) => (e.target.type = "date")}
                                                                     onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
@@ -136,7 +137,6 @@ const StudentIncome = ({
                                                                     type="text"
                                                                     name="from_date"
                                                                     placeholder="To date"
-                                                                    onChange={(e) => console.log(e.target.value)}
                                                                     onFocus={(e) => (e.target.type = "date")}
                                                                     onBlur={(e) => (e.target.type = "text")}
                                                                     className="form-control"
@@ -145,7 +145,7 @@ const StudentIncome = ({
                                                         </div>
                                                     </div>
                                                     <div className="col-md-2">
-                                                        <button className={styles.searchButton}>Search</button>
+                                                        <button className={`${styles.defaultBtn} float-md-end`}>Search</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -163,6 +163,7 @@ const StudentIncome = ({
                                                             <th scope="col">Receipt page</th>
                                                             <th scope="col">Receipt Book</th>
                                                             <th scope="col">Taken By</th>
+                                                            <th scope="col">Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -181,6 +182,9 @@ const StudentIncome = ({
                                                                 <td>{otherincome.receipt_page_number}</td>
                                                                 <td>{otherincome.receipt_book_number}</td>
                                                                 <td>Dev Team</td>
+                                                                <td className="text-center">
+                                                                    <a className="btn btn-primary" onClick={()=> passOtherIncomeId(otherincome.id)}>Edit</a>
+                                                                </td>
                                                             </tr>
                                                             ))}
                                                         </tbody>
@@ -188,7 +192,7 @@ const StudentIncome = ({
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-7">
-                                                        <button className={styles.searchButton}>Download PDF</button>
+                                                        <button className={styles.defaultBtn}>Download PDF</button>
                                                     </div>
                                                     <div className="pagination-class col-md-4">
                                                         <nav aria-label="page navigation" className="">
@@ -227,89 +231,9 @@ const StudentIncome = ({
                                             </div>
                                         </div>
 
-                                        {/* Add form */}
-                                        <div className="other-income-form my-4">
-                                            <form action="" method="post">
-                                                <div className="row">
-                                                    <div className="col-md-4 mb-3">
-                                                        <div className="form-group">
-                                                            <label className="mb-2">Category</label>
-                                                            <select className="form-control form-select">
-                                                                <option>Category one</option>
-                                                                <option>Category two</option>
-                                                                <option>Category three</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <div className="form-group">
-                                                            <label className="mb-2">Sub-Category</label>
-                                                            <select className="form-control form-select">
-                                                                <option>sub-Category one</option>
-                                                                <option>sub-Category two</option>
-                                                                <option>sub-Category three</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <label className="mb-2">Donar Name</label>
-                                                        <input type="text" className="form-control" placeholder="Donar Name" />
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <div className="form-group">
-                                                            <label className="mb-2">Amount</label>
-                                                            <select className="form-control form-select" defaultValue={`DEFAULT`}>
-                                                                <option value="DEFAULT">500</option>
-                                                                <option>700</option>
-                                                                <option>200</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <div className="form-group">
-                                                            <label className="mb-2">For Month</label>
-                                                            <select className="form-control form-select" defaultValue={'DEFAULT'}>
-                                                                <option value="DEFAULT" disabled>Select Month</option>
-                                                                <option>January</option>
-                                                                <option>February</option>
-                                                                <option>March</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <label className="mb-2">For Months</label>
-                                                        <input type="text" className="form-control" placeholder="january - march" />
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <label className="mb-2">Receipt book number</label>
-                                                        <input type="text" className="form-control" placeholder="465564165r" />
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <label className="mb-2">Receipt page number</label>
-                                                        <input type="text" className="form-control" placeholder="21" />
-                                                    </div>
-                                                    <div className="col-md-4 mb-3">
-                                                        <label className="mb-2">Date</label>
-                                                            <input
-                                                                type="text"
-                                                                name="date"
-                                                                placeholder="date"
-                                                                onChange={(e) => console.log(e.target.value)}
-                                                                onFocus={(e) => (e.target.type = "date")}
-                                                                onBlur={(e) => (e.target.type = "text")}
-                                                                className="form-control"
-                                                            />
-                                                    </div>
-                                                </div>
-                                                <div className="mt-3">
-                                                    <button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>
-                                                    <button type="submit" className={`${styles.defaultBtn} ms-3`}>Save</button>
-                                                </div>
-                                            </form>
-                                        </div>
 
                                         {/*Get Summary*/}
-                                        <div className="get-summary mb-4">
+                                        {/* <div className="get-summary mb-4">
                                             <h4>Get Summary</h4>
                                             <hr/>
                                             <form action="#">
@@ -387,9 +311,9 @@ const StudentIncome = ({
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> */}
                                         {/*institute-name*/}
-                                        <div className={styles.instituteNamePdf}>
+                                        {/* <div className={styles.instituteNamePdf}>
                                             <div className={styles.instituteList}>
                                                 <h4>Get Name</h4>
                                                 <ul className="list-unstyled">
@@ -401,7 +325,7 @@ const StudentIncome = ({
                                             <div style={{float: "right"}}>
                                                 <button className={styles.institutePrintBtn}>Print as PDF</button>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
