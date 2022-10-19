@@ -37,7 +37,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                         </div>
                                                         <div className="col-md-3 my-1">
                                                             <button type="button"
-                                                                className={styles.defaultBtn}
+                                                                className={`${styles.defaultBtn} ${styles.modalBtn}`}
                                                                 onClick={handleSearchBtn}
                                                         >
                                                             Search
@@ -45,7 +45,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                         </div>
                                                         <div className='col-md-3'>
                                                             <button type='button'
-                                                                    className={`${styles.defaultBtn} float-end `}
+                                                                    className={`${styles.defaultBtn} ${styles.modalBtn} float-end `}
                                                                     onClick={showmodal}>Add
                                                             </button>
                                                         </div>
@@ -94,7 +94,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <button type="button" className={`${styles.defaultBtn}`}>Download
+                                                    <button type="button" className={`${styles.defaultBtn} ${styles.modalBtn}`}>Download
                                                     </button>
                                                 </div>
                                             </div>
