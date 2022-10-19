@@ -17,7 +17,7 @@ const BoardingPage = () => {
         setLoading(true);
         // console.log(`boarding/bazarlist/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}`);
 
-        api.get(`boarding/bazarlist/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
+        api.get(`boarding/bazarlist/100/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
         // api.get(`boarding/bazarlist/`)
             .then((response) => {
                 setBazerList(response.data);
@@ -70,15 +70,15 @@ const BoardingPage = () => {
     return (
         <>
             <Boarding
-                // bazerList={bazerList}
-                // handleBazarListPageNum={handleBazarListPageNum}
-                // setBazerListPageNum={setBazerListPageNum}
-                // setSearchBazerList={setSearchBazerList}
-                // setBazerListRecords={setBazerListRecords}
-                // nextPage={nextPage}
-                // prevPage={prevPage}
-                // handleSearchBtn={handleSearchBtn}
-                // bazarListPageNum={bazarListPageNum}
+                bazerList={bazerList}
+                handleBazarListPageNum={handleBazarListPageNum}
+                setBazerListPageNum={setBazerListPageNum}
+                setSearchBazerList={setSearchBazerList}
+                setBazerListRecords={setBazerListRecords}
+                nextPage={nextPage}
+                prevPage={prevPage}
+                handleSearchBtn={handleSearchBtn}
+                bazarListPageNum={bazarListPageNum}
             />
         </>
     )

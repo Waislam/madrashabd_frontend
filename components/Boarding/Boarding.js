@@ -38,12 +38,11 @@ const Boarding = (
                                                                 type="text"
                                                                 className="form-control"
                                                                 placeholder="Search Here"
-                                                                onChange={(event) => setSearchBazerList(event.target.value)}
                                                             />
                                                             <button
                                                                 type="submit"
                                                                 className={`${styles.boardingSearch} input-group-text`}
-                                                                onClick={handleSearchBtn}>Search
+                                                               >Search
                                                             </button>
                                                         </div>
                                                     </form>
@@ -80,72 +79,68 @@ const Boarding = (
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {/* {bazerList.results.map((bazar) => ( */}
                                                     <tr className="text-center">
                                                         <th scope="row"></th>
                                                         <td></td>
-                                                        <td className={styles.boardingText}>
-                                                            
-                                                        </td>
+                                                        <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td>0k</td>
                                                     </tr>
-                                                {/* ))} */}
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div className={styles.paginationSection}>
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
-                                                <li className="page-item">
-                                                    <a className={bazerList.previous
-                                                        ? "btn page-link"
-                                                        : "btn page-link disabled"
-                                                    }
-                                                       onClick={prevPage} href="#">
-                                                        Previous
-                                                    </a>
-                                                </li>
-                                                {bazerList.previous &&
-                                                <li className="page-item">
-                                                    <a
-                                                        className="page-link"
-                                                        href="#"
-                                                        onClick={handleBazarListPageNum}
-                                                    >
-                                                        {bazarListPageNum - 1}
-                                                    </a>
-                                                </li>
-                                                }
-                                                <li className="page-item">
-                                                    <a className="page-link" href="#"
-                                                       onClick={handleBazarListPageNum}
-                                                    >
-                                                        {bazarListPageNum}
-                                                    </a>
-                                                </li>
-                                                {bazerList.next &&
-                                                <li className="page-item">
-                                                    <a className="page-link" href="#"
-                                                       onClick={handleBazarListPageNum}
-                                                    >
-                                                        {bazarListPageNum + 1}
-                                                    </a>
-                                                </li>
-                                                }
-                                                <li className="page-item">
-                                                    <a className={bazerList.next
-                                                        ? "btn page-link"
-                                                        : "btn page-link disabled"
-                                                    }
-                                                       onClick={nextPage} href="#">
-                                                        Next
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            {/*<ul className="pagination">*/}
+                                                {/*<li className="page-item">*/}
+                                                    {/*<a className={bazerList.previous*/}
+                                                        {/*? "btn page-link"*/}
+                                                        {/*: "btn page-link disabled"*/}
+                                                    {/*}*/}
+                                                       {/*onClick={prevPage} href="#">*/}
+                                                        {/*Previous*/}
+                                                    {/*</a>*/}
+                                                {/*</li>*/}
+                                                {/*{bazerList.previous &&*/}
+                                                {/*<li className="page-item">*/}
+                                                    {/*<a*/}
+                                                        {/*className="page-link"*/}
+                                                        {/*href="#"*/}
+                                                        {/*onClick={handleBazarListPageNum}*/}
+                                                    {/*>*/}
+                                                        {/*{bazarListPageNum - 1}*/}
+                                                    {/*</a>*/}
+                                                {/*</li>*/}
+                                                {/*}*/}
+                                                {/*<li className="page-item">*/}
+                                                    {/*<a className="page-link" href="#"*/}
+                                                       {/*onClick={handleBazarListPageNum}*/}
+                                                    {/*>*/}
+                                                        {/*{bazarListPageNum}*/}
+                                                    {/*</a>*/}
+                                                {/*</li>*/}
+                                                {/*{bazerList.next &&*/}
+                                                {/*<li className="page-item">*/}
+                                                    {/*<a className="page-link" href="#"*/}
+                                                       {/*onClick={handleBazarListPageNum}*/}
+                                                    {/*>*/}
+                                                        {/*{bazarListPageNum + 1}*/}
+                                                    {/*</a>*/}
+                                                {/*</li>*/}
+                                                {/*}*/}
+                                                {/*<li className="page-item">*/}
+                                                    {/*<a className={bazerList.next*/}
+                                                        {/*? "btn page-link"*/}
+                                                        {/*: "btn page-link disabled"*/}
+                                                    {/*}*/}
+                                                       {/*onClick={nextPage} href="#">*/}
+                                                        {/*Next*/}
+                                                    {/*</a>*/}
+                                                {/*</li>*/}
+                                            {/*</ul>*/}
                                         </nav>
                                     </div>
                                 </div>
