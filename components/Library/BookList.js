@@ -121,6 +121,7 @@ const BookList = ({
                                                         <th scope="col">Origin Writer</th>
                                                         <th scope="col">Language</th>
                                                         <th scope="col">Class</th>
+                                                        <th scope="col">Status</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                     </thead>
@@ -135,6 +136,13 @@ const BookList = ({
                                                             <td>{book?.original_writer}</td>
                                                             <td>{book?.language}</td>
                                                             <td>{book?.book_for_class}</td>
+                                                            <td>
+                                                                {
+                                                                    book.is_available ? 'Yes'
+                                                                        :
+                                                                        "No"
+                                                                }
+                                                            </td>
                                                             <td className="text-center">
                                                                 <a className="btn btn-primary"
                                                                    onClick={() => handleBookUpdate(book.id)}>

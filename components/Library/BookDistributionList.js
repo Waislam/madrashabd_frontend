@@ -3,7 +3,7 @@ import Sidemenu from './LibrarySideMenu'
 import Modal from './BookDistributionListModal'
 import Link from 'next/link'
 
-const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution, handleSearchBtn}) => {
+const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution, handleSearchBtn, handleDelete}) => {
 
     return (
         <>
@@ -68,7 +68,6 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-
                                                         {
                                                             bookDistribution && bookDistribution.results?.map((book) => (
                                                                 <tr key={book.id}>
@@ -84,9 +83,10 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                                     <td>{book.book_number?.name}</td>
                                                                     <td>{book.taken_date}</td>
                                                                     <td>
-                                                                        <button className="btn btn-primary">Edit
-                                                                        </button>
+                                                                        <button className="btn btn-primary">Edit</button>
+                                                                        <button className="btn btn-danger" onClick={() =>handleDelete(book.id, book.book_number.id, book.book_number.name)}>Delete</button>
                                                                     </td>
+
                                                                 </tr>
                                                             ))
                                                         }
@@ -94,7 +94,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <button type="button" className={`${styles.defaultBtn}`}>Download
+                                                    <button type="button" className={`${styles.defaultBtn} ${styles.modalBtn}`}>Download
                                                     </button>
                                                 </div>
                                             </div>
