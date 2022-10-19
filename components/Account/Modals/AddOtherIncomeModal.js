@@ -96,6 +96,7 @@ const modalpage = (props) => {
                                     name="donar_name"
                                     {...register("donar_name", { required: "this field is required" })}
                                 />
+                                <p className="text-danger">{errors.donar_name?.message}</p>
                             </div>
                             <div className="col-md-4 mb-3">
                                 <div className="form-group">
@@ -106,6 +107,7 @@ const modalpage = (props) => {
                                         name="amount"
                                         {...register("amount", { required: "this field is required" })}
                                     />
+                                    <p className="text-danger">{errors.amount?.message}</p>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-3">
@@ -167,8 +169,9 @@ const modalpage = (props) => {
                                     onFocus={(e) => (e.target.type = "date")}
                                     onBlur={(e) => (e.target.type = "text")}
                                     className="form-control"
-                                    {...register("paid_date")}
+                                    {...register("paid_date", {required:"this field is required"})}
                                 />
+                                <p className="text-danger">{errors.paid_date?.message}</p>
                             </div>
                         </div>
                         <div className="mt-3">
