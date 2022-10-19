@@ -190,9 +190,33 @@
         margin: 2px
     }
 
+}
+
+
+@media (max-width: 1400px) and (max-width: 1600px) {
+    .defaultBtn {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        padding: 7px;
+        border: white;
+        width: 100%;
+        border-radius: 4px;
+        margin: 2px
+    }
+    .downloadBtn {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        padding: 7px;
+        border: white;
+        width: 150px;
+        border-radius: 4px;
+        margin: 2px
+    }
+
 
 
 }
+
 
 
 
