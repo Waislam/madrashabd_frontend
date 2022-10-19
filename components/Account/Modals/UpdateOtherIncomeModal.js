@@ -58,10 +58,10 @@ const modalpage = (props) => {
                                         {...register("category", { required: "this field is required" })}
                                         onChange={(e) => props.setTransactionCategory(e.target.value)}
                                     >
-                                        {/* <option value={props.singleobjectdata.id}>{props.singleobjectdata.name}</option> */}
-                                        {props.incomeCategoryList && props.incomeCategoryList?.map((category) => (
+                                        <option value={props.singleobjectdata.category?.id}>{props.singleobjectdata.category?.name}</option>
+                                        {props.incomecategorylist && props.incomecategorylist?.map((category) => (
                                             category?.name !== "Student" && (
-                                                <option value={category?.id} key={category?.name}>{category?.name}</option>
+                                            <option value={category?.id} key={category?.name}>{category?.name}</option>
                                             )
                                         ))}
                                     </select>
@@ -75,7 +75,8 @@ const modalpage = (props) => {
                                         name="sub_category"
                                         {...register("sub_category", { required: "this field is required" })}
                                     >
-                                        {props.transactionsubcategory && props.transactionSubCategory?.map((subCategory) => (
+                                        <option value={props.singleobjectdata.sub_category?.id}>{props.singleobjectdata.sub_category?.name}</option>
+                                        {props.transactionSubCategory && props.transactionSubCategory.map((subCategory) => (
                                             <option value={subCategory?.id} key={subCategory?.name}>{subCategory?.name}</option>
                                         ))}
                                     </select>

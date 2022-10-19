@@ -37,7 +37,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                         </div>
                                                         <div className="col-md-3 my-1">
                                                             <button type="button"
-                                                                className={styles.defaultBtn}
+                                                                className={`${styles.defaultBtn} ${styles.modalBtn}`}
                                                                 onClick={handleSearchBtn}
                                                         >
                                                             Search
@@ -45,7 +45,7 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                         </div>
                                                         <div className='col-md-3'>
                                                             <button type='button'
-                                                                    className={`${styles.defaultBtn} float-end `}
+                                                                    className={`${styles.defaultBtn} ${styles.modalBtn} float-end `}
                                                                     onClick={showmodal}>Add
                                                             </button>
                                                         </div>
@@ -82,9 +82,9 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                                     <td>{book.book_number?.number}</td>
                                                                     <td>{book.book_number?.name}</td>
                                                                     <td>{book.taken_date}</td>
-                                                                    <td>
+                                                                    <td className="text-center">
                                                                         <button className="btn btn-primary">Edit</button>
-                                                                        <button className="btn btn-danger" onClick={() =>handleDelete(book.id, book.book_number.id, book.book_number.name)}>Delete</button>
+                                                                        <button className="btn btn-danger ms-3" onClick={() =>handleDelete(book.id, book.book_number.id, book.book_number.name)}>Delete</button>
                                                                     </td>
 
                                                                 </tr>

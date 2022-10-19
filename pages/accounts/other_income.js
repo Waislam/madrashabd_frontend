@@ -93,9 +93,9 @@ const OtherIncomePage = () => {
                 <UpdateOtherIncomeModal
                     show={putRequestModal}
                     onHide={() => setPutRequestModal(false)}
-                    incomeCategoryList={transactioncategoryList}
+                    incomecategorylist={transactioncategoryList}
                     setTransactionCategory={setTransactionCaterory}
-                    transactionsubcategory={transactionSubCaterory}
+                    transactionSubCategory={transactionSubCaterory}
                     singleobjectdata={singleObjectData}
                 >
                 </UpdateOtherIncomeModal>
