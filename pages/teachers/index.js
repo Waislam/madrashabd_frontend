@@ -55,7 +55,7 @@ const Index = () => {
 
     if (teachers) {
         return (
-            <>
+            <div>
                 <TeacherLists
                     teachers={teachers}
                     setSearchTeacher={setSearchTeacher}
@@ -66,7 +66,7 @@ const Index = () => {
                     prevPage={prevPage}
 
                 />
-            </>
+            </div>
         )
     }
     else {
