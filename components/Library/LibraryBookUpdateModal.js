@@ -19,7 +19,7 @@ const LibraryBookUpdateModal = (props) => {
         original_writer: props.library.original_writer,
         language: props.library.language
 
-    }
+    };
 
     const {handleSubmit, formState: { errors }, register,} = useForm({
                                                                 mode: "onChange",
@@ -28,11 +28,11 @@ const LibraryBookUpdateModal = (props) => {
 
 
     const onSubmit = (values) => {
-        const current_id = props.library.id
+        const current_id = props.library.id;
         axios.put(`${BASE_URL}/library/detail/${current_id}/`, values)
             .then((response)=>{
                 console.log('this is database updatd response: ', response.data)
-            })
+            });
         
         props.onHide()
     };
