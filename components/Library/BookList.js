@@ -136,11 +136,11 @@ const BookList = ({
                                                             <td>{book?.original_writer}</td>
                                                             <td>{book?.language}</td>
                                                             <td>{book?.book_for_class}</td>
-                                                            <td>
+                                                            <td className="text-center pt-3">
                                                                 {
-                                                                    book.is_available ? 'Yes'
+                                                                    book.is_available ?<span className="text-white bg-success py-2 px-2">&nbsp;Yes&nbsp;</span>
                                                                         :
-                                                                        "No"
+                                                                        <span className="text-white bg-danger py-2 px-2">&nbsp; No &nbsp; </span>
                                                                 }
                                                             </td>
                                                             <td className="text-center">
