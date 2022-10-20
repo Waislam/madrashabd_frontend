@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 const OldAdmission = ({studentData}) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-    const {departmentList, classes, groups, sessionList} = studentData;
+    const {departmentList, classes, groups, sessionList, shifts} = studentData;
 
     // console.log("departmentList",departmentList);
     // console.log("clasess", classes);
@@ -71,10 +71,10 @@ const OldAdmission = ({studentData}) => {
                                                         <option value="">Select Class</option>
                                                         <option value="1">1</option>
                                                         {
-                                                            classes.map(className => <option
-                                                                key={className.id}
-                                                                value={className.name}
-                                                                >{className.name}
+                                                            classes.map(NameOfClass => <option
+                                                                key={NameOfClass.id}
+                                                                value={NameOfClass.name}
+                                                                >{NameOfClass.name}
                                                                 </option>)
                                                         }
                                                     </select>
@@ -156,9 +156,13 @@ const OldAdmission = ({studentData}) => {
                                                         }
                                                     >
                                                         <option value="">Select Shift</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        {
+                                                            shifts.map(shifts => <option
+                                                                key={shifts.id}
+                                                                value={shifts.name}
+                                                                >{shifts.name}
+                                                                </option>)
+                                                        }
                                                     </select>
                                                     {errors.shift && (
                                                         <p className="text-danger">Shift is required</p>

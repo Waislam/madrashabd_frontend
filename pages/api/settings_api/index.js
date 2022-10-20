@@ -31,3 +31,11 @@ export const getSessionList = async (madrasha_slug) => {
 
     return response.data;
 }
+
+// Get Shift from api
+export const getShiftList = async (madrasha_slug) => {
+    const url = `http://178.128.94.215:1337/settings/${madrasha_slug}/shift/`;
+    const response = await api.get(url);
+
+    return response.data;
+}
