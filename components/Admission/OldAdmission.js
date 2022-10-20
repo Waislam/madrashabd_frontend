@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './OldAdmission.module.css'
 import AdmissionSidebar from './AdmissionSidebar'
 import { useForm } from "react-hook-form";
 
 
-const OldAdmission = () => {
+const OldAdmission = ({departmentList}) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
+    // console.log("departmentList",departmentList);
+    
     const onSubmit = data => console.log(data);
 
     return (
@@ -30,7 +32,7 @@ const OldAdmission = () => {
                                             <h5>Admission Information</h5>
                                             <div className="row mb-3">
                                                 <div className="col-md-4">
-                                                    <label for="department" class="form-label">Department</label>
+                                                    <label htmlFor="department" className="form-label">Department</label>
                                                     <select
                                                         name="department"
                                                         className="form-select"
@@ -40,16 +42,19 @@ const OldAdmission = () => {
                                                         }
                                                     >
                                                         <option value="">Select Department</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        {
+                                                            departmentList.map(department => <option
+                                                                value={department.name}
+                                                                >{department.name}
+                                                                </option>)
+                                                        }
                                                     </select>
                                                     {errors.department && (
                                                         <p className="text-danger">Department is required</p>
                                                     )}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label for="class" class="form-label">Class</label>
+                                                    <label htmlFor="class" className="form-label">Class</label>
                                                     <select
                                                         name="class"
                                                         className="form-select"
@@ -68,7 +73,7 @@ const OldAdmission = () => {
                                                     )}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label for="group" class="form-label">Group</label>
+                                                    <label htmlFor="group" className="form-label">Group</label>
                                                     <select
                                                         name="group"
                                                         className="form-select"
@@ -89,7 +94,7 @@ const OldAdmission = () => {
                                             </div>
                                             <div className="row mb-3">
                                                 <div className="col-md-4">
-                                                    <label for="session" class="form-label">Session</label>
+                                                    <label htmlFor="session" className="form-label">Session</label>
                                                     <select
                                                         name="session"
                                                         className="form-select"
@@ -108,7 +113,7 @@ const OldAdmission = () => {
                                                     )}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label for="classRoll" class="form-label">Class Roll</label>
+                                                    <label htmlFor="classRoll" className="form-label">Class Roll</label>
                                                     <input
                                                         type="text"
                                                         name="classRoll"
@@ -123,7 +128,7 @@ const OldAdmission = () => {
                                                     )}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label for="shift" class="form-label">Shift</label>
+                                                    <label htmlFor="shift" className="form-label">Shift</label>
                                                     <select
                                                         name="shift"
                                                         className="form-select"
@@ -150,7 +155,7 @@ const OldAdmission = () => {
                                                 <h5>Academic Fees</h5>
                                                 <div className="row mb-3">
                                                     <div className="col-md-4">
-                                                    <label for="food-boarding" class="form-label">Food bill / boarding</label>
+                                                    <label htmlFor="food-boarding" className="form-label">Food bill / boarding</label>
                                                     <input
                                                         type="text"
                                                         name="foodOrBoarding"
@@ -165,7 +170,7 @@ const OldAdmission = () => {
                                                     )}
                                                     </div>
                                                     <div className="col-md-4">
-                                                        <label for="tuition" class="form-label">Monthly tuition fees</label>
+                                                        <label htmlFor="tuition" className="form-label">Monthly tuition fees</label>
                                                         <input
                                                             type="text"
                                                             name="tuition"
@@ -180,7 +185,7 @@ const OldAdmission = () => {
                                                         )}
                                                     </div>
                                                     <div className="col-md-4">
-                                                        <label for="tuition" class="form-label">Scholarship</label>
+                                                        <label htmlFor="tuition" className="form-label">Scholarship</label>
                                                         <input
                                                             type="text"
                                                             name="scholarship"
@@ -198,7 +203,7 @@ const OldAdmission = () => {
                                                 <h5>Murubbi</h5>
                                                 <div className="row mb-3">
                                                     <div className="col-md-6">
-                                                        <label for="talimat-murubbi" class="form-label">Talimat Murubbi</label>
+                                                        <label htmlFor="talimat-murubbi" className="form-label">Talimat Murubbi</label>
                                                         <input
                                                             type="text"
                                                             name="talimatMurubbi"
@@ -213,7 +218,7 @@ const OldAdmission = () => {
                                                         )}
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <label for="eslahi-murubbi" class="form-label">Eslahi Murubbi</label>
+                                                        <label htmlFor="eslahi-murubbi" className="form-label">Eslahi Murubbi</label>
                                                         <input
                                                             type="text"
                                                             name="eslahiMurubbi"
@@ -245,7 +250,6 @@ const OldAdmission = () => {
             </div>
         </section>
     )
-
 };
 
 
