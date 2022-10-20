@@ -121,7 +121,7 @@ const BookList = ({
                                                         <th scope="col">Origin Writer</th>
                                                         <th scope="col">Language</th>
                                                         <th scope="col">Class</th>
-                                                        <th scope="col">Status</th>
+                                                        <th scope="col" className="text-center">Status</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                     </thead>
@@ -136,11 +136,18 @@ const BookList = ({
                                                             <td>{book?.original_writer}</td>
                                                             <td>{book?.language}</td>
                                                             <td>{book?.book_for_class}</td>
-                                                            <td className="text-center pt-3">
+                                                            <td className="text-center">
                                                                 {
-                                                                    book.is_available ?<span className="text-white bg-success py-2 px-2">&nbsp;Yes&nbsp;</span>
+                                                                    book.is_available ?
+                                                                    <div>
+                                                                        <button className="btn btn-success pe-none">Yes</button>
+                                                                        <button className="btn btn-success ms-1">Assign</button>
+                                                                    </div>
                                                                         :
-                                                                        <span className="text-white bg-danger py-2 px-2">&nbsp; No &nbsp; </span>
+                                                                    <div>
+                                                                        <button className="btn btn-danger pe-none">&nbsp;No&nbsp;</button>
+                                                                        <button className="btn btn-secondary ms-1 pe-none">Booked</button>
+                                                                    </div>
                                                                 }
                                                             </td>
                                                             <td className="text-center">
