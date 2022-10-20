@@ -4,11 +4,15 @@ import AdmissionSidebar from './AdmissionSidebar'
 import { useForm } from "react-hook-form";
 
 
-const OldAdmission = ({departmentList}) => {
+const OldAdmission = ({studentData}) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
+    const {departmentList, classes, groups, sessionList} = studentData;
+
     // console.log("departmentList",departmentList);
-    
+    // console.log("clasess", classes);
+    // console.log("groups", groups);
+
     const onSubmit = data => console.log(data);
 
     return (
@@ -44,6 +48,7 @@ const OldAdmission = ({departmentList}) => {
                                                         <option value="">Select Department</option>
                                                         {
                                                             departmentList.map(department => <option
+                                                                key={department.id}
                                                                 value={department.name}
                                                                 >{department.name}
                                                                 </option>)
@@ -65,8 +70,13 @@ const OldAdmission = ({departmentList}) => {
                                                     >
                                                         <option value="">Select Class</option>
                                                         <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        {
+                                                            classes.map(className => <option
+                                                                key={className.id}
+                                                                value={className.name}
+                                                                >{className.name}
+                                                                </option>)
+                                                        }
                                                     </select>
                                                     {errors.class && (
                                                         <p className="text-danger">Class is required</p>
@@ -83,9 +93,13 @@ const OldAdmission = ({departmentList}) => {
                                                         }
                                                     >
                                                         <option value="">Select Group</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        {
+                                                            groups.map(group => <option
+                                                                key={group.id}
+                                                                value={group.name}
+                                                                >{group.name}
+                                                                </option>)
+                                                        }
                                                     </select>
                                                     {errors.group && (
                                                         <p className="text-danger">Group is required</p>
@@ -104,9 +118,13 @@ const OldAdmission = ({departmentList}) => {
                                                         }
                                                     >
                                                         <option value="">Select Session</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        {
+                                                            sessionList.map(session => <option
+                                                                key={session.id}
+                                                                value={session.name}
+                                                                >{session.name}
+                                                                </option>)
+                                                        }
                                                     </select>
                                                     {errors.session && (
                                                         <p className="text-danger">Session is required</p>

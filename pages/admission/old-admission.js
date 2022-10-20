@@ -1,13 +1,15 @@
 import Layout from '../../layouts/Layout';
 import OldAdmission from "../../components/Admission/OldAdmission";
 import { getSession } from 'next-auth/react';
-import { getDepartmentList } from '../api/settings_api';
+import { getClassList, getDepartmentList, getGroupList, getSessionList } from '../api/settings_api';
 
-const OldAdmissionPage = ({departmentList}) => {
+const OldAdmissionPage = ({departmentList, classes, groups, sessionList}) => {
+    const studentData = {departmentList, classes, groups, sessionList};
+    
     return (
         <div>
             <OldAdmission
-                departmentList={departmentList}
+                studentData={studentData}
             />
         </div>
     )
@@ -25,12 +27,20 @@ OldAdmissionPage.getLayout = (page) => {
 
 export async function getServerSideProps({req}) {
     const session = await getSession({req});
+    const madrasha_slug =session?.user.madrasha_slug;
 
-    // Fetching data for department list
-    const departmentList = await getDepartmentList(session?.user.madrasha_slug)
-    .then(data => data);
+    // Fetching student dat from api
+    const departmentList = await getDepartmentList(madrasha_slug).then(data => data);
+    const classes = await getClassList(madrasha_slug).then(data => data);
+    const groups = await getGroupList(madrasha_slug).then(data => data);
+    const sessionList = await getSessionList(madrasha_slug).then(data => data);
 
     return {
-      props: {departmentList}
+        props: {
+            departmentList,
+            classes,
+            groups,
+            sessionList
+        }
     }
 }
