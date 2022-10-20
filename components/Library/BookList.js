@@ -110,9 +110,9 @@ const BookList = ({
                                         <hr/>
                                         <div className="book-list-table">
                                             <div className="table-responsive">
-                                                <table className="table table-striped table-bordered">
+                                                <table className="table table-striped">
                                                     <thead>
-                                                    <tr className="text-center">
+                                                    <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Book Number</th>
                                                         <th scope="col">Book Name</th>
@@ -121,6 +121,7 @@ const BookList = ({
                                                         <th scope="col">Origin Writer</th>
                                                         <th scope="col">Language</th>
                                                         <th scope="col">Class</th>
+                                                        <th scope="col" className="text-center">Status</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                     </thead>
@@ -135,6 +136,20 @@ const BookList = ({
                                                             <td>{book?.original_writer}</td>
                                                             <td>{book?.language}</td>
                                                             <td>{book?.book_for_class}</td>
+                                                            <td className="text-center">
+                                                                {
+                                                                    book.is_available ?
+                                                                    <div>
+                                                                        <button className="btn btn-success pe-none">Yes</button>
+                                                                        <button className="btn btn-success ms-1">Assign</button>
+                                                                    </div>
+                                                                        :
+                                                                    <div>
+                                                                        <button className="btn btn-danger pe-none">&nbsp;No&nbsp;</button>
+                                                                        <button className="btn btn-secondary ms-1 pe-none">Booked</button>
+                                                                    </div>
+                                                                }
+                                                            </td>
                                                             <td className="text-center">
                                                                 <a className="btn btn-primary"
                                                                    onClick={() => handleBookUpdate(book.id)}>
