@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React,{useEffect, useState} from "react";
 import styles from './OldAdmission.module.css'
 import AdmissionSidebar from './AdmissionSidebar'
 import { useForm } from "react-hook-form";
+import { getStudentDetailById } from '../../pages/api/StudentAPI/students_api';
 
 
 const OldAdmission = ({studentData}) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+    const [studentDetails, setStudentDetails] = useState({});
     const {departmentList, classes, groups, sessionList, shifts} = studentData;
 
-    // console.log("departmentList",departmentList);
-    // console.log("clasess", classes);
-    // console.log("groups", groups);
+    // Fetch student details
+    useEffect(() => {
+        getStudentDetailById('S102')
+            .then(data => setStudentDetails(data.data));
+    },[setStudentDetails]);
 
+    const {student_roll_id, talimi_murobbi_name} = studentDetails;
+
+
+
+    console.log("@@@@", student_roll_id);
+
+    // Function for update student details
     const onSubmit = data => console.log(data);
 
     return (
