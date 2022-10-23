@@ -19,15 +19,15 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
     } = studentDetails;
 
     const formDefaultValues = {
-        admitted_department: admitted_department.name,
-        admitted_class: admitted_class.name,
-        admitted_group: admitted_group.name,
-        admitted_session: admitted_session.name,
+        admitted_department: admitted_department?.name,
+        admitted_class: admitted_class?.name,
+        admitted_group: admitted_group?.name,
+        admitted_session: admitted_session?.name,
         student_roll_id,
-        admitted_shift: admitted_shift.name,
-        food_bill_percent: academic_fees.food_bill_percent,
-        monthly_tution_percent: academic_fees.monthly_tution_percent,
-        scholarship_amount: academic_fees.scholarship_amount,
+        admitted_shift: admitted_shift?.name,
+        food_bill_percent: academic_fees?.food_bill_percent,
+        monthly_tution_percent: academic_fees?.monthly_tution_percent,
+        scholarship_amount: academic_fees?.scholarship_amount,
         eslahi_murobbi_name,
         talimi_murobbi_name,
     }
@@ -243,7 +243,6 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                         placeholder="Talimat Murubbi"
                                         id="talimi_murobbi_name"
                                         className="form-control"
-                                        defaultValue=""
                                         {...register("talimi_murobbi_name", {required: true})}
                                     />
                                     {errors.talimi_murobbi_name && (
@@ -258,7 +257,6 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                         placeholder="Eslahi Murubbi"
                                         id="eslahi_murobbi_name"
                                         className="form-control"
-                                        defaultValue=""
                                         {...register("eslahi_murobbi_name", {required: true})}
                                     />
                                     {errors.eslahi_murobbi_name && (
