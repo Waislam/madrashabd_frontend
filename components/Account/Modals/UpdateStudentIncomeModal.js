@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const StudentIncomeUpdate = (props) => {
-    console.log('inside update frame', props.studentIncomePreValue.amount?.amount)
+
     const preLoadedValues = {
         category: props.studentIncomePreValue.category?.id,
         sub_category: props.studentIncomePreValue.sub_category?.id,
@@ -17,17 +17,15 @@ const StudentIncomeUpdate = (props) => {
         for_month: props.studentIncomePreValue.for_month,
         for_months: props.studentIncomePreValue.for_months,
     }
-    console.log("preloaded vlaue consoled: ", preLoadedValues)
 
-    const {
-        handleSubmit, formState: {errors}, register,
-    } = useForm({
+    const { handleSubmit, formState: { errors }, register, } = useForm({
         mode: "onChange",
         defaultValues: preLoadedValues
     });
 
 
     const onSubmit = (values) => {
+        console.log("updated value: ", values)
         const current_id = props.studentIncomePreValue.id
         axios.put(`${BASE_URL}/transactions/student-income/${current_id}/`, values)
             .then((response) => {
@@ -59,10 +57,10 @@ const StudentIncomeUpdate = (props) => {
                                     className="form-control form-select"
                                     defaultValue={props.studentIncomePreValue.category}
                                     name="category"
-                                    {...register("category", {required: "this field is required"})}
+                                    {...register("category", { required: "this field is required" })}
                                     onChange={(event) => props.setTransactionCaterory(event.target.value)}
                                 >
-                                    // <option>{props.studentIncomePreValue.category?.name}</option>
+                                  <option value={props.studentIncomePreValue.category?.id}>{props.studentIncomePreValue.category?.name}</option>
                                     {props.incomeCategoryList && props.incomeCategoryList.map((category) => (
                                         <option value={category.id} key={category.name}>{category.name}</option>
                                     ))}
@@ -76,9 +74,10 @@ const StudentIncomeUpdate = (props) => {
 
                                 <select
                                     className="form-control form-select"
-                                    name="sub_category" {...register("sub_category", {required: "this field is required"})}
+                                    name="sub_category"
+                                    {...register("sub_category", { required: "this field is required" })}
                                 >
-                                    <option>Select sub category</option>
+                                    <option value={props.studentIncomePreValue.sub_category?.id}>{props.studentIncomePreValue.sub_category?.name}</option>
                                     {props.transactionSubCaterory && props.transactionSubCaterory.map((subCategory) => (
                                         <option value={subCategory.id}
                                                 key={subCategory?.name}>{subCategory?.name}</option>
@@ -104,7 +103,7 @@ const StudentIncomeUpdate = (props) => {
                                         name="amount"
                                         {...register("amount", {required: "this field is required"})}
                                 >
-                                    <option>{props.studentIncomePreValue.amount?.amount}</option>
+                                    <option value={props.studentIncomePreValue.amount?.id}>{props.studentIncomePreValue.amount?.amount}</option>
                                     {props.studentFees && props.studentFees.map((fees) => (
                                         <option value={fees.id} key={fees?.amount}>{fees.amount}</option>
                                     ))}

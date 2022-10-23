@@ -4,12 +4,14 @@ import AccountSideBar from './AccountSidebar'
 import Link from "next/link";
 
 const Expense = ({
-                     expenseList,
-                     approved
-                 }) => {
+    expenseList,
+    approved,
+    handleAddExpenseModal,
+    handleIndividualObj
+}) => {
 
-    if (!expenseList) {
-        return (
+    if(!expenseList){
+        return(
             <>
                 <h1>Loading data.. please refresh your page</h1>
             </>
@@ -34,12 +36,8 @@ const Expense = ({
                                                     <h4>All Expense</h4>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get
-                                                        Summary
-                                                    </button>
-                                                    <button type="button"
-                                                            className={`${styles.defaultBtn} float-md-end`}>Add Income
-                                                    </button>
+                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get Summary</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={handleAddExpenseModal}>Add Expense</button>
                                                 </div>
                                             </div>
                                             <hr/>
@@ -125,7 +123,7 @@ const Expense = ({
                                                             </div>
                                                         </div>
                                                         <div className="col-md-2">
-                                                            <button className={styles.searchButton}>Search</button>
+                                                            <button className={`${styles.defaultBtn} float-md-end`}>Search</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -144,6 +142,7 @@ const Expense = ({
                                                             <th scope="col">Receipt Number</th>
                                                             <th scope="col">Expense by</th>
                                                             <th scope="col">Approved By</th>
+                                                            <th scope="col">Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -162,6 +161,9 @@ const Expense = ({
                                                                 <td>{expense.receipt_number}</td>
                                                                 <td>{expense.expense_by}</td>
                                                                 <td>{approved}</td>
+                                                                <td className="text-center">
+                                                                    <a className="btn btn-primary" onClick={() => handleIndividualObj(expense.id)}>Edit</a>
+                                                                </td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
@@ -169,7 +171,7 @@ const Expense = ({
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-7">
-                                                        <button className={styles.searchButton}>Download PDF</button>
+                                                        <button className={styles.defaultBtn}>Download PDF</button>
                                                     </div>
                                                     <div className="pagination-class col-md-4">
                                                         <nav aria-label="page navigation" className="">
@@ -211,7 +213,7 @@ const Expense = ({
                                                 </div>
                                             </div>
                                             {/* Add section */}
-                                            <div className="expense-form my-4">
+                                            {/* <div className="expense-form my-4">
                                                 <form action="" method="post">
                                                     <div className="row">
                                                         <div className="col-md-4 mb-3">
@@ -294,10 +296,10 @@ const Expense = ({
                                                         </button>
                                                     </div>
                                                 </form>
-                                            </div>
+                                            </div> */}
 
                                             {/*Get Summary*/}
-                                            <div className="get-summary mb-4">
+                                            {/* <div className="get-summary mb-4">
                                                 <h4>Get Summary</h4>
                                                 <hr/>
                                                 <form action="#">
@@ -385,9 +387,9 @@ const Expense = ({
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
+                                            </div> */}
                                             {/*institute-name*/}
-                                            <div className={styles.instituteNamePdf}>
+                                            {/* <div className={styles.instituteNamePdf}>
                                                 <div className={styles.instituteList}>
                                                     <h4>Get Name</h4>
                                                     <ul className="list-unstyled">
@@ -399,7 +401,7 @@ const Expense = ({
                                                 <div style={{float: "right"}}>
                                                     <button className={styles.institutePrintBtn}>Print as PDF</button>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
