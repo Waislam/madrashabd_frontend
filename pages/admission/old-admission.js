@@ -4,12 +4,12 @@ import { getSession } from 'next-auth/react';
 import { getClassList, getDepartmentList, getGroupList, getSessionList, getShiftList } from '../api/settings_api';
 
 const OldAdmissionPage = ({departmentList, classes, groups, sessionList, shifts}) => {
-    const studentData = {departmentList, classes, groups, sessionList, shifts};
+    const madrashaData = {departmentList, classes, groups, sessionList, shifts};
     
     return (
         <div>
             <OldAdmission
-                studentData={studentData}
+                madrashaData={madrashaData}
             />
         </div>
     )
