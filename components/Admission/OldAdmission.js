@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState } from "react";
 import styles from './OldAdmission.module.css'
 import AdmissionSidebar from './AdmissionSidebar'
 import { useForm } from "react-hook-form";
