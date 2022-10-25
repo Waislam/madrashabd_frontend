@@ -10,54 +10,75 @@ import Layout from '../../layouts/Layout';
 // import modal file
 import BookListModal from '../../components/Library/BookListModal'
 import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateModal";
-import { set } from 'react-hook-form';
-
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
 
 
 const Library = () => {
-    const router = useRouter()
+    const router = useRouter();
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [loader, setLoader] = useState(true);
     const [library, setLibrary] = useState({});
     const [libraryBookUpdateModalShow, setLibraryBookUpdateModalShow] = useState(false);
     const [books, setBooks] = useState(null);
 
+    const [searchName, setSearchName] = useState('');
+    const [searchNumber, setSearchNumber] = useState('');
+    const [libraryListPageNum, setLibraryListPageNum] = useState(1);
+
 
     const getBooks = async () => {
-        // setLoading(true);
-        const list = await api.get(`library/100/`)
-        const data = list.data
+        const list = await api.get(`library/100/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
+        const data = list.data;
         setBooks(data)
     };
     
 
     useEffect(() => {
         getBooks()
-    }, []);
+    }, [libraryListPageNum]);
 
 
+    // SearchName
+    const handleSearchName = () => {
+        getBooks()
+    };
+
+    const handleSearchNumber = () => {
+        getBooks()
+    };
+
+
+    // Pagination
+    const handleLibraryListPageNum = () => {
+        setLibraryListPageNum(libraryListPageNum + 1)
+    };
+
+    const nextPage = () => {
+        setLibraryListPageNum(libraryListPageNum + 1)
+    };
+
+    const prevPage = () => {
+        setLibraryListPageNum(libraryListPageNum - 1)
+    };
+    
 
     const handleModalShow = () => {
         setShowModal(true)
-    }
+    };
 
     const handleModalClose=(event)=>{
-        // setPostData(updateData)
         setShowModal(false)
-    }
+    };
 
     const handleBookUpdate = (book_id) => {
-        setLoader(true)
+        setLoader(true);
         axios.get(`${BASE_URL}/library/detail/${book_id}/`)
             .then((response) => {
-                const data = response.data.data
-                setLibrary(data)
+                const data = response.data.data;
+                setLibrary(data);
                 setLoader(false)
-            })
+            });
         setLibraryBookUpdateModalShow(true)
     };
 
@@ -69,6 +90,13 @@ const Library = () => {
                 libraryBookUpdateModalShow={libraryBookUpdateModalShow}
                 handleBookUpdate={handleBookUpdate}
                 addBookModalShow={handleModalShow}
+
+                libraryListPageNum={libraryListPageNum}
+                handleLibraryListPageNum={handleLibraryListPageNum}
+                nextPage={nextPage}
+                prevPage={prevPage}
+
+
             />
 
             <BookListModal
@@ -77,7 +105,6 @@ const Library = () => {
             >
 
             </BookListModal>
-
 
             {
                 loader ?
@@ -90,7 +117,6 @@ const Library = () => {
                     />
             }
 
-             {/* For test  data */}
         </>
     )
 };

@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import Header from '../layouts/Header/Header';
 
 export default function Layout({children}) {
@@ -5,6 +6,7 @@ export default function Layout({children}) {
         <>
             <Header/>
             {children}
+            <ToastContainer/>
         </>
     )
 }

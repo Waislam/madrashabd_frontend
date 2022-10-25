@@ -1,9 +1,10 @@
+import axios from "axios";
 import React, {useEffect, useState} from "react";
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-import api from '../api/api'
+import api, { BASE_URL } from '../api/api'
 
 const Index = () => {
     const [isLoading, setLoading] = useState(null);
@@ -11,8 +12,9 @@ const Index = () => {
     const [searchTeacher, setSearchTeacher] = useState('');
     const [teacherListPageNum, setTeacherListPageNum] = useState(1);
 
+    //get teacher list
     const getTeacher= async()=>{
-        const list = await api.get(`teachers/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
+        const list = await api.get(`teachers/100/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
         const data = list.data;
         setTeachers(data);
         setLoading(false);
@@ -56,6 +58,7 @@ const Index = () => {
     if (teachers) {
         return (
             <>
+            <div>
                 <TeacherLists
                     teachers={teachers}
                     setSearchTeacher={setSearchTeacher}
@@ -66,6 +69,7 @@ const Index = () => {
                     prevPage={prevPage}
 
                 />
+            </div>
             </>
         )
     }
