@@ -1,35 +1,31 @@
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { updateStudentDetail } from "../../pages/api/StudentAPI/students_api";
 import styles from './OldAdmission.module.css'
 
 const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
+    const {data: session, status} = useSession();
+    // const [success]
+
+
+    // console.table({session, studentDetails});
     // Destructuring madrashaData
     const {departmentList, classes, groups, sessionList, shifts} = madrashaData;
-    
-    // Destructuring studentDetails
-    const {
-        admitted_department,
-        admitted_class,
-        admitted_group,
-        admitted_session,
-        student_roll_id,
-        admitted_shift,
-        academic_fees,
-        eslahi_murobbi_name,
-        talimi_murobbi_name,
-    } = studentDetails;
 
+    // Set form default value
     const formDefaultValues = {
-        admitted_department: admitted_department?.name,
-        admitted_class: admitted_class?.name,
-        admitted_group: admitted_group?.name,
-        admitted_session: admitted_session?.name,
-        student_roll_id,
-        admitted_shift: admitted_shift?.name,
-        food_bill_percent: academic_fees?.food_bill_percent,
-        monthly_tution_percent: academic_fees?.monthly_tution_percent,
-        scholarship_amount: academic_fees?.scholarship_amount,
-        eslahi_murobbi_name,
-        talimi_murobbi_name,
+        admitted_department: studentDetails.admitted_department?.id,
+        admitted_class: studentDetails.admitted_class?.id,
+        admitted_group: studentDetails.admitted_group?.id,
+        admitted_session: studentDetails.admitted_session?.id,
+        student_roll_id: studentDetails.student_roll_id,
+        admitted_shift: studentDetails.admitted_shift?.id,
+        food_bill_percent: studentDetails.academic_fees?.food_bill_percent,
+        monthly_tution_percent: studentDetails.academic_fees?.monthly_tution_percent,
+        scholarship_amount: studentDetails.academic_fees?.scholarship_amount,
+        eslahi_murobbi_name: studentDetails.eslahi_murobbi_name,
+        talimi_murobbi_name: studentDetails.talimi_murobbi_name,
     }
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -38,7 +34,116 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
     });
 
     // Function for update student details
-    const handleUpdateStudent = data => console.log(data);
+    const handleUpdateStudent = data => {
+
+        // console.log("User from session", session.user.id)
+
+        // const userId = session.user.id;
+
+        // console.log("###",userId);
+
+        const updatedData = {
+            user: studentDetails.user.id,
+            madrasha: 1,
+            student_id: studentDetails.student_id,
+            student_roll_id: studentDetails.student_roll_id,
+            date_of_birth: studentDetails.date_of_birth,
+            age: studentDetails.age,
+            birth_certificate: studentDetails.birth_certificate,
+            student_nid: studentDetails.student_nid,
+            passport_number: studentDetails.passport_number,
+            nationality: studentDetails.nationality,
+            religion: studentDetails.religion,
+            gender: studentDetails.gender,
+            present_address: {
+                id: studentDetails.present_address.id,
+                division: studentDetails.present_address.division.pk,
+                district: studentDetails.present_address.district.pk,
+                thana: studentDetails.present_address.thana.pk,
+                post_office: studentDetails.present_address.post_office.pk,
+                post_code: studentDetails.present_address.post_code.pk,
+                address_info: studentDetails.present_address.address_info,
+            },
+            permanent_address: {
+                id: studentDetails.permanent_address.id,
+                division: studentDetails.permanent_address.division.pk,
+                district: studentDetails.permanent_address.district.pk,
+                thana: studentDetails.permanent_address.thana.pk,
+                post_office: studentDetails.permanent_address.post_office.pk,
+                post_code: studentDetails.permanent_address.post_code.pk,
+                address_info: studentDetails.permanent_address.address_info,
+            },
+            father_info: {
+                id: studentDetails.father_info.id,
+                parent_name: studentDetails.father_info.parent_name,
+                parent_date_of_birth: studentDetails.father_info.parent_date_of_birth,
+                parent_nid: studentDetails.father_info.parent_nid,
+                occupation: studentDetails.father_info.occupation,
+                organization_with_designation: studentDetails.father_info.organization_with_designation,
+                education: studentDetails.father_info.education,
+                contact_number: studentDetails.father_info.contact_number,
+                parent_email: studentDetails.father_info.parent_email,
+            },
+            mother_info: {
+                id: studentDetails.mother_info.id,
+                parent_name: studentDetails.mother_info.parent_name,
+                parent_date_of_birth: studentDetails.mother_info.parent_date_of_birth,
+                parent_nid: studentDetails.mother_info.parent_nid,
+                occupation: studentDetails.mother_info.occupation,
+                organization_with_designation: studentDetails.mother_info.organization_with_designation,
+                education: studentDetails.mother_info.education,
+                contact_number: studentDetails.mother_info.contact_number,
+                parent_email: studentDetails.mother_info.parent_email,
+            },
+            guardian_name: studentDetails.guardian_name,
+            guardian_relation: studentDetails.guardian_relation,
+            guardian_occupation: studentDetails.guardian_occupation,
+            yearly_income: studentDetails.yearly_income,
+            guardian_contact: studentDetails.guardian_contact,
+            guardian_email: studentDetails.guardian_email,
+            other_contact_person: studentDetails.other_contact_person,
+            other_contact_person_relation: studentDetails.other_contact_person_relation,
+            other_contact_person_contact: studentDetails.other_contact_person_contact,
+            sibling_id: studentDetails.sibling_id,
+            previous_institution_name: studentDetails.previous_institution_name,
+            previous_institution_contact: studentDetails.previous_institution_contact,
+            previous_started_at: studentDetails.previous_started_at,
+            previous_ending_at: studentDetails.previous_ending_at,
+            previous_ending_class: studentDetails.previous_ending_class,
+            previous_ending_result: studentDetails.previous_ending_result,
+            board_exam_name: studentDetails.board_exam_name,
+            board_exam_registration: studentDetails.board_exam_registration,
+            board_exam_roll: studentDetails.board_exam_roll,
+            board_exam_result: studentDetails.board_exam_result,
+            admitted_department: data.admitted_department,
+            admitted_class: data.admitted_class,
+            admitted_group: data.admitted_group,
+            admitted_shift: data.admitted_shift,
+            admitted_roll: data.admitted_roll,
+            admitted_session: data.admitted_session,
+            student_blood_group: "A0+",
+            special_body_sign: null,
+            academic_fees: 1,
+            talimi_murobbi_name: data.talimi_murobbi_name,
+            eslahi_murobbi_name: data.eslahi_murobbi_name,
+            slug: data.slug
+        }
+        updateStudentDetail(studentDetails.student_id, updatedData)
+            .then(data =>  data.status && toast.success(
+                `Student information is successfully updated!`,
+                    {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    }
+                ))
+            .catch(error => console.log(error));
+    };
 
     return (
         <div className="card mt-4">
@@ -62,7 +167,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     {
                                         departmentList.map(department => <option
                                             key={department.id}
-                                            value={department.name}
+                                            value={department.id}
                                             >{department.name}
                                             </option>)
                                     }
@@ -85,7 +190,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     {
                                         classes.map(NameOfClass => <option
                                             key={NameOfClass.id}
-                                            value={NameOfClass.name}
+                                            value={NameOfClass.id}
                                             >{NameOfClass.name}
                                             </option>)
                                     }
@@ -108,7 +213,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     {
                                         groups.map(group => <option
                                             key={group.id}
-                                            value={group.name}
+                                            value={group.id}
                                             >{group.name}
                                             </option>)
                                     }
@@ -133,7 +238,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     {
                                         sessionList.map(session => <option
                                             key={session.id}
-                                            value={session.name}
+                                            value={session.id}
                                             >{session.name}
                                             </option>)
                                     }
@@ -170,7 +275,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     {
                                         shifts.map(shifts => <option
                                             key={shifts.id}
-                                            value={shifts.name}
+                                            value={shifts.id}
                                             >{shifts.name}
                                             </option>)
                                     }
