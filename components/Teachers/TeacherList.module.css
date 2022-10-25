@@ -4,7 +4,17 @@
     color: white;
     padding: 4px;
     border: white;
-    width: 70px;
+    width: 100px;
     border-radius: 4px;
     text-decoration: none;
+}
+
+.defaultBtn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin: 2px
 }

@@ -29,14 +29,12 @@ const Accounts = () => {
         const list = await axios.get(`${BASE_URL}/transactions/category/`)
         const category = list.data
         setTransactioncategoryList(category)
-        console.log(transactioncategoryList)
     }
 
     const getTransactioSubCategory = async ()=> {
         const list = await axios.get(`${BASE_URL}/transactions/sub-category/${transactionCaterory}/`)
         const subCategory = list.data
         setTransactionSubCaterory(subCategory)
-        console.log(transactionSubCaterory)
     }
 
     const getStudentFeesAmount = async () => {
