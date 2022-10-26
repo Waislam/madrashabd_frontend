@@ -146,9 +146,8 @@ const modalpage=({close, shown})=>{
                                         name="publication"
                                         className="form-control"
                                         placeholder="Book Publication"
-                                        {...register("publication", {required:"this field is required"})}
+                                        {...register("publication")}
                                     />
-                                    <p className="text-danger">{errors.publication?.message}</p>
                                 </div>
                                 <div className="col-md-4 mb-3">
                                     <label className="mb-2">Book Origianl writter</label>
@@ -157,9 +156,8 @@ const modalpage=({close, shown})=>{
                                         name="original_writer"
                                         className="form-control"
                                         placeholder="Book writter"
-                                        {...register("original_writer", {required:"this field is required"})}
+                                        {...register("original_writer")}
                                     />
-                                    <p className="text-danger">{errors.original_writer?.message}</p>
                                 </div>
                                 <div className="col-md-4 mb-3">
                                     <label className="mb-2">Book Language</label>
@@ -168,9 +166,8 @@ const modalpage=({close, shown})=>{
                                         name="language"
                                         className="form-control"
                                         placeholder="Book Language"
-                                        {...register("language", {required:"this field is required"})}
+                                        {...register("language")}
                                     />
-                                    <p className="text-danger">{errors.language?.message}</p>
                                 </div>
                                 <div className="mt-3">
                                     <button type="submit" className={`${styles.modalBtn}`}>Save</button>

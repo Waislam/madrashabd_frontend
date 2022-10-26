@@ -81,9 +81,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="book_part"
                                 className="form-control"
                                 placeholder="Book part"
-                                {...register("part", {required:"this field is required"})}
+                                {...register("part")}
                             />
-                            <p className="text-danger">{errors.part?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Category</label>
@@ -125,9 +124,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="book_for_class"
                                 className="form-control"
                                 placeholder="class Name"
-                                {...register("book_for_class", {required:"this field is required"})}
+                                {...register("book_for_class")}
                             />
-                            <p className="text-danger">{errors.book_for_class?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Translator</label>
@@ -136,9 +134,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="translator"
                                 className="form-control"
                                 placeholder="Book Translator"
-                                {...register("translator", {required:"this field is required"})}
+                                {...register("translator")}
                             />
-                            <p className="text-danger">{errors.translator?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Publication</label>
@@ -147,9 +144,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="publication"
                                 className="form-control"
                                 placeholder="Book Publication"
-                                {...register("publication", {required:"this field is required"})}
+                                {...register("publication")}
                             />
-                             <p className="text-danger">{errors.publication?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Origianl writter</label>
@@ -158,9 +154,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="original_writer"
                                 className="form-control"
                                 placeholder="Book writter"
-                                {...register("original_writer", {required:"this field is required"})}
+                                {...register("original_writer")}
                             />
-                            <p className="text-danger">{errors.original_writer?.message}</p>
                         </div>
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Book Language</label>
@@ -169,9 +164,8 @@ const LibraryBookUpdateModal = (props) => {
                                 name="language"
                                 className="form-control"
                                 placeholder="Book Language"
-                                {...register("language", {required:"this field is required"})}
+                                {...register("language")}
                             />
-                            <p className="text-danger">{errors.language?.message}</p>
                         </div>
                     </div>
                     <button type="submit" className={`${styles.modalBtn}`}>Save</button>
