@@ -2,71 +2,78 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Setting.module.css";
 import studentLogo from '../../public/assets/admission/students.png'
-const Shifts = () =>{
+import axios from "axios";
+import api, { BASE_URL } from "../../pages/api/api"
+import { useEffect, useState } from "react";
+import SettingSideMenu from "./SettingSideMenu";
+import Modal from "react-bootstrap/Modal";
+import { useForm } from "react-hook-form";
+
+
+const Shifts = () => {
+
+    const [shiftList, setShiftList] = useState(null)
+    const [showInputForm, setShowInputForm] = useState(false)
+    const [departmentList, setDepartmentList] = useState(null)
+    const [classList, setClassList] = useState(null)
+
+    const getShiftList = async () => {
+        const list = await axios.get(`${BASE_URL}/settings/100/shift/`)
+        const shifts = list.data
+        setShiftList(shifts)
+
+    }
+    useEffect(() => {
+        getShiftList()
+    }, [])
+
+    //handle post request for designation
+    const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" })
+
+
+    const handlePostRequest = () => {
+        setShowInputForm(true)
+    }
+
+    const getDepartmentList = async () => {
+        const list = await axios.get(`${BASE_URL}/settings/100/department/`)
+        const departments = list.data
+        setDepartmentList(departments)
+    }
+    const getClassList = async () => {
+        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
+        const classes = list.data
+        setClassList(classes)
+
+    }
+
+    useEffect(() => {
+        getDepartmentList()
+        getClassList()
+    }, [])
+
+    const onSubmit = async (values) => {
+        const data = {
+            "name": values.name,
+            "madrasha": 1,
+            "department": values.department,
+            "madrasha_class": values.madrasha_class,
+            "shift_time": values.shift_time
+        }
+        await axios.post(`${BASE_URL}/settings/100/shift/`, data)
+            .then((response) => (
+                console.log(response.data)
+            ))
+        setShowInputForm(false)
+    }
+
+
     return (
         <>
             <section className={styles.settingSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.settingRightSide}>
-                                <div className="card">
-                                    <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive" alt="missing img" height={40} width={40} />
-                                    </h4>
-                                    <hr/>
-                                    <div className="card-body p-0">
-                                        <div className="left-menu">
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting">
-                                                    <a className="ps-5">Department</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/designation">
-                                                    <a className="ps-5">Post/Designation</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/classs">
-                                                    <a className="ps-5">Class</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/books">
-                                                    <a className="ps-5">Books</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/session">
-                                                    <a className="ps-5">Session</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/groups">
-                                                    <a className="ps-5">Group</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.activeLink}>
-                                                <Link href="/setting/shift">
-                                                    <a className="ps-5">Shift</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/fees">
-                                                    <a className="ps-5">Fees</a>
-                                                </Link>
-                                            </div>
-                                            <div className={styles.inActiveLink}>
-                                                <Link href="/setting/exam-rules">
-                                                    <a className="ps-5">Examination Rules</a>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SettingSideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="department-body">
                                 <div className="card">
@@ -77,7 +84,7 @@ const Shifts = () =>{
                                                     <h2><u>Different class shift</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-end`} onClick={handlePostRequest}>Add</button>
                                                 </div>
                                             </div>
                                             <div className="books-table mt-3">
@@ -85,7 +92,7 @@ const Shifts = () =>{
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th scope="col">#</th>
+                                                                <th scope="col">Counting</th>
                                                                 <th scope="col">Shift Name</th>
                                                                 <th scope="col">Class</th>
                                                                 <th scope="col">Department</th>
@@ -94,90 +101,85 @@ const Shifts = () =>{
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Evening</td>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat khana</td>
-                                                                <td className="text-sm">7.30-9.00</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Evening</td>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat khana</td>
-                                                                <td className="text-sm">7.30-9.00</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Evening</td>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat khana</td>
-                                                                <td className="text-sm">7.30-9.00</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Evening</td>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat khana</td>
-                                                                <td className="text-sm">7.30-9.00</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
+                                                            {shiftList && shiftList.map((shift, index) => (
+                                                                <tr>
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td className="text-sm">{shift.name}</td>
+                                                                    <td className="text-sm">{shift.madrasha_class.name}</td>
+                                                                    <td className="text-sm">{shift.department.name}</td>
+                                                                    <td className="text-sm">{shift.shift_time}</td>
+                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                </tr>
+                                                            ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-class mt-4">
-                                                <h2><u>Add Shift</u></h2>
-                                                <form action="#" method="POST">
-                                                    <div className="row">
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Name of Shift" />
-                                                        </div>
-                                                        <div className="col-md-7 mt-3">
-                                                            <div className="input-group">
-                                                                <input type="text" className="form-control" placeholder="Select department" />
-                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                                                                    <span className="visually-hidden">Toggle dropdown</span>
-                                                                </button>
-                                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                                    <li>
-                                                                        <a className="dropdown-item">department 1</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a className="dropdown-item">department 1</a>
-                                                                    </li>
-                                                                </ul>
+                                            <div className="add-shift">
+                                                <Modal show={showInputForm} onHide={() => setShowInputForm(false)}
+                                                    dialogClassName={`${styles.customDialog}`}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>
+                                                            Add Different Class Shift
+                                                        </Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <form onSubmit={handleSubmit(onSubmit)}>
+                                                            <div className="row">
+                                                                <div className="mt-4">
+                                                                    <label>Shift Name</label>
+                                                                    <input type="text" className="form-control"
+                                                                        placeholder="Shift Name"
+                                                                        name="name"
+                                                                        {...register("name", { required: "This field is required" })}
+                                                                    />
+                                                                    <p className="text-danger">{errors.name?.message}</p>
+                                                                </div>
+                                                                <div className="mt-4">
+                                                                    <label className="mb-2">Department Name</label>
+                                                                    <select type="text" className="form-select"
+                                                                        placeholder="select department"
+                                                                        name="department"
+                                                                        {...register("department")}
+                                                                    >
+                                                                        {departmentList && departmentList.map((department) => (
+                                                                            <option className="dropdown-item" value={department.id} key={department.name}>
+                                                                                {department.name}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                </div>
+                                                                <div className="my-4">
+                                                                    <label className="mb-2">Class Name</label>
+                                                                    <select type="text" className="form-select"
+                                                                        placeholder="select Class"
+                                                                        name="madrasha_class"
+                                                                        {...register("madrasha_class")}
+                                                                    >
+                                                                        {classList && classList.map((className) => (
+                                                                            <option value={className.id} key={className.name}>
+                                                                                {className.name}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                </div>
+                                                                <div className="my-4">
+                                                                    <label>Shift Time</label>
+                                                                    <input type="time" className="form-control"
+                                                                        placeholder="Shift Time"
+                                                                        name="shift_time"
+                                                                        {...register("shift_time", { required: "This field is required" })}
+                                                                    />
+                                                                    <p className="text-danger">{errors.shift_time?.message}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="col-md-7 mt-3">
-                                                            <div className="input-group">
-                                                                <input type="text" className="form-control" placeholder="Select Class" />
-                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                                                                    <span className="visually-hidden">Toggle dropdown</span>
-                                                                </button>
-                                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                                    <li>
-                                                                        <a className="dropdown-item">Class 1</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a className="dropdown-item">Class 2</a>
-                                                                    </li>
-                                                                </ul>
+                                                            <div className="col-md-4">
+                                                                <button className={styles.defaultBtn}>Save</button>
                                                             </div>
-                                                        </div>
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="7.30-9.30" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-7 mt-3">
-                                                        <button type="submit" className={styles.defaultBtn}>Save</button>
-                                                    </div>
-                                                </form>
+                                                        </form>
+                                                    </Modal.Body>
+                                                </Modal>
                                             </div>
                                         </div>
                                     </div>
