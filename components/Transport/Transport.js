@@ -15,7 +15,7 @@ const Transport = () => {
                     <div className="row">
                         <TransportSideMenu/>
                         {/* ========== transport right side body start ============== */}
-                        <div className="col-sm-12 cold-md-9 col-lg-9 col-xl-9">
+                        <div className="col-sm-12 cold-md-10 col-lg-10 col-xl-10">
                             <div className="transport">
                                 <div className="card">
                                     <div className="card-body">

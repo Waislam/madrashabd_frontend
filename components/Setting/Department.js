@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
-const Department = () =>{
+const Department = ({handleputrequest}) => {
     const [departmentList, setDepartmentList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
 
@@ -17,33 +17,34 @@ const Department = () =>{
         setDepartmentList(departments)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getDepartmentList()
-    },[])
+    }, [])
 
     //Handle Post request of Department
-    const handlePostRequest = () =>{
+    const handlePostRequest = () => {
         setShowInputForm(true)
     }
 
-    const {register, handleSubmit} = useForm({mode:"all"})
+    const { register, reset, handleSubmit } = useForm({ mode: "all"})
 
-    const onSubmit = async (values) =>{
-        const data = {"name":values.name, "madrasha":1}
+    const onSubmit = async (values) => {
+        const data = { "name": values.name, "madrasha": 1 }
         await axios.post(`${BASE_URL}/settings/100/department/`, data)
-        .then((response)=>(
-            console.log(response.data)
-        ))
+            .then((response) => (
+                console.log(response.data)
+            ))
 
         setShowInputForm(false)
     }
+
 
     return (
         <>
             <section className={styles.settingSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SettingSideMenu/>
+                        <SettingSideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="department-body">
                                 <div className="card">
@@ -69,13 +70,15 @@ const Department = () =>{
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {departmentList && departmentList.map((department, index)=>(
-                                                            <tr key={department.id}>
-                                                                <th scope="row">{index+1}</th>
-                                                                <td className="text-sm">{department.name}</td>
-                                                                <td className="text-sm">{department.madrasha.name}</td>
-                                                                <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
-                                                            </tr>
+                                                            {departmentList && departmentList.map((department, index) => (
+                                                                <tr key={department.id}>
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td className="text-sm">{department.name}</td>
+                                                                    <td className="text-sm">{department.madrasha.name}</td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e) => handleputrequest(e, department.slug)}>Edit</button>
+                                                                    </td>
+                                                                </tr>
                                                             ))}
                                                         </tbody>
                                                     </table>
@@ -83,26 +86,26 @@ const Department = () =>{
                                             </div>
                                             {/* ========= add department form ======== */}
                                             <div className={`addDepartment text-center`}>
-                                                <Modal show={showInputForm} onHide={()=>setShowInputForm(false)} dialogClassName={`${styles.customDialog}`}>
+                                                <Modal show={showInputForm} onHide={() => setShowInputForm(false)} dialogClassName={`${styles.customDialog}`}>
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>
                                                             Add Department
                                                         </Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>
-                                                    <form onSubmit={handleSubmit(onSubmit)}>
-                                                        <div className="row">
-                                                            <div className="my-4">
-                                                                <input type="text" className="form-control" placeholder="Department Name"
-                                                                    name="name"
-                                                                    {...register("name")}
-                                                                />
+                                                        <form onSubmit={handleSubmit(onSubmit)}>
+                                                            <div className="row">
+                                                                <div className="my-4">
+                                                                    <input type="text" className="form-control" placeholder="Department Name"
+                                                                        name="name"
+                                                                        {...register("name")}
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="col-md-4">
-                                                            <button className={styles.defaultBtn}>Save</button>
-                                                        </div>
-                                                    </form>
+                                                            <div className="col-md-4">
+                                                                <button className={styles.defaultBtn}>Save</button>
+                                                            </div>
+                                                        </form>
                                                     </Modal.Body>
                                                 </Modal>
                                             </div>

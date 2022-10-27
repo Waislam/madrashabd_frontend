@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
 
-const Designation = () => {
+const Designation = ({handlePutRequest}) => {
 
     const [designationList, setDesignationList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
@@ -87,7 +87,9 @@ const Designation = () => {
                                                                     <th scope="row">{index + 1}</th>
                                                                     <td className="text-sm">{designation.name}</td>
                                                                     <td className="text-sm">{designation.department?.name}</td>
-                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e, designation.slug)}>Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             ))}
                                                         </tbody>
