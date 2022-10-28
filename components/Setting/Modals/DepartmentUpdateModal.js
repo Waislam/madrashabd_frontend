@@ -17,9 +17,9 @@ const DepartmentUpdate = (props) => {
     })
 
     const onSubmit = async (values) =>{
-        let data = {"name":values.name, "madrasha":props.departmentUpdateAbleData?.madrasha}
-        const current_slug = props.departmentUpdateAbleData.slug
-        const list = await axios.put(`${BASE_URL}/settings/department/detail/${current_slug}/`, data)
+        let data = {"name":values.name, "madrasha":props.departmentUpdateAbleData?.madrasha?.id}
+        const current_id = props.departmentUpdateAbleData.id
+        const list = await axios.put(`${BASE_URL}/settings/department/detail/${current_id}/`, data)
         props.onHide()
     }
 
@@ -32,7 +32,7 @@ const DepartmentUpdate = (props) => {
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
-                    // dialogClassName={`${styles.customDialog}`}
+                    dialogClassName={`${styles.customDialog}`}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>

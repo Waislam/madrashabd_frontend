@@ -10,11 +10,11 @@ import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
-const Classs = () => {
+const Classs = ({departmentList, handlePutRequest}) => {
 
     const [classList, setClassList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
-    const [departmentList, setDepartmentList] = useState(null)
+    // const [departmentList, setDepartmentList] = useState(null)
 
     const getClassList = async () => {
         const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
@@ -34,16 +34,6 @@ const Classs = () => {
     const handlePostRequest = () => {
         setShowInputForm(true)
     }
-
-    const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/department/`)
-        const departments = list.data
-        setDepartmentList(departments)
-    }
-
-    useEffect(() => {
-        getDepartmentList()
-    }, [])
 
     const onSubmit = async (values) => {
         const data = { "name": values.name, "madrasha": 1, "department": values.department }
@@ -86,11 +76,13 @@ const Classs = () => {
                                                         </thead>
                                                         <tbody>
                                                             {classList && classList.map((className, index) => (
-                                                            <tr>
+                                                            <tr key={className.slug}>
                                                                 <th scope="row fw-bold">{index+1}</th>
                                                                 <td className="text-sm">{className.name}</td>
                                                                 <td className="text-sm">{className.department.name}</td>
-                                                                <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                <td className="p-0 text-center">
+                                                                    <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e,className.id)}>Edit</button>
+                                                                </td>
                                                             </tr>
                                                             ))}
                                                         </tbody>

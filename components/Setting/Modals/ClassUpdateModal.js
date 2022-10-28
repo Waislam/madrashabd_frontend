@@ -6,30 +6,29 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
 
-const DesignationUpdate = (props) => {
+const ClassesUpdate = (props) => {
 
     let preLoadedValues = {
-        "name": props.designationolddata?.name,
-        "department": props.designationolddata?.department?.id
+        "name": props.classolddata?.name,
+        "department": props.classolddata?.department?.id
     }
 
-    const { register, handleSubmit, formState:{errors} } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onChange",
         defaultValues: preLoadedValues
     })
 
-    const onSubmit = async (values) =>{
-        let data = {"name":values.name, "madrasha":props.designationolddata?.madrasha?.id, "department": values.department}
-        const current_id = props.designationolddata.id
-        const list = await axios.put(`${BASE_URL}/settings/designation/detail/${current_id}/`, data)
+    const onSubmit = async (values) => {
+        let data = { "name": values.name, "madrasha": props.classolddata?.madrasha?.id, "department": values.department }
+        const current_id = props.classolddata.id
+        const list = await axios.put(`${BASE_URL}/settings/classes/detail/${current_id}/`, data)
         props.onHide()
     }
 
 
     return (
         <>
-            {/* ========= put department form ======== */}
-            <div className="put-designation">
+            <div className="update-class">
                 <Modal {...props}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
@@ -37,16 +36,16 @@ const DesignationUpdate = (props) => {
                     dialogClassName={`${styles.customDialog}`}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            Edit Designation
+                            Update/Edit this class information
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="row">
                                 <div className="mt-4">
-                                    <label className="mb-2">Designation Name</label>
+                                    <label className="mb-2">Class Name</label>
                                     <input type="text" className="form-control"
-                                        placeholder="Designation Name"
+                                        placeholder="class Name Name"
                                         name="name"
                                         {...register("name", { required: "This field is required" })}
                                     />
@@ -54,18 +53,18 @@ const DesignationUpdate = (props) => {
                                 </div>
                                 <div className="mt-4">
                                     <label className="mb-2">Select Department Name</label>
-                                        <select type="text" className="form-select"
-                                            placeholder="select department"
-                                            name="department"
-                                            {...register("department")}
-                                        >
-                                            <option value={props.designationolddata?.department?.id}>{props.designationolddata?.department?.name}</option>
-                                            {props.departmentList && props.departmentList.map((department) => (
-                                                <option className="dropdown-item" value={department.id}
-                                                    key={department.name}
-                                                >{department.name}</option>
-                                            ))}
-                                        </select>
+                                    <select type="text" className="form-select"
+                                        placeholder="select department"
+                                        name="department"
+                                        {...register("department")}
+                                    >
+                                        <option value={props.classolddata?.department?.id}>{props.classolddata?.department?.name}</option>
+                                        {props.departmentList && props.departmentList.map((department) => (
+                                            <option className="dropdown-item" value={department.id} key={department.name}>
+                                                {department.name}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
                             <div className="col-md-7 mt-3">
@@ -79,4 +78,4 @@ const DesignationUpdate = (props) => {
     )
 }
 
-export default DesignationUpdate;
+export default ClassesUpdate;

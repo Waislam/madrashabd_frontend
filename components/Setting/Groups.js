@@ -7,12 +7,12 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
 
-const Groups = () => {
+const Groups = ({handlePutRequest, departmentList, classList}) => {
 
     const [groupList, setGroupList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
-    const [departmentList, setDepartmentList] = useState(null)
-    const [classList, setClassList] = useState(null)
+    // const [departmentList, setDepartmentList] = useState(null)
+    // const [classList, setClassList] = useState(null)
 
     const getGroupList = async () => {
         const list = await axios.get(`${BASE_URL}/settings/100/group/`)
@@ -31,23 +31,6 @@ const Groups = () => {
     const handlePostRequest = () => {
         setShowInputForm(true)
     }
-
-    const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/department/`)
-        const departments = list.data
-        setDepartmentList(departments)
-    }
-    const getClassList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
-        const classes = list.data
-        setClassList(classes)
-
-    }
-
-    useEffect(() => {
-        getDepartmentList()
-        getClassList()
-    }, [])
 
     const onSubmit = async (values) => {
         const data = { "name": values.name, "madrasha": 1, "department": values.department, "madrasha_class": values.madrasha_class }
@@ -96,7 +79,9 @@ const Groups = () => {
                                                                     <td className="text-sm">{studentgroup.name}</td>
                                                                     <td className="text-sm">{studentgroup.madrasha_class.name}</td>
                                                                     <td className="text-sm">{studentgroup.department.name}</td>
-                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e, studentgroup.id)}>Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             ))}
                                                         </tbody>
@@ -104,12 +89,12 @@ const Groups = () => {
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-class">
+                                            <div className="add-group">
                                                 <Modal show={showInputForm} onHide={() => setShowInputForm(false)}
                                                     dialogClassName={`${styles.customDialog}`}>
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>
-                                                            Add Books For Class
+                                                            Add Group
                                                         </Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>

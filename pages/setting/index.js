@@ -18,11 +18,10 @@ const DepartmentPage = () =>{
 
 
     //handle put request
-    const handlePutRequest = async (e, departmentSlug) => {
+    const handlePutRequest = async (e, departmentId) => {
         setLoader(true)
         e.preventDefault()
-        console.log("departmentId", departmentSlug)
-        const list = await axios.get(`${BASE_URL}/settings/department/detail/${departmentSlug}/`)
+        const list = await axios.get(`${BASE_URL}/settings/department/detail/${departmentId}/`)
         const departmentData = list.data
         setDepartmentUpdateAbleData(departmentData)
         setLoader(false)

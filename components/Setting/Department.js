@@ -76,7 +76,7 @@ const Department = ({handleputrequest}) => {
                                                                     <td className="text-sm">{department.name}</td>
                                                                     <td className="text-sm">{department.madrasha.name}</td>
                                                                     <td className="p-0 text-center">
-                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e) => handleputrequest(e, department.slug)}>Edit</button>
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e) => handleputrequest(e, department.id)}>Edit</button>
                                                                     </td>
                                                                 </tr>
                                                             ))}
