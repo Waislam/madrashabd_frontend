@@ -7,12 +7,10 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
 
-const Fees = () => {
+const Fees = ({handlePutRequest, classList, departmentList}) => {
 
     const [feesList, setFeesList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
-    const [departmentList, setDepartmentList] = useState(null)
-    const [classList, setClassList] = useState(null)
 
     // handle get Fees List 
     const getFeesList = async () => {
@@ -32,23 +30,6 @@ const Fees = () => {
     const handlePostRequest = () => {
         setShowInputForm(true)
     }
-
-    const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/department/`)
-        const departments = list.data
-        setDepartmentList(departments)
-    }
-    const getClassList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
-        const classes = list.data
-        setClassList(classes)
-
-    }
-
-    useEffect(() => {
-        getDepartmentList()
-        getClassList()
-    }, [])
 
     const onSubmit = async (values) => {
         const data = {
@@ -106,7 +87,9 @@ const Fees = () => {
                                                                     <td className="text-sm">{fee.madrasha_class.name}</td>
                                                                     <td className="text-sm">{fee.amount}</td>
                                                                     <td className="text-sm">{fee.department.name}</td>
-                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e, fee.id)}>Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             ))}
 
@@ -115,7 +98,7 @@ const Fees = () => {
                                                 </div>
                                             </div>
                                             {/* ========= add fees form ======== */}
-                                            <div className="add-class">
+                                            <div className="add-fees">
                                                 <Modal show={showInputForm} onHide={() => setShowInputForm(false)}
                                                     dialogClassName={`${styles.customDialog}`}>
                                                     <Modal.Header closeButton>

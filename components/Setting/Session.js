@@ -1,13 +1,12 @@
 import styles from "./Setting.module.css";
 import SettingSideMenu from "./SettingSideMenu";
-
 import axios from "axios";
 import api, { BASE_URL } from "../../pages/api/api"
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
-const Sessions = () => {
+const Sessions = ({handlePutRequest}) => {
 
     const [sessionList, setSessionList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
@@ -78,7 +77,9 @@ const Sessions = () => {
                                                                     <td className="text-sm">{onesession.name}</td>
                                                                     <td className="text-sm">{onesession.actual_year}</td>
                                                                     <td className="text-sm">{onesession.is_active ? <button className="btn-success">Active</button> : <button className="btn-danger">Inactive</button>}</td>
-                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e, onesession.id)}>Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             ))}
                                                         </tbody>

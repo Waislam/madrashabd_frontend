@@ -10,12 +10,10 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 
 
-const Shifts = () => {
+const Shifts = ({departmentList, classList, handlePutRequest}) => {
 
     const [shiftList, setShiftList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
-    const [departmentList, setDepartmentList] = useState(null)
-    const [classList, setClassList] = useState(null)
 
     const getShiftList = async () => {
         const list = await axios.get(`${BASE_URL}/settings/100/shift/`)
@@ -34,23 +32,6 @@ const Shifts = () => {
     const handlePostRequest = () => {
         setShowInputForm(true)
     }
-
-    const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/department/`)
-        const departments = list.data
-        setDepartmentList(departments)
-    }
-    const getClassList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
-        const classes = list.data
-        setClassList(classes)
-
-    }
-
-    useEffect(() => {
-        getDepartmentList()
-        getClassList()
-    }, [])
 
     const onSubmit = async (values) => {
         const data = {
@@ -108,14 +89,16 @@ const Shifts = () => {
                                                                     <td className="text-sm">{shift.madrasha_class.name}</td>
                                                                     <td className="text-sm">{shift.department.name}</td>
                                                                     <td className="text-sm">{shift.shift_time}</td>
-                                                                    <td className="p-0 text-center"><button type="button" className={`${styles.editButton}`}>Edit</button></td>
+                                                                    <td className="p-0 text-center">
+                                                                        <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e, shift.id)}>Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-                                            {/* ========= add department form ======== */}
+                                            {/* ========= add shift form ======== */}
                                             <div className="add-shift">
                                                 <Modal show={showInputForm} onHide={() => setShowInputForm(false)}
                                                     dialogClassName={`${styles.customDialog}`}>
