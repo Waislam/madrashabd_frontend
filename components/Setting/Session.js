@@ -53,9 +53,7 @@ const Sessions = ({handlePutRequest}) => {
                                                     <h2><u>Eduction Sessions</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    { sessionList && sessionList.length>0? <></>:
                                                     <button type="button" className={`${styles.defaultBtn} float-end`} onClick={handlePostRequest}>Add</button>
-                                                    }
                                                 </div>
                                             </div>
                                             <div className="books-table mt-3">
@@ -99,16 +97,18 @@ const Sessions = ({handlePutRequest}) => {
                                                         <form onSubmit={handleSubmit(onSubmit)}>
                                                             <div className="row">
                                                                 <div className="my-4">
+                                                                    <label className="mb-2">Session</label>
                                                                     <input type="text" className="form-control"
-                                                                        placeholder="session year"
+                                                                        placeholder="2022-2023"
                                                                         name="name"
                                                                         {...register("name", {required:"This field is required"})}
                                                                     />
                                                                     <p className="text-danger">{errors.name?.message}</p>
                                                                 </div>
                                                                 <div className="my-4">
+                                                                <label className="mb-2">Year</label>
                                                                     <input type="text" className="form-control"
-                                                                        placeholder="session year"
+                                                                        placeholder="2023"
                                                                         name="actual_year"
                                                                         {...register("actual_year", {required:"This field is required"})}
                                                                     />
