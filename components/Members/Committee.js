@@ -1,7 +1,7 @@
 import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
-const CommitteeMembers = ({committee, handleCommitteeModal}) => {
+const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitteeModal}) => {
     return (
         <>
             <section className={styles.settingSection}>
@@ -41,15 +41,19 @@ const CommitteeMembers = ({committee, handleCommitteeModal}) => {
                                                         </thead>
                                                         <tbody>
                                                         {
-                                                            committee.results?.map((data) => (
+                                                            committee.results?.map((data, index) => (
                                                                 <tr key={data.id}>
-                                                                    <th scope="row">2</th>
+                                                                    <th scope="row">{data.id}</th>
                                                                     <td className="text-sm">{data?.member_name}</td>
                                                                     <td className="text-sm">{data?.member_designation}</td>
                                                                     <td className="text-sm">{data?.phone_number}</td>
-                                                                    <td className="p-0">
-                                                                        <button type="button"
-                                                                                className={`${styles.editButton} float-md-end`}>Edit
+                                                                    <td className="text-center">
+                                                                        <button
+                                                                            type="button"
+                                                                            className={`${styles.editButton}`}
+                                                                            onClick={()=>handleUpdateCommitteeModal(data.id)}
+                                                                        >
+                                                                            Edit
                                                                         </button>
                                                                     </td>
                                                                 </tr>
