@@ -57,7 +57,7 @@ const OtherIncomePage = () => {
         getOtherIncome()
     }, [])
 
-    //handle Post request Modal open
+    //handle Post request Modals open
     const openPostRequestModal = (e) => {
         e.preventDefault()
         setPostRequestModal(true)

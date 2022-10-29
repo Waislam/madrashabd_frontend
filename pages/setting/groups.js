@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Setting Component
 import Groups from "../../components/Setting/Groups"
 import Layout from "../../components/Layout/Layout";
-//Modal immport
+//Modals immport
 import GroupUdpateModal from "../../components/Setting/Modals/GroupUpdateModal"
 
 
