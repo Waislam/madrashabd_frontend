@@ -5,7 +5,8 @@ import styles from './Dawah.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
 import Talimat from "./Talimat";
 
-const Dawah = () => {
+const Dawah = ({dawah}) => {
+    console.log("dawah :", dawah);
     return (
         <>
             <section className={styles.dawahSection}>
@@ -22,94 +23,49 @@ const Dawah = () => {
                                                     <h2>Dawah details</h2>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add</button>
+                                                    <button type="button"
+                                                            className={`${styles.defaultBtn} float-md-end`}>Add
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className="details-table mt-4">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped">
                                                         <thead>
-                                                            <tr>
-                                                                <th scope="col">Date</th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Duration</th>
-                                                                <th scope="col">start Time</th>
-                                                                <th scope="col">place</th>
-                                                                <th scope="col">Managed By</th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Program Name</th>
+                                                            <th scope="col">Duration</th>
+                                                            <th scope="col">Start Time</th>
+                                                            <th scope="col">Place</th>
+                                                            <th scope="col">Managed By</th>
+                                                            <th scope="col" className="text-center">Action</th>
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <th scope="row">10/10/2022</th>
-                                                                <td className="text-sm">Tablig</td>
-                                                                <td className="text-sm">3 days</td>
-                                                                <td className="text-sm">9.00 am</td>
-                                                                <td className="text-sm">Malibug Mosque</td>
-                                                                <td className="text-sm">Amir Shaheb</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">10/10/2022</th>
-                                                                <td className="text-sm">Tablig</td>
-                                                                <td className="text-sm">3 days</td>
-                                                                <td className="text-sm">9.00 am</td>
-                                                                <td className="text-sm">Malibug Mosque</td>
-                                                                <td className="text-sm">Amir Shaheb</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">10/10/2022</th>
-                                                                <td className="text-sm">Tablig</td>
-                                                                <td className="text-sm">3 days</td>
-                                                                <td className="text-sm">9.00 am</td>
-                                                                <td className="text-sm">Malibug Mosque</td>
-                                                                <td className="text-sm">Amir Shaheb</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">10/10/2022</th>
-                                                                <td className="text-sm">Tablig</td>
-                                                                <td className="text-sm">3 days</td>
-                                                                <td className="text-sm">9.00 am</td>
-                                                                <td className="text-sm">Malibug Mosque</td>
-                                                                <td className="text-sm">Amir Shaheb</td>
-                                                            </tr>
+                                                        {
+                                                            dawah.map((data, index) => (
+                                                                <tr key={index}>
+                                                                    <th scope="row">{index+1}</th>
+                                                                    <td className="text-sm">{data?.Date}</td>
+                                                                    <td className="text-sm">{data?.program_name}</td>
+                                                                    <td className="text-sm">{data?.duration}</td>
+                                                                    <td className="text-sm">{data?.start_Time}</td>
+                                                                    <td className="text-sm">{data?.place}</td>
+                                                                    <td className="text-sm">{data?.managed_by}</td>
+                                                                    <td className="text-center">
+                                                                        <button className="btn btn-primary">Edit</button>
+                                                                        <button className="btn btn-danger">Delete</button>
+                                                                    </td>
+                                                                </tr>
+                                                            ))
+                                                        }
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-                                            {/* === dawag add form ==== */}
-                                            <div className="dawah-add mt-5">
-                                                <h2>Dawa info add</h2>
-                                                <form action="#" method="POST">
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="date"/>
-                                                    </div>
-
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="Category"/>
-                                                    </div>
-
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="Duration"/>
-                                                    </div>
-
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="Start Time"/>
-                                                    </div>
-
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="Location"/>
-                                                    </div>
-
-                                                    <div className="col-md-7 mt-3">
-                                                        <input type="text" className="form-control" placeholder="Managed by"/>
-                                                    </div>
-                                                    <div className="mt-3">
-                                                        <button type="submit" className={styles.defaultBtn}>Save</button>
-                                                    </div>
-                                                </form>
-                                            </div>
                                         </div>
-                                        <hr/>
-                                        
                                     </div>
                                 </div>
                             </div>
