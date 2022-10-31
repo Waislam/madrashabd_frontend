@@ -2,6 +2,7 @@ import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitteeModal}) => {
+    console.log("committee :", committee)
     return (
         <>
             <section className={styles.settingSection}>

@@ -2,21 +2,20 @@ import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
 
-const UpdateDawahModal = (props) => {
+const UpdateExtraActivityModal = (props) => {
 
-    const old_data = {
-        "program_name": props.old_dawah_data?.program_name,
-        "duration": props.old_dawah_data?.duration,
-        "start_time": props.old_dawah_data?.start_time,
-        "place": props.old_dawah_data?.place,
-        "date": props.old_dawah_data?.date,
-        "managed_by": props.old_dawah_data?.managed_by,
+     const old_data = {
+        "category": props.extra_activity_old_data?.category,
+        "duration": props.extra_activity_old_data?.duration,
+        "start_time": props.extra_activity_old_data?.start_time,
+        "place": props.extra_activity_old_data?.place,
+        "date": props.extra_activity_old_data?.date,
+        "managed_by": props.extra_activity_old_data?.managed_by,
     };
-
     const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/talimat/dawah/detail/${props.old_dawah_data.id}/`, {
+        fetch(`http://127.0.0.1:8086/talimat/extra-activity/detail/${props.extra_activity_old_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -25,9 +24,9 @@ const UpdateDawahModal = (props) => {
             body: JSON.stringify(
                 {
                     "madrasha": 1,
-                    // "madrasha": props.old_dawah_data?.madrasha?.id,
-                    "member_name": values.program_name,
-                    "member_designation": values.duration,
+                    // "madrasha": props.extra_activity_old_data?.madrasha?.id,
+                    "category": values.category,
+                    "duration": values.duration,
                     "start_time": values.start_time,
                     "place": values.place,
                     "date": values.date,
@@ -49,7 +48,7 @@ const UpdateDawahModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Update Committee List
+                        Update ExtraActivity
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -58,10 +57,10 @@ const UpdateDawahModal = (props) => {
                             <div className="col-md-4 mb-3">
                                 <input
                                     type="text"
-                                    placeholder="Program Name"
+                                    placeholder="Category"
                                     className="form-control"
-                                    name="program_name"
-                                    {...register("program_name")}
+                                    name="category"
+                                    {...register("category")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
@@ -69,6 +68,7 @@ const UpdateDawahModal = (props) => {
                                     type="text"
                                     placeholder="Duration"
                                     className="form-control"
+
                                     name="duration"
                                     {...register("duration")}
                                 />
@@ -123,4 +123,4 @@ const UpdateDawahModal = (props) => {
 };
 
 
-export default UpdateDawahModal;
+export default UpdateExtraActivityModal;

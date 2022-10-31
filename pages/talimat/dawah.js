@@ -45,19 +45,19 @@ const DawahPage = () => {
         setDawahModal(true)
     };
 
-
     // Delete Dawah
     const handleDeleteDawahModal = async (id) => {
         setDeleteDawah(id);
         setDeleteDawahModal(true)
     };
 
-
-    // Update show modal
+    // update Committee
     const handleUpdateDawahModal = async (id) => {
+        setLoading(true);
         const list = await api.get(`http://127.0.0.1:8086/talimat/dawah/detail/${id}/`);
         const data = list.data;
         setOldDawahData(data);
+        setLoading(false);
         setUpdateShowDawahModal(true)
     };
 
@@ -93,13 +93,6 @@ const DawahPage = () => {
                 onHide={() => setDawahModal(false)}
             />
 
-            {/*Update Modal*/}
-            <DeleteDawahModal
-                show={dawahDeleteModal}
-                onHide={() => setDeleteDawahModal(false)}
-                delete_dawah={deleteDawah}
-            />
-
             {isLoading ? " " :
                 <UpdateDawahModal
                     show={updateShowDawahModal}
@@ -107,6 +100,13 @@ const DawahPage = () => {
                     old_dawah_data={oldDawahData}
                 />
             }
+
+            {/*Update Modal*/}
+            <DeleteDawahModal
+                show={dawahDeleteModal}
+                onHide={() => setDeleteDawahModal(false)}
+                delete_dawah={deleteDawah}
+            />
 
         </div>
     )

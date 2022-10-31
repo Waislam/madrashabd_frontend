@@ -55,17 +55,6 @@ const CommitteePage = () => {
         )
     }
 
-
-    if (isLoading) {
-        return (
-            <div className="text-center">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        )
-    }
-
     if (!committee) {
         return (
             <h2 className="text-center">No data found</h2>
