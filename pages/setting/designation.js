@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Setting Component
 import Designation from "../../components/Setting/Designation"
 import Layout from "../../components/Layout/Layout";
-//Modal import
+//Modals import
 import DesignationUpdateModal from "../../components/Setting/Modals/DesignationUpdateModal"
 
 

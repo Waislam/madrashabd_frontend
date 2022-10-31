@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Shift component
 import Fees from "../../components/Setting/Fees"
 import Layout from "../../components/Layout/Layout";
-//Modal immport
+//Modals immport
 import FeesUpdateModal from "../../components/Setting/Modals/FeesUpdateModal"
 
 const FeesPage = () => {

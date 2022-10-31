@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Boarding from "../../components/Boarding/Boarding";
+import AddBazarListModal from "../../components/Boarding/Modals/AddBazarListModal";
 import Layout from "../../components/Layout/Layout";
 // Call base urls
 import api, {BASE_URL} from "../api/api";
@@ -8,10 +9,11 @@ const BoardingPage = () => {
 
     const [bazerList, setBazerList] = useState(null);
     const [isLoading, setLoading] = useState(false);
-
     const [searchBazerList, setSearchBazerList] = useState('');
     const [bazarListPageNum, setBazerListPageNum] = useState(1);
     const [bazarListRecords, setBazerListRecords] = useState('');
+
+    const [addBazarListModal, setBazarListModal] = useState(false);
 
     const getAllBazarList = async () => {
         setLoading(true);
@@ -51,6 +53,13 @@ const BoardingPage = () => {
         setBazerListPageNum(bazarListPageNum - 1)
     };
 
+
+    // Post Request
+    const handleAddBazarListModal = () =>{
+        setBazarListModal(true)
+    };
+
+
     if (isLoading) {
         return (
             <div className="text-center">
@@ -79,6 +88,13 @@ const BoardingPage = () => {
                 prevPage={prevPage}
                 handleSearchBtn={handleSearchBtn}
                 bazarListPageNum={bazarListPageNum}
+
+                handleAddBazarListModal={handleAddBazarListModal}
+            />
+
+            <AddBazarListModal
+                show={addBazarListModal}
+                onHide={() => setBazarListModal(false)}
             />
         </>
     )

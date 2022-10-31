@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Shift component
 import Shift from "../../components/Setting/Shift"
 import Layout from "../../components/Layout/Layout";
-//Modal immport
+//Modals immport
 import ShiftUpdateModal from "../../components/Setting/Modals/ShiftUpdateModal"
 
 const ShiftPage = () => {

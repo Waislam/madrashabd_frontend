@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Setting Component
 import Books from "../../components/Setting/Books"
 import Layout from "../../components/Layout/Layout";
-//Modal import
+//Modals import
 import BookSettingUpdateModal from "../../components/Setting/Modals/BookSettingUpdateModal"
 
 
