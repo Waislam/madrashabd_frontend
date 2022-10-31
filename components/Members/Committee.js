@@ -1,7 +1,8 @@
 import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
-const CommitteeMembers = () =>{
+const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitteeModal}) => {
+    console.log("committee :", committee)
     return (
         <>
             <section className={styles.settingSection}>
@@ -14,77 +15,54 @@ const CommitteeMembers = () =>{
                                     <div className="card-body">
                                         <div className={styles.department}>
                                             <div className="row">
-                                                <div className="col-md-6 mt-3">
+                                                <div className="col col-md-6 mt-3">
                                                     <h2><u>Committee Members</u></h2>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
+                                                <div className="col col-md-6">
+                                                    <button
+                                                        type="button"
+                                                        className={`${styles.defaultBtn} float-end`}
+                                                        onClick={()=>handleCommitteeModal()}
+                                                    >
+                                                        Add
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className="books-table mt-3">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped">
                                                         <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Member Name</th>
-                                                                <th scope="col">Podobi</th>
-                                                                <th scope="col">Phone</th>
-                                                                <th scope="col" className="text-center">Edit</th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Member Name</th>
+                                                            <th scope="col">Podobi</th>
+                                                            <th scope="col">Phone</th>
+                                                            <th scope="col" className="text-center">Edit</th>
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Abdullah</td>
-                                                                <td className="text-sm">president</td>
-                                                                <td className="text-sm">55414545</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td className="text-sm">Abdullah</td>
-                                                                <td className="text-sm">president</td>
-                                                                <td className="text-sm">55414545</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td className="text-sm">Abdullah</td>
-                                                                <td className="text-sm">president</td>
-                                                                <td className="text-sm">55414545</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">4</th>
-                                                                <td className="text-sm">Abdullah</td>
-                                                                <td className="text-sm">president</td>
-                                                                <td className="text-sm">55414545</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
+                                                        {
+                                                            committee.results?.map((data, index) => (
+                                                                <tr key={data.id}>
+                                                                    <th scope="row">{data.id}</th>
+                                                                    <td className="text-sm">{data?.member_name}</td>
+                                                                    <td className="text-sm">{data?.member_designation}</td>
+                                                                    <td className="text-sm">{data?.phone_number}</td>
+                                                                    <td className="text-center">
+                                                                        <button
+                                                                            type="button"
+                                                                            className={`${styles.editButton}`}
+                                                                            onClick={()=>handleUpdateCommitteeModal(data.id)}
+                                                                        >
+                                                                            Edit
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            ))
+                                                        }
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>
-                                            {/* ========= add department form ======== */}
-                                            <div className="add-class mt-4">
-                                                <h2><u>Add Committee Members</u></h2>
-                                                <form action="#" method="POST">
-                                                    <div className="row">
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Member Name" />
-                                                        </div>
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Member Post" />
-                                                        </div>
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="phone Number" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-7 mt-3">
-                                                        <button type="submit" className={styles.defaultBtn}>Save</button>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>

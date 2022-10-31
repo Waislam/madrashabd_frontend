@@ -13,7 +13,6 @@ const ExaminationPage = () => {
     )
 };
 
-
 export default ExaminationPage;
 
 

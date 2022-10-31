@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Setting Component
 import Classs from "../../components/Setting/Classs"
 import Layout from "../../components/Layout/Layout";
-//Modal import
+//Modals import
 import ClassUpdateModal from "../../components/Setting/Modals/ClassUpdateModal"
 
 

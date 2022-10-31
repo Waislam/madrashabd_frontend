@@ -10,6 +10,7 @@ import Layout from '../../layouts/Layout';
 // import modal file
 import BookListModal from '../../components/Library/BookListModal'
 import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateModal";
+import AssignBookDistributionModal from "../../components/Library/AssignBookDistributionModal";
 
 
 const Library = () => {
@@ -25,6 +26,9 @@ const Library = () => {
     const [searchName, setSearchName] = useState('');
     const [searchNumber, setSearchNumber] = useState('');
     const [libraryListPageNum, setLibraryListPageNum] = useState(1);
+
+    const [showBookDistributionModal, setShowBookDistributionModal] = useState(false);
+    const [bookID, setBookID] = useState('');
 
 
     const getBooks = async () => {
@@ -82,6 +86,12 @@ const Library = () => {
         setLibraryBookUpdateModalShow(true)
     };
 
+    // AssignBookDistributionModal
+
+    const assignBookDistributionModal =(book_id) =>{
+        setBookID(book_id);
+        setShowBookDistributionModal(true)
+    };
 
     return (
         <>
@@ -95,8 +105,7 @@ const Library = () => {
                 handleLibraryListPageNum={handleLibraryListPageNum}
                 nextPage={nextPage}
                 prevPage={prevPage}
-
-
+                assignBookDistributionModal={assignBookDistributionModal}
             />
 
             <BookListModal
@@ -105,6 +114,12 @@ const Library = () => {
             >
 
             </BookListModal>
+
+            <AssignBookDistributionModal
+                show={showBookDistributionModal}
+                onHide={() => setShowBookDistributionModal(false)}
+                bookID={bookID}
+            />
 
             {
                 loader ?

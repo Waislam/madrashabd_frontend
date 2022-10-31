@@ -72,13 +72,13 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                             bookDistribution && bookDistribution.results?.map((book) => (
                                                                 <tr key={book.id}>
                                                                     <th scope="row">
-                                                                        <Link href="" style={{color: "#5CBD67"}}>
-                                                                            {book.student_roll_id?.student_id}
+                                                                        <Link href="/" style={{color: "#5CBD67"}}>
+                                                                            <a>{book.student_roll_id?.student_id}</a>
                                                                         </Link>
                                                                     </th>
-                                                                    <td>{book.student_roll_id.user?.username}</td>
-                                                                    <td>{book.student_roll_id.admitted_class?.name}</td>
-                                                                    <td>{book.student_roll_id.user?.phone}</td>
+                                                                    <td>{book.student_roll_id?.user?.username}</td>
+                                                                    <td>{book.student_roll_id?.admitted_class?.name}</td>
+                                                                    <td>{book.student_roll_id?.user?.phone}</td>
                                                                     <td>{book.book_number?.number}</td>
                                                                     <td>{book.book_number?.name}</td>
                                                                     <td>{book.taken_date}</td>
