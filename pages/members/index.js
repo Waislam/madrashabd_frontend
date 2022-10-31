@@ -44,6 +44,7 @@ const CommitteePage = () => {
         setUpdateCommitteeModal(true)
     };
 
+
     if (isLoading) {
         return (
             <div className="text-center">

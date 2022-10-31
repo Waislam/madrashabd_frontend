@@ -1,12 +1,8 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
 import styles from './Dawah.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
-import Talimat from "./Talimat";
+import Talimat from "../Talimat";
 
-const Dawah = ({dawah}) => {
-    console.log("dawah :", dawah);
+const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDawahModal}) => {
     return (
         <>
             <section className={styles.dawahSection}>
@@ -23,8 +19,10 @@ const Dawah = ({dawah}) => {
                                                     <h2>Dawah details</h2>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button type="button"
-                                                            className={`${styles.defaultBtn} float-md-end`}>Add
+                                                    <button
+                                                        type="button"
+                                                        className={`${styles.defaultBtn} float-md-end`}
+                                                        onClick={handleDawahModal}>Add
                                                     </button>
                                                 </div>
                                             </div>
@@ -45,18 +43,18 @@ const Dawah = ({dawah}) => {
                                                         </thead>
                                                         <tbody>
                                                         {
-                                                            dawah.map((data, index) => (
+                                                            dawah?.map((data, index) => (
                                                                 <tr key={index}>
                                                                     <th scope="row">{index+1}</th>
-                                                                    <td className="text-sm">{data?.Date}</td>
+                                                                    <td className="text-sm">{data?.date}</td>
                                                                     <td className="text-sm">{data?.program_name}</td>
                                                                     <td className="text-sm">{data?.duration}</td>
-                                                                    <td className="text-sm">{data?.start_Time}</td>
+                                                                    <td className="text-sm">{data?.start_time}</td>
                                                                     <td className="text-sm">{data?.place}</td>
                                                                     <td className="text-sm">{data?.managed_by}</td>
                                                                     <td className="text-center">
-                                                                        <button className="btn btn-primary">Edit</button>
-                                                                        <button className="btn btn-danger">Delete</button>
+                                                                        <button className="btn btn-primary" onClick={() =>handleUpdateDawahModal(data.id)}>Edit</button>
+                                                                        <button className="btn btn-danger" onClick={()=>handleDeleteDawahModal(data.id)}>Delete</button>
                                                                     </td>
                                                                 </tr>
                                                             ))
