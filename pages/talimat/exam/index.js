@@ -53,7 +53,7 @@ const ExamPage = () => {
 
     return (
         <>
-            <Exam examAnnouncementList={examAnnouncementList}/>
+            <Exam examAnnouncementList={examAnnouncementList} setExamAnnouncementList={setExamAnnouncementList}/>
         </>
     )
 };
