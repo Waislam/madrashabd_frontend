@@ -9,7 +9,7 @@ const Expense = ({
     handleAddExpenseModal,
     handleIndividualObj
 }) => {
-    
+
     if(!expenseList){
         return(
             <>
@@ -54,15 +54,20 @@ const Expense = ({
                                                                             placeholder="Category"
                                                                             className="form-control"
                                                                         />
-                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <button type="text"
+                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
                                                                             <li>
-                                                                                <a className="dropdown-item">category one</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    one</a>
                                                                             </li>
                                                                             <li>
-                                                                                <a className="dropdown-item">category two</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    two</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -75,15 +80,20 @@ const Expense = ({
                                                                             placeholder="Sub Category"
                                                                             className="form-control"
                                                                         />
-                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <button type="text"
+                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
                                                                             <li>
-                                                                                <a className="dropdown-item">category one</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    one</a>
                                                                             </li>
                                                                             <li>
-                                                                                <a className="dropdown-item">category two</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    two</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -136,10 +146,10 @@ const Expense = ({
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {expenseList && expenseList.results.map((expense)=>(
+                                                        {expenseList && expenseList.results.map((expense) => (
                                                             <tr key={expense.id}>
                                                                 <th scope="row">
-                                                                    <Link href="" style={{color:"#5CBD67"}}>
+                                                                    <Link href="" style={{color: "#5CBD67"}}>
                                                                         {expense.id}
                                                                     </Link>
                                                                 </th>
@@ -155,7 +165,7 @@ const Expense = ({
                                                                     <a className="btn btn-primary" onClick={() => handleIndividualObj(expense.id)}>Edit</a>
                                                                 </td>
                                                             </tr>
-                                                            ))}
+                                                        ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -179,11 +189,15 @@ const Expense = ({
                                                         </nav>
                                                     </div>
                                                     <div className="page-size col-md-1">
-                                                        <div className="float-end" style={{width:80}}>
+                                                        <div className="float-end" style={{width: 80}}>
                                                             <div className="input-group">
-                                                                <input type="text" className="form-control" placeholder="10"/>
-                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span className="visually-hidden">Toggle dropdown</span>
+                                                                <input type="text" className="form-control"
+                                                                       placeholder="10"/>
+                                                                <button type="button"
+                                                                        className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span
+                                                                        className="visually-hidden">Toggle dropdown</span>
                                                                 </button>
                                                                 <ul className="dropdown-menu dropdown-menu-end">
                                                                     <li>
@@ -224,17 +238,21 @@ const Expense = ({
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">Expense By</label>
-                                                            <input type="text" className="form-control" placeholder="Expense By" />
+                                                            <input type="text" className="form-control"
+                                                                   placeholder="Expense By"/>
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">Amount</label>
-                                                            <input type="text" className="form-control" placeholder="5000" />
+                                                            <input type="text" className="form-control"
+                                                                   placeholder="5000"/>
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <div className="form-group">
                                                                 <label className="mb-2">For Month</label>
-                                                                <select className="form-control form-select" defaultValue={'DEFAULT'}>
-                                                                    <option value="DEFAULT" disabled>Select Month</option>
+                                                                <select className="form-control form-select"
+                                                                        defaultValue={'DEFAULT'}>
+                                                                    <option value="DEFAULT" disabled>Select Month
+                                                                    </option>
                                                                     <option>January</option>
                                                                     <option>February</option>
                                                                     <option>March</option>
@@ -243,31 +261,39 @@ const Expense = ({
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">For Months</label>
-                                                            <input type="text" className="form-control" placeholder="january - march" />
+                                                            <input type="text" className="form-control"
+                                                                   placeholder="january - march"/>
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">Description</label>
-                                                            <input type="text" className="form-control" placeholder="Building construction" />
+                                                            <input type="text" className="form-control"
+                                                                   placeholder="Building construction"/>
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">Expense By</label>
-                                                            <input type="text" className="form-control" placeholder="Expense by" />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
+                                                                placeholder="Expense by"
+                                                            />
                                                         </div>
                                                         <div className="col-md-4 mb-3">
                                                             <label className="mb-2">Date</label>
-                                                                <input
-                                                                    type="text"
-                                                                    name="date"
-                                                                    placeholder="date"
-                                                                    onChange={(e) => console.log(e.target.value)}
-                                                                    onFocus={(e) => (e.target.type = "date")}
-                                                                    onBlur={(e) => (e.target.type = "text")}
-                                                                    className="form-control"
-                                                                />
+                                                            <input
+                                                                type="text"
+                                                                name="date"
+                                                                placeholder="date"
+                                                                onChange={(e) => console.log(e.target.value)}
+                                                                onFocus={(e) => (e.target.type = "date")}
+                                                                onBlur={(e) => (e.target.type = "text")}
+                                                                className="form-control"
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <button type="submit" className={`${styles.defaultBtn}`}>Save and print</button>
+                                                        <button type="submit" className={`${styles.defaultBtn}`}>Save
+                                                            and print
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div> */}
@@ -288,15 +314,20 @@ const Expense = ({
                                                                             placeholder="Category"
                                                                             className="form-control"
                                                                         />
-                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <button type="text"
+                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
                                                                             <li>
-                                                                                <a className="dropdown-item">category one</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    one</a>
                                                                             </li>
                                                                             <li>
-                                                                                <a className="dropdown-item">category two</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    two</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -309,15 +340,20 @@ const Expense = ({
                                                                             placeholder="Sub Category"
                                                                             className="form-control"
                                                                         />
-                                                                        <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <button type="text"
+                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
                                                                             <li>
-                                                                                <a className="dropdown-item">category one</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    one</a>
                                                                             </li>
                                                                             <li>
-                                                                                <a className="dropdown-item">category two</a>
+                                                                                <a className="dropdown-item">category
+                                                                                    two</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>

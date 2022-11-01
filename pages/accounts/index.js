@@ -1,40 +1,41 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, {useEffect} from "react"
+import {useState} from "react"
 import api, {BASE_URL} from '../api/api'
-import axios from "axios";
+import axios from "axios"
 
 // StudentList Component
-import Account from "../../components/Account/StudentIncome";
-import Layout from "../../components/Layout/Layout";
+import Account from "../../components/Account/StudentIncome"
+import Layout from "../../components/Layout/Layout"
+
 // import component modals
 import AddStudentIncomeModal from "../../components/Account/Modals/AddStudentIncomeModal"
 import StudentIncomeUpdateModal from "../../components/Account/Modals/UpdateStudentIncomeModal"
 
 
-
-
 const Accounts = () => {
     const [loader, setLoader] = useState(false)
-    const [studentIncome, setStudentIncome] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [studentIncome, setStudentIncome] = useState(null)
+    const [showModal, setShowModal] = useState(false)
     const [transactioncategoryList, setTransactioncategoryList] = useState(null)
-    const [transactionCaterory, setTransactionCaterory] = useState('');
-    const [transactionSubCaterory, setTransactionSubCaterory] = useState('');
+    const [transactionCaterory, setTransactionCaterory] = useState('')
+    const [transactionSubCaterory, setTransactionSubCaterory] = useState('')
     const [studentFees, setStudentFees] = useState('')
     const [studetnIncomeUpdateModalShow, setStudentIncomeUpdateModalShow] = useState(false)
     const [studentIncomePreValue, setStudentIncomePreValue] = useState({})
 
     // get income category, subCategory and student income amount
-    const getTransactioCategory = async ()=> {
+    const getTransactioCategory = async () => {
         const list = await axios.get(`${BASE_URL}/transactions/category/`)
         const category = list.data
-        setTransactioncategoryList(category)
+        setTransactioncategoryList(category) 
+        console.log(transactioncategoryList)
     }
 
-    const getTransactioSubCategory = async ()=> {
+    const getTransactioSubCategory = async () => {
         const list = await axios.get(`${BASE_URL}/transactions/sub-category/${transactionCaterory}/`)
         const subCategory = list.data
         setTransactionSubCaterory(subCategory)
+        console.log(transactionSubCaterory)
     }
 
     const getStudentFeesAmount = async () => {
@@ -55,7 +56,7 @@ const Accounts = () => {
 
 
     //Get Student income Data as list
-    const getStudentIncomeData = async ()=> {
+    const getStudentIncomeData = async () => {
         const list = await api.get(`transactions/100/student-income/`);
         const data = list.data;
         setStudentIncome(data)
@@ -63,13 +64,13 @@ const Accounts = () => {
 
     useEffect(() => {
         getStudentIncomeData()
-    },[]);
+    }, []);
 
     const handleModalShow = () => {
         setShowModal(true)
     }
 
-    const handleModalClose=(event)=>{
+    const handleModalClose = (event) => {
         setShowModal(false)
     }
     //student Income update functionality
@@ -101,10 +102,10 @@ const Accounts = () => {
 
             </AddStudentIncomeModal>
 
-            {     loader? <h1></h1> :
+            {loader ? <h1></h1> :
                 <StudentIncomeUpdateModal
                     show={studetnIncomeUpdateModalShow}
-                    onHide={()=>setStudentIncomeUpdateModalShow(false)}
+                    onHide={() => setStudentIncomeUpdateModalShow(false)}
                     incomeCategoryList={transactioncategoryList}
                     setTransactionCaterory={setTransactionCaterory}
                     transactionSubCaterory={transactionSubCaterory}
