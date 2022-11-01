@@ -9,9 +9,13 @@ import { useEffect, useState } from 'react';
 
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
+import {AmPm} from "../../Utils/utils"
+import { useRouter } from 'next/router'
 
 
-const Syllabus = ({ getClassList, classList, handlePutRequest }) => {
+const Syllabus = ({ getClassList, classList, handlePutRequest, handleDeleteRequest }) => {
+
+    const router = useRouter()
 
     const [bookDistList, setBookDistList] = useState(null)
     const [showInputForm, setShowInputForm] = useState(false)
@@ -55,6 +59,7 @@ const Syllabus = ({ getClassList, classList, handlePutRequest }) => {
                 console.log(response.data)
             ))
         setShowInputForm(false)
+        router.reload()
     }
 
     return (
@@ -84,7 +89,9 @@ const Syllabus = ({ getClassList, classList, handlePutRequest }) => {
                                                                         <button type="submit" className={styles.searchButton}>Search</button>
                                                                     </div>
                                                                     <div className="col-md-6">
-                                                                        <button type="button" className={`${styles.defaultBtn}`} onClick={handlePostRequest}>Add</button>
+                                                                        <button type="button" className={`${styles.defaultBtn}`} onClick={handlePostRequest}>
+                                                                            Add
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -98,20 +105,26 @@ const Syllabus = ({ getClassList, classList, handlePutRequest }) => {
                                                                         <th scope="col">Kitab Name</th>
                                                                         <th scope="col">Class</th>
                                                                         <th scope="col">Class Time</th>
-                                                                        <th scope="col">Action</th>
+                                                                        <th scope="col" className="text-center">Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody className={styles.tbodyCustom}>
+                                                                <tbody>
                                                                     {bookDistList && bookDistList.map((bookdist, index) => (
                                                                         <tr key={bookdist.id}>
                                                                             <th className="text-sm" scope="row">{index + 1}</th>
-                                                                            <td className="text-sm">{bookdist.teacher_name}</td>
+                                                                            <td className="text-sm ">{bookdist.teacher_name}</td>
                                                                             <td className="text-sm">{bookdist.kitab_name}</td>
                                                                             <td className="text-sm">{bookdist.class_name?.name}</td>
-                                                                            <td className="text-sm">{bookdist.class_time}</td>
+                                                                            <td className="text-sm">
+                                                                                {AmPm(bookdist.class_time)}
+                                                                            </td>
                                                                             <td className="text-sm float-md-end">
-                                                                                <button className="btn btn-primary" onClick={(e)=>handlePutRequest(e, bookdist.id)}>Edit</button>
-                                                                                <button className="btn btn-danger ms-2">Remove</button>
+                                                                                <button className="btn btn-primary" onClick={(e)=>handlePutRequest(e, bookdist.id)}>
+                                                                                    Edit
+                                                                                </button>
+                                                                                <button className="btn btn-danger ms-2" onClick={()=>handleDeleteRequest(bookdist.id)}>
+                                                                                    Remove
+                                                                                </button>
                                                                             </td>
                                                                         </tr>
                                                                     ))}
@@ -164,6 +177,7 @@ const Syllabus = ({ getClassList, classList, handlePutRequest }) => {
                                                                                 name="class_name"
                                                                                 {...register("class_name")}
                                                                             >
+                                                                                <option>Select class</option>
                                                                                 {classList && classList.map((classname)=>(
                                                                                     <option value={classname.id} key={classname.name}>{classname.name}</option>
                                                                                 ))}

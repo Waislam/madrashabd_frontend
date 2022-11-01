@@ -56,7 +56,7 @@ const DawahPage = () => {
         setLoading(true);
         const list = await api.get(`http://127.0.0.1:8086/talimat/dawah/detail/${id}/`);
         const data = list.data;
-        setOldDawahData(data);
+        setOldDawahData(data.data);
         setLoading(false);
         setUpdateShowDawahModal(true)
     };

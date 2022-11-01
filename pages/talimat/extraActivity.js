@@ -19,9 +19,9 @@ const ExtraActivityPage = () => {
     const [updateExtraActivityModal, setUpdateExtraActivityModal] = useState(false);
     const [extraActivityUpdateOldData, setExtraActivityUpdateOldData] = useState(null);
 
-    //get committee list
+    //get Extra activity list list
     const getExtraActivityData = async () => {
-        const list = await api.get("http://127.0.0.1:8086/talimat/100/extra-activity/");
+        const list = await api.get("talimat/100/extra-activity/");
         const data = list.data;
         setExtraActivity(data);
         setLoading(false);
@@ -46,9 +46,9 @@ const ExtraActivityPage = () => {
       // update Committee
     const handleUpdateExtraActivityModal = async (id) => {
         setLoading(true);
-        const list = await api.get(`http://127.0.0.1:8086/talimat/extra-activity/detail/${id}/`);
+        const list = await api.get(`talimat/extra-activity/detail/${id}/`);
         const data = list.data;
-        setExtraActivityUpdateOldData(data);
+        setExtraActivityUpdateOldData(data.data);
         setLoading(false);
         setUpdateExtraActivityModal(true)
     };
