@@ -1,19 +1,20 @@
 import React from "react";
-import Link from 'next/link'
 import styles from './Boarding.module.css'
 import BoardingSidebar from './BoardingSidebar'
 
 const Boarding = (
-    
-        // bazerList,
-        // handleBazarListPageNum,
-        // setSearchBazerList,
-        // setBazerListRecords,
-        // nextPage,
-        // prevPage,
-        // handleSearchBtn,
-        // bazarListPageNum
-    ) => {
+    // bazerList,
+    // handleBazarListPageNum,
+    // setSearchBazerList,
+    // setBazerListRecords,
+    // nextPage,
+    // prevPage,
+    // handleSearchBtn,
+    // bazarListPageNum
+    {
+        handleAddBazarListModal
+    }
+) => {
 
     return (
         <>
@@ -42,7 +43,7 @@ const Boarding = (
                                                             <button
                                                                 type="submit"
                                                                 className={`${styles.boardingSearch} input-group-text`}
-                                                               >Search
+                                                            >Search
                                                             </button>
                                                         </div>
                                                     </form>
@@ -52,9 +53,7 @@ const Boarding = (
                                             <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                                 <div className="row g-1">
                                                     <div className="col">
-                                                        <Link href="/boarding/add-bazar">
-                                                            <button className={styles.boardingAddButton}>Add New Bazar</button>
-                                                        </Link>
+                                                        <button onClick={handleAddBazarListModal} className={styles.boardingAddButton}>Add New Bazar</button>
                                                     </div>
                                                     <div className="col">
                                                         <button className={styles.boardingDownloadButton}>Download PDF
@@ -79,15 +78,15 @@ const Boarding = (
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr className="text-center">
-                                                        <th scope="row"></th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>0k</td>
-                                                    </tr>
+                                                <tr className="text-center">
+                                                    <th scope="row"></th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>0k</td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -95,51 +94,51 @@ const Boarding = (
                                     <div className={styles.paginationSection}>
                                         <nav aria-label="Page navigation example">
                                             {/*<ul className="pagination">*/}
-                                                {/*<li className="page-item">*/}
-                                                    {/*<a className={bazerList.previous*/}
-                                                        {/*? "btn page-link"*/}
-                                                        {/*: "btn page-link disabled"*/}
-                                                    {/*}*/}
-                                                       {/*onClick={prevPage} href="#">*/}
-                                                        {/*Previous*/}
-                                                    {/*</a>*/}
-                                                {/*</li>*/}
-                                                {/*{bazerList.previous &&*/}
-                                                {/*<li className="page-item">*/}
-                                                    {/*<a*/}
-                                                        {/*className="page-link"*/}
-                                                        {/*href="#"*/}
-                                                        {/*onClick={handleBazarListPageNum}*/}
-                                                    {/*>*/}
-                                                        {/*{bazarListPageNum - 1}*/}
-                                                    {/*</a>*/}
-                                                {/*</li>*/}
-                                                {/*}*/}
-                                                {/*<li className="page-item">*/}
-                                                    {/*<a className="page-link" href="#"*/}
-                                                       {/*onClick={handleBazarListPageNum}*/}
-                                                    {/*>*/}
-                                                        {/*{bazarListPageNum}*/}
-                                                    {/*</a>*/}
-                                                {/*</li>*/}
-                                                {/*{bazerList.next &&*/}
-                                                {/*<li className="page-item">*/}
-                                                    {/*<a className="page-link" href="#"*/}
-                                                       {/*onClick={handleBazarListPageNum}*/}
-                                                    {/*>*/}
-                                                        {/*{bazarListPageNum + 1}*/}
-                                                    {/*</a>*/}
-                                                {/*</li>*/}
-                                                {/*}*/}
-                                                {/*<li className="page-item">*/}
-                                                    {/*<a className={bazerList.next*/}
-                                                        {/*? "btn page-link"*/}
-                                                        {/*: "btn page-link disabled"*/}
-                                                    {/*}*/}
-                                                       {/*onClick={nextPage} href="#">*/}
-                                                        {/*Next*/}
-                                                    {/*</a>*/}
-                                                {/*</li>*/}
+                                            {/*<li className="page-item">*/}
+                                            {/*<a className={bazerList.previous*/}
+                                            {/*? "btn page-link"*/}
+                                            {/*: "btn page-link disabled"*/}
+                                            {/*}*/}
+                                            {/*onClick={prevPage} href="#">*/}
+                                            {/*Previous*/}
+                                            {/*</a>*/}
+                                            {/*</li>*/}
+                                            {/*{bazerList.previous &&*/}
+                                            {/*<li className="page-item">*/}
+                                            {/*<a*/}
+                                            {/*className="page-link"*/}
+                                            {/*href="#"*/}
+                                            {/*onClick={handleBazarListPageNum}*/}
+                                            {/*>*/}
+                                            {/*{bazarListPageNum - 1}*/}
+                                            {/*</a>*/}
+                                            {/*</li>*/}
+                                            {/*}*/}
+                                            {/*<li className="page-item">*/}
+                                            {/*<a className="page-link" href="#"*/}
+                                            {/*onClick={handleBazarListPageNum}*/}
+                                            {/*>*/}
+                                            {/*{bazarListPageNum}*/}
+                                            {/*</a>*/}
+                                            {/*</li>*/}
+                                            {/*{bazerList.next &&*/}
+                                            {/*<li className="page-item">*/}
+                                            {/*<a className="page-link" href="#"*/}
+                                            {/*onClick={handleBazarListPageNum}*/}
+                                            {/*>*/}
+                                            {/*{bazarListPageNum + 1}*/}
+                                            {/*</a>*/}
+                                            {/*</li>*/}
+                                            {/*}*/}
+                                            {/*<li className="page-item">*/}
+                                            {/*<a className={bazerList.next*/}
+                                            {/*? "btn page-link"*/}
+                                            {/*: "btn page-link disabled"*/}
+                                            {/*}*/}
+                                            {/*onClick={nextPage} href="#">*/}
+                                            {/*Next*/}
+                                            {/*</a>*/}
+                                            {/*</li>*/}
                                             {/*</ul>*/}
                                         </nav>
                                     </div>
