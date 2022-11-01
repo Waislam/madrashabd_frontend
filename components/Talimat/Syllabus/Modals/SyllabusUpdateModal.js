@@ -4,10 +4,12 @@ import api, { BASE_URL } from "../../../../pages/api/api"
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 
-const ClassesUpdate = (props) => {
-    console.log(props.bookDistOldData?.class_name?.name)
+const BookDistToTeacherUpdate = (props) => {
+
+    const router = useRouter()
 
     let preLoadedValues = {
         "teacher_name": props.bookDistOldData?.teacher_name,
@@ -35,6 +37,7 @@ const ClassesUpdate = (props) => {
             console.log(response.data)
         })
         props.onHide()
+        router.reload(ss)
     }
 
 
@@ -111,4 +114,4 @@ const ClassesUpdate = (props) => {
     )
 }
 
-export default ClassesUpdate;
+export default BookDistToTeacherUpdate;

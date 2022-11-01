@@ -1,6 +1,7 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import { BASE_URL } from '../../../../pages/api/api';
 
 const UpdateDawahModal = (props) => {
 
@@ -16,7 +17,7 @@ const UpdateDawahModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/talimat/dawah/detail/${props.old_dawah_data.id}/`, {
+        fetch(`${BASE_URL}/talimat/dawah/detail/${props.old_dawah_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -24,10 +25,10 @@ const UpdateDawahModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
-                    // "madrasha": props.old_dawah_data?.madrasha?.id,
-                    "member_name": values.program_name,
-                    "member_designation": values.duration,
+                    // "madrasha": 1,
+                    "madrasha": props.old_dawah_data?.madrasha?.id,
+                    "program_name": values.program_name,
+                    "duration": values.duration,
                     "start_time": values.start_time,
                     "place": values.place,
                     "date": values.date,
@@ -49,7 +50,7 @@ const UpdateDawahModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Update Committee List
+                        Update Dawah Information
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -78,6 +79,7 @@ const UpdateDawahModal = (props) => {
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="time"}}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
@@ -96,6 +98,7 @@ const UpdateDawahModal = (props) => {
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="date"}}
                                     name="date"
                                     {...register("date")}
                                 />

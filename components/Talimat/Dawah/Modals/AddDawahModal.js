@@ -1,13 +1,14 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import { BASE_URL } from '../../../../pages/api/api';
 
 
 const AddDawahModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/talimat/100/dawah/", {
+        fetch(`${BASE_URL}/talimat/100/dawah/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -59,7 +60,6 @@ const AddDawahModal = (props) => {
                                     type="text"
                                     placeholder="Duration"
                                     className="form-control"
-
                                     name="duration"
                                     {...register("duration")}
                                 />
@@ -69,6 +69,7 @@ const AddDawahModal = (props) => {
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="time"}}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
@@ -87,6 +88,7 @@ const AddDawahModal = (props) => {
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="date"}}
                                     name="date"
                                     {...register("date")}
                                 />

@@ -1,13 +1,14 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import { BASE_URL } from '../../../../pages/api/api';
 
 const AddExtraActivityModal = (props) => {
 
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/talimat/100/extra-activity/", {
+        fetch(`${BASE_URL}/talimat/100/extra-activity/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -40,13 +41,14 @@ const AddExtraActivityModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Add ExtraActivity
+                        Add Extra Activity
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Name</label>
                                 <input
                                     type="text"
                                     placeholder="Category"
@@ -56,25 +58,28 @@ const AddExtraActivityModal = (props) => {
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Duration</label>
                                 <input
                                     type="text"
                                     placeholder="Duration"
                                     className="form-control"
-
                                     name="duration"
                                     {...register("duration")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Start Time</label>
                                 <input
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="time"}}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Place</label>
                                 <input
                                     type="text"
                                     placeholder="Place"
@@ -84,15 +89,18 @@ const AddExtraActivityModal = (props) => {
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Date</label>
                                 <input
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="date"}}
                                     name="date"
                                     {...register("date")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Managed by</label>
                                 <input
                                     type="text"
                                     placeholder="Managed by"
