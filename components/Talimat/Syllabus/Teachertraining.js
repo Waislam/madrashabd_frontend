@@ -11,7 +11,7 @@ import axios from 'axios';
 import api, { BASE_URL } from '../../../pages/api/api';
 
 
-const TeacherTraining = () => {
+const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
 
     const router = useRouter()
 
@@ -72,7 +72,9 @@ const TeacherTraining = () => {
                                                     <div className="row">
                                                         <h2 className="col-md-6">Teachers Training</h2>
                                                         <div className="col-md-6">
-                                                            <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={handlePostRequest}>Add</button>
+                                                            <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={handlePostRequest}>
+                                                                Add
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div className="row">
@@ -90,17 +92,17 @@ const TeacherTraining = () => {
                                                                     {trainingDataList && trainingDataList.map((data, index) => (
                                                                         <tr key={data.id}>
                                                                             <th scope="row">{index + 1}</th>
-                                                                            <td className="text-truncate" style={{ "max-width": 150 }}>
+                                                                            <td className="text-truncate" style={{ "maxWidth": 150 }}>
                                                                                 {data.training_title}
                                                                             </td>
-                                                                            <td className="text-truncate" style={{ "max-width": 250 }}>
+                                                                            <td className="text-truncate" style={{ "maxWidth": 250 }}>
                                                                                 {data.training_description}
                                                                             </td>
                                                                             <td>
-                                                                                <button className="btn btn-primary me-2">
+                                                                                <button className="btn btn-primary me-2" onClick={(e)=>handlePutRequest(e, data.id)}>
                                                                                     Edit
                                                                                 </button>
-                                                                                <button className="btn btn-danger">
+                                                                                <button className="btn btn-danger" onClick={()=>handleDeleteRequest(data.id)}>
                                                                                     Remove
                                                                                 </button>
                                                                             </td>
