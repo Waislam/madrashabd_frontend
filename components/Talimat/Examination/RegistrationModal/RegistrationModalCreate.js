@@ -108,7 +108,7 @@ const RegistrationCreateModal = (props) => {
                                         <option value={term?.id} key={term?.id}>{term?.term_name}</option>
                                     ))}
                                 </select>
-                                <p className="text-danger">{errors.category?.message}</p>
+                                <p className="text-danger">{errors.exam_term?.message}</p>
                             </div>
                         </div>
 
