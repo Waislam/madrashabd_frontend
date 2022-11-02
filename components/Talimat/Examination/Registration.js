@@ -156,7 +156,6 @@ const ExamARegistration = (props) => {
                 classList={classList}
                 termList={termList}
             />
-
         </>
     )
 }
