@@ -2,10 +2,9 @@ import React, {useState, useEffect} from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from '../../components/Teachers/TeacherList.module.css'
 import {useForm, useFieldArray} from "react-hook-form"
-import {StyleRegistry} from "styled-jsx";
-import axios from "axios";
 import api, {BASE_URL} from "../api/api";
-import {error} from "next/dist/build/output/log";
+import { getSession, useSession } from "next-auth/react";
+import { getDepartmentList } from "../api/settings_api";
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false)
@@ -13,13 +12,18 @@ const AddTeacherPage = (props) => {
     const [singleDivision, setSingleDivision] = useState('')
     const [disctrictList, setDistrictList] = useState(null)
     const [singleDistrict, setSingleDristrict] = useState('')
+    const [departmentList, setDepartmentList] = useState('')
+
+    // console.log("@@ departmentList",departmentList)
 
 
     const {
         handleSubmit,
         register,
         formState: {errors}, control
-    } = useForm({})
+    } = useForm()
+
+    console.log("@@@@@ department:", props.departmentList)
 
     const onSubmit = data => {
         console.log(data);
@@ -55,6 +59,9 @@ const AddTeacherPage = (props) => {
                 "passing_year": data.passing_year,
                 "result": data.result
             },
+            "experience": {
+                "experience_name": data.experience_name,
+            },
             "skill": {
                 "skill_name": data.skill_name
             },
@@ -63,7 +70,7 @@ const AddTeacherPage = (props) => {
             "birth_certificate": data.birth_certificate,
             "nationality": data.nationality,
             "blood_group": data.blood_group,
-            "department": 1,
+            "department": data.department,
             "designation": 1,
             "starting_date": data.starting_date,
             "ending_date": data.ending_date
@@ -80,10 +87,10 @@ const AddTeacherPage = (props) => {
 
 
     // Extending field on click / that means add more working by using below
-    const {fields: experienceField, remove: experienceRemove, append: experienceAppend} = useFieldArray({
-        control,
-        name: "Experience"
-    })
+    // const {fields: experienceField, remove: experienceRemove, append: experienceAppend} = useFieldArray({
+    //     control,
+    //     name: "Experience"
+    // })
 
     const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
         control,
@@ -245,6 +252,35 @@ const AddTeacherPage = (props) => {
                                                 </select>
                                             </div>
                                         </div>
+                                        <div className="row mb-3">
+                                            <div className="col-md-3">
+                                                <label className="mb-2">Department</label>
+                                                <select className="form-select"
+                                                        name="department"
+                                                        {...register("department")}
+                                                >
+                                                    <option value="">Select Department</option>
+                                                    {
+                                                        props.departmentList.map(department => <option
+                                                            key={department.id}
+                                                            value={department.id}
+                                                            >{department.name}
+                                                            </option>)
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Designation</label>
+                                                <input type="text"
+                                                       placeholder="Designation"
+                                                       className="form-control"
+                                                       name="designation"
+                                                       {...register("designation", {required: "This field is required"})}
+                                                />
+                                                <p className="text-danger">{errors.designation?.message}</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/*Present Address*/}
@@ -260,7 +296,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_division", {required: "This field is required"})}
                                                     onChange={handleSetSingleDivisionValue}
                                                 >
-                                                    <option>Select Division</option>
+                                                    <option value="">Select Division</option>
                                                     {props.divisionList && props.divisionList.map((division) => (
                                                         <option
                                                             value={division.pk}
@@ -492,7 +528,52 @@ const AddTeacherPage = (props) => {
                                     <div className="education mb-3">
                                         <h4>Education</h4>
                                         <hr/>
-                                        {educationFields.map((item, index) => (
+                                        <div className="row">
+                                                <div className="col-md-3 mb-3">
+                                                    <label className="mb-2">Degree Name</label>
+                                                    <input type="text"
+                                                           placeholder="Degree Name "
+                                                           className="form-control"
+                                                           name="degree_name"
+                                                           {...register("degree_name", {required: "This field is required"})}
+                                                    />
+                                                    <p className="text-danger">{errors.degree_name?.message}</p>
+                                                </div>
+                                                <div className="col-md-3 mb-3">
+                                                    <label className="mb-2">Passing Year</label>
+                                                    <input type="text"
+                                                           placeholder="Passing year"
+                                                           className="form-control"
+                                                           name="passing_year"
+                                                           {...register("passing_year")}
+                                                    />
+                                                </div>
+                                                <div className="col-md-3 mb-3">
+                                                    <label className="mb-2">Result</label>
+                                                    <input type="text"
+                                                           placeholder="CGPA/GPA-5/First Class"
+                                                           className="form-control"
+                                                           name="result"
+                                                           {...register("result")}
+                                                    />
+                                                </div>
+                                                <div className="col-md-3 mb-3">
+                                                    <label className="mb-2">Institution Name</label>
+                                                    <input type="text"
+                                                           placeholder="University/college/Madrasha"
+                                                           className="form-control"
+                                                           name="institution_name"
+                                                           {...register("institution_name")}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    {/* <button type="button"
+                                                            className={`btn btn-secondary float-md-end mb-2 col-1`}
+                                                            onClick={() => educationRemove(index)}>Remove
+                                                    </button> */}
+                                                </div>
+                                        </div>
+                                        {/* {educationFields.map((item, index) => (
                                             <div className="row" key={item.id}>
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Degree Name</label>
@@ -538,11 +619,11 @@ const AddTeacherPage = (props) => {
                                                     </button>
                                                 </div>
                                             </div>
-                                        ))}
+                                        ))} */}
 
-                                        <button type="Submit" className={styles.addButton}
+                                        {/* <button type="Submit" className={styles.addButton}
                                                 onClick={handleEducationAppend}>Add More
-                                        </button>
+                                        </button> */}
                                     </div>
                                     {/*contact*/}
                                     <div className="contact mb-3 mt-5">
@@ -630,28 +711,6 @@ const AddTeacherPage = (props) => {
                                                     {...register("blood_group")}
                                                 />
                                             </div>
-                                            <div className="col-md-4 mb-2">
-                                                <label className="mb-2">Department</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Department"
-                                                    className="form-control"
-                                                    name="department"
-                                                    {...register("department", {required: "This field is required"})}
-                                                />
-                                                <p className="text-danger">{errors.department?.message}</p>
-                                            </div>
-                                            <div className="col-md-4 mb-2">
-                                                <label className="mb-2">Designation</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Designation"
-                                                    className="form-control"
-                                                    name="designation"
-                                                    {...register("designation", {required: "This field is required"})}
-                                                />
-                                                <p className="text-danger">{errors.designation?.message}</p>
-                                            </div>
                                         </div>
                                     </div>
                                     {/*working duration*/}
@@ -699,7 +758,19 @@ const AddTeacherPage = (props) => {
                                     <div className="experience mb-4">
                                         <h4>Experience</h4>
                                         <hr/>
-                                        {experienceField.map((item, index) => (
+                                        <div className="mb-3">
+                                                <textarea
+                                                    className="form-control"
+                                                    placeholder="White your Experinece Here"
+                                                    name="experience_name"
+                                                    {...register(`experience_name`)}
+                                                >
+                                                </textarea>
+                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                                        onClick={() => experienceRemove(index)}>Remove
+                                                </button> */}
+                                        </div>
+                                        {/* {experienceField.map((item, index) => (
                                             // return (
                                             <div className="mb-3" key={item.id}>
                                                 <textarea
@@ -714,17 +785,29 @@ const AddTeacherPage = (props) => {
                                                 </button>
                                             </div>
                                             // )
-                                        ))}
+                                        ))} */}
 
-                                        <button type="Submit" className={styles.addButton}
+                                        {/* <button type="Submit" className={styles.addButton}
                                                 onClick={handleExperienceAppend}>Add More
-                                        </button>
+                                        </button> */}
                                     </div>
                                     {/* skill */}
                                     <div className="skill mb-4">
                                         <h4>Skill</h4>
                                         <hr/>
-                                        {skillFields.map((item, index) => (
+                                        <div className="mb-3">
+                                                <textarea
+                                                    className="form-control"
+                                                    placeholder="White your Experinece Here"
+                                                    name="skill"
+                                                    {...register("skill")}
+                                                >
+                                                </textarea>
+                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                                        onClick={() => skillRemove(index)}>Remove
+                                                </button> */}
+                                        </div>
+                                        {/* {skillFields.map((item, index) => (
                                             <div className="mb-3" key={item.id}>
                                                 <textarea
                                                     className="form-control"
@@ -737,10 +820,10 @@ const AddTeacherPage = (props) => {
                                                         onClick={() => skillRemove(index)}>Remove
                                                 </button>
                                             </div>
-                                        ))}
-                                        <button type="Submit" className={styles.addButton}
+                                        ))} */}
+                                        {/* <button type="Submit" className={styles.addButton}
                                                 onClick={handleSkillAppend}>Add More
-                                        </button>
+                                        </button> */}
                                     </div>
                                     {/*imageUpload*/}
                                     {/* <div className="imageUpload mb-4">
@@ -761,7 +844,10 @@ const AddTeacherPage = (props) => {
 };
 
 
-export async function getStaticProps() {
+export async function getServerSideProps({req}) {
+    const session = await getSession({req})
+    const madrasha_slug =session?.user.madrasha_slug
+
     const divisionListRes = await fetch(`${BASE_URL}accounts/division/`)
     const divisionList = await divisionListRes.json()
 
@@ -777,8 +863,7 @@ export async function getStaticProps() {
     const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
     const thanaList = await thanaListRes.json()
 
-
-
+    const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
 
     // will receive `posts` as a prop at build time
     return {
@@ -787,7 +872,8 @@ export async function getStaticProps() {
             districtList,
             postCodeList,
             postOfficeList,
-            thanaList
+            thanaList,
+            departmentList
         },
     }
 }
