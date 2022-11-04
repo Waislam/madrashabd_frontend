@@ -11,7 +11,6 @@ export default async function auth(req, res) {
                 password: {label: "Password", type: "password"}
             },
             async authorize(credentials, req) {
-
                 const res = await fetch(`${BASE_URL}accounts/api-token-auth/`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
@@ -21,7 +20,6 @@ export default async function auth(req, res) {
                 // If no error and we have user data, return it
                 if (res.ok && user) {
                     // return user
-                    console.log("user in next auth", user)
                     return {
                         'user_id': user.user_id,
                         "madrasha_id": user.user_madrasha_id,
@@ -52,7 +50,6 @@ export default async function auth(req, res) {
                     params.token.madrasha_name = params.user.madrasha_name;
                     params.token.madrasha_id = params.user.madrasha_id;
                 }
-                console.log("params", params)
                 // return final_token
                 return params.token;
             },
