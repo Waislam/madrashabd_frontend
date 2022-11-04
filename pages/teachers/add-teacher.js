@@ -5,6 +5,7 @@ import {useForm, useFieldArray} from "react-hook-form"
 import {StyleRegistry} from "styled-jsx";
 import axios from "axios";
 import api, {BASE_URL} from "../api/api";
+import {error} from "next/dist/build/output/log";
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false)
@@ -20,7 +21,62 @@ const AddTeacherPage = (props) => {
         formState: {errors}, control
     } = useForm({})
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        console.log(data);
+
+        let teacher_data = {
+            "user": 1,
+            "madrasha": 1,
+            "father_name": data.father_name,
+            "mother_name": data.mother_name,
+            "date_of_birth": data.date_of_birth,
+            "gender": data.gender,
+            "religion": data.religion,
+            "marital_status": data.marital_status,
+            "present_address": {
+                "division": data.present_address_division,
+                "district": data.present_address_district,
+                "thana": data.present_address_thana,
+                "post_office": data.present_address_post_office,
+                "post_code": data.present_address_post_code,
+                "address_info": data.present_address_address_info,
+            },
+            "permanent_address": {
+                "division": data.permanent_address_division,
+                "district": data.permanent_address_district,
+                "thana": data.permanent_address_thana,
+                "post_office": data.permanent_address_post_office,
+                "post_code": data.permanent_address_post_code,
+                "address_info": data.permanent_address_address_info
+            },
+            "education": {
+                "degree_name": data.degree_name,
+                "institution_name": data.institution_name,
+                "passing_year": data.passing_year,
+                "result": data.result
+            },
+            "skill": {
+                "skill_name": data.skill_name
+            },
+            "phone_home": data.second_phone_number,
+            "nid": data.nid,
+            "birth_certificate": data.birth_certificate,
+            "nationality": data.nationality,
+            "blood_group": data.blood_group,
+            "department": 1,
+            "designation": 1,
+            "starting_date": data.starting_date,
+            "ending_date": data.ending_date
+        }
+
+        api.post(`teachers/100/`, JSON.stringify(teacher_data))
+            .then((res) => {
+                console.log("res", res.data)
+            })
+            .catch((error) => {
+                console.log("error", error)
+            })
+    }
 
 
     // Extending field on click / that means add more working by using below
@@ -423,10 +479,10 @@ const AddTeacherPage = (props) => {
                                                     <input type="text"
                                                            placeholder="Address"
                                                            className="form-control"
-                                                           name="address_info"
-                                                           {...register("address_info", {required: "This field is required"})}
+                                                           name="permanent_address_address_info"
+                                                           {...register("permanent_address_address_info", {required: "This field is required"})}
                                                     />
-                                                    <p className="text-danger">{errors.address_info?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_address_info?.message}</p>
                                                 </div>
                                             </div>
                                         }
@@ -720,6 +776,8 @@ export async function getStaticProps() {
 
     const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
     const thanaList = await thanaListRes.json()
+
+
 
 
     // will receive `posts` as a prop at build time
