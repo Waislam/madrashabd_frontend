@@ -5,6 +5,7 @@ import {useForm, useFieldArray} from "react-hook-form"
 import {StyleRegistry} from "styled-jsx";
 import axios from "axios";
 import api, {BASE_URL} from "../api/api";
+import {error} from "next/dist/build/output/log";
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false)
@@ -20,7 +21,62 @@ const AddTeacherPage = (props) => {
         formState: {errors}, control
     } = useForm({})
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        console.log(data);
+
+        let teacher_data = {
+            "user": 1,
+            "madrasha": 1,
+            "father_name": data.father_name,
+            "mother_name": data.mother_name,
+            "date_of_birth": data.date_of_birth,
+            "gender": data.gender,
+            "religion": data.religion,
+            "marital_status": data.marital_status,
+            "present_address": {
+                "division": data.present_address_division,
+                "district": 1,
+                "thana": 1,
+                "post_office": 1,
+                "post_code": 1,
+                "address_info": "null habi jabi"
+            },
+            "permanent_address": {
+                "division": 1,
+                "district": 1,
+                "thana": 1,
+                "post_office": 1,
+                "post_code": 1,
+                "address_info": "null habi jabi"
+            },
+            "education": {
+                "degree_name": "HSC",
+                "institution_name": "New",
+                "passing_year": "2011",
+                "result": "3.9"
+            },
+            "skill": {
+                "skill_name": "New skill 222"
+            },
+            "phone_home": "43423",
+            "nid": "7567657",
+            "birth_certificate": "423423",
+            "nationality": "bangladeshi",
+            "blood_group": "AB-",
+            "department": 1,
+            "designation": 1,
+            "starting_date": "2022-10-13",
+            "ending_date": "2022-10-13"
+        }
+
+        api.post(``, JSON.stringify(teacher_data))
+            .then((res) => {
+                console.log("res", res.data)
+            })
+            .catch((error) => {
+                console.log("error", error)
+            })
+    }
 
 
     // Extending field on click / that means add more working by using below
@@ -720,6 +776,8 @@ export async function getStaticProps() {
 
     const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
     const thanaList = await thanaListRes.json()
+
+
 
 
     // will receive `posts` as a prop at build time
