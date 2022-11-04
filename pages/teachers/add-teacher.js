@@ -208,7 +208,7 @@ const AddTeacherPage = (props) => {
                                                     {props.divisionList && props.divisionList.map((division) => (
                                                         <option
                                                             value={division.pk}
-                                                            key={division.name}
+                                                            key={division.pk}
                                                         >
                                                             {division.name}
                                                         </option>
@@ -227,7 +227,7 @@ const AddTeacherPage = (props) => {
                                                     {props.districtList && props.districtList.map((district) => (
                                                         <option
                                                             value={district.pk}
-                                                            key={district.name}
+                                                            key={district.pk}
                                                         >
                                                             {district.name}
                                                         </option>
@@ -246,7 +246,7 @@ const AddTeacherPage = (props) => {
                                                     {props.thanaList && props.thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
-                                                            key={thana.name}
+                                                            key={thana.pk}
                                                         >
                                                             {thana.name}
                                                         </option>
@@ -265,7 +265,7 @@ const AddTeacherPage = (props) => {
                                                     {props.postOfficeList && props.postOfficeList.map((post_office) => (
                                                         <option
                                                             value={post_office.pk}
-                                                            key={post_office.name}
+                                                            key={post_office.pk}
                                                         >
                                                             {post_office.name}
                                                         </option>
@@ -284,7 +284,7 @@ const AddTeacherPage = (props) => {
                                                     {props.postCodeList && props.postCodeList.map((post_code) => (
                                                         <option
                                                             value={post_code.pk}
-                                                            key={post_code.name}
+                                                            key={post_code.pk}
                                                         >
                                                             {post_code.name}
                                                         </option>
@@ -334,7 +334,7 @@ const AddTeacherPage = (props) => {
                                                         {props.divisionList && props.divisionList.map((division) => (
                                                             <option
                                                                 value={division.pk}
-                                                                key={division.name}
+                                                                key={division.pk}
                                                             >
                                                                 {division.name}
                                                             </option>
@@ -353,7 +353,7 @@ const AddTeacherPage = (props) => {
                                                         {props.districtList && props.districtList.map((district) => (
                                                             <option
                                                                 value={district.pk}
-                                                                key={district.name}
+                                                                key={district.pk}
                                                             >
                                                                 {district.name}
                                                             </option>
@@ -372,7 +372,7 @@ const AddTeacherPage = (props) => {
                                                         {props.thanaList && props.thanaList.map((thana) => (
                                                             <option
                                                                 value={thana.pk}
-                                                                key={thana.name}
+                                                                key={thana.pk}
                                                             >
                                                                 {thana.name}
                                                             </option>
@@ -391,7 +391,7 @@ const AddTeacherPage = (props) => {
                                                         {props.postOfficeList && props.postOfficeList.map((post_office) => (
                                                             <option
                                                                 value={post_office.pk}
-                                                                key={post_office.name}
+                                                                key={post_office.pk}
                                                             >
                                                                 {post_office.name}
                                                             </option>
@@ -410,7 +410,7 @@ const AddTeacherPage = (props) => {
                                                         {props.postCodeList && props.postCodeList.map((post_code) => (
                                                             <option
                                                                 value={post_code.pk}
-                                                                key={post_code.name}
+                                                                key={post_code.pk}
                                                             >
                                                                 {post_code.name}
                                                             </option>

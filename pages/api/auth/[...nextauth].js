@@ -62,7 +62,7 @@ export default async function auth(req, res) {
                     session.user.madrasha_name = token.madrasha_name;
                     session.user.madrasha_id = token.madrasha_id;
                 }
-                console.log('sesion: ', session)
+                console.log('session: ', session)
                 return session;
             },
         },
