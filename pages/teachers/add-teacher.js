@@ -62,11 +62,10 @@ const AddTeacherPage = (props) => {
     //get and handle dependable address section
     const getDivision = async () => {
         const list = await axios.get(`${BASE_URL}/accounts/division/`)
-        const division = list.data
+        const division = await list.data
         setDivisionList(division)
     }
 
-    
 
     const handleSetSingleDivisionValue = (e) => {
         e.stopPropagation()
@@ -81,7 +80,7 @@ const AddTeacherPage = (props) => {
 
     const getDistrict = async () => {
         const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
-        const district = list.data
+        const district = await list.data
         setDistrictList(district)
     }
     
@@ -90,7 +89,15 @@ const AddTeacherPage = (props) => {
     }, [singleDivision])
 
 
+    const getThana = async () => {
+        const list = await axios.get(`${BASE_URL}/accounts/thana/${singleDistrict}/`)
+        const district = await list.data
+        setDistrictList(district)
+    }
 
+    useEffect(() => {
+        getThana()
+    }, [singleDistrict])
 
 
 
@@ -127,6 +134,8 @@ const AddTeacherPage = (props) => {
         const checkValue = e.target.checked
         setIsChecked(checkValue)
     }
+
+    console.log("@@@@@disctrictList",disctrictList);
 
 
 
