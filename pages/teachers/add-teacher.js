@@ -35,41 +35,41 @@ const AddTeacherPage = (props) => {
             "marital_status": data.marital_status,
             "present_address": {
                 "division": data.present_address_division,
-                "district": 1,
-                "thana": 1,
-                "post_office": 1,
-                "post_code": 1,
-                "address_info": "null habi jabi"
+                "district": data.present_address_district,
+                "thana": data.present_address_thana,
+                "post_office": data.present_address_post_office,
+                "post_code": data.present_address_post_code,
+                "address_info": data.present_address_address_info,
             },
             "permanent_address": {
-                "division": 1,
-                "district": 1,
-                "thana": 1,
-                "post_office": 1,
-                "post_code": 1,
-                "address_info": "null habi jabi"
+                "division": data.permanent_address_division,
+                "district": data.permanent_address_district,
+                "thana": data.permanent_address_thana,
+                "post_office": data.permanent_address_post_office,
+                "post_code": data.permanent_address_post_code,
+                "address_info": data.permanent_address_address_info
             },
             "education": {
-                "degree_name": "HSC",
-                "institution_name": "New",
-                "passing_year": "2011",
-                "result": "3.9"
+                "degree_name": data.degree_name,
+                "institution_name": data.institution_name,
+                "passing_year": data.passing_year,
+                "result": data.result
             },
             "skill": {
-                "skill_name": "New skill 222"
+                "skill_name": data.skill_name
             },
-            "phone_home": "43423",
-            "nid": "7567657",
-            "birth_certificate": "423423",
-            "nationality": "bangladeshi",
-            "blood_group": "AB-",
+            "phone_home": data.second_phone_number,
+            "nid": data.nid,
+            "birth_certificate": data.birth_certificate,
+            "nationality": data.nationality,
+            "blood_group": data.blood_group,
             "department": 1,
             "designation": 1,
-            "starting_date": "2022-10-13",
-            "ending_date": "2022-10-13"
+            "starting_date": data.starting_date,
+            "ending_date": data.ending_date
         }
 
-        api.post(``, JSON.stringify(teacher_data))
+        api.post(`teachers/100/`, JSON.stringify(teacher_data))
             .then((res) => {
                 console.log("res", res.data)
             })
@@ -479,10 +479,10 @@ const AddTeacherPage = (props) => {
                                                     <input type="text"
                                                            placeholder="Address"
                                                            className="form-control"
-                                                           name="address_info"
-                                                           {...register("address_info", {required: "This field is required"})}
+                                                           name="permanent_address_address_info"
+                                                           {...register("permanent_address_address_info", {required: "This field is required"})}
                                                     />
-                                                    <p className="text-danger">{errors.address_info?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_address_info?.message}</p>
                                                 </div>
                                             </div>
                                         }
