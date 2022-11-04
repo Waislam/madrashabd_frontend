@@ -36,16 +36,16 @@
     margin: 2px
 }
 
-.hearderCustom tr{
+/* .hearderCustom tr{
     text-align: center;
-}
+} */
 
-.hearderCustom tr th:before {
+/* .hearderCustom tr th:before {
     content: "|";
     margin-right: 5px;
     font-size: 19px;
-}
+} */
 
-.tbodyCustom tr{
+/* .tbodyCustom tr{
     text-align: center;
-}
+} */

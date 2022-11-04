@@ -17,7 +17,7 @@ const Index = () => {
     const getStudents = async () => {
         setLoading(true);
         // console.log(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
-        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        api.get(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
         // api.get('students/')
             .then((response) => {
                 console.log("response", response.data);
@@ -36,10 +36,7 @@ const Index = () => {
         })
     }, [studentListPageNum]);
 
-    // console.log("searchStudent", searchStudent);
-
     const handleStudentListPageNum = () => {
-        console.log("handleStudentListPageNum() called");
         setStudentListPageNum(studentListPageNum + 1)
     };
 

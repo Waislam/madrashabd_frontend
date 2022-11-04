@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './Admission.module.css'
 import {useForm} from "react-hook-form";
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 // api call
-import api from "../../pages/api/api";
+import {BASE_URL} from "../../pages/api/api";
 
 const PreviousInstitutionForm = (props) => {
+    const [loading, setLoading] = useState(false)
     const {nextStep, prevStep} = props
 
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
@@ -19,6 +20,7 @@ const PreviousInstitutionForm = (props) => {
 
 
     const onSubmit = (values) => {
+        setLoading(true)
         console.log("admissionData values", values)
         setAdmissionFormValues(values);
         console.log("admissionData final", admissionData)
@@ -26,12 +28,10 @@ const PreviousInstitutionForm = (props) => {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        console.log("admissionData", admissionData.date_of_birth)
-
         let studentRawData = JSON.stringify({
             "user": 1,
             "madrasha": 1,
-            "student_roll_id": "75474545334757",
+            "student_roll_id": "546563458777672342534534",
             "date_of_birth": admissionData.date_of_birth,
             "age": admissionData.age,
             "birth_certificate": admissionData.birth_certificate,
@@ -49,7 +49,7 @@ const PreviousInstitutionForm = (props) => {
                 "address_info": admissionData.student_present_address_info
             },
             "permanent_address": {
-                "division":  parseInt(admissionData.permanent_address_division),
+                "division": parseInt(admissionData.permanent_address_division),
                 "district": parseInt(admissionData.permanent_address_district),
                 "thana": parseInt(admissionData.permanent_address_thana),
                 "post_office": parseInt(admissionData.permanent_address_post_office),
@@ -115,10 +115,16 @@ const PreviousInstitutionForm = (props) => {
             redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:8086/students/", requestOptions)
+        fetch(`${BASE_URL}/students/`, requestOptions)
             .then(response => response.json())
-            .then(result => console.log("data submited result", result))
-            .catch(error => console.log('error', error));
+            .then((result) => {
+                console.log("data submited result", result)
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log('error', error)
+                setLoading(false)
+            });
     };
 
     const Continue = e => {
