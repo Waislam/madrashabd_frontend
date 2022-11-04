@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import Transport from "../../components/Transport/Transport"
 import Layout from "../../components/Layout/Layout";
 import AddTransportModal from "../../components/Transport/Modals/AddTransportModal"
+import DeleteTransportModel from "../../components/Transport/Modals/DeleteTransportModel"
 import api from "../api/api";
 
 
@@ -14,6 +15,10 @@ const TransportPage = () => {
     // Add
     const [transport, setTransport] = useState(null);
     const [addTransportModal, setTransportModal] = useState(false);
+
+    // Delete Transport
+    const [deleteTransportModal, setDeleteTransportModal] = useState(false);
+    const [deleteTransportList, setDeleteTransportList] = useState(null);
 
 
     // Get Transport
@@ -31,7 +36,14 @@ const TransportPage = () => {
 
     // Add TransportModal
     const handleAddTransportModal = () => {
+
         setTransportModal(true)
+    };
+
+    // Delete Transport
+    const handleDeleteTransportModel = (id) => {
+        setDeleteTransportList(id);
+        setDeleteTransportModal(true)
     };
 
 
@@ -56,11 +68,18 @@ const TransportPage = () => {
             <Transport
                 transport={transport}
                 handleAddTransportModal={handleAddTransportModal}
+                handleDeleteTransportModel={handleDeleteTransportModel}
             />
 
             <AddTransportModal
                 show={addTransportModal}
                 onHide={() => setTransportModal(false)}
+            />
+
+            <DeleteTransportModel
+                show={deleteTransportModal}
+                onHide={() => setDeleteTransportModal(false)}
+                delete_transport_list={deleteTransportList}
             />
 
         </>

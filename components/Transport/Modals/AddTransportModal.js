@@ -1,13 +1,28 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import api from "../../../pages/api/api";
 
 const AddTransportModal = (props) => {
+    const [vehicleList, setVehicleList] = useState(null);
 
     const {register, handleSubmit} = useForm({mode: 'all'});
 
+    const getVehicleList = async () => {
+        const list = await api.get("http://127.0.0.1:8086/transport/100/vehicle-info-list/");
+        const data = list.data;
+        setVehicleList(data);
+    };
+
+    useEffect(() => {
+        getVehicleList()
+    }, []);
+
+    console.log(" vehicleList :", vehicleList);
+
+
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/transport/100/transport-list/", {
+        fetch("http://127.0.0.1:8086/transport/100/post-transport/", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -16,9 +31,9 @@ const AddTransportModal = (props) => {
             body: JSON.stringify(
                 {
                     "madrasha": 1,
-                    "member_name": values.member_name,
-                    "member_designation": values.member_designation,
-                    "phone_number": values.phone_number
+                    "student_id": values.student_id,
+                    "vehicle": values.vehicle,
+                    "start_time": values.start_time,
                 },
             )
         }).then((res) => res.json())
@@ -35,7 +50,7 @@ const AddTransportModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Add Committee List
+                        Add Transport
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -44,30 +59,26 @@ const AddTransportModal = (props) => {
                             <div className="col-md-4 mb-3">
                                 <input
                                     type="text"
-                                    placeholder="Member Name"
+                                    placeholder="Student ID"
                                     className="form-control"
-                                    name="member_name"
-                                    {...register("member_name")}
+                                    name="student_id"
+                                    {...register("student_id")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
-                                <input
-                                    type="text"
-                                    placeholder="Designation"
-                                    className="form-control"
+                                <select className="form-select"
+                                        name="vehicle"
+                                        {...register("vehicle")}
+                                >
 
-                                    name="member_designation"
-                                    {...register("member_designation")}
-                                />
-                            </div>
-                            <div className="col-md-4 mb-3">
-                                <input
-                                    type="text"
-                                    placeholder="Phone Number "
-                                    className="form-control"
-                                    name="phone_number"
-                                    {...register("phone_number")}
-                                />
+                                    <option>Select Car</option>
+
+                                    {
+                                        vehicleList?.results && vehicleList.results.map((data) => (
+                                            <option value={data?.id}>{data?.car_number}</option>
+                                        ))
+                                    }
+                                </select>
                             </div>
                         </div>
                         <button

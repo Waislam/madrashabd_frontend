@@ -3,7 +3,7 @@ import styles from './Transport.module.css'
 import TransportSideMenu from "./TransportSideMenu";
 
 
-const Transport = ({transport, handleAddTransportModal}) => {
+const Transport = ({transport, handleAddTransportModal, handleDeleteTransportModel}) => {
     return (
         <>
             <section className={styles.transportSection}>
@@ -92,7 +92,12 @@ const Transport = ({transport, handleAddTransportModal}) => {
                                                                     <td className="text-sm">{data.vehicle?.start_time}</td>
                                                                     <td className="text-center">
                                                                         <button className="btn btn-primary">Edit</button>
-                                                                        <button className="btn btn-danger">Delete</button>
+                                                                        <button
+                                                                            className="btn btn-danger"
+                                                                            onClick={() =>handleDeleteTransportModel(data.id)}
+                                                                        >
+                                                                            Delete
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             ))

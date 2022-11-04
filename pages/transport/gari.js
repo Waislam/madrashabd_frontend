@@ -23,7 +23,7 @@ const GariPage = () => {
 
     // Delete
     const [deleteGariModal, setDeleteGariModal] = useState(false);
-    const [deleteGariList, setDeleteGariList] = useState(null);
+    const [deleteGariList, setDeleteGariList] = useState('');
 
     // Get GariList
     const getGariList = async () => {
@@ -48,6 +48,7 @@ const GariPage = () => {
 
     // Delete GariList
     const handleGariDelete = (id) => {
+        setDeleteGariList(id);
         setDeleteGariModal(true)
 
     };
