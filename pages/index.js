@@ -15,7 +15,7 @@ export default function Home() {
                     <div className="row">
                         <div className="col">
                             <p className='text-thin'>
-                                LOading.......
+                                Loading.......
                             </p>
 
                         </div>
