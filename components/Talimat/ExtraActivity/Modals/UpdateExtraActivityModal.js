@@ -1,6 +1,7 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import { BASE_URL } from '../../../../pages/api/api';
 
 const UpdateExtraActivityModal = (props) => {
 
@@ -15,7 +16,7 @@ const UpdateExtraActivityModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/talimat/extra-activity/detail/${props.extra_activity_old_data.id}/`, {
+        fetch(`${BASE_URL}/talimat/extra-activity/detail/${props.extra_activity_old_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -23,8 +24,8 @@ const UpdateExtraActivityModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
-                    // "madrasha": props.extra_activity_old_data?.madrasha?.id,
+                    // "madrasha": 1,
+                    "madrasha": props.extra_activity_old_data?.madrasha?.id,
                     "category": values.category,
                     "duration": values.duration,
                     "start_time": values.start_time,
@@ -55,6 +56,7 @@ const UpdateExtraActivityModal = (props) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Name</label>
                                 <input
                                     type="text"
                                     placeholder="Category"
@@ -64,25 +66,28 @@ const UpdateExtraActivityModal = (props) => {
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Duration</label>
                                 <input
                                     type="text"
                                     placeholder="Duration"
                                     className="form-control"
-
                                     name="duration"
                                     {...register("duration")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Start Time</label>
                                 <input
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="time"}}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Place</label>
                                 <input
                                     type="text"
                                     placeholder="Place"
@@ -92,15 +97,18 @@ const UpdateExtraActivityModal = (props) => {
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Programe Date</label>
                                 <input
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
+                                    onFocus={(e)=>{e.target.type="date"}}
                                     name="date"
                                     {...register("date")}
                                 />
                             </div>
                             <div className="col-md-4 mb-3">
+                                <label className="mb-2">Managed by</label>
                                 <input
                                     type="text"
                                     placeholder="Managed by"

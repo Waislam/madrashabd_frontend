@@ -1,9 +1,20 @@
-import SideMenu from './ExamSideMenu';
+
+// css
 import taliamatstyles from '../Talimat.module.css'
-import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 
-const ExamRoutine = () =>{
+// components
+import ExamHeader from './ExamHeader'
+import SideMenu from './ExamSideMenu';
+import RoutineCreateModal from "../Routine/RoutineModal/RoutineCreateModal";
+import {useState} from "react";
+
+const ExamRoutine = (props) => {
+    const [showExamRoutineCreateModal, setShowExamRoutineCreateModal] = useState(false)
+
+    const handleExamRoutineCreateModalClose = () => setShowExamRoutineCreateModal(false)
+    const handleExamRoutineCreateModalOpen = () => setShowExamRoutineCreateModal(true)
+
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
@@ -24,7 +35,13 @@ const ExamRoutine = () =>{
                                                         <h2>Examination Routine</h2>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add</button>
+                                                        <button
+                                                            type="button"
+                                                            className={`${styles.defaultBtn} float-md-end`}
+                                                            onClick={() => handleExamRoutineCreateModalOpen()}
+                                                        >
+                                                            Add
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -121,6 +138,15 @@ const ExamRoutine = () =>{
                     </div>
                 </div>
             </section>
+
+            // create modal
+            <RoutineCreateModal
+                show={showExamRoutineCreateModal}
+                handleClose={handleExamRoutineCreateModalClose}
+                examTermList={props.examTermList}
+                madrashaBookList={props.madrashaBookList}
+                classList={props.classList}
+            />
             
         </>
     )

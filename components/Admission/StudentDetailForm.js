@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './Admission.module.css'
 
 import {useForm} from "react-hook-form";
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import api from "../../pages/api/api";
 
 const StudentDetailForm = (props) => {
+    const [loading, setLoading] = useState(false)
     const {
         nextStep, prevStep,
         divisionList, districtList, postOfficeList,
@@ -22,13 +24,42 @@ const StudentDetailForm = (props) => {
 
     const {
         handleSubmit,
+        setError,
         formState: {errors},
         register,
     } = useForm({mode: "onChange"});
 
     const onSubmit = (values) => {
-        setAdmissionFormValues(values);
-        nextStep();
+        setLoading(true)
+        console.log("values", values)
+
+        // check passport number
+        api.get(`students/check-passport/${values.passport_number}/`)
+            .then((response) => {
+                console.log("result", response)
+                if (response.data.status) {
+                    setError("passport_number", {
+                        type: "focus",
+                        message: 'This passport number already exist !!'
+                    }, {shouldFocus: true})
+                    setLoading(false)
+                } else {
+
+                    api.get(`students/check-nid/${values.student_nid}/`)
+                        .then((response) => {
+                            if (response.data.status) {
+                                setError("student_nid", {
+                                    type: "focus",
+                                    message: 'This NID number already exist !!'
+                                }, {shouldFocus: true})
+                            } else {
+                                setAdmissionFormValues(values);
+                                nextStep();
+                            }
+                            setLoading(false)
+                        })
+                }
+            })
     };
 
     const Continue = e => {
@@ -132,7 +163,7 @@ const StudentDetailForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.passport_number && (
-                                                <p className="text-danger">Passport Number is required</p>
+                                                <p className="text-danger">{errors.passport_number.message ? errors.passport_number.message : "Passport Number is required"}</p>
                                             )}
                                         </div>
                                     </div>
@@ -149,7 +180,8 @@ const StudentDetailForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.student_nid && (
-                                                <p className="text-danger">NID is required</p>
+
+                                                 <p className="text-danger">{errors.student_nid.message ? errors.student_nid.message : "NID is required"}</p>
                                             )}
                                         </div>
                                     </div>
@@ -363,6 +395,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                 </div>
                             </div>
+
                             {/* Permanent Address ****************** */}
                             <div className="permanent-address mt-3">
                                 <div className="row">
@@ -532,7 +565,12 @@ const StudentDetailForm = (props) => {
                                     </label>
                                 </div>
                             </div>
-                            <button className={styles.defaultBtn}>Next Step</button>
+                            {
+                                loading ?
+                                    <button className={styles.defaultBtn}>Loading</button>
+                                    :
+                                    <button className={styles.defaultBtn}>Next Step</button>
+                            }
                         </form>
 
                     </div>

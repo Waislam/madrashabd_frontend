@@ -1,9 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import styles from "../Account.module.css";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { BASE_URL } from '../../../pages/api/api';
+import {useForm} from "react-hook-form";
+import {useEffect, useState} from "react";
+import {BASE_URL} from '../../../pages/api/api';
 import axios from 'axios';
 
 
@@ -60,7 +60,7 @@ const StudentIncomeUpdate = (props) => {
                                     {...register("category", { required: "this field is required" })}
                                     onChange={(event) => props.setTransactionCaterory(event.target.value)}
                                 >
-//                                   <option value={props.studentIncomePreValue.category?.id}>{props.studentIncomePreValue.category?.name}</option>
+                                  <option value={props.studentIncomePreValue.category?.id}>{props.studentIncomePreValue.category?.name}</option>
                                     {props.incomeCategoryList && props.incomeCategoryList.map((category) => (
                                         <option value={category.id} key={category.name}>{category.name}</option>
                                     ))}
@@ -79,7 +79,8 @@ const StudentIncomeUpdate = (props) => {
                                 >
                                     <option value={props.studentIncomePreValue.sub_category?.id}>{props.studentIncomePreValue.sub_category?.name}</option>
                                     {props.transactionSubCaterory && props.transactionSubCaterory.map((subCategory) => (
-                                        <option value={subCategory.id} key={subCategory?.name}>{subCategory?.name}</option>
+                                        <option value={subCategory.id}
+                                                key={subCategory?.name}>{subCategory?.name}</option>
                                     ))}
                                 </select>
                                 <p className="text-danger">{errors.sub_category?.message}</p>
@@ -88,10 +89,10 @@ const StudentIncomeUpdate = (props) => {
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">Student Id</label>
                             <input type="text"
-                                name="student_class_id"
-                                className="form-control"
-                                placeholder="student id"
-                                {...register("student_class_id", { required: "this field is required" })}
+                                   name="student_class_id"
+                                   className="form-control"
+                                   placeholder="student id"
+                                   {...register("student_class_id", {required: "this field is required"})}
                             />
                             <p className="text-danger">{errors.student_class_id?.message}</p>
                         </div>
@@ -99,8 +100,8 @@ const StudentIncomeUpdate = (props) => {
                             <div className="form-group">
                                 <label className="mb-2">Amount</label>
                                 <select className="form-control form-select"
-                                    name="amount"
-                                    {...register("amount", { required: "this field is required" })}
+                                        name="amount"
+                                        {...register("amount", {required: "this field is required"})}
                                 >
                                     <option value={props.studentIncomePreValue.amount?.id}>{props.studentIncomePreValue.amount?.amount}</option>
                                     {props.studentFees && props.studentFees.map((fees) => (
@@ -114,8 +115,8 @@ const StudentIncomeUpdate = (props) => {
                             <div className="form-group">
                                 <label className="mb-2">For Month</label>
                                 <select className="form-control form-select"
-                                    name="for_month"
-                                    {...register("for_month")}
+                                        name="for_month"
+                                        {...register("for_month")}
                                 >
                                     <option value="january">January</option>
                                     <option value="february">February</option>
@@ -135,16 +136,18 @@ const StudentIncomeUpdate = (props) => {
                         <div className="col-md-4 mb-3">
                             <label className="mb-2">For Months</label>
                             <input type="text"
-                                name="for_months"
-                                className="form-control"
-                                placeholder="january-march"
-                                {...register("for_months")}
+                                   name="for_months"
+                                   className="form-control"
+                                   placeholder="january-march"
+                                   {...register("for_months")}
                             />
                         </div>
                         <div className="mt-3">
                             <button className={`${styles.defaultBtn}`}>Save</button>
                             {/* <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button> */}
-                            <button type="button" className={`${styles.defaultBtn} ms-3`} onClick={props.onHide}>Cancel</button>
+                            <button type="button" className={`${styles.defaultBtn} ms-3`}
+                                    onClick={props.onHide}>Cancel
+                            </button>
                         </div>
                     </div>
                 </form>

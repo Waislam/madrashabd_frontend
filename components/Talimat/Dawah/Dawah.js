@@ -44,7 +44,7 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
                                                         <tbody>
                                                         {
                                                             dawah?.map((data, index) => (
-                                                                <tr key={index}>
+                                                                <tr key={data.id}>
                                                                     <th scope="row">{index+1}</th>
                                                                     <td className="text-sm">{data?.date}</td>
                                                                     <td className="text-sm">{data?.program_name}</td>
@@ -53,7 +53,7 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
                                                                     <td className="text-sm">{data?.place}</td>
                                                                     <td className="text-sm">{data?.managed_by}</td>
                                                                     <td className="text-center">
-                                                                        <button className="btn btn-primary" onClick={() =>handleUpdateDawahModal(data.id)}>Edit</button>
+                                                                        <button className="btn btn-primary me-2" onClick={() =>handleUpdateDawahModal(data.id)}>Edit</button>
                                                                         <button className="btn btn-danger" onClick={()=>handleDeleteDawahModal(data.id)}>Delete</button>
                                                                     </td>
                                                                 </tr>
