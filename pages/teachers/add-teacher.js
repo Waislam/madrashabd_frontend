@@ -1,42 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from '../../components/Teachers/TeacherList.module.css'
-import { useForm, useFieldArray } from "react-hook-form"
-import { StyleRegistry } from "styled-jsx";
+import {useForm, useFieldArray} from "react-hook-form"
+import {StyleRegistry} from "styled-jsx";
 import axios from "axios";
-import api, { BASE_URL } from "../api/api";
+import api, {BASE_URL} from "../api/api";
 
 const AddTeacherPage = (props) => {
-
     const [isChecked, setIsChecked] = useState(false)
-    const [divisionList, setDivisionList] = useState(null)
+    // const [divisionList, setDivisionList] = useState(null)
     const [singleDivision, setSingleDivision] = useState('')
     const [disctrictList, setDistrictList] = useState(null)
     const [singleDistrict, setSingleDristrict] = useState('')
 
 
-    const { handleSubmit, register, formState: { errors }, control } = useForm({
-        defaultValues: {
-            Experience: [{}],
-            Skill: [{}],
-            Education: [{}],
-            // division:""
-        }
-    })
+    const {
+        handleSubmit,
+        register,
+        formState: {errors}, control
+    } = useForm({})
 
+    const onSubmit = data => console.log(data);
 
 
     // Extending field on click / that means add more working by using below
-    const { fields: experienceField, remove: experienceRemove, append: experienceAppend } = useFieldArray({
+    const {fields: experienceField, remove: experienceRemove, append: experienceAppend} = useFieldArray({
         control,
         name: "Experience"
     })
 
-    const { fields: skillFields, remove: skillRemove, append: skillAppend } = useFieldArray({
+    const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
         control,
         name: "Skill"
     })
-    const { fields: educationFields, remove: educationRemove, append: educationAppend } = useFieldArray({
+
+    const {fields: educationFields, remove: educationRemove, append: educationAppend} = useFieldArray({
         control,
         name: "Education"
     })
@@ -45,27 +43,25 @@ const AddTeacherPage = (props) => {
     // Extending field on click / that means add more working by using below
     const handleExperienceAppend = (e) => {
         e.preventDefault()
-        experienceAppend({ name: "" })
+        experienceAppend({name: ""})
     }
 
     const handleSkillAppend = (e) => {
         e.preventDefault()
-        skillAppend({ name: "" })
+        skillAppend({name: ""})
     }
 
     const handleEducationAppend = (e) => {
         e.preventDefault()
-        educationAppend({ name: "" })
+        educationAppend({name: ""})
     }
-
 
     //get and handle dependable address section
-    const getDivision = async () => {
-        const list = await axios.get(`${BASE_URL}/accounts/division/`)
-        const division = await list.data
-        setDivisionList(division)
-    }
-
+    // const getDivision = async () => {
+    //     const list = await axios.get(`${BASE_URL}/accounts/division/`)
+    //     const division = list.data
+    //     setDivisionList(division)
+    // }
 
     const handleSetSingleDivisionValue = (e) => {
         e.stopPropagation()
@@ -75,69 +71,24 @@ const AddTeacherPage = (props) => {
     }
 
     useEffect(() => {
-        getDivision()
+        // getDivision()
     }, [])
 
-    const getDistrict = async () => {
-        const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
-        const district = await list.data
-        setDistrictList(district)
-    }
-    
-    useEffect(() => {
-        getDistrict()
-    }, [singleDivision])
+    // const getDistrict = async () => {
+    //     const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
+    //     const district = list.data
+    //     setDistrictList(district)
+    // }
+
+    // useEffect(() => {
+    //     getDistrict()
+    // }, [singleDivision])
 
 
-    const getThana = async () => {
-        const list = await axios.get(`${BASE_URL}/accounts/thana/${singleDistrict}/`)
-        const district = await list.data
-        setDistrictList(district)
-    }
-
-    useEffect(() => {
-        getThana()
-    }, [singleDistrict])
-
-
-
-    // user(F)
-    // madrasha
-    // teacher_id
-    // father_name
-    // mother_name
-    // date_of_birth
-    // gender
-    // religion
-    // marital_status
-    // present_address(F) 
-    // permanent_address(F) 
-    // education (F)
-    // skill =(F) 
-    // experience(F)
-    // phone_home 
-    // nid 
-    // birth_certificate 
-    // nationality 
-    // blood_group 
-    // department 
-    // designation 
-    // starting_date 
-    // ending_date 
-
-
-
-
-    // permanent address and working hour hiding function 
     const handleHidingEndDate = (e) => {
-        // e.preventDefault()
         const checkValue = e.target.checked
         setIsChecked(checkValue)
     }
-
-    console.log("@@@@@disctrictList",disctrictList);
-
-
 
     return (
         <>
@@ -147,48 +98,48 @@ const AddTeacherPage = (props) => {
                         <div className="card">
                             <div className="card-body">
                                 <h4>Teacher / Staff Details</h4>
-                                <hr />
-                                <form>
+                                <hr/>
+                                <form onSubmit={handleSubmit(onSubmit)}>
                                     {/*Teacher*/}
                                     <div className="teacher mb-3">
                                         <div className="row">
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">First Name</label>
                                                 <input type="text"
-                                                    placeholder="first_name"
-                                                    className="form-control"
-                                                    name="first_name" // use obj field
-                                                    {...register("first_name", { required: "this field is required" })}
+                                                       placeholder="first_name"
+                                                       className="form-control"
+                                                       name="first_name" // use obj field
+                                                       {...register("first_name", {required: "this field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.first_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Last Name</label>
                                                 <input type="text"
-                                                    placeholder="last name"
-                                                    className="form-control"
-                                                    name="last_name" //user obj field
-                                                    {...register("last_name", { required: "this field is required" })}
+                                                       placeholder="last name"
+                                                       className="form-control"
+                                                       name="last_name" //user obj field
+                                                       {...register("last_name", {required: "this field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.last_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Father Name</label>
                                                 <input type="text"
-                                                    placeholder="Father Name"
-                                                    className="form-control"
-                                                    name="father_name"
-                                                    {...register("father_name", { required: "This field is required" })}
+                                                       placeholder="Father Name"
+                                                       className="form-control"
+                                                       name="father_name"
+                                                       {...register("father_name", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.father_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Mother Name</label>
                                                 <input type="text"
-                                                    placeholder="Mother Name"
-                                                    className="form-control"
-                                                    name="mother_name"
-                                                    {...register("mother_name", { required: "This field is required" })}
+                                                       placeholder="Mother Name"
+                                                       className="form-control"
+                                                       name="mother_name"
+                                                       {...register("mother_name", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.mother_name?.message}</p>
                                             </div>
@@ -197,20 +148,20 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Date of Birth</label>
                                                 <input type="text"
-                                                    placeholder="date of birth"
-                                                    className="form-control"
-                                                    name="date_of_birth"
-                                                    onFocus={(e) => (e.target.type = "date")}
-                                                    onBlur={(e) => (e.target.type = "text")}
-                                                    {...register("date_of_birth", { required: "This field is required" })}
+                                                       placeholder="date of birth"
+                                                       className="form-control"
+                                                       name="date_of_birth"
+                                                       onFocus={(e) => (e.target.type = "date")}
+                                                       onBlur={(e) => (e.target.type = "text")}
+                                                       {...register("date_of_birth", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.date_of_birth?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Gender</label>
                                                 <select className="form-select"
-                                                    name="gender"
-                                                    {...register("gender")}
+                                                        name="gender"
+                                                        {...register("gender")}
                                                 >
                                                     <option value="male">Male</option>
                                                     <option value="female">Female</option>
@@ -219,8 +170,8 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Religion</label>
                                                 <select className="form-select"
-                                                    name="religion"
-                                                    {...register("religion")}
+                                                        name="religion"
+                                                        {...register("religion")}
                                                 >
                                                     <option value="islam">Islam</option>
                                                     <option value="shonaton">Shonaton</option>
@@ -230,8 +181,8 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3">
                                                 <label className="mb-2">Marital Status</label>
                                                 <select className="form-select"
-                                                    name="marital_status"
-                                                    {...register("marital_status")}
+                                                        name="marital_status"
+                                                        {...register("marital_status")}
                                                 >
                                                     <option value="married">Married</option>
                                                     <option value="unmarried">Unmarried</option>
@@ -243,80 +194,117 @@ const AddTeacherPage = (props) => {
                                     {/*Present Address*/}
                                     <div className="presentAddress mb-3">
                                         <h4>Present Address</h4>
-                                        <hr />
+                                        <hr/>
                                         <div className="row">
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Division</label>
-                                                <select className="form-select"
-                                                    name="division"
-                                                    {...register("division", { required: "This field is required" })}
-                                                    onChange={handleSetSingleDivisionValue}  
+                                                <select
+                                                    className="form-select"
+                                                    name="present_address_division"
+                                                    {...register("present_address_division", {required: "This field is required"})}
+                                                    onChange={handleSetSingleDivisionValue}
                                                 >
                                                     <option>Select Division</option>
-                                                    {divisionList && divisionList.map((division) => (
-                                                        <option value={division.pk} key={division.name}>{division.name}</option>
+                                                    {props.divisionList && props.divisionList.map((division) => (
+                                                        <option
+                                                            value={division.pk}
+                                                            key={division.name}
+                                                        >
+                                                            {division.name}
+                                                        </option>
                                                     ))}
-
                                                 </select>
                                                 <p className="text-danger">{errors.division?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">District</label>
-                                                <select className="form-select"
-                                                    name="district"
-                                                    {...register("district", { required: "This field is required" })}
-                                                    onChange={(e)=>setSingleDristrict(e.target.value)}  
+                                                <select
+                                                    className="form-select"
+                                                    name="present_address_district"
+                                                    {...register("present_address_district", {required: "This field is required"})}
                                                 >
                                                     <option>District select</option>
-                                                    {disctrictList && disctrictList.map((district)=>(
-                                                        <option value={district.pk} key={district.name}>{district.name}</option>
+                                                    {props.districtList && props.districtList.map((district) => (
+                                                        <option
+                                                            value={district.pk}
+                                                            key={district.name}
+                                                        >
+                                                            {district.name}
+                                                        </option>
                                                     ))}
-
                                                 </select>
                                                 <p className="text-danger">{errors.district?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Thana</label>
-                                                <select className="form-select"
-                                                    name="thana"
-                                                    {...register("thana", { required: "This field is required" })}
+                                                <select
+                                                    className="form-select"
+                                                    name="present_address_thana"
+                                                    {...register("present_address_thana", {required: "This field is required"})}
                                                 >
                                                     <option>Thana Name</option>
+                                                    {props.thanaList && props.thanaList.map((thana) => (
+                                                        <option
+                                                            value={thana.pk}
+                                                            key={thana.name}
+                                                        >
+                                                            {thana.name}
+                                                        </option>
+                                                    ))}
                                                 </select>
-                                                <p className="text-danger">{errors.thana?.message}</p>
+                                                <p className="text-danger">{errors.present_address_thana?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Post Office</label>
-                                                <select className="form-select"
-                                                    name="post_office"
-                                                    {...register("post_office", { required: "This field is required" })}
+                                                <select
+                                                    className="form-select"
+                                                    name="present_address_post_office"
+                                                    {...register("present_address_post_office", {required: "This field is required"})}
                                                 >
                                                     <option>Post office name</option>
+                                                    {props.postOfficeList && props.postOfficeList.map((post_office) => (
+                                                        <option
+                                                            value={post_office.pk}
+                                                            key={post_office.name}
+                                                        >
+                                                            {post_office.name}
+                                                        </option>
+                                                    ))}
                                                 </select>
-                                                <p className="text-danger">{errors.post_office?.message}</p>
+                                                <p className="text-danger">{errors.present_address_post_office?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Post Code</label>
-                                                <select className="form-select"
-                                                    name="post_code"
-                                                    {...register("post_code", { required: "This field is required" })}
+                                                <select
+                                                    className="form-select"
+                                                    name="present_address_post_code"
+                                                    {...register("present_address_post_code", {required: "This field is required"})}
                                                 >
                                                     <option>Post code number</option>
+                                                    {props.postCodeList && props.postCodeList.map((post_code) => (
+                                                        <option
+                                                            value={post_code.pk}
+                                                            key={post_code.name}
+                                                        >
+                                                            {post_code.name}
+                                                        </option>
+                                                    ))}
                                                 </select>
-                                                <p className="text-danger">{errors.post_code?.message}</p>
+                                                <p className="text-danger">{errors.present_address_post_code?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">House Address</label>
                                                 <input type="text"
-                                                    placeholder="Address"
-                                                    className="form-control"
-                                                    name="address_info"
-                                                    {...register("address_info", { required: "This field is required" })}
+                                                       placeholder="Address"
+                                                       className="form-control"
+                                                       name="present_address_address_info"
+                                                       {...register("present_address_address_info", {required: "This field is required"})}
                                                 />
-                                                <p className="text-danger">{errors.address_info?.message}</p>
+                                                <p className="text-danger">{errors.present_address_address_info?.message}</p>
                                             </div>
                                         </div>
                                     </div>
+
                                     {/*Permanent Address*/}
                                     <div className="permanentAddress mb-3">
                                         <div className="row">
@@ -324,71 +312,119 @@ const AddTeacherPage = (props) => {
                                                 <h4>Permanent Address</h4>
                                             </div>
                                             <div className="col-md-8">
-                                                <input type='checkbox' className="form-check-input" checked={isChecked} onChange={handleHidingEndDate} />
-                                                <label className="ms-3 text-success">Check the button If Permanent and present Address are same</label>
+                                                <input type='checkbox' className="form-check-input" checked={isChecked}
+                                                       onChange={handleHidingEndDate}/>
+                                                <label className="ms-3 text-success">Check the button If Permanent and
+                                                    present Address are same</label>
                                             </div>
                                         </div>
-                                        <hr />
-                                        {isChecked ? <h1 className="d-none">permanent and present addrss are same</h1> :
+                                        <hr/>
+                                        {isChecked ?
+                                            <h1 className="d-none">permanent and present address are same</h1> :
                                             <div className="row">
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">Division</label>
-                                                    <select className="form-select"
-                                                        name="division"
-                                                        {...register("division", { required: "This field is required" })}
+                                                    <select
+                                                        className="form-select"
+                                                        name="permanent_address_division"
+                                                        {...register("permanent_address_division", {required: "This field is required"})}
+                                                        onChange={handleSetSingleDivisionValue}
                                                     >
                                                         <option>Select Division</option>
-                                                        <option>Division Name</option>
+                                                        {props.divisionList && props.divisionList.map((division) => (
+                                                            <option
+                                                                value={division.pk}
+                                                                key={division.name}
+                                                            >
+                                                                {division.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
-                                                    <p className="text-danger">{errors.division?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_division?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">District</label>
-                                                    <select className="form-select"
-                                                        name="district"
-                                                        {...register("district", { required: "This field is required" })}
+                                                    <select
+                                                        className="form-select"
+                                                        name="permanent_address_district"
+                                                        {...register("permanent_address_district", {required: "This field is required"})}
                                                     >
-                                                        <option>District Name</option>
+                                                        <option>District select</option>
+                                                        {props.districtList && props.districtList.map((district) => (
+                                                            <option
+                                                                value={district.pk}
+                                                                key={district.name}
+                                                            >
+                                                                {district.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
-                                                    <p className="text-danger">{errors.district?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_district?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">Thana</label>
-                                                    <select className="form-select"
-                                                        name="thana"
-                                                        {...register("thana", { required: "This field is required" })}
+                                                    <select
+                                                        className="form-select"
+                                                        name="permanent_address_thana"
+                                                        {...register("permanent_address_thana", {required: "This field is required"})}
                                                     >
                                                         <option>Thana Name</option>
+                                                        {props.thanaList && props.thanaList.map((thana) => (
+                                                            <option
+                                                                value={thana.pk}
+                                                                key={thana.name}
+                                                            >
+                                                                {thana.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
-                                                    <p className="text-danger">{errors.thana?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_thana?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">Post Office</label>
-                                                    <select className="form-select"
-                                                        name="post_office"
-                                                        {...register("post_office", { required: "This field is required" })}
+                                                    <select
+                                                        className="form-select"
+                                                        name="permanent_address_post_office"
+                                                        {...register("permanent_address_post_office", {required: "This field is required"})}
                                                     >
                                                         <option>Post office name</option>
+                                                        {props.postOfficeList && props.postOfficeList.map((post_office) => (
+                                                            <option
+                                                                value={post_office.pk}
+                                                                key={post_office.name}
+                                                            >
+                                                                {post_office.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
-                                                    <p className="text-danger">{errors.post_office?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_post_office?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">Post Code</label>
-                                                    <select className="form-select"
-                                                        name="post_code"
-                                                        {...register("post_code", { required: "This field is required" })}
+                                                    <select
+                                                        className="form-select"
+                                                        name="permanent_address_post_code"
+                                                        {...register("permanent_address_post_code", {required: "This field is required"})}
                                                     >
                                                         <option>Post code number</option>
+                                                        {props.postCodeList && props.postCodeList.map((post_code) => (
+                                                            <option
+                                                                value={post_code.pk}
+                                                                key={post_code.name}
+                                                            >
+                                                                {post_code.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
-                                                    <p className="text-danger">{errors.post_code?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_post_code?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">House Address</label>
                                                     <input type="text"
-                                                        placeholder="Address"
-                                                        className="form-control"
-                                                        name="address_info"
-                                                        {...register("address_info", { required: "This field is required" })}
+                                                           placeholder="Address"
+                                                           className="form-control"
+                                                           name="address_info"
+                                                           {...register("address_info", {required: "This field is required"})}
                                                     />
                                                     <p className="text-danger">{errors.address_info?.message}</p>
                                                 </div>
@@ -399,85 +435,89 @@ const AddTeacherPage = (props) => {
                                     {/*Education*/}
                                     <div className="education mb-3">
                                         <h4>Education</h4>
-                                        <hr />
+                                        <hr/>
                                         {educationFields.map((item, index) => (
                                             <div className="row" key={item.id}>
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Degree Name</label>
                                                     <input type="text"
-                                                        placeholder="Degree Name "
-                                                        className="form-control"
-                                                        name="degree_name"
-                                                        {...register("degree_name")}
-                                                    // {...register(`Education[${index}].degree_name`)}
+                                                           placeholder="Degree Name "
+                                                           className="form-control"
+                                                           name="degree_name"
+                                                           {...register("degree_name", {required: "This field is required"})}
                                                     />
+                                                    <p className="text-danger">{errors.degree_name?.message}</p>
                                                 </div>
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Passing Year</label>
                                                     <input type="text"
-                                                        placeholder="Passing year"
-                                                        className="form-control"
-                                                        name="passing_year"
-                                                        {...register("passing_year")}
-                                                    // {...register(`Education[${index}].passing_year`)}
+                                                           placeholder="Passing year"
+                                                           className="form-control"
+                                                           name="passing_year"
+                                                           {...register("passing_year")}
                                                     />
                                                 </div>
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Result</label>
                                                     <input type="text"
-                                                        placeholder="CGPA/GPA-5/First Class"
-                                                        className="form-control"
-                                                        name="result"
-                                                        {...register("result")}
-                                                    // {...register(`Education[${index}].result`)}
+                                                           placeholder="CGPA/GPA-5/First Class"
+                                                           className="form-control"
+                                                           name="result"
+                                                           {...register("result")}
                                                     />
                                                 </div>
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Institution Name</label>
                                                     <input type="text"
-                                                        placeholder="University/college/Madrasha"
-                                                        className="form-control"
-                                                        name="institution_name"
-                                                        {...register("institution_name")}
-                                                    // {...register(`Education[${index}].institution_name`)}   
+                                                           placeholder="University/college/Madrasha"
+                                                           className="form-control"
+                                                           name="institution_name"
+                                                           {...register("institution_name")}
                                                     />
                                                 </div>
                                                 <div>
-                                                    <button type="button" className={`btn btn-secondary float-md-end mb-2 col-1`}
-                                                        onClick={() => educationRemove(index)}>Remove</button>
+                                                    <button type="button"
+                                                            className={`btn btn-secondary float-md-end mb-2 col-1`}
+                                                            onClick={() => educationRemove(index)}>Remove
+                                                    </button>
                                                 </div>
                                             </div>
                                         ))}
 
-                                        <button type="Submit" className={styles.addButton} onClick={handleEducationAppend}>Add More</button>
+                                        <button type="Submit" className={styles.addButton}
+                                                onClick={handleEducationAppend}>Add More
+                                        </button>
                                     </div>
                                     {/*contact*/}
                                     <div className="contact mb-3 mt-5">
                                         <h4>Contact</h4>
-                                        <hr />
+                                        <hr/>
                                         <div className="row">
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Phone Number</label>
-                                                <input type="tel"
+                                                <input
+                                                    type="text"
                                                     placeholder="Phone"
                                                     className="form-control"
-                                                    name="phone" //user object field
-                                                    {...register("phone", { required: "This number is required" })}
+                                                    name="phone_number" //user object field
+                                                    {...register("phone_number", {required: "This number is required"})}
                                                 />
                                                 <p className="text-danger">{errors.phone?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Scond Phone Number</label>
-                                                <input type="tel"
-                                                    placeholder="Home Phone"
+                                                <input
+                                                    type="text"
+                                                    placeholder="Scond Phone Number"
                                                     className="form-control"
-                                                    name="phone_home"
-                                                    {...register("phone_home")}
+                                                    name="second_phone_number"
+                                                    {...register("second_phone_number")}
                                                 />
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Email Address</label>
-                                                <input type="email"
+                                                <input
+                                                    type="email"
                                                     placeholder="E-mail"
                                                     className="form-control"
                                                     name="email" // user obj field
@@ -489,11 +529,12 @@ const AddTeacherPage = (props) => {
                                     {/*Other Details*/}
                                     <div className="otherDetails mb-3">
                                         <h4>Other Details</h4>
-                                        <hr />
+                                        <hr/>
                                         <div className="row">
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">National ID</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     placeholder="NID"
                                                     className="form-control mb-3"
                                                     name="nid"
@@ -502,17 +543,19 @@ const AddTeacherPage = (props) => {
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Birth Certificate</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     placeholder="Birth Certificate"
                                                     className="form-control"
                                                     name="birth_certificate"
-                                                    {...register("birth_certificate", { required: "This field is required" })}
+                                                    {...register("birth_certificate", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.birth_certificate?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Nationality</label>
-                                                <select className="form-select"
+                                                <select
+                                                    className="form-select"
                                                     name="nationality"
                                                     {...register("nationality")}
                                                 >
@@ -523,7 +566,8 @@ const AddTeacherPage = (props) => {
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Blood Group</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     placeholder="o+"
                                                     className="form-control"
                                                     name="blood_group"
@@ -532,21 +576,23 @@ const AddTeacherPage = (props) => {
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Department</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     placeholder="Department"
                                                     className="form-control"
                                                     name="department"
-                                                    {...register("department", { required: "This field is required" })}
+                                                    {...register("department", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.department?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Designation</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     placeholder="Designation"
                                                     className="form-control"
                                                     name="designation"
-                                                    {...register("designation", { required: "This field is required" })}
+                                                    {...register("designation", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.designation?.message}</p>
                                             </div>
@@ -556,26 +602,32 @@ const AddTeacherPage = (props) => {
                                     <div className="workingDuration mb-4">
                                         <h4>Working Duration</h4>
                                         <div className="form-check mb-3">
-                                            <input className="form-check-input" type="checkbox" checked={isChecked} onChange={handleHidingEndDate} />
-                                            <label className="form-check-label" >Check the box if you are working</label>
+                                            <input
+                                                className="form-check-input"
+                                                type="checkbox" checked={isChecked}
+                                                onChange={handleHidingEndDate}
+                                            />
+                                            <label className="form-check-label">Check the box if you are working</label>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <label className="mb-2">Start Date</label>
-                                                <input type="text"
+                                                <input
+                                                    type="text"
                                                     className="form-control"
                                                     placeholder="Date"
                                                     onFocus={(e) => (e.target.type = "date")}
                                                     onBlur={(e) => (e.target.type = "text")}
                                                     name="starting_date"
-                                                    {...register("starting_date", { required: "This field is required" })}
+                                                    {...register("starting_date", {required: "This field is required"})}
                                                 />
                                                 <p className="text-danger">{errors.starting_date?.message}</p>
                                             </div>
                                             {isChecked ? <h1 className="d-none">End date is hidden</h1> :
                                                 <div className="col-md-6">
                                                     <label className="mb-2">End Date</label>
-                                                    <input type="text"
+                                                    <input
+                                                        type="text"
                                                         className="form-control"
                                                         placeholder="Date"
                                                         onFocus={(e) => (e.target.type = "date")}
@@ -590,41 +642,49 @@ const AddTeacherPage = (props) => {
                                     {/*Experience*/}
                                     <div className="experience mb-4">
                                         <h4>Experience</h4>
-                                        <hr />
+                                        <hr/>
                                         {experienceField.map((item, index) => (
                                             // return (
                                             <div className="mb-3" key={item.id}>
-                                                <textarea className="form-control"
+                                                <textarea
+                                                    className="form-control"
                                                     placeholder="White your Experinece Here"
                                                     name="experience"
                                                     {...register(`Experience[${index}].experience`)}
                                                 >
                                                 </textarea>
                                                 <button type="button" className={`btn btn-secondary float-md-end my-3`}
-                                                    onClick={() => experienceRemove(index)}>Remove</button>
+                                                        onClick={() => experienceRemove(index)}>Remove
+                                                </button>
                                             </div>
                                             // )
                                         ))}
 
-                                        <button type="Submit" className={styles.addButton} onClick={handleExperienceAppend}>Add More</button>
+                                        <button type="Submit" className={styles.addButton}
+                                                onClick={handleExperienceAppend}>Add More
+                                        </button>
                                     </div>
                                     {/* skill */}
                                     <div className="skill mb-4">
                                         <h4>Skill</h4>
-                                        <hr />
+                                        <hr/>
                                         {skillFields.map((item, index) => (
                                             <div className="mb-3" key={item.id}>
-                                                <textarea className="form-control"
+                                                <textarea
+                                                    className="form-control"
                                                     placeholder="White your Experinece Here"
                                                     name="skill"
                                                     {...register("skill")}
                                                 >
                                                 </textarea>
                                                 <button type="button" className={`btn btn-secondary float-md-end my-3`}
-                                                    onClick={() => skillRemove(index)}>Remove</button>
+                                                        onClick={() => skillRemove(index)}>Remove
+                                                </button>
                                             </div>
                                         ))}
-                                        <button type="Submit" className={styles.addButton} onClick={handleSkillAppend}>Add More</button>
+                                        <button type="Submit" className={styles.addButton}
+                                                onClick={handleSkillAppend}>Add More
+                                        </button>
                                     </div>
                                     {/*imageUpload*/}
                                     {/* <div className="imageUpload mb-4">
@@ -643,6 +703,36 @@ const AddTeacherPage = (props) => {
         </>
     )
 };
+
+
+export async function getStaticProps() {
+    const divisionListRes = await fetch(`${BASE_URL}accounts/division/`)
+    const divisionList = await divisionListRes.json()
+
+    const districtListRes = await fetch(`${BASE_URL}accounts/district/`)
+    const districtList = await districtListRes.json()
+
+    const postCodeListRes = await fetch(`${BASE_URL}accounts/post-code/`)
+    const postCodeList = await postCodeListRes.json()
+
+    const postOfficeListRes = await fetch(`${BASE_URL}accounts/post-office/`)
+    const postOfficeList = await postOfficeListRes.json()
+
+    const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
+    const thanaList = await thanaListRes.json()
+
+
+    // will receive `posts` as a prop at build time
+    return {
+        props: {
+            divisionList,
+            districtList,
+            postCodeList,
+            postOfficeList,
+            thanaList
+        },
+    }
+}
 
 
 export default AddTeacherPage;
