@@ -73,7 +73,6 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                                 </tr>
                                                             ))
                                                         }
-
                                                         </tbody>
                                                     </table>
                                                 </div>
