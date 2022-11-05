@@ -145,7 +145,7 @@ const SyllabusCreation = ({ getClassList, class_list, handlePutRequest }) => {
                                                                             <td>{data.madrasha_class?.name}</td>
                                                                             <td>{data.madrasha_class?.department?.name}</td>
                                                                             <td>{data.exam_term?.term_name}</td>
-                                                                            <td>{data.syllabus_details}</td>
+                                                                            <td className="text-truncate" style={{"maxWidth": 150}}>{data.syllabus_details}</td>
                                                                             <td>{data.session_year}</td>
                                                                             <td>file container</td>
                                                                             <td>
