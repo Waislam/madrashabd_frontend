@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 
 
 const TeacherResponseUpdate = (props) => {
-    console.log('porps value0', props.old_data)
 
     const router = useRouter()
 

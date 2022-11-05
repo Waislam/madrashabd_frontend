@@ -66,7 +66,7 @@ const AddTeacherPage = (props) => {
         setDivisionList(division)
     }
 
-    
+
 
     const handleSetSingleDivisionValue = (e) => {
         e.stopPropagation()
@@ -84,41 +84,10 @@ const AddTeacherPage = (props) => {
         const district = list.data
         setDistrictList(district)
     }
-    
+
     useEffect(() => {
         getDistrict()
     }, [singleDivision])
-
-
-
-
-
-
-    // user(F)
-    // madrasha
-    // teacher_id
-    // father_name
-    // mother_name
-    // date_of_birth
-    // gender
-    // religion
-    // marital_status
-    // present_address(F) 
-    // permanent_address(F) 
-    // education (F)
-    // skill =(F) 
-    // experience(F)
-    // phone_home 
-    // nid 
-    // birth_certificate 
-    // nationality 
-    // blood_group 
-    // department 
-    // designation 
-    // starting_date 
-    // ending_date 
-
-
 
 
     // permanent address and working hour hiding function 
@@ -241,7 +210,7 @@ const AddTeacherPage = (props) => {
                                                 <select className="form-select"
                                                     name="division"
                                                     {...register("division", { required: "This field is required" })}
-                                                    onChange={handleSetSingleDivisionValue}  
+                                                    onChange={handleSetSingleDivisionValue}
                                                 >
                                                     <option>Select Division</option>
                                                     {divisionList && divisionList.map((division) => (
@@ -256,10 +225,10 @@ const AddTeacherPage = (props) => {
                                                 <select className="form-select"
                                                     name="district"
                                                     {...register("district", { required: "This field is required" })}
-                                                    onChange={(e)=>setSingleDristrict(e.target.value)}  
+                                                    onChange={(e) => setSingleDristrict(e.target.value)}
                                                 >
                                                     <option>District select</option>
-                                                    {disctrictList && disctrictList.map((district)=>(
+                                                    {disctrictList && disctrictList.map((district) => (
                                                         <option value={district.pk} key={district.name}>{district.name}</option>
                                                     ))}
 

@@ -3,10 +3,9 @@ import React from "react";
 // Talimat Component
 import Registration from "../../../components/Talimat/Examination/Registration";
 import Layout from "../../../components/Layout/Layout";
-import api, {BASE_URL} from "../../api/api";
+import api, { BASE_URL } from "../../api/api";
 
 const RegistrationPage = (props) => {
-    console.log(props)
 
     return (
         <>

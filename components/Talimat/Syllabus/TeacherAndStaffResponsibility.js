@@ -22,8 +22,6 @@ const TeacherAndStaffResponsibility = ({ handlePutRequest, handleDeleteRequest }
         getResponsibilityList()
     }, [])
 
-    console.log('responsibilityList', responsibilityList)
-
     return (
         <>
             <section className={taliamatstyles.talimatSection}>

@@ -1,15 +1,17 @@
-import {useRef, useState, useEffect} from 'react';
-import {useForm} from 'react-hook-form';
+import { useRef, useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
-import api from "../../../pages/api/api";
+import api, { BASE_URL } from "../../../pages/api/api";
+import { useRouter } from 'next/router';
 
 const AddTransportModal = (props) => {
+    const router = useRouter()
     const [vehicleList, setVehicleList] = useState(null);
 
-    const {register, handleSubmit} = useForm({mode: 'all'});
+    const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const getVehicleList = async () => {
-        const list = await api.get("http://127.0.0.1:8086/transport/100/vehicle-info-list/");
+        const list = await api.get("/transport/100/vehicle-info-list/");
         const data = list.data;
         setVehicleList(data);
     };
@@ -22,7 +24,10 @@ const AddTransportModal = (props) => {
 
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/transport/100/post-transport/", {
+        let student_id = values.student_id
+        // transport/100/post-transport/S102/
+
+        fetch(`${BASE_URL}/transport/100/post-transport/${student_id}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -31,16 +36,18 @@ const AddTransportModal = (props) => {
             body: JSON.stringify(
                 {
                     "madrasha": 1,
-                    "student_id": values.student_id,
-                    "vehicle": values.vehicle,
-                    "start_time": values.start_time,
+                    "vehicle": values.vehicle
                 },
             )
         }).then((res) => res.json())
+        .then ((res)=>{
+            console.log(res)
+        })
             .catch((err) => {
                 console.log(err.message)
             });
         props.onHide()
+        router.reload()
 
     };
 
@@ -67,8 +74,8 @@ const AddTransportModal = (props) => {
                             </div>
                             <div className="col-md-4 mb-3">
                                 <select className="form-select"
-                                        name="vehicle"
-                                        {...register("vehicle")}
+                                    name="vehicle"
+                                    {...register("vehicle")}
                                 >
 
                                     <option>Select Car</option>

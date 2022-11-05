@@ -17,8 +17,7 @@ const SyllabusCreateUpdate = (props) => {
         "session_year": props.syllabusOldData?.session_year,
         "syllabus_details": props.syllabusOldData?.syllabus_details
     }
-
-    console.log("preLoadedValues: ", preLoadedValues)
+    
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onChange",
         defaultValues: preLoadedValues
