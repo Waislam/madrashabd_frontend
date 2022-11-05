@@ -25,8 +25,8 @@ const TransportSideMenu = () => {
                                     <a className="text-center">Transport Details</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "/transport/gariadd" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                                <Link href="/transport/gariadd">
+                            <div className={router.pathname == "/transport/gari" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                                <Link href="/transport/gari">
                                 <a className="text-center">Car details</a>
                                 </Link>
                             </div>
