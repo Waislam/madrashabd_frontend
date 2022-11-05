@@ -37,7 +37,7 @@ const BookDistToTeacherUpdate = (props) => {
             console.log(response.data)
         })
         props.onHide()
-        router.reload(ss)
+        router.reload()
     }
 
 

@@ -8,7 +8,7 @@ import Layout from "../../../components/Layout/Layout";
 import { BASE_URL } from "../../api/api";
 
 const RoutinePage = (props) => {
-    console.log('props data', props)
+    // console.log('props data', props)
 
     return (
         <>
@@ -23,13 +23,13 @@ const RoutinePage = (props) => {
 
 
 export async function getStaticProps() {
-    const madrashaBookRes = await fetch(`${BASE_URL}settings/100/books/`)
+    const madrashaBookRes = await fetch(`${BASE_URL}/settings/100/books/`)
     const madrashaBookList = await madrashaBookRes.json()
 
-    const classListRes = await fetch(`${BASE_URL}settings/100/classes/`)
+    const classListRes = await fetch(`${BASE_URL}/settings/100/classes/`)
     const classList = await classListRes.json()
 
-    const examTermListRes = await fetch(`${BASE_URL}talimat/100/exam-term/`)
+    const examTermListRes = await fetch(`${BASE_URL}/talimat/100/exam-term/`)
     const examTermList = await examTermListRes.json()
 
 

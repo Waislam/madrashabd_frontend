@@ -19,8 +19,8 @@ const StudentDetailForm = (props) => {
         setSelectPermanentAddressThana,
     } = props
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
-    console.log('admissionData', admissionData);
-    console.log('divisionList', divisionList);
+    // console.log('admissionData', admissionData);
+    // console.log('divisionList', divisionList);
 
     const {
         handleSubmit,

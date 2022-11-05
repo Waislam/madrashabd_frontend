@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Transport.module.css'
 import TransportSideMenu from "./TransportSideMenu";
+import { AmPm } from '../Utils/utils'
 
 
 const Transport = ({transport, handleAddTransportModal, handleDeleteTransportModel}) => {
@@ -81,15 +82,17 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                                                         <tbody>
                                                         {
                                                             transport?.results?.map((data, index) => (
-                                                                <tr key={index + 1} className="text-capitalize">
-                                                                    <td className="text-sm">{data.id}</td>
-                                                                    <td className="text-sm">{data.student_id?.user.first_name?.last_name}</td>
+                                                                <tr key={data.id} className="text-capitalize">
+                                                                    <td className="text-sm">{index + 1}</td>
+                                                                    <td className="text-sm">
+                                                                        {data.student_id?.user?.first_name} {data.student_id?.user?.last_name}
+                                                                    </td>
                                                                     <td className="text-sm">{data.student_id?.guardian_name}</td>
                                                                     <td className="text-sm">{data.vehicle?.car_number}</td>
                                                                     <td className="text-sm">{data.vehicle?.driver_name}</td>
                                                                     <td className="text-sm">{data.vehicle?.driver_number}</td>
                                                                     <td className="text-sm">{data.vehicle?.route}</td>
-                                                                    <td className="text-sm">{data.vehicle?.start_time}</td>
+                                                                    <td className="text-sm">{AmPm(data.vehicle?.start_time)}</td>
                                                                     <td className="text-center">
                                                                         <button className="btn btn-primary">Edit</button>
                                                                         <button

@@ -16,7 +16,6 @@ const TeacherTrainUpdate = (props) => {
         "training_description": props.teachertrainolddata?.training_description
     }
 
-    console.log("preLoadedValues: ", preLoadedValues)
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onChange",
         defaultValues: preLoadedValues

@@ -6,7 +6,7 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const RegistrationCreateModal = (props) => {
-    console.log("props modal", props)
+    // console.log("props modal", props)
 
     const {
         register,
