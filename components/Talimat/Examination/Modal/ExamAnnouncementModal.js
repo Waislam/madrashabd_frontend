@@ -31,10 +31,10 @@ const ExamAnnouncementModal = (props) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="mb-3">
-                            <label className="mb-2">Expense By</label>
+                            <label className="mb-2">Exam Name / Term Name</label>
                             <input type="text"
                                    className="form-control"
-                                   placeholder="Expense By"
+                                   placeholder="Exam Name / Term Name"
                                    name="exam_title"
                                    {...register("exam_title", {required: "this field is required"})}
                             />

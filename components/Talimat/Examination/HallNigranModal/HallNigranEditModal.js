@@ -6,7 +6,7 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const HallNigranEditModal = (props) => {
-    console.log(" HallNigranEditModal(): props modal", props)
+    // console.log(" HallNigranEditModal(): props modal", props)
 
     const preLoadedData = {
         "duty_date": props.hallNigarData?.duty_date,

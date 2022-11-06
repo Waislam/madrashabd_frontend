@@ -9,7 +9,7 @@ import api from "../../../../pages/api/api";
 
 
 const HallNigranDeleteModal = (props) => {
-    console.log("HallNigranDeleteModal : props", props)
+    // console.log("HallNigranDeleteModal : props", props)
     const [deleteLoading, setDeleteLoading] = useState(false)
     const router = useRouter()
 

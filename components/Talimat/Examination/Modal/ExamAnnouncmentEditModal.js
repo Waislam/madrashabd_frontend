@@ -8,7 +8,7 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const ExamAnnouncementEditModal = (props) => {
-    console.log("props.examAnnouncementData?.exam_title", props.examAnnouncementData?.exam_title)
+    // console.log("props.examAnnouncementData?.exam_title", props.examAnnouncementData?.exam_title)
     const router = useRouter()
 
     const preLoadedData = {

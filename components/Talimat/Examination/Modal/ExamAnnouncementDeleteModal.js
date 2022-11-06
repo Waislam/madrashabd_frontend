@@ -11,7 +11,7 @@ import api from "../../../../pages/api/api";
 const ExamAnnouncementDeleteModal = (props) => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const router = useRouter()
-    console.log("examAnnouncementId", props.examAnnouncementId)
+    // console.log("examAnnouncementId", props.examAnnouncementId)
 
     const handleExamAnnouncementDelete = () => {
         setDeleteLoading(true)
