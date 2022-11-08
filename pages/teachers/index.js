@@ -21,7 +21,9 @@ const Index = () => {
     };
 
     useEffect(()=>{
-        getTeacher()
+        getTeacher().then((res) => {
+            console.log(res)
+        })
     },[teacherListPageNum]);
 
 

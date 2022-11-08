@@ -12,6 +12,8 @@ const PreviousInstitutionForm = (props) => {
 
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
 
+    console.log(props.session.user.madrasha_slug)
+
     const {
         handleSubmit,
         formState: {errors},
@@ -115,7 +117,7 @@ const PreviousInstitutionForm = (props) => {
             redirect: 'follow'
         };
 
-        fetch(`${BASE_URL}/students/`, requestOptions)
+        fetch(`${BASE_URL}/students/${props.session.user.madrasha_slug}/`, requestOptions)
             .then(response => response.json())
             .then((result) => {
                 console.log("data submited result", result)

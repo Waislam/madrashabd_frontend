@@ -1,13 +1,17 @@
-import {useRef, useState} from 'react';
-import {useForm} from 'react-hook-form';
+import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import api, { BASE_URL } from "../../../pages/api/api"
+import { useRouter } from 'next/router';
+
 
 const AddGariListModal = (props) => {
+    const router = useRouter()
 
-    const {register, handleSubmit} = useForm({mode: 'all'});
+    const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/transport/100/vehicle-info-list/", {
+        fetch(`${BASE_URL}/transport/100/vehicle-info-list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -28,6 +32,7 @@ const AddGariListModal = (props) => {
                 console.log(err.message)
             });
         props.onHide()
+        router.reload()
 
     };
 

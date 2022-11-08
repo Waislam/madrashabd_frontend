@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Transport.module.css'
 import TransportSideMenu from "./TransportSideMenu";
+import { AmPm } from '../Utils/utils'
 
 
 const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete}) => {
@@ -44,13 +45,13 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
                                                             </thead>
                                                             <tbody>
                                                             {
-                                                                gariList.results?.map((data, index) => (
+                                                                 gariList && gariList.results?.map((data, index) => (
                                                                     <tr key={index+1}>
                                                                         <th scope="row">{data?.car_number}</th>
                                                                         <td className="text-sm">{data?.driver_name}</td>
                                                                         <td className="text-sm">{data?.driver_number}</td>
                                                                         <td className="text-sm">{data?.route}</td>
-                                                                        <td className="text-sm">{data?.start_time}</td>
+                                                                        <td className="text-sm">{AmPm(data?.start_time)}</td>
                                                                         <td className="text-sm">
                                                                             <button
                                                                                 type="button"

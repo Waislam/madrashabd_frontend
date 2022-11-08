@@ -6,7 +6,7 @@ import ParentInformationForm from "./ParentInformationForm";
 import PreviousInstitutionForm from "./PreviousInstitutionForm";
 import AdmissionForm from "./AdmissionForm";
 
-const Admission = () => {
+const Admission = (props) => {
     return (
         <>
             <section className={styles.admissionSection}>
@@ -17,7 +17,7 @@ const Admission = () => {
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             {/*Student Details*/}
-                            <AdmissionForm />
+                            <AdmissionForm session={props.session} />
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const RoutineCreateModal = (props) => {
-    console.log("RoutineCreateModal(): props modal", props)
+    // console.log("RoutineCreateModal(): props modal", props)
 
     const {
         register,
@@ -20,7 +20,7 @@ const RoutineCreateModal = (props) => {
     const router = useRouter()
 
     const onSubmit = data => {
-        console.log("RoutineCreateModal(): data", data)
+        // console.log("RoutineCreateModal(): data", data)
         // data.madrasha = 1
         // api.post(`talimat/100/hall-duty/`, JSON.stringify(data))
         //     .then((response) => {

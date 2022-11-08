@@ -28,7 +28,7 @@ const GariPage = () => {
     // Get GariList
     const getGariList = async () => {
         setLoading(true);
-        const list = await api.get("http://127.0.0.1:8086/transport/100/vehicle-info-list/");
+        const list = await api.get(`/transport/100/vehicle-info-list/`);
         const data = list.data;
         setGariList(data);
         setLoading(false);

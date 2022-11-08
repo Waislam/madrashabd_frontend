@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
-import Layout from "../../components/Layout/Layout";
-import styles from '../../components/Teachers/TeacherList.module.css'
+import Layout from "../../../components/Layout/Layout";
+import styles from '../../../components/Teachers/TeacherList.module.css'
 import {useForm, useFieldArray} from "react-hook-form"
-import api, {BASE_URL} from "../api/api";
-import { getSession, useSession } from "next-auth/react";
-import { getDepartmentList } from "../api/settings_api";
+import api, {BASE_URL} from "../../api/api";
+import {getSession, useSession} from "next-auth/react";
+import {getDepartmentList} from "../../api/settings_api";
+import {getTeacherDetailApi} from "../../api/TeacherAPI/teacher_api";
 
-const AddTeacherPage = (props) => {
+const UpdateTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false)
     // const [divisionList, setDivisionList] = useState(null)
     const [singleDivision, setSingleDivision] = useState('')
@@ -14,16 +15,67 @@ const AddTeacherPage = (props) => {
     const [singleDistrict, setSingleDristrict] = useState('')
     const [departmentList, setDepartmentList] = useState('')
 
-    // console.log("@@ departmentList",departmentList)
+    console.log("@@ props teacher present_address_division", props.teacher)
+    console.log("@@ props teacher present_address_district", props.teacher.data.present_address.id)
 
+
+    const preLoadedData = {
+        "user": 1,
+        "fast_name": props.teacher.data.user.first_name,
+        "last_name": props.teacher.data.user.last_name,
+        "madrasha": props.teacher.data.madrasha,
+        "teacher_id": props.teacher.data.teacher_id,
+        "father_name": props.teacher.data.father_name,
+        "mother_name": props.teacher.data.mother_name,
+        "date_of_birth": props.teacher.data.date_of_birth,
+        "gender": props.teacher.data.gender,
+        "religion": props.teacher.data.religion,
+        "marital_status": props.teacher.data.marital_status,
+        "present_address_division": props.teacher.data.present_address.division,
+        "present_address_district": props.teacher.data.present_address.district,
+        "present_address_thana": props.teacher.data.present_address.thana,
+        "present_address_post_office": props.teacher.data.present_address.post_office,
+        "present_address_post_code": props.teacher.data.present_address.post_code,
+        "present_address_info": props.teacher.data.present_address.address_info,
+
+        "permanent_address_division": props.teacher.data.permanent_address.division,
+        "permanent_address_district": props.teacher.data.permanent_address.district,
+        "permanent_address_thana": props.teacher.data.permanent_address.thana,
+        "permanent_address_post_office": props.teacher.data.permanent_address.post_office,
+        "permanent_address_post_code": props.teacher.data.permanent_address.post_code,
+        "permanent_address_info": props.teacher.data.permanent_address.address_info,
+
+        "degree_name": props.teacher.data.education.degree_name,
+        "institution_name": props.teacher.data.education.institution_name,
+        "passing_year": props.teacher.data.education.passing_year,
+        "result": props.teacher.data.education.result,
+        "skill": props.teacher.data.skill.skill_name,
+        "experience_name": "New experience",
+        // "skill": {
+        //     "skill_name": props.teacher.data.skill.skill_name
+        // },
+        // "experience": {
+        //     "experience_name": "New experience"
+        // },
+        "phone_home": "00000",
+        "nid": props.teacher.data.nid,
+        "birth_certificate": props.teacher.data.birth_certificate,
+        "nationality": props.teacher.data.nationality,
+        "blood_group": props.teacher.data.blood_group,
+        "department": props.teacher.data.department.id,
+        "designation": props.teacher.data.designation.id,
+        "starting_date": props.teacher.data.starting_date,
+        "ending_date": props.teacher.data.ending_date,
+        "slug": props.teacher.data.slug
+    }
 
     const {
         handleSubmit,
         register,
         formState: {errors}, control
-    } = useForm()
-
-    console.log("@@@@@ department:", props.departmentList)
+    } = useForm({
+        defaultValues: preLoadedData
+    })
 
     const onSubmit = data => {
         console.log(data);
@@ -43,7 +95,7 @@ const AddTeacherPage = (props) => {
                 "thana": data.present_address_thana,
                 "post_office": data.present_address_post_office,
                 "post_code": data.present_address_post_code,
-                "address_info": data.present_address_address_info,
+                "address_info": data.present_address_info,
             },
             "permanent_address": {
                 "division": data.permanent_address_division,
@@ -51,7 +103,7 @@ const AddTeacherPage = (props) => {
                 "thana": data.permanent_address_thana,
                 "post_office": data.permanent_address_post_office,
                 "post_code": data.permanent_address_post_code,
-                "address_info": data.permanent_address_address_info
+                "address_info": data.permanent_address_info
             },
             "education": {
                 "degree_name": data.degree_name,
@@ -76,7 +128,7 @@ const AddTeacherPage = (props) => {
             "ending_date": data.ending_date
         }
 
-        api.post(`teachers/100/`, JSON.stringify(teacher_data))
+        api.put(`/teachers/detail/t101/`, JSON.stringify(teacher_data))
             .then((res) => {
                 console.log("res", res.data)
             })
@@ -264,8 +316,8 @@ const AddTeacherPage = (props) => {
                                                         props.departmentList.map(department => <option
                                                             key={department.id}
                                                             value={department.id}
-                                                            >{department.name}
-                                                            </option>)
+                                                        >{department.name}
+                                                        </option>)
                                                     }
                                                 </select>
                                             </div>
@@ -294,7 +346,6 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_division"
                                                     {...register("present_address_division", {required: "This field is required"})}
-                                                    onChange={handleSetSingleDivisionValue}
                                                 >
                                                     <option value="">Select Division</option>
                                                     {props.divisionList && props.divisionList.map((division) => (
@@ -389,10 +440,10 @@ const AddTeacherPage = (props) => {
                                                 <input type="text"
                                                        placeholder="Address"
                                                        className="form-control"
-                                                       name="present_address_address_info"
-                                                       {...register("present_address_address_info", {required: "This field is required"})}
+                                                       name="present_address_info"
+                                                       {...register("present_address_info", {required: "This field is required"})}
                                                 />
-                                                <p className="text-danger">{errors.present_address_address_info?.message}</p>
+                                                <p className="text-danger">{errors.present_address_info?.message}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -515,10 +566,10 @@ const AddTeacherPage = (props) => {
                                                     <input type="text"
                                                            placeholder="Address"
                                                            className="form-control"
-                                                           name="permanent_address_address_info"
-                                                           {...register("permanent_address_address_info", {required: "This field is required"})}
+                                                           name="permanent_address_info"
+                                                           {...register("permanent_address_info", {required: "This field is required"})}
                                                     />
-                                                    <p className="text-danger">{errors.permanent_address_address_info?.message}</p>
+                                                    <p className="text-danger">{errors.permanent_address_info?.message}</p>
                                                 </div>
                                             </div>
                                         }
@@ -529,49 +580,51 @@ const AddTeacherPage = (props) => {
                                         <h4>Education</h4>
                                         <hr/>
                                         <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Degree Name</label>
-                                                    <input type="text"
-                                                           placeholder="Degree Name "
-                                                           className="form-control"
-                                                           name="degree_name"
-                                                           {...register("degree_name", {required: "This field is required"})}
-                                                    />
-                                                    <p className="text-danger">{errors.degree_name?.message}</p>
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Passing Year</label>
-                                                    <input type="text"
-                                                           placeholder="Passing year"
-                                                           className="form-control"
-                                                           name="passing_year"
-                                                           {...register("passing_year")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Result</label>
-                                                    <input type="text"
-                                                           placeholder="CGPA/GPA-5/First Class"
-                                                           className="form-control"
-                                                           name="result"
-                                                           {...register("result")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Institution Name</label>
-                                                    <input type="text"
-                                                           placeholder="University/college/Madrasha"
-                                                           className="form-control"
-                                                           name="institution_name"
-                                                           {...register("institution_name")}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    {/* <button type="button"
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Degree Name</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Degree Name "
+                                                    className="form-control"
+                                                    name="degree_name"
+                                                    {...register("degree_name", {required: "This field is required"})}
+                                                />
+                                                <p className="text-danger">{errors.degree_name?.message}</p>
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Passing Year</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Passing year"
+                                                    className="form-control"
+                                                    name="passing_year"
+                                                    {...register("passing_year")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Result</label>
+                                                <input type="text"
+                                                       placeholder="CGPA/GPA-5/First Class"
+                                                       className="form-control"
+                                                       name="result"
+                                                       {...register("result")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Institution Name</label>
+                                                <input type="text"
+                                                       placeholder="University/college/Madrasha"
+                                                       className="form-control"
+                                                       name="institution_name"
+                                                       {...register("institution_name")}
+                                                />
+                                            </div>
+                                            <div>
+                                                {/* <button type="button"
                                                             className={`btn btn-secondary float-md-end mb-2 col-1`}
                                                             onClick={() => educationRemove(index)}>Remove
                                                     </button> */}
-                                                </div>
+                                            </div>
                                         </div>
                                         {/* {educationFields.map((item, index) => (
                                             <div className="row" key={item.id}>
@@ -766,7 +819,7 @@ const AddTeacherPage = (props) => {
                                                     {...register(`experience_name`)}
                                                 >
                                                 </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => experienceRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -803,7 +856,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("skill")}
                                                 >
                                                 </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => skillRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -846,24 +899,27 @@ const AddTeacherPage = (props) => {
 
 export async function getServerSideProps({req}) {
     const session = await getSession({req})
-    const madrasha_slug =session?.user.madrasha_slug
+    const madrasha_slug = session?.user.madrasha_slug
 
-    const divisionListRes = await fetch(`${BASE_URL}accounts/division/`)
+    const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
     const divisionList = await divisionListRes.json()
 
-    const districtListRes = await fetch(`${BASE_URL}accounts/district/`)
+    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
     const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}accounts/post-code/`)
+    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
     const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}accounts/post-office/`)
+    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
     const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
+    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
+
+    const teacher = await getTeacherDetailApi("t101").then(data => data)
+
 
     // will receive `posts` as a prop at build time
     return {
@@ -873,16 +929,17 @@ export async function getServerSideProps({req}) {
             postCodeList,
             postOfficeList,
             thanaList,
-            departmentList
+            departmentList,
+            teacher
         },
     }
 }
 
 
-export default AddTeacherPage;
+export default UpdateTeacherPage;
 
 
-AddTeacherPage.getLayout = (page) => {
+UpdateTeacherPage.getLayout = (page) => {
 
     return (
         <Layout>

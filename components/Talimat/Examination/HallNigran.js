@@ -46,7 +46,7 @@ const HallNigran = (props) => {
     const handleHallNigranEditModalShow = () => setHallNigranEditModalShow(true);
 
     const handleHallNigranEdit = (hallNigranIdValue) => {
-        console.log("hallNigranIdValue", hallNigranIdValue)
+        // console.log("hallNigranIdValue", hallNigranIdValue)
         setHallNigranId(hallNigranIdValue)
         getHallNigar(hallNigranIdValue)
         handleHallNigranEditModalShow()

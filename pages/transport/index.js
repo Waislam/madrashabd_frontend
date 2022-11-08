@@ -23,7 +23,7 @@ const TransportPage = () => {
 
     // Get Transport
     const getTransport = async () => {
-        const list = await api.get("http://127.0.0.1:8086/transport/100/transport-list/");
+        const list = await api.get("/transport/100/transport-list/");
         const data = list.data;
         setTransport(data);
         setLoading(false);
