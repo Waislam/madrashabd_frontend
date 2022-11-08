@@ -15,7 +15,7 @@ import {
     getThanaApi
 } from "../../pages/api/madrasha/madrashaApi";
 
-const AdmissionForm = () => {
+const AdmissionForm = (props) => {
     const [step, setStep] = useState(1);
 
     const [divisionList, setDivisionList] = useState([]);
@@ -51,7 +51,6 @@ const AdmissionForm = () => {
             // call division api
             getDivisionApi()
                 .then((data) => {
-                    console.log("getDivisionApi(): results", data)
                     setDivisionList(data)
                 })
                 .catch((error) => {
@@ -71,7 +70,6 @@ const AdmissionForm = () => {
                 // call post Office api
         getPostOfficeApi(selectPresentAddressDistrict)
             .then((data) => {
-                console.log("getPostOfficeApi(): results", data)
                 setPostOfficeList(data)
             })
             .catch((error) => {
@@ -85,7 +83,6 @@ const AdmissionForm = () => {
         // call district api
         getDistrictApi(selectPresentAddressDivision)
             .then((data) => {
-                console.log("getDistrictApi(): results", data)
                 setDistricts(data)
             })
             .catch((error) => {
@@ -140,6 +137,7 @@ const AdmissionForm = () => {
                     setSelectPermanentAddressThana={setSelectPermanentAddressThana}
                     setSelectPermanentAddressPostCode={setSelectPermanentAddressPostCode}
                     setSelectPermanentAddressPostOffice={setSelectPermanentAddressPostOffice}
+                    session={props.session}
                 />
             );
         case 2:
@@ -154,6 +152,7 @@ const AdmissionForm = () => {
                 <PreviousInstitutionForm
                     nextStep={nextStep}
                     prevStep={prevStep}
+                    session={props.session}
                 />
             );
         default:

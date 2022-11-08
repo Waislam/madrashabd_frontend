@@ -11,7 +11,7 @@ export default async function auth(req, res) {
                 password: {label: "Password", type: "password"}
             },
             async authorize(credentials, req) {
-                const res = await fetch(`${BASE_URL}accounts/api-token-auth/`, {
+                const res = await fetch(`${BASE_URL}/accounts/api-token-auth/`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {"Content-Type": "application/json"}
@@ -19,9 +19,11 @@ export default async function auth(req, res) {
                 const user = await res.json()
                 // If no error and we have user data, return it
                 if (res.ok && user) {
+                    console.log("user session", user)
                     // return user
                     return {
                         'user_id': user.user_id,
+                        'user_info': user.data,
                         "madrasha_id": user.user_madrasha_id,
                         "madrasha_slug": user.user_madrasha_slug,
                         "token": user.token,
@@ -45,6 +47,7 @@ export default async function auth(req, res) {
                 if (params.user?.role) {
                     params.token.role = params.user.role;
                     params.token.user_id = params.user.user_id;
+                    params.token.user_info = params.user.user_info;
                     params.token.token = params.user.token;
                     params.token.madrasha_slug = params.user.madrasha_slug;
                     params.token.madrasha_name = params.user.madrasha_name;
@@ -56,6 +59,7 @@ export default async function auth(req, res) {
             session: async ({session, token}) => {
                 if (session?.user) {
                     session.user.user_id = token.user_id;
+                    session.user.user_info = token.user_info;
                     session.user.role = token.role;
                     session.user.token = token.token;
                     session.user.madrasha_slug = token.madrasha_slug;
