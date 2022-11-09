@@ -10,11 +10,11 @@ import api from "../../pages/api/api";
 
 const schema = yup.object({
     full_name: yup.string().required(),
-    password: yup.string()
-        .required("Password is required"),
-    password2: yup.string()
-        .required("Confirm Password is required")
-        .oneOf([yup.ref("password")], "Passwords do not match"),
+    // password: yup.string()
+    //     .required("Password is required"),
+    // password2: yup.string()
+    //     .required("Confirm Password is required")
+    //     .oneOf([yup.ref("password")], "Passwords do not match"),
     student_phone_number: yup.string()
         .required("Phone number is required."),
     date_of_birth: yup.string()
@@ -50,57 +50,9 @@ const StudentDetailForm = (props) => {
 
     const onSubmit = (values) => {
         setLoading(true)
-
-        console.log("session value", session)
-        console.log("values", values)
-
-        const user_data = {
-            "phone": values.student_phone_number,
-            "password": values.password,
-            "password2": values.password,
-            "madrasha_id": session.user.madrasha_id
-        }
-
-        // create a user
-        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
-            .then((res) => {
-                console.log("response user create", res)
-                setAdmissionFormValues(values);
-                nextStep();
-                setLoading(false)
-            })
-            .catch((err) => {
-                console.log("user create err", err)
-            })
-
-
-        // check passport number
-        // api.get(`/students/check-passport/${values.passport_number}/`)
-        //     .then((response) => {
-        //         console.log("result", response)
-        //         if (response.data.status) {
-        //             setError("passport_number", {
-        //                 type: "focus",
-        //                 message: 'This passport number already exist !!'
-        //             }, {shouldFocus: true})
-        //             setLoading(false)
-        //         } else {
-        //
-        //             api.get(`/students/check-nid/${values.student_nid}/`)
-        //                 .then((response) => {
-        //                     if (response.data.status) {
-        //                         setError("student_nid", {
-        //                             type: "focus",
-        //                             message: 'This NID number already exist !!'
-        //                         }, {shouldFocus: true})
-        //                     } else {
-        //                         setAdmissionFormValues(values);
-        //                         nextStep();
-        //                     }
-        //                     setLoading(false)
-        //                 })
-        //         }
-        //     })
+        setAdmissionFormValues(values);
+        nextStep();
+        setLoading(false)
     };
 
     const Continue = e => {
@@ -108,7 +60,6 @@ const StudentDetailForm = (props) => {
         nextStep();
     };
 
-    console.log("error", errors);
 
     return (
         <>
@@ -157,42 +108,42 @@ const StudentDetailForm = (props) => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6 mb-6">
-                                        <div>
-                                            <label>Password</label>
-                                            <input
-                                                type="password"
-                                                defaultValue={admissionData.password}
-                                                className="form-control"
-                                                placeholder="Type password"
-                                                id="password"
-                                                {...register("password")}
-                                            />
-                                        </div>
-                                        <div>
-                                            {errors.password && (
-                                                <p className="text-danger">{errors.password?.message}</p>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mb-6">
-                                        <div>
-                                            <label>Re-type password</label>
-                                            <input
-                                                type="password"
-                                                defaultValue={admissionData.password2}
-                                                className="form-control"
-                                                placeholder="Re-type password"
-                                                id="password2"
-                                                {...register("password2")}
-                                            />
-                                        </div>
-                                        <div>
-                                            {errors.password2 && (
-                                                <p className="text-danger">{errors.password2?.message}</p>
-                                            )}
-                                        </div>
-                                    </div>
+                                    {/*<div className="col-md-6 mb-6">*/}
+                                    {/*    <div>*/}
+                                    {/*        <label>Password</label>*/}
+                                    {/*        <input*/}
+                                    {/*            type="password"*/}
+                                    {/*            defaultValue={admissionData.password}*/}
+                                    {/*            className="form-control"*/}
+                                    {/*            placeholder="Type password"*/}
+                                    {/*            id="password"*/}
+                                    {/*            {...register("password")}*/}
+                                    {/*        />*/}
+                                    {/*    </div>*/}
+                                    {/*    <div>*/}
+                                    {/*        {errors.password && (*/}
+                                    {/*            <p className="text-danger">{errors.password?.message}</p>*/}
+                                    {/*        )}*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="col-md-6 mb-6">*/}
+                                    {/*    <div>*/}
+                                    {/*        <label>Re-type password</label>*/}
+                                    {/*        <input*/}
+                                    {/*            type="password"*/}
+                                    {/*            defaultValue={admissionData.password2}*/}
+                                    {/*            className="form-control"*/}
+                                    {/*            placeholder="Re-type password"*/}
+                                    {/*            id="password2"*/}
+                                    {/*            {...register("password2")}*/}
+                                    {/*        />*/}
+                                    {/*    </div>*/}
+                                    {/*    <div>*/}
+                                    {/*        {errors.password2 && (*/}
+                                    {/*            <p className="text-danger">{errors.password2?.message}</p>*/}
+                                    {/*        )}*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
                                             <input
