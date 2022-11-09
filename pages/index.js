@@ -1,12 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useRouter} from "next/router";
 
 import {signIn, signOut, useSession} from 'next-auth/react'
 import Layout from "../components/Layout/Layout";
 
+
 export default function Home() {
+    const router = useRouter();
     const {data: session, status} = useSession();
 
-    console.log("session", session)
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    })
 
     if (status === "loading") {
         return (
@@ -15,7 +22,7 @@ export default function Home() {
                     <div className="row">
                         <div className="col">
                             <p className='text-thin'>
-                                LOading.......
+                                Loading.......
                             </p>
 
                         </div>

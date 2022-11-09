@@ -2,7 +2,7 @@ import api from "../api";
 
 // Get Department List from api
 export const getDepartmentList = async (madrasha_slug) => {
-    const url = `http://178.128.94.215:1337/settings/${madrasha_slug}/department/`;
+    const url = `/settings/${madrasha_slug}/department/`;
     const response = await api.get(url);
 
     return response.data;
