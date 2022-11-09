@@ -1,13 +1,17 @@
 import React from "react";
 import Link from 'next/link'
+
+// styles
 import Image from "next/image";
 import styles from './StudentDetails.module.css'
+
+// components
 import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
 
 
 const StudentDetails = ({student}) => {
-    console.log("Student :", student);
+
     return (
         <>
             <section className={styles.mainSection}>
@@ -149,35 +153,35 @@ const StudentDetails = ({student}) => {
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.present_address?.post_office.name}
+                                                        {student.data.present_address?.post_office?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Code
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.present_address?.post_code.name}
+                                                        {student.data.present_address?.post_code?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         P.S./Upazilla
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.present_address?.thana.name}
+                                                        {student.data.present_address?.thana?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         District
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.present_address?.district.name}
+                                                        {student.data.present_address?.district?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Division
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.present_address?.division.name}
+                                                        {student.data.present_address?.division?.name}
                                                     </dd>
                                                 </dl>
                                             </div>
@@ -201,35 +205,35 @@ const StudentDetails = ({student}) => {
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.permanent_address?.post_office.name}
+                                                        {student.data.permanent_address?.post_office?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Code
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.permanent_address?.post_code.name}
+                                                        {student.data.permanent_address?.post_code?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         P.S./Upazilla
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.permanent_address?.thana.name}
+                                                        {student.data.permanent_address?.thana?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         District
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.permanent_address?.district.name}
+                                                        {student.data.permanent_address?.district?.name}
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Division
                                                     </dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
-                                                        {student.data.permanent_address?.division.name}
+                                                        {student.data.permanent_address?.division?.name}
                                                     </dd>
                                                 </dl>
                                             </div>
@@ -458,15 +462,15 @@ const StudentDetails = ({student}) => {
                                             <div className="row text-capitalize">
                                                 <div className="col-md-4">
                                                     <p>Class : {student.data.admitted_class?.name}</p>
-                                                    <p>Session : {student.data?.admitted_session}</p>
+                                                    <p>Session : {student.data?.admitted_session?.name}</p>
                                                 </div>
                                                 <div className="col-md-4">
                                                     <p>Section : No attribute found</p>
-                                                    <p>Class Roll : {student.data?.admitted_roll}</p>
+                                                    {/*<p>Class Roll : {student.data?.admitted_roll}</p>*/}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <p>Group : {student.data?.admitted_group}</p>
-                                                    <p>Shift : {student.data?.admitted_shift}</p>
+                                                    {/*<p>Group : {student.data?.admitted_group}</p>*/}
+                                                    {/*<p>Shift : {student.data?.admitted_shift}</p>*/}
                                                 </div>
                                             </div>
                                         </div>

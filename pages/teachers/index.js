@@ -14,7 +14,7 @@ const Index = () => {
 
     //get teacher list
     const getTeacher= async()=>{
-        const list = await api.get(`teachers/100/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
+        const list = await api.get(`/teachers/100/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
         const data = list.data;
         setTeachers(data);
         setLoading(false);
