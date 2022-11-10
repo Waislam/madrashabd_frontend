@@ -4,7 +4,7 @@ import styles from '../../components/Teachers/TeacherList.module.css'
 import {useForm, useFieldArray} from "react-hook-form"
 import api, {BASE_URL} from "../api/api";
 import { getSession, useSession } from "next-auth/react";
-import { getDepartmentList } from "../api/settings_api";
+import { getDepartmentList, getDesignationList } from "../api/settings_api";
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false)
@@ -23,7 +23,7 @@ const AddTeacherPage = (props) => {
         formState: {errors}, control
     } = useForm()
 
-    console.log("@@@@@ department:", props.departmentList)
+    console.log("@@@@@ designation:", props.designationList)
 
     const onSubmit = data => {
         console.log(data);
@@ -71,7 +71,7 @@ const AddTeacherPage = (props) => {
             "nationality": data.nationality,
             "blood_group": data.blood_group,
             "department": data.department,
-            "designation": 1,
+            "designation": data.designation,
             "starting_date": data.starting_date,
             "ending_date": data.ending_date
         }
@@ -132,20 +132,6 @@ const AddTeacherPage = (props) => {
         const pk_value = e.target.value
         setSingleDivision(pk_value)
     }
-
-    useEffect(() => {
-        // getDivision()
-    }, [])
-
-    // const getDistrict = async () => {
-    //     const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
-    //     const district = list.data
-    //     setDistrictList(district)
-    // }
-
-    // useEffect(() => {
-    //     getDistrict()
-    // }, [singleDivision])
 
 
     const handleHidingEndDate = (e) => {
@@ -259,7 +245,7 @@ const AddTeacherPage = (props) => {
                                                         name="department"
                                                         {...register("department")}
                                                 >
-                                                    <option value="">Select Department</option>
+                                                    <option value="" disabled>Select Department</option>
                                                     {
                                                         props.departmentList.map(department => <option
                                                             key={department.id}
@@ -270,15 +256,21 @@ const AddTeacherPage = (props) => {
                                                 </select>
                                             </div>
 
-                                            <div className="col-md-3 mb-3">
+                                            <div className="col-md-3">
                                                 <label className="mb-2">Designation</label>
-                                                <input type="text"
-                                                       placeholder="Designation"
-                                                       className="form-control"
-                                                       name="designation"
-                                                       {...register("designation", {required: "This field is required"})}
-                                                />
-                                                <p className="text-danger">{errors.designation?.message}</p>
+                                                <select className="form-select"
+                                                        name="designation"
+                                                        {...register("designation")}
+                                                >
+                                                    <option value="" disabled>Select Designation</option>
+                                                    {
+                                                        props.designationList.map(designation => <option
+                                                            key={designation.id}
+                                                            value={designation.id}
+                                                            >{designation.name}
+                                                            </option>)
+                                                    }
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -864,6 +856,7 @@ export async function getServerSideProps({req}) {
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
+    const designationList = await getDesignationList(madrasha_slug).then(data => data)
 
     // will receive `posts` as a prop at build time
     return {
@@ -873,7 +866,8 @@ export async function getServerSideProps({req}) {
             postCodeList,
             postOfficeList,
             thanaList,
-            departmentList
+            departmentList,
+            designationList
         },
     }
 }
