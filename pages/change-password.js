@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../components/Layout/Layout"
 
 const ChangePasswordPage = () => {
     return (
@@ -38,3 +39,12 @@ const ChangePasswordPage = () => {
 
 export default ChangePasswordPage;
 
+
+
+ChangePasswordPage.getLayout = (page) => {
+    return (
+        <Layout>
+            {page}
+        </Layout>
+    )
+};

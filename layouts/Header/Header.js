@@ -94,8 +94,9 @@ const Header = () => {
                                                        height={30}/>
                                             </a>
                                             <ul className="dropdown-menu">
-                                                <li><a className="dropdown-item" href="#">Change Password</a></li>
-                                                <li><a className="dropdown-item" href="#">Set Password</a></li>
+                                                <li>
+                                                    <a className="dropdown-item" href="/change-password">Change Password</a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>

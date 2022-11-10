@@ -20,7 +20,6 @@ export default async function auth(req, res) {
                 const user = await res.json()
                 // If no error and we have user data, return it
                 if (res.ok && user) {
-                    console.log("user session", user)
                     // return user
                     return {
                         'user_id': user.user_id,
@@ -67,7 +66,6 @@ export default async function auth(req, res) {
                     session.user.madrasha_name = token.madrasha_name;
                     session.user.madrasha_id = token.madrasha_id;
                 }
-                console.log('session: ', session)
                 return session;
             },
         },
