@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../pages/api/api";
 
 const DeletePermanentMemberModal = (props) => {
+    const router = useRouter();
 
     const deletePermanentMember = () => {
-        fetch(`http://127.0.0.1:8086/committee/permanent-members/details/${props.permant_member_old_data}/`, {
+        fetch(`${BASE_URL}/committee/permanent-members/details/${props.permant_member_old_data}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +16,8 @@ const DeletePermanentMemberModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 

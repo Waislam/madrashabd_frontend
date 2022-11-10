@@ -1,11 +1,12 @@
 import {useRef, useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import api, {BASE_URL} from "../../../pages/api/api";
+import {useRouter} from "next/router";
 
 const DeleteTransportModel = (props) => {
-
+    const router = useRouter();
     const deleteTransport = () => {
-        fetch(`http://127.0.0.1:8086/transport/details/${props.delete_transport_list}/`, {
+        fetch(`${BASE_URL}/transport/details/${props.delete_transport_list}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +15,8 @@ const DeleteTransportModel = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 

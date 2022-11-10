@@ -1,30 +1,40 @@
-import axios from "axios";
 import React, {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-import api, { BASE_URL } from '../api/api'
+import api, {BASE_URL} from '../api/api'
 
 const Index = () => {
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
     const [isLoading, setLoading] = useState(null);
     const [teachers, setTeachers] = useState(null);
     const [searchTeacher, setSearchTeacher] = useState('');
     const [teacherListPageNum, setTeacherListPageNum] = useState(1);
 
     //get teacher list
-    const getTeacher= async()=>{
-        const list = await api.get(`teachers/100/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
+    const getTeacher = async () => {
+        const list = await api.get(`teachers/${session.user?.madrasha_slug}/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
         const data = list.data;
         setTeachers(data);
         setLoading(false);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         getTeacher().then((res) => {
             console.log(res)
         })
-    },[teacherListPageNum]);
+    }, [teacherListPageNum]);
 
 
     // Search
@@ -60,18 +70,17 @@ const Index = () => {
     if (teachers) {
         return (
             <>
-            <div>
-                <TeacherLists
-                    teachers={teachers}
-                    setSearchTeacher={setSearchTeacher}
-                    handleSearch={handleSearch}
-                    handleTeacherListPageNum={handleTeacherListPageNum}
-                    teacherListPageNum={teacherListPageNum}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-
-                />
-            </div>
+                <div>
+                    <TeacherLists
+                        teachers={teachers}
+                        setSearchTeacher={setSearchTeacher}
+                        handleSearch={handleSearch}
+                        handleTeacherListPageNum={handleTeacherListPageNum}
+                        teacherListPageNum={teacherListPageNum}
+                        nextPage={nextPage}
+                        prevPage={prevPage}
+                    />
+                </div>
             </>
         )
     }

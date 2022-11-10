@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../pages/api/api";
 
 
 const DeleteOtherMemberModal = (props) => {
-
+    const router = useRouter();
     const deleteOtherMember = () => {
-        fetch(`http://127.0.0.1:8086/committee/other-member/details/${props.delete_other_member_data}/`, {
+        fetch(`${BASE_URL}/committee/other-member/details/${props.delete_other_member_data}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +16,8 @@ const DeleteOtherMemberModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 

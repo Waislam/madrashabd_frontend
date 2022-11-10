@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import api, {BASE_URL} from '../api/api'
 import axios from 'axios';
 import {useRouter} from 'next/router';
+import {useSession} from "next-auth/react";
 
 
 // component for Library
@@ -15,6 +16,13 @@ import AssignBookDistributionModal from "../../components/Library/AssignBookDist
 
 const Library = () => {
     const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -32,11 +40,11 @@ const Library = () => {
 
 
     const getBooks = async () => {
-        const list = await api.get(`library/100/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
+        const list = await api.get(`library/${session.user?.madrasha_slug}/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
         const data = list.data;
         setBooks(data)
     };
-    
+
 
     useEffect(() => {
         getBooks()
@@ -65,13 +73,13 @@ const Library = () => {
     const prevPage = () => {
         setLibraryListPageNum(libraryListPageNum - 1)
     };
-    
+
 
     const handleModalShow = () => {
         setShowModal(true)
     };
 
-    const handleModalClose=(event)=>{
+    const handleModalClose = (event) => {
         setShowModal(false)
     };
 
@@ -88,7 +96,7 @@ const Library = () => {
 
     // AssignBookDistributionModal
 
-    const assignBookDistributionModal =(book_id) =>{
+    const assignBookDistributionModal = (book_id) => {
         setBookID(book_id);
         setShowBookDistributionModal(true)
     };
@@ -109,6 +117,7 @@ const Library = () => {
             />
 
             <BookListModal
+                session={session}
                 shown={showModal}
                 close={handleModalClose}
             >

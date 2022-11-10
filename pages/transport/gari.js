@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // Transport Component
 import GariList from "../../components/Transport/GariList"
@@ -10,6 +11,15 @@ import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 
 const GariPage = () => {
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
     const [isLoading, setLoading] = useState(false);
     const [gariList, setGariList] = useState(null);
 
@@ -28,7 +38,7 @@ const GariPage = () => {
     // Get GariList
     const getGariList = async () => {
         setLoading(true);
-        const list = await api.get(`/transport/100/vehicle-info-list/`);
+        const list = await api.get(`/transport/${session.user?.madrasha_slug}/vehicle-info-list/`);
         const data = list.data;
         setGariList(data);
         setLoading(false);
@@ -69,6 +79,7 @@ const GariPage = () => {
         )
     }
 
+
     //
     if (gariList) {
         return (
@@ -81,6 +92,7 @@ const GariPage = () => {
                 />
 
                 <AddGariListModal
+                    session={session}
                     show={addGariModal}
                     onHide={() => setAddGariList(false)}
                 />

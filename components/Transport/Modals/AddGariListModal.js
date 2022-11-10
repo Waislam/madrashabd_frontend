@@ -6,12 +6,12 @@ import { useRouter } from 'next/router';
 
 
 const AddGariListModal = (props) => {
-    const router = useRouter()
+    const router = useRouter();
 
     const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/transport/100/vehicle-info-list/`, {
+        fetch(`${BASE_URL}/transport/${props.session.user?.madrasha_slug}/vehicle-info-list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -31,8 +31,8 @@ const AddGariListModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
-        router.reload()
+        props.onHide();
+        router.reload();
 
     };
 

@@ -1,31 +1,5 @@
-// import React from "react";
-//
-// // Setting Component
-// import PermanentMember from "../../components/Members/Permanentm"
-// import Layout from "../../components/Layout/Layout";
-//
-//
-// const PermanentMemberPage = () =>{
-//     return(
-//         <>
-//             <PermanentMember/>
-//         </>
-//     )
-// };
-//
-// export default PermanentMemberPage;
-//
-// PermanentMemberPage.getLayout=(page)=>{
-//     return(
-//         <>
-//             <Layout>
-//                 {page}
-//             </Layout>
-//         </>
-//     )
-// };
-
-
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 
 // Setting Component
@@ -38,34 +12,28 @@ import UpdatePermanentMemberModal from "../../components/Members/Modals/UpdatePe
 import api from "../api/api";
 
 
-const PermanentMemberPage = () => {
+const PermanentMemberPage = (props) => {
+
+    const router = useRouter();
+    const {data: session, status} = getSession();
+
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [isLoading, setLoading] = useState(null);
-
-    // Add
-    const [permanentMember, setPermanentMember] = useState(null);
     const [addPermanentMemberModal, setAddPermanentMemberModal] = useState(false);
 
     // Delete
     const [deletePermanentMemberModal, setDeleteOtherMemberModal] = useState(false);
     const [deletePermanentMemberData, setDeleteOtherMemberData] = useState(null);
 
-     // Update
+    // Update
     const [updatePermanentMemberModal, setUpdatePermanentMemberModal] = useState(false);
     const [updatePermanentMemberOldData, setUpdatePermanentMemberOldData] = useState(null);
-
-
-    //get PermanentMember List
-    const getPermanentMember = async () => {
-        const list = await api.get("http://127.0.0.1:8086/committee/100/permanent-members/");
-        const data = list.data;
-        setPermanentMember(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        getPermanentMember()
-    }, []);
 
 
     // Add OtherMember
@@ -82,7 +50,7 @@ const PermanentMemberPage = () => {
     // update OtherMember
     const handleUpdatePermanentMemberModal = async (id) => {
         setLoading(true);
-        const list = await api.get(`http://127.0.0.1:8086/committee/permanent-members/details/${id}/`);
+        const list = await api.get(`/committee/permanent-members/details/${id}/`);
         const data = list.data.data;
         setUpdatePermanentMemberOldData(data);
         setLoading(false);
@@ -100,27 +68,22 @@ const PermanentMemberPage = () => {
         )
     }
 
-    if (!permanentMember) {
-        return (
-            <h2 className="text-center">No data found</h2>
-        )
-    }
-
     return (
         <>
             <PermanentMembers
-                permanentMember={permanentMember}
+                permanentMember={props.permanent_members.results}
                 handleAddPermanentMemberModal={handleAddPermanentMemberModal}
                 handleDeletePermanentMemberModal={handleDeletePermanentMemberModal}
                 handleUpdatePermanentMemberModal={handleUpdatePermanentMemberModal}
             />
 
             <AddPermanentMemberModal
+                session={props.session}
                 show={addPermanentMemberModal}
                 onHide={() => setAddPermanentMemberModal(false)}
             />
 
-            { isLoading ? " " :
+            {isLoading ? " " :
                 <UpdatePermanentMemberModal
                     show={updatePermanentMemberModal}
                     onHide={() => setUpdatePermanentMemberModal(false)}
@@ -137,6 +100,20 @@ const PermanentMemberPage = () => {
         </>
     )
 };
+
+export async function getServerSideProps({req}) {
+
+    const session = await getSession({req});
+    const res = await api.get(`/committee/${session.user?.madrasha_slug}/permanent-members/`);
+
+    const permanent_members = await res.data;
+    return {
+        props: {
+            permanent_members,
+            session
+        }
+    }
+}
 
 export default PermanentMemberPage;
 

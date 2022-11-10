@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // Dawah Component
 import Dawah from "../../components/Talimat/Dawah/Dawah";
@@ -6,9 +8,18 @@ import Layout from "../../components/Layout/Layout";
 import AddDawahModal from "../../components/Talimat/Dawah/Modals/AddDawahModal"
 import UpdateDawahModal from "../../components/Talimat/Dawah/Modals/UpdateDawahModal"
 import DeleteDawahModal from "../../components/Talimat/Dawah/Modals/DeleteDawahModal"
-import api from "../api/api";
+import api, { BASE_URL } from "../../pages/api/api";
 
 const DawahPage = () => {
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [isLoading, setLoading] = useState(false);
     const [dawah, setDawahList] = useState(null);
@@ -22,7 +33,7 @@ const DawahPage = () => {
 
     const getDawahList = async () => {
         setLoading(true);
-        api.get(`http://127.0.0.1:8086/talimat/100/dawah/`)
+        api.get(`${BASE_URL}/talimat/${session.user?.madrasha_slug}/dawah/`)
             .then((response) => {
                 setDawahList(response.data);
                 setLoading(false);
@@ -89,6 +100,7 @@ const DawahPage = () => {
 
             {/*Post Modal*/}
             <AddDawahModal
+                session={session}
                 show={dawahModal}
                 onHide={() => setDawahModal(false)}
             />

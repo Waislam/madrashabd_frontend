@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
-import { BASE_URL } from '../../../../pages/api/api';
+import {BASE_URL} from '../../../../pages/api/api';
 
 const UpdateExtraActivityModal = (props) => {
+    const router = useRouter();
 
-     const old_data = {
+    const old_data = {
         "category": props.extra_activity_old_data?.category,
         "duration": props.extra_activity_old_data?.duration,
         "start_time": props.extra_activity_old_data?.start_time,
@@ -13,7 +15,7 @@ const UpdateExtraActivityModal = (props) => {
         "date": props.extra_activity_old_data?.date,
         "managed_by": props.extra_activity_old_data?.managed_by,
     };
-    const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
+    const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
         fetch(`${BASE_URL}/talimat/extra-activity/detail/${props.extra_activity_old_data.id}/`, {
@@ -39,7 +41,8 @@ const UpdateExtraActivityModal = (props) => {
                 console.log(err.message)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 
@@ -81,7 +84,9 @@ const UpdateExtraActivityModal = (props) => {
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="time"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "time"
+                                    }}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
@@ -102,7 +107,9 @@ const UpdateExtraActivityModal = (props) => {
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="date"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "date"
+                                    }}
                                     name="date"
                                     {...register("date")}
                                 />

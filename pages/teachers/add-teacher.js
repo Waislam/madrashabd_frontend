@@ -1,18 +1,31 @@
 import React, {useState, useEffect} from "react";
-import Layout from "../../components/Layout/Layout";
-import styles from '../../components/Teachers/TeacherList.module.css'
+import { getSession, useSession } from "next-auth/react";
+import {useRouter} from "next/router";
 import {useForm, useFieldArray} from "react-hook-form"
 import api, {BASE_URL} from "../api/api";
-import { getSession, useSession } from "next-auth/react";
+
+import Layout from "../../components/Layout/Layout";
+import styles from '../../components/Teachers/TeacherList.module.css'
+
 import { getDepartmentList } from "../api/settings_api";
 
 const AddTeacherPage = (props) => {
-    const [isChecked, setIsChecked] = useState(false)
-    // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('')
-    const [disctrictList, setDistrictList] = useState(null)
-    const [singleDistrict, setSingleDristrict] = useState('')
-    const [departmentList, setDepartmentList] = useState('')
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
+    const [isChecked, setIsChecked] = useState(false);
+    // const [divisionList, setDivisionList] = useState(null);
+    const [singleDivision, setSingleDivision] = useState('');
+    const [disctrictList, setDistrictList] = useState(null);
+    const [singleDistrict, setSingleDristrict] = useState('');
+    const [departmentList, setDepartmentList] = useState('');
 
     // console.log("@@ departmentList",departmentList)
 
@@ -21,9 +34,9 @@ const AddTeacherPage = (props) => {
         handleSubmit,
         register,
         formState: {errors}, control
-    } = useForm()
+    } = useForm();
 
-    console.log("@@@@@ department:", props.departmentList)
+    console.log("@@@@@ department:", props.departmentList);
 
     const onSubmit = data => {
         console.log(data);
@@ -74,16 +87,16 @@ const AddTeacherPage = (props) => {
             "designation": 1,
             "starting_date": data.starting_date,
             "ending_date": data.ending_date
-        }
+        };
 
-        api.post(`teachers/100/`, JSON.stringify(teacher_data))
+        api.post(`teachers/${session.user?.madrasha_slug}/`, JSON.stringify(teacher_data))
             .then((res) => {
                 console.log("res", res.data)
             })
             .catch((error) => {
                 console.log("error", error)
             })
-    }
+    };
 
 
     // Extending field on click / that means add more working by using below
@@ -95,29 +108,29 @@ const AddTeacherPage = (props) => {
     const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
         control,
         name: "Skill"
-    })
+    });
 
     const {fields: educationFields, remove: educationRemove, append: educationAppend} = useFieldArray({
         control,
         name: "Education"
-    })
+    });
 
 
     // Extending field on click / that means add more working by using below
     const handleExperienceAppend = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         experienceAppend({name: ""})
-    }
+    };
 
     const handleSkillAppend = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         skillAppend({name: ""})
-    }
+    };
 
     const handleEducationAppend = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         educationAppend({name: ""})
-    }
+    };
 
     //get and handle dependable address section
     // const getDivision = async () => {
@@ -127,15 +140,15 @@ const AddTeacherPage = (props) => {
     // }
 
     const handleSetSingleDivisionValue = (e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        const pk_value = e.target.value
+        e.stopPropagation();
+        e.preventDefault();
+        const pk_value = e.target.value;
         setSingleDivision(pk_value)
-    }
+    };
 
     useEffect(() => {
         // getDivision()
-    }, [])
+    }, []);
 
     // const getDistrict = async () => {
     //     const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
@@ -149,9 +162,9 @@ const AddTeacherPage = (props) => {
 
 
     const handleHidingEndDate = (e) => {
-        const checkValue = e.target.checked
+        const checkValue = e.target.checked;
         setIsChecked(checkValue)
-    }
+    };
 
     return (
         <>

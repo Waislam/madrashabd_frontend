@@ -1,18 +1,21 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
+import api, {BASE_URL} from "../../../pages/api/api";
 
 const UpdateCommitteeModal = (props) => {
+    const router = useRouter();
 
     const old_data = {
         "member_name": props.committee_old_data?.member_name,
         "member_designation": props.committee_old_data?.member_designation,
         "phone_number": props.committee_old_data?.phone_number
     };
-    const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
+    const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/committee/details/${props.committee_old_data.id}/`, {
+        fetch(`${BASE_URL}/committee/details/${props.committee_old_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +34,8 @@ const UpdateCommitteeModal = (props) => {
                 console.log(err.message)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 

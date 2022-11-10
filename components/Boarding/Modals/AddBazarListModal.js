@@ -1,13 +1,13 @@
-import {useRouter} from 'next/router';
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../pages/api/api";
 
 
 const AddBazarListModal = (props) => {
-
-    const {register, handleSubmit} = useForm({mode:'all'});
+    const router = useRouter();
+    const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
         // fetch("http://127.0.0.1:8086/boarding/bazarlist/100/", {
@@ -36,7 +36,8 @@ const AddBazarListModal = (props) => {
         //     });
 
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
 
     };

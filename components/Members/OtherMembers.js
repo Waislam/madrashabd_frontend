@@ -3,6 +3,7 @@ import MemberSideMenu from "./MembersSideMenu";
 
 
 const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
+
     return (
         <>
             <section className={styles.settingSection}>

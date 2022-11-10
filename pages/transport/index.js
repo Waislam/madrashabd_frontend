@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // Transport Component
 import Transport from "../../components/Transport/Transport"
@@ -9,6 +11,15 @@ import api from "../api/api";
 
 
 const TransportPage = () => {
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [isLoading, setLoading] = useState(null);
 
@@ -23,7 +34,7 @@ const TransportPage = () => {
 
     // Get Transport
     const getTransport = async () => {
-        const list = await api.get("/transport/100/transport-list/");
+        const list = await api.get(`/transport/${session.user?.madrasha_slug}/transport-list/`);
         const data = list.data;
         setTransport(data);
         setLoading(false);
@@ -72,6 +83,7 @@ const TransportPage = () => {
             />
 
             <AddTransportModal
+                session={session}
                 show={addTransportModal}
                 onHide={() => setTransportModal(false)}
             />

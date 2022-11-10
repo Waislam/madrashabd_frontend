@@ -1,4 +1,7 @@
 import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import api from "../api/api";
 
 // Dawah Component
 import ExtraActivity from "../../components/Talimat/ExtraActivity/ExtraActivity";
@@ -6,9 +9,17 @@ import AddExtraActivityModal from "../../components/Talimat/ExtraActivity/Modals
 import DeleteExtraActivityModal from "../../components/Talimat/ExtraActivity/Modals/DeleteExtraActivityModal";
 import UpdateExtraActivityModal from "../../components/Talimat/ExtraActivity/Modals/UpdateExtraActivityModal";
 import Layout from "../../components/Layout/Layout";
-import api from "../api/api";
+
 
 const ExtraActivityPage = () => {
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [isLoading, setLoading] = useState(false);
     const [extraActivity, setExtraActivity] = useState(null);
@@ -21,7 +32,7 @@ const ExtraActivityPage = () => {
 
     //get Extra activity list list
     const getExtraActivityData = async () => {
-        const list = await api.get("talimat/100/extra-activity/");
+        const list = await api.get(`talimat/${session.user?.madrasha_slug}/extra-activity/`);
         const data = list.data;
         setExtraActivity(data);
         setLoading(false);
@@ -37,13 +48,13 @@ const ExtraActivityPage = () => {
         setExtraActivityModal(true)
     };
 
-    const handleDeleteExtraActivity = (id) =>{
+    const handleDeleteExtraActivity = (id) => {
         setExtraActivityDeleteData(id);
         setDeleteExtraActivityModal(true)
     };
 
 
-      // update Committee
+    // update Committee
     const handleUpdateExtraActivityModal = async (id) => {
         setLoading(true);
         const list = await api.get(`talimat/extra-activity/detail/${id}/`);
@@ -80,6 +91,7 @@ const ExtraActivityPage = () => {
             />
 
             <AddExtraActivityModal
+                session={session}
                 show={extraActivityModal}
                 onHide={() => setExtraActivityModal(false)}
             />
@@ -93,7 +105,7 @@ const ExtraActivityPage = () => {
             />
 
 
-            { isLoading ? " " :
+            {isLoading ? " " :
                 <UpdateExtraActivityModal
                     show={updateExtraActivityModal}
                     onHide={() => setUpdateExtraActivityModal(false)}
@@ -103,7 +115,6 @@ const ExtraActivityPage = () => {
 
         </div>
     )
-
 
 
 };

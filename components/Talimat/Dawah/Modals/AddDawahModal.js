@@ -1,14 +1,17 @@
 import {useRef, useState} from 'react';
+import {useRouter} from "next/router";
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
-import { BASE_URL } from '../../../../pages/api/api';
+import {BASE_URL} from '../../../../pages/api/api';
 
 
 const AddDawahModal = (props) => {
+    const router = useRouter();
+
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/talimat/100/dawah/`, {
+        fetch(`${BASE_URL}/talimat/${props.session.user?.madrasha_slug}/dawah/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -30,8 +33,8 @@ const AddDawahModal = (props) => {
                 console.log(err.message)
             });
 
-
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
     return (
@@ -44,7 +47,7 @@ const AddDawahModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                     <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-4 mb-3">
                                 <input
@@ -69,7 +72,9 @@ const AddDawahModal = (props) => {
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="time"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "time"
+                                    }}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
@@ -88,7 +93,9 @@ const AddDawahModal = (props) => {
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="date"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "date"
+                                    }}
                                     name="date"
                                     {...register("date")}
                                 />

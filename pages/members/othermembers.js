@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // Setting Component
 import OtherMember from "../../components/Members/OtherMembers"
@@ -10,7 +12,16 @@ import UpdateOtherMemberModel from "../../components/Members/Modals/UpdateOtherM
 import api from "../api/api";
 
 
-const OtherMemberPage = () => {
+const OtherMemberPage = ({other_members}) => {
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [isLoading, setLoading] = useState(null);
 
@@ -22,14 +33,14 @@ const OtherMemberPage = () => {
     const [addDeleteOtherMemberModal, setDeleteOtherMemberModal] = useState(false);
     const [deleteOtherMemberData, setDeleteOtherMemberData] = useState(null);
 
-     // Update
+    // Update
     const [updateOtherMemberModal, setUpdateOtherMemberModal] = useState(false);
     const [updateOtherMemberOldData, setUpdateOtherMemberOldData] = useState(null);
 
 
     //get committee list
     const getOtherMember = async () => {
-        const list = await api.get("http://127.0.0.1:8086/committee/100/other-members/");
+        const list = await api.get(`/committee/${session.user?.madrasha_slug}/other-members/`);
         const data = list.data;
         setOtherMember(data);
         setLoading(false);
@@ -54,7 +65,7 @@ const OtherMemberPage = () => {
     // update OtherMember
     const handleUpdateOtherMemberModal = async (id) => {
         setLoading(true);
-        const list = await api.get(`http://127.0.0.1:8086/committee/other-member/details/${id}/`);
+        const list = await api.get(`/committee/other-member/details/${id}/`);
         const data = list.data.data;
         setUpdateOtherMemberOldData(data);
         setLoading(false);
@@ -88,11 +99,12 @@ const OtherMemberPage = () => {
             />
 
             <AddOtherMemberModal
+                session={session}
                 show={addOtherMemberModal}
                 onHide={() => setOtherMemberModal(false)}
             />
 
-            { isLoading ? " " :
+            {isLoading ? " " :
                 <UpdateOtherMemberModel
                     show={updateOtherMemberModal}
                     onHide={() => setUpdateOtherMemberModal(false)}
@@ -110,7 +122,22 @@ const OtherMemberPage = () => {
     )
 };
 
+
+export async function getServerSideProps() {
+
+    const res = await api.get(`/committee/100/other-members/`);
+    const other_members = await res.data;
+
+    return {
+        props: {
+            other_members
+        }
+    }
+}
+
+
 export default OtherMemberPage;
+
 
 OtherMemberPage.getLayout = (page) => {
     return (

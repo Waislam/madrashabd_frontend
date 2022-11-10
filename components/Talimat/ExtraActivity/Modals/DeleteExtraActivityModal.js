@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../../pages/api/api";
 
 const DeleteExtraActivityModal = (props) => {
+    const router = useRouter();
 
     const deleteExtraActivity = () => {
-        fetch(`http://127.0.0.1:8086/talimat/extra-activity/detail/${props.extra_activity_delete_data}/`, {
+        fetch(`${BASE_URL}/talimat/extra-activity/detail/${props.extra_activity_delete_data}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +16,8 @@ const DeleteExtraActivityModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 
