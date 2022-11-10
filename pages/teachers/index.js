@@ -4,94 +4,35 @@ import React, {useEffect, useState} from "react";
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-import api, { BASE_URL } from '../api/api'
+import api, {BASE_URL} from '../api/api'
 
-const Index = () => {
-    const [isLoading, setLoading] = useState(null);
-    const [teachers, setTeachers] = useState(null);
-    const [searchTeacher, setSearchTeacher] = useState('');
-    const [teacherListPageNum, setTeacherListPageNum] = useState(1);
+const Index = (props) => {
 
-    //get teacher list
-    const getTeacher= async()=>{
-        const list = await api.get(`teachers/100/?search=${searchTeacher && searchTeacher}&page=${teacherListPageNum}`);
-        const data = list.data;
-        setTeachers(data);
-        setLoading(false);
-    };
-
-    useEffect(()=>{
-        getTeacher().then((res) => {
-            console.log(res)
-        })
-    },[teacherListPageNum]);
-
-
-    // Search
-    const handleSearch = () => {
-        getTeacher()
-    };
-
-    // Pagination
-    const handleTeacherListPageNum = () => {
-        setTeacherListPageNum(teacherListPageNum + 1)
-    };
-
-    const nextPage = () => {
-        setTeacherListPageNum(teacherListPageNum + 1)
-    };
-
-    const prevPage = () => {
-        setTeacherListPageNum(teacherListPageNum - 1)
-    };
-
-
-    if (isLoading) {
-        return (
-            <div className="text-center">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        )
-    }
-
-
-    if (teachers) {
-        return (
-            <>
+    return (
+        <>
             <div>
                 <TeacherLists
-                    teachers={teachers}
-                    setSearchTeacher={setSearchTeacher}
-                    handleSearch={handleSearch}
-                    handleTeacherListPageNum={handleTeacherListPageNum}
-                    teacherListPageNum={teacherListPageNum}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-
+                    teachers={props.teacher_list}
                 />
             </div>
-            </>
-        )
-    }
-    else {
-        return (
-            <>
-                <div className="container">
-                    <div className="row">
-                        <div className="col col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-5">
-                            <p className='text-center'>
-                                No Teacher Information Found
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    }
-
+        </>
+    )
 };
+
+export async function getServerSideProps() {
+    // Fetch data from external API
+    const res = await api.get(`/teachers/100/`)
+    const teacher_list = await res.data
+
+    console.log("teacher_list", teacher_list)
+
+    // Pass data to the page via props
+    return {
+        props: {
+            teacher_list
+        }
+    }
+}
 
 
 export default Index;

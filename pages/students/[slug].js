@@ -4,7 +4,12 @@ import {useRouter} from 'next/router'
 // StudentDetails
 import StudentDetails from "../../components/Students/StudentDetails";
 import Layout from "../../components/Layout/Layout";
+
+// api
 import {getStudentDetailApi} from "../api/StudentAPI/students_api";
+
+// session
+import {getSession} from "next-auth/react";
 
 const StudentDetail = ({student}) => {
     const router = useRouter();
@@ -23,8 +28,9 @@ const StudentDetail = ({student}) => {
 };
 
 
-export async function getServerSideProps(context) {
-    const student = await getStudentDetailApi(context.params.slug)
+export async function getServerSideProps({ req, params }) {
+    const session = await getSession({ req })
+    const student = await getStudentDetailApi(params.slug)
 
     return {
         props: {

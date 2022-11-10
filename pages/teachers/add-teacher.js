@@ -846,21 +846,21 @@ const AddTeacherPage = (props) => {
 
 export async function getServerSideProps({req}) {
     const session = await getSession({req})
-    const madrasha_slug =session?.user.madrasha_slug
+    const madrasha_slug = session?.user.madrasha_slug
 
-    const divisionListRes = await fetch(`${BASE_URL}accounts/division/`)
+    const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
     const divisionList = await divisionListRes.json()
 
-    const districtListRes = await fetch(`${BASE_URL}accounts/district/`)
+    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
     const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}accounts/post-code/`)
+    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
     const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}accounts/post-office/`)
+    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
     const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}accounts/thana/`)
+    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
