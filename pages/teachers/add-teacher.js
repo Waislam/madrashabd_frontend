@@ -5,16 +5,24 @@ import {useForm, useFieldArray} from "react-hook-form"
 import api, {BASE_URL} from "../api/api";
 import { getSession, useSession } from "next-auth/react";
 import { getDepartmentList, getDesignationList } from "../api/settings_api";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 const AddTeacherPage = (props) => {
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const {data: session, status} = useSession();
     // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('')
-    const [disctrictList, setDistrictList] = useState(null)
-    const [singleDistrict, setSingleDristrict] = useState('')
-    const [departmentList, setDepartmentList] = useState('')
+    const [singleDivision, setSingleDivision] = useState('');
+    const [disctrictList, setDistrictList] = useState(null);
+    const [singleDistrict, setSingleDristrict] = useState('');
+    const [departmentList, setDepartmentList] = useState('');
+
+    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
 
     // console.log("@@ departmentList",departmentList)
+
+    const madrasha_slug = session?.user.madrasha_slug;
+    const madrasha_id = session?.user.madrasha_id;
 
 
     const {
@@ -23,65 +31,89 @@ const AddTeacherPage = (props) => {
         formState: {errors}, control
     } = useForm()
 
-    console.log("@@@@@ designation:", props.designationList)
+    console.log("@@@@@ session:", session)
 
     const onSubmit = data => {
-        console.log(data);
+        setIsLoading(true);
+        setAdmissionFormValues(data);
 
-        let teacher_data = {
-            "user": 1,
-            "madrasha": 1,
-            "father_name": data.father_name,
-            "mother_name": data.mother_name,
-            "date_of_birth": data.date_of_birth,
-            "gender": data.gender,
-            "religion": data.religion,
-            "marital_status": data.marital_status,
-            "present_address": {
-                "division": data.present_address_division,
-                "district": data.present_address_district,
-                "thana": data.present_address_thana,
-                "post_office": data.present_address_post_office,
-                "post_code": data.present_address_post_code,
-                "address_info": data.present_address_address_info,
-            },
-            "permanent_address": {
-                "division": data.permanent_address_division,
-                "district": data.permanent_address_district,
-                "thana": data.permanent_address_thana,
-                "post_office": data.permanent_address_post_office,
-                "post_code": data.permanent_address_post_code,
-                "address_info": data.permanent_address_address_info
-            },
-            "education": {
-                "degree_name": data.degree_name,
-                "institution_name": data.institution_name,
-                "passing_year": data.passing_year,
-                "result": data.result
-            },
-            "experience": {
-                "experience_name": data.experience_name,
-            },
-            "skill": {
-                "skill_name": data.skill_name
-            },
-            "phone_home": data.second_phone_number,
-            "nid": data.nid,
-            "birth_certificate": data.birth_certificate,
-            "nationality": data.nationality,
-            "blood_group": data.blood_group,
-            "department": data.department,
-            "designation": data.designation,
-            "starting_date": data.starting_date,
-            "ending_date": data.ending_date
+        const user_data = {
+            "phone": data.phone_number,
+            "password": data.phone_number,
+            "password2": data.phone_number,
+            "madrasha_id": madrasha_id
         }
 
-        api.post(`teachers/100/`, JSON.stringify(teacher_data))
-            .then((res) => {
-                console.log("res", res.data)
+        // Create user
+        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
+            .then(res => {
+                console.log("Result @@@",res)
+
+                if(res.data.user_id) {
+                    const teacher_data = {
+                        "user": res.data.user_id,
+                        "madrasha": madrasha_id,
+                        "father_name": data.father_name,
+                        "mother_name": data.mother_name,
+                        "date_of_birth": data.date_of_birth,
+                        "gender": data.gender,
+                        "religion": data.religion,
+                        "marital_status": data.marital_status,
+                        "present_address": {
+                            "division": data.present_address_division,
+                            "district": data.present_address_district,
+                            "thana": data.present_address_thana,
+                            "post_office": data.present_address_post_office,
+                            "post_code": data.present_address_post_code,
+                            "address_info": data.present_address_address_info,
+                        },
+                        "permanent_address": {
+                            "division": data.permanent_address_division,
+                            "district": data.permanent_address_district,
+                            "thana": data.permanent_address_thana,
+                            "post_office": data.permanent_address_post_office,
+                            "post_code": data.permanent_address_post_code,
+                            "address_info": data.permanent_address_address_info
+                        },
+                        "education": {
+                            "degree_name": data.degree_name,
+                            "institution_name": data.institution_name,
+                            "passing_year": data.passing_year,
+                            "result": data.result
+                        },
+                        "experience": {
+                            "experience_name": data.experience_name,
+                        },
+                        "skill": {
+                            "skill_name": data.skill_name
+                        },
+                        "phone_home": data.phone_number,
+                        "nid": data.nid,
+                        "birth_certificate": data.birth_certificate,
+                        "nationality": data.nationality,
+                        "blood_group": data.blood_group,
+                        "department": data.department,
+                        "designation": data.designation,
+                        "starting_date": data.starting_date,
+                        "ending_date": data.ending_date
+                    }
+
+                    // Create New Teacher
+                    api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
+                    .then((res) => {
+                        console.log("res", res)
+                    })
+                    .catch((error) => {
+                        console.log("error", error)
+                    })
+                }
+
+                else {
+                    console.log("User is not created.")
+                }
             })
-            .catch((error) => {
-                console.log("error", error)
+            .catch((err) => {
+                console.log("user create err", err)
             })
     }
 

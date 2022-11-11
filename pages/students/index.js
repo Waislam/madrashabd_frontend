@@ -12,10 +12,13 @@ const Index = () => {
     const [searchStudent, setSearchStudent] = useState('');
     const [studentListPageNum, setStudentListPageNum] = useState(1);
     const [studentListRecords, setStudentListRecords] = useState('');
+    const {data: session, status} = useSession();
+    
+    const madrasha_slug = session?.user.madrasha_slug
 
     const getStudents = async () => {
         setLoading(true);
-        api.get(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        api.get(`students/${madrasha_slug}/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
             .then((response) => {
                 setStudents(response.data);
                 setLoading(false);
