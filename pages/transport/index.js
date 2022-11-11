@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 // Transport Component
@@ -10,16 +10,17 @@ import DeleteTransportModel from "../../components/Transport/Modals/DeleteTransp
 import api from "../api/api";
 
 
-const TransportPage = () => {
+const TransportPage = (props) => {
 
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
             router.push('/login')
         }
     });
+
 
     const [isLoading, setLoading] = useState(null);
 
@@ -30,19 +31,6 @@ const TransportPage = () => {
     // Delete Transport
     const [deleteTransportModal, setDeleteTransportModal] = useState(false);
     const [deleteTransportList, setDeleteTransportList] = useState(null);
-
-
-    // Get Transport
-    const getTransport = async () => {
-        const list = await api.get(`/transport/${session.user?.madrasha_slug}/transport-list/`);
-        const data = list.data;
-        setTransport(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        getTransport()
-    }, []);
 
 
     // Add TransportModal
@@ -68,35 +56,56 @@ const TransportPage = () => {
         )
     }
 
-    if (!transport) {
+
+    if (props.transport_list) {
         return (
-            <h2 className="text-center">No data found</h2>
+            <>
+                <Transport
+                    transport={props.transport_list.results}
+                    handleAddTransportModal={handleAddTransportModal}
+                    handleDeleteTransportModel={handleDeleteTransportModel}
+                />
+
+                <AddTransportModal
+                    session_data={props.session_data}
+                    show={addTransportModal}
+                    onHide={() => setTransportModal(false)}
+                />
+
+                <DeleteTransportModel
+                    show={deleteTransportModal}
+                    onHide={() => setDeleteTransportModal(false)}
+                    delete_transport_list={deleteTransportList}
+                />
+
+            </>
         )
     }
-
-    return (
-        <>
-            <Transport
-                transport={transport}
-                handleAddTransportModal={handleAddTransportModal}
-                handleDeleteTransportModel={handleDeleteTransportModel}
-            />
-
-            <AddTransportModal
-                session={session}
-                show={addTransportModal}
-                onHide={() => setTransportModal(false)}
-            />
-
-            <DeleteTransportModel
-                show={deleteTransportModal}
-                onHide={() => setDeleteTransportModal(false)}
-                delete_transport_list={deleteTransportList}
-            />
-
-        </>
-    )
+    else {
+        return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">No data found...</span>
+                </div>
+            </div>
+        )
+    }
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/transport/${session_data.user?.madrasha_slug}/transport-list/`);
+    const transport_list = await res.data;
+
+    return {
+        props: {
+            transport_list,
+            session_data
+        }
+    }
+}
 
 export default TransportPage;
 

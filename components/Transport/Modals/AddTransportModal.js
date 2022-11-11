@@ -11,7 +11,7 @@ const AddTransportModal = (props) => {
     const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const getVehicleList = async () => {
-        const list = await api.get(`/transport/${props.session.user?.madrasha_slug}/vehicle-info-list/`);
+        const list = await api.get(`/transport/${props.session_data.user?.madrasha_slug}/vehicle-info-list/`);
         const data = list.data;
         setVehicleList(data);
     };
@@ -24,7 +24,7 @@ const AddTransportModal = (props) => {
     const onSubmit = (values) => {
         let student_id = values.student_id;
 
-        fetch(`${BASE_URL}/transport/${props.session.user?.madrasha_slug}/post-transport/${student_id}/`, {
+        fetch(`${BASE_URL}/transport/${props.session_data.user?.madrasha_slug}/post-transport/${student_id}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

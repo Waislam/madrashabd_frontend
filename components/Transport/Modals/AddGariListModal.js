@@ -11,7 +11,7 @@ const AddGariListModal = (props) => {
     const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/transport/${props.session.user?.madrasha_slug}/vehicle-info-list/`, {
+        fetch(`${BASE_URL}/transport/${props.session_data.user?.madrasha_slug}/vehicle-info-list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
