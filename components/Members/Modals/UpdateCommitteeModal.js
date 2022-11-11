@@ -7,6 +7,7 @@ import api, {BASE_URL} from "../../../pages/api/api";
 const UpdateCommitteeModal = (props) => {
     const router = useRouter();
 
+
     const old_data = {
         "member_name": props.committee_old_data?.member_name,
         "member_designation": props.committee_old_data?.member_designation,

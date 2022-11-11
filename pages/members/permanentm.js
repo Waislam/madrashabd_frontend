@@ -1,6 +1,6 @@
+import React, {useEffect, useState} from "react";
 import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
-import React, {useEffect, useState} from "react";
 
 // Setting Component
 import PermanentMembers from "../../components/Members/PermanentMembers"
@@ -16,7 +16,6 @@ const PermanentMemberPage = (props) => {
 
     const router = useRouter();
     const {data: session, status} = getSession();
-
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -51,7 +50,7 @@ const PermanentMemberPage = (props) => {
     const handleUpdatePermanentMemberModal = async (id) => {
         setLoading(true);
         const list = await api.get(`/committee/permanent-members/details/${id}/`);
-        const data = list.data.data;
+        const data = list.data;
         setUpdatePermanentMemberOldData(data);
         setLoading(false);
         setUpdatePermanentMemberModal(true)
@@ -78,7 +77,7 @@ const PermanentMemberPage = (props) => {
             />
 
             <AddPermanentMemberModal
-                session={props.session}
+                session_data={props.session_data}
                 show={addPermanentMemberModal}
                 onHide={() => setAddPermanentMemberModal(false)}
             />
@@ -103,14 +102,14 @@ const PermanentMemberPage = (props) => {
 
 export async function getServerSideProps({req}) {
 
-    const session = await getSession({req});
-    const res = await api.get(`/committee/${session.user?.madrasha_slug}/permanent-members/`);
+    const session_data = await getSession({req});
+    const res = await api.get(`/committee/${session_data.user?.madrasha_slug}/permanent-members/`);
 
     const permanent_members = await res.data;
     return {
         props: {
             permanent_members,
-            session
+            session_data
         }
     }
 }

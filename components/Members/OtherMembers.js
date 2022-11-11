@@ -2,7 +2,7 @@ import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 
-const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
+const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
 
     return (
         <>
@@ -31,7 +31,7 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                     <button
                                                         type="button"
                                                         className={`${styles.defaultBtn} float-end`}
-                                                        onClick={()=>handleAddPermanentMemberModal()}
+                                                        onClick={()=>handleAddOtherMemberModal()}
                                                     >Add
                                                     </button>
                                                 </div>
@@ -50,9 +50,9 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                         </thead>
                                                         <tbody>
                                                         {
-                                                            otherMember.results?.map((data, index) => (
+                                                            otherMember?.map((data, index) => (
                                                                 <tr key={data.id}>
-                                                                    <th scope="row">{data.id}</th>
+                                                                    <th scope="row">{index + 1}</th>
                                                                     <td className="text-sm">{data?.member_name}</td>
                                                                     <td className="text-sm">{data?.address}</td>
                                                                     <td className="text-sm">{data?.phone_number}</td>
@@ -60,7 +60,7 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                                         <button
                                                                             type="button"
                                                                             className={`${styles.editButton}`}
-                                                                            onClick={()=>handleUpdateOtherMemberModal(data.id)}
+                                                                            onClick={(e)=>handleUpdateOtherMemberModal(e, data.id)}
                                                                         >
                                                                             Edit
                                                                         </button>

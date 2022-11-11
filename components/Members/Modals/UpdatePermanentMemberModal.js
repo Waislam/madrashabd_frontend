@@ -9,14 +9,14 @@ const UpdatePermanentMemberModal = (props) => {
     const router = useRouter();
 
     const old_data = {
-        "member_name": props.other_member_old_data?.member_name,
-        "member_designation": props.other_member_old_data?.address,
-        "phone_number": props.other_member_old_data?.phone_number
+        "member_name": props.update_permanent_member_old_data?.member_name,
+        "member_designation": props.update_permanent_member_old_data?.address,
+        "phone_number": props.update_permanent_member_old_data?.phone_number
     };
     const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/committee/other-member/details/${props.other_member_old_data.id}/`, {
+        fetch(`${BASE_URL}/committee/other-member/details/${props.update_permanent_member_old_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -24,7 +24,7 @@ const UpdatePermanentMemberModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.other_member_old_data?.madrasha?.id,
+                    "madrasha": props.update_permanent_member_old_data?.madrasha?.id,
                     "member_name": values.member_name,
                     "member_designation": values.address,
                     "phone_number": values.phone_number

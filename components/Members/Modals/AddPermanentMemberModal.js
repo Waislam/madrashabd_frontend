@@ -9,7 +9,7 @@ const AddPermanentMemberModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/committee/${props.session.user?.madrasha_slug}/permanent-members/`, {
+        fetch(`${BASE_URL}/committee/${props.session_data.user?.madrasha_slug}/permanent-members/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

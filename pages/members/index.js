@@ -22,7 +22,7 @@ const CommitteePage = (props) => {
         }
     });
 
-    console.log("session", props.session_data);
+
 
     const [isLoading, setLoading] = useState(null);
     const [addCommitteeModal, setCommitteeModal] = useState(false);

@@ -30,8 +30,8 @@ const DeletePermanentMemberModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="text-center">
-                        <h3>Do you want to delete this Delete Permanent Members</h3>
+                    <div className="text-center mb-4">
+                        <h5 className="mb-4">Do you want to delete this Delete Permanent Members</h5>
                         <button className="btn btn-primary mx-2" onClick={() => deletePermanentMember()}>Yes</button>
                         <button className="btn btn-danger">No</button>
                     </div>
