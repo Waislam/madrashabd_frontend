@@ -79,7 +79,7 @@ const AddTransportModal = (props) => {
 
                                     {
                                         vehicleList?.results && vehicleList.results.map((data) => (
-                                            <option value={data?.id}>{data?.car_number}</option>
+                                            <option key={data?.id} value={data?.id}>{data?.car_number}</option>
                                         ))
                                     }
                                 </select>

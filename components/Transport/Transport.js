@@ -1,10 +1,10 @@
 import React from "react";
 import styles from './Transport.module.css'
 import TransportSideMenu from "./TransportSideMenu";
-import { AmPm } from '../Utils/utils'
+import {AmPm} from '../Utils/utils'
 
 
-const Transport = ({transport, handleAddTransportModal, handleDeleteTransportModel}) => {
+const Transport = ({transport, handleAddTransportModal, handleDeleteTransportModel, handleTransportUpdate}) => {
     return (
         <>
             <section className={styles.transportSection}>
@@ -56,7 +56,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                                                                 <button
                                                                     type="button"
                                                                     className={`${styles.defaultBtn} float-md-end`}
-                                                                    onClick={()=>handleAddTransportModal()}
+                                                                    onClick={() => handleAddTransportModal()}
                                                                 >
                                                                     Add
                                                                 </button>
@@ -81,7 +81,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                                                         </thead>
                                                         <tbody>
                                                         {
-                                                            transport?.results?.map((data, index) => (
+                                                            transport?.map((data, index) => (
                                                                 <tr key={data.id} className="text-capitalize">
                                                                     <td className="text-sm">{index + 1}</td>
                                                                     <td className="text-sm">
@@ -94,10 +94,14 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                                                                     <td className="text-sm">{data.vehicle?.route}</td>
                                                                     <td className="text-sm">{AmPm(data.vehicle?.start_time)}</td>
                                                                     <td className="text-center">
-                                                                        <button className="btn btn-primary">Edit</button>
+                                                                        <button
+                                                                            className="btn btn-primary"
+                                                                            onClick={() => handleTransportUpdate(data.id)}>
+                                                                            Edit
+                                                                        </button>
                                                                         <button
                                                                             className="btn btn-danger"
-                                                                            onClick={() =>handleDeleteTransportModel(data.id)}
+                                                                            onClick={() => handleDeleteTransportModel(data.id)}
                                                                         >
                                                                             Delete
                                                                         </button>

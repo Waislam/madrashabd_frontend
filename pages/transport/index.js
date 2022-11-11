@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import Transport from "../../components/Transport/Transport"
 import Layout from "../../components/Layout/Layout";
 import AddTransportModal from "../../components/Transport/Modals/AddTransportModal"
+import UpdateTransportModal from "../../components/Transport/Modals/UpdateTransportModal"
 import DeleteTransportModel from "../../components/Transport/Modals/DeleteTransportModel"
 import api from "../api/api";
 
@@ -25,8 +26,12 @@ const TransportPage = (props) => {
     const [isLoading, setLoading] = useState(null);
 
     // Add
-    const [transport, setTransport] = useState(null);
     const [addTransportModal, setTransportModal] = useState(false);
+
+
+    // Update
+    const [updateTransportModal, setUpdateTransportModal] = useState(false);
+    const [updateTransport, setUpdateTransport] = useState(null);
 
     // Delete Transport
     const [deleteTransportModal, setDeleteTransportModal] = useState(false);
@@ -35,8 +40,17 @@ const TransportPage = (props) => {
 
     // Add TransportModal
     const handleAddTransportModal = () => {
-
         setTransportModal(true)
+    };
+
+    // update Transport
+    const handleTransportUpdate = async (id) => {
+        setLoading(true);
+        const list = await api.get(`/transport/details/${id}/`);
+        const data = list.data;
+        setUpdateTransport(data);
+        setLoading(false);
+        setUpdateTransportModal(true)
     };
 
     // Delete Transport
@@ -63,6 +77,7 @@ const TransportPage = (props) => {
                 <Transport
                     transport={props.transport_list.results}
                     handleAddTransportModal={handleAddTransportModal}
+                    handleTransportUpdate={handleTransportUpdate}
                     handleDeleteTransportModel={handleDeleteTransportModel}
                 />
 
@@ -71,6 +86,14 @@ const TransportPage = (props) => {
                     show={addTransportModal}
                     onHide={() => setTransportModal(false)}
                 />
+
+                {isLoading ? " " :
+                    <UpdateTransportModal
+                        show={updateTransportModal}
+                        onHide={() => setUpdateTransportModal(false)}
+                        update_transport={updateTransport}
+                    />
+                }
 
                 <DeleteTransportModel
                     show={deleteTransportModal}

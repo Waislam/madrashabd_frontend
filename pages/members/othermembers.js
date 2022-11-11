@@ -47,14 +47,11 @@ const OtherMemberPage = (props) => {
     };
 
     // update OtherMember
-    const handleUpdateOtherMemberModal = async (e, id) => {
-        console.log("ID :", id);
-        // e.preventDefault();
+    const handleUpdateOtherMemberModal = async (id) => {
         setLoading(true);
         e.preventDefault();
         const list = await api.get(`/committee/other-member/details/${id}/`);
         const data = list.data;
-        console.log("Data :", data);
         setUpdateOtherMemberOldData(data);
         setLoading(false);
         setUpdateOtherMemberModal(true)

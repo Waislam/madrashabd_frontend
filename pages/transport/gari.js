@@ -35,16 +35,19 @@ const GariPage = (props) => {
     const [deleteGariList, setDeleteGariList] = useState('');
 
 
-
     // Add Post Request
     const handleAddGari = () => {
         setAddGariList(true);
 
     };
 
-    // Update GariList
-    const handleGariUpdate = (id) => {
-        setDeleteGariList(id);
+    // update OtherMember
+    const handleGariUpdate = async (id) => {
+        setLoading(true);
+        const list = await api.get(`/transport/vehicle-info/details/${id}/`);
+        const data = list.data;
+        setUpdateGariList(data);
+        setLoading(false);
         setUpdateGariModal(true)
     };
 
@@ -54,7 +57,6 @@ const GariPage = (props) => {
         setDeleteGariModal(true)
 
     };
-
 
 
     // Loading
