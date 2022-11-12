@@ -16,18 +16,10 @@ const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOther
                                     <div className="card-body">
                                         <div className={styles.department}>
                                             <div className="row">
-                                                <div className="col-md-3 mt-3">
+                                                <div className="col-md-6 mt-3">
                                                     <h2><u>Other Members</u></h2>
                                                 </div>
-                                                <div className="col-md-3">
-                                                    <input type="text" className="form-control"
-                                                           placeholder="Phone number"/>
-                                                </div>
-                                                <div className="col-md-2">
-                                                    <button type="button" className={styles.searchButton}>Search
-                                                    </button>
-                                                </div>
-                                                <div className="col-md-4">
+                                                <div className="col-md-6">
                                                     <button
                                                         type="button"
                                                         className={`${styles.defaultBtn} float-end`}

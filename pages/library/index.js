@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import api, {BASE_URL} from '../api/api'
 import axios from 'axios';
-import {useRouter} from 'next/router';
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 
 // component for Library
@@ -16,7 +16,7 @@ import AssignBookDistributionModal from "../../components/Library/AssignBookDist
 
 const Library = () => {
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -144,6 +144,8 @@ const Library = () => {
         </>
     )
 };
+
+
 
 
 export default Library;

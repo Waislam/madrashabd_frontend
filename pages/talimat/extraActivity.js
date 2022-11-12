@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {useSession} from "next-auth/react";
+import React, {useEffect, useState} from "react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api from "../api/api";
 
@@ -11,9 +11,10 @@ import UpdateExtraActivityModal from "../../components/Talimat/ExtraActivity/Mod
 import Layout from "../../components/Layout/Layout";
 
 
-const ExtraActivityPage = () => {
+const ExtraActivityPage = (props) => {
+
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -22,7 +23,6 @@ const ExtraActivityPage = () => {
     });
 
     const [isLoading, setLoading] = useState(false);
-    const [extraActivity, setExtraActivity] = useState(null);
     const [extraActivityModal, setExtraActivityModal] = useState(false);
     const [extraDeleteActivityModal, setDeleteExtraActivityModal] = useState(false);
     const [extraActivityDeleteData, setExtraActivityDeleteData] = useState(null);
@@ -30,17 +30,18 @@ const ExtraActivityPage = () => {
     const [updateExtraActivityModal, setUpdateExtraActivityModal] = useState(false);
     const [extraActivityUpdateOldData, setExtraActivityUpdateOldData] = useState(null);
 
-    //get Extra activity list list
-    const getExtraActivityData = async () => {
-        const list = await api.get(`talimat/${session.user?.madrasha_slug}/extra-activity/`);
-        const data = list.data;
-        setExtraActivity(data);
-        setLoading(false);
-    };
 
-    useEffect(() => {
-        getExtraActivityData()
-    }, []);
+    // //get Extra activity list list
+    // const getExtraActivityData = async () => {
+    //     const list = await api.get(`talimat/${session.user?.madrasha_slug}/extra-activity/`);
+    //     const data = list.data;
+    //     setExtraActivity(data);
+    //     setLoading(false);
+    // };
+    //
+    // useEffect(() => {
+    //     getExtraActivityData()
+    // }, []);
 
 
     // Add Post
@@ -75,49 +76,67 @@ const ExtraActivityPage = () => {
         )
     }
 
-    if (!extraActivity) {
+    if (props.extra_activity) {
         return (
-            <h2 className="text-center">No data found</h2>
+            <div>
+                <ExtraActivity
+                    extraActivity={props.extra_activity}
+                    handleAddExtraActivity={handleAddExtraActivity}
+                    handleDeleteExtraActivity={handleDeleteExtraActivity}
+                    handleUpdateExtraActivityModal={handleUpdateExtraActivityModal}
+                />
+
+                <AddExtraActivityModal
+                    session_data={props.session_data}
+                    show={extraActivityModal}
+                    onHide={() => setExtraActivityModal(false)}
+                />
+
+
+                {/*Update Modal*/}
+                <DeleteExtraActivityModal
+                    show={extraDeleteActivityModal}
+                    onHide={() => setDeleteExtraActivityModal(false)}
+                    extra_activity_delete_data={extraActivityDeleteData}
+                />
+
+
+                {isLoading ? " " :
+                    <UpdateExtraActivityModal
+                        show={updateExtraActivityModal}
+                        onHide={() => setUpdateExtraActivityModal(false)}
+                        extra_activity_old_data={extraActivityUpdateOldData}
+                    />
+                }
+
+            </div>
         )
     }
-
-    return (
-        <div>
-            <ExtraActivity
-                extraActivity={extraActivity}
-                handleAddExtraActivity={handleAddExtraActivity}
-                handleDeleteExtraActivity={handleDeleteExtraActivity}
-                handleUpdateExtraActivityModal={handleUpdateExtraActivityModal}
-            />
-
-            <AddExtraActivityModal
-                session={session}
-                show={extraActivityModal}
-                onHide={() => setExtraActivityModal(false)}
-            />
-
-
-            {/*Update Modal*/}
-            <DeleteExtraActivityModal
-                show={extraDeleteActivityModal}
-                onHide={() => setDeleteExtraActivityModal(false)}
-                extra_activity_delete_data={extraActivityDeleteData}
-            />
-
-
-            {isLoading ? " " :
-                <UpdateExtraActivityModal
-                    show={updateExtraActivityModal}
-                    onHide={() => setUpdateExtraActivityModal(false)}
-                    extra_activity_old_data={extraActivityUpdateOldData}
-                />
-            }
-
-        </div>
-    )
-
-
+    else {
+        return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">No Data Found !</span>
+                </div>
+            </div>
+        )
+    }
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/talimat/${session_data.user?.madrasha_slug}/extra-activity/`);
+    const extra_activity = await res.data;
+
+    return {
+        props: {
+            extra_activity,
+            session_data
+        }
+    }
+}
 
 
 export default ExtraActivityPage;

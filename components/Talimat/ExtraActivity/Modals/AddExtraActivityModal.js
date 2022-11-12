@@ -10,7 +10,7 @@ const AddExtraActivityModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/talimat/${props.session.user?.madrasha_slug}/extra-activity/`, {
+        fetch(`${BASE_URL}/talimat/${props.session_data.user?.madrasha_slug}/extra-activity/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
