@@ -1,18 +1,21 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../pages/api/api";
 
 const UpdateOtherMemberModel = (props) => {
-
+    console.log("Update", props.update_other_member_old_data);
+    const router = useRouter();
     const old_data = {
-        "member_name": props.other_member_old_data?.member_name,
-        "member_designation": props.other_member_old_data?.address,
-        "phone_number": props.other_member_old_data?.phone_number
+        "member_name": props.update_other_member_old_data?.member_name,
+        "member_designation": props.update_other_member_old_data?.address,
+        "phone_number": props.update_other_member_old_data?.phone_number
     };
-    const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
+    const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/committee/other-member/details/${props.other_member_old_data.id}/`, {
+        fetch(`${BASE_URL}/committee/other-member/details/${props.update_other_member_old_data.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -20,7 +23,7 @@ const UpdateOtherMemberModel = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.other_member_old_data?.madrasha?.id,
+                    "madrasha": props.update_other_member_old_data?.madrasha?.id,
                     "member_name": values.member_name,
                     "member_designation": values.address,
                     "phone_number": values.phone_number
@@ -31,7 +34,8 @@ const UpdateOtherMemberModel = (props) => {
                 console.log(err.message)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 

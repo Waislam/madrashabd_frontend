@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react';
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // component for Library
 import BookDist from '../../components/Library/BookDistributionList'
@@ -8,8 +10,16 @@ import Layout from '../../layouts/Layout';
 import api from "../api/api";
 
 
-
 const BookDistribution = () => {
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
     const [isLoading, setLoading] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [bookDistribution, setBookDistribution] = useState({});
@@ -26,7 +36,7 @@ const BookDistribution = () => {
     };
 
     const getBookDistribution = async () => {
-        const list = await api.get(`library/100/book-distribution/?search=${searchBookDistribution && searchBookDistribution}`);
+        const list = await api.get(`library/${session.user?.madrasha_slug}/book-distribution/?search=${searchBookDistribution && searchBookDistribution}`);
         const data = list.data;
         setBookDistribution(data);
         setLoading(false);
@@ -43,11 +53,10 @@ const BookDistribution = () => {
     };
 
     // Handle Delete
-    const handleDelete = (distributionID, bookID, bookName) =>{
+    const handleDelete = (distributionID, bookID, bookName) => {
         setDeleteID(distributionID);
         setBookID(bookID);
         setBookName(bookName);
-        console.log("distributionID :", distributionID);
         setDeleteAlert(true);
 
 
@@ -78,7 +87,7 @@ const BookDistribution = () => {
                 />
                 <DeleteAlertModal
                     show={deleteAlert}
-                    onHide={()=>setDeleteAlert(false)}
+                    onHide={() => setDeleteAlert(false)}
                     deleteID={deleteID}
                     bookID={bookID}
                     bookName={bookName}

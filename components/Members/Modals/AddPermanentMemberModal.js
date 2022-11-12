@@ -1,13 +1,15 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../pages/api/api";
 
 const AddPermanentMemberModal = (props) => {
-
+    const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/committee/100/permanent-members/", {
+        fetch(`${BASE_URL}/committee/${props.session_data.user?.madrasha_slug}/permanent-members/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -26,7 +28,8 @@ const AddPermanentMemberModal = (props) => {
                 console.log(err.message)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 

@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
+import api, {BASE_URL} from "../../../pages/api/api";
 
 
 const DeleteGariModal = (props) => {
-
+    const router = useRouter();
     const deleteGariList = () => {
-        fetch(`http://127.0.0.1:8086/transport/vehicle-info/details/${props.delete_gari_list}/`, {
+        fetch(`${BASE_URL}/transport/vehicle-info/details/${props.delete_gari_list}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +16,8 @@ const DeleteGariModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 
