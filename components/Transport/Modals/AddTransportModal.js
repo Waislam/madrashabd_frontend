@@ -5,13 +5,13 @@ import api, { BASE_URL } from "../../../pages/api/api";
 import { useRouter } from 'next/router';
 
 const AddTransportModal = (props) => {
-    const router = useRouter()
+    const router = useRouter();
     const [vehicleList, setVehicleList] = useState(null);
 
     const { register, handleSubmit } = useForm({ mode: 'all' });
 
     const getVehicleList = async () => {
-        const list = await api.get("/transport/100/vehicle-info-list/");
+        const list = await api.get(`/transport/${props.session_data.user?.madrasha_slug}/vehicle-info-list/`);
         const data = list.data;
         setVehicleList(data);
     };
@@ -20,14 +20,11 @@ const AddTransportModal = (props) => {
         getVehicleList()
     }, []);
 
-    console.log(" vehicleList :", vehicleList);
-
 
     const onSubmit = (values) => {
-        let student_id = values.student_id
-        // transport/100/post-transport/S102/
+        let student_id = values.student_id;
 
-        fetch(`${BASE_URL}/transport/100/post-transport/${student_id}/`, {
+        fetch(`${BASE_URL}/transport/${props.session_data.user?.madrasha_slug}/post-transport/${student_id}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -46,8 +43,8 @@ const AddTransportModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
-        router.reload()
+        props.onHide();
+        router.reload();
 
     };
 
@@ -82,7 +79,7 @@ const AddTransportModal = (props) => {
 
                                     {
                                         vehicleList?.results && vehicleList.results.map((data) => (
-                                            <option value={data?.id}>{data?.car_number}</option>
+                                            <option key={data?.id} value={data?.id}>{data?.car_number}</option>
                                         ))
                                     }
                                 </select>

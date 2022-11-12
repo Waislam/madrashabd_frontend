@@ -7,7 +7,7 @@ import { BASE_URL } from '../../../pages/api/api';
 import Modal from 'react-bootstrap/Modal';
 
 
-const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees }) => {
+const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees, session }) => {
 
     const { handleSubmit, formState: { errors }, register, } = useForm({
         mode: "all",
@@ -25,23 +25,23 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
             "for_month": values.for_month,
             "for_months": values.for_months,
             "date": values.date,
-        }
+        };
 
-        await axios.post(`${BASE_URL}/transactions/100/student-income/`, newStudetnIncome)
+        await axios.post(`${BASE_URL}/transactions/${session.user?.madrasha_slug}/student-income/`, newStudetnIncome)
             .then((response) => {
                 console.log('Success Response: ', response.data)
             })
             .catch((error) => {
                 console.log('Error Message: ', error.response.data.number)
-            })
+            });
 
         close()
 
-    }
+    };
 
 
 
-    const router = useRouter()
+    const router = useRouter();
     //return shown ? (): null
     return (
         <>

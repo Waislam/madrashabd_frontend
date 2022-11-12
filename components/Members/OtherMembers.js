@@ -2,7 +2,8 @@ import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 
-const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
+const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
+
     return (
         <>
             <section className={styles.settingSection}>
@@ -15,22 +16,14 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                     <div className="card-body">
                                         <div className={styles.department}>
                                             <div className="row">
-                                                <div className="col-md-3 mt-3">
+                                                <div className="col-md-6 mt-3">
                                                     <h2><u>Other Members</u></h2>
                                                 </div>
-                                                <div className="col-md-3">
-                                                    <input type="text" className="form-control"
-                                                           placeholder="Phone number"/>
-                                                </div>
-                                                <div className="col-md-2">
-                                                    <button type="button" className={styles.searchButton}>Search
-                                                    </button>
-                                                </div>
-                                                <div className="col-md-4">
+                                                <div className="col-md-6">
                                                     <button
                                                         type="button"
                                                         className={`${styles.defaultBtn} float-end`}
-                                                        onClick={()=>handleAddPermanentMemberModal()}
+                                                        onClick={()=>handleAddOtherMemberModal()}
                                                     >Add
                                                     </button>
                                                 </div>
@@ -49,9 +42,9 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                         </thead>
                                                         <tbody>
                                                         {
-                                                            otherMember.results?.map((data, index) => (
+                                                            otherMember?.map((data, index) => (
                                                                 <tr key={data.id}>
-                                                                    <th scope="row">{data.id}</th>
+                                                                    <th scope="row">{index + 1}</th>
                                                                     <td className="text-sm">{data?.member_name}</td>
                                                                     <td className="text-sm">{data?.address}</td>
                                                                     <td className="text-sm">{data?.phone_number}</td>
@@ -59,7 +52,7 @@ const OtherMembers = ({otherMember, handleAddPermanentMemberModal, handleUpdateO
                                                                         <button
                                                                             type="button"
                                                                             className={`${styles.editButton}`}
-                                                                            onClick={()=>handleUpdateOtherMemberModal(data.id)}
+                                                                            onClick={(e)=>handleUpdateOtherMemberModal(e, data.id)}
                                                                         >
                                                                             Edit
                                                                         </button>

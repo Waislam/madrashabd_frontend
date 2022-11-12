@@ -1,8 +1,10 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
 
 const UpdateGariModal = (props) => {
+    const router = useRouter();
 
     const old_data = {
         "car_number": props.update_gari_list?.car_number,
@@ -14,7 +16,7 @@ const UpdateGariModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
-        fetch(`http://127.0.0.1:8086/transport/vehicle-info/details/${props.update_gari_list.id}/`, {
+        fetch(`${BASE_URL}/transport/vehicle-info/details/${props.update_gari_list.id}/`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -34,7 +36,8 @@ const UpdateGariModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 

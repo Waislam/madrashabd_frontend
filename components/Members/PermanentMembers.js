@@ -2,7 +2,6 @@ import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handleDeletePermanentMemberModal, handleUpdatePermanentMemberModal}) => {
-    console.log("permanentMember :", permanentMember);
 
     return (
         <>
@@ -28,48 +27,56 @@ const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handl
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div className="books-table mt-3">
-                                                <div className="table-responsive">
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Member Name</th>
-                                                            <th scope="col">Address</th>
-                                                            <th scope="col">Phone</th>
-                                                            <th scope="col" className="text-center">Edit</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {
-                                                            permanentMember.results?.map((data, index) => (
-                                                                <tr key={data.id}>
-                                                                    <th scope="row">{data.id}</th>
-                                                                    <td className="text-sm">{data?.member_name}</td>
-                                                                    <td className="text-sm">{data?.address}</td>
-                                                                    <td className="text-sm">{data?.phone_number}</td>
-                                                                    <td className="text-center">
-                                                                        <button
-                                                                            type="button"
-                                                                            className={`${styles.editButton}`}
-                                                                            onClick={()=>handleUpdatePermanentMemberModal(data.id)}
-                                                                        >
-                                                                            Edit
-                                                                        </button>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-danger"
-                                                                            onClick={() => handleDeletePermanentMemberModal(data.id)}>
-                                                                            Delete
-                                                                        </button>
-                                                                    </td>
+                                            {
+                                                permanentMember.length > 0 ?
+                                                    <div className="books-table mt-3">
+                                                        <div className="table-responsive">
+                                                            <table className="table table-striped">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Member Name</th>
+                                                                    <th scope="col">Address</th>
+                                                                    <th scope="col">Phone</th>
+                                                                    <th scope="col" className="text-center">Edit</th>
                                                                 </tr>
-                                                            ))
-                                                        }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                                                </thead>
+                                                                <tbody>
+                                                                {
+                                                                    permanentMember?.map((data, index) => (
+                                                                        <tr key={data.id}>
+                                                                            <th scope="row">{index + 1}</th>
+                                                                            <td className="text-sm">{data?.member_name}</td>
+                                                                            <td className="text-sm">{data?.address}</td>
+                                                                            <td className="text-sm">{data?.phone_number}</td>
+                                                                            <td className="text-center">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className={`${styles.editButton}`}
+                                                                                    onClick={() => handleUpdatePermanentMemberModal(data.id)}
+                                                                                >
+                                                                                    Edit
+                                                                                </button>
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-danger"
+                                                                                    onClick={() => handleDeletePermanentMemberModal(data.id)}>
+                                                                                    Delete
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))
+                                                                }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    :
+                                                    <div className="my-5">
+                                                        <hr/>
+                                                        <h6 className="text-center">Add Permanent Member</h6>
+                                                    </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>

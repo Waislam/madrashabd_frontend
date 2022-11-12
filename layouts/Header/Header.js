@@ -86,11 +86,18 @@ const Header = () => {
                                                 <li><a className="dropdown-item" href="#">English</a></li>
                                             </ul>
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#">
+                                        <li className="nav-item dropdown"
+                                            style={{border: "1px solid #FFFFFF", padding: 0}}>
+                                            <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                               role="button" aria-expanded="false">
                                                 <Image src={user} alt="" className="img-responsive" width={30}
                                                        height={30}/>
                                             </a>
+                                            <ul className="dropdown-menu">
+                                                <li>
+                                                    <a className="dropdown-item" href="/change-password">Change Password</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
