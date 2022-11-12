@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import SideMenu from './ExamSideMenu';
 import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 
-const ResutSheet = () =>{
+const ResutSheet = () => {
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
@@ -24,12 +25,16 @@ const ResutSheet = () =>{
                                                         <form action="#">
                                                             <div className="row">
                                                                 <div className="col-md-2">
-                                                                    <input type="text" className="form-control" placeholder="Search" />
+                                                                    <input type="text" className="form-control"
+                                                                           placeholder="Search"/>
                                                                 </div>
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
-                                                                        <input type="text" className="form-control" placeholder="class" />
-                                                                        <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <input type="text" className="form-control"
+                                                                               placeholder="class"/>
+                                                                        <button type="button"
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -44,8 +49,11 @@ const ResutSheet = () =>{
                                                                 </div>
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
-                                                                        <input type="text" className="form-control" placeholder="Merit" />
-                                                                        <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <input type="text" className="form-control"
+                                                                               placeholder="Merit"/>
+                                                                        <button type="button"
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -60,8 +68,11 @@ const ResutSheet = () =>{
                                                                 </div>
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
-                                                                        <input type="text" className="form-control" placeholder="Term" />
-                                                                        <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <input type="text" className="form-control"
+                                                                               placeholder="Term"/>
+                                                                        <button type="button"
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -79,8 +90,11 @@ const ResutSheet = () =>{
                                                                 </div>
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
-                                                                        <input type="text" className="form-control" placeholder="year" />
-                                                                        <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <input type="text" className="form-control"
+                                                                               placeholder="year"/>
+                                                                        <button type="button"
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -97,12 +111,15 @@ const ResutSheet = () =>{
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-md-1">
-                                                                    <button type="button" className={`${styles.searchIcon}`}>
+                                                                    <button type="button"
+                                                                            className={`${styles.searchIcon}`}>
                                                                         <span className={styles.searchicon}></span>
                                                                     </button>
                                                                 </div>
                                                                 <div className="col-md-1">
-                                                                    <button type="button" className={`${styles.defaultBtnResult}`}>Add</button>
+                                                                    <button type="button"
+                                                                            className={`${styles.defaultBtnResult}`}>Add
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -111,50 +128,37 @@ const ResutSheet = () =>{
                                                         <div className="table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
-                                                                    <tr>
-                                                                        <th>Roll Id</th>
-                                                                        <th>Student Name</th>
-                                                                        <th>Class</th>
-                                                                        <th>Term</th>
-                                                                        <th>Total Marks</th>
-                                                                        <th>Division</th>
-                                                                        <th>Merit List</th>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <th>Roll Id</th>
+                                                                    <th>Student Name</th>
+                                                                    <th>Class</th>
+                                                                    <th>Term</th>
+                                                                    <th>Total Marks</th>
+                                                                    <th>Division</th>
+                                                                    <th>Merit List</th>
+                                                                    <th>Details</th>
+                                                                </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <th>5245454</th>
-                                                                        <th>waliul Islam</th>
-                                                                        <th>class Name</th>
-                                                                        <th>first</th>
-                                                                        <th>646</th>
-                                                                        <th>montaj</th>
-                                                                        <th>2</th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>5245454</th>
-                                                                        <th>waliul Islam</th>
-                                                                        <th>class Name</th>
-                                                                        <th>first</th>
-                                                                        <th>646</th>
-                                                                        <th>montaj</th>
-                                                                        <th>2</th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>5245454</th>
-                                                                        <th>waliul Islam</th>
-                                                                        <th>class Name</th>
-                                                                        <th>first</th>
-                                                                        <th>646</th>
-                                                                        <th>montaj</th>
-                                                                        <th>2</th>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <th>5245454</th>
+                                                                    <th>waliul Islam</th>
+                                                                    <th>class Name</th>
+                                                                    <th>first</th>
+                                                                    <th>646</th>
+                                                                    <th>montaj</th>
+                                                                    <th>2</th>
+                                                                    <th>
+                                                                        <Link href="/talimat/exam/result/slug/">Details</Link>
+                                                                    </th>
+                                                                </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-3">
-                                                        <button type="button" className={styles.defaultBtn}>Download</button>
+                                                        <button type="button" className={styles.defaultBtn}>Download
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 {/* add results */}
@@ -163,8 +167,11 @@ const ResutSheet = () =>{
                                                         <div className="row">
                                                             <div className="col-md-7 mb-3">
                                                                 <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="class"/>
-                                                                    <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" >
+                                                                    <input type="text" className="form-control"
+                                                                           placeholder="class"/>
+                                                                    <button type="button"
+                                                                            className="btn btn-outline-secondary dropdown-toggle"
+                                                                            data-bs-toggle="dropdown">
                                                                         <span className="visually-hidden">Toggle dropdown</span>
                                                                     </button>
                                                                     <ul className="dropdown-menu dropdown-menu-end">
@@ -179,8 +186,11 @@ const ResutSheet = () =>{
                                                             </div>
                                                             <div className="col-md-7 mb-3">
                                                                 <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="Exam term"/>
-                                                                    <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" >
+                                                                    <input type="text" className="form-control"
+                                                                           placeholder="Exam term"/>
+                                                                    <button type="button"
+                                                                            className="btn btn-outline-secondary dropdown-toggle"
+                                                                            data-bs-toggle="dropdown">
                                                                         <span className="visually-hidden">Toggle dropdown</span>
                                                                     </button>
                                                                     <ul className="dropdown-menu dropdown-menu-end">
@@ -195,29 +205,36 @@ const ResutSheet = () =>{
                                                             </div>
                                                             <div className="col-md-7 mb-3">
                                                                 <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="department"/>
-                                                                    <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" >
+                                                                    <input type="text" className="form-control"
+                                                                           placeholder="department"/>
+                                                                    <button type="button"
+                                                                            className="btn btn-outline-secondary dropdown-toggle"
+                                                                            data-bs-toggle="dropdown">
                                                                         <span className="visually-hidden">Toggle dropdown</span>
                                                                     </button>
                                                                     <ul className="dropdown-menu dropdown-menu-end">
                                                                         <li>
-                                                                            <a className='dropdown-item'>department 1</a>
+                                                                            <a className='dropdown-item'>department
+                                                                                1</a>
                                                                         </li>
                                                                         <li>
-                                                                            <a className='dropdown-item'>department 2</a>
+                                                                            <a className='dropdown-item'>department
+                                                                                2</a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-7 mb-3">
-                                                                <input type="text" className="form-control" placeholder="year" />
+                                                                <input type="text" className="form-control"
+                                                                       placeholder="year"/>
                                                             </div>
                                                             <div className="col-md-7 mb-3">
-                                                                <input type="file" className="form-control" />
+                                                                <input type="file" className="form-control"/>
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button type="submit" className={styles.defaultBtn}>Save</button>
+                                                            <button type="submit" className={styles.defaultBtn}>Save
+                                                            </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -230,7 +247,7 @@ const ResutSheet = () =>{
                     </div>
                 </div>
             </section>
-            
+
         </>
     )
 }
