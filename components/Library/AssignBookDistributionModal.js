@@ -1,25 +1,18 @@
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
-import {BASE_URL} from '../../pages/api/api'
-import {useForm} from 'react-hook-form'
+import {BASE_URL} from '../../pages/api/api';
+import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 
 const modalp = (props) => {
+    const router = useRouter();
 
     const {handleSubmit, register,} = useForm({mode: "all"});
 
     const onSubmit = (values) => {
-        console.log(values.student_roll_id);
-
-        // const studentDeta = fetch("http://127.0.0.1:8086/students/detail/S102/")
-        //         //     .then((response) => response.json())
-        //         //     .then((data) => {
-        //         //         console.log('Success:', data);
-        //         //     });
-
         const student_roll = values.student_roll_id;
         const book_id = props.bookID;
 
-        fetch(`http://127.0.0.1:8086/library/book-distribution-assign/${student_roll}/${book_id}/`, {
+        fetch(`${BASE_URL}/library/book-distribution-assign/${student_roll}/${book_id}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -38,6 +31,7 @@ const modalp = (props) => {
             });
 
         props.onHide();
+        router.reload();
 
     };
 

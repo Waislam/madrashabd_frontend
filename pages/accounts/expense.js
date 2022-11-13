@@ -1,18 +1,29 @@
-import { ApiError } from "next/dist/server/api-utils";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import api, { BASE_URL } from '../api/api'
+import {ApiError} from "next/dist/server/api-utils";
+import React, {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import api, {BASE_URL} from '../api/api'
 import axios from "axios";
 
 // Expense Component
 import Expense from "../../components/Account/AllExpense";
 import Layout from "../../components/Layout/Layout";
-// Modals import
 import AddExpenseModal from "../../components/Account/Modals/AddExpenseModal"
 import UpdateExpenseModal from "../../components/Account/Modals/UpdateExpenseModal"
 
 
 const ExpensePage = () => {
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
+
     const [loader, setLoader] = useState(false);
     const [expenseList, setExpenseList] = useState(null);
 
@@ -48,7 +59,7 @@ const ExpensePage = () => {
 
     // handle get exepense list data
     const getExpenseList = async () => {
-        const list = await api.get(`transactions/100/expense/`);
+        const list = await api.get(`transactions/${session.user?.madrasha_slug}/expense/`);
         const data = list.data;
         setExpenseList(data)
     };
@@ -64,7 +75,7 @@ const ExpensePage = () => {
     };
 
     //Put request handling section
-    const handleIndividualObj = async (expense_id) => { 
+    const handleIndividualObj = async (expense_id) => {
         setLoader(true);
         const list = await axios.get(`${BASE_URL}/transactions/expense/${expense_id}/`);
         const data = list.data;
@@ -82,6 +93,7 @@ const ExpensePage = () => {
                 handleIndividualObj={handleIndividualObj}
             />
             <AddExpenseModal
+                session={session}
                 show={addExpenseModal}
                 onHide={() => setAddExpenseModal(false)}
                 expensecategorylist={expenseCategoryList}
@@ -90,14 +102,14 @@ const ExpensePage = () => {
             >
             </AddExpenseModal>
 
-            { loader? <h1></h1>:
+            {loader ? <h1></h1> :
                 <UpdateExpenseModal
-                show={updateExpenseModal}
-                onHide={() => setUpdateExpenseModal(false)}
-                individualExpenseData={individualExpenseData}
-                expensecategorylist={expenseCategoryList}
-                setExpenseCategoryValue={setExpenseCategoryValue}
-                expenseSubCategoryList={expenseSubCategoryList}
+                    show={updateExpenseModal}
+                    onHide={() => setUpdateExpenseModal(false)}
+                    individualExpenseData={individualExpenseData}
+                    expensecategorylist={expenseCategoryList}
+                    setExpenseCategoryValue={setExpenseCategoryValue}
+                    expenseSubCategoryList={expenseSubCategoryList}
                 >
                 </UpdateExpenseModal>
             }

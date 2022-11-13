@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import api, {BASE_URL} from '../api'
 
+
 export default async function auth(req, res) {
     const providers = [
         CredentialsProvider({

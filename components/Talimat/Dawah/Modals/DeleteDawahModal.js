@@ -1,11 +1,13 @@
 import {useRef, useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../../../pages/api/api";
 
 const DeleteDawahModal = (props) => {
+    const router = useRouter();
 
     const deleteDawah = () => {
-        fetch(`http://127.0.0.1:8086/talimat/dawah/detail/${props.delete_dawah}/`, {
+        fetch(`${BASE_URL}/talimat/dawah/detail/${props.delete_dawah}/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -14,7 +16,8 @@ const DeleteDawahModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
 

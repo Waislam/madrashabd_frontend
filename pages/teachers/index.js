@@ -1,10 +1,9 @@
-import axios from "axios";
 import React, {useEffect, useState} from "react";
 
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
-import api, {BASE_URL} from '../api/api'
+import api from '../api/api'
 
 const Index = (props) => {
 
@@ -20,11 +19,10 @@ const Index = (props) => {
 };
 
 export async function getServerSideProps() {
+
     // Fetch data from external API
     const res = await api.get(`/teachers/100/`)
     const teacher_list = await res.data
-
-    console.log("teacher_list", teacher_list)
 
     // Pass data to the page via props
     return {

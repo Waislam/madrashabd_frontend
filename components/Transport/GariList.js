@@ -45,7 +45,7 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
                                                             </thead>
                                                             <tbody>
                                                             {
-                                                                 gariList && gariList.results?.map((data, index) => (
+                                                                 gariList && gariList?.map((data, index) => (
                                                                     <tr key={index+1}>
                                                                         <th scope="row">{data?.car_number}</th>
                                                                         <td className="text-sm">{data?.driver_name}</td>
