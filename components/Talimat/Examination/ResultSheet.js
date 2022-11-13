@@ -4,7 +4,8 @@ import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 
-const ResutSheet = () => {
+const ResutSheet = () =>{
+
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
