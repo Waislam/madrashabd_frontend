@@ -1,7 +1,59 @@
+import React from "react";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handleDeletePermanentMemberModal, handleUpdatePermanentMemberModal}) => {
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'member_name',
+            headerName: 'Member Name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'address',
+            headerName: 'Address',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'phone_number',
+            headerName: 'Phone',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleUpdatePermanentMemberModal(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeletePermanentMemberModal(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
 
     return (
         <>
@@ -27,56 +79,31 @@ const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handl
                                                     </button>
                                                 </div>
                                             </div>
-                                            {
-                                                permanentMember.length > 0 ?
-                                                    <div className="books-table mt-3">
-                                                        <div className="table-responsive">
-                                                            <table className="table table-striped">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th scope="col">#</th>
-                                                                    <th scope="col">Member Name</th>
-                                                                    <th scope="col">Address</th>
-                                                                    <th scope="col">Phone</th>
-                                                                    <th scope="col" className="text-center">Edit</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                {
-                                                                    permanentMember?.map((data, index) => (
-                                                                        <tr key={data.id}>
-                                                                            <th scope="row">{index + 1}</th>
-                                                                            <td className="text-sm">{data?.member_name}</td>
-                                                                            <td className="text-sm">{data?.address}</td>
-                                                                            <td className="text-sm">{data?.phone_number}</td>
-                                                                            <td className="text-center">
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className={`${styles.editButton}`}
-                                                                                    onClick={() => handleUpdatePermanentMemberModal(data.id)}
-                                                                                >
-                                                                                    Edit
-                                                                                </button>
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className="btn btn-danger"
-                                                                                    onClick={() => handleDeletePermanentMemberModal(data.id)}>
-                                                                                    Delete
-                                                                                </button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    ))
-                                                                }
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    :
-                                                    <div className="my-5">
-                                                        <hr/>
-                                                        <h6 className="text-center">Add Permanent Member</h6>
-                                                    </div>
-                                            }
+                                            <div className="row">
+                                                <div className="col">
+                                                    <Box sx={{height: 500, width: '100%'}}>
+                                                        <DataGrid
+                                                            rows={permanentMember}
+                                                            columns={columns}
+                                                            pageSize={5}
+                                                            rowsPerPageOptions={[5]}
+                                                            checkboxSelection
+                                                            disableSelectionOnClick
+                                                            disableColumnFilter
+                                                            disableColumnSelector
+                                                            disableDensitySelector
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
+                                                            componentsProps={{
+                                                                toolbar: {
+                                                                    showQuickFilter: true,
+                                                                    quickFilterProps: {debounceMs: 500},
+                                                                },
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +114,6 @@ const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handl
             </section>
         </>
     )
-}
+};
 
 export default PermanentMembers;
