@@ -4,6 +4,7 @@ import api from '../api/api'
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
+import { useSession } from "next-auth/react";
 
 const Index = () => {
     const [students, setStudents] = useState(null);

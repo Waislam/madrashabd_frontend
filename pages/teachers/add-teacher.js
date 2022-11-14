@@ -6,6 +6,8 @@ import api, {BASE_URL} from "../api/api";
 import { getSession, useSession } from "next-auth/react";
 import { getDepartmentList, getDesignationList } from "../api/settings_api";
 import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false);
@@ -101,7 +103,7 @@ const AddTeacherPage = (props) => {
                     // Create New Teacher
                     api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
                     .then((res) => {
-                        console.log("res", res)
+                        return res && toast.success('The Teacher is Successfully added!!');
                     })
                     .catch((error) => {
                         console.log("error", error)
@@ -109,7 +111,7 @@ const AddTeacherPage = (props) => {
                 }
 
                 else {
-                    console.log("User is not created.")
+                    return toast.error('Users with this phone number already exist!!');
                 }
             })
             .catch((err) => {
@@ -863,6 +865,18 @@ const AddTeacherPage = (props) => {
                     </section>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </>
     )
 };
