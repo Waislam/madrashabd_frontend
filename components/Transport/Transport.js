@@ -21,7 +21,77 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             sortable: false,
             width: 160,
             valueGetter: (params) =>
-                `${params.row.department.name || ''}`,
+                `${params.row.student_id?.user?.first_name} ${params.row.student_id?.user?.last_name}`,
+        },
+        {
+            headerName: 'Guardian Name',
+            field: 'guardian_name',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.student_id?.guardian_name}`,
+        },
+        {
+            headerName: 'Gari Number',
+            field: 'car_number',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.vehicle?.car_number}`,
+        },
+        {
+            headerName: 'Driver Name',
+            field: 'driver_name',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.vehicle?.driver_name}`,
+        },
+        {
+            headerName: 'Driver Number',
+            field: 'driver_number',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.vehicle?.driver_number}`,
+        },
+        {
+            headerName: 'Route',
+            field: 'route',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.vehicle?.route}`,
+        },
+        {
+            headerName: 'Time',
+            field: 'start_time',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.vehicle?.start_time}`,
+        },
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleTransportUpdate(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteTransportModel(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
         },
     ];
 
