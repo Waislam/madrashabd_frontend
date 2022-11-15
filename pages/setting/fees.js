@@ -1,18 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
-import {useEffect, useState} from "react";
+
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 // Shift component
 import Fees from "../../components/Setting/Fees"
 import Layout from "../../components/Layout/Layout";
-//Modals immport
+
+// models
 import FeesUpdateModal from "../../components/Setting/Modals/FeesUpdateModal"
 
 const FeesPage = () => {
-
     const router = useRouter();
     const {data: session, status} = useSession();
 

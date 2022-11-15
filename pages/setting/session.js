@@ -1,15 +1,21 @@
 import React, {useState, useEffect} from "react";
-import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
+
+// third party
+import {useSession} from "next-auth/react"
+import {useForm} from "react-hook-form"
+
+// api
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
-import {useEffect, useState} from "react";
+
+// model
 import Modal from "react-bootstrap/Modal";
-import {useForm} from "react-hook-form";
 
 // Setting Component
 import Session from "../../components/Setting/Session"
 import Layout from "../../components/Layout/Layout";
+
 //import Modals
 import SessionUpdateModal from "../../components/Setting/Modals/SessionUpdateModal"
 
