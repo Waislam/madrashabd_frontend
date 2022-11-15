@@ -4,19 +4,21 @@ import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
 
-const AcademicCalendar = () =>{
+
+
+const AcademicCalendar = () => {
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SyllabuSideMenu/>
+                        <SyllabuSideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <SyllabusHeader/>
-                                        <hr/>
+                                        <SyllabusHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.syllabus}>
@@ -28,7 +30,7 @@ const AcademicCalendar = () =>{
                                                     </div>
                                                 </div>
                                                 {/* === Calendar ====== */}
-
+                                                <h1>sdlkfjlsdflkdsjf</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -38,7 +40,7 @@ const AcademicCalendar = () =>{
                     </div>
                 </div>
             </section>
-            
+
         </>
     )
 }

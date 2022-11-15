@@ -1,5 +1,6 @@
 import styles from './BookList.module.css'
 import Sidemenu from './LibrarySideMenu'
+import AssignBookDistributionModal from '../../components/Library/AssignBookDistributionModal'
 
 const BookList = ({
                       books, handleBookUpdate,
@@ -8,7 +9,8 @@ const BookList = ({
                       libraryListPageNum,
                       handleLibraryListPageNum,
                       nextPage,
-                      prevPage
+                      prevPage,
+                      assignBookDistributionModal
                   }) => {
 
     return (
@@ -122,7 +124,7 @@ const BookList = ({
                                                         <th scope="col">Language</th>
                                                         <th scope="col">Class</th>
                                                         <th scope="col" className="text-center">Status</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col" className="text-center">Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -139,22 +141,30 @@ const BookList = ({
                                                             <td className="text-center">
                                                                 {
                                                                     book.is_available ?
-                                                                    <div>
-                                                                        <button className="btn btn-success pe-none">Yes</button>
-                                                                        <button className="btn btn-success ms-1">Assign</button>
-                                                                    </div>
+
+                                                                        <button
+                                                                            className="btn btn-success pe-none">Yes
+                                                                        </button>
                                                                         :
-                                                                    <div>
-                                                                        <button className="btn btn-danger pe-none">&nbsp;No&nbsp;</button>
-                                                                        <button className="btn btn-secondary ms-1 pe-none">Booked</button>
-                                                                    </div>
+                                                                        <button
+                                                                            className="btn btn-danger pe-none">No
+                                                                        </button>
                                                                 }
                                                             </td>
                                                             <td className="text-center">
-                                                                <a className="btn btn-primary"
-                                                                   onClick={() => handleBookUpdate(book.id)}>
-                                                                    Edit
-                                                                </a>
+                                                                {
+                                                                    book.is_available ?
+                                                                        <button
+                                                                            className="btn btn-success ms-1" onClick={()=>assignBookDistributionModal(book.id)}>&nbsp;Assign&nbsp;
+                                                                        </button>
+                                                                        :
+                                                                        <button
+                                                                            className="btn btn-secondary ms-1 pe-none">Booked
+                                                                        </button>
+                                                                }
+                                                                <button className="btn btn-primary ms-2"
+                                                                        onClick={() => handleBookUpdate(book.id)}>Edit
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     ))}

@@ -4,7 +4,6 @@ import api from '../api/api'
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 const Index = () => {
     const [students, setStudents] = useState(null);
@@ -16,16 +15,12 @@ const Index = () => {
 
     const getStudents = async () => {
         setLoading(true);
-        // console.log(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
-        api.get(`students/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
-        // api.get('students/')
+        api.get(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
             .then((response) => {
-                console.log("response", response.data);
                 setStudents(response.data);
                 setLoading(false);
             })
             .catch((error) => {
-                console.log("error", error);
                 setLoading(false)
             })
     };
@@ -36,10 +31,7 @@ const Index = () => {
         })
     }, [studentListPageNum]);
 
-    // console.log("searchStudent", searchStudent);
-
     const handleStudentListPageNum = () => {
-        console.log("handleStudentListPageNum() called");
         setStudentListPageNum(studentListPageNum + 1)
     };
 

@@ -247,7 +247,41 @@ import {
 //     )
 // }
 
+import {useSession} from "next-auth/react"
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
+
 const CreateMadrasha = () => {
+    const {data: session, status} = useSession()
+
+    console.log("session", session?.user?.user_info?.groups)
+
+    function search(nameKey, myArray) {
+        for (var i = 0; i < myArray?.length; i++) {
+            if (myArray[i].name === nameKey) {
+                return true;
+            } else {
+                return false
+            }
+        }
+    }
+
+    var resultObject = search("MADRASHA_ADMIN", session?.user?.user_info?.groups);
+
+    console.log("resultObject", resultObject)
+
+    if (resultObject === false) {
+        return <p>User is not madrasha Admin</p>
+    }
+
+
+    // useEffect(() => {
+    //     if (session?.user?.user_info?.groups.indexOf("MADRASHA_ADMIN") !== -1) {
+    //         console.log("Value exists!")
+    //     } else {
+    //         console.log("Value does not exists!")
+    //     }
+    // })
+
     return (
         <h1>Madrasha</h1>
     )

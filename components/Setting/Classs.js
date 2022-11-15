@@ -4,13 +4,52 @@ import styles from "./Setting.module.css";
 import studentLogo from '../../public/assets/admission/students.png'
 import SettingSideMenu from "./SettingSideMenu";
 
-const Classs = () =>{
+import axios from "axios";
+import api, { BASE_URL } from "../../pages/api/api"
+import { useEffect, useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import { useForm } from "react-hook-form";
+
+const Classs = ({departmentList, handlePutRequest}) => {
+
+    const [classList, setClassList] = useState(null)
+    const [showInputForm, setShowInputForm] = useState(false)
+    // const [departmentList, setDepartmentList] = useState(null)
+
+    const getClassList = async () => {
+        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
+        const classes = list.data
+        setClassList(classes)
+
+    }
+    useEffect(() => {
+        getClassList()
+    }, [])
+
+
+    //handle post request for designation
+    const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" })
+
+
+    const handlePostRequest = () => {
+        setShowInputForm(true)
+    }
+
+    const onSubmit = async (values) => {
+        const data = { "name": values.name, "madrasha": 1, "department": values.department }
+        await axios.post(`${BASE_URL}/settings/100/classes/`, data)
+            .then((response) => (
+                console.log(response.data)
+            ))
+        setShowInputForm(false)
+    }
+
     return (
         <>
             <section className={styles.settingSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SettingSideMenu/>
+                        <SettingSideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="department-body">
                                 <div className="card">
@@ -21,7 +60,7 @@ const Classs = () =>{
                                                     <h2><u>Classes</u></h2>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button type="button" className={`${styles.defaultBtn} float-end`}>Add</button>
+                                                    <button type="button" className={`${styles.defaultBtn} float-end`} onClick={handlePostRequest}>Add</button>
                                                 </div>
                                             </div>
                                             <div className="designation-table mt-3 ">
@@ -29,73 +68,69 @@ const Classs = () =>{
                                                     <table className="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th scope="col">#</th>
+                                                                <th scope="col">Counting</th>
                                                                 <th scope="col">Class Name</th>
                                                                 <th scope="col">Department Name</th>
                                                                 <th scope="col" className="text-center">Edit</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
+                                                            {classList && classList.map((className, index) => (
+                                                            <tr key={className.slug}>
+                                                                <th scope="row fw-bold">{index+1}</th>
+                                                                <td className="text-sm">{className.name}</td>
+                                                                <td className="text-sm">{className.department.name}</td>
+                                                                <td className="p-0 text-center">
+                                                                    <button type="button" className={`${styles.editButton}`} onClick={(e)=>handlePutRequest(e,className.id)}>Edit</button>
+                                                                </td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">4</th>
-                                                                <td className="text-sm">Dar-ul Hadis</td>
-                                                                <td className="text-sm">Jamat Deparment</td>
-                                                                <td className="p-0"><button type="button" className={`${styles.editButton} float-md-end`}>Edit</button></td>
-                                                            </tr>
+                                                            ))}
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             {/* ========= add department form ======== */}
-                                            <div className="add-class mt-4">
-                                                <h2><u>Add Classes</u></h2>
-                                                <form action="#" method="POST">
-                                                    <div className="row">
-                                                        <div className="col-md-7 mt-4">
-                                                            <input type="text" className="form-control" placeholder="Class Name" />
-                                                        </div>
-                                                        <div className="col-md-7 mt-4">
-                                                            <div className="input-group">
-                                                                <input type="text" className="form-control" placeholder="select department"/>
-                                                                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                                                                    <span className="visually-hidden">Toggle dropdown</span>
-                                                                </button>
-                                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                                    <li>
-                                                                        <a className="dropdown-item">department 1</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a className="dropdown-item">department 2</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a className="dropdown-item">department 3</a>
-                                                                    </li>
-                                                                </ul>
+                                            <div className="add-class">
+                                                <Modal show={showInputForm} onHide={() => setShowInputForm(false)}
+                                                    dialogClassName={`${styles.customDialog}`}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>
+                                                            Add Class
+                                                        </Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <form onSubmit={handleSubmit(onSubmit)}>
+                                                            <div className="row">
+                                                                <div className="mt-4">
+                                                                    <label className="mb-2">Class Name</label>
+                                                                    <input type="text" className="form-control"
+                                                                        placeholder="class Name Name"
+                                                                        name="name"
+                                                                        {...register("name", { required: "This field is required" })}
+                                                                    />
+                                                                    <p className="text-danger">{errors.name?.message}</p>
+                                                                </div>
+                                                                <div className="mt-4">
+                                                                    <label className="mb-2">Select Department Name</label>
+                                                                        <select type="text" className="form-select"
+                                                                            placeholder="select department"
+                                                                            name="department"
+                                                                            {...register("department")}
+                                                                        >
+                                                                            {departmentList && departmentList.map((department) => (
+                                                                                <option className="dropdown-item" value={department.id}
+                                                                                    key={department.name}
+                                                                                >{department.name}</option>
+                                                                            ))}
+                                                                        </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-7 mt-3">
-                                                        <button type="submit" className={styles.defaultBtn}>Save</button>
-                                                    </div>
-                                                </form>
+                                                            <div className="col-md-7 mt-3">
+                                                                <button className={styles.defaultBtn}>Save</button>
+                                                            </div>
+                                                        </form>
+                                                    </Modal.Body>
+                                                </Modal>
                                             </div>
                                         </div>
                                     </div>

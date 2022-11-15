@@ -1,24 +1,35 @@
 import React, {useEffect, useState} from "react";
-import Boarding from "../../components/Boarding/Boarding";
-import Layout from "../../components/Layout/Layout";
-// Call base urls
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 import api, {BASE_URL} from "../api/api";
 
+import Boarding from "../../components/Boarding/Boarding";
+import AddBazarListModal from "../../components/Boarding/Modals/AddBazarListModal";
+import Layout from "../../components/Layout/Layout";
+
+
 const BoardingPage = () => {
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [bazerList, setBazerList] = useState(null);
     const [isLoading, setLoading] = useState(false);
-
     const [searchBazerList, setSearchBazerList] = useState('');
     const [bazarListPageNum, setBazerListPageNum] = useState(1);
     const [bazarListRecords, setBazerListRecords] = useState('');
 
+    const [addBazarListModal, setBazarListModal] = useState(false);
+
     const getAllBazarList = async () => {
         setLoading(true);
-        // console.log(`boarding/bazarlist/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}`);
 
-        api.get(`boarding/bazarlist/100/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
-        // api.get(`boarding/bazarlist/`)
+        api.get(`boarding/bazarlist/${session.user?.madrasha_slug}/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
             .then((response) => {
                 setBazerList(response.data);
                 setLoading(false);
@@ -51,6 +62,13 @@ const BoardingPage = () => {
         setBazerListPageNum(bazarListPageNum - 1)
     };
 
+
+    // Post Request
+    const handleAddBazarListModal = () => {
+        setBazarListModal(true)
+    };
+
+
     if (isLoading) {
         return (
             <div className="text-center">
@@ -79,6 +97,13 @@ const BoardingPage = () => {
                 prevPage={prevPage}
                 handleSearchBtn={handleSearchBtn}
                 bazarListPageNum={bazarListPageNum}
+
+                handleAddBazarListModal={handleAddBazarListModal}
+            />
+
+            <AddBazarListModal
+                show={addBazarListModal}
+                onHide={() => setBazarListModal(false)}
             />
         </>
     )

@@ -12,7 +12,7 @@ const TransportSideMenu = () => {
         
         <>
 
-            <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
                 <div className={styles.transportRightSide}>
                     <div className="card">
                         <h4 className="text-center mt-3">
@@ -25,8 +25,8 @@ const TransportSideMenu = () => {
                                     <a className="text-center">Transport Details</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "/transport/gariadd" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                                <Link href="/transport/gariadd">
+                            <div className={router.pathname == "/transport/gari" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                                <Link href="/transport/gari">
                                 <a className="text-center">Car details</a>
                                 </Link>
                             </div>

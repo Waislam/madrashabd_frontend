@@ -15,7 +15,7 @@ import {
     getThanaApi
 } from "../../pages/api/madrasha/madrashaApi";
 
-const AdmissionForm = () => {
+const AdmissionForm = (props) => {
     const [step, setStep] = useState(1);
 
     const [divisionList, setDivisionList] = useState([]);
@@ -29,13 +29,11 @@ const AdmissionForm = () => {
     const [selectPresentAddressThana, setSelectPresentAddressThana] = useState('');
     const [selectPresentAddressPostOffice, setSelectPresentAddressPostOffice] = useState('');
     const [selectPresentAddressPostCode, setSelectPresentAddressPostCode] = useState('');
-    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
     const [selectPermanentAddressDistrict, setSelectPermanentAddressDistrict] = useState('');
     const [selectPermanentAddressDivision, setSelectPermanentAddressDivision] = useState('');
     const [selectPermanentAddressThana, setSelectPermanentAddressThana] = useState('');
     const [selectPermanentAddressPostOffice, setSelectPermanentAddressPostOffice] = useState('');
     const [selectPermanentAddressPostCode, setSelectPermanentAddressPostCode] = useState('');
-    console.log("selectPresentAddressDistrict", selectPresentAddressDistrict)
 
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
 
@@ -47,24 +45,12 @@ const AdmissionForm = () => {
         setStep(step + 1)
     };
 
-    const userAge = () => {
-        const todayDate = new Date().getTime();
-        console.log("todayDate", todayDate)
-        const birthDate = new Date().getTime("2012-05-07");
-        const age = (todayDate - birthDate) / (1000 * 60 * 60 * 24 * 365)
-
-        return age;
-    }
-
-    console.log("userAge", userAge())
-
     useEffect(() => {
 
         const divitionDataLoad = async () => {
             // call division api
             getDivisionApi()
                 .then((data) => {
-                    console.log("getDivisionApi(): results", data)
                     setDivisionList(data)
                 })
                 .catch((error) => {
@@ -84,7 +70,6 @@ const AdmissionForm = () => {
                 // call post Office api
         getPostOfficeApi(selectPresentAddressDistrict)
             .then((data) => {
-                console.log("getPostOfficeApi(): results", data)
                 setPostOfficeList(data)
             })
             .catch((error) => {
@@ -98,7 +83,6 @@ const AdmissionForm = () => {
         // call district api
         getDistrictApi(selectPresentAddressDivision)
             .then((data) => {
-                console.log("getDistrictApi(): results", data)
                 setDistricts(data)
             })
             .catch((error) => {
@@ -153,6 +137,7 @@ const AdmissionForm = () => {
                     setSelectPermanentAddressThana={setSelectPermanentAddressThana}
                     setSelectPermanentAddressPostCode={setSelectPermanentAddressPostCode}
                     setSelectPermanentAddressPostOffice={setSelectPermanentAddressPostOffice}
+                    session={props.session}
                 />
             );
         case 2:
@@ -167,6 +152,7 @@ const AdmissionForm = () => {
                 <PreviousInstitutionForm
                     nextStep={nextStep}
                     prevStep={prevStep}
+                    session={props.session}
                 />
             );
         default:

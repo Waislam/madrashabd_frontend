@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import api, {BASE_URL} from '../api/api'
 import axios from 'axios';
-import {useRouter} from 'next/router';
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 
 // component for Library
@@ -10,10 +11,18 @@ import Layout from '../../layouts/Layout';
 // import modal file
 import BookListModal from '../../components/Library/BookListModal'
 import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateModal";
+import AssignBookDistributionModal from "../../components/Library/AssignBookDistributionModal";
 
 
 const Library = () => {
     const router = useRouter();
+    const {data: session, status} = getSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -26,13 +35,16 @@ const Library = () => {
     const [searchNumber, setSearchNumber] = useState('');
     const [libraryListPageNum, setLibraryListPageNum] = useState(1);
 
+    const [showBookDistributionModal, setShowBookDistributionModal] = useState(false);
+    const [bookID, setBookID] = useState('');
+
 
     const getBooks = async () => {
-        const list = await api.get(`library/100/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
+        const list = await api.get(`library/${session.user?.madrasha_slug}/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
         const data = list.data;
         setBooks(data)
     };
-    
+
 
     useEffect(() => {
         getBooks()
@@ -61,13 +73,13 @@ const Library = () => {
     const prevPage = () => {
         setLibraryListPageNum(libraryListPageNum - 1)
     };
-    
+
 
     const handleModalShow = () => {
         setShowModal(true)
     };
 
-    const handleModalClose=(event)=>{
+    const handleModalClose = (event) => {
         setShowModal(false)
     };
 
@@ -82,6 +94,12 @@ const Library = () => {
         setLibraryBookUpdateModalShow(true)
     };
 
+    // AssignBookDistributionModal
+
+    const assignBookDistributionModal = (book_id) => {
+        setBookID(book_id);
+        setShowBookDistributionModal(true)
+    };
 
     return (
         <>
@@ -95,16 +113,22 @@ const Library = () => {
                 handleLibraryListPageNum={handleLibraryListPageNum}
                 nextPage={nextPage}
                 prevPage={prevPage}
-
-
+                assignBookDistributionModal={assignBookDistributionModal}
             />
 
             <BookListModal
+                session={session}
                 shown={showModal}
                 close={handleModalClose}
             >
 
             </BookListModal>
+
+            <AssignBookDistributionModal
+                show={showBookDistributionModal}
+                onHide={() => setShowBookDistributionModal(false)}
+                bookID={bookID}
+            />
 
             {
                 loader ?
@@ -120,6 +144,8 @@ const Library = () => {
         </>
     )
 };
+
+
 
 
 export default Library;

@@ -8,7 +8,7 @@ const MemberSideMenu = () =>{
     const router = useRouter()
     return (
         <>
-            <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 mb-4">
                 <div className={styles.settingRightSide}>
                     <div className="card">
                         <h4 className="text-center mt-3">

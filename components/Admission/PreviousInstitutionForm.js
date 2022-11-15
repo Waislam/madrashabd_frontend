@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './Admission.module.css'
 import {useForm} from "react-hook-form";
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 // api call
-import api from "../../pages/api/api";
+import api, {BASE_URL} from "../../pages/api/api";
 
 const PreviousInstitutionForm = (props) => {
+    const [loading, setLoading] = useState(false)
     const {nextStep, prevStep} = props
 
     const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+
+    console.log(props.session.user?.madrasha_id)
 
     const {
         handleSubmit,
@@ -19,106 +22,128 @@ const PreviousInstitutionForm = (props) => {
 
 
     const onSubmit = (values) => {
-        console.log("admissionData values", values)
+        setLoading(true)
         setAdmissionFormValues(values);
-        console.log("admissionData final", admissionData)
 
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        const user_data = {
+            "phone": admissionData.student_phone_number,
+            "password": admissionData.student_phone_number,
+            "password2": admissionData.student_phone_number,
+            "madrasha_id": props.session.user?.madrasha_id
+        }
 
-        console.log("admissionData", admissionData.date_of_birth)
+        // create a user
+        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
+            .then((res) => {
+                if (res.data.user_id) {
+                    let myHeaders = new Headers();
+                    myHeaders.append("Content-Type", "application/json");
 
-        let studentRawData = JSON.stringify({
-            "user": 1,
-            "madrasha": 1,
-            "student_roll_id": "75474545334757",
-            "date_of_birth": admissionData.date_of_birth,
-            "age": admissionData.age,
-            "birth_certificate": admissionData.birth_certificate,
-            "student_nid": admissionData.student_nid,
-            "passport_number": admissionData.passport_number,
-            "nationality": admissionData.nationality,
-            "religion": admissionData.religion,
-            "gender": admissionData.gender,
-            "present_address": {
-                "division": parseInt(admissionData.present_address_division),
-                "district": parseInt(admissionData.present_address_district),
-                "thana": parseInt(admissionData.present_address_thana),
-                "post_office": parseInt(admissionData.present_address_post_office),
-                "post_code": parseInt(admissionData.present_address_code),
-                "address_info": admissionData.student_present_address_info
-            },
-            "permanent_address": {
-                "division":  parseInt(admissionData.permanent_address_division),
-                "district": parseInt(admissionData.permanent_address_district),
-                "thana": parseInt(admissionData.permanent_address_thana),
-                "post_office": parseInt(admissionData.permanent_address_post_office),
-                "post_code": parseInt(admissionData.permanent_address_code),
-                "address_info": admissionData.student_permanent_address_info
-            },
-            "father_info": {
-                "parent_name": admissionData.parents_information_father_name,
-                "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
-                "occupation": admissionData.parents_information_father_occupation,
-                "organization_with_designation": "organization name, podobi",
-                "education": admissionData.parents_information_father_education,
-                "contact_number": admissionData.parents_information_father_contact,
-                "parent_email": admissionData.father_email,
-                "parent_nid": admissionData.parents_information_father_nid
-            },
-            "mother_info": {
-                "parent_name": admissionData.parents_information_mother_name,
-                "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
-                "parent_nid": admissionData.parents_information_mother_nid,
-                "occupation": admissionData.parents_information_mother_occupation,
-                "organization_with_designation": "organization name, podobi",
-                "education": admissionData.parents_information_mother_education,
-                "contact_number": admissionData.parents_information_mother_contact,
-                "parent_email": admissionData.mother_email
-            },
-            "guardian_name": admissionData.guardian_name,
-            "guardian_relation": admissionData.guardian_relation,
-            "guardian_occupation": admissionData.guardian_occupation,
-            "yearly_income": admissionData.guardian_yearly_income,
-            "guardian_contact": admissionData.guardian_contact,
-            "guardian_email": admissionData.guardian_email,
-            "other_contact_person": admissionData.other_contact_person,
-            "other_contact_person_relation": admissionData.other_contact_person_relation,
-            "other_contact_person_contact": admissionData.other_contact_person_contact,
-            "sibling_id": admissionData.sibling_id,
-            "previous_institution_name": null,
-            "previous_institution_contact": null,
-            "previous_started_at": null,
-            "previous_ending_at": null,
-            "previous_ending_class": null,
-            "previous_ending_result": null,
-            "board_exam_name": null,
-            "board_exam_registration": null,
-            "board_exam_roll": null,
-            "board_exam_result": null,
-            "admitted_department": 1,
-            "admitted_class": 1,
-            "admitted_group": 1,
-            "admitted_shift": 1,
-            "admitted_roll": "120",
-            "admitted_session": 1,
-            "student_blood_group": "0+",
-            "special_body_sign": null,
-            "academic_fees": null,
-            "talimi_murobbi_name": "class teacher"
-        });
+                    let studentRawData = JSON.stringify({
+                        "user": res.data.user_id,
+                        "madrasha": props.session.user?.madrasha_id,
+                        "student_roll_id": "7657423",
+                        "date_of_birth": admissionData.date_of_birth,
+                        "age": admissionData.age,
+                        "birth_certificate": admissionData.birth_certificate,
+                        "student_nid": admissionData.student_nid,
+                        "passport_number": admissionData.passport_number,
+                        "nationality": admissionData.nationality,
+                        "religion": admissionData.religion,
+                        "gender": admissionData.gender,
+                        "present_address": {
+                            "division": parseInt(admissionData.present_address_division),
+                            "district": parseInt(admissionData.present_address_district),
+                            "thana": parseInt(admissionData.present_address_thana),
+                            "post_office": parseInt(admissionData.present_address_post_office),
+                            "post_code": parseInt(admissionData.present_address_code),
+                            "address_info": admissionData.student_present_address_info
+                        },
+                        "permanent_address": {
+                            "division": parseInt(admissionData.permanent_address_division),
+                            "district": parseInt(admissionData.permanent_address_district),
+                            "thana": parseInt(admissionData.permanent_address_thana),
+                            "post_office": parseInt(admissionData.permanent_address_post_office),
+                            "post_code": parseInt(admissionData.permanent_address_code),
+                            "address_info": admissionData.student_permanent_address_info
+                        },
+                        "father_info": {
+                            "parent_name": admissionData.parents_information_father_name,
+                            "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
+                            "occupation": admissionData.parents_information_father_occupation,
+                            "organization_with_designation": "organization name, podobi",
+                            "education": admissionData.parents_information_father_education,
+                            "contact_number": admissionData.parents_information_father_contact,
+                            "parent_email": admissionData.father_email,
+                            "parent_nid": admissionData.parents_information_father_nid
+                        },
+                        "mother_info": {
+                            "parent_name": admissionData.parents_information_mother_name,
+                            "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
+                            "parent_nid": admissionData.parents_information_mother_nid,
+                            "occupation": admissionData.parents_information_mother_occupation,
+                            "organization_with_designation": "organization name, podobi",
+                            "education": admissionData.parents_information_mother_education,
+                            "contact_number": admissionData.parents_information_mother_contact,
+                            "parent_email": admissionData.mother_email
+                        },
+                        "guardian_name": admissionData.guardian_name,
+                        "guardian_relation": admissionData.guardian_relation,
+                        "guardian_occupation": admissionData.guardian_occupation,
+                        "yearly_income": admissionData.guardian_yearly_income,
+                        "guardian_contact": admissionData.guardian_contact,
+                        "guardian_email": admissionData.guardian_email,
+                        "other_contact_person": admissionData.other_contact_person,
+                        "other_contact_person_relation": admissionData.other_contact_person_relation,
+                        "other_contact_person_contact": admissionData.other_contact_person_contact,
+                        "sibling_id": admissionData.sibling_id,
+                        "previous_institution_name": null,
+                        "previous_institution_contact": null,
+                        "previous_started_at": null,
+                        "previous_ending_at": null,
+                        "previous_ending_class": null,
+                        "previous_ending_result": null,
+                        "board_exam_name": null,
+                        "board_exam_registration": null,
+                        "board_exam_roll": null,
+                        "board_exam_result": null,
+                        "admitted_department": 1,
+                        "admitted_class": 1,
+                        "admitted_group": 1,
+                        "admitted_shift": 1,
+                        "admitted_roll": "120",
+                        "admitted_session": 1,
+                        "student_blood_group": "0+",
+                        "special_body_sign": null,
+                        "academic_fees": null,
+                        "talimi_murobbi_name": "class teacher"
+                    });
 
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: studentRawData,
-            redirect: 'follow'
-        };
+                    let requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: studentRawData,
+                        redirect: 'follow'
+                    };
 
-        fetch("http://127.0.0.1:8086/students/", requestOptions)
-            .then(response => response.json())
-            .then(result => console.log("data submited result", result))
-            .catch(error => console.log('error', error));
+                    fetch(`${BASE_URL}/students/${props.session.user.madrasha_slug}/`, requestOptions)
+                        .then(response => response.json())
+                        .then((result) => {
+                            console.log("data submited result", result)
+                            setLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log('error', error)
+                            setLoading(false)
+                        });
+                } else {
+                    console.log("User is not created.")
+                }
+
+            })
+            .catch((err) => {
+                console.log("user create err", err)
+            })
     };
 
     const Continue = e => {

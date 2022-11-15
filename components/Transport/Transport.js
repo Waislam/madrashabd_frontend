@@ -1,21 +1,18 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
 import styles from './Transport.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
 import TransportSideMenu from "./TransportSideMenu";
+import {AmPm} from '../Utils/utils'
 
 
-const Transport = () => {
+const Transport = ({transport, handleAddTransportModal, handleDeleteTransportModel, handleTransportUpdate}) => {
     return (
         <>
-
             <section className={styles.transportSection}>
                 <div className="container-fluid">
                     <div className="row">
                         <TransportSideMenu/>
                         {/* ========== transport right side body start ============== */}
-                        <div className="col-sm-12 cold-md-9 col-lg-9 col-xl-9">
+                        <div className="col-sm-12 cold-md-10 col-lg-10 col-xl-10">
                             <div className="transport">
                                 <div className="card">
                                     <div className="card-body">
@@ -26,12 +23,16 @@ const Transport = () => {
                                                     <form action="#">
                                                         <div className="row">
                                                             <div className="col-md-3">
-                                                                <input type="text" className="form-control" placeholder="search"/>
+                                                                <input type="text" className="form-control"
+                                                                       placeholder="search"/>
                                                             </div>
                                                             <div className="col-md-3">
                                                                 <div className="input-group">
-                                                                    <input type="text"  className="form-control" placeholder="time"/>
-                                                                    <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <input type="text" className="form-control"
+                                                                           placeholder="time"/>
+                                                                    <button type="button"
+                                                                            className="btn btn-outline-secondary dropdown-toggle"
+                                                                            data-bs-toggle="dropdown">
                                                                         <span className="visually-hidden">Toggle dropdown</span>
                                                                     </button>
                                                                     <ul className="dropdown-menu dropdown-menu-end">
@@ -45,110 +46,71 @@ const Transport = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-3">
-                                                                <button type="button" className={styles.searchButton}>Search</button>
+                                                                <button
+                                                                    type="button"
+                                                                    className={styles.searchButton}>
+                                                                    Search
+                                                                </button>
                                                             </div>
                                                             <div className="col-md-3">
-                                                                <button type="button" className={`${styles.defaultBtn} float-md-end`}>Add</button>
+                                                                <button
+                                                                    type="button"
+                                                                    className={`${styles.defaultBtn} float-md-end`}
+                                                                    onClick={() => handleAddTransportModal()}
+                                                                >
+                                                                    Add
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
-                                                {/* ===== add form ========== */}
-
-                                                <div className="add-to-transport mt-5">
-                                                    <h2 className="mb-3">Add student to transport</h2>
-                                                    <form action="#" method="POST">
-                                                        <div className="row">
-                                                            <div className="col-md-7 mb-3">
-                                                                <input type="text" className="form-control" placeholder="student id"/>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <input type="text" className="form-control" placeholder="gurdian number"/>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="gariNumber"/>
-                                                                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">gari one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">gari two</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">gari three</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="driver"/>
-                                                                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">driver one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">driver two</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">driver three</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <input type="text" className="form-control" placeholder="number"/>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="route"/>
-                                                                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">route one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">route two</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">route three</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-7 mb-3">
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control" placeholder="time"/>
-                                                                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">time one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">time two</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item" href="#">time three</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-3">
-                                                            <button type="submit" className={styles.defaultBtn} >Save</button>
-                                                        </div>
-                                                    </form>
+                                                <div className="table-responsive">
+                                                    <table className="table table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Student Name</th>
+                                                            <th scope="col">Guardian Name</th>
+                                                            <th scope="col">Gari Number</th>
+                                                            <th scope="col">Driver name</th>
+                                                            <th scope="col">Driver Number</th>
+                                                            <th scope="col">Root</th>
+                                                            <th scope="col">Time</th>
+                                                            <th scope="col" className="text-center">Edit</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {
+                                                            transport?.map((data, index) => (
+                                                                <tr key={data.id} className="text-capitalize">
+                                                                    <td className="text-sm">{index + 1}</td>
+                                                                    <td className="text-sm">
+                                                                        {data.student_id?.user?.first_name} {data.student_id?.user?.last_name}
+                                                                    </td>
+                                                                    <td className="text-sm">{data.student_id?.guardian_name}</td>
+                                                                    <td className="text-sm">{data.vehicle?.car_number}</td>
+                                                                    <td className="text-sm">{data.vehicle?.driver_name}</td>
+                                                                    <td className="text-sm">{data.vehicle?.driver_number}</td>
+                                                                    <td className="text-sm">{data.vehicle?.route}</td>
+                                                                    <td className="text-sm">{AmPm(data.vehicle?.start_time)}</td>
+                                                                    <td className="text-center">
+                                                                        <button
+                                                                            className="btn btn-primary"
+                                                                            onClick={() => handleTransportUpdate(data.id)}>
+                                                                            Edit
+                                                                        </button>
+                                                                        <button
+                                                                            className="btn btn-danger"
+                                                                            onClick={() => handleDeleteTransportModel(data.id)}
+                                                                        >
+                                                                            Delete
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
