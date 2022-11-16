@@ -1,15 +1,37 @@
 import DarulEkama from "../../components/DarulEkama/DarulEkam";
 import Layout from '../../layouts/Layout';
+import { getSession } from "next-auth/react";
+import api from "../api/api";
 
-const DarulEkamaPage = () => {
+
+const DarulEkamaPage = (props) => {
+    // console.log(props.distributedseat)
+    const distributedSeatList = props.distributedseat
 
     return (
         <div>
-            <DarulEkama/>
+            <DarulEkama
+            distributed_seatList={distributedSeatList}
+            />
         </div>
     )
 };
 
+export const getServerSideProps=async({req})=>{
+
+    const session = await getSession({req})
+    // console.log("session: ", session.user?.madrasha_slug)
+    const madrasha_slug = session.user?.madrasha_slug
+
+    const distributedSeatList = await api.get(`/darul-ekama/${madrasha_slug}/seat-booking/`)
+    const distributedseat = distributedSeatList.data
+
+    return {
+        props:{
+            distributedseat
+        }
+    }
+}
 
 export default DarulEkamaPage;
 
