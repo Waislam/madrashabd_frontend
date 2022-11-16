@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from "react";
-import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
-
 import SeatBooking from "../../components/DarulEkama/SeatBooking";
 import Layout from '../../layouts/Layout';
 import api from "../api/api"
 import { getSession, useSession } from 'next-auth/react'
-import { useState } from "react";
 
 const SeatbookingPage = (props) => {
 
