@@ -8,11 +8,13 @@ import { getDepartmentList, getDesignationList } from "../api/settings_api";
 import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const {data: session, status} = useSession();
+    const router = useRouter()
     // const [divisionList, setDivisionList] = useState(null)
     const [singleDivision, setSingleDivision] = useState('');
     const [disctrictList, setDistrictList] = useState(null);
@@ -103,6 +105,7 @@ const AddTeacherPage = (props) => {
                     // Create New Teacher
                     api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
                     .then((res) => {
+                        router.push('/teachers');
                         return res && toast.success('The Teacher is Successfully added!!');
                     })
                     .catch((error) => {
