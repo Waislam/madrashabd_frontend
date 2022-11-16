@@ -1,17 +1,14 @@
-import React, {useState, useEffect} from "react";
-import {useSession} from "next-auth/react";
-import {useRouter} from "next/router";
-
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import SeatBooking from "../../components/DarulEkama/SeatBooking";
 import Layout from '../../layouts/Layout';
 import api from "../api/api"
 import { getSession, useSession } from 'next-auth/react'
-import { useState } from "react";
 
 const SeatbookingPage = (props) => {
 
-    const {data:session, status} = useSession()
-    const madrasha_slug =  session?.user.madrasha_slug
+    const { data: session, status } = useSession()
+    const madrasha_slug = session?.user.madrasha_slug
 
 
 
@@ -25,7 +22,7 @@ const SeatbookingPage = (props) => {
     });
 
     //on building selection get room list
-    const getRoomList = async(e) => {
+    const getRoomList = async (e) => {
         e.preventDefault()
         const building = e.target.value
         setBuildingId(building)
@@ -44,14 +41,14 @@ const SeatbookingPage = (props) => {
                 room_list={roomList}
                 building_id={buildingId}
             />
-            
+
         </div>
     )
 };
 
 //get required for seatbooking
 export const getServerSideProps = async ({ req }) => {
-    
+
     const session = await getSession({ req });
     const madrasha_slug = session.user.madrasha_slug
 
