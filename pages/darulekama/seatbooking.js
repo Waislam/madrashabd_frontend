@@ -1,3 +1,7 @@
+import React, {useState, useEffect} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+
 import SeatBooking from "../../components/DarulEkama/SeatBooking";
 import Layout from '../../layouts/Layout';
 import api from "../api/api"
@@ -13,6 +17,12 @@ const SeatbookingPage = (props) => {
 
     const [roomList, setRoomList] = useState('')
     const [buildingId, setBuildingId] = useState('')
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     //on building selection get room list
     const getRoomList = async(e) => {

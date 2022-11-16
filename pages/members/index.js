@@ -1,4 +1,8 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
+
+
 // Setting Component
 import Committee from "../../components/Members/Committee"
 import AddCommitteeModal from "../../components/Members/Modals/AddCommitteeModal"
@@ -7,26 +11,24 @@ import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 
 
-const CommitteePage = () => {
+const CommitteePage = (props) => {
+
+    const router = useRouter();
+    const {data: session, status} = getSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
+
+
     const [isLoading, setLoading] = useState(null);
-    const [committee, setCommittee] = useState(null);
     const [addCommitteeModal, setCommitteeModal] = useState(false);
     const [updateCommitteeModal, setUpdateCommitteeModal] = useState(false);
     const [committeeOldData, setCommitteeOldData] = useState(null);
     const [loader, setLoader] = useState(false);
-
-    //get committee list
-    const getCommittee = async () => {
-        const list = await api.get("http://127.0.0.1:8086/committee/list/");
-        const data = list.data;
-        setCommittee(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        getCommittee()
-    }, []);
-
 
     // committee
     const handleCommitteeModal = () => {
@@ -37,7 +39,7 @@ const CommitteePage = () => {
     // update Committee
     const handleUpdateCommitteeModal = async (id) => {
         setLoader(true);
-        const list = await api.get(`http://127.0.0.1:8086/committee/details/${id}/`);
+        const list = await api.get(`committee/details/${id}/`);
         const data = list.data;
         setCommitteeOldData(data);
         setLoader(false);
@@ -55,35 +57,54 @@ const CommitteePage = () => {
         )
     }
 
-    if (!committee) {
+    if (props.committee_list) {
         return (
-            <h2 className="text-center">No data found</h2>
+            <div>
+                <Committee
+                    committee={props.committee_list.results}
+                    handleCommitteeModal={handleCommitteeModal}
+                    handleUpdateCommitteeModal={handleUpdateCommitteeModal}
+                />
+
+                <AddCommitteeModal
+                    session={props.session_data}
+                    show={addCommitteeModal}
+                    onHide={() => setCommitteeModal(false)}
+                />
+
+                {loader ? " " :
+                    <UpdateCommitteeModal
+                        show={updateCommitteeModal}
+                        onHide={() => setUpdateCommitteeModal(false)}
+                        committee_old_data={committeeOldData}
+                    />
+                }
+            </div>
         )
     }
-
-    return (
-        <div>
-            <Committee
-                committee={committee}
-                handleCommitteeModal={handleCommitteeModal}
-                handleUpdateCommitteeModal={handleUpdateCommitteeModal}
-            />
-
-            <AddCommitteeModal
-                show={addCommitteeModal}
-                onHide={() => setCommitteeModal(false)}
-            />
-
-            { loader ? " " :
-                <UpdateCommitteeModal
-                    show={updateCommitteeModal}
-                    onHide={() => setUpdateCommitteeModal(false)}
-                    committee_old_data={committeeOldData}
-                />
-            }
-        </div>
-    )
+    else {
+        return (
+            <div>
+                <h3 className="text-center">No Data Found</h3>
+            </div>
+        )
+    }
 };
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/committee/${session_data.user?.madrasha_slug}/list/`);
+    const committee_list = await res.data;
+
+    return {
+        props: {
+            committee_list,
+            session_data
+        }
+    }
+}
+
 
 export default CommitteePage;
 

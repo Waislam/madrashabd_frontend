@@ -1,27 +1,31 @@
 import styles from "../Setting.module.css";
 import axios from "axios";
-import api, { BASE_URL } from "../../../pages/api/api"
-import { useEffect, useState } from "react";
+import api, {BASE_URL} from "../../../pages/api/api"
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import Modal from "react-bootstrap/Modal";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 
 
 const DepartmentUpdate = (props) => {
+    const router = useRouter();
+
     let preLoadedValues = {
         "name": props.departmentUpdateAbleData?.name
-    }
+    };
 
-    const { register, handleSubmit } = useForm({
+    const {register, handleSubmit} = useForm({
         mode: "onChange",
         defaultValues: preLoadedValues
-    })
+    });
 
-    const onSubmit = async (values) =>{
-        let data = {"name":values.name, "madrasha":props.departmentUpdateAbleData?.madrasha?.id}
-        const current_id = props.departmentUpdateAbleData.id
-        const list = await axios.put(`${BASE_URL}/settings/department/detail/${current_id}/`, data)
-        props.onHide()
-    }
+    const onSubmit = async (values) => {
+        let data = {"name": values.name, "madrasha": props.departmentUpdateAbleData?.madrasha?.id};
+        const current_id = props.departmentUpdateAbleData.id;
+        const list = await axios.put(`${BASE_URL}/settings/department/detail/${current_id}/`, data);
+        props.onHide();
+        router.reload();
+    };
 
 
     return (
@@ -29,10 +33,10 @@ const DepartmentUpdate = (props) => {
             {/* ========= put department form ======== */}
             <div className={`putDepartment text-center`}>
                 <Modal {...props}
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered
-                    dialogClassName={`${styles.customDialog}`}
+                       size="lg"
+                       aria-labelledby="contained-modal-title-vcenter"
+                       centered
+                       dialogClassName={`${styles.customDialog}`}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>
@@ -44,10 +48,10 @@ const DepartmentUpdate = (props) => {
                             <div className="row">
                                 <div className="my-4">
                                     <input type="text"
-                                        className="form-control"
-                                        placeholder="Department Name"
-                                        name="name"
-                                        {...register("name")}
+                                           className="form-control"
+                                           placeholder="Department Name"
+                                           name="name"
+                                           {...register("name")}
                                     />
                                 </div>
                             </div>
@@ -60,6 +64,6 @@ const DepartmentUpdate = (props) => {
             </div>
         </>
     )
-}
+};
 
 export default DepartmentUpdate;

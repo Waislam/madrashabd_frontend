@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 // Transport Component
 import GariList from "../../components/Transport/GariList"
@@ -9,9 +10,17 @@ import DeleteGariModal from "../../components/Transport/Modals/DeleteGariModal"
 import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 
-const GariPage = () => {
+const GariPage = (props) => {
+    const router = useRouter();
+    const {data: session, status} = getSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
+
     const [isLoading, setLoading] = useState(false);
-    const [gariList, setGariList] = useState(null);
 
     // Add Post Request
     const [addGariModal, setAddGariList] = useState(false);
@@ -25,14 +34,6 @@ const GariPage = () => {
     const [deleteGariModal, setDeleteGariModal] = useState(false);
     const [deleteGariList, setDeleteGariList] = useState('');
 
-    // Get GariList
-    const getGariList = async () => {
-        setLoading(true);
-        const list = await api.get(`/transport/100/vehicle-info-list/`);
-        const data = list.data;
-        setGariList(data);
-        setLoading(false);
-    };
 
     // Add Post Request
     const handleAddGari = () => {
@@ -40,9 +41,13 @@ const GariPage = () => {
 
     };
 
-    // Update GariList
-    const handleGariUpdate = (id) => {
-        setDeleteGariList(id);
+    // update OtherMember
+    const handleGariUpdate = async (id) => {
+        setLoading(true);
+        const list = await api.get(`/transport/vehicle-info/details/${id}/`);
+        const data = list.data;
+        setUpdateGariList(data);
+        setLoading(false);
         setUpdateGariModal(true)
     };
 
@@ -52,10 +57,6 @@ const GariPage = () => {
         setDeleteGariModal(true)
 
     };
-
-    useEffect(() => {
-        getGariList()
-    }, []);
 
 
     // Loading
@@ -69,18 +70,20 @@ const GariPage = () => {
         )
     }
 
+
     //
-    if (gariList) {
+    if (props.gari_list) {
         return (
             <>
                 <GariList
-                    gariList={gariList}
+                    gariList={props.gari_list.results}
                     handleAddGari={handleAddGari}
                     handleGariUpdate={handleGariUpdate}
                     handleGariDelete={handleGariDelete}
                 />
 
                 <AddGariListModal
+                    session_data={props.session_data}
                     show={addGariModal}
                     onHide={() => setAddGariList(false)}
                 />
@@ -115,9 +118,22 @@ const GariPage = () => {
             </>
         )
     }
-
-
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/transport/${session_data.user?.madrasha_slug}/vehicle-info-list/`);
+    const gari_list = await res.data;
+
+    return {
+        props: {
+            gari_list,
+            session_data
+        }
+    }
+}
 
 export default GariPage;
 

@@ -1,9 +1,11 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
-import { BASE_URL } from '../../../../pages/api/api';
+import {BASE_URL} from '../../../../pages/api/api';
 
 const UpdateDawahModal = (props) => {
+    const router = useRouter();
 
     const old_data = {
         "program_name": props.old_dawah_data?.program_name,
@@ -14,7 +16,7 @@ const UpdateDawahModal = (props) => {
         "managed_by": props.old_dawah_data?.managed_by,
     };
 
-    const {register, handleSubmit} = useForm({mode: 'all', defaultValues:old_data});
+    const {register, handleSubmit} = useForm({mode: 'all', defaultValues: old_data});
 
     const onSubmit = (values) => {
         fetch(`${BASE_URL}/talimat/dawah/detail/${props.old_dawah_data.id}/`, {
@@ -40,7 +42,8 @@ const UpdateDawahModal = (props) => {
                 console.log(err.message)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
 
     };
 
@@ -79,7 +82,9 @@ const UpdateDawahModal = (props) => {
                                     type="text"
                                     placeholder="Start Time"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="time"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "time"
+                                    }}
                                     name="start_time"
                                     {...register("start_time")}
                                 />
@@ -98,7 +103,9 @@ const UpdateDawahModal = (props) => {
                                     type="text"
                                     placeholder="Date"
                                     className="form-control"
-                                    onFocus={(e)=>{e.target.type="date"}}
+                                    onFocus={(e) => {
+                                        e.target.type = "date"
+                                    }}
                                     name="date"
                                     {...register("date")}
                                 />

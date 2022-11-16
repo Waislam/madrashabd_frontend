@@ -1,23 +1,25 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import {useRouter} from "next/router";
 import {BASE_URL} from '../../pages/api/api'
 
 function DeleteAlertModal(props) {
-    console.log("bookID ID :", props.bookID);
-    let bookUpdateIsAvailable = {is_available: true, name:props.bookName};
+    const router = useRouter();
+    let bookUpdateIsAvailable = {is_available: true, name: props.bookName};
 
     const handleDeleteID = (event) => {
         event.preventDefault();
         axios.delete(`${BASE_URL}/library/book-distribution/delete/${props.deleteID}/`);
-        console.log("bookUpdateIsAvaiable :", bookUpdateIsAvailable, props.bookID);
+
 
         axios.put(`${BASE_URL}/library/detail/${props.bookID}/`, bookUpdateIsAvailable)
             .then((response) => {
                 console.log('this is database updated response: ', response.data)
             });
 
-        props.onHide()
+        props.onHide();
+        router.reload();
     };
 
     return (

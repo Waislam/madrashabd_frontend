@@ -1,8 +1,20 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/Layout/Layout";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import api, {BASE_URL} from "../../pages/api/api";
 
 
 const AddBazarPage = () => {
+
+    const router = useRouter();
+    const {data: session, status} = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login')
+        }
+    });
 
     const [madrasha, setMadrasha] = useState('');
     const [bazar_item_name, setBazarItemName] = useState('');
@@ -14,7 +26,8 @@ const AddBazarPage = () => {
 
     const handleBazarListForm = (event) => {
         event.preventDefault();
-        fetch("http://127.0.0.1:8086/boarding/bazarlist/100/", {
+
+        fetch(`${BASE_URL}/boarding/bazarlist/${session.user?.madrasha_slug}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

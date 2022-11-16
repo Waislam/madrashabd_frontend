@@ -1,13 +1,18 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
+import api, {BASE_URL} from "../../../pages/api/api";
 
 const AddCommitteeModal = (props) => {
 
+    console.log("Props ========", props.session);
+
+    const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch("http://127.0.0.1:8086/committee/list/", {
+        fetch(`${BASE_URL}/committee/${props.session.user?.madrasha_slug}/list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -25,10 +30,8 @@ const AddCommitteeModal = (props) => {
             .catch((err) => {
                 console.log(err.message)
             });
-
-
-        props.onHide()
-
+        props.onHide();
+        router.reload();
     };
 
     return (
