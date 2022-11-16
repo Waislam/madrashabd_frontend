@@ -18,6 +18,7 @@ const OldAdmission = ({madrashaData}) => {
 
         getStudentDetailById(searchValue)
             .then(data => {
+                console.log("@@@ Data",data)
                 setStudentDetails(data.data);
                 setIsLoading(false);
             });
