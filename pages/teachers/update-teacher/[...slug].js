@@ -8,12 +8,12 @@ import {getDepartmentList} from "../../api/settings_api";
 import {getTeacherDetailApi} from "../../api/TeacherAPI/teacher_api";
 
 const UpdateTeacherPage = (props) => {
-    const [isChecked, setIsChecked] = useState(false)
-    // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('')
-    const [disctrictList, setDistrictList] = useState(null)
-    const [singleDistrict, setSingleDristrict] = useState('')
-    const [departmentList, setDepartmentList] = useState('')
+    const [isChecked, setIsChecked] = useState(false);
+    // const [divisionList, setDivisionList] = useState(null);
+    const [singleDivision, setSingleDivision] = useState('');
+    const [disctrictList, setDistrictList] = useState(null);
+    const [singleDistrict, setSingleDristrict] = useState('');
+    const [departmentList, setDepartmentList] = useState('');
 
     console.log("@@ props teacher present_address_division", props.teacher)
     console.log("@@ props teacher present_address_district", props.teacher.data.present_address.id)
@@ -454,12 +454,12 @@ const UpdateTeacherPage = (props) => {
                                             <div className="col-md-4">
                                                 <h4>Permanent Address</h4>
                                             </div>
-                                            <div className="col-md-8">
+                                            {/* <div className="col-md-8">
                                                 <input type='checkbox' className="form-check-input" checked={isChecked}
                                                        onChange={handleHidingEndDate}/>
                                                 <label className="ms-3 text-success">Check the button If Permanent and
                                                     present Address are same</label>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <hr/>
                                         {isChecked ?

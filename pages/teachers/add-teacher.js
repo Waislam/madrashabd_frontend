@@ -41,85 +41,69 @@ const AddTeacherPage = (props) => {
         setIsLoading(true);
         setAdmissionFormValues(data);
 
-        const user_data = {
-            "phone": data.phone_number,
-            "password": data.phone_number,
-            "password2": data.phone_number,
-            "madrasha_id": madrasha_id
+        const teacher_data = {
+            "user": {
+                "username": data.phone_number,
+                "email": data.email,
+                "first_name": data.first_name,
+                "last_name": data.last_name,
+                "phone": data.phone_number,
+            },
+            "madrasha": madrasha_id,
+            "father_name": data.father_name,
+            "mother_name": data.mother_name,
+            "date_of_birth": data.date_of_birth,
+            "gender": data.gender,
+            "religion": data.religion,
+            "marital_status": data.marital_status,
+            "present_address": {
+                "division": data.present_address_division,
+                "district": data.present_address_district,
+                "thana": data.present_address_thana,
+                "post_office": data.present_address_post_office,
+                "post_code": data.present_address_post_code,
+                "address_info": data.present_address_address_info,
+            },
+            "permanent_address": {
+                "division": data.permanent_address_division,
+                "district": data.permanent_address_district,
+                "thana": data.permanent_address_thana,
+                "post_office": parseInt(data.permanent_address_post_office),
+                "post_code": data.permanent_address_post_code,
+                "address_info": data.permanent_address_address_info
+            },
+            "education": {
+                "degree_name": data.degree_name,
+                "institution_name": data.institution_name,
+                "passing_year": data.passing_year,
+                "result": data.result
+            },
+            "experience": {
+                "experience_name": data.experience_name,
+            },
+            "skill": {
+                "skill_name": data.skill_name
+            },
+            "phone_home": data.phone_number,
+            "nid": data.nid,
+            "birth_certificate": data.birth_certificate,
+            "nationality": data.nationality,
+            "blood_group": data.blood_group,
+            "department": data.department,
+            "designation": data.designation,
+            "starting_date": data.starting_date,
+            "ending_date": data.ending_date
         }
 
-        // Create user
-        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
-            .then(res => {
-                console.log("Result @@@",res)
-
-                if(res.data.user_id) {
-                    const teacher_data = {
-                        "user": res.data.user_id,
-                        "madrasha": madrasha_id,
-                        "father_name": data.father_name,
-                        "mother_name": data.mother_name,
-                        "date_of_birth": data.date_of_birth,
-                        "gender": data.gender,
-                        "religion": data.religion,
-                        "marital_status": data.marital_status,
-                        "present_address": {
-                            "division": data.present_address_division,
-                            "district": data.present_address_district,
-                            "thana": data.present_address_thana,
-                            "post_office": data.present_address_post_office,
-                            "post_code": data.present_address_post_code,
-                            "address_info": data.present_address_address_info,
-                        },
-                        "permanent_address": {
-                            "division": data.permanent_address_division,
-                            "district": data.permanent_address_district,
-                            "thana": data.permanent_address_thana,
-                            "post_office": data.permanent_address_post_office,
-                            "post_code": data.permanent_address_post_code,
-                            "address_info": data.permanent_address_address_info
-                        },
-                        "education": {
-                            "degree_name": data.degree_name,
-                            "institution_name": data.institution_name,
-                            "passing_year": data.passing_year,
-                            "result": data.result
-                        },
-                        "experience": {
-                            "experience_name": data.experience_name,
-                        },
-                        "skill": {
-                            "skill_name": data.skill_name
-                        },
-                        "phone_home": data.phone_number,
-                        "nid": data.nid,
-                        "birth_certificate": data.birth_certificate,
-                        "nationality": data.nationality,
-                        "blood_group": data.blood_group,
-                        "department": data.department,
-                        "designation": data.designation,
-                        "starting_date": data.starting_date,
-                        "ending_date": data.ending_date
-                    }
-
-                    // Create New Teacher
-                    api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
-                    .then((res) => {
-                        router.push('/teachers');
-                        return res && toast.success('The Teacher is Successfully added!!');
-                    })
-                    .catch((error) => {
-                        console.log("error", error)
-                    })
-                }
-
-                else {
-                    return toast.error('Users with this phone number already exist!!');
-                }
-            })
-            .catch((err) => {
-                console.log("user create err", err)
-            })
+        // Create New Teacher
+        api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
+        .then((res) => {
+            router.push('/teachers');
+            return res && toast.success('The Teacher is Successfully added!!');
+        })
+        .catch((error) => {
+            console.log("error", error)
+        })
     }
 
 
@@ -432,12 +416,12 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-4">
                                                 <h4>Permanent Address</h4>
                                             </div>
-                                            <div className="col-md-8">
+                                            {/* <div className="col-md-8">
                                                 <input type='checkbox' className="form-check-input" checked={isChecked}
                                                        onChange={handleHidingEndDate}/>
                                                 <label className="ms-3 text-success">Check the button If Permanent and
                                                     present Address are same</label>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <hr/>
                                         {isChecked ?
