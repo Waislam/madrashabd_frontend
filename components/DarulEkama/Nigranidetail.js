@@ -6,9 +6,10 @@ import studentLogo from '../../public/assets/admission/students.png'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { AmPm } from "../Utils/utils"
+import Modal from 'react-bootstrap/Modal';
 
-const Nigranidetail = ({ nigran_list }) => {
-    console.log("nigran list: ", nigran_list)
+const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow, setNigranAddModalShow }) => {
+    // console.log("nigran list: ", nigran_list)
 
     const columns = [
         {
@@ -53,7 +54,7 @@ const Nigranidetail = ({ nigran_list }) => {
             field: "start_time",
             headerName: "Start Time",
             valueFormatter: (params) => {
-                const timmeformate=AmPm(params.value)
+                const timmeformate = AmPm(params.value)
                 return timmeformate
             }
         },
@@ -61,11 +62,11 @@ const Nigranidetail = ({ nigran_list }) => {
             field: "end_time",
             headerName: "End Time",
             valueFormatter: (params) => {
-                const timmeformate=AmPm(params.value)
+                const timmeformate = AmPm(params.value)
                 return timmeformate
             }
         },
-        
+
     ]
 
 
@@ -162,7 +163,11 @@ const Nigranidetail = ({ nigran_list }) => {
                                                         <button className={styles.defaultBtn}>Search</button>
                                                     </div>
                                                     <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2 mb-2">
-                                                        <button className={styles.defaultBtn}>Add</button>
+                                                        <button className={styles.defaultBtn}
+                                                            onClick={handlePostRequest}
+                                                        >
+                                                            Add
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -184,43 +189,88 @@ const Nigranidetail = ({ nigran_list }) => {
                                                         >
                                                         </DataGrid>
                                                     </Box>
-
-                                                    {/* <div className="table-responsive">
-                                                        <table className="table table-bordered table-striped">
-                                                            <thead className="bg-dark text-white">
-                                                            <tr className="text-center">
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Teacher Name</th>
-                                                                <th scope="col">Building</th>
-                                                                <th scope="col">Floor</th>
-                                                                <th scope="col">Room</th>
-                                                                <th scope="col">Jamat</th>
-                                                                <th scope="col">Start Time</th>
-                                                                <th scope="col">End Time</th>
-                                                                <th scope="col">Status</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr className="text-center">
-                                                                <th scope="row">1</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>Dawra</td>
-                                                                <td>9.30</td>
-                                                                <td>6.30</td>
-                                                                <td>Yes</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div> */}
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
+                            </div>
+
+                            {/* Add nigran section */}
+                            <div className="add-nigran">
+                                <Modal
+                                    show={nigranaddModalShow}
+                                    onHide={() => setNigranAddModalShow(false)}
+                                    dialogClassName={`${styles.customDialog}`}
+                                    size="lg"
+                                >
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>
+                                            Add Nigran Duty
+                                        </Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <form>
+                                            <div className="row">
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">Building</label>
+                                                    <select
+                                                        className="form-select"
+                                                        name="building"
+                                                    >
+                                                        <option>building</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">Floor and Room</label>
+                                                    <select
+                                                        className="form-select"
+                                                        name="room"
+                                                    >
+                                                        <option>rooom</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">Class</label>
+                                                    <select
+                                                        className="form-select"
+                                                        name="class_nigran"
+                                                    >
+                                                        <option>class</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">Start Time</label>
+                                                    <input type="text"
+                                                    className="form-control"
+                                                    onFocus={(e)=>(e.target.type="time")}
+                                                    onBlur={(e) => (e.target.type = "text")}
+                                                    />
+                                                </div>
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">End Time</label>
+                                                    <input type="text"
+                                                    className="form-control"
+                                                    onFocus={(e)=>(e.target.type="time")}
+                                                    onBlur={(e) => (e.target.type = "text")}
+                                                    />
+                                                </div>
+
+                                                <div className="col-md-4 mb-2">
+                                                    <label className="mb-2">Teacher ID</label>
+                                                    <input type="text" className="form-control"
+                                                        placeholder="Teacher ID"
+                                                        name="teacher"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <button type="submit" className={styles.defaultBtn}>Save</button>
+                                            </div>
+                                        </form>
+                                    </Modal.Body>
+                                </Modal>
                             </div>
                         </div>
                     </div>
