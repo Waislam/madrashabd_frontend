@@ -3,6 +3,7 @@ import SettingSideMenu from "./SettingSideMenu";
 import {useRouter} from "next/router";
 
 const Building = ({building}) => {
+    console.log("buidling: info: ", building)
     const router = useRouter();
 
     return (
@@ -37,9 +38,9 @@ const Building = ({building}) => {
                                                     </thead>
                                                     <tbody>
                                                     {
-                                                        building?.map((data, index) => (
-                                                            <tr key={index}>
-                                                                <th scope="row">{index+1}</th>
+                                                       building && building?.map((data, index) => (
+                                                            <tr key={data.id}>
+                                                                <th scope="row">{data.building?.building_name}</th>
                                                                 <td className="text-sm">8</td>
                                                                 <td className="text-sm">i</td>
                                                                 <td className="text-sm">8</td>

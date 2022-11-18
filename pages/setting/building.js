@@ -31,7 +31,8 @@ const BuildingPage = (props) => {
 export async function getServerSideProps({req}) {
 
     const session_data = await getSession({req});
-    const res = await api.get(`/settings/${session_data.user?.madrasha_slug}/building/`);
+    // const res = await api.get(`/settings/${session_data.user?.madrasha_slug}/building/`);
+    const res = await api.get(`/settings/${session_data.user?.madrasha_slug}/room/`);
     const building_list = res.data;
 
     console.log("building_list :", building_list);
