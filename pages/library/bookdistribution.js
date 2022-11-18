@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 // component for Library
@@ -10,9 +10,9 @@ import Layout from '../../layouts/Layout';
 import api from "../api/api";
 
 
-const BookDistribution = () => {
+const BookDistribution = (props) => {
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -22,8 +22,6 @@ const BookDistribution = () => {
 
     const [isLoading, setLoading] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [bookDistribution, setBookDistribution] = useState({});
-    const [searchBookDistribution, setSearchBookDistribution] = useState('');
 
     const [deleteAlert, setDeleteAlert] = useState(false);
     const [deleteID, setDeleteID] = useState('');
@@ -35,22 +33,22 @@ const BookDistribution = () => {
         setShowModal(true)
     };
 
-    const getBookDistribution = async () => {
-        const list = await api.get(`library/${session.user?.madrasha_slug}/book-distribution/?search=${searchBookDistribution && searchBookDistribution}`);
-        const data = list.data;
-        setBookDistribution(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        getBookDistribution()
-    }, []);
-
-
-    // Handle Search
-    const handleSearchBtn = () => {
-        getBookDistribution()
-    };
+    // const getBookDistribution = async () => {
+    //     const list = await api.get(`library/${session.user?.madrasha_slug}/book-distribution/?search=${searchBookDistribution && searchBookDistribution}`);
+    //     const data = list.data;
+    //     setBookDistribution(data);
+    //     setLoading(false);
+    // };
+    //
+    // useEffect(() => {
+    //     getBookDistribution()
+    // }, []);
+    //
+    //
+    // // Handle Search
+    // const handleSearchBtn = () => {
+    //     getBookDistribution()
+    // };
 
     // Handle Delete
     const handleDelete = (distributionID, bookID, bookName) => {
@@ -73,15 +71,13 @@ const BookDistribution = () => {
         )
     }
 
-    if (bookDistribution) {
+    if (props.book_distribution) {
         return (
             <>
                 <BookDist
                     showmodal={handleModalShow}
                     shown={showModal}
-                    bookDistribution={bookDistribution}
-                    setSearchBookDistribution={setSearchBookDistribution}
-                    handleSearchBtn={handleSearchBtn}
+                    bookDistribution={props.book_distribution.results}
                     handleDelete={handleDelete}
 
                 />
@@ -112,6 +108,24 @@ const BookDistribution = () => {
     }
 
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/library/${session_data.user?.madrasha_slug}/book-distribution/`);
+    const book_distribution = await res.data;
+
+    console.log("book_distribution :", book_distribution);
+
+    return {
+        props: {
+            book_distribution,
+            session_data
+        }
+    }
+}
+
 
 
 export default BookDistribution;

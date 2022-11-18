@@ -1,10 +1,74 @@
 import React from "react";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from './Transport.module.css'
 import TransportSideMenu from "./TransportSideMenu";
-import { AmPm } from '../Utils/utils'
+import {AmPm} from '../Utils/utils'
 
 
 const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete}) => {
+
+    const columns = [
+        {
+            headerName: 'ID',
+            field: 'id',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Car Number',
+            field: 'car_number',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Driver Name',
+            field: 'driver_name',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Driver Number',
+            field: 'driver_number',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'route',
+            field: 'route',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Start Time',
+            field: 'start_time ',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleGariUpdate(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleGariDelete(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
+
     return (
         <>
             <section className={styles.transportSection}>
@@ -24,58 +88,34 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
                                                         <button
                                                             type="button"
                                                             className={`${styles.defaultBtn} float-md-end`}
-                                                            onClick={()=>handleAddGari()}
+                                                            onClick={() => handleAddGari()}
                                                         >
                                                             Add
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div className="cars-table">
-                                                    <div className="table-responsive">
-                                                        <table className="table table-striped">
-                                                            <thead>
-                                                            <tr>
-                                                                <th scope="col">Car Number</th>
-                                                                <th scope="col">Driver Name</th>
-                                                                <th scope="col">Driver Number</th>
-                                                                <th scope="col">Route</th>
-                                                                <th scope="col">Time</th>
-                                                                <th scope="col">Action</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            {
-                                                                 gariList && gariList?.map((data, index) => (
-                                                                    <tr key={index+1}>
-                                                                        <th scope="row">{data?.car_number}</th>
-                                                                        <td className="text-sm">{data?.driver_name}</td>
-                                                                        <td className="text-sm">{data?.driver_number}</td>
-                                                                        <td className="text-sm">{data?.route}</td>
-                                                                        <td className="text-sm">{AmPm(data?.start_time)}</td>
-                                                                        <td className="text-sm">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-info"
-                                                                                onClick={()=>handleGariUpdate(data?.id)}
-                                                                            >Edit
-                                                                            </button>
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-danger"
-                                                                                onClick={()=>handleGariDelete(data?.id)}
-                                                                            >Delete
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                ))
-                                                            }
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button type="button" className={styles.defaultBtn}>Download
-                                                    </button>
+                                                    <Box sx={{height: 500, width: '100%'}}>
+                                                        <DataGrid
+                                                            rows={gariList}
+                                                            columns={columns}
+                                                            pageSize={5}
+                                                            rowsPerPageOptions={[5]}
+                                                            checkboxSelection
+                                                            disableSelectionOnClick
+                                                            disableColumnFilter
+                                                            disableColumnSelector
+                                                            disableDensitySelector
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
+                                                            componentsProps={{
+                                                                toolbar: {
+                                                                    showQuickFilter: true,
+                                                                    quickFilterProps: {debounceMs: 500},
+                                                                },
+                                                            }}
+                                                        />
+                                                    </Box>
                                                 </div>
                                             </div>
                                         </div>

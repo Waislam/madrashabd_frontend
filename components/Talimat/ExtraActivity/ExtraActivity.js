@@ -1,11 +1,78 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from './ExtraActivity.module.css'
-import studentLogo from '../../../public/assets/admission/students.png'
 import Talimat from "../Talimat";
 
 const ExtraActivity = ({extraActivity, handleAddExtraActivity, handleDeleteExtraActivity, handleUpdateExtraActivityModal}) => {
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Date',
+            field: 'date',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Category',
+            field: 'category',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Duration',
+            field: 'duration',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Start Time',
+            field: 'start_time',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Place',
+            field: 'place',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Managed By',
+            field: 'managed_by',
+            width: 150,
+            editable: true,
+        },
+
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleUpdateExtraActivityModal(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteExtraActivity(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
 
     return (
         <>
@@ -32,53 +99,27 @@ const ExtraActivity = ({extraActivity, handleAddExtraActivity, handleDeleteExtra
                                                 </div>
                                             </div>
                                             <div className="details-table mt-4">
-                                                <div className="table-responsive">
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Programe Name</th>
-                                                            <th scope="col">Duration</th>
-                                                            <th scope="col">start Time</th>
-                                                            <th scope="col">place</th>
-                                                            <th scope="col">Managed By</th>
-                                                            <th scope="col" className="text-center">Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {
-                                                            extraActivity?.map((data, index) => (
-                                                                <tr key={index + 1}>
-                                                                    <th scope="row">{index + 1}</th>
-                                                                    <td className="text-sm">{data.date}</td>
-                                                                    <td className="text-sm">{data?.category}</td>
-                                                                    <td className="text-sm">{data?.duration}</td>
-                                                                    <td className="text-sm">{data?.start_time}</td>
-                                                                    <td className="text-sm">{data?.place}</td>
-                                                                    <td className="text-sm">{data?.managed_by}</td>
-                                                                    <td className="text-center">
-                                                                        <button
-                                                                            type="button"
-                                                                            className={`btn btn-primary me-2`}
-                                                                            onClick={() => handleUpdateExtraActivityModal(data.id)}
-                                                                        >
-                                                                            Edit
-                                                                        </button>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-danger"
-                                                                            onClick={() => handleDeleteExtraActivity(data.id)}
-                                                                        >
-                                                                            Delete
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                <Box sx={{height: 500, width: '100%'}}>
+                                                    <DataGrid
+                                                        rows={extraActivity}
+                                                        columns={columns}
+                                                        pageSize={5}
+                                                        rowsPerPageOptions={[5]}
+                                                        checkboxSelection
+                                                        disableSelectionOnClick
+                                                        disableColumnFilter
+                                                        disableColumnSelector
+                                                        disableDensitySelector
+                                                        components={{Toolbar: GridToolbar}}
+                                                        experimentalFeatures={{newEditingApi: false}}
+                                                        componentsProps={{
+                                                            toolbar: {
+                                                                showQuickFilter: true,
+                                                                quickFilterProps: {debounceMs: 500},
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </div>
                                         </div>
                                     </div>

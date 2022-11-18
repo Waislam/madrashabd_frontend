@@ -29,8 +29,8 @@ const StudentDetail = ({student}) => {
 
 
 export async function getServerSideProps({ req, params }) {
-    const session = await getSession({ req })
-    const student = await getStudentDetailApi(params.slug)
+    const session = await getSession({ req });
+    const student = await getStudentDetailApi(params.slug);
 
     return {
         props: {

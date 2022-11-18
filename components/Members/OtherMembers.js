@@ -1,8 +1,59 @@
+import React from "react";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
 
 const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOtherMemberModal, handleDeleteOtherMemberModal}) => {
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'member_name',
+            headerName: 'Member Name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'address',
+            headerName: 'Address',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'phone_number',
+            headerName: 'Phone',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleUpdateOtherMemberModal(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteOtherMemberModal(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
 
     return (
         <>
@@ -23,52 +74,34 @@ const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOther
                                                     <button
                                                         type="button"
                                                         className={`${styles.defaultBtn} float-end`}
-                                                        onClick={()=>handleAddOtherMemberModal()}
+                                                        onClick={() => handleAddOtherMemberModal()}
                                                     >Add
                                                     </button>
                                                 </div>
                                             </div>
                                             <div className="books-table mt-3">
-                                                <div className="table-responsive">
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Member Name</th>
-                                                            <th scope="col">Address</th>
-                                                            <th scope="col">Phone</th>
-                                                            <th scope="col" className="text-center">Edit</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {
-                                                            otherMember?.map((data, index) => (
-                                                                <tr key={data.id}>
-                                                                    <th scope="row">{index + 1}</th>
-                                                                    <td className="text-sm">{data?.member_name}</td>
-                                                                    <td className="text-sm">{data?.address}</td>
-                                                                    <td className="text-sm">{data?.phone_number}</td>
-                                                                    <td className="text-center">
-                                                                        <button
-                                                                            type="button"
-                                                                            className={`${styles.editButton}`}
-                                                                            onClick={(e)=>handleUpdateOtherMemberModal(e, data.id)}
-                                                                        >
-                                                                            Edit
-                                                                        </button>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-danger"
-                                                                            onClick={()=>handleDeleteOtherMemberModal(data.id)}
-                                                                        >Delete
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+
+                                                <Box sx={{height: 500, width: '100%'}}>
+                                                    <DataGrid
+                                                        rows={otherMember}
+                                                        columns={columns}
+                                                        pageSize={5}
+                                                        rowsPerPageOptions={[5]}
+                                                        checkboxSelection
+                                                        disableSelectionOnClick
+                                                        disableColumnFilter
+                                                        disableColumnSelector
+                                                        disableDensitySelector
+                                                        components={{Toolbar: GridToolbar}}
+                                                        experimentalFeatures={{newEditingApi: false}}
+                                                        componentsProps={{
+                                                            toolbar: {
+                                                                showQuickFilter: true,
+                                                                quickFilterProps: {debounceMs: 500},
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </div>
                                         </div>
                                     </div>
