@@ -10,9 +10,16 @@ import api from "../api/api"
 const NigranidetailPage = (props) => {
     const router = useRouter();
     const { data: session, status } = useSession();
+    // console.log("session: ", )
+    const madrasha_slug = session?.user?.madrasha_slug
 
     const nigranList = props.nigranList
     const [nigranaddModalShow, setNigranAddModalShow] = useState(false)
+    const [buildingList, setBuildingList] = useState(null)
+    const [buildingId, setBuildingId] = useState('')
+    const [roomList, setRoomList] = useState('')
+    const [madrashaClassList, setMadrashaClassList] = useState(null)
+
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -20,10 +27,41 @@ const NigranidetailPage = (props) => {
         }
     });
 
+    //get building list
+    const getBuildingList = async () => {
+        const list = await api.get(`/settings/${madrasha_slug}/building/`)
+        const buildingListData = list.data
+        setBuildingList(buildingListData)
+    }
+
+    //on building selection get room list
+    const getRoomList = async (e) => {
+        e?.preventDefault()
+        const building = e?.target?.value
+        setBuildingId(building)
+        // setBuildingValue(building)
+        const roomList = await api.get(`/settings/${madrasha_slug}/room/${building}/`)
+        const room_list = roomList.data
+        setRoomList(room_list)
+    }
+
+    // get madrasha class list
+    const getClassList = async () => {
+        const classList = await api.get(`/settings/${madrasha_slug}/classes/`)
+        const classlistData = classList.data
+        setMadrashaClassList(classlistData)
+    }
+
+
     //handlePostmodal 
     const handlePostmodal = () => {
+        getBuildingList()
+        getRoomList()
+        getClassList()
         setNigranAddModalShow(true)
     }
+
+
 
 
     return (
@@ -33,6 +71,11 @@ const NigranidetailPage = (props) => {
                 handlePostRequest={handlePostmodal}
                 nigranaddModalShow={nigranaddModalShow}
                 setNigranAddModalShow={setNigranAddModalShow}
+                building_list={buildingList}
+                building_id={buildingId}
+                getRoomList={getRoomList}
+                room_list={roomList}
+                madrasha_class_list={madrashaClassList}
             />
         </div>
     )

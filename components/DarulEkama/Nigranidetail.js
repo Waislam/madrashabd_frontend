@@ -7,9 +7,21 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { AmPm } from "../Utils/utils"
 import Modal from 'react-bootstrap/Modal';
+import { useForm, Controller } from "react-hook-form"
+import Select from "react-select";
 
-const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow, setNigranAddModalShow }) => {
-    // console.log("nigran list: ", nigran_list)
+const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow,
+    setNigranAddModalShow, building_list, getRoomList, room_list, madrasha_class_list
+}) => {
+    // console.log("room list: ", madrasha_class_list)
+
+    const { register, handleSubmit, formState: { errors }, control } = useForm({ mode: "all" })
+
+    const onSubmit = (values)=>{
+        console.log("values from form: ", values)
+    }
+
+
 
     const columns = [
         {
@@ -211,50 +223,89 @@ const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow, set
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <form>
+                                        <form onSubmit={handleSubmit(onSubmit)}>
                                             <div className="row">
                                                 <div className="col-md-4 mb-2">
                                                     <label className="mb-2">Building</label>
                                                     <select
                                                         className="form-select"
                                                         name="building"
+                                                        {...register("building")}
+                                                        onClick={getRoomList}
                                                     >
-                                                        <option>building</option>
+                                                        <option>Select Building</option>
+                                                        {building_list && building_list.map((building) => (
+                                                            <option
+                                                                value={building.id}
+                                                                key={building.building_name}
+                                                            >
+                                                                {building.building_name}
+                                                            </option>
+                                                        ))}
                                                     </select>
                                                 </div>
+
                                                 <div className="col-md-4 mb-2">
                                                     <label className="mb-2">Floor and Room</label>
-                                                    <select
-                                                        className="form-select"
+                                                    <Controller
+                                                        control={control}
+                                                        // defaultValue={default_value}
                                                         name="room"
-                                                    >
-                                                        <option>rooom</option>
-                                                    </select>
+                                                        // {...register("room")}
+                                                        render={({ onChange, value, name, ref }) => (
+                                                        // render={({ name }) => (
+                                                            <Select
+                                                                isMulti
+                                                                inputRef={ref}
+                                                                options={room_list && room_list.map((room, text) => {
+                                                                    return {
+                                                                        value: room?.id,
+                                                                        label: room?.room_name
+                                                                    }
+                                                                })}
+                                                            // value={options.find(c => c.value === value)}
+                                                            // onChange={val => onChange(val.value)}
+                                                            />
+                                                        )}
+                                                    />
                                                 </div>
+
                                                 <div className="col-md-4 mb-2">
                                                     <label className="mb-2">Class</label>
                                                     <select
                                                         className="form-select"
                                                         name="class_nigran"
+                                                        {...register("class_nigran")}
                                                     >
-                                                        <option>class</option>
+                                                        <option>Select Class</option>
+                                                        {madrasha_class_list && madrasha_class_list.map((kelas) => (
+                                                            <option value={kelas.id} key={kelas.name}>
+                                                                {kelas.name}
+                                                            </option>
+                                                        ))}
                                                     </select>
                                                 </div>
                                                 <div className="col-md-4 mb-2">
                                                     <label className="mb-2">Start Time</label>
                                                     <input type="text"
-                                                    className="form-control"
-                                                    onFocus={(e)=>(e.target.type="time")}
-                                                    onBlur={(e) => (e.target.type = "text")}
+                                                        className="form-control"
+                                                        onFocus={(e) => (e.target.type = "time")}
+                                                        onBlur={(e) => (e.target.type = "text")}
+                                                        name="start_time"
+                                                        {...register("start_time", { required: "Starting time is required" })}
                                                     />
+                                                    <p className="text-danger">{errors.start_time?.message}</p>
                                                 </div>
                                                 <div className="col-md-4 mb-2">
                                                     <label className="mb-2">End Time</label>
                                                     <input type="text"
-                                                    className="form-control"
-                                                    onFocus={(e)=>(e.target.type="time")}
-                                                    onBlur={(e) => (e.target.type = "text")}
+                                                        className="form-control"
+                                                        onFocus={(e) => (e.target.type = "time")}
+                                                        onBlur={(e) => (e.target.type = "text")}
+                                                        name="end_time"
+                                                        {...register("end_time", { required: "Ending time is required" })}
                                                     />
+                                                    <p className="text-danger">{errors.end_time?.message}</p>
                                                 </div>
 
                                                 <div className="col-md-4 mb-2">
@@ -262,11 +313,13 @@ const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow, set
                                                     <input type="text" className="form-control"
                                                         placeholder="Teacher ID"
                                                         name="teacher"
+                                                        {...register("teacher", { required: "Teacher Id is required" })}
                                                     />
+                                                    <p className="text-danger">{errors.teacher?.message}</p>
                                                 </div>
                                             </div>
-                                            <div className="col-md-4">
-                                                <button type="submit" className={styles.defaultBtn}>Save</button>
+                                            <div className="col-md-12">
+                                                <button className={styles.defaultBtn}>Save</button>
                                             </div>
                                         </form>
                                     </Modal.Body>
