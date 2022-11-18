@@ -84,7 +84,6 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
                 );
             }
         },
-
     ];
 
     return (
