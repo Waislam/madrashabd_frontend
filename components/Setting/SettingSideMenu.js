@@ -63,6 +63,11 @@ const SettingSideMenu = () => {
                                     <a className="ps-5">Examination Rules</a>
                                 </Link>
                             </div>
+                            <div className={router.pathname=="/setting/building" ? `${styles.activeLink}`: `${styles.inActiveLink}`}>
+                                <Link href="/setting/building">
+                                    <a className="ps-5">Building</a>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

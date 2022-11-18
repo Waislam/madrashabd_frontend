@@ -3,7 +3,6 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
-import {useEffect, useState} from "react";
 
 // Shift component
 import Shift from "../../components/Setting/Shift"
