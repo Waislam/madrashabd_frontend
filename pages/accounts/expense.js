@@ -1,6 +1,6 @@
 import {ApiError} from "next/dist/server/api-utils";
 import React, {useEffect, useState} from "react";
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api, {BASE_URL} from '../api/api'
 import axios from "axios";
@@ -12,10 +12,10 @@ import AddExpenseModal from "../../components/Account/Modals/AddExpenseModal"
 import UpdateExpenseModal from "../../components/Account/Modals/UpdateExpenseModal"
 
 
-const ExpensePage = () => {
+const ExpensePage = (props) => {
 
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -57,17 +57,6 @@ const ExpensePage = () => {
     }, [expenseCategoryValue]);
 
 
-    // handle get exepense list data
-    const getExpenseList = async () => {
-        const list = await api.get(`transactions/${session.user?.madrasha_slug}/expense/`);
-        const data = list.data;
-        setExpenseList(data)
-    };
-
-    useEffect(() => {
-        getExpenseList()
-    }, []);
-
     // Post request handling for expense
     const handleAddExpenseModal = (e) => {
         e.preventDefault();
@@ -87,7 +76,7 @@ const ExpensePage = () => {
     return (
         <div>
             <Expense
-                expenseList={expenseList}
+                expenseList={props.expense_list.results}
                 approved="waliul Islam"
                 handleAddExpenseModal={handleAddExpenseModal}
                 handleIndividualObj={handleIndividualObj}
@@ -116,6 +105,22 @@ const ExpensePage = () => {
         </div>
     )
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/transactions/${session_data.user?.madrasha_slug}/expense/`);
+    const expense_list = await res.data;
+
+    return {
+        props: {
+            expense_list,
+            session_data
+        }
+    }
+}
+
 
 export default ExpensePage;
 

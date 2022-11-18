@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api, {BASE_URL} from '../api/api'
 import axios from "axios"
@@ -13,9 +13,9 @@ import AddStudentIncomeModal from "../../components/Account/Modals/AddStudentInc
 import StudentIncomeUpdateModal from "../../components/Account/Modals/UpdateStudentIncomeModal"
 
 
-const Accounts = () => {
+const Accounts = (props) => {
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -64,18 +64,6 @@ const Accounts = () => {
         getTransactioSubCategory()
     }, [transactionCaterory]);
 
-
-    //Get Student income Data as list
-    const getStudentIncomeData = async () => {
-        const list = await api.get(`transactions/${session.user?.madrasha_slug}/student-income/`);
-        const data = list.data;
-        setStudentIncome(data)
-    };
-
-    useEffect(() => {
-        getStudentIncomeData()
-    }, []);
-
     const handleModalShow = () => {
         setShowModal(true)
     };
@@ -96,7 +84,7 @@ const Accounts = () => {
     return (
         <>
             <Account
-                studentIncomeList={studentIncome}
+                studentIncomeList={props.transaction_student_income.results}
                 addStudentIncomekModalShow={handleModalShow}
                 handleModalShowandId={getStudentIncomeIndividualData}
             />
@@ -128,6 +116,20 @@ const Accounts = () => {
         </>
     )
 };
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/transactions/${session_data.user?.madrasha_slug}/student-income/`);
+    const transaction_student_income = await res.data;
+
+    return {
+        props: {
+            transaction_student_income,
+            session_data
+        }
+    }
+}
 
 
 export default Accounts;

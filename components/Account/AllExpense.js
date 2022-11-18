@@ -2,16 +2,90 @@ import React from "react";
 import styles from './Account.module.css'
 import AccountSideBar from './AccountSidebar'
 import Link from "next/link";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 
-const Expense = ({
-    expenseList,
-    approved,
-    handleAddExpenseModal,
-    handleIndividualObj
-}) => {
+const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividualObj}) => {
 
-    if(!expenseList){
-        return(
+    const columns = [
+        {
+            headerName: 'ID',
+            field: 'id',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Category',
+            field: 'category',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.category.name}`,
+        },
+
+        {
+            headerName: 'Sub Category',
+            field: 'sub_category',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.sub_category.name}`,
+        },
+        {
+            headerName: 'Description',
+            field: 'description',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Amount',
+            field: 'amount',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Date',
+            field: 'date',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Receipt Number',
+            field: 'receipt_number',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Expense By',
+            field: 'expense_by',
+            sortable: false,
+            width: 160
+        },
+        {
+            headerName: 'Approved By',
+            field: 'approved_by',
+            sortable: false,
+            width: 160
+        },
+        {
+            field: 'Action',
+            headerName: 'Detail',
+            sortable: false,
+            width: 160,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button className="btn btn-primary"
+                                onClick={() => handleIndividualObj(params.row.id)}>Edit
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
+
+    if (!expenseList) {
+        return (
             <>
                 <h1>Loading data.. please refresh your page</h1>
             </>
@@ -36,180 +110,168 @@ const Expense = ({
                                                     <h4>All Expense</h4>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get Summary</button>
-                                                    <button type="button" className={`${styles.defaultBtn} float-md-end`} onClick={handleAddExpenseModal}>Add Expense</button>
+                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get
+                                                        Summary
+                                                    </button>
+                                                    <button type="button"
+                                                            className={`${styles.defaultBtn} float-md-end`}
+                                                            onClick={handleAddExpenseModal}>Add Expense
+                                                    </button>
                                                 </div>
                                             </div>
                                             <hr/>
                                             <div className="search-section">
-                                                <form action="#">
-                                                    <div className="row">
-                                                        <div className="col-md-10">
-                                                            <div className="row">
-                                                                <div className="col-md-3 mb-3">
-                                                                    <div className="input-group">
-                                                                        <input
-                                                                            type="text"
-                                                                            name="category"
-                                                                            placeholder="Category"
-                                                                            className="form-control"
-                                                                        />
-                                                                        <button type="text"
-                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                            <span className="visually-hidden">Toggle dropdown</span>
-                                                                        </button>
-                                                                        <ul className="dropdown-menu dropdown-menu-end">
-                                                                            <li>
-                                                                                <a className="dropdown-item">category
-                                                                                    one</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a className="dropdown-item">category
-                                                                                    two</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-md-3 mb-3">
-                                                                    <div className="input-group">
-                                                                        <input
-                                                                            type="text"
-                                                                            name="subcategory"
-                                                                            placeholder="Sub Category"
-                                                                            className="form-control"
-                                                                        />
-                                                                        <button type="text"
-                                                                                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                            <span className="visually-hidden">Toggle dropdown</span>
-                                                                        </button>
-                                                                        <ul className="dropdown-menu dropdown-menu-end">
-                                                                            <li>
-                                                                                <a className="dropdown-item">category
-                                                                                    one</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a className="dropdown-item">category
-                                                                                    two</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-md-3 mb-3">
-                                                                    <input
-                                                                        type="text"
-                                                                        name="from_date"
-                                                                        placeholder="From date"
-                                                                        onChange={(e) => console.log(e.target.value)}
-                                                                        onFocus={(e) => (e.target.type = "date")}
-                                                                        onBlur={(e) => (e.target.type = "text")}
-                                                                        className="form-control"
-                                                                    />
-                                                                </div>
-                                                                <div className="col-md-3 mb-3">
-                                                                    <input
-                                                                        type="text"
-                                                                        name="from_date"
-                                                                        placeholder="To date"
-                                                                        onChange={(e) => console.log(e.target.value)}
-                                                                        onFocus={(e) => (e.target.type = "date")}
-                                                                        onBlur={(e) => (e.target.type = "text")}
-                                                                        className="form-control"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-2">
-                                                            <button className={`${styles.defaultBtn} float-md-end`}>Search</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                {/*<form action="#">*/}
+                                                {/*<div className="row">*/}
+                                                {/*<div className="col-md-10">*/}
+                                                {/*<div className="row">*/}
+                                                {/*<div className="col-md-3 mb-3">*/}
+                                                {/*<div className="input-group">*/}
+                                                {/*<input*/}
+                                                {/*type="text"*/}
+                                                {/*name="category"*/}
+                                                {/*placeholder="Category"*/}
+                                                {/*className="form-control"*/}
+                                                {/*/>*/}
+                                                {/*<button type="text"*/}
+                                                {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
+                                                {/*data-bs-toggle="dropdown"*/}
+                                                {/*aria-expanded="false">*/}
+                                                {/*<span className="visually-hidden">Toggle dropdown</span>*/}
+                                                {/*</button>*/}
+                                                {/*<ul className="dropdown-menu dropdown-menu-end">*/}
+                                                {/*<li>*/}
+                                                {/*<a className="dropdown-item">category*/}
+                                                {/*one</a>*/}
+                                                {/*</li>*/}
+                                                {/*<li>*/}
+                                                {/*<a className="dropdown-item">category*/}
+                                                {/*two</a>*/}
+                                                {/*</li>*/}
+                                                {/*</ul>*/}
+                                                {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="col-md-3 mb-3">*/}
+                                                {/*<div className="input-group">*/}
+                                                {/*<input*/}
+                                                {/*type="text"*/}
+                                                {/*name="subcategory"*/}
+                                                {/*placeholder="Sub Category"*/}
+                                                {/*className="form-control"*/}
+                                                {/*/>*/}
+                                                {/*<button type="text"*/}
+                                                {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
+                                                {/*data-bs-toggle="dropdown"*/}
+                                                {/*aria-expanded="false">*/}
+                                                {/*<span className="visually-hidden">Toggle dropdown</span>*/}
+                                                {/*</button>*/}
+                                                {/*<ul className="dropdown-menu dropdown-menu-end">*/}
+                                                {/*<li>*/}
+                                                {/*<a className="dropdown-item">category*/}
+                                                {/*one</a>*/}
+                                                {/*</li>*/}
+                                                {/*<li>*/}
+                                                {/*<a className="dropdown-item">category*/}
+                                                {/*two</a>*/}
+                                                {/*</li>*/}
+                                                {/*</ul>*/}
+                                                {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="col-md-3 mb-3">*/}
+                                                {/*<input*/}
+                                                {/*type="text"*/}
+                                                {/*name="from_date"*/}
+                                                {/*placeholder="From date"*/}
+                                                {/*onChange={(e) => console.log(e.target.value)}*/}
+                                                {/*onFocus={(e) => (e.target.type = "date")}*/}
+                                                {/*onBlur={(e) => (e.target.type = "text")}*/}
+                                                {/*className="form-control"*/}
+                                                {/*/>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="col-md-3 mb-3">*/}
+                                                {/*<input*/}
+                                                {/*type="text"*/}
+                                                {/*name="from_date"*/}
+                                                {/*placeholder="To date"*/}
+                                                {/*onChange={(e) => console.log(e.target.value)}*/}
+                                                {/*onFocus={(e) => (e.target.type = "date")}*/}
+                                                {/*onBlur={(e) => (e.target.type = "text")}*/}
+                                                {/*className="form-control"*/}
+                                                {/*/>*/}
+                                                {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="col-md-2">*/}
+                                                {/*<button className={`${styles.defaultBtn} float-md-end`}>Search</button>*/}
+                                                {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*</form>*/}
                                             </div>
                                             <div className="get-list mt-4">
                                                 <div className="table-responsive">
-                                                    <table className="table table-striped table-bordered">
-                                                        <thead className="bg-gray text-dark">
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Category</th>
-                                                            <th scope="col">Sub-Category</th>
-                                                            <th scope="col">Description</th>
-                                                            <th scope="col">Amount</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Receipt Number</th>
-                                                            <th scope="col">Expense by</th>
-                                                            <th scope="col">Approved By</th>
-                                                            <th scope="col">Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {expenseList && expenseList.results.map((expense) => (
-                                                            <tr key={expense.id}>
-                                                                <th scope="row">
-                                                                    <Link href="" style={{color: "#5CBD67"}}>
-                                                                        {expense.id}
-                                                                    </Link>
-                                                                </th>
-                                                                <td>{expense.category.name}</td>
-                                                                <td>{expense.sub_category.name}</td>
-                                                                <td>{expense.description}</td>
-                                                                <td>{expense.amount}</td>
-                                                                <td>{expense.date}</td>
-                                                                <td>{expense.receipt_number}</td>
-                                                                <td>{expense.expense_by}</td>
-                                                                <td>{approved}</td>
-                                                                <td className="text-center">
-                                                                    <a className="btn btn-primary" onClick={() => handleIndividualObj(expense.id)}>Edit</a>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
-                                                        </tbody>
-                                                    </table>
+                                                    <Box sx={{height: 500, width: '100%'}}>
+                                                        <DataGrid
+                                                            rows={expenseList}
+                                                            columns={columns}
+                                                            pageSize={5}
+                                                            rowsPerPageOptions={[5]}
+                                                            checkboxSelection
+                                                            disableSelectionOnClick
+                                                            disableColumnFilter
+                                                            disableColumnSelector
+                                                            disableDensitySelector
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
+                                                            componentsProps={{
+                                                                toolbar: {
+                                                                    showQuickFilter: true,
+                                                                    quickFilterProps: {debounceMs: 500},
+                                                                },
+                                                            }}
+                                                        />
+                                                    </Box>
                                                 </div>
                                                 <div className="row">
-                                                    <div className="col-md-7">
-                                                        <button className={styles.defaultBtn}>Download PDF</button>
-                                                    </div>
-                                                    <div className="pagination-class col-md-4">
-                                                        <nav aria-label="page navigation" className="">
-                                                            <ul className="pagination float-end">
-                                                                <li className="page-item">
-                                                                    <a className="page-link" href="">Previous</a>
-                                                                </li>
-                                                                <li className="page-item">
-                                                                    <a className="page-link" href="">1</a>
-                                                                </li>
-                                                                <li className="page-item">
-                                                                    <a className="page-link" href="">Next</a>
-                                                                </li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
-                                                    <div className="page-size col-md-1">
-                                                        <div className="float-end" style={{width: 80}}>
-                                                            <div className="input-group">
-                                                                <input type="text" className="form-control"
-                                                                       placeholder="10"/>
-                                                                <button type="button"
-                                                                        className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <span
-                                                                        className="visually-hidden">Toggle dropdown</span>
-                                                                </button>
-                                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                                    <li>
-                                                                        <a className="dropdown-item">10</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a className="dropdown-item">20</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {/*<div className="col-md-7">*/}
+                                                    {/*<button className={styles.defaultBtn}>Download PDF</button>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="pagination-class col-md-4">*/}
+                                                    {/*<nav aria-label="page navigation" className="">*/}
+                                                    {/*<ul className="pagination float-end">*/}
+                                                    {/*<li className="page-item">*/}
+                                                    {/*<a className="page-link" href="">Previous</a>*/}
+                                                    {/*</li>*/}
+                                                    {/*<li className="page-item">*/}
+                                                    {/*<a className="page-link" href="">1</a>*/}
+                                                    {/*</li>*/}
+                                                    {/*<li className="page-item">*/}
+                                                    {/*<a className="page-link" href="">Next</a>*/}
+                                                    {/*</li>*/}
+                                                    {/*</ul>*/}
+                                                    {/*</nav>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="page-size col-md-1">*/}
+                                                    {/*<div className="float-end" style={{width: 80}}>*/}
+                                                    {/*<div className="input-group">*/}
+                                                    {/*<input type="text" className="form-control"*/}
+                                                    {/*placeholder="10"/>*/}
+                                                    {/*<button type="button"*/}
+                                                    {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
+                                                    {/*data-bs-toggle="dropdown" aria-expanded="false">*/}
+                                                    {/*<span*/}
+                                                    {/*className="visually-hidden">Toggle dropdown</span>*/}
+                                                    {/*</button>*/}
+                                                    {/*<ul className="dropdown-menu dropdown-menu-end">*/}
+                                                    {/*<li>*/}
+                                                    {/*<a className="dropdown-item">10</a>*/}
+                                                    {/*</li>*/}
+                                                    {/*<li>*/}
+                                                    {/*<a className="dropdown-item">20</a>*/}
+                                                    {/*</li>*/}
+                                                    {/*</ul>*/}
+                                                    {/*</div>*/}
+                                                    {/*</div>*/}
+                                                    {/*</div>*/}
                                                 </div>
                                             </div>
                                             {/* Add section */}
