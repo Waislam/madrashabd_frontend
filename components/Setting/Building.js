@@ -3,7 +3,7 @@ import SettingSideMenu from "./SettingSideMenu";
 import {useRouter} from "next/router";
 
 const Building = ({building}) => {
-    console.log("buidling: info: ", building)
+    console.log("buidling info: ", building)
     const router = useRouter();
 
     return (
@@ -33,17 +33,19 @@ const Building = ({building}) => {
                                                         <th scope="col">Building</th>
                                                         <th scope="col">Total Floor</th>
                                                         <th scope="col">Total Room</th>
-                                                        <th scope="col" className="text-center">Edit</th>
+                                                        <th scope="col" className="text-center">Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     {
                                                        building && building?.map((data, index) => (
                                                             <tr key={data.id}>
-                                                                <th scope="row">{data.building?.building_name}</th>
-                                                                <td className="text-sm">8</td>
-                                                                <td className="text-sm">i</td>
-                                                                <td className="text-sm">8</td>
+                                                                <th scope="row">{data.building_name}</th>
+                                                                <td className="text-sm">{data.total_floor}</td>
+                                                                <td className="text-sm">{data.total_room}</td>
+                                                                <td className="text-sm text-center">
+                                                                    <button className="btn btn-primary">Edit</button>
+                                                                </td>
                                                             </tr>
                                                         ))
                                                     }
