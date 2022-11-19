@@ -2,8 +2,8 @@ import React from "react";
 import SettingSideMenu from "./SettingSideMenu";
 import {useRouter} from "next/router";
 
-const Building = ({building}) => {
-    console.log("buidling info: ", building)
+const Building = ({building, handleBuildingModal, handleUpdateBuildingModal}) => {
+    console.log("buidling info: ", building);
     const router = useRouter();
 
     return (
@@ -21,7 +21,7 @@ const Building = ({building}) => {
                                                 <h2><u>Building</u></h2>
                                             </div>
                                             <div className="col-md-6">
-                                                <button type="button" className={`btn btn-primary float-end`}>Add
+                                                <button type="button" className={`btn btn-primary float-end`} onClick={()=>handleBuildingModal()}>Add
                                                 </button>
                                             </div>
                                         </div>
@@ -30,6 +30,7 @@ const Building = ({building}) => {
                                                 <table className="table table-striped">
                                                     <thead>
                                                     <tr>
+                                                        <th scope="col">ID</th>
                                                         <th scope="col">Building</th>
                                                         <th scope="col">Total Floor</th>
                                                         <th scope="col">Total Room</th>
@@ -40,11 +41,12 @@ const Building = ({building}) => {
                                                     {
                                                        building && building?.map((data, index) => (
                                                             <tr key={data.id}>
+                                                                <th scope="row">{index + 1}</th>
                                                                 <th scope="row">{data.building_name}</th>
                                                                 <td className="text-sm">{data.total_floor}</td>
                                                                 <td className="text-sm">{data.total_room}</td>
                                                                 <td className="text-sm text-center">
-                                                                    <button className="btn btn-primary">Edit</button>
+                                                                    <button className="btn btn-primary" onClick={()=>handleUpdateBuildingModal(data.id)}>Edit</button>
                                                                 </td>
                                                             </tr>
                                                         ))
