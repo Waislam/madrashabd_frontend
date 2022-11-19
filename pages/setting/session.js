@@ -3,9 +3,7 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
-import {useEffect, useState} from "react";
-import Modal from "react-bootstrap/Modal";
-import {useForm} from "react-hook-form";
+
 
 // Setting Component
 import Session from "../../components/Setting/Session"

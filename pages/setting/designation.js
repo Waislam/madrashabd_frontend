@@ -1,7 +1,7 @@
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
 import {useEffect, useState} from "react";
-import {useSession} from "next-auth/react";
+import {useSession, getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 // Setting Component
@@ -30,7 +30,7 @@ const DesignationPage = () => {
 
     // Department List collection
     const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/${session.user?.madrasha_slug}/department/`);
+        const list = await axios.get(`${BASE_URL}/settings/${session?.user?.madrasha_slug}/department/`);
         const departments = list.data;
         setDepartmentList(departments)
     };
