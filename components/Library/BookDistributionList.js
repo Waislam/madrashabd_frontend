@@ -1,9 +1,90 @@
 import styles from './BookList.module.css'
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import Sidemenu from './LibrarySideMenu'
 import Modal from './BookDistributionListModal'
 import Link from 'next/link'
 
-const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution, handleSearchBtn, handleDelete}) => {
+const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
+    const columns = [
+        {
+            headerName: 'Student ID',
+            field: 'id',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Student Name',
+            field: 'first_name',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.student_roll_id?.user?.first_name} ${params.row.student_roll_id?.user?.last_name}`,
+        },
+        {
+            headerName: 'Class',
+            field: 'name',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.student_roll_id?.admitted_class?.name}`,
+        },
+        {
+            headerName: 'Phone',
+            field: 'phone',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.student_roll_id?.user?.phone}`,
+        },
+        {
+            headerName: 'Book Number',
+            field: 'number',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.student_roll_id?.book_number?.number}`,
+        },
+        {
+
+            headerName: 'Book Name',
+            field: 'name',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row?.book_number?.name}`,
+        },
+        {
+
+            headerName: 'Taken Date',
+            field: 'taken_date',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row?.taken_date}`,
+        },
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary">
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDelete(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
 
     return (
         <>
@@ -24,79 +105,28 @@ const BookList = ({showmodal, shown, bookDistribution, setSearchBookDistribution
                                                     <h4><u>Book Distribution List</u></h4>
                                                 </div>
                                             </div>
-                                            <div className='search-option'>
-                                                <form>
-                                                    <div className='row'>
-                                                        <div className="col-md-6 my-2">
-                                                            <input
-                                                                type="text"
-                                                                className="form-control"
-                                                                placeholder="Search"
-                                                                onChange={(event) => setSearchBookDistribution(event.target.value)}
-                                                            />
-                                                        </div>
-                                                        <div className="col-md-3 my-1">
-                                                            <button type="button"
-                                                                className={`${styles.defaultBtn} ${styles.modalBtn}`}
-                                                                onClick={handleSearchBtn}
-                                                        >
-                                                            Search
-                                                        </button>
-                                                        </div>
-                                                        <div className='col-md-3'>
-                                                            <button type='button'
-                                                                    className={`${styles.defaultBtn} ${styles.modalBtn} float-end `}
-                                                                    onClick={showmodal}>Add
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
                                             <div className="book-list-table">
-                                                <div className="table-responsive">
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">Student ID</th>
-                                                            <th scope="col">Name</th>
-                                                            <th scope="col">Class</th>
-                                                            <th scope="col">Contact</th>
-                                                            <th scope="col">Book Number</th>
-                                                            <th scope="col">Book Name</th>
-                                                            <th scope="col">Taken Date</th>
-                                                            <th scope="col">Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {
-                                                            bookDistribution && bookDistribution.results?.map((book) => (
-                                                                <tr key={book.id}>
-                                                                    <th scope="row">
-                                                                        <Link href="/" style={{color: "#5CBD67"}}>
-                                                                            <a>{book.student_roll_id?.student_id}</a>
-                                                                        </Link>
-                                                                    </th>
-                                                                    <td>{book.student_roll_id?.user?.username}</td>
-                                                                    <td>{book.student_roll_id?.admitted_class?.name}</td>
-                                                                    <td>{book.student_roll_id?.user?.phone}</td>
-                                                                    <td>{book.book_number?.number}</td>
-                                                                    <td>{book.book_number?.name}</td>
-                                                                    <td>{book.taken_date}</td>
-                                                                    <td className="text-center">
-                                                                        <button className="btn btn-primary">Edit</button>
-                                                                        <button className="btn btn-danger ms-3" onClick={() =>handleDelete(book.id, book.book_number.id, book.book_number.name)}>Delete</button>
-                                                                    </td>
-
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div>
-                                                    <button type="button" className={`${styles.defaultBtn} ${styles.modalBtn}`}>Download
-                                                    </button>
-                                                </div>
+                                                <Box sx={{height: 500, width: '100%'}}>
+                                                    <DataGrid
+                                                        rows={bookDistribution}
+                                                        columns={columns}
+                                                        pageSize={5}
+                                                        rowsPerPageOptions={[5]}
+                                                        checkboxSelection
+                                                        disableSelectionOnClick
+                                                        disableColumnFilter
+                                                        disableColumnSelector
+                                                        disableDensitySelector
+                                                        components={{Toolbar: GridToolbar}}
+                                                        experimentalFeatures={{newEditingApi: false}}
+                                                        componentsProps={{
+                                                            toolbar: {
+                                                                showQuickFilter: true,
+                                                                quickFilterProps: {debounceMs: 500},
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </div>
                                             <Modal show={shown}/>
                                         </div>

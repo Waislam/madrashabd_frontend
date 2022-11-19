@@ -14,7 +14,7 @@ import LibraryBookUpdateModal from "../../components/Library/LibraryBookUpdateMo
 import AssignBookDistributionModal from "../../components/Library/AssignBookDistributionModal";
 
 
-const Library = () => {
+const Library = (props) => {
     const router = useRouter();
     const {data: session, status} = getSession();
 
@@ -31,48 +31,8 @@ const Library = () => {
     const [libraryBookUpdateModalShow, setLibraryBookUpdateModalShow] = useState(false);
     const [books, setBooks] = useState(null);
 
-    const [searchName, setSearchName] = useState('');
-    const [searchNumber, setSearchNumber] = useState('');
-    const [libraryListPageNum, setLibraryListPageNum] = useState(1);
-
     const [showBookDistributionModal, setShowBookDistributionModal] = useState(false);
     const [bookID, setBookID] = useState('');
-
-
-    const getBooks = async () => {
-        const list = await api.get(`library/${session.user?.madrasha_slug}/?name=${searchName && searchName}&search=${searchNumber && searchNumber}&page=${libraryListPageNum}`);
-        const data = list.data;
-        setBooks(data)
-    };
-
-
-    useEffect(() => {
-        getBooks()
-    }, [libraryListPageNum]);
-
-
-    // SearchName
-    const handleSearchName = () => {
-        getBooks()
-    };
-
-    const handleSearchNumber = () => {
-        getBooks()
-    };
-
-
-    // Pagination
-    const handleLibraryListPageNum = () => {
-        setLibraryListPageNum(libraryListPageNum + 1)
-    };
-
-    const nextPage = () => {
-        setLibraryListPageNum(libraryListPageNum + 1)
-    };
-
-    const prevPage = () => {
-        setLibraryListPageNum(libraryListPageNum - 1)
-    };
 
 
     const handleModalShow = () => {
@@ -101,51 +61,73 @@ const Library = () => {
         setShowBookDistributionModal(true)
     };
 
-    return (
-        <>
-            <Booklist
-                books={books}
-                libraryBookUpdateModalShow={libraryBookUpdateModalShow}
-                handleBookUpdate={handleBookUpdate}
-                addBookModalShow={handleModalShow}
 
-                libraryListPageNum={libraryListPageNum}
-                handleLibraryListPageNum={handleLibraryListPageNum}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                assignBookDistributionModal={assignBookDistributionModal}
-            />
+    if (props.library_list) {
+        return (
+            <>
+                <Booklist
+                    books={props.library_list.results}
+                    libraryBookUpdateModalShow={libraryBookUpdateModalShow}
+                    handleBookUpdate={handleBookUpdate}
+                    addBookModalShow={handleModalShow}
+                    assignBookDistributionModal={assignBookDistributionModal}
+                />
 
-            <BookListModal
-                session={session}
-                shown={showModal}
-                close={handleModalClose}
-            >
+                <BookListModal
+                    session={session}
+                    shown={showModal}
+                    close={handleModalClose}
+                >
 
-            </BookListModal>
+                </BookListModal>
 
-            <AssignBookDistributionModal
-                show={showBookDistributionModal}
-                onHide={() => setShowBookDistributionModal(false)}
-                bookID={bookID}
-            />
+                <AssignBookDistributionModal
+                    show={showBookDistributionModal}
+                    onHide={() => setShowBookDistributionModal(false)}
+                    bookID={bookID}
+                />
 
-            {
-                loader ?
-                    <h1></h1>
-                    :
-                    <LibraryBookUpdateModal
-                        show={libraryBookUpdateModalShow}
-                        onHide={() => setLibraryBookUpdateModalShow(false)}
-                        library={library}
-                    />
-            }
+                {
+                    loader ?
+                        <h1></h1>
+                        :
+                        <LibraryBookUpdateModal
+                            show={libraryBookUpdateModalShow}
+                            onHide={() => setLibraryBookUpdateModalShow(false)}
+                            library={library}
+                        />
+                }
 
-        </>
-    )
+            </>
+        )
+    }
+    else {
+        return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">No Data Found</span>
+                </div>
+            </div>
+        )
+    }
+
+
 };
 
 
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/library/${session_data.user?.madrasha_slug}/`);
+    const library_list = await res.data;
+
+    return {
+        props: {
+            library_list,
+            session_data
+        }
+    }
+}
 
 
 export default Library;

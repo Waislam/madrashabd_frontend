@@ -1,7 +1,54 @@
+import React from "react";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from "./Members.module.css";
 import MemberSideMenu from "./MembersSideMenu";
 
+
 const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitteeModal}) => {
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'member_name',
+            headerName: 'Member Name',
+            width: 150,
+            editable: true,
+        },
+
+        {
+            field: 'member_designation',
+            headerName: 'Podobi',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'phone_number',
+            headerName: 'Phone',
+            sortable: false,
+            width: 160
+        },
+
+        {
+            field: 'Detail',
+            headerName: 'Detail',
+            sortable: false,
+            width: 160,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button className="btn btn-primary" onClick={()=>handleUpdateCommitteeModal(params.row.id)}>Edit</button>
+                        <button className="btn btn-danger" >Delete</button>
+                    </div>
+                );
+            }
+        },
+    ];
 
     return (
         <>
@@ -28,50 +75,31 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
                                                     </button>
                                                 </div>
                                             </div>
-                                            {
-                                                committee.length > 0 ?
-                                                    <div className="books-table mt-3">
-                                                        <div className="table-responsive">
-                                                            <table className="table table-striped">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th scope="col">ID</th>
-                                                                    <th scope="col">Member Name</th>
-                                                                    <th scope="col">Podobi</th>
-                                                                    <th scope="col">Phone</th>
-                                                                    <th scope="col" className="text-center">Edit</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                {
-                                                                    committee?.map((data, index) => (
-                                                                        <tr key={data.id}>
-                                                                            <th scope="row">{index+1}</th>
-                                                                            <td className="text-sm">{data?.member_name}</td>
-                                                                            <td className="text-sm">{data?.member_designation}</td>
-                                                                            <td className="text-sm">{data?.phone_number}</td>
-                                                                            <td className="text-center">
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className={`${styles.editButton}`}
-                                                                                    onClick={() => handleUpdateCommitteeModal(data.id)}
-                                                                                >
-                                                                                    Edit
-                                                                                </button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    ))
-                                                                }
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    :
-                                                    <div className="my-5">
-                                                        <hr/>
-                                                        <h5 className="text-center">Please add committee</h5>
-                                                    </div>
-                                            }
+                                            <div className="row">
+                                                <div className="col">
+                                                    <Box sx={{height: 500, width: '100%'}}>
+                                                        <DataGrid
+                                                            rows={committee}
+                                                            columns={columns}
+                                                            pageSize={5}
+                                                            rowsPerPageOptions={[5]}
+                                                            checkboxSelection
+                                                            disableSelectionOnClick
+                                                            disableColumnFilter
+                                                            disableColumnSelector
+                                                            disableDensitySelector
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
+                                                            componentsProps={{
+                                                                toolbar: {
+                                                                    showQuickFilter: true,
+                                                                    quickFilterProps: {debounceMs: 500},
+                                                                },
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from 'next/link'
-import styles from './TeacherList.module.css'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 

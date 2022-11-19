@@ -1,10 +1,15 @@
-import React, {useEffect, useState} from "react";
+import axios from "axios";
+import api, {BASE_URL} from "../../pages/api/api"
+import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Layout from "../../components/Layout/Layout";
-import KhabarDistribution from "../../components/Boarding/KhabarDistribution";
 
-const KhabarDistributionPage = () => {
+import ExamRule from "../../components/Setting/ExamRule"
+
+
+const ExamRulePage = () => {
+
     const router = useRouter();
     const {data: session, status} = useSession();
 
@@ -14,20 +19,22 @@ const KhabarDistributionPage = () => {
         }
     });
 
+
     return (
         <>
-            <KhabarDistribution/>
+            <ExamRule/>
         </>
     )
 };
 
-export default KhabarDistributionPage;
+export default ExamRulePage;
 
-
-KhabarDistributionPage.getLayout = (page) => {
+ExamRulePage.getLayout = (page) => {
     return (
-        <Layout>
-            {page}
-        </Layout>
+        <>
+            <Layout>
+                {page}
+            </Layout>
+        </>
     )
 };
