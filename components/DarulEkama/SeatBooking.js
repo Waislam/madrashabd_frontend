@@ -154,9 +154,9 @@ const SeatBooking = ({ buildings, getRoomList, room_list, building_id }) => {
                                                 <div className="card">
                                                     <div className="card-body">
                                                         <h4 className="mb-4 text-center">Seat Booking</h4>
-                                                        <p>Total Seat:</p>
+                                                        {/* <p>Total Seat:</p>
                                                         <p>Booked Seat:</p>
-                                                        <p>Blank Seat:</p>
+                                                        <p>Blank Seat:</p> */}
                                                         <hr />
                                                         <div className="row">
                                                             {seat_list && seat_list.map((seat) => (
