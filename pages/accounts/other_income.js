@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api, {BASE_URL} from '../api/api'
 import axios from "axios";
@@ -13,16 +13,15 @@ import AddOtherIncomeModal from "../../components/Account/Modals/AddOtherIncomeM
 import UpdateOtherIncomeModal from "../../components/Account/Modals/UpdateOtherIncomeModal"
 
 
-const OtherIncomePage = () => {
+const OtherIncomePage = (props) => {
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const {data: session, status} = getSession();
 
     useEffect(() => {
         if (status === "unauthenticated") {
             router.push('/login')
         }
     });
-
 
     const [otherIncome, setOtherIncome] = useState(null);
     const [isloading, setIsLoading] = useState(false);
@@ -56,18 +55,6 @@ const OtherIncomePage = () => {
         getTransactioSubCategory()
     }, [transactionCaterory]);
 
-
-    // get Other Income list
-    const getOtherIncome = async () => {
-        const list = await api.get(`transactions/${session.user?.madrasha_slug}/other-income/`);
-        const data = list.data;
-        setOtherIncome(data)
-    };
-
-    useEffect(() => {
-        getOtherIncome()
-    }, []);
-
     //handle Post request Modals open
     const openPostRequestModal = (e) => {
         e.preventDefault();
@@ -87,7 +74,7 @@ const OtherIncomePage = () => {
     return (
         <>
             <OtherIncome
-                otherIncomeList={otherIncome}
+                otherIncomeList={props.other_income_list.results}
                 openPostRequestModal={openPostRequestModal}
                 passOtherIncomeId={passOtherIncomeId}
 
@@ -115,6 +102,21 @@ const OtherIncomePage = () => {
         </>
     )
 };
+
+
+export async function getServerSideProps({req}) {
+
+    const session_data = await getSession({req});
+    const res = await api.get(`/transactions/${session_data.user?.madrasha_slug}/other-income/`);
+    const other_income_list = await res.data;
+
+    return {
+        props: {
+            other_income_list,
+            session_data
+        }
+    }
+}
 
 
 export default OtherIncomePage;

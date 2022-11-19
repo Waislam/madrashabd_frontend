@@ -29,7 +29,7 @@ const BoardingPage = () => {
     const getAllBazarList = async () => {
         setLoading(true);
 
-        api.get(`boarding/bazarlist/${session.user?.madrasha_slug}/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
+        api.get(`boarding/bazarlist/${session?.user?.madrasha_slug}/?search=${searchBazerList && searchBazerList}&page=${bazarListPageNum}&records=${bazarListRecords && bazarListRecords}\``)
             .then((response) => {
                 setBazerList(response.data);
                 setLoading(false);

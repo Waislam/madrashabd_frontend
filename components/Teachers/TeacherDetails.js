@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from './TeacherDetails.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
-import teacher from '../../public/assets/login/teacher-2.jpg'
 
 const TeacherDetail = ({teacher}) => {
 

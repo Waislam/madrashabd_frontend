@@ -3,8 +3,83 @@ import Image from "next/image";
 import DarulEkmaNav from './DarulEkmaNav'
 import styles from './DarulEkam.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
+// import { idID } from "@mui/material/locale";
 
-const DarulEkam = () => {
+
+const DarulEkam = ({ distributed_seatList }) => {
+    // console.log("distributed_seatList: ", distributed_seatList)
+    const dodid = distributed_seatList
+
+
+    const columns = [
+        {
+            field: "students.user",
+            headerName: "Name",
+            valueGetter: (params) => {
+                // console.log("accessed value", params.row.students.user.first_name)
+                return `${params.row.students.user.first_name} ${params.row.students.user.last_name}`
+            }
+        },
+        {
+            field: "building",
+            headerName: "Building",
+            width: 100,
+            valueGetter: (params) =>
+                `${params.value?.building_name || ''}`,
+        },
+        {
+            field: "floor",
+            headerName: "Floor",
+            width: 50
+        },
+        {
+            field: "room",
+            headerName: "Room",
+            width: 100,
+            valueGetter: (params) =>
+                `${params.value?.room_name || ''}`
+
+        },
+        {
+            field: "seat",
+            headerName: "Seat",
+            width: 50,
+            valueGetter: (params) =>
+                `${params.value?.seat_number || ''}`
+        },
+        {
+            field: "students",
+            headerName: "Class",
+            width: 100,
+            valueGetter: (params) =>
+                `${params.value?.admitted_class?.name || ''}`
+        },
+        // {
+        //     field: "",
+        //     headerName: "Present",
+        //     width: 100,
+        // },
+        // {
+        //     field: "",
+        //     headerName: "Leave",`${params.value?.user?.first_name}`
+        //     width: 100,
+        // },
+        // {
+        //     field: "",
+        //     headerName: "Boarding",
+        //     width: 100,
+        // },
+        // {
+        //     field: "",
+        //     headerName: "Action",
+        //     width: 100,
+        // },
+
+
+    ]
+
     return (
         <>
             <section className={styles.darulEkamSection}>
@@ -15,10 +90,10 @@ const DarulEkam = () => {
                                 <div className={`${styles.customCard} card shadow`}>
                                     <div className={`${styles.customCardHeader} card-header`}>
                                         <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
+                                            alt="Logo missing" height={40} width={40} />
                                     </div>
                                     {/* DarulEkma Nav*/}
-                                    <DarulEkmaNav/>
+                                    <DarulEkmaNav />
                                 </div>
                             </div>
                         </div>
@@ -26,7 +101,7 @@ const DarulEkam = () => {
                             <div className="darulEkam">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div className="search mb-5">
+                                        {/* <div className="search mb-5">
                                             <form action="#">
                                                 <div className="row">
                                                     <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -147,101 +222,31 @@ const DarulEkam = () => {
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> */}
                                         <div className="darulEkamTable">
                                             <div className="row">
                                                 <div className="col">
-                                                    <div className="table-responsive">
-                                                        <table className="table table-bordered table-striped">
-                                                            <thead className="bg-dark text-white">
-                                                            <tr className="text-center">
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Building</th>
-                                                                <th scope="col">Floor</th>
-                                                                <th scope="col">Room</th>
-                                                                <th scope="col">Seat</th>
-                                                                <th scope="col">Class</th>
-                                                                <th scope="col">Cost Per Bed</th>
-                                                                <th scope="col">Present</th>
-                                                                <th scope="col">Leave</th>
-                                                                <th scope="col">Boading</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr className="text-center">
-                                                                <th scope="row">1</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-                                                            <tr className="text-center">
-                                                                <th scope="row">2</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-                                                            <tr className="text-center">
-                                                                <th scope="row">3</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-                                                            <tr className="text-center">
-                                                                <th scope="row">4</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-                                                            <tr className="text-center">
-                                                                <th scope="row">5</th>
-                                                                <td>Masuk</td>
-                                                                <td>Ad Buailding</td>
-                                                                <td>3rd Floor</td>
-                                                                <td>208</td>
-                                                                <td>20</td>
-                                                                <td>Six</td>
-                                                                <td>200</td>
-                                                                <td>Yes</td>
-                                                                <td>Yes</td>
-                                                                <td>No</td>
-                                                            </tr>
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                    <Box sx={{ height: 500, width: '100%' }}>
+                                                        <DataGrid
+                                                            rows={distributed_seatList}
+                                                            columns={columns}
+                                                            // disableColumnFilter
+                                                            disableColumnSelector
+                                                            disableDensitySelector
+                                                            components={{ Toolbar: GridToolbar }}
+                                                            experimentalFeatures={{ newEditingApi: false }}
+                                                            componentsProps={{
+                                                                toolbar: {
+                                                                    showQuickFilter: true,
+                                                                    quickFilterProps: { debounceMs: 500 },
+                                                                },
+                                                            }}
+                                                        >
+                                                        </DataGrid>
+                                                    </Box>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

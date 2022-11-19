@@ -3,7 +3,6 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
-import {useEffect, useState} from "react";
 
 // Shift component
 import Shift from "../../components/Setting/Shift"
@@ -29,12 +28,12 @@ const ShiftPage = () => {
 
     //get class and department list
     const getDepartmentList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/${session.user?.madrasha_slug}/department/`);
+        const list = await axios.get(`${BASE_URL}/settings/${session?.user?.madrasha_slug}/department/`);
         const departments = list.data;
         setDepartmentList(departments)
     };
     const getClassList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/classes/`);
+        const list = await axios.get(`${BASE_URL}/settings/${session?.user?.madrasha_slug}/classes/`);
         const classes = list.data;
         setClassList(classes)
 
