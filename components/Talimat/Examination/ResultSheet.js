@@ -4,7 +4,7 @@ import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 
-const ResutSheet = () =>{
+const ResutSheet = () => {
 
     return (
         <>
@@ -118,9 +118,12 @@ const ResutSheet = () =>{
                                                                     </button>
                                                                 </div>
                                                                 <div className="col-md-1">
-                                                                    <button type="button"
-                                                                            className={`${styles.defaultBtnResult}`}>Add
-                                                                    </button>
+                                                                    <Link
+                                                                        href="/talimat/exam/result_upload"
+                                                                        className={`${styles.defaultBtnResult}`}
+                                                                    >
+                                                                        Add
+                                                                    </Link>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -150,7 +153,11 @@ const ResutSheet = () =>{
                                                                     <th>montaj</th>
                                                                     <th>2</th>
                                                                     <th>
-                                                                        <Link href="/talimat/exam/result/slug/">Details</Link>
+                                                                        <Link
+                                                                            href="/talimat/exam/result/slug/"
+                                                                        >
+                                                                            Details
+                                                                        </Link>
                                                                     </th>
                                                                 </tr>
                                                                 </tbody>

@@ -19,7 +19,7 @@ const ExaminationPage = () => {
 
     return (
         <>
-            <Examination/>
+            <Examination />
         </>
     )
 };

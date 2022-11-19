@@ -4,10 +4,10 @@ import {useRouter} from "next/router";
 import axios from "axios";
 import api, {BASE_URL} from "../../pages/api/api"
 
-
 // Setting Component
 import Department from "../../components/Setting/Department"
 import Layout from "../../components/Layout/Layout";
+
 //import Modals
 import DepartmentUpdateModal from "../../components/Setting/Modals/DepartmentUpdateModal"
 

@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 // TeacherList Component
 import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
+
+// api
 import api from '../api/api'
 
 const Index = (props) => {

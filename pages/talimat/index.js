@@ -18,7 +18,7 @@ const TalimatPage = () => {
 
     return (
         <>
-            <Talimat/>
+            <Talimat />
         </>
     )
 };
