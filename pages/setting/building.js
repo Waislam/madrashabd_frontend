@@ -58,7 +58,6 @@ const BuildingPage = (props) => {
                 onHide={() => setBuildingModal(false)}
             />
 
-
             {isLoading ? " " :
                 <UpdateBuildingModal
                     show={updateBuildingModal}

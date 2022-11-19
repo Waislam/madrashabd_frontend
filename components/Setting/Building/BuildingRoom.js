@@ -3,7 +3,7 @@ import SettingSideMenu from "../SettingSideMenu";
 import {useRouter} from "next/router";
 import BuildingHeader from './BuildingHeader'
 
-const BuildingRoom = ({building_room_list, handleAddBuildingRoomModal}) => {
+const BuildingRoom = ({building_room_list, handleAddBuildingRoomModal, handleUpdateRoomModal}) => {
 
     const router = useRouter();
 
@@ -36,6 +36,7 @@ const BuildingRoom = ({building_room_list, handleAddBuildingRoomModal}) => {
                                                     <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Room Name</th>
+                                                        <th scope="col">Building</th>
                                                         <th scope="col">Total Seat</th>
                                                         <th scope="col">Floor</th>
                                                         <th scope="col" className="text-center">Action</th>
@@ -47,16 +48,17 @@ const BuildingRoom = ({building_room_list, handleAddBuildingRoomModal}) => {
                                                             <tr key={data.id}>
                                                                 <th scope="row">{index + 1}</th>
                                                                 <th scope="row">{data.room_name}</th>
+                                                                <th scope="row">{data.building?.building_name}</th>
                                                                 <td className="text-sm">{data.total_seat}</td>
                                                                 <td className="text-sm">{data.floor}</td>
                                                                 <td className="text-sm text-center">
-                                                                    <button className="btn btn-primary">Edit</button>
+                                                                    <button className="btn btn-primary"
+                                                                            onClick={() => handleUpdateRoomModal(data.id)}>Edit
+                                                                    </button>
                                                                 </td>
                                                             </tr>
                                                         ))
                                                     }
-
-
                                                     </tbody>
                                                 </table>
                                             </div>

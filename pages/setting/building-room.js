@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 
 import BuildingRoom from '../../components/Setting/Building/BuildingRoom'
 import AddBuildingRoomModal from '../../components/Setting/Building/Modals/AddBuildingRoomModal'
+import UpdateBuildingRoomModal from '../../components/Setting/Building/Modals/UpdateBuildingRoomModal'
 import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 
@@ -15,10 +16,11 @@ const BuildingRoomPage = (props) => {
 
     // BuildingRoomModal
     const [isLoading, setLoading] = useState(null);
-    const [addBuildingRoomModal, setAddBuildingRoomModal] = useState(false);
-    const [updateBuildingRoomModal, setBuildingRoomModal] = useState(false);
-    const [buildingRoomOldData, setBuildingRoomOldData] = useState(null);
     const [buildingList, setBuildingList] = useState(null);
+    const [addBuildingRoomModal, setAddBuildingRoomModal] = useState(false);
+
+    const [updateRoomModal, setRoomModal] = useState(false);
+    const [roomOldData, setRoomOldData] = useState(null);
 
 
     useEffect(() => {
@@ -26,6 +28,7 @@ const BuildingRoomPage = (props) => {
             router.push('/login')
         }
     });
+
 
     //get building list
     const getBuildingList = async () => {
@@ -40,12 +43,24 @@ const BuildingRoomPage = (props) => {
 
     };
 
+    // update Building Room
+    const handleUpdateRoomModal = async (id) => {
+        getBuildingList();
+        setLoading(true);
+        const list = await api.get(`settings/room/detail/${id}/`);
+        const data = list.data;
+        setRoomOldData(data);
+        setLoading(false);
+        setRoomModal(true)
+    };
+
 
     return (
         <>
             <BuildingRoom
                 building_room_list={props.building_room_list}
                 handleAddBuildingRoomModal={handleAddBuildingRoomModal}
+                handleUpdateRoomModal={handleUpdateRoomModal}
             />
 
             <AddBuildingRoomModal
@@ -54,6 +69,15 @@ const BuildingRoomPage = (props) => {
                 show={addBuildingRoomModal}
                 onHide={() => setAddBuildingRoomModal(false)}
             />
+
+            {isLoading ? " " :
+                <UpdateBuildingRoomModal
+                    buildingList={buildingList}
+                    show={updateRoomModal}
+                    onHide={() => setRoomModal(false)}
+                    room_old_data={roomOldData}
+                />
+            }
         </>
     )
 };
