@@ -42,6 +42,8 @@ const KhabarDistribution = () => {
                                     </div>
                                     <div className="khabarDistributionTable">
                                         <div className="table-responsive">
+                                            <h4 className="text-center">Static Data</h4>
+                                            <hr/>
                                             <table className="table table-bordered table-bordered">
                                                 <thead>
                                                 <tr className="text-center">
@@ -66,56 +68,7 @@ const KhabarDistribution = () => {
                                                     <td>0k</td>
                                                     <td>0k</td>
                                                 </tr>
-                                                <tr className="text-center">
-                                                    <th scope="row">1</th>
-                                                    <td>04-09-2022</td>
-                                                    <td>Patoto</td>
-                                                    <td>20k</td>
-                                                    <td>400</td>
-                                                    <td>20k</td>
-                                                    <td>0k</td>
-                                                    <td>0k</td>
-                                                </tr>
-                                                <tr className="text-center">
-                                                    <th scope="row">1</th>
-                                                    <td>04-09-2022</td>
-                                                    <td>Patoto</td>
-                                                    <td>20k</td>
-                                                    <td>400</td>
-                                                    <td>20k</td>
-                                                    <td>0k</td>
-                                                    <td>0k</td>
-                                                </tr>
-                                                <tr className="text-center">
-                                                    <th scope="row">1</th>
-                                                    <td>04-09-2022</td>
-                                                    <td>Patoto</td>
-                                                    <td>20k</td>
-                                                    <td>400</td>
-                                                    <td>20k</td>
-                                                    <td>0k</td>
-                                                    <td>0k</td>
-                                                </tr>
-                                                <tr className="text-center">
-                                                    <th scope="row">1</th>
-                                                    <td>04-09-2022</td>
-                                                    <td>Patoto</td>
-                                                    <td>20k</td>
-                                                    <td>400</td>
-                                                    <td>20k</td>
-                                                    <td>0k</td>
-                                                    <td>0k</td>
-                                                </tr>
-                                                <tr className="text-center">
-                                                    <th scope="row">1</th>
-                                                    <td>04-09-2022</td>
-                                                    <td>Patoto</td>
-                                                    <td>20k</td>
-                                                    <td>400</td>
-                                                    <td>20k</td>
-                                                    <td>0k</td>
-                                                    <td>0k</td>
-                                                </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
