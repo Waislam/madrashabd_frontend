@@ -4,8 +4,8 @@ import {useRouter} from "next/router";
 
 
 import Building from '../../components/Setting/Building/Building'
-import AddBuildingModal from "../../components/Setting/Modals/AddBuildingModal"
-import UpdateBuildingModal from "../../components/Setting/Modals/UpdateBuildingModal"
+import AddBuildingModal from "../../components/Setting/Building/Modals/AddBuildingModal"
+import UpdateBuildingModal from "../../components/Setting/Building/Modals/UpdateBuildingModal"
 import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 

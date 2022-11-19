@@ -1,6 +1,6 @@
-import styles from "../Setting.module.css";
+import styles from "../../Setting.module.css";
 import axios from "axios";
-import api, {BASE_URL} from "../../../pages/api/api"
+import api, {BASE_URL} from "../../../../pages/api/api"
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Modal from "react-bootstrap/Modal";
