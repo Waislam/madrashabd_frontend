@@ -3,7 +3,7 @@ import SettingSideMenu from "../SettingSideMenu";
 import {useRouter} from "next/router";
 import BuildingHeader from './BuildingHeader'
 
-const BuildingRoom = ({building_room_list}) => {
+const BuildingRoom = ({building_room_list, handleAddBuildingRoomModal}) => {
 
     const router = useRouter();
 
@@ -25,7 +25,7 @@ const BuildingRoom = ({building_room_list}) => {
                                             </div>
                                             <div className="col-md-6">
                                                 <button type="button" className={`btn btn-primary float-end`}
-                                                        onClick={() => handleBuildingModal()}>Add
+                                                        onClick={() => handleAddBuildingRoomModal()}>Add
                                                 </button>
                                             </div>
                                         </div>

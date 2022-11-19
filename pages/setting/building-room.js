@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 
 
 import BuildingRoom from '../../components/Setting/Building/BuildingRoom'
+import AddBuildingRoomModal from '../../components/Setting/Building/Modals/AddBuildingRoomModal'
 import Layout from "../../components/Layout/Layout";
 import api from "../api/api";
 
@@ -14,6 +15,11 @@ const BuildingRoomPage = (props) => {
 
     // BuildingRoomModal
     const [isLoading, setLoading] = useState(null);
+    const [addBuildingRoomModal, setAddBuildingRoomModal] = useState(false);
+    const [updateBuildingRoomModal, setBuildingRoomModal] = useState(false);
+    const [buildingRoomOldData, setBuildingRoomOldData] = useState(null);
+    const [buildingList, setBuildingList] = useState(null);
+
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -21,11 +27,32 @@ const BuildingRoomPage = (props) => {
         }
     });
 
+    //get building list
+    const getBuildingList = async () => {
+        const list = await api.get(`/settings/${props.session_data.user?.madrasha_slug}/building/`);
+        const buildingListData = list.data;
+        setBuildingList(buildingListData)
+    };
+
+    const handleAddBuildingRoomModal = () => {
+        getBuildingList();
+        setAddBuildingRoomModal(true);
+
+    };
+
 
     return (
         <>
             <BuildingRoom
                 building_room_list={props.building_room_list}
+                handleAddBuildingRoomModal={handleAddBuildingRoomModal}
+            />
+
+            <AddBuildingRoomModal
+                buildingList={buildingList}
+                session_data={props.session_data}
+                show={addBuildingRoomModal}
+                onHide={() => setAddBuildingRoomModal(false)}
             />
         </>
     )

@@ -2,15 +2,18 @@ import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
-import api, {BASE_URL} from "../../../pages/api/api";
+import api, {BASE_URL} from "../../../../pages/api/api";
 
-const AddBuildingModal = (props) => {
+const AddBuildingRoomModal = (props) => {
+
+
+    console.log("buildingList :", props.buildingList)
 
     const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
-    
+
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/settings/${props.session_data.user?.madrasha_slug}/building/`, {
+        fetch(`${BASE_URL}/settings/${props.session_data.user?.madrasha_slug}/room/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -19,9 +22,10 @@ const AddBuildingModal = (props) => {
             body: JSON.stringify(
                 {
                     "madrasha": props.session_data.user?.madrasha_id,
-                    "building_name": values.building_name,
-                    "total_floor": values.total_floor,
-                    "total_room": values.total_room
+                    "building": values.building,
+                    "room_name": values.room_name,
+                    "total_seat": values.total_seat,
+                    "floor": values.floor
                 },
             )
         }).then((res) => res.json())
@@ -38,38 +42,49 @@ const AddBuildingModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Add Building
+                        Add Building Room
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
-                            <div className="col-md-4 mb-3">
+                            <div className="col-md-6 mb-3">
                                 <input
                                     type="text"
-                                    placeholder="Building Name"
+                                    placeholder="Room Name"
                                     className="form-control"
-                                    name="building_name"
-                                    {...register("building_name")}
+                                    name="room_name"
+                                    {...register("room_name")}
                                 />
                             </div>
-                            <div className="col-md-4 mb-3">
+                            <div className="col-md-6 mb-3">
                                 <input
                                     type="number"
-                                    placeholder="Total Floor"
+                                    placeholder="Total Seat"
                                     className="form-control"
-                                    name="total_floor"
-                                    {...register("total_floor")}
+                                    name="total_seat"
+                                    {...register("total_seat")}
                                 />
                             </div>
-                            <div className="col-md-4 mb-3">
+                            <div className="col-md-6 mb-3">
                                 <input
                                     type="number"
-                                    placeholder="Total Room"
+                                    placeholder="Floor"
                                     className="form-control"
-                                    name="total_room"
-                                    {...register("total_room")}
+                                    name="floor"
+                                    {...register("floor")}
                                 />
+                            </div>
+                            <div className="col-md-6 mb-3">
+
+                                <select className="form-select" name="building" {...register("building")}>
+                                    {
+                                        props.buildingList?.map((data) => (
+                                            <option key={data.id} value={data.id}>{data?.building_name}</option>
+                                        ))
+                                    }
+
+                                </select>
                             </div>
                         </div>
                         <button
@@ -85,4 +100,4 @@ const AddBuildingModal = (props) => {
 };
 
 
-export default AddBuildingModal;
+export default AddBuildingRoomModal;
