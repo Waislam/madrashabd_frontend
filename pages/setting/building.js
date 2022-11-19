@@ -3,7 +3,7 @@ import {getSession, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 
-import Building from '../../components/Setting/Building'
+import Building from '../../components/Setting/Building/Building'
 import AddBuildingModal from "../../components/Setting/Modals/AddBuildingModal"
 import UpdateBuildingModal from "../../components/Setting/Modals/UpdateBuildingModal"
 import Layout from "../../components/Layout/Layout";
