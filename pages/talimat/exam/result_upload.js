@@ -132,6 +132,8 @@ const ResultUpload = () => {
     )
 }
 
+
+
 export default ResultUpload
 
 

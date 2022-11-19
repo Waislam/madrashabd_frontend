@@ -8,7 +8,7 @@ const PaperMonitoringPage = () => {
 
     return (
         <>
-            <PaperMonitoring/>
+            <PaperMonitoring />
         </>
     )
 };

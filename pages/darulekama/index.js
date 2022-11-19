@@ -6,7 +6,6 @@ import DarulEkama from "../../components/DarulEkama/DarulEkam";
 import Layout from '../../layouts/Layout';
 
 const DarulEkamaPage = () => {
-
     const router = useRouter();
     const {data: session, status} = useSession();
 
