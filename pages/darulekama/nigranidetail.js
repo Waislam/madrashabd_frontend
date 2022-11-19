@@ -10,8 +10,9 @@ import api from "../api/api"
 const NigranidetailPage = (props) => {
     const router = useRouter();
     const { data: session, status } = useSession();
-    // console.log("session: ", )
+    // console.log("session: ",session )
     const madrasha_slug = session?.user?.madrasha_slug
+    const madrasha_id = session?.user?.madrasha_id
 
     const nigranList = props.nigranList
     const [nigranaddModalShow, setNigranAddModalShow] = useState(false)
@@ -54,7 +55,8 @@ const NigranidetailPage = (props) => {
 
 
     //handlePostmodal 
-    const handlePostmodal = () => {
+    const handlePostmodal = (e) => {
+        e.preventDefault()
         getBuildingList()
         getRoomList()
         getClassList()
@@ -76,6 +78,8 @@ const NigranidetailPage = (props) => {
                 getRoomList={getRoomList}
                 room_list={roomList}
                 madrasha_class_list={madrashaClassList}
+                madrasha_id={madrasha_id}
+                madrasha_slug={madrasha_slug}
             />
         </div>
     )
