@@ -22,8 +22,6 @@ const CommitteePage = (props) => {
         }
     });
 
-
-
     const [isLoading, setLoading] = useState(null);
     const [addCommitteeModal, setCommitteeModal] = useState(false);
     const [updateCommitteeModal, setUpdateCommitteeModal] = useState(false);
