@@ -10,31 +10,31 @@ const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOther
         {
             field: 'id',
             headerName: 'ID',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             field: 'member_name',
             headerName: 'Member Name',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             field: 'address',
             headerName: 'Address',
-            width: 110,
+            width: 120,
             editable: true,
         },
         {
             field: 'phone_number',
             headerName: 'Phone',
             sortable: false,
-            width: 160
+            width: 120,
         },
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
+            width: 150,
 
             renderCell: (params) => {
                 return (

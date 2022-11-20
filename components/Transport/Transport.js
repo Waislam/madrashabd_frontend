@@ -12,14 +12,14 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
         {
             headerName: 'ID',
             field: 'id',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Student Name',
             field: 'first_name',
             sortable: false,
-            width: 160,
+            width: 120,
             valueGetter: (params) =>
                 `${params.row.student_id?.user?.first_name} ${params.row.student_id?.user?.last_name}`,
         },
@@ -27,7 +27,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Guardian Name',
             field: 'guardian_name',
             sortable: false,
-            width: 160,
+            width: 120,
             valueGetter: (params) =>
                 `${params.row.student_id?.guardian_name}`,
         },
@@ -35,7 +35,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Gari Number',
             field: 'car_number',
             sortable: false,
-            width: 160,
+            width: 130,
             valueGetter: (params) =>
                 `${params.row.vehicle?.car_number}`,
         },
@@ -43,7 +43,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Driver Name',
             field: 'driver_name',
             sortable: false,
-            width: 160,
+            width: 130,
             valueGetter: (params) =>
                 `${params.row.vehicle?.driver_name}`,
         },
@@ -51,7 +51,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Driver Number',
             field: 'driver_number',
             sortable: false,
-            width: 160,
+            width: 120,
             valueGetter: (params) =>
                 `${params.row.vehicle?.driver_number}`,
         },
@@ -59,7 +59,7 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Route',
             field: 'route',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.vehicle?.route}`,
         },
@@ -67,14 +67,14 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Time',
             field: 'start_time',
             sortable: false,
-            width: 160,
+            width: 90,
             valueGetter: (params) =>
                 `${params.row.vehicle?.start_time}`,
         },
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
+            width: 150,
 
             renderCell: (params) => {
                 return (

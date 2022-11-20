@@ -1,10 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import styles from './Account.module.css'
-import icon from '../../public/assets/login/icon.png'
 import AccountSideBar from './AccountSidebar'
 import Header from './IncomeHeader'
-import Link from "next/link";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 
@@ -16,14 +13,14 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'ID',
             field: 'id',
             sortable: false,
-            width: 160
+            width: 60,
         },
 
         {
-            headerName: 'Student Class ID',
+            headerName: 'Student Class',
             field: 'student_class_id',
             sortable: false,
-            width: 160,
+            width: 125,
             valueGetter: (params) =>
                 `${params.row.student_class_id}`,
         },
@@ -31,7 +28,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Category',
             field: 'category',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.category.name}`,
         },
@@ -40,7 +37,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Sub Category',
             field: 'sub_category',
             sortable: false,
-            width: 160,
+            width: 120,
             valueGetter: (params) =>
                 `${params.row.sub_category.name}`,
         },
@@ -49,7 +46,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Amount',
             field: 'amount',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.amount.amount}`,
         },
@@ -58,7 +55,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Date',
             field: 'paid_date',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.paid_date}`,
         },
@@ -67,7 +64,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Money Receipt',
             field: 'receipt_number',
             sortable: false,
-            width: 160,
+            width: 120,
             valueGetter: (params) =>
                 `${params.row.receipt_number}`,
         },
@@ -76,7 +73,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             headerName: 'Action',
             field: 'Action',
             sortable: false,
-            width: 160,
+            width: 120,
             renderCell: (params) => {
                 return (
                     <div>
@@ -216,7 +213,6 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
                                                             rows={studentIncomeList}
                                                             columns={columns}
                                                             pageSize={5}
-                                                            rowsPerPageOptions={[5]}
                                                             checkboxSelection
                                                             disableSelectionOnClick
                                                             disableColumnFilter
