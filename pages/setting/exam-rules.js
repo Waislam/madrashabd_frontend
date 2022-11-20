@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from "react";
+import axios from "axios";
+import api, {BASE_URL} from "../../pages/api/api"
+import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
-
-// Talimat Component
-import Talimat from "../../components/Talimat/Talimat";
 import Layout from "../../components/Layout/Layout";
 
-const TalimatPage = () => {
+import ExamRule from "../../components/Setting/ExamRule"
+
+
+const ExamRulePage = () => {
+
     const router = useRouter();
     const {data: session, status} = useSession();
 
@@ -16,22 +19,22 @@ const TalimatPage = () => {
         }
     });
 
+
     return (
         <>
-            <Talimat />
+            <ExamRule/>
         </>
     )
 };
 
+export default ExamRulePage;
 
-export default TalimatPage;
-
-
-TalimatPage.getLayout = (page) => {
+ExamRulePage.getLayout = (page) => {
     return (
-        <Layout>
-            {page}
-        </Layout>
+        <>
+            <Layout>
+                {page}
+            </Layout>
+        </>
     )
 };
-

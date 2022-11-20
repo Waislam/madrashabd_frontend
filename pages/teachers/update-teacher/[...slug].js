@@ -137,13 +137,6 @@ const UpdateTeacherPage = (props) => {
             })
     }
 
-
-    // Extending field on click / that means add more working by using below
-    // const {fields: experienceField, remove: experienceRemove, append: experienceAppend} = useFieldArray({
-    //     control,
-    //     name: "Experience"
-    // })
-
     const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
         control,
         name: "Skill"

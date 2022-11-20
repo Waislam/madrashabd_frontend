@@ -1,24 +1,24 @@
 import Link from 'next/link';
-import styles from './Account.module.css';
+import styles from './Building.module.css';
 
-const IncomeHeader = () =>{
+const BuildingHeader = () =>{
     return (
         <>
             <div className={styles.breadcumCustom}>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/accounts">
+                            <Link href="/setting/building/">
                                 <a>
-                                    Student Income
-                                </a> 
+                                    Building
+                                </a>
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/accounts/other_income">
+                            <Link href="/setting/building-room/">
                                 <a>
-                                    Other Income
-                                </a> 
+                                    Building Room
+                                </a>
                             </Link>
                         </li>
                     </ol>
@@ -28,4 +28,4 @@ const IncomeHeader = () =>{
     )
 };
 
-export default IncomeHeader;
+export default BuildingHeader;

@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+
+// third party
 import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
@@ -8,6 +10,8 @@ import AddGariListModal from "../../components/Transport/Modals/AddGariListModal
 import UpdateGariModal from "../../components/Transport/Modals/UpdateGariModal"
 import DeleteGariModal from "../../components/Transport/Modals/DeleteGariModal"
 import Layout from "../../components/Layout/Layout";
+
+// api
 import api from "../api/api";
 
 const GariPage = (props) => {

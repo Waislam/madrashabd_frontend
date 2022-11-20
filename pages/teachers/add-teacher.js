@@ -1,102 +1,126 @@
 import React, {useState, useEffect} from "react";
-import { getSession, useSession } from "next-auth/react";
-import {useRouter} from "next/router";
-import {useForm, useFieldArray} from "react-hook-form"
-import api, {BASE_URL} from "../api/api";
-
 import Layout from "../../components/Layout/Layout";
 import styles from '../../components/Teachers/TeacherList.module.css'
-
-import { getDepartmentList } from "../api/settings_api";
+import {useForm, useFieldArray} from "react-hook-form"
+import api, {BASE_URL} from "../api/api";
+import { getSession, useSession } from "next-auth/react";
+import { getDepartmentList, getDesignationList } from "../api/settings_api";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 const AddTeacherPage = (props) => {
-
-    const router = useRouter();
-    const {data: session, status} = useSession();
-
-    useEffect(() => {
-        if (status === "unauthenticated") {
-            router.push('/login')
-        }
-    });
-
     const [isChecked, setIsChecked] = useState(false);
-    // const [divisionList, setDivisionList] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const {data: session, status} = useSession();
+    const router = useRouter()
+    // const [divisionList, setDivisionList] = useState(null)
     const [singleDivision, setSingleDivision] = useState('');
     const [disctrictList, setDistrictList] = useState(null);
     const [singleDistrict, setSingleDristrict] = useState('');
     const [departmentList, setDepartmentList] = useState('');
 
+    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+
     // console.log("@@ departmentList",departmentList)
+
+    const madrasha_slug = session?.user.madrasha_slug;
+    const madrasha_id = session?.user.madrasha_id;
 
 
     const {
         handleSubmit,
         register,
         formState: {errors}, control
-    } = useForm();
+    } = useForm()
 
-    console.log("@@@@@ department:", props.departmentList);
+    console.log("@@@@@ session:", session)
 
     const onSubmit = data => {
-        console.log(data);
+        setIsLoading(true);
+        setAdmissionFormValues(data);
 
-        let teacher_data = {
-            "user": 1,
-            "madrasha": 1,
-            "father_name": data.father_name,
-            "mother_name": data.mother_name,
-            "date_of_birth": data.date_of_birth,
-            "gender": data.gender,
-            "religion": data.religion,
-            "marital_status": data.marital_status,
-            "present_address": {
-                "division": data.present_address_division,
-                "district": data.present_address_district,
-                "thana": data.present_address_thana,
-                "post_office": data.present_address_post_office,
-                "post_code": data.present_address_post_code,
-                "address_info": data.present_address_address_info,
-            },
-            "permanent_address": {
-                "division": data.permanent_address_division,
-                "district": data.permanent_address_district,
-                "thana": data.permanent_address_thana,
-                "post_office": data.permanent_address_post_office,
-                "post_code": data.permanent_address_post_code,
-                "address_info": data.permanent_address_address_info
-            },
-            "education": {
-                "degree_name": data.degree_name,
-                "institution_name": data.institution_name,
-                "passing_year": data.passing_year,
-                "result": data.result
-            },
-            "experience": {
-                "experience_name": data.experience_name,
-            },
-            "skill": {
-                "skill_name": data.skill_name
-            },
-            "phone_home": data.second_phone_number,
-            "nid": data.nid,
-            "birth_certificate": data.birth_certificate,
-            "nationality": data.nationality,
-            "blood_group": data.blood_group,
-            "department": data.department,
-            "designation": 1,
-            "starting_date": data.starting_date,
-            "ending_date": data.ending_date
-        };
+        const user_data = {
+            "phone": data.phone_number,
+            "password": data.phone_number,
+            "password2": data.phone_number,
+            "madrasha_id": madrasha_id
+        }
 
-        api.post(`teachers/${session.user?.madrasha_slug}/`, JSON.stringify(teacher_data))
-            .then((res) => {
-                console.log("res", res.data)
+        // Create user
+        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
+            .then(res => {
+                console.log("Result @@@",res)
+
+                if(res.data.user_id) {
+                    const teacher_data = {
+                        "user": res.data.user_id,
+                        "madrasha": madrasha_id,
+                        "father_name": data.father_name,
+                        "mother_name": data.mother_name,
+                        "date_of_birth": data.date_of_birth,
+                        "gender": data.gender,
+                        "religion": data.religion,
+                        "marital_status": data.marital_status,
+                        "present_address": {
+                            "division": data.present_address_division,
+                            "district": data.present_address_district,
+                            "thana": data.present_address_thana,
+                            "post_office": data.present_address_post_office,
+                            "post_code": data.present_address_post_code,
+                            "address_info": data.present_address_address_info,
+                        },
+                        "permanent_address": {
+                            "division": data.permanent_address_division,
+                            "district": data.permanent_address_district,
+                            "thana": data.permanent_address_thana,
+                            "post_office": data.permanent_address_post_office,
+                            "post_code": data.permanent_address_post_code,
+                            "address_info": data.permanent_address_address_info
+                        },
+                        "education": {
+                            "degree_name": data.degree_name,
+                            "institution_name": data.institution_name,
+                            "passing_year": data.passing_year,
+                            "result": data.result
+                        },
+                        "experience": {
+                            "experience_name": data.experience_name,
+                        },
+                        "skill": {
+                            "skill_name": data.skill_name
+                        },
+                        "phone_home": data.phone_number,
+                        "nid": data.nid,
+                        "birth_certificate": data.birth_certificate,
+                        "nationality": data.nationality,
+                        "blood_group": data.blood_group,
+                        "department": data.department,
+                        "designation": data.designation,
+                        "starting_date": data.starting_date,
+                        "ending_date": data.ending_date
+                    }
+
+                    // Create New Teacher
+                    api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
+                    .then((res) => {
+                        router.push('/teachers');
+                        return res && toast.success('The Teacher is Successfully added!!');
+                    })
+                    .catch((error) => {
+                        console.log("error", error)
+                    })
+                }
+
+                else {
+                    return toast.error('Users with this phone number already exist!!');
+                }
             })
-            .catch((error) => {
-                console.log("error", error)
+            .catch((err) => {
+                console.log("user create err", err)
             })
-    };
+    }
 
 
     // Extending field on click / that means add more working by using below
@@ -108,29 +132,29 @@ const AddTeacherPage = (props) => {
     const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
         control,
         name: "Skill"
-    });
+    })
 
     const {fields: educationFields, remove: educationRemove, append: educationAppend} = useFieldArray({
         control,
         name: "Education"
-    });
+    })
 
 
     // Extending field on click / that means add more working by using below
     const handleExperienceAppend = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         experienceAppend({name: ""})
-    };
+    }
 
     const handleSkillAppend = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         skillAppend({name: ""})
-    };
+    }
 
     const handleEducationAppend = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         educationAppend({name: ""})
-    };
+    }
 
     //get and handle dependable address section
     // const getDivision = async () => {
@@ -140,31 +164,17 @@ const AddTeacherPage = (props) => {
     // }
 
     const handleSetSingleDivisionValue = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        const pk_value = e.target.value;
+        e.stopPropagation()
+        e.preventDefault()
+        const pk_value = e.target.value
         setSingleDivision(pk_value)
-    };
-
-    useEffect(() => {
-        // getDivision()
-    }, []);
-
-    // const getDistrict = async () => {
-    //     const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
-    //     const district = list.data
-    //     setDistrictList(district)
-    // }
-
-    // useEffect(() => {
-    //     getDistrict()
-    // }, [singleDivision])
+    }
 
 
     const handleHidingEndDate = (e) => {
-        const checkValue = e.target.checked;
+        const checkValue = e.target.checked
         setIsChecked(checkValue)
-    };
+    }
 
     return (
         <>
@@ -272,7 +282,7 @@ const AddTeacherPage = (props) => {
                                                         name="department"
                                                         {...register("department")}
                                                 >
-                                                    <option value="">Select Department</option>
+                                                    <option value="" disabled>Select Department</option>
                                                     {
                                                         props.departmentList.map(department => <option
                                                             key={department.id}
@@ -283,15 +293,21 @@ const AddTeacherPage = (props) => {
                                                 </select>
                                             </div>
 
-                                            <div className="col-md-3 mb-3">
+                                            <div className="col-md-3">
                                                 <label className="mb-2">Designation</label>
-                                                <input type="text"
-                                                       placeholder="Designation"
-                                                       className="form-control"
-                                                       name="designation"
-                                                       {...register("designation", {required: "This field is required"})}
-                                                />
-                                                <p className="text-danger">{errors.designation?.message}</p>
+                                                <select className="form-select"
+                                                        name="designation"
+                                                        {...register("designation")}
+                                                >
+                                                    <option value="" disabled>Select Designation</option>
+                                                    {
+                                                        props.designationList.map(designation => <option
+                                                            key={designation.id}
+                                                            value={designation.id}
+                                                            >{designation.name}
+                                                            </option>)
+                                                    }
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -852,6 +868,18 @@ const AddTeacherPage = (props) => {
                     </section>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </>
     )
 };
@@ -877,6 +905,7 @@ export async function getServerSideProps({req}) {
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
+    const designationList = await getDesignationList(madrasha_slug).then(data => data)
 
     // will receive `posts` as a prop at build time
     return {
@@ -886,7 +915,8 @@ export async function getServerSideProps({req}) {
             postCodeList,
             postOfficeList,
             thanaList,
-            departmentList
+            departmentList,
+            designationList
         },
     }
 }

@@ -1,8 +1,79 @@
 import React from "react";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import styles from './Dawah.module.css'
 import Talimat from "../Talimat";
 
 const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDawahModal}) => {
+
+    const columns = [
+        {
+            headerName: 'ID',
+            field: 'id',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Program Name',
+            field: 'program_name',
+            width: 150,
+            editable: true,
+        },
+        {
+            headerName: 'Duration',
+            field: 'duration',
+            width: 110,
+            editable: true,
+        },
+        {
+            headerName: 'Start Time',
+            field: 'start_time',
+            width: 110,
+            editable: true,
+        },
+        {
+            headerName: 'Place',
+            field: 'place',
+            width: 110,
+            editable: true,
+        },
+        {
+            headerName: 'Date',
+            field: 'date',
+            width: 110,
+            editable: true,
+        },
+        {
+            headerName: 'Managed By',
+            field: 'managed_by',
+            width: 110,
+            editable: true,
+        },
+
+        {
+            headerName: 'Action',
+            sortable: false,
+            width: 160,
+
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleUpdateDawahModal(params.row.id)}>
+                            Edit
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteDawahModal(params.row.id)}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
+    ];
+
     return (
         <>
             <section className={styles.dawahSection}>
@@ -27,41 +98,27 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
                                                 </div>
                                             </div>
                                             <div className="details-table mt-4">
-                                                <div className="table-responsive">
-                                                    <table className="table table-striped">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Program Name</th>
-                                                            <th scope="col">Duration</th>
-                                                            <th scope="col">Start Time</th>
-                                                            <th scope="col">Place</th>
-                                                            <th scope="col">Managed By</th>
-                                                            <th scope="col" className="text-center">Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {
-                                                            dawah?.map((data, index) => (
-                                                                <tr key={data.id}>
-                                                                    <th scope="row">{index+1}</th>
-                                                                    <td className="text-sm">{data?.date}</td>
-                                                                    <td className="text-sm">{data?.program_name}</td>
-                                                                    <td className="text-sm">{data?.duration}</td>
-                                                                    <td className="text-sm">{data?.start_time}</td>
-                                                                    <td className="text-sm">{data?.place}</td>
-                                                                    <td className="text-sm">{data?.managed_by}</td>
-                                                                    <td className="text-center">
-                                                                        <button className="btn btn-primary me-2" onClick={() =>handleUpdateDawahModal(data.id)}>Edit</button>
-                                                                        <button className="btn btn-danger" onClick={()=>handleDeleteDawahModal(data.id)}>Delete</button>
-                                                                    </td>
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                <Box sx={{height: 500, width: '100%'}}>
+                                                    <DataGrid
+                                                        rows={dawah}
+                                                        columns={columns}
+                                                        pageSize={5}
+                                                        rowsPerPageOptions={[5]}
+                                                        checkboxSelection
+                                                        disableSelectionOnClick
+                                                        disableColumnFilter
+                                                        disableColumnSelector
+                                                        disableDensitySelector
+                                                        components={{Toolbar: GridToolbar}}
+                                                        experimentalFeatures={{newEditingApi: false}}
+                                                        componentsProps={{
+                                                            toolbar: {
+                                                                showQuickFilter: true,
+                                                                quickFilterProps: {debounceMs: 500},
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </div>
                                         </div>
                                     </div>

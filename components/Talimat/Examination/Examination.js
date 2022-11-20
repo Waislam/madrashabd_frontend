@@ -1,14 +1,19 @@
 import {useState} from "react";
-import SideMenu from './ExamSideMenu';
 
+// styles
 import taliamatstyles from '../Talimat.module.css'
-import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 
+// models
 import ExamAnnouncementModal from './Modal/ExamAnnouncementModal'
 import ExamAnnouncementDeleteModal from "./Modal/ExamAnnouncementDeleteModal";
 import ExamAnnouncementEditModal from "./Modal/ExamAnnouncmentEditModal";
 
+// components
+import SideMenu from './ExamSideMenu';
+import ExamHeader from './ExamHeader'
+
+// api
 import api from "../../../pages/api/api";
 
 

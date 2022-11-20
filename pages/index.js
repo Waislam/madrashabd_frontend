@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react'
 import {useRouter} from "next/router";
 
-import {signIn, signOut, useSession} from 'next-auth/react'
+// components
 import Layout from "../components/Layout/Layout";
+
+// third party
+import {signIn, signOut, useSession} from 'next-auth/react'
 
 
 export default function Home() {
@@ -24,7 +27,6 @@ export default function Home() {
                             <p className='text-thin'>
                                 Loading.......
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -41,7 +43,6 @@ export default function Home() {
                             <p className='text-thin'>
                                 Access Denied
                             </p>
-
                         </div>
                     </div>
                 </div>

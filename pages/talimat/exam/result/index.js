@@ -8,7 +8,7 @@ const ResultSheetPage = () => {
 
     return (
         <>
-            <ResultSheet/>
+            <ResultSheet />
         </>
     )
 };

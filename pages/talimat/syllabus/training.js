@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 // Dawah Component
 import Training from "../../../components/Talimat/Syllabus/Teachertraining";
 import Layout from "../../../components/Layout/Layout";
+
 // import Modal
 import TeacherTrainUpdate from "../../../components/Talimat/Syllabus/Modals/TeacherTrainUpdate"
 import TeacherTrainDeleteModal from "../../../components/Talimat/Syllabus/Modals/TeacherTrainDeleteModal"
