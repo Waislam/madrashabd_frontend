@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import api, {BASE_URL} from '../api'
+import api, { BASE_URL } from '../api'
 
 
 export default async function auth(req, res) {
@@ -8,14 +8,14 @@ export default async function auth(req, res) {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                username: {label: "Username", type: "text", placeholder: "jsmith"},
-                password: {label: "Password", type: "password"}
+                username: { label: "Username", type: "text", placeholder: "jsmith" },
+                password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
                 const res = await fetch(`${BASE_URL}/accounts/api-token-auth/`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
-                    headers: {"Content-Type": "application/json"}
+                    headers: { "Content-Type": "application/json" }
                 })
                 const user = await res.json()
                 // If no error and we have user data, return it
@@ -56,7 +56,7 @@ export default async function auth(req, res) {
                 // return final_token
                 return params.token;
             },
-            session: async ({session, token}) => {
+            session: async ({ session, token }) => {
                 if (session?.user) {
                     session.user.user_id = token.user_id;
                     session.user.user_info = token.user_info;
