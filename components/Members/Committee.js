@@ -11,27 +11,27 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
         {
             field: 'id',
             headerName: 'ID',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             field: 'member_name',
             headerName: 'Member Name',
-            width: 150,
+            width: 130,
             editable: true,
         },
 
         {
             field: 'member_designation',
             headerName: 'Podobi',
-            width: 110,
+            width: 100,
             editable: true,
         },
         {
             field: 'phone_number',
             headerName: 'Phone',
             sortable: false,
-            width: 160
+            width: 100
         },
 
         {
@@ -43,7 +43,6 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
                 return (
                     <div>
                         <button className="btn btn-primary" onClick={()=>handleUpdateCommitteeModal(params.row.id)}>Edit</button>
-                        <button className="btn btn-danger" >Delete</button>
                     </div>
                 );
             }

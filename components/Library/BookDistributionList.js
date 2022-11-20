@@ -10,14 +10,14 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
         {
             headerName: 'Student ID',
             field: 'id',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Student Name',
             field: 'first_name',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.user?.first_name} ${params.row.student_roll_id?.user?.last_name}`,
         },
@@ -25,7 +25,7 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Class',
             field: 'name',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.admitted_class?.name}`,
         },
@@ -33,7 +33,7 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Phone',
             field: 'phone',
             sortable: false,
-            width: 160,
+            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.user?.phone}`,
         },
@@ -41,7 +41,7 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Book Number',
             field: 'number',
             sortable: false,
-            width: 160,
+            width: 130,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.book_number?.number}`,
         },
@@ -50,7 +50,7 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Book Name',
             field: 'name',
             sortable: false,
-            width: 160,
+            width: 140,
             valueGetter: (params) =>
                 `${params.row?.book_number?.name}`,
         },
@@ -59,14 +59,14 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Taken Date',
             field: 'taken_date',
             sortable: false,
-            width: 160,
+            width: 140,
             valueGetter: (params) =>
                 `${params.row?.taken_date}`,
         },
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
+            width: 140,
 
             renderCell: (params) => {
                 return (
