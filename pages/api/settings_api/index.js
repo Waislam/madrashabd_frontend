@@ -8,7 +8,7 @@ export const getDepartmentList = async (madrasha_slug) => {
     return response.data;
 }
 
-// Get Department List from api
+// Get Designation List from api
 export const getDesignationList = async (madrasha_slug) => {
     const url = `/settings/${madrasha_slug}/designation/`;
     const response = await api.get(url);
