@@ -5,7 +5,8 @@ import Routine from "../../../components/Talimat/Examination/Routine";
 import Layout from "../../../components/Layout/Layout";
 
 // api
-import { BASE_URL } from "../../api/api";
+import {BASE_URL} from "../../api/api";
+import {getSession} from "next-auth/react";
 
 const RoutinePage = (props) => {
     // console.log('props data', props)
@@ -22,14 +23,17 @@ const RoutinePage = (props) => {
 };
 
 
-export async function getStaticProps() {
-    const madrashaBookRes = await fetch(`${BASE_URL}/settings/100/books/`)
+export async function getServerSideProps({req}) {
+    const session = await getSession({req})
+    const madrasha_slug = session?.user.madrasha_slug
+
+    const madrashaBookRes = await fetch(`${BASE_URL}/settings/${madrasha_slug}/books/`)
     const madrashaBookList = await madrashaBookRes.json()
 
-    const classListRes = await fetch(`${BASE_URL}/settings/100/classes/`)
+    const classListRes = await fetch(`${BASE_URL}/settings/${madrasha_slug}/classes/`)
     const classList = await classListRes.json()
 
-    const examTermListRes = await fetch(`${BASE_URL}/talimat/100/exam-term/`)
+    const examTermListRes = await fetch(`${BASE_URL}/talimat/${madrasha_slug}/exam-term/`)
     const examTermList = await examTermListRes.json()
 
 
@@ -46,9 +50,9 @@ export default RoutinePage;
 
 
 RoutinePage.getLayout = (page) => {
-    return(
+    return (
         <Layout>
-            { page }
+            {page}
         </Layout>
     )
 };
