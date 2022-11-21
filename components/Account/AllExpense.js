@@ -11,13 +11,13 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'ID',
             field: 'id',
             sortable: false,
-            width: 160
+            width: 60
         },
         {
             headerName: 'Category',
             field: 'category',
             sortable: false,
-            width: 160,
+            width: 110,
             valueGetter: (params) =>
                 `${params.row.category.name}`,
         },
@@ -26,7 +26,7 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'Sub Category',
             field: 'sub_category',
             sortable: false,
-            width: 160,
+            width: 130,
             valueGetter: (params) =>
                 `${params.row.sub_category.name}`,
         },
@@ -34,43 +34,43 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'Description',
             field: 'description',
             sortable: false,
-            width: 160
+            width: 140
         },
         {
             headerName: 'Amount',
             field: 'amount',
             sortable: false,
-            width: 160
+            width: 100
         },
         {
             headerName: 'Date',
             field: 'date',
             sortable: false,
-            width: 160
+            width: 100
         },
         {
             headerName: 'Receipt Number',
             field: 'receipt_number',
             sortable: false,
-            width: 160
+            width: 100
         },
         {
             headerName: 'Expense By',
             field: 'expense_by',
             sortable: false,
-            width: 160
+            width: 100
         },
         {
             headerName: 'Approved By',
             field: 'approved_by',
             sortable: false,
-            width: 160
+            width: 100
         },
         {
             field: 'Action',
             headerName: 'Detail',
             sortable: false,
-            width: 160,
+            width: 150,
             renderCell: (params) => {
                 return (
                     <div>

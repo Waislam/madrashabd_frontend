@@ -18,3 +18,20 @@
     border-radius: 4px;
     margin: 2px
 }
+
+.teacherStaffButton {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 10px;
+    border: white;
+    border-radius: 4px;
+    margin:2px;
+    transition: box-shadow 2s linear;
+}
+
+.teacherStaffButton:hover {
+    color: white;
+    box-shadow: 5px 21px 27px -3px rgba(0,0,0,0.58);
+    -webkit-box-shadow: 5px 21px 27px -3px rgba(0,0,0,0.58);
+    -moz-box-shadow: 5px 21px 27px -3px rgba(0,0,0,0.58);
+}

@@ -14,6 +14,13 @@ import {
     getPostOfficeApi,
     getThanaApi
 } from "../../pages/api/madrasha/madrashaApi";
+import {
+    getClassList,
+    getDepartmentList,
+    getDesignationList,
+    getGroupList,
+    getSessionList, getShiftList
+} from "../../pages/api/settings_api";
 
 const AdmissionForm = (props) => {
     const [step, setStep] = useState(1);
@@ -23,6 +30,13 @@ const AdmissionForm = (props) => {
     const [postCodeList, setPostCodeList] = useState([]);
     const [districtList, setDistricts] = useState([]);
     const [thanaList, setThanaList] = useState([]);
+
+    const [departmentList, setDepartmentList] = useState([]);
+    const [designationList, setDesignationList] = useState([]);
+    const [classList, setClassList] = useState([]);
+    const [groupList, setGroupList] = useState([]);
+    const [sessionList, setSessionList] = useState([]);
+    const [shiftList, setShiftList] = useState([]);
 
     const [selectPresentAddressDistrict, setSelectPresentAddressDistrict] = useState('');
     const [selectPresentAddressDivision, setSelectPresentAddressDivision] = useState('');
@@ -44,6 +58,34 @@ const AdmissionForm = (props) => {
     const nextStep = () => {
         setStep(step + 1)
     };
+
+    useEffect(() => {
+        getDepartmentList('100').then((data) => {
+            setDepartmentList(data)
+        })
+
+        getDesignationList('100').then((data) => {
+            setDesignationList(data)
+        })
+
+        getClassList('100').then((data) => {
+            setClassList(data)
+        })
+
+        getGroupList('100').then((data) => {
+            setGroupList(data)
+        })
+
+        getSessionList('100').then((data) => {
+            setSessionList(data)
+        })
+
+        getShiftList('100').then((data) => {
+            setShiftList(data)
+        })
+
+    }, [])
+
 
     useEffect(() => {
 
@@ -153,6 +195,11 @@ const AdmissionForm = (props) => {
                     nextStep={nextStep}
                     prevStep={prevStep}
                     session={props.session}
+                    departmentList={departmentList}
+                    shiftList={shiftList}
+                    classList={classList}
+                    groupList={groupList}
+                    sessionList={sessionList}
                 />
             );
         default:

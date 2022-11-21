@@ -10,25 +10,25 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
         {
             headerName: 'ID',
             field: 'id',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Program Name',
             field: 'program_name',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'Duration',
             field: 'duration',
-            width: 110,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time',
-            width: 110,
+            width: 100,
             editable: true,
         },
         {

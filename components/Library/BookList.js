@@ -8,13 +8,22 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
         {
             headerName: 'ID',
             field: 'id',
-            width: 150,
+            width: 70,
             editable: true,
         },
+        // {
+        //     headerName: 'Index',
+        //     field: 'index',
+        //     width: 30,
+        //     editable: true,
+        //     valueGetter:(params)=>{
+        //         console.log("value from map: ", params?.tabIndex)
+        //     }
+        // },
         {
             headerName: 'Number',
             field: 'number',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
@@ -32,25 +41,25 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
         {
             headerName: 'Part',
             field: 'part',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Original Writer',
             field: 'original_writer',
-            width: 150,
+            width: 130,
             editable: true,
         },
         {
             headerName: 'Language',
             field: 'language',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Book For Class',
             field: 'book_for_class',
-            width: 150,
+            width: 120,
             editable: true,
         },
 
@@ -58,7 +67,7 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
             field: 'is_available',
             headerName: 'Status',
             sortable: false,
-            width: 160,
+            width: 100,
             renderCell: (params) => {
                 return (
                     <div>
