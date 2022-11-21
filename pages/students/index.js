@@ -4,9 +4,11 @@ import api from '../api/api'
 // StudentList Component
 import StudentList from "../../components/Students/StudentList";
 import Layout from "../../components/Layout/Layout";
-import { useSession } from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 
-const Index = () => {
+
+const Index = ({studentListData}) => {
+    console.log("studentListData", studentListData)
     const [students, setStudents] = useState(null);
     const [isLoading, setLoading] = useState(false);
     const [studentId, setStudentID] = useState('');
@@ -14,12 +16,12 @@ const Index = () => {
     const [studentListPageNum, setStudentListPageNum] = useState(1);
     const [studentListRecords, setStudentListRecords] = useState('');
     const {data: session, status} = useSession();
-    
+
     const madrasha_slug = session?.user.madrasha_slug
 
     const getStudents = async () => {
         setLoading(true);
-        api.get(`students/${madrasha_slug}/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
+        api.get(`/students/${madrasha_slug}/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`)
             .then((response) => {
                 setStudents(response.data);
                 setLoading(false);
@@ -52,17 +54,17 @@ const Index = () => {
         setStudentListPageNum(studentListPageNum - 1)
     };
 
-    if (isLoading) {
-        return (
-            <div className="text-center">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        )
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className="text-center">
+    //             <div className="spinner-border" role="status">
+    //                 <span className="visually-hidden">Loading...</span>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
-    if (!students) {
+    if (!studentListData) {
         return (
             <h1>No students data found</h1>
         )
@@ -71,17 +73,33 @@ const Index = () => {
     return (
         <>
             <StudentList
-                students={students}
-                handleStudentListPageNum={handleStudentListPageNum}
-                studentListPageNum={studentListPageNum}
-                setSearchStudent={setSearchStudent}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                handleSearchBtn={handleSearchBtn}
+                students={studentListData}
+                // handleStudentListPageNum={handleStudentListPageNum}
+                // studentListPageNum={studentListPageNum}
+                // setSearchStudent={setSearchStudent}
+                // nextPage={nextPage}
+                // prevPage={prevPage}
+                // handleSearchBtn={handleSearchBtn}
             />
         </>
     )
 };
+
+export async function getServerSideProps({req}) {
+    const session = await getSession({req})
+    const madrasha_slug = session?.user.madrasha_slug
+
+    // Fetch data from external API
+    const res = await api.get(`/students/${madrasha_slug}`)
+    const studentListData = await res.data
+
+    // Pass data to the page via props
+    return {
+        props: {
+            studentListData
+        }
+    }
+}
 
 
 export default Index;
