@@ -4,6 +4,7 @@ import React from "react";
 import Registration from "../../../components/Talimat/Examination/Registration";
 import Layout from "../../../components/Layout/Layout";
 import api, { BASE_URL } from "../../api/api";
+import {getSession} from "next-auth/react";
 
 const RegistrationPage = (props) => {
 
@@ -18,14 +19,17 @@ const RegistrationPage = (props) => {
     )
 };
 
-export async function getStaticProps() {
-    const examRegistrationRes = await fetch(`${BASE_URL}/talimat/100/exam-registration/`)
+export async function getServerSideProps({req}) {
+    const session = await getSession({req})
+    const madrasha_slug = session?.user.madrasha_slug
+
+    const examRegistrationRes = await fetch(`${BASE_URL}/talimat/${madrasha_slug}/exam-registration/`)
     const examRegistrationList = await examRegistrationRes.json()
 
-    const termListres = await fetch(`${BASE_URL}/talimat/100/exam-term/`)
+    const termListres = await fetch(`${BASE_URL}/talimat/${madrasha_slug}/exam-term/`)
     const termList = await termListres.json()
 
-    const classListRes = await fetch(`${BASE_URL}/settings/100/classes/`)
+    const classListRes = await fetch(`${BASE_URL}/settings/${madrasha_slug}/classes/`)
     const classList = await classListRes.json()
 
     // will receive `posts` as a prop at build time
