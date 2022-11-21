@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import Link from 'next/link';
 import Image from "next/image";
 import styles from './TeacherDetails.module.css';
 
@@ -254,16 +254,22 @@ const TeacherDetail = ({teacher}) => {
                             </div>
                             <div className="row">
                                 <div className="col mb-3">
-                                    <h4>Experience </h4>
-                                    <p># In publishing and graphic design, Lorem ipsum is a placeholder text commonly
-                                        used to demonstrate the visual form of a document
-                                    </p>
+                                    <h4>Experience</h4>
+                                    <div className="card">
+                                        <div className="card-body">
+                                        <p>{teacher.data.experience.experience_name}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col mb-4">
                                     <h4>Skills </h4>
-                                    <p>{teacher.data.skill.skill_name}</p>
+                                    <div className="card">
+                                        <div className="card-body">
+                                        <p>{teacher.data.skill.skill_name}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">

@@ -2,6 +2,7 @@ import React from "react";
 import Link from 'next/link'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import styles from './TeacherList.module.css';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
