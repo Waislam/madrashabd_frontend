@@ -2,6 +2,7 @@ import React from "react";
 import Link from 'next/link'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import styles from './TeacherList.module.css';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -50,10 +51,10 @@ const TeacherList = ({teachers}) => {
                 <div className="container">
                     <div className="card pb-0 mb-4">
                         <div className="card-body pb-0">
-                            <div className="row">
+                            <div className="row mb-3">
                                 <div className="col-md-3">
                                     <Link href="teachers/add-teacher">
-                                        <a className="btn btn-secondary">Add</a>
+                                        <a className={`btn ${styles.teacherStaffButton}`}>Add Teacher</a>
                                     </Link>
                                 </div>
                                 <div className="col-md-6"/>
