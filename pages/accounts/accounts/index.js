@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from "react"
 import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
-import api, {BASE_URL} from '../api/api'
+import api, {BASE_URL} from '../../api/api'
 import axios from "axios"
 
 // StudentList Component
-import Account from "../../components/Account/StudentIncome"
-import Layout from "../../components/Layout/Layout"
+import Account from "../../../components/Account/StudentIncome"
+import Layout from "../../../components/Layout/Layout"
 
 // import component modals
-import AddStudentIncomeModal from "../../components/Account/Modals/AddStudentIncomeModal"
-import StudentIncomeUpdateModal from "../../components/Account/Modals/UpdateStudentIncomeModal"
+import AddStudentIncomeModal from "../../../components/Account/Modals/AddStudentIncomeModal"
+import StudentIncomeUpdateModal from "../../../components/Account/Modals/UpdateStudentIncomeModal"
 
 
 const Accounts = (props) => {

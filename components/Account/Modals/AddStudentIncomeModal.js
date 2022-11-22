@@ -27,7 +27,7 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
             "date": values.date,
         };
 
-        await axios.post(`${BASE_URL}/transactions/${session.user?.madrasha_slug}/student-income/`, newStudetnIncome)
+        await axios.post(`${BASE_URL}/transactions/${session?.user?.madrasha_slug}/student-income/`, newStudetnIncome)
             .then((response) => {
                 console.log('Success Response: ', response.data)
             })
