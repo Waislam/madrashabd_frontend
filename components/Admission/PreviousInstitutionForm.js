@@ -5,6 +5,11 @@ import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 // api call
 import api, {BASE_URL} from "../../pages/api/api";
+import { toast } from "react-toastify";
+
+function getRandomNumberBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 const PreviousInstitutionForm = (props) => {
     const [loading, setLoading] = useState(false)
@@ -42,7 +47,7 @@ const PreviousInstitutionForm = (props) => {
                     let studentRawData = JSON.stringify({
                         "user": res.data.user_id,
                         "madrasha": props.session.user?.madrasha_id,
-                        "student_roll_id": "7657423",
+                        "student_roll_id": getRandomNumberBetween(34, 656546543455),
                         "date_of_birth": admissionData.date_of_birth,
                         "age": admissionData.age,
                         "birth_certificate": admissionData.birth_certificate,
@@ -97,24 +102,24 @@ const PreviousInstitutionForm = (props) => {
                         "other_contact_person_relation": admissionData.other_contact_person_relation,
                         "other_contact_person_contact": admissionData.other_contact_person_contact,
                         "sibling_id": admissionData.sibling_id,
-                        "previous_institution_name": null,
-                        "previous_institution_contact": null,
-                        "previous_started_at": null,
-                        "previous_ending_at": null,
-                        "previous_ending_class": null,
-                        "previous_ending_result": null,
-                        "board_exam_name": null,
-                        "board_exam_registration": null,
-                        "board_exam_roll": null,
-                        "board_exam_result": null,
-                        "admitted_department": 1,
-                        "admitted_class": 1,
-                        "admitted_group": 1,
-                        "admitted_shift": 1,
+                        "previous_institution_name": values.previous_institution_name,
+                        "previous_institution_contact": values.previous_institution_contact,
+                        "previous_started_at": values.previous_started_at,
+                        "previous_ending_at": values.previous_ending_at,
+                        "previous_ending_class": values.previous_ending_class,
+                        "previous_ending_result": values.previous_ending_result,
+                        "board_exam_name": values.board_exam_name,
+                        "board_exam_registration": values.board_exam_registration,
+                        "board_exam_roll": values.board_exam_roll,
+                        "board_exam_result": values.board_exam_result,
+                        "admitted_department": values.admitted_department,
+                        "admitted_class": values.admitted_class,
+                        "admitted_group": values.admitted_group,
+                        "admitted_shift": values.admitted_shift,
                         "admitted_roll": "120",
-                        "admitted_session": 1,
-                        "student_blood_group": "0+",
-                        "special_body_sign": null,
+                        "admitted_session": values.admitted_session,
+                        "student_blood_group": values.student_blood_group,
+                        "special_body_sign": values.special_body_sign,
                         "academic_fees": null,
                         "talimi_murobbi_name": "class teacher"
                     });
@@ -131,13 +136,16 @@ const PreviousInstitutionForm = (props) => {
                         .then((result) => {
                             console.log("data submited result", result)
                             setLoading(false)
+                            return result && toast.success('Student has been created!')
                         })
                         .catch((error) => {
                             console.log('error', error)
                             setLoading(false)
+                            return toast.error('Something went wrong! Please try again!')
                         });
                 } else {
                     console.log("User is not created.")
+                    return toast.error('User is not created.')
                 }
 
             })
@@ -280,56 +288,109 @@ const PreviousInstitutionForm = (props) => {
                                 <h5>Admission Information</h5>
                                 <div className="row mb-3">
                                     <div className="col-md-3">
-                                        <input
-                                            type="text"
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    defaultValue={admissionData.admitted_department}*/}
+                                        {/*    placeholder="Department"*/}
+                                        {/*    className="form-control"*/}
+                                        {/*    id="admitted_department"*/}
+                                        {/*    {...register("admitted_department")}*/}
+                                        {/*/>*/}
+                                        <select
+                                            name="admitted_department"
                                             defaultValue={admissionData.admitted_department}
-                                            placeholder="Department"
-                                            className="form-control"
+                                            className="form-select"
                                             id="admitted_department"
-                                            {...register("admitted_department")}
-                                        />
+                                            {...register("admitted_department", {required: true})}
+                                        >
+                                            <option value=''>Choose department...</option>
+                                            {
+                                                props.departmentList.map((department) => (
+                                                    <option value={department.id}>{department.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_department && (
+                                            <p className="text-danger">Nationality is required</p>
+                                        )}
                                     </div>
                                     <div className="col-md-3">
-                                        <input
-                                            type="text"
+                                        <select
+                                            name="admitted_class"
                                             defaultValue={admissionData.admitted_class}
-                                            placeholder="Class"
-                                            className="form-control"
+                                            className="form-select"
                                             id="admitted_class"
-                                            {...register("admitted_class")}
-                                        />
+                                            {...register("admitted_class", {required: true})}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                props.classList.map((classData) => (
+                                                    <option value={classData.id}>{classData.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_class && (
+                                            <p className="text-danger">Class in required !!</p>
+                                        )}
                                     </div>
                                     <div className="col-md-3">
-                                        <input
-                                            type="text"
+                                        <select
+                                            name="admitted_group"
                                             defaultValue={admissionData.admitted_group}
-                                            placeholder="Group/Section"
-                                            className="form-control"
+                                            className="form-select"
                                             id="admitted_group"
-                                            {...register("admitted_group")}
-                                        />
+                                            {...register("admitted_group", {required: true})}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                props.groupList.map((group) => (
+                                                    <option value={group.id}>{group.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_group && (
+                                            <p className="text-danger">Group in required !!</p>
+                                        )}
                                     </div>
                                     <div className="col-md-3">
-                                        <input
-                                            type="text"
+                                        <select
+                                            name="admitted_shift"
                                             defaultValue={admissionData.admitted_shift}
-                                            placeholder="Shift"
-                                            className="form-control"
+                                            className="form-select"
                                             id="admitted_shift"
-                                            {...register("admitted_shift")}
-                                        />
+                                            {...register("admitted_shift", {required: true})}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                props.shiftList.map((shift) => (
+                                                    <option value={shift.id}>{shift.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_shift && (
+                                            <p className="text-danger">Shift in required !!</p>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-4">
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.admitted_session}
-                                            placeholder="Session"
-                                            className="form-control mb-3"
+                                        <select
+                                            name="admitted_session"
+                                            defaultValue={admissionData.admitted_shift}
+                                            className="form-select"
                                             id="admitted_session"
-                                            {...register("admitted_session")}
-                                        />
+                                            {...register("admitted_session", {required: true})}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                props.sessionList.map((sessionData) => (
+                                                    <option value={sessionData.id}>{sessionData.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_session && (
+                                            <p className="text-danger">Session in required !!</p>
+                                        )}
                                     </div>
                                     <div className="col-md-4">
                                         <input
@@ -339,16 +400,6 @@ const PreviousInstitutionForm = (props) => {
                                             className="form-control mb-3"
                                             id="admitted_roll"
                                             {...register("admitted_roll")}
-                                        />
-                                    </div>
-                                    <div className="col-md-4">
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.admitted_shift}
-                                            placeholder="Shift"
-                                            className="form-control"
-                                            id="admitted_shift"
-                                            {...register("admitted_shift")}
                                         />
                                     </div>
                                 </div>

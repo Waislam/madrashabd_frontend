@@ -10,50 +10,50 @@ const ExtraActivity = ({extraActivity, handleAddExtraActivity, handleDeleteExtra
         {
             field: 'id',
             headerName: 'ID',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Date',
             field: 'date',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Category',
             field: 'category',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'Duration',
             field: 'duration',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Place',
             field: 'place',
-            width: 150,
+            width: 100,
             editable: true,
         },
         {
             headerName: 'Managed By',
             field: 'managed_by',
-            width: 150,
+            width: 100,
             editable: true,
         },
 
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
+            width: 150,
 
             renderCell: (params) => {
                 return (

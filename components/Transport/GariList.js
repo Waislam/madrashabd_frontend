@@ -12,37 +12,37 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
         {
             headerName: 'ID',
             field: 'id',
-            width: 150,
+            width: 50,
             editable: true,
         },
         {
             headerName: 'Car Number',
             field: 'car_number',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'Driver Name',
             field: 'driver_name',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'Driver Number',
             field: 'driver_number',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'route',
             field: 'route',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time ',
-            width: 150,
+            width: 120,
             editable: true,
         },
         {

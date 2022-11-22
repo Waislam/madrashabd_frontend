@@ -5,11 +5,6 @@ import { updateStudentDetail } from "../../pages/api/StudentAPI/students_api";
 import styles from './OldAdmission.module.css'
 
 const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
-    const {data: session, status} = useSession();
-    // const [success]
-
-
-    // console.table({session, studentDetails});
     // Destructuring madrashaData
     const {departmentList, classes, groups, sessionList, shifts} = madrashaData;
 
@@ -35,13 +30,6 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
 
     // Function for update student details
     const handleUpdateStudent = data => {
-
-        // console.log("User from session", session.user.id)
-
-        // const userId = session.user.id;
-
-        // console.log("###",userId);
-
         const updatedData = {
             user: studentDetails?.user?.id,
             madrasha: 1,
