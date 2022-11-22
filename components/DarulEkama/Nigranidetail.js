@@ -251,7 +251,7 @@ const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow,
                             </div>
 
                             {/* Add nigran section */}
-                            {/* <div className="add-nigran">
+                            <div className="add-nigran">
                                 <Modal
                                     show={nigranaddModalShow}
                                     onHide={() => setNigranAddModalShow(false)}
@@ -362,7 +362,7 @@ const Nigranidetail = ({ nigran_list, handlePostRequest, nigranaddModalShow,
                                         </form>
                                     </Modal.Body>
                                 </Modal>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>
