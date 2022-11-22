@@ -5,6 +5,7 @@ import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 // api call
 import api, {BASE_URL} from "../../pages/api/api";
+import { toast } from "react-toastify";
 
 function getRandomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -135,13 +136,16 @@ const PreviousInstitutionForm = (props) => {
                         .then((result) => {
                             console.log("data submited result", result)
                             setLoading(false)
+                            return result && toast.success('Student has been created!')
                         })
                         .catch((error) => {
                             console.log('error', error)
                             setLoading(false)
+                            return toast.error('Something went wrong! Please try again!')
                         });
                 } else {
                     console.log("User is not created.")
+                    return toast.error('User is not created.')
                 }
 
             })
