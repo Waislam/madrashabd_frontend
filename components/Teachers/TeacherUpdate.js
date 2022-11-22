@@ -1,58 +1,90 @@
-import React, {useState, useEffect} from "react";
-import Layout from "../../components/Layout/Layout";
-import styles from '../../components/Teachers/TeacherList.module.css'
-import {useForm, useFieldArray} from "react-hook-form"
-import api, {BASE_URL} from "../api/api";
-import { getSession, useSession } from "next-auth/react";
-import { getDepartmentList, getDesignationList } from "../api/settings_api";
-import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
-import { ToastContainer, toast } from 'react-toastify';
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from "next/router";
+import api from "../../pages/api/api";
+import styles from './TeacherList.module.css';
 
-const AddTeacherPage = (props) => {
+const TeacherUpdate = ({data}) => {
     const [isChecked, setIsChecked] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const {data: session, status} = useSession();
-    const router = useRouter();
-
-    // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('');
-    const [disctrictList, setDistrictList] = useState(null);
-    const [singleDistrict, setSingleDristrict] = useState('');
-    const [departmentList, setDepartmentList] = useState('');
-
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
-
-    // console.log("@@ departmentList",departmentList)
-
-    const madrasha_slug = session?.user.madrasha_slug;
-    const madrasha_id = session?.user.madrasha_id;
+    const { data: session, status } = useSession();
 
 
     const {
-        handleSubmit,
-        register,
-        formState: {errors}, control
-    } = useForm()
+        divisionList,
+        districtList,
+        postCodeList,
+        postOfficeList,
+        thanaList,
+        departmentList,
+        teacher,
+        designationList
+    } = data
 
-    // console.log("@@@@@ session:", session)
+    console.log('@@@ Teacher', session)
 
-    const onSubmit = (data) => {
-        console.log("end date foramte: ", data)
-        setIsLoading(true);
-        setAdmissionFormValues(data);
+    const formDefaultValues = {
+        "user": teacher.data.user.id,
+        "fast_name": teacher.data.user.first_name,
+        "last_name": teacher.data.user.last_name,
+        "madrasha": teacher.data.madrasha,
+        "teacher_id": teacher.data.teacher_id,
+        "father_name": teacher.data.father_name,
+        "mother_name": teacher.data.mother_name,
+        "date_of_birth": teacher.data.date_of_birth,
+        "gender": teacher.data.gender,
+        "religion": teacher.data.religion,
+        "marital_status": teacher.data.marital_status,
+        "present_address_division": teacher.data.present_address.division.pk,
+        "present_address_district": teacher.data.present_address.district.pk,
+        "present_address_thana": teacher.data.present_address.thana.pk,
+        "present_address_post_office": teacher.data.present_address.post_office.pk,
+        "present_address_post_code": teacher.data.present_address.post_code.pk,
+        "present_address_info": teacher.data.present_address.address_info,
 
-        const teacher_data = {
-            "user": {
-                "username": data.phone_number,
-                "email": data.email,
-                "first_name": data.first_name,
-                "last_name": data.last_name,
-                "phone": data.phone_number,
-            },
-            "madrasha": madrasha_id,
+        "permanent_address_division": teacher.data.permanent_address.division.pk,
+        "permanent_address_district": teacher.data.permanent_address.district.pk,
+        "permanent_address_thana": teacher.data.permanent_address.thana.pk,
+        "permanent_address_post_office": teacher.data.permanent_address.post_office.pk,
+        "permanent_address_post_code": teacher.data.permanent_address.post_code.pk,
+        "permanent_address_info": teacher.data.permanent_address.address_info,
+
+        "degree_name": teacher.data.education.degree_name,
+        "institution_name": teacher.data.education.institution_name,
+        "passing_year": teacher.data.education.passing_year,
+        "result": teacher.data.education.result,
+        "skill": teacher.data.skill.skill_name,
+        "experience_name": teacher.data.experience.experience_name,
+        // "skill": {
+        //     "skill_name": props.teacher.data.skill.skill_name
+        // },
+        // "experience": {
+        //     "experience_name": "New experience"
+        // },
+        "phone_number": teacher.data.user.phone,
+        "nid": teacher.data.nid,
+        "birth_certificate": teacher.data.birth_certificate,
+        "nationality": teacher.data.nationality,
+        "blood_group": teacher.data.blood_group,
+        "department": teacher.data.department.id,
+        "designation": teacher.data.designation.id,
+        "starting_date": teacher.data.starting_date,
+        "ending_date": teacher.data.ending_date,
+        "slug": teacher.data.slug,
+        "email": teacher.data.user.email
+    }
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+        mode: "onChange",
+        defaultValues: formDefaultValues
+    });
+
+    const onSubmit = data => {
+        let teacher_data = {
+            "user": teacher.data.user.id,
+            "madrasha": session.user.madrasha_id,
             "father_name": data.father_name,
             "mother_name": data.mother_name,
             "date_of_birth": data.date_of_birth,
@@ -65,15 +97,15 @@ const AddTeacherPage = (props) => {
                 "thana": data.present_address_thana,
                 "post_office": data.present_address_post_office,
                 "post_code": data.present_address_post_code,
-                "address_info": data.present_address_address_info,
+                "address_info": data.present_address_info,
             },
             "permanent_address": {
                 "division": data.permanent_address_division,
                 "district": data.permanent_address_district,
                 "thana": data.permanent_address_thana,
-                "post_office": parseInt(data.permanent_address_post_office),
+                "post_office": data.permanent_address_post_office,
                 "post_code": data.permanent_address_post_code,
-                "address_info": data.permanent_address_address_info
+                "address_info": data.permanent_address_info
             },
             "education": {
                 "degree_name": data.degree_name,
@@ -87,7 +119,7 @@ const AddTeacherPage = (props) => {
             "skill": {
                 "skill_name": data.skill_name
             },
-            "phone_home": data.second_phone_number,
+            "phone_home": data.phone_number,
             "nid": data.nid,
             "birth_certificate": data.birth_certificate,
             "nationality": data.nationality,
@@ -98,41 +130,15 @@ const AddTeacherPage = (props) => {
             "ending_date": data.ending_date
         }
 
-        // Create New Teacher
-        api.post(`teachers/${madrasha_slug}/`, teacher_data)
-        .then((res) => {
-            console.log("success response: ", res)
-            router.push('/teachers');
-            return res && toast.success('The Teacher is Successfully added!!');
-        })
-        .catch((error) => {
-            const errorUser = '{"user":{"username":["custom user with this username already exists."],"phone":["custom user with this phone already exists."]}}'
-            if(error && error?.request?.responseText==errorUser){
-                return toast.error('Teacher with this phone already exists!')
-            }else{
-                return toast.error(error?.request?.responseText)
-            }
-        })
-        // router.push('/teachers');
-        // router.reload()
+        api.put(`/teachers/detail/${teacher.data.slug}/`, JSON.stringify(teacher_data))
+            .then((res) => {
+                res.data.status && toast.success('Teacher Successfully Updated!!')
+            })
+            .catch((error) => {
+                error && toast.error('Something went wrong');
+                console.log("error", error)
+            })
     }
-
-
-    // Extending field on click / that means add more working by using below
-    // const {fields: experienceField, remove: experienceRemove, append: experienceAppend} = useFieldArray({
-    //     control,
-    //     name: "Experience"
-    // })
-
-    const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
-        control,
-        name: "Skill"
-    })
-
-    const {fields: educationFields, remove: educationRemove, append: educationAppend} = useFieldArray({
-        control,
-        name: "Education"
-    })
 
 
     // Extending field on click / that means add more working by using below
@@ -164,6 +170,16 @@ const AddTeacherPage = (props) => {
         const pk_value = e.target.value
         setSingleDivision(pk_value)
     }
+
+    // const getDistrict = async () => {
+    //     const list = await axios.get(`${BASE_URL}/accounts/district/${singleDivision}/`)
+    //     const district = list.data
+    //     setDistrictList(district)
+    // }
+
+    // useEffect(() => {
+    //     getDistrict()
+    // }, [singleDivision])
 
 
     const handleHidingEndDate = (e) => {
@@ -277,13 +293,13 @@ const AddTeacherPage = (props) => {
                                                         name="department"
                                                         {...register("department")}
                                                 >
-                                                    <option value="" disabled>Select Department</option>
+                                                    <option value="">Select Department</option>
                                                     {
-                                                        props.departmentList.map(department => <option
+                                                        departmentList.map(department => <option
                                                             key={department.id}
                                                             value={department.id}
-                                                            >{department.name}
-                                                            </option>)
+                                                        >{department.name}
+                                                        </option>)
                                                     }
                                                 </select>
                                             </div>
@@ -292,15 +308,15 @@ const AddTeacherPage = (props) => {
                                                 <label className="mb-2">Designation</label>
                                                 <select className="form-select"
                                                         name="designation"
-                                                        {...register("designation")}
+                                                        {...register("designation", {required: "This field is required"})}
                                                 >
-                                                    <option value="" disabled>Select Designation</option>
+                                                    <option value="">Select Department</option>
                                                     {
-                                                        props.designationList.map(designation => <option
+                                                        designationList.map(designation => <option
                                                             key={designation.id}
                                                             value={designation.id}
-                                                            >{designation.name}
-                                                            </option>)
+                                                        >{designation.name}
+                                                        </option>)
                                                     }
                                                 </select>
                                             </div>
@@ -318,10 +334,9 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_division"
                                                     {...register("present_address_division", {required: "This field is required"})}
-                                                    onChange={handleSetSingleDivisionValue}
                                                 >
                                                     <option value="">Select Division</option>
-                                                    {props.divisionList && props.divisionList.map((division) => (
+                                                    {divisionList && divisionList.map((division) => (
                                                         <option
                                                             value={division.pk}
                                                             key={division.pk}
@@ -340,7 +355,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_district", {required: "This field is required"})}
                                                 >
                                                     <option>District select</option>
-                                                    {props.districtList && props.districtList.map((district) => (
+                                                    {districtList && districtList.map((district) => (
                                                         <option
                                                             value={district.pk}
                                                             key={district.pk}
@@ -359,7 +374,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_thana", {required: "This field is required"})}
                                                 >
                                                     <option>Thana Name</option>
-                                                    {props.thanaList && props.thanaList.map((thana) => (
+                                                    {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
                                                             key={thana.pk}
@@ -378,7 +393,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_post_office", {required: "This field is required"})}
                                                 >
                                                     <option>Post office name</option>
-                                                    {props.postOfficeList && props.postOfficeList.map((post_office) => (
+                                                    {postOfficeList && postOfficeList.map((post_office) => (
                                                         <option
                                                             value={post_office.pk}
                                                             key={post_office.pk}
@@ -397,7 +412,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_post_code", {required: "This field is required"})}
                                                 >
                                                     <option>Post code number</option>
-                                                    {props.postCodeList && props.postCodeList.map((post_code) => (
+                                                    {postCodeList && postCodeList.map((post_code) => (
                                                         <option
                                                             value={post_code.pk}
                                                             key={post_code.pk}
@@ -413,10 +428,10 @@ const AddTeacherPage = (props) => {
                                                 <input type="text"
                                                        placeholder="Address"
                                                        className="form-control"
-                                                       name="present_address_address_info"
-                                                       {...register("present_address_address_info", {required: "This field is required"})}
+                                                       name="present_address_info"
+                                                       {...register("present_address_info", {required: "This field is required"})}
                                                 />
-                                                <p className="text-danger">{errors.present_address_address_info?.message}</p>
+                                                <p className="text-danger">{errors.present_address_info?.message}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -435,117 +450,115 @@ const AddTeacherPage = (props) => {
                                             </div> */}
                                         </div>
                                         <hr/>
-                                        {isChecked ?
-                                            <h1 className="d-none">permanent and present address are same</h1> :
-                                            <div className="row">
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">Division</label>
-                                                    <select
-                                                        className="form-select"
-                                                        name="permanent_address_division"
-                                                        {...register("permanent_address_division", {required: "This field is required"})}
-                                                        onChange={handleSetSingleDivisionValue}
-                                                    >
-                                                        <option>Select Division</option>
-                                                        {props.divisionList && props.divisionList.map((division) => (
-                                                            <option
-                                                                value={division.pk}
-                                                                key={division.pk}
-                                                            >
-                                                                {division.name}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <p className="text-danger">{errors.permanent_address_division?.message}</p>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">District</label>
-                                                    <select
-                                                        className="form-select"
-                                                        name="permanent_address_district"
-                                                        {...register("permanent_address_district", {required: "This field is required"})}
-                                                    >
-                                                        <option>District select</option>
-                                                        {props.districtList && props.districtList.map((district) => (
-                                                            <option
-                                                                value={district.pk}
-                                                                key={district.pk}
-                                                            >
-                                                                {district.name}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <p className="text-danger">{errors.permanent_address_district?.message}</p>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">Thana</label>
-                                                    <select
-                                                        className="form-select"
-                                                        name="permanent_address_thana"
-                                                        {...register("permanent_address_thana", {required: "This field is required"})}
-                                                    >
-                                                        <option>Thana Name</option>
-                                                        {props.thanaList && props.thanaList.map((thana) => (
-                                                            <option
-                                                                value={thana.pk}
-                                                                key={thana.pk}
-                                                            >
-                                                                {thana.name}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <p className="text-danger">{errors.permanent_address_thana?.message}</p>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">Post Office</label>
-                                                    <select
-                                                        className="form-select"
-                                                        name="permanent_address_post_office"
-                                                        {...register("permanent_address_post_office", {required: "This field is required"})}
-                                                    >
-                                                        <option>Post office name</option>
-                                                        {props.postOfficeList && props.postOfficeList.map((post_office) => (
-                                                            <option
-                                                                value={post_office.pk}
-                                                                key={post_office.pk}
-                                                            >
-                                                                {post_office.name}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <p className="text-danger">{errors.permanent_address_post_office?.message}</p>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">Post Code</label>
-                                                    <select
-                                                        className="form-select"
-                                                        name="permanent_address_post_code"
-                                                        {...register("permanent_address_post_code", {required: "This field is required"})}
-                                                    >
-                                                        <option>Post code number</option>
-                                                        {props.postCodeList && props.postCodeList.map((post_code) => (
-                                                            <option
-                                                                value={post_code.pk}
-                                                                key={post_code.pk}
-                                                            >
-                                                                {post_code.name}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <p className="text-danger">{errors.permanent_address_post_code?.message}</p>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label className="mb-2">House Address</label>
-                                                    <input type="text"
-                                                           placeholder="Address"
-                                                           className="form-control"
-                                                           name="permanent_address_address_info"
-                                                           {...register("permanent_address_address_info", {required: "This field is required"})}
-                                                    />
-                                                    <p className="text-danger">{errors.permanent_address_address_info?.message}</p>
-                                                </div>
+                                        <h1 className="d-none">permanent and present address are same</h1> :
+                                        <div className="row">
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">Division</label>
+                                                <select
+                                                    className="form-select"
+                                                    name="permanent_address_division"
+                                                    {...register("permanent_address_division", {required: "This field is required"})}
+                                                    onChange={handleSetSingleDivisionValue}
+                                                >
+                                                    <option>Select Division</option>
+                                                    {divisionList && divisionList.map((division) => (
+                                                        <option
+                                                            value={division.pk}
+                                                            key={division.pk}
+                                                        >
+                                                            {division.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <p className="text-danger">{errors.permanent_address_division?.message}</p>
                                             </div>
-                                        }
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">District</label>
+                                                <select
+                                                    className="form-select"
+                                                    name="permanent_address_district"
+                                                    {...register("permanent_address_district", {required: "This field is required"})}
+                                                >
+                                                    <option>District select</option>
+                                                    {districtList && districtList.map((district) => (
+                                                        <option
+                                                            value={district.pk}
+                                                            key={district.pk}
+                                                        >
+                                                            {district.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <p className="text-danger">{errors.permanent_address_district?.message}</p>
+                                            </div>
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">Thana</label>
+                                                <select
+                                                    className="form-select"
+                                                    name="permanent_address_thana"
+                                                    {...register("permanent_address_thana", {required: "This field is required"})}
+                                                >
+                                                    <option>Thana Name</option>
+                                                    {thanaList && thanaList.map((thana) => (
+                                                        <option
+                                                            value={thana.pk}
+                                                            key={thana.pk}
+                                                        >
+                                                            {thana.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <p className="text-danger">{errors.permanent_address_thana?.message}</p>
+                                            </div>
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">Post Office</label>
+                                                <select
+                                                    className="form-select"
+                                                    name="permanent_address_post_office"
+                                                    {...register("permanent_address_post_office", {required: "This field is required"})}
+                                                >
+                                                    <option>Post office name</option>
+                                                    {postOfficeList && postOfficeList.map((post_office) => (
+                                                        <option
+                                                            value={post_office.pk}
+                                                            key={post_office.pk}
+                                                        >
+                                                            {post_office.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <p className="text-danger">{errors.permanent_address_post_office?.message}</p>
+                                            </div>
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">Post Code</label>
+                                                <select
+                                                    className="form-select"
+                                                    name="permanent_address_post_code"
+                                                    {...register("permanent_address_post_code", {required: "This field is required"})}
+                                                >
+                                                    <option>Post code number</option>
+                                                    {postCodeList && postCodeList.map((post_code) => (
+                                                        <option
+                                                            value={post_code.pk}
+                                                            key={post_code.pk}
+                                                        >
+                                                            {post_code.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <p className="text-danger">{errors.permanent_address_post_code?.message}</p>
+                                            </div>
+                                            <div className="col-md-4 mb-3">
+                                                <label className="mb-2">House Address</label>
+                                                <input type="text"
+                                                        placeholder="Address"
+                                                        className="form-control"
+                                                        name="permanent_address_info"
+                                                        {...register("permanent_address_info", {required: "This field is required"})}
+                                                />
+                                                <p className="text-danger">{errors.permanent_address_info?.message}</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/*Education*/}
@@ -553,49 +566,51 @@ const AddTeacherPage = (props) => {
                                         <h4>Education</h4>
                                         <hr/>
                                         <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Degree Name</label>
-                                                    <input type="text"
-                                                           placeholder="Degree Name "
-                                                           className="form-control"
-                                                           name="degree_name"
-                                                           {...register("degree_name", {required: "This field is required"})}
-                                                    />
-                                                    <p className="text-danger">{errors.degree_name?.message}</p>
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Passing Year</label>
-                                                    <input type="text"
-                                                           placeholder="Passing year"
-                                                           className="form-control"
-                                                           name="passing_year"
-                                                           {...register("passing_year")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Result</label>
-                                                    <input type="text"
-                                                           placeholder="CGPA/GPA-5/First Class"
-                                                           className="form-control"
-                                                           name="result"
-                                                           {...register("result")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Institution Name</label>
-                                                    <input type="text"
-                                                           placeholder="University/college/Madrasha"
-                                                           className="form-control"
-                                                           name="institution_name"
-                                                           {...register("institution_name")}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    {/* <button type="button"
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Degree Name</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Degree Name "
+                                                    className="form-control"
+                                                    name="degree_name"
+                                                    {...register("degree_name", {required: "This field is required"})}
+                                                />
+                                                <p className="text-danger">{errors.degree_name?.message}</p>
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Passing Year</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Passing year"
+                                                    className="form-control"
+                                                    name="passing_year"
+                                                    {...register("passing_year")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Result</label>
+                                                <input type="text"
+                                                       placeholder="CGPA/GPA-5/First Class"
+                                                       className="form-control"
+                                                       name="result"
+                                                       {...register("result")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Institution Name</label>
+                                                <input type="text"
+                                                       placeholder="University/college/Madrasha"
+                                                       className="form-control"
+                                                       name="institution_name"
+                                                       {...register("institution_name")}
+                                                />
+                                            </div>
+                                            <div>
+                                                {/* <button type="button"
                                                             className={`btn btn-secondary float-md-end mb-2 col-1`}
                                                             onClick={() => educationRemove(index)}>Remove
                                                     </button> */}
-                                                </div>
+                                            </div>
                                         </div>
                                         {/* {educationFields.map((item, index) => (
                                             <div className="row" key={item.id}>
@@ -663,7 +678,7 @@ const AddTeacherPage = (props) => {
                                                     name="phone_number" //user object field
                                                     {...register("phone_number", {required: "This number is required"})}
                                                 />
-                                                <p className="text-danger">{errors.phone_number?.message}</p>
+                                                <p className="text-danger">{errors.phone?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Scond Phone Number</label>
@@ -752,7 +767,7 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-6">
                                                 <label className="mb-2">Start Date</label>
                                                 <input
-                                                    // type="text"
+                                                    type="text"
                                                     className="form-control"
                                                     placeholder="Date"
                                                     onFocus={(e) => (e.target.type = "date")}
@@ -766,11 +781,11 @@ const AddTeacherPage = (props) => {
                                                 <div className="col-md-6">
                                                     <label className="mb-2">End Date</label>
                                                     <input
-                                                        type="date"
+                                                        type="text"
                                                         className="form-control"
                                                         placeholder="Date"
-                                                        // onFocus={(e) => (e.target.type = "date")}
-                                                        // onBlur={(e) => (e.target.type = "text")}
+                                                        onFocus={(e) => (e.target.type = "date")}
+                                                        onBlur={(e) => (e.target.type = "text")}
                                                         name="ending_date"
                                                         {...register("ending_date")}
                                                     />
@@ -790,7 +805,7 @@ const AddTeacherPage = (props) => {
                                                     {...register(`experience_name`)}
                                                 >
                                                 </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => experienceRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -823,11 +838,11 @@ const AddTeacherPage = (props) => {
                                                 <textarea
                                                     className="form-control"
                                                     placeholder="White your Experinece Here"
-                                                    name="skill_name"
-                                                    {...register("skill_name")}
+                                                    name="skill"
+                                                    {...register("skill")}
                                                 >
                                                 </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => skillRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -876,56 +891,7 @@ const AddTeacherPage = (props) => {
                 theme="colored"
             />
         </>
-    )
+    );
 };
 
-
-export async function getServerSideProps({req}) {
-    const session = await getSession({req})
-    const madrasha_slug = session?.user.madrasha_slug
-
-    const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
-    const divisionList = await divisionListRes.json()
-
-    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
-    const districtList = await districtListRes.json()
-
-    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
-    const postCodeList = await postCodeListRes.json()
-
-    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
-    const postOfficeList = await postOfficeListRes.json()
-
-    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
-    const thanaList = await thanaListRes.json()
-
-    const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
-    const designationList = await getDesignationList(madrasha_slug).then(data => data)
-
-    // will receive `posts` as a prop at build time
-    return {
-        props: {
-            divisionList,
-            districtList,
-            postCodeList,
-            postOfficeList,
-            thanaList,
-            departmentList,
-            designationList
-        },
-    }
-}
-
-
-export default AddTeacherPage;
-
-
-AddTeacherPage.getLayout = (page) => {
-
-    return (
-        <Layout>
-            {page}
-        </Layout>
-    )
-};
-
+export default TeacherUpdate;

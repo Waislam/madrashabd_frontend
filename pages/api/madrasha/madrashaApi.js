@@ -1,28 +1,28 @@
 import api from "../api";
 
 export const getDivisionApi = async () => {
-    const response = await api.get('accounts/division/')
+    const response = await api.get('/accounts/division/')
     console.log("getDivisionApi(): response", response)
     return response.data
 }
 
 export const getDistrictApi = async (division) => {
-    const response = await api.get(`accounts/district/?division=${division}`)
+    const response = await api.get(`/accounts/district/?division=${division}`)
     return response.data
 }
 
 export const getPostOfficeApi = async (district) => {
-    const response = await api.get(`accounts/post-office/?district=${district}`)
+    const response = await api.get(`/accounts/post-office/?district=${district}`)
     return response.data
 }
 
 export const getThanaApi = async (district) => {
-    const response = await api.get(`accounts/thana/?district=${district}`)
+    const response = await api.get(`/accounts/thana/?district=${district}`)
     return response.data
 }
 
 export const getPostCodeApi = async (post_office) => {
-    const response = await api.get(`accounts/post-code/?post_office=${post_office}`)
+    const response = await api.get(`/accounts/post-code/?post_office=${post_office}`)
     return response.data
 }
 
@@ -43,6 +43,6 @@ export const createMadrashaApi = async (payload) => {
     //     "updated_by": "1",
     //     "active_status": "active"
     // }
-    const response = await api.post('accounts/madrasha/', JSON.stringify(payload))
+    const response = await api.post('/accounts/madrasha/', JSON.stringify(payload))
     return response.data
 }

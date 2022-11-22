@@ -1,39 +1,25 @@
 import React from "react";
-import Link from 'next/link'
+import Link from 'next/link';
 import Image from "next/image";
-import styles from './TeacherDetails.module.css'
-import studentLogo from '../../public/assets/admission/students.png'
+import styles from './TeacherDetails.module.css';
 
 const TeacherDetail = ({teacher}) => {
-
     return (
         <>
             <section className={styles.mainSection}>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div className={styles.sidebarList}>
-                                <div className="card">
-                                    <h4 className={styles.sideBarLogo}>
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
-                                    </h4>
-                                    <div className="card-body p-0">
-                                        <div className={styles.studentLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Student List</a>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.promotedLink}>
-                                            <Link href="/">
-                                                <a className="text-center">Promoted List</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div className="container">
+                    <div className="row mb-3 text-end">
+                        <div className="col">
+                            <Link href={`/teachers/update-teacher/${teacher.data.slug}`}>
+                                <a className={`btn ${styles.teacherStaffButton}`}>Update</a>
+                            </Link>
+                            <Link href={`/teachers/update-teacher/${teacher.data.slug}`}>
+                                <a className={`btn ${styles.teacherStaffButton}`}>Print</a>
+                            </Link>
                         </div>
-                        <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                    </div>
+                    <div className="row">
+                        <div>
                             <div className="row">
                                 <div className="col">
                                     <div className="card mb-4">
@@ -122,8 +108,7 @@ const TeacherDetail = ({teacher}) => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <Image src={teacher} className="img-responsive" width={400}
-                                                           height={300}/>
+                                                    {/* <Image src={teacher} className="img-responsive" width={400} height={300}/> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -269,16 +254,22 @@ const TeacherDetail = ({teacher}) => {
                             </div>
                             <div className="row">
                                 <div className="col mb-3">
-                                    <h4>Experience </h4>
-                                    <p># In publishing and graphic design, Lorem ipsum is a placeholder text commonly
-                                        used to demonstrate the visual form of a document
-                                    </p>
+                                    <h4>Experience</h4>
+                                    <div className="card">
+                                        <div className="card-body">
+                                        <p>{teacher.data.experience.experience_name}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col mb-4">
                                     <h4>Skills </h4>
-                                    <p>{teacher.data.skill.skill_name}</p>
+                                    <div className="card">
+                                        <div className="card-body">
+                                        <p>{teacher.data.skill.skill_name}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
@@ -355,12 +346,6 @@ const TeacherDetail = ({teacher}) => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12 col">
-                                    <button type="submit" className={styles.teacherStaffButton}>Edit</button>
-                                    <button type="submit" className={styles.teacherStaffButton}>Print</button>
                                 </div>
                             </div>
                         </div>
