@@ -5,7 +5,7 @@ import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
 
 // api call
 import api, {BASE_URL} from "../../pages/api/api";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 
 function getRandomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -38,121 +38,127 @@ const PreviousInstitutionForm = (props) => {
         }
 
         // create a user
-        api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
-            .then((res) => {
-                if (res.data.user_id) {
-                    let myHeaders = new Headers();
-                    myHeaders.append("Content-Type", "application/json");
+        // api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
+        //     .then((res) => {
+        //         if (res.data.user_id) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-                    let studentRawData = JSON.stringify({
-                        "user": res.data.user_id,
-                        "madrasha": props.session.user?.madrasha_id,
-                        "student_roll_id": getRandomNumberBetween(34, 656546543455),
-                        "date_of_birth": admissionData.date_of_birth,
-                        "age": admissionData.age,
-                        "birth_certificate": admissionData.birth_certificate,
-                        "student_nid": admissionData.student_nid,
-                        "passport_number": admissionData.passport_number,
-                        "nationality": admissionData.nationality,
-                        "religion": admissionData.religion,
-                        "gender": admissionData.gender,
-                        "present_address": {
-                            "division": parseInt(admissionData.present_address_division),
-                            "district": parseInt(admissionData.present_address_district),
-                            "thana": parseInt(admissionData.present_address_thana),
-                            "post_office": parseInt(admissionData.present_address_post_office),
-                            "post_code": parseInt(admissionData.present_address_code),
-                            "address_info": admissionData.student_present_address_info
-                        },
-                        "permanent_address": {
-                            "division": parseInt(admissionData.permanent_address_division),
-                            "district": parseInt(admissionData.permanent_address_district),
-                            "thana": parseInt(admissionData.permanent_address_thana),
-                            "post_office": parseInt(admissionData.permanent_address_post_office),
-                            "post_code": parseInt(admissionData.permanent_address_code),
-                            "address_info": admissionData.student_permanent_address_info
-                        },
-                        "father_info": {
-                            "parent_name": admissionData.parents_information_father_name,
-                            "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
-                            "occupation": admissionData.parents_information_father_occupation,
-                            "organization_with_designation": "organization name, podobi",
-                            "education": admissionData.parents_information_father_education,
-                            "contact_number": admissionData.parents_information_father_contact,
-                            "parent_email": admissionData.father_email,
-                            "parent_nid": admissionData.parents_information_father_nid
-                        },
-                        "mother_info": {
-                            "parent_name": admissionData.parents_information_mother_name,
-                            "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
-                            "parent_nid": admissionData.parents_information_mother_nid,
-                            "occupation": admissionData.parents_information_mother_occupation,
-                            "organization_with_designation": "organization name, podobi",
-                            "education": admissionData.parents_information_mother_education,
-                            "contact_number": admissionData.parents_information_mother_contact,
-                            "parent_email": admissionData.mother_email
-                        },
-                        "guardian_name": admissionData.guardian_name,
-                        "guardian_relation": admissionData.guardian_relation,
-                        "guardian_occupation": admissionData.guardian_occupation,
-                        "yearly_income": admissionData.guardian_yearly_income,
-                        "guardian_contact": admissionData.guardian_contact,
-                        "guardian_email": admissionData.guardian_email,
-                        "other_contact_person": admissionData.other_contact_person,
-                        "other_contact_person_relation": admissionData.other_contact_person_relation,
-                        "other_contact_person_contact": admissionData.other_contact_person_contact,
-                        "sibling_id": admissionData.sibling_id,
-                        "previous_institution_name": values.previous_institution_name,
-                        "previous_institution_contact": values.previous_institution_contact,
-                        "previous_started_at": values.previous_started_at,
-                        "previous_ending_at": values.previous_ending_at,
-                        "previous_ending_class": values.previous_ending_class,
-                        "previous_ending_result": values.previous_ending_result,
-                        "board_exam_name": values.board_exam_name,
-                        "board_exam_registration": values.board_exam_registration,
-                        "board_exam_roll": values.board_exam_roll,
-                        "board_exam_result": values.board_exam_result,
-                        "admitted_department": values.admitted_department,
-                        "admitted_class": values.admitted_class,
-                        "admitted_group": values.admitted_group,
-                        "admitted_shift": values.admitted_shift,
-                        "admitted_roll": "120",
-                        "admitted_session": values.admitted_session,
-                        "student_blood_group": values.student_blood_group,
-                        "special_body_sign": values.special_body_sign,
-                        "academic_fees": null,
-                        "talimi_murobbi_name": "class teacher"
-                    });
+        let studentRawData = JSON.stringify({
+            "user": {
+                "username": values.phone_number_new,
+                "first_name": values.first_name,
+                "last_name": values.last_name,
+                "phone": values.phone_number_new
+            },
+            "madrasha": props.session.user?.madrasha_id,
+            "student_roll_id": getRandomNumberBetween(34, 656546543455),
+            "date_of_birth": admissionData.date_of_birth,
+            "age": admissionData.age,
+            "birth_certificate": admissionData.birth_certificate,
+            "student_nid": admissionData.student_nid,
+            "passport_number": admissionData.passport_number,
+            "nationality": admissionData.nationality,
+            "religion": admissionData.religion,
+            "gender": admissionData.gender,
+            "present_address": {
+                "division": parseInt(admissionData.present_address_division),
+                "district": parseInt(admissionData.present_address_district),
+                "thana": parseInt(admissionData.present_address_thana),
+                "post_office": parseInt(admissionData.present_address_post_office),
+                "post_code": parseInt(admissionData.present_address_code),
+                "address_info": admissionData.student_present_address_info
+            },
+            "permanent_address": {
+                "division": parseInt(admissionData.permanent_address_division),
+                "district": parseInt(admissionData.permanent_address_district),
+                "thana": parseInt(admissionData.permanent_address_thana),
+                "post_office": parseInt(admissionData.permanent_address_post_office),
+                "post_code": parseInt(admissionData.permanent_address_code),
+                "address_info": admissionData.student_permanent_address_info
+            },
+            "father_info": {
+                "parent_name": admissionData.parents_information_father_name,
+                "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
+                "occupation": admissionData.parents_information_father_occupation,
+                "organization_with_designation": "organization name, podobi",
+                "education": admissionData.parents_information_father_education,
+                "contact_number": admissionData.parents_information_father_contact,
+                "parent_email": admissionData.father_email,
+                "parent_nid": admissionData.parents_information_father_nid
+            },
+            "mother_info": {
+                "parent_name": admissionData.parents_information_mother_name,
+                "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
+                "parent_nid": admissionData.parents_information_mother_nid,
+                "occupation": admissionData.parents_information_mother_occupation,
+                "organization_with_designation": "organization name, podobi",
+                "education": admissionData.parents_information_mother_education,
+                "contact_number": admissionData.parents_information_mother_contact,
+                "parent_email": admissionData.mother_email
+            },
+            "guardian_name": admissionData.guardian_name,
+            "guardian_relation": admissionData.guardian_relation,
+            "guardian_occupation": admissionData.guardian_occupation,
+            "yearly_income": admissionData.guardian_yearly_income,
+            "guardian_contact": admissionData.guardian_contact,
+            "guardian_email": admissionData.guardian_email,
+            "other_contact_person": admissionData.other_contact_person,
+            "other_contact_person_relation": admissionData.other_contact_person_relation,
+            "other_contact_person_contact": admissionData.other_contact_person_contact,
+            "sibling_id": admissionData.sibling_id,
+            "previous_institution_name": values.previous_institution_name,
+            "previous_institution_contact": values.previous_institution_contact,
+            "previous_started_at": values.previous_started_at,
+            "previous_ending_at": values.previous_ending_at,
+            "previous_ending_class": values.previous_ending_class,
+            "previous_ending_result": values.previous_ending_result,
+            "board_exam_name": values.board_exam_name,
+            "board_exam_registration": values.board_exam_registration,
+            "board_exam_roll": values.board_exam_roll,
+            "board_exam_result": values.board_exam_result,
+            "admitted_department": values.admitted_department,
+            "admitted_class": values.admitted_class,
+            "admitted_group": values.admitted_group,
+            "admitted_shift": values.admitted_shift,
+            "admitted_roll": "120",
+            "admitted_session": values.admitted_session,
+            "student_blood_group": values.student_blood_group,
+            "special_body_sign": values.special_body_sign,
+            "academic_fees": null,
+            "talimi_murobbi_name": "class teacher"
+        });
 
-                    let requestOptions = {
-                        method: 'POST',
-                        headers: myHeaders,
-                        body: studentRawData,
-                        redirect: 'follow'
-                    };
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: studentRawData,
+            redirect: 'follow'
+        };
 
-                    fetch(`${BASE_URL}/students/${props.session.user.madrasha_slug}/`, requestOptions)
-                        .then(response => response.json())
-                        .then((result) => {
-                            console.log("data submited result", result)
-                            setLoading(false)
-                            return result && toast.success('Student has been created!')
-                        })
-                        .catch((error) => {
-                            console.log('error', error)
-                            setLoading(false)
-                            return toast.error('Something went wrong! Please try again!')
-                        });
-                } else {
-                    console.log("User is not created.")
-                    return toast.error('User is not created.')
-                }
+        fetch(`${BASE_URL}/students/${props.session.user.madrasha_slug}/`, requestOptions)
+            .then(response => response.json())
+            .then((result) => {
+                console.log("data submited result", result)
 
+                setLoading(false)
+                return result && toast.success('Student has been created!')
             })
-            .catch((err) => {
-                console.log("user create err", err)
+            .catch((error) => {
+                console.log('error', error)
+                setLoading(false)
+                return toast.error('Something went wrong! Please try again!')
             })
-    };
+                // } else {
+                //     console.log("User is not created.")
+                //     return toast.error('User is not created.')
+                // }
+
+            // })
+            // .catch((err) => {
+            //     console.log("user create err", err)
+            // })
+    }
 
     const Continue = e => {
         e.preventDefault();
@@ -169,6 +175,48 @@ const PreviousInstitutionForm = (props) => {
                             <div className="previous-institution mb-5">
                                 <h4>Part B</h4>
                                 <h5>Previous Institution</h5>
+                                <div className="row mb-3">
+                                    <div className="col-md-6">
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.phone_number_new}
+                                            placeholder="New phone number"
+                                            className="form-control"
+                                            id="phone_number_new"
+                                            {...register("phone_number_new")}
+                                        />
+                                    </div>
+                                    {errors.phone_number_new && (
+                                        <p className="text-danger">Phone number is required</p>
+                                    )}
+                                    <div className="col-md-6">
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.first_name}
+                                            placeholder="First name"
+                                            className="form-control"
+                                            id="first_name"
+                                            {...register("first_name")}
+                                        />
+                                    </div>
+                                    {errors.first_name && (
+                                        <p className="text-danger">First name is required</p>
+                                    )}
+
+                                    <div className="col-md-6">
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.last_name}
+                                            placeholder="Last name"
+                                            className="form-control"
+                                            id="last_name"
+                                            {...register("last_name")}
+                                        />
+                                    </div>
+                                    {errors.last_name && (
+                                        <p className="text-danger">Last name is required</p>
+                                    )}
+                                </div>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
                                         <input
