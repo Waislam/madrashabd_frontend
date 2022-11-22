@@ -13,8 +13,10 @@ import { useRouter } from "next/router";
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
     const {data: session, status} = useSession();
     const router = useRouter();
+
     // const [divisionList, setDivisionList] = useState(null)
     const [singleDivision, setSingleDivision] = useState('');
     const [disctrictList, setDistrictList] = useState(null);
@@ -35,9 +37,10 @@ const AddTeacherPage = (props) => {
         formState: {errors}, control
     } = useForm()
 
-    console.log("@@@@@ session:", session)
+    // console.log("@@@@@ session:", session)
 
-    const onSubmit = data => {
+    const onSubmit = (data) => {
+        console.log("end date foramte: ", data)
         setIsLoading(true);
         setAdmissionFormValues(data);
 
@@ -84,7 +87,7 @@ const AddTeacherPage = (props) => {
             "skill": {
                 "skill_name": data.skill_name
             },
-            "phone_home": data.phone_number,
+            "phone_home": data.second_phone_number,
             "nid": data.nid,
             "birth_certificate": data.birth_certificate,
             "nationality": data.nationality,
@@ -96,15 +99,22 @@ const AddTeacherPage = (props) => {
         }
 
         // Create New Teacher
-        api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
+        api.post(`teachers/${madrasha_slug}/`, teacher_data)
         .then((res) => {
+            console.log("success response: ", res)
             router.push('/teachers');
             return res && toast.success('The Teacher is Successfully added!!');
         })
         .catch((error) => {
-            console.log("error", error)
-            return error && toast.error('User with this phone already exists!')
+            const errorUser = '{"user":{"username":["custom user with this username already exists."],"phone":["custom user with this phone already exists."]}}'
+            if(error && error?.request?.responseText==errorUser){
+                return toast.error('Teacher with this phone already exists!')
+            }else{
+                return toast.error(error?.request?.responseText)
+            }
         })
+        // router.push('/teachers');
+        // router.reload()
     }
 
 
@@ -653,7 +663,7 @@ const AddTeacherPage = (props) => {
                                                     name="phone_number" //user object field
                                                     {...register("phone_number", {required: "This number is required"})}
                                                 />
-                                                <p className="text-danger">{errors.phone?.message}</p>
+                                                <p className="text-danger">{errors.phone_number?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Scond Phone Number</label>
@@ -742,7 +752,7 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-6">
                                                 <label className="mb-2">Start Date</label>
                                                 <input
-                                                    type="text"
+                                                    // type="text"
                                                     className="form-control"
                                                     placeholder="Date"
                                                     onFocus={(e) => (e.target.type = "date")}
@@ -756,11 +766,11 @@ const AddTeacherPage = (props) => {
                                                 <div className="col-md-6">
                                                     <label className="mb-2">End Date</label>
                                                     <input
-                                                        type="text"
+                                                        type="date"
                                                         className="form-control"
                                                         placeholder="Date"
-                                                        onFocus={(e) => (e.target.type = "date")}
-                                                        onBlur={(e) => (e.target.type = "text")}
+                                                        // onFocus={(e) => (e.target.type = "date")}
+                                                        // onBlur={(e) => (e.target.type = "text")}
                                                         name="ending_date"
                                                         {...register("ending_date")}
                                                     />
