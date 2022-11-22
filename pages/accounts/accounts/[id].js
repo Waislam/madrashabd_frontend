@@ -1,24 +1,36 @@
-import api from "../../api/api";
+import {BASE_URL} from "../../api/api";
+import StudentIncome from '../../../components/Account/StudentIncome/StudentIncome'
 
-const AccountDetailPage = () => {
+import Layout from "../../../components/Layout/Layout"
+
+const AccountDetailPage = ({student_income}) => {
     return (
         <div>
-            <h3>Hello</h3>
+            <StudentIncome student_income={student_income}/>
         </div>
     )
 };
 
 
 export async function getServerSideProps({params}) {
-    const account_fetch_url = await api.get(`/transactions/${session_data.user?.madrasha_slug}/student-income/`);
-    const account_res = await fetch(account_fetch_url);
-    const account_detail = await account_res.json();
+    let student_income_fetch_url = `${BASE_URL}/transactions/student-income/${params.id}/`;
+    const student_income_res = await fetch(student_income_fetch_url);
+    const student_income = await student_income_res.json();
+
     return {
         props: {
-            "account_detail": account_detail
+            "student_income": student_income.data
         }
     }
 }
 
-
 export default AccountDetailPage;
+
+
+AccountDetailPage.getLayout = (page) => {
+    return (
+        <Layout>
+            {page}
+        </Layout>
+    )
+};
