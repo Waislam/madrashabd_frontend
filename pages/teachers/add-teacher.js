@@ -87,7 +87,7 @@ const AddTeacherPage = (props) => {
             "skill": {
                 "skill_name": data.skill_name
             },
-            "phone_home": data.phone_number,
+            "phone_home": data.second_phone_number,
             "nid": data.nid,
             "birth_certificate": data.birth_certificate,
             "nationality": data.nationality,
