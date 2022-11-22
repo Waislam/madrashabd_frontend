@@ -71,42 +71,6 @@ const StudentDetailForm = (props) => {
                             <div className="student-detail">
                                 <h4>Student Details</h4>
                                 <hr/>
-                                <div className="mb-4">
-                                    <div>
-                                        <label>Student/Parents phone number</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData?.student_phone_number}
-                                            className="form-control"
-                                            placeholder="student/parents phone number"
-                                            id="student_phone_number"
-                                            {...register("student_phone_number", {required: true})}
-                                        />
-                                    </div>
-                                    <div>
-                                        {errors.student_phone_number && (
-                                            <p className="text-danger">Number is required</p>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="mb-4">
-                                    <div>
-                                        <label>Full name</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.full_name}
-                                            className="form-control"
-                                            placeholder="Full Name"
-                                            id="full_name"
-                                            {...register("full_name",)}
-                                        />
-                                    </div>
-                                    <div>
-                                        {errors.full_name && (
-                                            <p className="text-danger">Full Name is required</p>
-                                        )}
-                                    </div>
-                                </div>
                                 <div className="row">
                                     {/*<div className="col-md-6 mb-6">*/}
                                     {/*    <div>*/}
