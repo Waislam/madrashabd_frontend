@@ -1,10 +1,8 @@
 import React from "react";
-import Link from 'next/link'
-import Image from "next/image";
 import styles from './Payment.module.css'
-import AccountSideBar from './AccountSidebar'
+import AccountSideBar from '../Account/AccountSidebar'
 
-const PaymentPage = () => {
+const Payment = () => {
     return (
         <div>
             <section className={styles.paymentSection}>
@@ -70,7 +68,7 @@ const PaymentPage = () => {
 };
 
 
-export default PaymentPage;
+export default Payment;
 
 
 

@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
-import styles from "../../../Account/Account.module.css";
+import styles from "../../../Account/Account/Account.module.css";
 
 import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
