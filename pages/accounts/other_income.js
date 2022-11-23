@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {getSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api, {BASE_URL} from '../api/api'
 import axios from "axios";
@@ -15,7 +15,8 @@ import UpdateOtherIncomeModal from "../../components/Account/Modals/UpdateOtherI
 
 const OtherIncomePage = (props) => {
     const router = useRouter();
-    const {data: session, status} = getSession();
+    const {data: session, status} = useSession();
+    const madrasha_slug = session?.user?.madrasha_slug
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -86,6 +87,7 @@ const OtherIncomePage = (props) => {
                 incomecategorylist={transactioncategoryList}
                 setTransactionCategory={setTransactionCaterory}
                 transactionSubCategory={transactionSubCaterory}
+                madrasha_slug={madrasha_slug}
             >
             </AddOtherIncomeModal>
             {isloading ? <h1></h1> :
