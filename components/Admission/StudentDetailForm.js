@@ -110,6 +110,7 @@ const StudentDetailForm = (props) => {
                                     {/*</div>*/}
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                            <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.date_of_birth}
@@ -127,6 +128,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                        <label htmlFor="age" className="form-label">Age</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.age}
@@ -144,6 +146,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                            <label htmlFor="birth_certificate" className="form-label">Barth Certificate Number</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.birth_certificate}
@@ -163,6 +166,7 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="passport_number" className="form-label">Passport Number</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.passport_number}
@@ -180,11 +184,12 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="student_nid" className="form-label">Student NID (If Has)</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.student_nid}
                                                 className="form-control"
-                                                placeholder="NID"
+                                                placeholder="Give Student NID number if has"
                                                 id="student_nid"
                                                 {...register("student_nid", {required: true})}
                                             />
@@ -199,6 +204,7 @@ const StudentDetailForm = (props) => {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
+                                        <label htmlFor="nationality" className="form-label">Nationality</label>
                                         <select
                                             name="nationality"
                                             defaultValue={admissionData.nationality}
@@ -206,7 +212,7 @@ const StudentDetailForm = (props) => {
                                             id="nationality"
                                             {...register("nationality", {required: true})}
                                         >
-                                            <option value=''>Choose nationality...</option>
+                                            <option value='' disabled>Select nationality...</option>
                                             <option value="bangladeshi">Bangladeshi</option>
                                         </select>
                                         {errors.nationality && (
@@ -215,6 +221,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="religion" className="form-label">Religion</label>
                                             <select
                                                 name="religion"
                                                 defaultValue={admissionData.religion}
@@ -222,7 +229,7 @@ const StudentDetailForm = (props) => {
                                                 id="religion"
                                                 {...register("religion", {required: true})}
                                             >
-                                                <option value=''>Choose religion...</option>
+                                                <option value='' disabled>Select religion...</option>
                                                 <option value="islam">
                                                     Islam
                                                 </option>
@@ -236,6 +243,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="gender" className="form-label">Gender</label>
                                             <select
                                                 name="gender"
                                                 defaultValue={admissionData.gender}
@@ -243,7 +251,7 @@ const StudentDetailForm = (props) => {
                                                 id="gender"
                                                 {...register("gender", {required: true})}
                                             >
-                                                <option value=''>Choose gender...</option>
+                                                <option value='' disabled >Select Gender...</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
@@ -262,6 +270,7 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_division" className="form-label">Division</label>
                                             <select
                                                 name="present_address_division"
                                                 defaultValue={admissionData.present_address_division}
@@ -270,7 +279,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("present_address_division", {required: true})}
                                                 onChange={(e) => setSelectPresentAddressDivision(e.target.value)}
                                             >
-                                                <option value=''>Choose division...</option>
+                                                <option value='' disabled >Select Division...</option>
                                                 {
                                                     divisionList.map((division) => (
                                                         <option key={division.pk} defaultValue={division.pk}>
@@ -288,6 +297,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_district" className="form-label">District</label>
                                             <select
                                                 name="present_address_district"
                                                 defaultValue={admissionData.present_address_district}
@@ -296,7 +306,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("present_address_district", {required: true})}
                                                 onChange={(e) => setSelectPresentAddressDistrict(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option value='' disabled >Select District...</option>
                                                 {
                                                     districtList.map((district) => (
                                                         <option key={district.pk} defaultValue={district.pk}>
@@ -315,6 +325,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="present_address_thana"
                                                 defaultValue={admissionData.present_address_thana}
@@ -323,7 +334,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("present_address_thana", {required: true})}
                                                 onChange={(e) => setSelectPresentAddressThana(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option value='' disabled >Select Thana...</option>
                                                 {
                                                     thanaList.map((thana) => (
                                                         <option key={thana.pk} defaultValue={thana.pk}>
@@ -343,6 +354,7 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6  mb-4">
                                         <div>
+                                            <label htmlFor="present_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="present_address_post_office"
                                                 defaultValue={admissionData.present_address_post_office}
@@ -351,7 +363,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("present_address_post_office", {required: true})}
                                                 onChange={(e) => setSelectPresentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value=''>Choose post office...</option>
+                                                <option value='' disabled >Select Post Office...</option>
                                                 {
                                                     postOfficeList.map((post_office) => (
                                                         <option key={post_office.pk} defaultValue={post_office.pk}>
@@ -369,6 +381,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="present_address_post_code"
                                                 defaultValue={admissionData.present_address_post_code}
@@ -377,7 +390,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("present_address_post_code", {required: true})}
                                                 onChange={(e) => setSelectPresentAddressPostCode(e.target.value)}
                                             >
-                                                <option value=''>Choose Post code ...</option>
+                                                <option value='' disabled >Select Post Code ...</option>
                                                 {
                                                     postCodeList.map((post_code) => (
                                                         <option key={post_code.pk} defaultValue={post_code.pk}>
@@ -396,10 +409,11 @@ const StudentDetailForm = (props) => {
                                 </div>
                                 <div className="form-floating">
                                     <div>
+                                        <label htmlFor="student_present_address_info" className="form-label">Address Details</label>
                                         <textarea
                                             className="form-control"
                                             defaultValue={admissionData.student_present_address_info}
-                                            placeholder=" Village/Town/Road/House/Flat"
+                                            placeholder="House/Flat/Road/Town/Village"
                                             id="student_present_address_info"
                                             {...register("student_present_address_info", {required: true})}
                                         />
@@ -413,7 +427,7 @@ const StudentDetailForm = (props) => {
                                     <div className="col-md-3">
                                         <h5 className="mt-3">Permanent Address</h5>
                                     </div>
-                                    <div className="col-md-9">
+                                    {/* <div className="col-md-9">
                                         <div className="form-check mt-3">
                                             <input
                                                 className="form-check-input"
@@ -424,14 +438,15 @@ const StudentDetailForm = (props) => {
                                             <label
                                                 className="form-check-label"
                                                 htmlFor="flexCheckDefault">
-                                                Save as present address
+                                                Same as present address
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_division" className="form-label">Division</label>
                                             <select
                                                 name="permanent_address_division"
                                                 defaultValue={admissionData.permanent_address_division}
@@ -440,7 +455,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("permanent_address_division", {required: true})}
                                                 onChange={(e) => setSelectPermanentAddressDivision(e.target.value)}
                                             >
-                                                <option value=''>Choose division...</option>
+                                                <option value='' disabled >Select Division...</option>
                                                 {
                                                     divisionList.map((division) => (
                                                         <option key={division.pk} defaultValue={division.pk}>
@@ -458,6 +473,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4  mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_district" className="form-label">District</label>
                                             <select
                                                 name="permanent_address_district"
                                                 defaultValue={admissionData.permanent_address_district}
@@ -466,7 +482,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("permanent_address_district", {required: true})}
                                                 onChange={(e) => setSelectPermanentAddressDistrict(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option value='' disabled >Select District...</option>
                                                 {
                                                     districtList.map((district) => (
                                                         <option key={district.pk} defaultValue={district.pk}>
@@ -484,6 +500,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="permanent_address_thana"
                                                 defaultValue={admissionData.permanent_address_thana}
@@ -492,7 +509,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("permanent_address_thana", {required: true})}
                                                 onChange={(e) => setSelectPermanentAddressThana(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option value='' disabled >Select Thana...</option>
                                                 {
                                                     thanaList.map((thana) => (
                                                         <option key={thana.pk} defaultValue={thana.pk}>
@@ -512,6 +529,7 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="permanent_address_post_office"
                                                 defaultValue={admissionData.permanent_address_post_office}
@@ -520,7 +538,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("permanent_address_post_office", {required: true})}
                                                 onChange={(e) => setSelectPermanentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value=''>Choose post office...</option>
+                                                <option value='' disabled >Select Post Office...</option>
                                                 {
                                                     postOfficeList.map((post_office) => (
                                                         <option key={post_office.pk} defaultValue={post_office.pk}>
@@ -538,6 +556,7 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="permanent_address_post_code"
                                                 defaultValue={admissionData.permanent_address_post_code}
@@ -546,7 +565,7 @@ const StudentDetailForm = (props) => {
                                                 {...register("permanent_address_post_code", {required: true})}
                                                 onChange={(e) => setSelectPermanentAddressPostCode(e.target.value)}
                                             >
-                                                <option value=''>Choose Post code ...</option>
+                                                <option value='' disabled >Select Post Code ...</option>
                                                 {
                                                     postCodeList.map((post_code) => (
                                                         <option key={post_code.pk} defaultValue={post_code.pk}>
@@ -564,16 +583,16 @@ const StudentDetailForm = (props) => {
                                     </div>
                                 </div>
                                 <div className="form-floating">
-                                    <textarea
-                                        className="form-control"
-                                        defaultValue={admissionData.student_permanent_address_info}
-                                        placeholder="Village/Town/Road/House/Flat"
-                                        id="student_permanent_address_info"
-                                        {...register("student_permanent_address_info", {required: true})}
-                                    />
-                                    <label htmlFor="floatingTextarea">
-                                        Village/Town/Road/House/Flat
-                                    </label>
+                                    <div>
+                                        <label htmlFor="student_permanent_address_info" className="form-label">Address Details</label>
+                                        <textarea
+                                            className="form-control"
+                                            defaultValue={admissionData.student_permanent_address_info}
+                                            placeholder="House/Flat/Road/Town/Village"
+                                            id="student_permanent_address_info"
+                                            {...register("student_permanent_address_info", {required: true})}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             {
