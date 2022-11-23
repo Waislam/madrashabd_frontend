@@ -5,7 +5,7 @@ import api, {BASE_URL} from '../../api/api'
 import axios from "axios"
 
 // StudentList Component
-import Account from "../../../components/Account/StudentIncome"
+import Account from "../../../components/Account/StudentIncome/StudentIncome"
 import Layout from "../../../components/Layout/Layout"
 
 // import component modals

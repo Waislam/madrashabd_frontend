@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import styles from "../Account.module.css";
+import styles from "../Account/Account.module.css";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";

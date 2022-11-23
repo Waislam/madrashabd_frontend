@@ -3,10 +3,10 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 
 // Expense Component
-import PaymentPage from "../../components/Account/PaymentPage";
-import Layout from "../../components/Layout/Layout";
+import Payment from "../../../components/Account/Payment/Payment";
+import Layout from "../../../components/Layout/Layout";
 
-const Payment = () =>{
+const PaymentPage = () =>{
     const router = useRouter();
     const {data: session, status} = useSession();
 
@@ -18,14 +18,14 @@ const Payment = () =>{
 
     return(
         <div>
-            <PaymentPage/>
+            <Payment/>
         </div>
     )
 };
 
-export default  Payment;
+export default  PaymentPage;
 
-Payment.getLayout = (page) => {
+PaymentPage.getLayout = (page) => {
     return(
         <Layout>
             { page }
