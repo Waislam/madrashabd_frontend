@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
 import Layout from "../../components/Layout/Layout";
-import styles from '../../components/Account/Account.module.css'
+import styles from '../../components/Account/Account/Account.module.css'
 
 const Accounts = () => {
 

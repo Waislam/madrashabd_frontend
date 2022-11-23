@@ -1,4 +1,4 @@
-import styles from '../Account.module.css'
+import styles from '../Account/Account.module.css'
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";

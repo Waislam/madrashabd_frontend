@@ -1,6 +1,6 @@
 import React from "react";
-import styles from './Account.module.css'
-import AccountSideBar from './AccountSidebar'
+import styles from '../Account/Account.module.css'
+import AccountSideBar from '../Account/AccountSidebar'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 

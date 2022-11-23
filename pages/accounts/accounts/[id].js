@@ -1,12 +1,12 @@
 import {BASE_URL} from "../../api/api";
-import StudentIncome from '../../../components/Account/StudentIncome/StudentIncome'
+import StudentIncomeDetail from '../../../components/Account/StudentIncome/StudentIncomeDetail'
 
 import Layout from "../../../components/Layout/Layout"
 
 const AccountDetailPage = ({student_income}) => {
     return (
         <div>
-            <StudentIncome student_income={student_income}/>
+            <StudentIncomeDetail student_income={student_income}/>
         </div>
     )
 };
