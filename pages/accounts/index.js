@@ -64,11 +64,13 @@ const Accounts = (props) => {
         getTransactioSubCategory()
     }, [transactionCaterory]);
 
-    const handleModalShow = () => {
+    const handleModalShow = (event) => {
+        // event.preventDefault()
         setShowModal(true)
     };
 
     const handleModalClose = (event) => {
+        // event.prevenDefault()
         setShowModal(false)
     };
     //student Income update functionality
