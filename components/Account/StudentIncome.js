@@ -3,11 +3,11 @@ import styles from './Account.module.css'
 import AccountSideBar from './AccountSidebar'
 import Header from './IncomeHeader'
 import Link from "next/link";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 
 
-const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleModalShowandId }) => {
+const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleModalShowandId}) => {
 
     const columns = [
         {
@@ -74,12 +74,14 @@ const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleMo
             headerName: 'Action',
             field: 'Action',
             sortable: false,
-            width: 120,
+            width: 160,
             renderCell: (params) => {
                 return (
                     <div>
                         <button className="btn btn-primary"
-                            onClick={() => handleModalShowandId(params.row.id)}>Edit
+                                onClick={() => handleModalShowandId(params.row.id)}>Edit
+                        </button>
+                        <button className="btn btn-danger">Details
                         </button>
                     </div>
                 );
@@ -101,18 +103,18 @@ const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleMo
             <section className={styles.accountListSection}>
                 <div className="container-fluid">
                     {/* <h3 className={styles.accountListTitle}>Accounts</h3> */}
-                    <hr />
+                    <hr/>
                     <div className="row">
                         <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                            <AccountSideBar />
+                            <AccountSideBar/>
                         </div>
                         <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
                             <div className="income">
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="receiveMoney mb-4">
-                                            <Header />
-                                            <hr />
+                                            <Header/>
+                                            <hr/>
                                         </div>
                                         {/*Get List*/}
                                         <div className="get-list">
@@ -125,12 +127,12 @@ const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleMo
                                                         Summary
                                                     </button>
                                                     <button type="button"
-                                                        className={`${styles.defaultBtn} float-md-end`}
-                                                        onClick={addStudentIncomekModalShow}>Add Income
+                                                            className={`${styles.defaultBtn} float-md-end`}
+                                                            onClick={addStudentIncomekModalShow}>Add Income
                                                     </button>
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr/>
                                             {/*<form action="#">*/}
                                             {/*<div className="row">*/}
                                             {/*<div className="col-md-10">*/}
@@ -209,7 +211,7 @@ const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleMo
 
                                             <div className="get-list mt-4">
                                                 <div className="table-responsive">
-                                                    <Box sx={{ height: 500, width: '100%' }}>
+                                                    <Box sx={{height: 500, width: '100%'}}>
                                                         <DataGrid
                                                             rows={studentIncomeList}
                                                             columns={columns}
@@ -219,12 +221,12 @@ const StudentIncome = ({ studentIncomeList, addStudentIncomekModalShow, handleMo
                                                             disableColumnFilter
                                                             disableColumnSelector
                                                             disableDensitySelector
-                                                            components={{ Toolbar: GridToolbar }}
-                                                            experimentalFeatures={{ newEditingApi: false }}
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
                                                             componentsProps={{
                                                                 toolbar: {
                                                                     showQuickFilter: true,
-                                                                    quickFilterProps: { debounceMs: 500 },
+                                                                    quickFilterProps: {debounceMs: 500},
                                                                 },
                                                             }}
                                                         />
