@@ -1,15 +1,14 @@
-import {ApiError} from "next/dist/server/api-utils";
 import React, {useEffect, useState} from "react";
 import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
-import api, {BASE_URL} from '../api/api'
+import api, {BASE_URL} from '../../api/api'
 import axios from "axios";
 
 // Expense Component
-import Expense from "../../components/Account/AllExpense";
-import Layout from "../../components/Layout/Layout";
-import AddExpenseModal from "../../components/Account/Modals/AddExpenseModal"
-import UpdateExpenseModal from "../../components/Account/Modals/UpdateExpenseModal"
+import Expense from "../../../components/Account/AllExpense";
+import Layout from "../../../components/Layout/Layout";
+import AddExpenseModal from "../../../components/Account/Modals/AddExpenseModal"
+import UpdateExpenseModal from "../../../components/Account/Modals/UpdateExpenseModal"
 
 
 const ExpensePage = (props) => {
