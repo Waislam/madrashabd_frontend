@@ -256,7 +256,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Experience</h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.experience.experience_name}</p>
+                                        <p>{teacher?.data?.experience?.experience_name}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -31,7 +31,7 @@ const modalpage = (props) => {
         };
 
         console.log('data to be shown', otherIncomeData);
-        await axios.post(`${BASE_URL}/transactions/${props.session.user?.madrasha_slug}/other-income/`, otherIncomeData)
+        await axios.post(`${BASE_URL}/transactions/${props?.madrasha_slug}/other-income/`, otherIncomeData)
             .then((response) => {
                 console.log('Success Response: ', response.data)
             })
