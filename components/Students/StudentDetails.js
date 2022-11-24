@@ -14,7 +14,6 @@ import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 
 const StudentDetails = ({student}) => {
-    console.log("student data", student.data.user.id)
     const {handleSubmit, register, formState: {errors}, control} = useForm()
 
     const onSubmit = (values) => {
@@ -73,20 +72,6 @@ const StudentDetails = ({student}) => {
                                                 <hr/>
                                                 <div className="row">
                                                     <div className="col-md-9">
-                                                        <form onSubmit={handleSubmit(onSubmit)}>
-                                                            <div className="mb-3">
-                                                                <label htmlFor="avatar" className="form-label">
-                                                                    Image upload</label>
-                                                                <input
-                                                                    className="form-control"
-                                                                    type="file"
-                                                                    id="avatar"
-                                                                    name='avatar'
-                                                                    {...register("avatar")}
-                                                                />
-                                                            </div>
-                                                            <button>Save</button>
-                                                        </form>
                                                         <div className="row">
                                                             <div className="col-md-7">
                                                                 <dl className="row">
@@ -164,8 +149,39 @@ const StudentDetails = ({student}) => {
                                                         </div>
                                                     </div>
                                                     <div className="col-md-3">
-                                                        <Image src={teacher} className="img-responsive" width={400}
-                                                               height={300}/>
+                                                        <div className="text-center">
+                                                            {student?.data?.user?.avatar ?
+                                                                <img
+                                                                    src={student?.data?.user?.avatar}
+                                                                    className="rounded-circle shadow-4-strong"
+                                                                    alt="Oops image missing"
+                                                                />
+                                                                :
+                                                                <Image
+                                                                    className="rounded-circle shadow-4-strong"
+                                                                    alt="avatar2"
+                                                                    src={teacher}
+                                                                    width={90}
+                                                                    height={90}
+                                                                />
+                                                            }
+                                                        </div>
+                                                        <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
+                                                            <div className="form-group mb-2">
+                                                                <input
+                                                                    className="form-control"
+                                                                    type="file"
+                                                                    id="avatar"
+                                                                    name='avatar'
+                                                                    {...register("avatar")}
+                                                                />
+                                                            </div>
+                                                            <button
+                                                                type="submit"
+                                                                className="btn btn-primary mb-2">
+                                                                Save
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -549,12 +565,12 @@ const StudentDetails = ({student}) => {
                     </div>
                 </div>
             </section>
-        </>
-    )
-};
+            < />
+            )
+            };
 
 
-export default StudentDetails;
+            export default StudentDetails;
 
 
 
