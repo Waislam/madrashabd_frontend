@@ -3,15 +3,23 @@ import styles from '../Account/Account.module.css'
 import AccountSideBar from '../Account/AccountSidebar'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import {useRouter} from 'next/router'
 
 const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividualObj}) => {
+    const router = useRouter();
+
+    const handleDetail = async (id) => {
+        router.push(`expense/${id}`);
+    };
 
     const columns = [
         {
             headerName: 'ID',
             field: 'id',
             sortable: false,
-            width: 60
+            width: 60,
+            valueGetter: (params) =>
+                `${params.row.id}`,
         },
         {
             headerName: 'Category',
@@ -76,6 +84,9 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
                     <div>
                         <button className="btn btn-primary"
                                 onClick={() => handleIndividualObj(params.row.id)}>Edit
+                        </button>
+                        <button className="btn btn-warning"
+                                onClick={() => handleDetail(params.row.id)}>Details
                         </button>
                     </div>
                 );

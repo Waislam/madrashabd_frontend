@@ -1,9 +1,10 @@
 import React, {useRef} from 'react';
 import ReactToPrint from 'react-to-print';
 
-import {OtherIncomeMoneyReceipt} from './OtherIncomeMoneyReceipt';
+import {ExpenseMoneyReceipt} from './ExpenseMoneyReceipt';
 
-const OtherIncomeDetail = ({other_income}) => {
+const ExpenseDetail = ({expense_income}) => {
+    console.log("expense_income : 2", expense_income);
     const componentRef = useRef();
 
     return (
@@ -14,11 +15,9 @@ const OtherIncomeDetail = ({other_income}) => {
                     content={() => componentRef.current}
                 />
             </div>
-            <OtherIncomeMoneyReceipt ref={componentRef} other_income={other_income} />
+            <ExpenseMoneyReceipt ref={componentRef} expense_income={expense_income} />
         </div>
     );
 };
 
-export default OtherIncomeDetail;
-
-
+export default ExpenseDetail;
