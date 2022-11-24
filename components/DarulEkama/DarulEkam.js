@@ -3,14 +3,17 @@ import Image from "next/image";
 import DarulEkmaNav from './DarulEkmaNav'
 import styles from './DarulEkam.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import {BASE_URL} from "../../pages/api/api";
+import {useRouter} from "next/router";
 // import { idID } from "@mui/material/locale";
 
 
-const DarulEkam = ({ distributed_seatList }) => {
-    // console.log("distributed_seatList: ", distributed_seatList)
+const DarulEkam = ({distributed_seatList}) => {
     const dodid = distributed_seatList
+
+    const router = useRouter()
 
 
     const columns = [
@@ -19,7 +22,7 @@ const DarulEkam = ({ distributed_seatList }) => {
             headerName: "Name",
             valueGetter: (params) => {
                 // console.log("accessed value", params.row.students.user.first_name)
-                return `${params.row.students.user.first_name} ${params.row.students.user.last_name}`
+                return `${params.row.students?.user?.first_name} ${params.row.students?.user?.last_name}`
             }
         },
         {
@@ -56,29 +59,37 @@ const DarulEkam = ({ distributed_seatList }) => {
             valueGetter: (params) =>
                 `${params.value?.admitted_class?.name || ''}`
         },
-        // {
-        //     field: "",
-        //     headerName: "Present",
-        //     width: 100,
-        // },
-        // {
-        //     field: "",
-        //     headerName: "Leave",`${params.value?.user?.first_name}`
-        //     width: 100,
-        // },
-        // {
-        //     field: "",
-        //     headerName: "Boarding",
-        //     width: 100,
-        // },
-        // {
-        //     field: "",
-        //     headerName: "Action",
-        //     width: 100,
-        // },
-
-
+        {
+            headerName: 'Action',
+            field: 'Action',
+            width: 160,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button className="btn btn-danger ms-2"
+                                onClick={() => handleSeatDelete(params.row.id)}>Delete
+                        </button>
+                    </div>
+                );
+            }
+        },
     ]
+
+    const handleSeatDelete = (seat_id) => {
+        console.log("seat_id", seat_id)
+        let requestOptions = {
+            method: 'DELETE',
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/darul-ekama/seat-booking-detail/${seat_id}/`, requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                console.log(result)
+                router.reload()
+            })
+            .catch(error => console.log('error', error));
+    }
 
     return (
         <>
@@ -90,10 +101,10 @@ const DarulEkam = ({ distributed_seatList }) => {
                                 <div className={`${styles.customCard} card shadow`}>
                                     <div className={`${styles.customCardHeader} card-header`}>
                                         <Image src={studentLogo} className="img-responsive"
-                                            alt="Logo missing" height={40} width={40} />
+                                               alt="Logo missing" height={40} width={40}/>
                                     </div>
                                     {/* DarulEkma Nav*/}
-                                    <DarulEkmaNav />
+                                    <DarulEkmaNav/>
                                 </div>
                             </div>
                         </div>
@@ -226,19 +237,19 @@ const DarulEkam = ({ distributed_seatList }) => {
                                         <div className="darulEkamTable">
                                             <div className="row">
                                                 <div className="col">
-                                                    <Box sx={{ height: 500, width: '100%' }}>
+                                                    <Box sx={{height: 500, width: '100%'}}>
                                                         <DataGrid
                                                             rows={distributed_seatList}
                                                             columns={columns}
                                                             // disableColumnFilter
                                                             disableColumnSelector
                                                             disableDensitySelector
-                                                            components={{ Toolbar: GridToolbar }}
-                                                            experimentalFeatures={{ newEditingApi: false }}
+                                                            components={{Toolbar: GridToolbar}}
+                                                            experimentalFeatures={{newEditingApi: false}}
                                                             componentsProps={{
                                                                 toolbar: {
                                                                     showQuickFilter: true,
-                                                                    quickFilterProps: { debounceMs: 500 },
+                                                                    quickFilterProps: {debounceMs: 500},
                                                                 },
                                                             }}
                                                         >

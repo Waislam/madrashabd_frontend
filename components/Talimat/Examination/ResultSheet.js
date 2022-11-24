@@ -3,14 +3,14 @@ import SideMenu from './ExamSideMenu';
 import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import { isAssetError } from 'next/dist/client/route-loader';
+import {isAssetError} from 'next/dist/client/route-loader';
 
-const ResutSheet = ({ result_list }) => {
+const ResutSheet = ({result_list}) => {
     // console.log("result list : ", result_list)
 
-    const columns =[
+    const columns = [
         // {
         //     field:"counting",
         //     headerName: "Counting",
@@ -23,53 +23,53 @@ const ResutSheet = ({ result_list }) => {
         //     }
         // },
         {
-            field:"student.student_roll_id",
+            field: "student.student_roll_id",
             headerName: "Roll",
-            valueGetter:(parmas)=>{
+            valueGetter: (parmas) => {
                 return `${parmas?.row?.student?.student_roll_id}`
             },
-            width:100
+            width: 100
         },
         {
-            field:"student.user",
-            headerName:"Name",
-            valueGetter:(parmas)=>{
+            field: "student.user",
+            headerName: "Name",
+            valueGetter: (parmas) => {
                 const user = parmas?.row?.student?.user
                 const name = `${user?.first_name} ${user?.last_name}`
                 return name
             }
         },
         {
-            field:"student_class",
-            headerName:"Class",
-            valueGetter:(parmas)=>{
+            field: "student_class",
+            headerName: "Class",
+            valueGetter: (parmas) => {
                 // console.log(parmas?.row?.student_class?.name)
                 return `${parmas?.row?.student_class?.name}`
             }
 
         },
         {
-            field:"exam_term",
-            headerName:"Exam Term",
-            valueGetter:(params)=>{
+            field: "exam_term",
+            headerName: "Exam Term",
+            valueGetter: (params) => {
                 return `${params?.row?.exam_term?.term_name}`
             }
         },
         {
-            field:"total_marks",
-            headerName:"Total Marks"
+            field: "total_marks",
+            headerName: "Total Marks"
         },
         {
-            field:"division",
-            headerName:"Division"
+            field: "division",
+            headerName: "Division"
         },
         {
-            field:"merit_position",
-            headerName:"Merit"
+            field: "merit_position",
+            headerName: "Merit"
         },
         {
-            field:"detail",
-            headerName:"Detail"
+            field: "detail",
+            headerName: "Detail"
         },
     ]
 
@@ -78,13 +78,13 @@ const ResutSheet = ({ result_list }) => {
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu />
+                        <SideMenu/>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader />
-                                        <hr />
+                                        <ExamHeader/>
+                                        <hr/>
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
@@ -94,15 +94,15 @@ const ResutSheet = ({ result_list }) => {
                                                             <div className="row">
                                                                 <div className="col-md-2">
                                                                     <input type="text" className="form-control"
-                                                                        placeholder="Search" />
+                                                                           placeholder="Search"/>
                                                                 </div>
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
                                                                         <input type="text" className="form-control"
-                                                                            placeholder="class" />
+                                                                               placeholder="class"/>
                                                                         <button type="button"
-                                                                            className="btn btn-outline-secondary dropdown-toggle"
-                                                                            data-bs-toggle="dropdown">
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -118,10 +118,10 @@ const ResutSheet = ({ result_list }) => {
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
                                                                         <input type="text" className="form-control"
-                                                                            placeholder="Merit" />
+                                                                               placeholder="Merit"/>
                                                                         <button type="button"
-                                                                            className="btn btn-outline-secondary dropdown-toggle"
-                                                                            data-bs-toggle="dropdown">
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -137,10 +137,10 @@ const ResutSheet = ({ result_list }) => {
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
                                                                         <input type="text" className="form-control"
-                                                                            placeholder="Term" />
+                                                                               placeholder="Term"/>
                                                                         <button type="button"
-                                                                            className="btn btn-outline-secondary dropdown-toggle"
-                                                                            data-bs-toggle="dropdown">
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -159,10 +159,10 @@ const ResutSheet = ({ result_list }) => {
                                                                 <div className="col-md-2">
                                                                     <div className="input-group">
                                                                         <input type="text" className="form-control"
-                                                                            placeholder="year" />
+                                                                               placeholder="year"/>
                                                                         <button type="button"
-                                                                            className="btn btn-outline-secondary dropdown-toggle"
-                                                                            data-bs-toggle="dropdown">
+                                                                                className="btn btn-outline-secondary dropdown-toggle"
+                                                                                data-bs-toggle="dropdown">
                                                                             <span className="visually-hidden">Toggle dropdown</span>
                                                                         </button>
                                                                         <ul className="dropdown-menu dropdown-menu-end">
@@ -180,7 +180,7 @@ const ResutSheet = ({ result_list }) => {
                                                                 </div>
                                                                 <div className="col-md-1">
                                                                     <button type="button"
-                                                                        className={`${styles.searchIcon}`}>
+                                                                            className={`${styles.searchIcon}`}>
                                                                         <span className={styles.searchicon}></span>
                                                                     </button>
                                                                 </div>
@@ -197,21 +197,28 @@ const ResutSheet = ({ result_list }) => {
                                                     </div>
                                                     <div className="result-table mt-4">
 
-                                                        <Box sx={{ height: 500, width: '100%' }}>
+                                                        <Box sx={{height: 500, width: '100%'}}>
                                                             <DataGrid
                                                                 rows={result_list}
                                                                 columns={columns}
-                                                                disableColumnFilter
+                                                                // disableColumnFilter
                                                                 disableColumnSelector
                                                                 disableDensitySelector
-                                                                components={{ Toolbar: GridToolbar }}
+                                                                components={{Toolbar: GridToolbar}}
                                                                 // experimentalFeatures={{ newEditingApi: false }}
                                                                 componentsProps={{
                                                                     toolbar: {
                                                                         showQuickFilter: true,
-                                                                        quickFilterProps: { debounceMs: 500 },
+                                                                        quickFilterProps: {debounceMs: 500},
                                                                     },
                                                                 }}
+                                                                // filterModel={{
+                                                                //     items: [{
+                                                                //         columnField: "Class",
+                                                                //         operatorValue: "isAnyOf",
+                                                                //         value: ARRAYofSelctedRowValuesInTabOne
+                                                                //     }],
+                                                                // }}
                                                             />
                                                         </Box>
                                                         {/* <div className="table-responsive">
