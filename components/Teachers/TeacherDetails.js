@@ -2,7 +2,32 @@ import React from "react";
 import Link from 'next/link';
 import styles from './TeacherDetails.module.css';
 
+import {useForm} from "react-hook-form";
+
+import {BASE_URL} from "../../pages/api/api";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
+
 const TeacherDetail = ({teacher}) => {
+    const {handleSubmit, register, formState: {errors}, control} = useForm()
+
+    const onSubmit = (values) => {
+        let formdata = new FormData();
+        formdata.append("avatar", values.avatar[0], values.avatar[0].name);
+
+        let requestOptions = {
+            method: 'PUT',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/accounts/avatar/${teacher.data.id}/`, requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+    }
+
     return (
         <>
             <section className={styles.mainSection}>
@@ -23,6 +48,21 @@ const TeacherDetail = ({teacher}) => {
                                 <div className="col">
                                     <div className="card mb-4">
                                         <div className="card-body">
+                                            <form onSubmit={handleSubmit(onSubmit)}>
+                                                <div className="mb-3">
+                                                    <label htmlFor="avatar" className="form-label">
+                                                        Image upload</label>
+                                                    <input
+                                                        className="form-control"
+                                                        type="file"
+                                                        id="avatar"
+                                                        name='avatar'
+                                                        {...register("avatar")}
+                                                    />
+                                                </div>
+                                                <button>Save</button>
+                                            </form>
+
                                             <div className="row">
                                                 <div className="col-md-9">
                                                     <div className="row">
@@ -256,7 +296,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Experience</h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.experience.experience_name}</p>
+                                            <p>{teacher?.data?.experience?.experience_name}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -266,7 +306,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Skills </h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.skill.skill_name}</p>
+                                            <p>{teacher.data.skill.skill_name}</p>
                                         </div>
                                     </div>
                                 </div>

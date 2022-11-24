@@ -10,19 +10,19 @@ const columns = [
         field: 'teacher_id',
         headerName: 'Teacher ID',
         width: 150,
-        editable: true,
+        // editable: true,
     },
     {
         field: 'father_name',
         headerName: 'Father name',
         width: 150,
-        editable: true,
+        // editable: true,
     },
     {
         field: 'mother_name',
         headerName: 'Mother Name',
         width: 110,
-        editable: true,
+        // editable: true,
     },
     {
         field: 'department',
@@ -73,7 +73,7 @@ const TeacherList = ({teachers}) => {
                                             disableColumnSelector
                                             disableDensitySelector
                                             components={{Toolbar: GridToolbar}}
-                                            experimentalFeatures={{newEditingApi: false}}
+                                            // experimentalFeatures={{newEditingApi: false}}
                                             componentsProps={{
                                                 toolbar: {
                                                     showQuickFilter: true,

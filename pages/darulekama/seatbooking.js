@@ -10,8 +10,6 @@ const SeatbookingPage = (props) => {
     const { data: session, status } = useSession()
     const madrasha_slug = session?.user.madrasha_slug
 
-
-
     const [roomList, setRoomList] = useState('')
     const [buildingId, setBuildingId] = useState('')
 
@@ -55,8 +53,6 @@ export const getServerSideProps = async ({ req }) => {
     //get buildings
     const buildingList = await api.get(`/settings/${madrasha_slug}/building/`)
     const buidlings = buildingList.data
-
-
 
     return {
         props: {
