@@ -5,11 +5,10 @@ import Layout from "../../../components/Layout/Layout"
 const ExpenseDetailPage = ({expense_income}) => {
     return (
         <div>
-            <AccountExpense expense_income={expense_income} />
+            <AccountExpense expense_income={expense_income}/>
         </div>
     )
 };
-
 
 export async function getServerSideProps({params}) {
     let expense_income_fetch_url = `${BASE_URL}/transactions/expense/${params.id}/`;
