@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from "react";
-import {getSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
-import api, {BASE_URL} from '../api/api'
+import api, {BASE_URL} from '../../api/api'
 import axios from "axios";
 
 // StudentList Component
-import OtherIncome from "../../components/Account/OtherIncome";
-import Layout from "../../components/Layout/Layout";
+import OtherIncome from "../../../components/Account/OtherIncome/OtherIncome";
+import Layout from "../../../components/Layout/Layout";
 
 //post and put modal import
-import AddOtherIncomeModal from "../../components/Account/Modals/AddOtherIncomeModal"
-import UpdateOtherIncomeModal from "../../components/Account/Modals/UpdateOtherIncomeModal"
+import AddOtherIncomeModal from "../../../components/Account/Modals/AddOtherIncomeModal"
+import UpdateOtherIncomeModal from "../../../components/Account/Modals/UpdateOtherIncomeModal"
 
 
 const OtherIncomePage = (props) => {
     const router = useRouter();
-    const {data: session, status} = getSession();
+    const {data: session, status} = useSession();
+    const madrasha_slug = session?.user?.madrasha_slug
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -86,6 +87,7 @@ const OtherIncomePage = (props) => {
                 incomecategorylist={transactioncategoryList}
                 setTransactionCategory={setTransactionCaterory}
                 transactionSubCategory={transactionSubCaterory}
+                madrasha_slug={madrasha_slug}
             >
             </AddOtherIncomeModal>
             {isloading ? <h1></h1> :

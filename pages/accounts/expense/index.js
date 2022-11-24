@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {getSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import api, {BASE_URL} from '../../api/api'
 import axios from "axios";
 
 // Expense Component
-import Expense from "../../../components/Account/AllExpense";
+import Expense from "../../../components/Account/AllExpense/AllExpense";
 import Layout from "../../../components/Layout/Layout";
 import AddExpenseModal from "../../../components/Account/Modals/AddExpenseModal"
 import UpdateExpenseModal from "../../../components/Account/Modals/UpdateExpenseModal"
@@ -14,7 +14,8 @@ import UpdateExpenseModal from "../../../components/Account/Modals/UpdateExpense
 const ExpensePage = (props) => {
 
     const router = useRouter();
-    const {data: session, status} = getSession();
+    const {data: session, status} = useSession();
+    const madrasha_slug = session?.user?.madrasha_slug 
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -87,6 +88,7 @@ const ExpensePage = (props) => {
                 expensecategorylist={expenseCategoryList}
                 setExpenseCategoryValue={setExpenseCategoryValue}
                 expenseSubCategoryList={expenseSubCategoryList}
+                madrasha_slug={madrasha_slug}
             >
             </AddExpenseModal>
 

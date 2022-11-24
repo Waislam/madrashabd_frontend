@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import styles from './Account.module.css'
-import Header from './IncomeHeader'
-import studentLogo from '../../public/assets/admission/students.png'
+import styles from '../Account/Account.module.css'
+import Header from '../IncomeHeader'
+import studentLogo from '../../../public/assets/admission/students.png'
 import Link from "next/link";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";

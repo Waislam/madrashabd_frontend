@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from './Account.module.css'
-import icon from '../../public/assets/login/icon.png'
+import icon from '../../../public/assets/login/icon.png'
 import AccountSideBar from './AccountSidebar'
 
 const Account = () => {

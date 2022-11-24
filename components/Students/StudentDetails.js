@@ -8,9 +8,32 @@ import styles from './StudentDetails.module.css'
 // components
 import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
+import {useForm} from "react-hook-form";
+import {BASE_URL} from "../../pages/api/api";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 
 const StudentDetails = ({student}) => {
+    console.log("student data", student.data.user.id)
+    const {handleSubmit, register, formState: {errors}, control} = useForm()
+
+    const onSubmit = (values) => {
+        let formdata = new FormData();
+        formdata.append("avatar", values.avatar[0], values.avatar[0].name);
+
+        let requestOptions = {
+            method: 'PUT',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/accounts/avatar/${student.data.user.id}/`, requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+    }
 
     return (
         <>
@@ -50,6 +73,20 @@ const StudentDetails = ({student}) => {
                                                 <hr/>
                                                 <div className="row">
                                                     <div className="col-md-9">
+                                                        <form onSubmit={handleSubmit(onSubmit)}>
+                                                            <div className="mb-3">
+                                                                <label htmlFor="avatar" className="form-label">
+                                                                    Image upload</label>
+                                                                <input
+                                                                    className="form-control"
+                                                                    type="file"
+                                                                    id="avatar"
+                                                                    name='avatar'
+                                                                    {...register("avatar")}
+                                                                />
+                                                            </div>
+                                                            <button>Save</button>
+                                                        </form>
                                                         <div className="row">
                                                             <div className="col-md-7">
                                                                 <dl className="row">
@@ -96,7 +133,8 @@ const StudentDetails = ({student}) => {
                                                                     </dt>
                                                                     <dd className="col-sm-6">
                                                                         <span className="mx-2">:</span>
-                                                                        <span className="text-capitalize">{student.data?.religion}</span>
+                                                                        <span
+                                                                            className="text-capitalize">{student.data?.religion}</span>
                                                                     </dd>
                                                                     <dt className="col-sm-6">
                                                                         Gender
