@@ -55,7 +55,6 @@ export const StudentIncomeMoneyReceipt = React.forwardRef((props, ref) => {
                                         {props.student_income?.for_months}
                                     </span>
                                 </p>
-
                             </div>
                         </div>
                         <div className="col-md-6">

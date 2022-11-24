@@ -2,12 +2,17 @@ import React from "react";
 import styles from '../Account/Account.module.css'
 import AccountSideBar from '../Account/AccountSidebar'
 import Header from '../IncomeHeader'
-import Link from "next/link";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import { useRouter } from 'next/router'
 
 
 const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleModalShowandId}) => {
+    const router = useRouter();
+
+    const handleDetail = async (id) => {
+        router.push(`accounts/${id}`);
+    };
 
     const columns = [
         {
@@ -15,6 +20,8 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             field: 'id',
             sortable: false,
             width: 60,
+            valueGetter: (params) =>
+                `${params.row.id}`,
         },
 
         {
@@ -81,8 +88,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
                         <button className="btn btn-primary"
                                 onClick={() => handleModalShowandId(params.row.id)}>Edit
                         </button>
-                        <button className="btn btn-danger">Details
-                        </button>
+                        <button className="btn btn-danger" onClick={() => handleDetail(params.row.id)} >Details</button>
                     </div>
                 );
             }
