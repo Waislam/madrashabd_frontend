@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 
 import DarulEkama from "../../components/DarulEkama/DarulEkam";
 import Layout from '../../layouts/Layout';
-import { getSession } from "next-auth/react";
+import {getSession} from "next-auth/react";
 import api from "../api/api";
 
 
@@ -24,13 +24,13 @@ const DarulEkamaPage = (props) => {
     return (
         <div>
             <DarulEkama
-            distributed_seatList={distributedSeatList}
+                distributed_seatList={distributedSeatList}
             />
         </div>
     )
 };
 
-export const getServerSideProps=async({req})=>{
+export const getServerSideProps = async ({req}) => {
 
     const session = await getSession({req})
     // console.log("session: ", session.user?.madrasha_slug)
@@ -40,7 +40,7 @@ export const getServerSideProps=async({req})=>{
     const distributedseat = distributedSeatList.data
 
     return {
-        props:{
+        props: {
             distributedseat
         }
     }
