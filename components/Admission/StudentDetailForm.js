@@ -44,8 +44,7 @@ const StudentDetailForm = (props) => {
         formState: {errors},
         register,
     } = useForm({
-        mode: "onTouched",
-        resolver: yupResolver(schema)
+        mode: "onChange",
     });
 
     const onSubmit = (values) => {

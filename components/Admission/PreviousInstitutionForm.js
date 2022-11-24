@@ -81,7 +81,7 @@ const PreviousInstitutionForm = (props) => {
                 "parent_name": admissionData.parents_information_father_name,
                 "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
                 "occupation": admissionData.parents_information_father_occupation,
-                "organization_with_designation": "organization name, podobi",
+                "organization_with_designation": admissionData.parents_information_father_organization_with_designation,
                 "education": admissionData.parents_information_father_education,
                 "contact_number": admissionData.parents_information_father_contact,
                 "parent_email": admissionData.father_email,
@@ -92,7 +92,7 @@ const PreviousInstitutionForm = (props) => {
                 "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
                 "parent_nid": admissionData.parents_information_mother_nid,
                 "occupation": admissionData.parents_information_mother_occupation,
-                "organization_with_designation": "organization name, podobi",
+                "organization_with_designation": admissionData.parents_information_mother_organization_with_designation,
                 "education": admissionData.parents_information_mother_education,
                 "contact_number": admissionData.parents_information_mother_contact,
                 "parent_email": admissionData.mother_email
