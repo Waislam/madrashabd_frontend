@@ -44,22 +44,16 @@ const StudentDetailForm = (props) => {
         formState: {errors},
         register,
     } = useForm({
-        mode: "onTouched",
-        resolver: yupResolver(schema)
+        mode: "onChange",
     });
 
     const onSubmit = (values) => {
+        console.log("values", values)
         setLoading(true)
         setAdmissionFormValues(values);
         nextStep();
         setLoading(false)
     };
-
-    const Continue = e => {
-        e.preventDefault();
-        nextStep();
-    };
-
 
     return (
         <>
@@ -580,10 +574,9 @@ const StudentDetailForm = (props) => {
                                 loading ?
                                     <button className={styles.defaultBtn}>Loading</button>
                                     :
-                                    <button className={styles.defaultBtn}>Next Step</button>
+                                    <button className={styles.defaultBtn} type='submit'>Next Step</button>
                             }
                         </form>
-
                     </div>
                 </div>
             </div>
