@@ -24,7 +24,6 @@ const Admission = (props) => {
             </section>
         </>
     )
-
 };
 
 

@@ -6,16 +6,24 @@ import studentLogo from '../../../public/assets/admission/students.png'
 import Link from "next/link";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import {useRouter} from 'next/router'
 
+const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId}) => {
 
-const StudentIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId}) => {
+    const router = useRouter();
+
+    const handleDetail = async (id) => {
+        router.push(`other-income/${id}`);
+    };
 
     const columns = [
         {
             headerName: 'ID',
             field: 'id',
             sortable: false,
-            width: 160
+            width: 60,
+            valueGetter: (params) =>
+                `${params.row.id}`,
         },
         {
             headerName: 'Category',
@@ -80,6 +88,9 @@ const StudentIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId
                         <button className="btn btn-primary"
                                 onClick={() => passOtherIncomeId(params.row.id)}>Edit
                         </button>
+                        <button className="btn btn-warning"
+                                onClick={() => handleDetail(params.row.id)}>Details
+                        </button>
                     </div>
                 );
             }
@@ -98,7 +109,6 @@ const StudentIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId
         <div>
             <section className={styles.accountListSection}>
                 <div className="container-fluid">
-                    {/* <h3 className={styles.accountListTitle}>Accounts</h3> */}
                     <hr/>
                     <div className="row">
                         <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
@@ -263,146 +273,8 @@ const StudentIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId
                                                         />
                                                     </Box>
                                                 </div>
-                                                <div className="row">
-                                                    {/*<div className="col-md-7">*/}
-                                                        {/*<button className={styles.defaultBtn}>Download PDF</button>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="pagination-class col-md-4">*/}
-                                                        {/*<nav aria-label="page navigation" className="">*/}
-                                                            {/*<ul className="pagination float-end">*/}
-                                                                {/*<li className="page-item">*/}
-                                                                    {/*<a className="page-link" href="">Previous</a>*/}
-                                                                {/*</li>*/}
-                                                                {/*<li className="page-item">*/}
-                                                                    {/*<a className="page-link" href="">1</a>*/}
-                                                                {/*</li>*/}
-                                                                {/*<li className="page-item">*/}
-                                                                    {/*<a className="page-link" href="">Next</a>*/}
-                                                                {/*</li>*/}
-                                                            {/*</ul>*/}
-                                                        {/*</nav>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="page-size col-md-1">*/}
-                                                        {/*<div className="float-end" style={{width: 80}}>*/}
-                                                            {/*<div className="input-group">*/}
-                                                                {/*<input type="text" className="form-control"*/}
-                                                                       {/*placeholder="10"/>*/}
-                                                                {/*<button type="button"*/}
-                                                                        {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
-                                                                        {/*data-bs-toggle="dropdown" aria-expanded="false">*/}
-                                                                    {/*<span*/}
-                                                                        {/*className="visually-hidden">Toggle dropdown</span>*/}
-                                                                {/*</button>*/}
-                                                                {/*<ul className="dropdown-menu dropdown-menu-end">*/}
-                                                                    {/*<li>*/}
-                                                                        {/*<a className="dropdown-item">10</a>*/}
-                                                                    {/*</li>*/}
-                                                                    {/*<li>*/}
-                                                                        {/*<a className="dropdown-item">20</a>*/}
-                                                                    {/*</li>*/}
-                                                                {/*</ul>*/}
-                                                            {/*</div>*/}
-                                                        {/*</div>*/}
-                                                    {/*</div>*/}
-                                                </div>
                                             </div>
                                         </div>
-
-
-                                        {/*Get Summary*/}
-                                        {/* <div className="get-summary mb-4">
-                                            <h4>Get Summary</h4>
-                                            <hr/>
-                                            <form action="#">
-                                                <div className="row">
-                                                    <div className="col-md-10">
-                                                        <div className="row">
-                                                            <div className="col-md-3 mb-3">
-                                                                <div className="input-group">
-                                                                    <input
-                                                                        type="text"
-                                                                        name="category"
-                                                                        placeholder="Category"
-                                                                        className="form-control"
-                                                                    />
-                                                                    <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item">category one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item">category two</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-3 mb-3">
-                                                                <div className="input-group">
-                                                                    <input
-                                                                        type="text"
-                                                                        name="subcategory"
-                                                                        placeholder="Sub Category"
-                                                                        className="form-control"
-                                                                    />
-                                                                    <button type="text" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <span className="visually-hidden">Toggle dropdown</span>
-                                                                    </button>
-                                                                    <ul className="dropdown-menu dropdown-menu-end">
-                                                                        <li>
-                                                                            <a className="dropdown-item">category one</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a className="dropdown-item">category two</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-3 mb-3">
-                                                                <input
-                                                                    type="text"
-                                                                    name="from_date"
-                                                                    placeholder="From date"
-                                                                    onChange={(e) => console.log(e.target.value)}
-                                                                    onFocus={(e) => (e.target.type = "date")}
-                                                                    onBlur={(e) => (e.target.type = "text")}
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                            <div className="col-md-3 mb-3">
-                                                                <input
-                                                                    type="text"
-                                                                    name="to_date"
-                                                                    placeholder="To date"
-                                                                    onChange={(e) => console.log(e.target.value)}
-                                                                    onFocus={(e) => (e.target.type = "date")}
-                                                                    onBlur={(e) => (e.target.type = "text")}
-                                                                    className="form-control"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-2">
-                                                        <button className={styles.searchButton}>Search</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div> */}
-                                        {/*institute-name*/}
-                                        {/* <div className={styles.instituteNamePdf}>
-                                            <div className={styles.instituteList}>
-                                                <h4>Get Name</h4>
-                                                <ul className="list-unstyled">
-                                                    <li>From date - to date</li>
-                                                    <li>Category Name</li>
-                                                    <li>Total amount : 10 Taka</li>
-                                                </ul>
-                                            </div>
-                                            <div style={{float: "right"}}>
-                                                <button className={styles.institutePrintBtn}>Print as PDF</button>
-                                            </div>
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -416,7 +288,7 @@ const StudentIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId
 };
 
 
-export default StudentIncome;
+export default OtherIncome;
 
 
 
