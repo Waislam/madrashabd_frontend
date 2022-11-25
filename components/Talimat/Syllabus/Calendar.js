@@ -5,8 +5,18 @@ import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
 
 
+import { Calendar, momentLocalizer, globalizeLocalizer, dateFnsLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'moment-timezone'
+moment.tz.setDefault('Asia/Dhaka') 
+require('react-big-calendar/lib/css/react-big-calendar.css');
+
+
 
 const AcademicCalendar = () => {
+
+    const localizer = momentLocalizer(moment)
+
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
@@ -30,7 +40,16 @@ const AcademicCalendar = () => {
                                                     </div>
                                                 </div>
                                                 {/* === Calendar ====== */}
-                                                <h1>sdlkfjlsdflkdsjf</h1>
+                                                {/* <h1>sdlkfjlsdflkdsjf</h1> */}
+                                                <div className='calendar-body'>
+                                                    <Calendar
+                                                        localizer={localizer}
+                                                        // events={myEventsList}
+                                                        startAccessor="start"
+                                                        endAccessor="end"
+                                                    style={{ height: 500 }}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
