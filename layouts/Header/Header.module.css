@@ -2,13 +2,14 @@
  1. menu img problem 
  ===========================*/
 
-
 .headerSection {
     overflow: hidden;
     display: block;
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+.navbarExpand {
+    background-color: #F8F9FA !important;
 }
 
 .headerTop {
@@ -18,6 +19,12 @@
 .headerLogo {
     overflow: hidden;
     display: block;
+}
+
+.navLinkDesign:hover {
+    background-color: #ff789b;
+    border-radius: 5px;
+    color: #ffffff;
 }
 
 .headerLogo img {
@@ -36,8 +43,9 @@
 .mainHeader {
     overflow: hidden;
     display: block;
-}
+    background-color: #F8F9FA;
 
+}
 
 .customNavbarBrand {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
@@ -48,7 +56,7 @@
     padding: 11px 21px;
 }
 
-.customNavbarBrand:hover{
+.customNavbarBrand:hover {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     border-top-left-radius: 5px;
@@ -66,14 +74,13 @@
     padding: 10px;
 }
 
-.customNavLink a{
+.customNavLink a {
     color: #ffffff;
     text-decoration: none;
-    padding: 12px 0px;
+    padding: 12px 0;
 }
 
-
-.customNavLink a:hover{
+.customNavLink a:hover {
     color: #ffffff;
     text-decoration: none;
 }
@@ -84,22 +91,26 @@
 }
 
 /* ============  1. menu img problem  ================ */
-.imgclass {
+.imgClass {
     height: 22px;
     width: 16px;
-    margin: 0px 10px 0px 0px;
+    margin: 0 10px 0 0;
+
 }
 
 .linknav ul li {
     width: 117px;
     height: 42px;
 }
+
 .linknav ul li:not(:first-child) {
     margin-left: 6px;
 }
+
 .linknav ul li:nth-child(2) {
     width: 127px;
 }
+
 .linknav ul li:nth-child(5) {
     width: 122px;
 }

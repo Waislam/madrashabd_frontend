@@ -27,177 +27,228 @@ const Header = () => {
     return (
         <>
             <section className={styles.headerSection}>
-                <div className={styles.headerTop}>
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                <div className="row">
-                                    <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                                        <div className={styles.headerLogo}>
-                                            <Image src={logo} className="img-responsive" alt="Logo missing"/>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                                        <div className="header-info">
-                                            <h3 className="header-title">
-                                                Welcome to <span style={{color: "#3AB54A"}}> Darul Ulum Madrasha</span>
-                                            </h3>
-                                            <h5 className="text-center">220 Malibug, Dhaka</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                <div className="setting">
-                                    <ul className="nav nav-pills justify-content-end">
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#">
-                                                <Image src={phone} alt="" className="img-responsive" width={30}
-                                                       height={30}/>
+                <div className="container p-0">
+                    <header
+                        className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 border-bottom">
+                        <a href="/"
+                           className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                            <Image
+                                src={logo}
+                                width="50"
+                                height="50"
+                                className="img-responsive bi me-2"
+                                alt="Logo missing"
+                            />
+                            <span style={{fontWeight: "bold", color: "#3AB54A"}} className="h5">Ikhwan Bangladesh</span>
+                        </a>
+                        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                            <li className={styles.navLinkDesign}>
+                                <a href="#" className="nav-link px-2 link-dark" style={{fontSize: 18}}>
+                                    <i className="fa fa-file" aria-hidden="true"/> Attendance
+                                </a>
+                            </li>
+                            <li className={styles.navLinkDesign}>
+                                <a href="#" className="nav-link px-2 link-dark" style={{fontSize: 18}}>
+                                    <i className="fa fa-bus" aria-hidden="true"/> Transport
+                                </a>
+                            </li>
+                            <li className={styles.navLinkDesign}>
+                                <a href="#" className="nav-link px-2 link-dark" style={{fontSize: 18}}>
+                                    <i className="fa fa-paper-plane" aria-hidden="true"/> SMS
+                                </a>
+                            </li>
+                            <li className={styles.navLinkDesign}>
+                                <a href="#" className="nav-link px-2 link-dark" style={{fontSize: 18}}>
+                                    <i className="fa fa-gear"/> Setting
+                                </a>
+                            </li>
+                            <li className={styles.navLinkDesign}>
+                                <li className="nav-item dropdown">
+                                    <a
+                                        style={{fontSize: 18}}
+                                        className="nav-link dropdown-toggle link-dark"
+                                        data-bs-toggle="dropdown"
+                                        role="button" aria-expanded="false">
+                                        <i className="fa fa-language" aria-hidden="true"/>
+                                        Language
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li className="mb-2">
+                                            <a className="dropdown-item"
+                                               href="#">
+                                                Bangla
                                             </a>
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="/transport">
-                                                <Image src={transport} alt="" className="img-responsive" width={30}
-                                                       height={30}/>
+                                        <li  className="mb-2">
+                                            <a className="dropdown-item"
+                                               href="#">
+                                                English
                                             </a>
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#">
-                                                <Image src={massage} alt="" className="img-responsive" width={30}
-                                                       height={30}/>
+                                    </ul>
+                                </li>
+                            </li>
+                        </ul>
+                        <div className="col-md-3 text-end">
+                            <ul className="nav col-12 col-md-auto mb-2 justify-content-end mb-md-0">
+                                <li className="nav-item dropdown">
+                                    <a
+                                        style={{fontSize: 18}}
+                                        className="nav-link dropdown-toggle"
+                                        data-bs-toggle="dropdown"
+                                        role="button" aria-expanded="false">
+                                        <i className="fa fa-user-circle-o"/>
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li>
+                                            <a className="dropdown-item"
+                                               href="/change-password">
+                                                Change Password
                                             </a>
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="/setting">
-                                                <Image src={setting} alt="" className="img-responsive" width={30}
-                                                       height={30}/>
-                                            </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </header>
+                    <div className={styles.mainHeader}>
+                        <nav
+                            className={`${styles.navbarExpand} navbar navbar-expand-lg navbar-light mb-2 border-bottom`}
+                            aria-label="Ninth navbar example">
+                            <div className="container-xl">
+                                <Link href="/">
+                                    <a className={`navbar-brand mb-2`} style={{fontWeight: "bold"}}>
+                                        Dashboard
+                                    </a>
+                                </Link>
+                                <button className="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className="navbar-toggler-icon"/>
+                                </button>
+                                <div className="collapse navbar-collapse justify-content-md-center"
+                                     id="navbarsExample07XL">
+                                    <ul className="navbar-nav">
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/admission">
+                                                <a>
+                                                    <Image
+                                                        src={admission}
+                                                        alt="admission"
+                                                        className={styles.imgClass}
+                                                    />
+                                                    Admission
+                                                </a>
+                                            </Link>
                                         </li>
-                                        <li className="nav-item dropdown"
-                                            style={{border: "1px solid #FFFFFF", padding: 0}}>
-                                            <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                               role="button" aria-expanded="false">
-                                                <Image src={user} alt="" className="img-responsive" width={30}
-                                                       height={30}/> Language
-                                            </a>
-                                            <ul className="dropdown-menu">
-                                                <li><a className="dropdown-item" href="#">Bangla</a></li>
-                                                <li><a className="dropdown-item" href="#">English</a></li>
-                                            </ul>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/teachers">
+                                                <a>
+                                                    <Image
+                                                        src={teacherStaff}
+                                                        alt="teacherStaff"
+                                                        className={styles.imgClass}
+                                                    />
+                                                    TeacherStaff
+                                                </a>
+                                            </Link>
                                         </li>
-                                        <li className="nav-item dropdown"
-                                            style={{border: "1px solid #FFFFFF", padding: 0}}>
-                                            <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                               role="button" aria-expanded="false">
-                                                <Image src={user} alt="" className="img-responsive" width={30}
-                                                       height={30}/>
-                                            </a>
-                                            <ul className="dropdown-menu">
-                                                <li>
-                                                    <a className="dropdown-item" href="/change-password">Change Password</a>
-                                                </li>
-                                            </ul>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/students">
+                                                <a>
+                                                    <Image
+                                                        src={students}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}
+                                                    />
+                                                    Students
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/talimat/syllabus">
+                                                <a>
+                                                    <Image
+                                                        src={talimat}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}/>
+                                                    Talimat
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/talimat/syllabus">
+                                                <a>
+                                                    <Image
+                                                        src={talimat}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}/>
+                                                    Talimat
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/darulekama">
+                                                <a>
+                                                    <Image
+                                                        src={darulEkhma}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}
+                                                    />
+                                                    DarulEkama
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/accounts/accounts">
+                                                <a>
+                                                    <Image
+                                                        src={accounts}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}/>
+                                                    Accounts
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/library">
+                                                <a>
+                                                    <Image
+                                                        src={accounts}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}/>
+                                                    Library
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/boarding">
+                                                <a>
+                                                    <Image
+                                                        src={boarding}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}
+                                                    />
+                                                    Boarding
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className={`${styles.customNavLink} nav-item mx-1 mb-2`}>
+                                            <Link href="/members">
+                                                <a>
+                                                    <Image
+                                                        src={members}
+                                                        alt="Image is missing"
+                                                        className={styles.imgClass}/>
+                                                    Members
+                                                </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </nav>
                     </div>
-                </div>
-                <div className={styles.mainHeader}>
-                    <nav className="navbar navbar-expand-lg">
-                        <div className="container-fluid">
-                            <Link href="/">
-                                <a className={`${styles.customNavbarBrand} navbar-brand `}>
-                                    Dashboard
-                                </a>
-                            </Link>
-                            <button className="navbar-toggler bg-info text-danger" type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon bg-black"></span>
-                            </button>
-                            <div className={`collapse navbar-collapse ${styles.linknav}`} id="navbarNavAltMarkup">
-                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/admission">
-                                            <a>
-                                                <Image src={admission} alt="admission" className={styles.imgclass}/>
-                                                Admission
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/teachers">
-                                            <a>
-                                                <Image src={teacherStaff} alt="teacherStaff"
-                                                       className={styles.imgclass}/>
-                                                TeacherStaff
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/students">
-                                            <a>
-                                                <Image src={students} alt="Students" className={styles.imgclass}/>
-                                                Students
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/talimat/syllabus">
-                                            <a>
-                                                <Image src={talimat} alt="good" className={styles.imgclass}/>
-                                                Talimat
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/darulekama">
-                                            <a>
-                                                <Image src={darulEkhma} alt="good" className={styles.imgclass}/>
-                                                DarulEkama
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/accounts/accounts">
-                                            <a>
-                                                <Image src={accounts} alt="good" className={styles.imgclass}/>
-                                                Accounts
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/library">
-                                            <a>
-                                                <Image src={accounts} alt="good" className={styles.imgclass}/>
-                                                Library
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/boarding">
-                                            <a>
-                                                <Image src={boarding} alt="good" className={styles.imgclass}/>
-                                                Boarding
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className={`${styles.customNavLink} nav-item`}>
-                                        <Link href="/members">
-                                            <a>
-                                                <Image src={members} alt="good" className={styles.imgclass}/>
-                                                Members
-                                            </a>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
                 </div>
             </section>
         </>
