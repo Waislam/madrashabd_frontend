@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Dawah Component
-import Calendar from "../../../components/Talimat/Syllabus/Calendar";
+import CalendarPage from "../../../components/Talimat/Syllabus/Calendar";
 import Layout from "../../../components/Layout/Layout";
-//import Modals
+//import calendar
+
 
 const AcademicCalendarPage = () => {
 
     return (
         <>
-            <Calendar />
+            <CalendarPage />
         </>
     )
 };

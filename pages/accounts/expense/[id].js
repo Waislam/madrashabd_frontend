@@ -1,15 +1,14 @@
 import {BASE_URL} from "../../api/api";
-import AccountExpense from '../../../components/Account/Account/AccountExpense'
+import ExpenseDetail from '../../../components/Account/AllExpense/ExpenseDetail'
 import Layout from "../../../components/Layout/Layout"
 
 const ExpenseDetailPage = ({expense_income}) => {
     return (
         <div>
-            <AccountExpense expense_income={expense_income} />
+            <ExpenseDetail expense_income={expense_income}/>
         </div>
     )
 };
-
 
 export async function getServerSideProps({params}) {
     let expense_income_fetch_url = `${BASE_URL}/transactions/expense/${params.id}/`;

@@ -48,21 +48,6 @@ const TeacherDetail = ({teacher}) => {
                                 <div className="col">
                                     <div className="card mb-4">
                                         <div className="card-body">
-                                            <form onSubmit={handleSubmit(onSubmit)}>
-                                                <div className="mb-3">
-                                                    <label htmlFor="avatar" className="form-label">
-                                                        Image upload</label>
-                                                    <input
-                                                        className="form-control"
-                                                        type="file"
-                                                        id="avatar"
-                                                        name='avatar'
-                                                        {...register("avatar")}
-                                                    />
-                                                </div>
-                                                <button>Save</button>
-                                            </form>
-
                                             <div className="row">
                                                 <div className="col-md-9">
                                                     <div className="row">
@@ -147,7 +132,39 @@ const TeacherDetail = ({teacher}) => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    {/* <Image src={teacher} className="img-responsive" width={400} height={300}/> */}
+                                                    <div className="text-center">
+                                                        {teacher?.data?.user?.avatar ?
+                                                            <img
+                                                                src={teacher?.data?.user?.avatar}
+                                                                className="rounded-circle shadow-4-strong"
+                                                                alt="Oops image missing"
+                                                            />
+                                                            :
+                                                            <Image
+                                                                className="rounded-circle shadow-4-strong"
+                                                                alt="avatar2"
+                                                                src={teacher}
+                                                                width={90}
+                                                                height={90}
+                                                            />
+                                                        }
+                                                    </div>
+                                                    <form onSubmit={handleSubmit(onSubmit)}>
+                                                        <div className="form-group mb-2">
+                                                            <input
+                                                                className="form-control"
+                                                                type="file"
+                                                                id="avatar"
+                                                                name='avatar'
+                                                                {...register("avatar")}
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            type="submit"
+                                                            className="btn btn-primary mb-2">
+                                                            Save
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
