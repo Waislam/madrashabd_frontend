@@ -142,10 +142,15 @@ const PreviousInstitutionForm = (props) => {
             .then(response => response.json())
             .then((result) => {
                 console.log("data submited result", result)
-
                 setLoading(false)
-                router.push('/admission')
-                return result && toast.success('Student has been created!')
+
+                if(result.id) {
+                    return toast.success('Student has been created!')
+                }
+
+                else if(result.user?.phone) {
+                    return toast.error('User with this phone number are already exists !!')
+                }
             })
             .catch((error) => {
                 console.log('error', error)
