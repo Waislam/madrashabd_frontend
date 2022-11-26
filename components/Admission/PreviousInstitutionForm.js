@@ -460,24 +460,13 @@ const PreviousInstitutionForm = (props) => {
                                             <option value=''>Choose class...</option>
                                             {
                                                 props.sessionList.map((sessionData) => (
-                                                    <option value={sessionData.id}>{sessionData.name}</option>
+                                                    <option value={sessionData.id}>{sessionData.actual_year}</option>
                                                 ))
                                             }
                                         </select>
                                         {errors.admitted_session && (
                                             <p className="text-danger">Session in required !!</p>
                                         )}
-                                    </div>
-                                    <div className="col-md-4">
-                                        <label htmlFor="admitted_roll" className="form-label">Admitted Roll</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.admitted_roll}
-                                            placeholder="Class Roll"
-                                            className="form-control mb-3"
-                                            id="admitted_roll"
-                                            {...register("admitted_roll")}
-                                        />
                                     </div>
                                 </div>
                             </div>
