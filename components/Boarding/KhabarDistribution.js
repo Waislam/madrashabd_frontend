@@ -44,7 +44,7 @@ const KhabarDistribution = ({ classList }) => {
                                                 <div className="col-md-3 mb-3">
                                                     <label className="mb-2">Meal Time</label>
                                                     <select className="form-select">
-                                                        <option value="0">Select Group</option>
+                                                        <option value="0">Select Meal</option>
                                                         <option value="1">Breakfast</option>
                                                         <option value="2">Lunch</option>
                                                         <option value="3">Dinner</option>

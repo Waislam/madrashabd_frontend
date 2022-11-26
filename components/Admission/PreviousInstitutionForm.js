@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from './Admission.module.css'
-import {useForm} from "react-hook-form";
-import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import { useForm } from "react-hook-form";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 // api call
-import api, {BASE_URL} from "../../pages/api/api";
-import {toast} from "react-toastify";
+import api, { BASE_URL } from "../../pages/api/api";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 function getRandomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -13,17 +14,18 @@ function getRandomNumberBetween(min, max) {
 
 const PreviousInstitutionForm = (props) => {
     const [loading, setLoading] = useState(false)
-    const {nextStep, prevStep} = props
+    const { nextStep, prevStep } = props
+    const router = useRouter()
 
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
 
     console.log(props.session.user?.madrasha_id)
 
     const {
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
         register,
-    } = useForm({mode: "all"});
+    } = useForm({ mode: "all" });
 
 
     const onSubmit = (values) => {
@@ -81,7 +83,7 @@ const PreviousInstitutionForm = (props) => {
                 "parent_name": admissionData.parents_information_father_name,
                 "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
                 "occupation": admissionData.parents_information_father_occupation,
-                "organization_with_designation": "organization name, podobi",
+                "organization_with_designation": admissionData.parents_information_father_organization_with_designation,
                 "education": admissionData.parents_information_father_education,
                 "contact_number": admissionData.parents_information_father_contact,
                 "parent_email": admissionData.father_email,
@@ -92,7 +94,7 @@ const PreviousInstitutionForm = (props) => {
                 "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
                 "parent_nid": admissionData.parents_information_mother_nid,
                 "occupation": admissionData.parents_information_mother_occupation,
-                "organization_with_designation": "organization name, podobi",
+                "organization_with_designation": admissionData.parents_information_mother_organization_with_designation,
                 "education": admissionData.parents_information_mother_education,
                 "contact_number": admissionData.parents_information_mother_contact,
                 "parent_email": admissionData.mother_email
@@ -142,6 +144,7 @@ const PreviousInstitutionForm = (props) => {
                 console.log("data submited result", result)
 
                 setLoading(false)
+                router.push('/admission')
                 return result && toast.success('Student has been created!')
             })
             .catch((error) => {
@@ -149,15 +152,15 @@ const PreviousInstitutionForm = (props) => {
                 setLoading(false)
                 return toast.error('Something went wrong! Please try again!')
             })
-                // } else {
-                //     console.log("User is not created.")
-                //     return toast.error('User is not created.')
-                // }
+        // } else {
+        //     console.log("User is not created.")
+        //     return toast.error('User is not created.')
+        // }
 
-            // })
-            // .catch((err) => {
-            //     console.log("user create err", err)
-            // })
+        // })
+        // .catch((err) => {
+        //     console.log("user create err", err)
+        // })
     }
 
     const Continue = e => {
@@ -171,29 +174,17 @@ const PreviousInstitutionForm = (props) => {
                 <div className="card">
                     <div className="card-body">
                         <form action="#" onSubmit={handleSubmit(onSubmit)}>
-                            {/*Previous Institution ************************************/}
+                            {/* Start Student User */}
                             <div className="previous-institution mb-5">
-                                <h4>Part B</h4>
-                                <h5>Previous Institution</h5>
-                                <div className="row mb-3">
-                                    <div className="col-md-6">
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.phone_number_new}
-                                            placeholder="New phone number"
-                                            className="form-control"
-                                            id="phone_number_new"
-                                            {...register("phone_number_new")}
-                                        />
-                                    </div>
-                                    {errors.phone_number_new && (
-                                        <p className="text-danger">Phone number is required</p>
-                                    )}
-                                    <div className="col-md-6">
+                                <h4>Part A</h4>
+                                <h5>Student Account Basic Information</h5>
+                                <div className="row mb-3 row-cols-1 row-cols-md-3">
+                                    <div className="col">
+                                        <label htmlFor="first_name" className="form-label">First Name</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.first_name}
-                                            placeholder="First name"
+                                            placeholder="Student's First name"
                                             className="form-control"
                                             id="first_name"
                                             {...register("first_name")}
@@ -203,7 +194,8 @@ const PreviousInstitutionForm = (props) => {
                                         <p className="text-danger">First name is required</p>
                                     )}
 
-                                    <div className="col-md-6">
+                                    <div className="col">
+                                        <label htmlFor="last_name" className="form-label">Last Name</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.last_name}
@@ -216,9 +208,30 @@ const PreviousInstitutionForm = (props) => {
                                     {errors.last_name && (
                                         <p className="text-danger">Last name is required</p>
                                     )}
+                                    <div className="col">
+                                        <label htmlFor="phone_number_new" className="form-label">Phone Number</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.phone_number_new}
+                                            placeholder="New phone number"
+                                            className="form-control"
+                                            id="phone_number_new"
+                                            {...register("phone_number_new")}
+                                        />
+                                    </div>
+                                    {errors.phone_number_new && (
+                                        <p className="text-danger">Phone number is required</p>
+                                    )}
                                 </div>
+                            </div>
+                            {/* End Student User */}
+                            {/*Previous Institution ************************************/}
+                            <div className="previous-institution mb-5">
+                                <h4>Part B</h4>
+                                <h5>Previous Institution</h5>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_institution_name" className="form-label">Previous Institution Name</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.previous_institution_name}
@@ -229,6 +242,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_institution_contact" className="form-label">Previous Institution Contact</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.previous_institution_contact}
@@ -241,6 +255,7 @@ const PreviousInstitutionForm = (props) => {
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_started_at" className="form-label">Previous Institution Start To</label>
                                         <input
                                             type="date"
                                             defaultValue={admissionData.previous_started_at}
@@ -251,6 +266,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_ending_at" className="form-label">Previous Institution Start From</label>
                                         <input
                                             type="date"
                                             defaultValue={admissionData.previous_ending_at}
@@ -263,6 +279,7 @@ const PreviousInstitutionForm = (props) => {
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_ending_class" className="form-label">Previous Institution Ending Class</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.previous_ending_class}
@@ -273,6 +290,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-6">
+                                        <label htmlFor="previous_ending_result" className="form-label">Previous Institution Result</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.previous_ending_result}
@@ -289,16 +307,22 @@ const PreviousInstitutionForm = (props) => {
                                 <h4>Board exam information</h4>
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <input
+                                        <label htmlFor="board_exam_name" className="form-label">Board Exam Name</label>
+                                        <select
                                             type="text"
                                             defaultValue={admissionData.board_exam_name}
                                             placeholder="Exam Name"
-                                            className="form-control"
+                                            className="form-select"
                                             id="board_exam_name"
                                             {...register("board_exam_name")}
-                                        />
+                                        >
+                                            <option>Select Board Exam</option>
+                                            <option value="befak">Befak</option>
+                                            <option value="haya">Haya</option>
+                                        </select>
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="board_exam_registration" className="form-label">Board Exam Registration</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.board_exam_registration}
@@ -309,6 +333,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="board_exam_roll" className="form-label">Board Exam Roll</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.board_exam_roll}
@@ -319,6 +344,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="board_exam_result" className="form-label">Board Exam Result</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.board_exam_result}
@@ -336,20 +362,13 @@ const PreviousInstitutionForm = (props) => {
                                 <h5>Admission Information</h5>
                                 <div className="row mb-3">
                                     <div className="col-md-3">
-                                        {/*<input*/}
-                                        {/*    type="text"*/}
-                                        {/*    defaultValue={admissionData.admitted_department}*/}
-                                        {/*    placeholder="Department"*/}
-                                        {/*    className="form-control"*/}
-                                        {/*    id="admitted_department"*/}
-                                        {/*    {...register("admitted_department")}*/}
-                                        {/*/>*/}
+                                        <label htmlFor="admitted_department" className="form-label">Admitted Department</label>
                                         <select
                                             name="admitted_department"
                                             defaultValue={admissionData.admitted_department}
                                             className="form-select"
                                             id="admitted_department"
-                                            {...register("admitted_department", {required: true})}
+                                            {...register("admitted_department", { required: true })}
                                         >
                                             <option value=''>Choose department...</option>
                                             {
@@ -363,12 +382,13 @@ const PreviousInstitutionForm = (props) => {
                                         )}
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="admitted_class" className="form-label">Admitted Class</label>
                                         <select
                                             name="admitted_class"
                                             defaultValue={admissionData.admitted_class}
                                             className="form-select"
                                             id="admitted_class"
-                                            {...register("admitted_class", {required: true})}
+                                            {...register("admitted_class", { required: true })}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -382,12 +402,13 @@ const PreviousInstitutionForm = (props) => {
                                         )}
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="admitted_group" className="form-label">Admitted Group</label>
                                         <select
                                             name="admitted_group"
                                             defaultValue={admissionData.admitted_group}
                                             className="form-select"
                                             id="admitted_group"
-                                            {...register("admitted_group", {required: true})}
+                                            {...register("admitted_group", { required: true })}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -401,12 +422,13 @@ const PreviousInstitutionForm = (props) => {
                                         )}
                                     </div>
                                     <div className="col-md-3">
+                                        <label htmlFor="admitted_shift" className="form-label">Admitted Shift</label>
                                         <select
                                             name="admitted_shift"
                                             defaultValue={admissionData.admitted_shift}
                                             className="form-select"
                                             id="admitted_shift"
-                                            {...register("admitted_shift", {required: true})}
+                                            {...register("admitted_shift", { required: true })}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -422,12 +444,13 @@ const PreviousInstitutionForm = (props) => {
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-4">
+                                        <label htmlFor="admitted_session" className="form-label">Admitted Session</label>
                                         <select
                                             name="admitted_session"
                                             defaultValue={admissionData.admitted_shift}
                                             className="form-select"
                                             id="admitted_session"
-                                            {...register("admitted_session", {required: true})}
+                                            {...register("admitted_session", { required: true })}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -441,6 +464,7 @@ const PreviousInstitutionForm = (props) => {
                                         )}
                                     </div>
                                     <div className="col-md-4">
+                                        <label htmlFor="admitted_roll" className="form-label">Admitted Roll</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.admitted_roll}
@@ -458,6 +482,7 @@ const PreviousInstitutionForm = (props) => {
                                 <h5>Others Information</h5>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
+                                        <label htmlFor="student_blood_group" className="form-label">Blood Group</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.student_blood_group}
@@ -468,6 +493,7 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-6">
+                                        <label htmlFor="special_body_sign" className="form-label">Special Body Sign</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.special_body_sign}
@@ -478,28 +504,6 @@ const PreviousInstitutionForm = (props) => {
                                         />
                                     </div>
                                 </div>
-                                {/*<div className="row mb-3">*/}
-                                {/*    <div className="col-md-6">*/}
-                                {/*        <input*/}
-                                {/*            type="text"*/}
-                                {/*            defaultValue={admissionData.student_contact}*/}
-                                {/*            placeholder="Contact"*/}
-                                {/*            className="form-control"*/}
-                                {/*            id="student_contact"*/}
-                                {/*            {...register("student_contact")}*/}
-                                {/*        />*/}
-                                {/*    </div>*/}
-                                {/*    <div className="col-md-6">*/}
-                                {/*        <input*/}
-                                {/*            type="text"*/}
-                                {/*            defaultValue={admissionData.student_email}*/}
-                                {/*            placeholder="E-mail"*/}
-                                {/*            className="form-control"*/}
-                                {/*            id="student_email"*/}
-                                {/*            {...register("student_email")}*/}
-                                {/*        />*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
                             </div>
                             {/*Academic Fees *******************************************/}
                             <div className="academic-fees mb-5">
@@ -560,10 +564,12 @@ const PreviousInstitutionForm = (props) => {
                             </div>
                             <div className="student-image mb-3">
                                 <h4>Student image upload</h4>
-                                <input type="file" className="form-control"/>
+                                <input type="file" className="form-control" />
                             </div>
-                            <button className={styles.defaultBtn}>Save</button>
-                            <button className={styles.defaultBtn} onClick={prevStep}>Previous Step</button>
+                            <div className="d-flex justify-content-between">
+                                <button className={styles.defaultBtn} onClick={prevStep}>Previous Step</button>
+                                <button className={styles.defaultBtn}>Save</button>
+                            </div>
                         </form>
                     </div>
                 </div>
