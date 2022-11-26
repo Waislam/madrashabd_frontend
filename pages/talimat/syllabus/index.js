@@ -13,37 +13,37 @@ import SyllabusDelteModal from "../../../components/Talimat/Syllabus/Modals/Syll
 
 const SyllabusPage = () => {
 
-    const [classList, setClassList] = useState(null)
-    const [showPutForm, setShowPutForm] = useState(false)
-    const [bookDistOldData, setBookDistOldData] = useState(null)
-    const [loader, setLoader] = useState(false)
-    const [showDeleteModal, setDeleteModal] = useState(false)
-    const [deleteId, setDeleteId] = useState('')
+    const [classList, setClassList] = useState(null);
+    const [showPutForm, setShowPutForm] = useState(false);
+    const [bookDistOldData, setBookDistOldData] = useState(null);
+    const [loader, setLoader] = useState(false);
+    const [showDeleteModal, setDeleteModal] = useState(false);
+    const [deleteId, setDeleteId] = useState('');
 
     //get class list
     const getClassList = async () => {
-        const list = await axios.get(`${BASE_URL}/settings/100/classes/`)
-        const classes = list.data
+        const list = await axios.get(`${BASE_URL}/settings/100/classes/`);
+        const classes = list.data;
         setClassList(classes)
-    }
+    };
 
     //handle put request
     const handlePutRequest = async (e, bookDistId) => {
-        setLoader(true)
-        e.preventDefault()
+        setLoader(true);
+        e.preventDefault();
         const list = await axios.get(`${BASE_URL}/talimat/book-dist-teacher/detail/${bookDistId}/`)
-        const bookDistData = list.data
-        setBookDistOldData(bookDistData.data)
-        getClassList()
-        setLoader(false)
+        const bookDistData = list.data;
+        setBookDistOldData(bookDistData.data);
+        getClassList();
+        setLoader(false);
         setShowPutForm(true)
-    }
+    };
 
     // handle delete request
     const handleDeleteRequest = (obj_id)=>{
-        setDeleteId(obj_id)
+        setDeleteId(obj_id);
         setDeleteModal(true)
-    }
+    };
 
     return (
         <>

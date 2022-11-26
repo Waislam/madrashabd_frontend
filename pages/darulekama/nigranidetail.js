@@ -11,15 +11,15 @@ const NigranidetailPage = (props) => {
     const router = useRouter();
     const { data: session, status } = useSession();
     // console.log("session: ",session )
-    const madrasha_slug = session?.user?.madrasha_slug
-    const madrasha_id = session?.user?.madrasha_id
+    const madrasha_slug = session?.user?.madrasha_slug;
+    const madrasha_id = session?.user?.madrasha_id;
 
-    const nigranList = props.nigranList
-    const [nigranaddModalShow, setNigranAddModalShow] = useState(false)
-    const [buildingList, setBuildingList] = useState(null)
-    const [buildingId, setBuildingId] = useState('')
-    const [roomList, setRoomList] = useState('')
-    const [madrashaClassList, setMadrashaClassList] = useState(null)
+    const nigranList = props.nigranList;
+    const [nigranaddModalShow, setNigranAddModalShow] = useState(false);
+    const [buildingList, setBuildingList] = useState(null);
+    const [buildingId, setBuildingId] = useState('');
+    const [roomList, setRoomList] = useState('');
+    const [madrashaClassList, setMadrashaClassList] = useState(null);
 
 
     useEffect(() => {
@@ -30,41 +30,37 @@ const NigranidetailPage = (props) => {
 
     //get building list
     const getBuildingList = async () => {
-        const list = await api.get(`/settings/${madrasha_slug}/building/`)
-        const buildingListData = list.data
+        const list = await api.get(`/settings/${madrasha_slug}/building/`);
+        const buildingListData = list.data;
         setBuildingList(buildingListData)
-    }
+    };
 
     //on building selection get room list
     const getRoomList = async (e) => {
-        e?.preventDefault()
-        const building = e?.target?.value
-        setBuildingId(building)
+        e?.preventDefault();
+        const building = e?.target?.value;
+        setBuildingId(building);
         // setBuildingValue(building)
-        const roomList = await api.get(`/settings/${madrasha_slug}/room/${building}/`)
-        const room_list = roomList.data
+        const roomList = await api.get(`/settings/${madrasha_slug}/room/${building}/`);
+        const room_list = roomList.data;
         setRoomList(room_list)
-    }
+    };
 
     // get madrasha class list
     const getClassList = async () => {
-        const classList = await api.get(`/settings/${madrasha_slug}/classes/`)
-        const classlistData = classList.data
+        const classList = await api.get(`/settings/${madrasha_slug}/classes/`);
+        const classlistData = classList.data;
         setMadrashaClassList(classlistData)
-    }
-
+    };
 
     //handlePostmodal 
     const handlePostmodal = (e) => {
-        e.preventDefault()
-        getBuildingList()
-        getRoomList()
-        getClassList()
+        e.preventDefault();
+        getBuildingList();
+        getRoomList();
+        getClassList();
         setNigranAddModalShow(true)
-    }
-
-
-
+    };
 
     return (
         <div>
@@ -87,20 +83,20 @@ const NigranidetailPage = (props) => {
 
 //handle nigran get request
 export const getServerSideProps = async ({ req }) => {
-    const session = await getSession({ req })
+    const session = await getSession({ req });
     // console.log('session: ', session.user.madrasha_slug)
-    const madrasha_slug = session.user.madrasha_slug
+    const madrasha_slug = session.user.madrasha_slug;
 
     //get nigran list
-    const list = await api.get(`/darul-ekama/${madrasha_slug}/darul-ekama-nigrani/`)
-    const nigranList = list.data
+    const list = await api.get(`/darul-ekama/${madrasha_slug}/darul-ekama-nigrani/`);
+    const nigranList = list.data;
 
     return {
         props: {
             nigranList
         }
     }
-}
+};
 
 
 export default NigranidetailPage;

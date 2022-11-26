@@ -10,24 +10,37 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
 
     const columns = [
         {
-            headerName: 'ID',
             field: 'id',
-            width: 50,
+            headerName: 'ID',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
         },
         {
             headerName: 'Student Name',
             field: 'first_name',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 120,
             valueGetter: (params) =>
                 `${params.row.student_id?.user?.first_name} ${params.row.student_id?.user?.last_name}`,
         },
         {
             headerName: 'Guardian Name',
             field: 'guardian_name',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 120,
             valueGetter: (params) =>
                 `${params.row.student_id?.guardian_name}`,
         },
@@ -35,57 +48,67 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
             headerName: 'Gari Number',
             field: 'car_number',
             sortable: false,
-            width: 130,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (params) =>
                 `${params.row.vehicle?.car_number}`,
         },
         {
             headerName: 'Driver Name',
             field: 'driver_name',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 130,
             valueGetter: (params) =>
                 `${params.row.vehicle?.driver_name}`,
         },
         {
             headerName: 'Driver Number',
             field: 'driver_number',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 120,
             valueGetter: (params) =>
                 `${params.row.vehicle?.driver_number}`,
         },
         {
             headerName: 'Route',
             field: 'route',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 100,
+            flex: 1,
             valueGetter: (params) =>
                 `${params.row.vehicle?.route}`,
         },
         {
             headerName: 'Time',
             field: 'start_time',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 90,
             valueGetter: (params) =>
                 `${params.row.vehicle?.start_time}`,
         },
         {
             headerName: 'Action',
             sortable: false,
+            headerAlign: 'center',
+            align: 'center',
             width: 150,
-
             renderCell: (params) => {
                 return (
                     <div>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => handleTransportUpdate(params.row.id)}>
+                        <button className="btn btn-primary mx-1 primary"
+                                onClick={() => handleTransportUpdate(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="btn btn-danger primary"
                             onClick={() => handleDeleteTransportModel(params.row.id)}>
                             Delete
                         </button>
@@ -107,11 +130,11 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="row">
-                                            <h2 className="col-md-6 mt-3"><u>Transport Details</u></h2>
-                                            <div className="col-md-6 mb-4">
+                                            <h2 className="col-md-6 mb-2"><u>Transport Details</u></h2>
+                                            <div className="col-md-6 mb-2">
                                                 <button
                                                     type="button"
-                                                    className={`${styles.defaultBtn} float-md-end`}
+                                                    className={`brand-btn float-md-end`}
                                                     onClick={() => handleAddTransportModal()}
                                                 >
                                                     Add

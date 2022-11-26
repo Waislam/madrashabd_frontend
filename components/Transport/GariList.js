@@ -10,56 +10,76 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
 
     const columns = [
         {
-            headerName: 'ID',
             field: 'id',
-            width: 50,
+            headerName: 'ID',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
         },
         {
             headerName: 'Car Number',
             field: 'car_number',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Driver Name',
             field: 'driver_name',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Driver Number',
             field: 'driver_number',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'route',
             field: 'route',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time ',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
-
+            headerAlign: 'center',
+            align: 'center',
+            width: 150,
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary"
+                            className="btn btn-primary primary mx-1"
                             onClick={() => handleGariUpdate(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="btn btn-danger primary"
                             onClick={() => handleGariDelete(params.row.id)}>
                             Delete
                         </button>
@@ -83,11 +103,13 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
                                         <div className="row">
                                             <div className={styles.transportBody}>
                                                 <div className="row">
-                                                    <h2 className="col-md-6 mt-3"><u>Car Details</u></h2>
-                                                    <div className="col-md-6 mb-4">
+                                                    <h2 className="col-md-6 mb-2">
+                                                        <u>Car Details</u>
+                                                    </h2>
+                                                    <div className="col-md-6 mb-2">
                                                         <button
                                                             type="button"
-                                                            className={`${styles.defaultBtn} float-md-end`}
+                                                            className={`brand-btn float-md-end`}
                                                             onClick={() => handleAddGari()}
                                                         >
                                                             Add

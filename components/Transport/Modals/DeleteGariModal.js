@@ -20,7 +20,6 @@ const DeleteGariModal = (props) => {
         router.reload();
     };
 
-
     return (
         <>
             <Modal {...props} size="lg">
@@ -32,8 +31,8 @@ const DeleteGariModal = (props) => {
                 <Modal.Body>
                     <div className="text-center">
                         <h3>Do you want to delete this Gari</h3>
-                        <button className="btn btn-primary mx-2" onClick={() => deleteGariList()}>Yes</button>
-                        <button className="btn btn-danger">No</button>
+                        <button className="brand-btn mx-2" onClick={() => deleteGariList()}>Yes</button>
+                        <button className="brand-btn" onClick={(props.onHide)}>No</button>
                     </div>
                 </Modal.Body>
             </Modal>

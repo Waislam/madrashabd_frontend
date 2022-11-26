@@ -10,37 +10,57 @@ const ExtraActivity = ({extraActivity, handleAddExtraActivity, handleDeleteExtra
         {
             field: 'id',
             headerName: 'ID',
-            width: 50,
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
+
         },
         {
             headerName: 'Date',
             field: 'date',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Category',
             field: 'category',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Duration',
             field: 'duration',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Place',
             field: 'place',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
@@ -54,17 +74,19 @@ const ExtraActivity = ({extraActivity, handleAddExtraActivity, handleDeleteExtra
             headerName: 'Action',
             sortable: false,
             width: 150,
+            headerAlign: 'center',
+            align: 'center',
 
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary"
+                            className="btn btn-primary primary mx-1"
                             onClick={() => handleUpdateExtraActivityModal(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="btn btn-danger primary"
                             onClick={() => handleDeleteExtraActivity(params.row.id)}>
                             Delete
                         </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import styles from "./Members.module.css";
@@ -7,42 +7,62 @@ import MemberSideMenu from "./MembersSideMenu";
 
 const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitteeModal}) => {
 
+
     const columns = [
         {
             field: 'id',
             headerName: 'ID',
+            headerAlign: 'center',
+            align: 'center',
             width: 100,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
         },
         {
             field: 'member_name',
             headerName: 'Member Name',
-            width: 130,
+            headerAlign: 'center',
+            width: 200,
+            align: 'center',
             editable: true,
         },
 
         {
             field: 'member_designation',
             headerName: 'Podobi',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            width: 200,
             editable: true,
         },
         {
             field: 'phone_number',
             headerName: 'Phone',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 100
+            width: 200,
         },
 
         {
             field: 'Detail',
             headerName: 'Detail',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 160,
+            width: 250,
             renderCell: (params) => {
                 return (
                     <div>
-                        <button className="btn btn-primary" onClick={()=>handleUpdateCommitteeModal(params.row.id)}>Edit</button>
+                        <button className={`brand-btn`}
+                                onClick={() => handleUpdateCommitteeModal(params.row.id)}>Edit
+                        </button>
                     </div>
                 );
             }
@@ -61,13 +81,17 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
                                     <div className="card-body">
                                         <div className={styles.department}>
                                             <div className="row">
-                                                <div className="col col-md-6 mt-3">
-                                                    <h2><u>Committee Members</u></h2>
+                                                <div className="col col-md-6 mt-3 mb-2">
+                                                    <h2>
+                                                        <u>
+                                                            Committee Members
+                                                        </u>
+                                                    </h2>
                                                 </div>
-                                                <div className="col col-md-6">
+                                                <div className="col col-md-6  mb-2">
                                                     <button
                                                         type="button"
-                                                        className={`${styles.defaultBtn} float-end`}
+                                                        className={`float-end brand-btn`}
                                                         onClick={() => handleCommitteeModal()}
                                                     >
                                                         Add
@@ -81,7 +105,7 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
                                                             rows={committee}
                                                             columns={columns}
                                                             pageSize={5}
-                                                            rowsPerPageOptions={[5]}
+                                                            rowsPerPageOptions={[5, 25, 100]}
                                                             checkboxSelection
                                                             disableSelectionOnClick
                                                             disableColumnFilter

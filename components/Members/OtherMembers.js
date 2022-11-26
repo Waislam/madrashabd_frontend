@@ -10,42 +10,60 @@ const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOther
         {
             field: 'id',
             headerName: 'ID',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
+
         },
         {
             field: 'member_name',
             headerName: 'Member Name',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            width: 200,
             editable: true,
         },
         {
             field: 'address',
             headerName: 'Address',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            width: 200,
             editable: true,
         },
         {
             field: 'phone_number',
             headerName: 'Phone',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 120,
+            width: 200,
         },
         {
             headerName: 'Action',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 150,
+            width: 310,
 
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary"
+                            className="brand-btn"
                             onClick={() => handleUpdateOtherMemberModal(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="brand-btn"
                             onClick={() => handleDeleteOtherMemberModal(params.row.id)}>
                             Delete
                         </button>
@@ -67,10 +85,10 @@ const OtherMembers = ({otherMember, handleAddOtherMemberModal, handleUpdateOther
                                     <div className="card-body">
                                         <div className={styles.department}>
                                             <div className="row">
-                                                <div className="col-md-6 mt-3">
+                                                <div className="col-md-6 mb-2">
                                                     <h2><u>Other Members</u></h2>
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div className="col-md-6 mb-2">
                                                     <button
                                                         type="button"
                                                         className={`${styles.defaultBtn} float-end`}

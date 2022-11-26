@@ -129,7 +129,6 @@ export async function getServerSideProps({req}) {
     const session_data = await getSession({req});
     const res = await api.get(`/talimat/${session_data.user?.madrasha_slug}/extra-activity/`);
     const extra_activity = await res.data;
-
     return {
         props: {
             extra_activity,

@@ -20,8 +20,10 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
         {
             headerName: 'ID',
             field: 'id',
+            headerAlign: 'center',
+            align: 'center',
+            width: 50,
             sortable: false,
-            width: 60,
             valueGetter: (params) =>
                 `${params.row.id}`,
         },
@@ -29,16 +31,21 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
             headerName: 'Category',
             field: 'category',
             sortable: false,
-            width: 160,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (params) =>
                 `${params.row.category.name}`,
         },
-
         {
             headerName: 'Sub_Category',
             field: 'sub_category',
             sortable: false,
-            width: 160,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 2,
+            minWidth: 100,
+            maxWidth: 150,
             valueGetter: (params) =>
                 `${params.row.sub_category.name}`,
         },
@@ -46,49 +53,59 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
         {
             headerName: 'Amount',
             field: 'amount',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 160
         },
 
         {
             headerName: 'Date',
             field: 'paid_date',
             sortable: false,
-            width: 160
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             headerName: 'Donar Name',
             field: 'donar_name',
             sortable: false,
-            width: 160
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
 
         {
-            headerName: 'Receipt Page Number',
+            headerName: 'Receipt Page',
             field: 'receipt_page_number',
             sortable: false,
-            width: 160
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
-
         {
-            headerName: 'Receipt Book Number',
+            headerName: 'Receipt Book',
             field: 'receipt_book_number',
             sortable: false,
-            width: 160
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
-
         {
             field: 'Detail',
             headerName: 'Detail',
             sortable: false,
-            width: 160,
+            headerAlign: 'center',
+            align: 'center',
+            width: 150,
             renderCell: (params) => {
                 return (
                     <div>
-                        <button className="btn btn-primary"
+                        <button className="btn btn-primary primary mx-1"
                                 onClick={() => passOtherIncomeId(params.row.id)}>Edit
                         </button>
-                        <button className="btn btn-warning"
+                        <button className="btn btn-warning primary"
                                 onClick={() => handleDetail(params.row.id)}>Details
                         </button>
                     </div>
@@ -99,7 +116,6 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
 
     if (!otherIncomeList) {
         return (
-
             <>
                 <h1>Loading... please refresh your page</h1>
             </>
@@ -121,18 +137,18 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className={`${styles.activeLink}`}>
-                                            <Link href="/accounts/other_income">
+                                            <Link href={`/accounts/other_income`}>
                                                 <a className="text-left ps-4">Income</a>
                                             </Link>
                                         </div>
 
                                         <div className={`${styles.inActiveLink}`}>
-                                            <Link href="/accounts/expense">
+                                            <Link href={`/accounts/expense`}>
                                                 <a className="text-left ps-4">Expense</a>
                                             </Link>
                                         </div>
                                         <div className={`${styles.inActiveLink}`}>
-                                            <Link href="/accounts/payment">
+                                            <Link href={`/accounts/payment`}>
                                                 <a className="text-left ps-4">Payment</a>
                                             </Link>
                                         </div>
@@ -155,12 +171,13 @@ const OtherIncome = ({otherIncomeList, openPostRequestModal, passOtherIncomeId})
                                                     <h4>Income From Others</h4>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get
-                                                        Summary
-                                                    </button>
+                                                    {/*<button type="button" className={`${styles.defaultBtn} ms-2`}>Get*/}
+                                                    {/*Summary*/}
+                                                    {/*</button>*/}
                                                     <button type="button"
-                                                            className={`${styles.defaultBtn} float-md-end`}
-                                                            onClick={openPostRequestModal}>Add Income
+                                                            className={`brand-btn float-md-end`}
+                                                            onClick={openPostRequestModal}>
+                                                        Add Income
                                                     </button>
                                                 </div>
                                             </div>

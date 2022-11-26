@@ -11,60 +11,76 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
             headerName: 'ID',
             field: 'id',
             width: 50,
+            headerAlign: 'center',
+            align: 'center',
             editable: true,
         },
         {
             headerName: 'Program Name',
             field: 'program_name',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Duration',
             field: 'duration',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Start Time',
             field: 'start_time',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Place',
             field: 'place',
-            width: 110,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Date',
             field: 'date',
-            width: 110,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Managed By',
             field: 'managed_by',
-            width: 110,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
 
         {
             headerName: 'Action',
             sortable: false,
-            width: 160,
+            headerAlign: 'center',
+            align: 'center',
+            width: 150,
 
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary"
+                            className="btn btn-primary primary mx-1"
                             onClick={() => handleUpdateDawahModal(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="btn btn-danger primary"
                             onClick={() => handleDeleteDawahModal(params.row.id)}>
                             Delete
                         </button>
@@ -86,18 +102,24 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
                                     <div className="card-body">
                                         <div className={styles.dawahBody}>
                                             <div className="row">
-                                                <div className="col-md-6 mt-3">
-                                                    <h2>Dawah details</h2>
+                                                <div className="col col-md-6 mt-3 mb-2">
+                                                    <h2>
+                                                        <u>
+                                                            Dawah details
+                                                        </u>
+                                                    </h2>
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div className="col col-md-6  mb-2">
                                                     <button
                                                         type="button"
-                                                        className={`${styles.defaultBtn} float-md-end`}
-                                                        onClick={handleDawahModal}>Add
+                                                        className={`float-end brand-btn`}
+                                                        onClick={handleDawahModal}
+                                                    >
+                                                        Add
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div className="details-table mt-4">
+                                            <div className="details-table">
                                                 <Box sx={{height: 500, width: '100%'}}>
                                                     <DataGrid
                                                         rows={dawah}

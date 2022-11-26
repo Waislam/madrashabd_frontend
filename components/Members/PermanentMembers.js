@@ -10,42 +10,60 @@ const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handl
         {
             field: 'id',
             headerName: 'ID',
-            width: 150,
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
             editable: true,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
+
         },
         {
             field: 'member_name',
             headerName: 'Member Name',
+            headerAlign: 'center',
+            align: 'center',
             width: 150,
             editable: true,
         },
         {
             field: 'address',
             headerName: 'Address',
-            width: 110,
+            headerAlign: 'center',
+            align: 'center',
+            width: 200,
             editable: true,
         },
         {
             field: 'phone_number',
             headerName: 'Phone',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 160
+            width: 200
         },
         {
             headerName: 'Action',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 160,
+            width: 300,
 
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary"
+                            className="brand-btn"
                             onClick={() => handleUpdatePermanentMemberModal(params.row.id)}>
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="brand-btn"
                             onClick={() => handleDeletePermanentMemberModal(params.row.id)}>
                             Delete
                         </button>
@@ -73,7 +91,7 @@ const PermanentMembers = ({permanentMember, handleAddPermanentMemberModal, handl
                                                 <div className="col-md-6">
                                                     <button
                                                         type="button"
-                                                        className={`${styles.defaultBtn} float-end`}
+                                                        className={`brand-btn float-end mb-2`}
                                                         onClick={() => handleAddPermanentMemberModal()}
                                                     >Add
                                                     </button>

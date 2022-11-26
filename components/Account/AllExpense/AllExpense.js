@@ -17,6 +17,8 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'ID',
             field: 'id',
             sortable: false,
+            headerAlign: 'center',
+            align: 'center',
             width: 60,
             valueGetter: (params) =>
                 `${params.row.id}`,
@@ -25,7 +27,9 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'Category',
             field: 'category',
             sortable: false,
-            width: 110,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (params) =>
                 `${params.row.category.name}`,
         },
@@ -34,7 +38,9 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'Sub Category',
             field: 'sub_category',
             sortable: false,
-            width: 130,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (params) =>
                 `${params.row.sub_category.name}`,
         },
@@ -42,50 +48,64 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
             headerName: 'Description',
             field: 'description',
             sortable: false,
-            width: 140
+            headerAlign: 'center',
+            align: 'center',
+            flex: 2,
         },
         {
             headerName: 'Amount',
             field: 'amount',
             sortable: false,
-            width: 100
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             headerName: 'Date',
             field: 'date',
             sortable: false,
-            width: 100
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             headerName: 'Receipt Number',
             field: 'receipt_number',
             sortable: false,
-            width: 100
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             headerName: 'Expense By',
             field: 'expense_by',
             sortable: false,
-            width: 100
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             headerName: 'Approved By',
             field: 'approved_by',
             sortable: false,
-            width: 100
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             field: 'Action',
             headerName: 'Detail',
             sortable: false,
+            headerAlign: 'center',
+            align: 'center',
             width: 150,
             renderCell: (params) => {
                 return (
                     <div>
-                        <button className="btn btn-primary"
+                        <button className="btn btn-primary primary mx-2"
                                 onClick={() => handleIndividualObj(params.row.id)}>Edit
                         </button>
-                        <button className="btn btn-warning"
+                        <button className="btn btn-warning primary"
                                 onClick={() => handleDetail(params.row.id)}>Details
                         </button>
                     </div>
@@ -120,9 +140,9 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
                                                     <h4>All Expense</h4>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <button type="button" className={`${styles.defaultBtn} ms-2`}>Get
-                                                        Summary
-                                                    </button>
+                                                    {/*<button type="button" className={`${styles.defaultBtn} ms-2`}>Get*/}
+                                                        {/*Summary*/}
+                                                    {/*</button>*/}
                                                     <button type="button"
                                                             className={`${styles.defaultBtn} float-md-end`}
                                                             onClick={handleAddExpenseModal}>Add Expense
@@ -130,93 +150,6 @@ const Expense = ({expenseList, approved, handleAddExpenseModal, handleIndividual
                                                 </div>
                                             </div>
                                             <hr/>
-                                            <div className="search-section">
-                                                {/*<form action="#">*/}
-                                                {/*<div className="row">*/}
-                                                {/*<div className="col-md-10">*/}
-                                                {/*<div className="row">*/}
-                                                {/*<div className="col-md-3 mb-3">*/}
-                                                {/*<div className="input-group">*/}
-                                                {/*<input*/}
-                                                {/*type="text"*/}
-                                                {/*name="category"*/}
-                                                {/*placeholder="Category"*/}
-                                                {/*className="form-control"*/}
-                                                {/*/>*/}
-                                                {/*<button type="text"*/}
-                                                {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
-                                                {/*data-bs-toggle="dropdown"*/}
-                                                {/*aria-expanded="false">*/}
-                                                {/*<span className="visually-hidden">Toggle dropdown</span>*/}
-                                                {/*</button>*/}
-                                                {/*<ul className="dropdown-menu dropdown-menu-end">*/}
-                                                {/*<li>*/}
-                                                {/*<a className="dropdown-item">category*/}
-                                                {/*one</a>*/}
-                                                {/*</li>*/}
-                                                {/*<li>*/}
-                                                {/*<a className="dropdown-item">category*/}
-                                                {/*two</a>*/}
-                                                {/*</li>*/}
-                                                {/*</ul>*/}
-                                                {/*</div>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-md-3 mb-3">*/}
-                                                {/*<div className="input-group">*/}
-                                                {/*<input*/}
-                                                {/*type="text"*/}
-                                                {/*name="subcategory"*/}
-                                                {/*placeholder="Sub Category"*/}
-                                                {/*className="form-control"*/}
-                                                {/*/>*/}
-                                                {/*<button type="text"*/}
-                                                {/*className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"*/}
-                                                {/*data-bs-toggle="dropdown"*/}
-                                                {/*aria-expanded="false">*/}
-                                                {/*<span className="visually-hidden">Toggle dropdown</span>*/}
-                                                {/*</button>*/}
-                                                {/*<ul className="dropdown-menu dropdown-menu-end">*/}
-                                                {/*<li>*/}
-                                                {/*<a className="dropdown-item">category*/}
-                                                {/*one</a>*/}
-                                                {/*</li>*/}
-                                                {/*<li>*/}
-                                                {/*<a className="dropdown-item">category*/}
-                                                {/*two</a>*/}
-                                                {/*</li>*/}
-                                                {/*</ul>*/}
-                                                {/*</div>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-md-3 mb-3">*/}
-                                                {/*<input*/}
-                                                {/*type="text"*/}
-                                                {/*name="from_date"*/}
-                                                {/*placeholder="From date"*/}
-                                                {/*onChange={(e) => console.log(e.target.value)}*/}
-                                                {/*onFocus={(e) => (e.target.type = "date")}*/}
-                                                {/*onBlur={(e) => (e.target.type = "text")}*/}
-                                                {/*className="form-control"*/}
-                                                {/*/>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-md-3 mb-3">*/}
-                                                {/*<input*/}
-                                                {/*type="text"*/}
-                                                {/*name="from_date"*/}
-                                                {/*placeholder="To date"*/}
-                                                {/*onChange={(e) => console.log(e.target.value)}*/}
-                                                {/*onFocus={(e) => (e.target.type = "date")}*/}
-                                                {/*onBlur={(e) => (e.target.type = "text")}*/}
-                                                {/*className="form-control"*/}
-                                                {/*/>*/}
-                                                {/*</div>*/}
-                                                {/*</div>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-md-2">*/}
-                                                {/*<button className={`${styles.defaultBtn} float-md-end`}>Search</button>*/}
-                                                {/*</div>*/}
-                                                {/*</div>*/}
-                                                {/*</form>*/}
-                                            </div>
                                             <div className="get-list mt-4">
                                                 <div className="table-responsive">
                                                     <Box sx={{height: 500, width: '100%'}}>

@@ -5,7 +5,7 @@
 .headerSection {
     overflow: hidden;
     display: block;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .navbarExpand {
@@ -45,15 +45,6 @@
     display: block;
     background-color: #F8F9FA;
 
-}
-
-.customNavbarBrand {
-    background-image: linear-gradient(to right, #803e9f, #33ba41);
-    color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 14px;
-    padding: 11px 21px;
 }
 
 .customNavbarBrand:hover {
@@ -115,3 +106,98 @@
     width: 122px;
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .customNavbarBrand {
+        background-color: #F8F9FA;
+        color: #1E1E1E;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        padding: 11px 21px;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .customNavbarBrand {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        padding: 11px 21px;
+    }
+
+    .smallDevice {
+        display: block;
+    }
+
+    .largeDevice {
+        display: none;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .customNavbarBrand {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        padding: 11px 21px;
+    }
+
+    .smallDevice {
+        display: none;
+    }
+
+    .largeDevice {
+        display: block;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .customNavbarBrand {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        padding: 11px 21px;
+    }
+
+    .smallDevice {
+        display: none;
+    }
+
+    .largeDevice {
+        display: block;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .customNavbarBrand {
+        background-image: linear-gradient(to right, #803e9f, #33ba41);
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        padding: 11px 21px;
+    }
+
+    .smallDevice {
+        display: none;
+    }
+
+    .largeDevice {
+        display: block;
+    }
+}
