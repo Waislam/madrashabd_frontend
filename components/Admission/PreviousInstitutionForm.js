@@ -38,11 +38,7 @@ const PreviousInstitutionForm = (props) => {
             "password2": admissionData.student_phone_number,
             "madrasha_id": props.session.user?.madrasha_id
         }
-
-        // create a user
-        // api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
-        //     .then((res) => {
-        //         if (res.data.user_id) {
+        
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
