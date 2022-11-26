@@ -232,18 +232,14 @@ const PreviousInstitutionForm = (props) => {
                                 <div className="row mb-3">
                                     <div className="col-md-6">
                                         <label htmlFor="previous_institution_name" className="form-label">Previous Institution Name</label>
-                                        <select
+                                        <input
                                             type="text"
                                             defaultValue={admissionData.previous_institution_name}
                                             placeholder="Name of institution"
                                             className="form-control"
                                             id="previous_institution_name"
                                             {...register("previous_institution_name")}
-                                        >
-                                            <option>Select Board Exam</option>
-                                            <option value="befak">Befak</option>
-                                            <option value="haya">Haya</option>
-                                        </select>
+                                        />
                                     </div>
                                     <div className="col-md-6">
                                         <label htmlFor="previous_institution_contact" className="form-label">Previous Institution Contact</label>
@@ -312,14 +308,18 @@ const PreviousInstitutionForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-3">
                                         <label htmlFor="board_exam_name" className="form-label">Board Exam Name</label>
-                                        <input
+                                        <select
                                             type="text"
                                             defaultValue={admissionData.board_exam_name}
                                             placeholder="Exam Name"
-                                            className="form-control"
+                                            className="form-select"
                                             id="board_exam_name"
                                             {...register("board_exam_name")}
-                                        />
+                                        >
+                                            <option>Select Board Exam</option>
+                                            <option value="befak">Befak</option>
+                                            <option value="haya">Haya</option>
+                                        </select>
                                     </div>
                                     <div className="col-md-3">
                                         <label htmlFor="board_exam_registration" className="form-label">Board Exam Registration</label>
