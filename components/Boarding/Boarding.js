@@ -56,7 +56,8 @@ const Boarding = (
                                                         <button onClick={handleAddBazarListModal} className={styles.boardingAddButton}>Add New Bazar</button>
                                                     </div>
                                                     <div className="col">
-                                                        <button className={styles.boardingDownloadButton}>Download PDF
+                                                        <button className={styles.boardingDownloadButton}>
+                                                            Download PDF
                                                         </button>
                                                     </div>
                                                 </div>
@@ -65,7 +66,7 @@ const Boarding = (
                                     </div>
                                     <div className="boardingManagement">
                                         <div className="table-responsive">
-                                            <table className="table table-bordered table-bordered">
+                                            <table className="table">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
