@@ -125,48 +125,48 @@ const Transport = ({transport, handleAddTransportModal, handleDeleteTransportMod
                     <div className="row">
                         <TransportSideMenu/>
                         {/* ========== transport right side body start ============== */}
-                        <div className="col-sm-12 cold-md-10 col-lg-10 col-xl-10">
-                            <div className="transport">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="row">
-                                            <h2 className="col-md-6 mb-2"><u>Transport Details</u></h2>
-                                            <div className="col-md-6 mb-2">
-                                                <button
-                                                    type="button"
-                                                    className={`brand-btn float-md-end`}
-                                                    onClick={() => handleAddTransportModal()}
-                                                >
-                                                    Add
-                                                </button>
-                                            </div>
+                        <div className="col-sm-12 cold-md-9 col-lg-9 col-xl-9">
+                            <div className="card">
+                                <div className="card-header">
+                                    <div className="row">
+                                        <div className="col-md-6 mb-2">
+                                            <h4 className="col-md-6 mt-2">
+                                                <u>Transport Details</u>
+                                            </h4>
                                         </div>
-                                        <div className="row">
-                                            <div className="col">
-                                                <Box sx={{height: 500, width: '100%'}}>
-                                                    <DataGrid
-                                                        rows={transport}
-                                                        columns={columns}
-                                                        pageSize={5}
-                                                        rowsPerPageOptions={[5]}
-                                                        checkboxSelection
-                                                        disableSelectionOnClick
-                                                        disableColumnFilter
-                                                        disableColumnSelector
-                                                        disableDensitySelector
-                                                        components={{Toolbar: GridToolbar}}
-                                                        experimentalFeatures={{newEditingApi: false}}
-                                                        componentsProps={{
-                                                            toolbar: {
-                                                                showQuickFilter: true,
-                                                                quickFilterProps: {debounceMs: 500},
-                                                            },
-                                                        }}
-                                                    />
-                                                </Box>
-                                            </div>
+                                        <div className="col-md-6 mb-2">
+                                            <button
+                                                type="button"
+                                                className={`brand-btn float-md-end`}
+                                                onClick={() => handleAddTransportModal()}
+                                            >
+                                                Add
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="card-body p-0">
+                                    <Box sx={{height: 500, width: '100%'}}>
+                                        <DataGrid
+                                            rows={transport}
+                                            columns={columns}
+                                            pageSize={5}
+                                            rowsPerPageOptions={[5]}
+                                            checkboxSelection
+                                            disableSelectionOnClick
+                                            disableColumnFilter
+                                            disableColumnSelector
+                                            disableDensitySelector
+                                            components={{Toolbar: GridToolbar}}
+                                            experimentalFeatures={{newEditingApi: false}}
+                                            componentsProps={{
+                                                toolbar: {
+                                                    showQuickFilter: true,
+                                                    quickFilterProps: {debounceMs: 500},
+                                                },
+                                            }}
+                                        />
+                                    </Box>
                                 </div>
                             </div>
                         </div>

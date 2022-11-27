@@ -99,50 +99,44 @@ const Dawah = ({dawah, handleDawahModal, handleDeleteDawahModal, handleUpdateDaw
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <div className={styles.dawahBody}>
-                                            <div className="row">
-                                                <div className="col col-md-6 mt-3 mb-2">
-                                                    <h2>
-                                                        <u>
-                                                            Dawah details
-                                                        </u>
-                                                    </h2>
-                                                </div>
-                                                <div className="col col-md-6  mb-2">
-                                                    <button
-                                                        type="button"
-                                                        className={`float-end brand-btn`}
-                                                        onClick={handleDawahModal}
-                                                    >
-                                                        Add
-                                                    </button>
-                                                </div>
+                                    <div className="card-header">
+                                        <div className="row">
+                                            <div className="col-md-6 mb-2">
+                                                <h4 className="mt-2"><u>Dawah details</u></h4>
                                             </div>
-                                            <div className="details-table">
-                                                <Box sx={{height: 500, width: '100%'}}>
-                                                    <DataGrid
-                                                        rows={dawah}
-                                                        columns={columns}
-                                                        pageSize={5}
-                                                        rowsPerPageOptions={[5]}
-                                                        checkboxSelection
-                                                        disableSelectionOnClick
-                                                        disableColumnFilter
-                                                        disableColumnSelector
-                                                        disableDensitySelector
-                                                        components={{Toolbar: GridToolbar}}
-                                                        experimentalFeatures={{newEditingApi: false}}
-                                                        componentsProps={{
-                                                            toolbar: {
-                                                                showQuickFilter: true,
-                                                                quickFilterProps: {debounceMs: 500},
-                                                            },
-                                                        }}
-                                                    />
-                                                </Box>
+                                            <div className="col-md-6 mb-2">
+                                                <button
+                                                    type="button"
+                                                    className={`float-end brand-btn`}
+                                                    onClick={handleDawahModal}
+                                                >
+                                                    Add
+                                                </button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="card-body p-0">
+                                        <Box sx={{height: 500, width: '100%'}}>
+                                            <DataGrid
+                                                rows={dawah}
+                                                columns={columns}
+                                                pageSize={5}
+                                                rowsPerPageOptions={[5]}
+                                                checkboxSelection
+                                                disableSelectionOnClick
+                                                disableColumnFilter
+                                                disableColumnSelector
+                                                disableDensitySelector
+                                                components={{Toolbar: GridToolbar}}
+                                                experimentalFeatures={{newEditingApi: false}}
+                                                componentsProps={{
+                                                    toolbar: {
+                                                        showQuickFilter: true,
+                                                        quickFilterProps: {debounceMs: 500},
+                                                    },
+                                                }}
+                                            />
+                                        </Box>
                                     </div>
                                 </div>
                             </div>

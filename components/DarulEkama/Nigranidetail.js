@@ -159,20 +159,22 @@ const Nigranidetail = ({
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="darulEkam">
                                 <div className="card">
+                                    <div className="card-header">
+                                        <div className="row">
+                                            <div className="col-md-6 mb-2">
+                                                <h4 className="mt-2"><u>Nigrani Detail</u></h4>
+                                            </div>
+                                            <div className="col-md-6  mb-2">
+                                                <button
+                                                    className={styles.defaultBtn}
+                                                    onClick={handlePostRequest}>
+                                                    Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="card-body">
                                         <div className="darulEkamTable">
-                                            <div className="row">
-                                                <div className="col col-md-6 mb-2">
-                                                    <h3><u>Nigrani Detail</u></h3>
-                                                </div>
-                                                <div className="col col-md-6  mb-2">
-                                                    <button
-                                                        className={styles.defaultBtn}
-                                                        onClick={handlePostRequest}>
-                                                        Add
-                                                    </button>
-                                                </div>
-                                            </div>
                                             <div className="row">
                                                 <div className="col">
                                                     <Box sx={{height: 500, width: '100%'}}>

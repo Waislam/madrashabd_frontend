@@ -97,51 +97,45 @@ const GariList = ({gariList, handleAddGari, handleGariUpdate, handleGariDelete})
                         <TransportSideMenu/>
                         {/* ========== transport right side body start ============== */}
                         <div className="col-sm-12 cold-md-9 col-lg-9 col-xl-9">
-                            <div className="transport">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="row">
-                                            <div className={styles.transportBody}>
-                                                <div className="row">
-                                                    <h2 className="col-md-6 mb-2">
-                                                        <u>Car Details</u>
-                                                    </h2>
-                                                    <div className="col-md-6 mb-2">
-                                                        <button
-                                                            type="button"
-                                                            className={`brand-btn float-md-end`}
-                                                            onClick={() => handleAddGari()}
-                                                        >
-                                                            Add
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div className="cars-table">
-                                                    <Box sx={{height: 500, width: '100%'}}>
-                                                        <DataGrid
-                                                            rows={gariList}
-                                                            columns={columns}
-                                                            pageSize={5}
-                                                            rowsPerPageOptions={[5]}
-                                                            checkboxSelection
-                                                            disableSelectionOnClick
-                                                            disableColumnFilter
-                                                            disableColumnSelector
-                                                            disableDensitySelector
-                                                            components={{Toolbar: GridToolbar}}
-                                                            experimentalFeatures={{newEditingApi: false}}
-                                                            componentsProps={{
-                                                                toolbar: {
-                                                                    showQuickFilter: true,
-                                                                    quickFilterProps: {debounceMs: 500},
-                                                                },
-                                                            }}
-                                                        />
-                                                    </Box>
-                                                </div>
-                                            </div>
+                            <div className="card">
+                                <div className="card-header">
+                                    <div className="row">
+                                        <div className="col-md-6 mb-2">
+                                            <h4 className="mt-2"><u>Car Details</u></h4>
+                                        </div>
+                                        <div className="col-md-6 mb-2">
+                                            <button
+                                                type="button"
+                                                className={`brand-btn float-md-end`}
+                                                onClick={() => handleAddGari()}
+                                            >
+                                                Add
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="card-body p-0">
+                                    <Box sx={{height: 500, width: '100%'}}>
+                                        <DataGrid
+                                            rows={gariList}
+                                            columns={columns}
+                                            pageSize={5}
+                                            rowsPerPageOptions={[5]}
+                                            checkboxSelection
+                                            disableSelectionOnClick
+                                            disableColumnFilter
+                                            disableColumnSelector
+                                            disableDensitySelector
+                                            components={{Toolbar: GridToolbar}}
+                                            experimentalFeatures={{newEditingApi: false}}
+                                            componentsProps={{
+                                                toolbar: {
+                                                    showQuickFilter: true,
+                                                    quickFilterProps: {debounceMs: 500},
+                                                },
+                                            }}
+                                        />
+                                    </Box>
                                 </div>
                             </div>
                         </div>

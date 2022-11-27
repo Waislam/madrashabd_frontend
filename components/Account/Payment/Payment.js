@@ -16,9 +16,10 @@ const Payment = () => {
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="income">
                                 <div className="card">
-                                    <div className="card-body">
+                                    <div className="card-header">
                                         <h4>Payment</h4>
-                                        <hr/>
+                                    </div>
+                                    <div className="card-body">
                                         <form action="#" method="post">
                                             <div className="row">
                                                 <div className="col-md-9">
