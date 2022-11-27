@@ -47,7 +47,7 @@ const StudentIncomeUpdate = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Update Book
+                    Update Student Income
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -148,18 +148,18 @@ const StudentIncomeUpdate = (props) => {
                                    {...register("for_months")}
                             />
                         </div>
-                        <div className="mt-3">
+                        <div>
                             <button className={`${styles.defaultBtn}`}>Save</button>
-                            {/* <button type="submit" className={`${styles.defaultBtn} ms-3`} onClick={()=> router.push("/library")}>Cancel</button> */}
                             <button type="button" className={`${styles.defaultBtn} ms-3`}
                                     onClick={props.onHide}>Cancel
                             </button>
+
                         </div>
                     </div>
                 </form>
             </Modal.Body>
         </Modal>
     );
-}
+};
 
 export default StudentIncomeUpdate

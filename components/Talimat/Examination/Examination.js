@@ -24,7 +24,7 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
     const [loading, setLoading] = useState(false);
     const [examAnnouncementId, setExamAnnouncementId] = useState(null);
 
-    const [examAnnouncementData, setExamAnnouncementData] = useState(null)
+    const [examAnnouncementData, setExamAnnouncementData] = useState(null);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -34,34 +34,32 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
     const handleDeleteAnnouncementShow = () => setShowDeleteModal(true);
 
     const handleExamAnnouncementDelete = (examAnnouncementIdValue) => {
-        setExamAnnouncementId(examAnnouncementIdValue)
+        setExamAnnouncementId(examAnnouncementIdValue);
         handleDeleteAnnouncementShow()
 
-    }
+    };
 
     // edit functionality
     const handleEditAnnouncementClose = () => setShowEditModal(false);
     const handleEditAnnouncementShow = () => setShowEditModal(true);
 
     const getExamAnnouncementData = (examAnnouncementIdValue) => {
-        setLoading(true)
+        setLoading(true);
         api.get(`/talimat/exam-announcement/detail/${examAnnouncementIdValue}/`)
             .then((response) => {
-                console.log("response", response.data)
-                setExamAnnouncementData(response.data.data)
+                setExamAnnouncementData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            console.log(error)
+            console.log(error);
             setLoading(false)
         })
-    }
+    };
 
     const handleExamAnnouncementEdit = (examAnnouncementIdValue) => {
-        getExamAnnouncementData(examAnnouncementIdValue)
-        setExamAnnouncementId(examAnnouncementIdValue)
+        getExamAnnouncementData(examAnnouncementIdValue);
+        setExamAnnouncementId(examAnnouncementIdValue);
         handleEditAnnouncementShow()
-
-    }
+    };
 
     return (
         <>
@@ -92,22 +90,24 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                     </div>
                                                     <div className="table-responsive">
                                                         <table className="table table-striped">
-                                                            <thead className={styles.hearderCustom}>
+                                                            <thead>
                                                             <tr>
+                                                                <th scope="col">ID</th>
                                                                 <th scope="col">Exam</th>
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Action</th>
                                                             </tr>
                                                             </thead>
-                                                            <tbody className={styles.tbodyCustom}>
-                                                            {examAnnouncementList && examAnnouncementList.map((exam) => (
+                                                            <tbody>
+                                                            {examAnnouncementList && examAnnouncementList.map((exam, index) => (
                                                                 <tr key={exam.id}>
-                                                                    <td className="text-sm">{exam.exam_title}</td>
-                                                                    <td className="text-sm">{exam.exam_description}</td>
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td>{exam.exam_title}</td>
+                                                                    <td>{exam.exam_description}</td>
                                                                     <td>
                                                                         <button
                                                                             type='button'
-                                                                            className="btn btn-primary"
+                                                                            className="btn btn-primary primary"
                                                                             onClick={() => handleExamAnnouncementEdit(exam.id)}
 
                                                                         >
@@ -115,7 +115,7 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                         </button>
                                                                         <button
                                                                             type='button'
-                                                                            className="btn btn-danger ms-2"
+                                                                            className="btn btn-danger primary ms-2"
                                                                             onClick={() => handleExamAnnouncementDelete(exam.id)}
                                                                         >
                                                                             Remove
@@ -127,8 +127,6 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                         </table>
                                                     </div>
                                                 </div>
-                                                {/* === Announcement body add ====== */}
-
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +137,6 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                 </div>
             </section>
 
-            // Exam announcement modal
             <ExamAnnouncementModal
                 show={show}
                 handleClose={handleClose}
@@ -152,8 +149,8 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                 examAnnouncementList={examAnnouncementList}
             />
 
-            { !loading &&
-                <ExamAnnouncementEditModal
+            {!loading &&
+            <ExamAnnouncementEditModal
                 show={showEditModal}
                 handleClose={handleEditAnnouncementClose}
                 examAnnouncementId={examAnnouncementId}

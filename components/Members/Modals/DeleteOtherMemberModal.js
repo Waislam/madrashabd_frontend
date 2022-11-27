@@ -20,7 +20,6 @@ const DeleteOtherMemberModal = (props) => {
         router.reload();
     };
 
-
     return (
         <>
             <Modal {...props} size="lg">
@@ -32,8 +31,8 @@ const DeleteOtherMemberModal = (props) => {
                 <Modal.Body>
                     <div className="text-center mb-4">
                         <h5 className="mb-4">Do you want to delete this Delete Other Member</h5>
-                        <button className="btn btn-primary mx-2" onClick={() => deleteOtherMember()}>Yes</button>
-                        <button className="btn btn-danger">No</button>
+                        <button className="brand-btn mx-2" onClick={() => deleteOtherMember()}>Yes</button>
+                        <button className="brand-btn" onClick={(props.onHide)}>No</button>
                     </div>
                 </Modal.Body>
             </Modal>

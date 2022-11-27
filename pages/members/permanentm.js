@@ -56,7 +56,6 @@ const PermanentMemberPage = (props) => {
         setUpdatePermanentMemberModal(true)
     };
 
-
     if (isLoading) {
         return (
             <div className="text-center">

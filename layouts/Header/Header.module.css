@@ -1,12 +1,11 @@
 /*==========================
- 1. menu img problem 
+ 1. menu img problem
  ===========================*/
-
 
 .headerSection {
     overflow: hidden;
     display: block;
-    background-color: white;
+    background-color: #F8F9FA;
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -38,6 +37,11 @@
     display: block;
 }
 
+.navLinkDesign:hover {
+    background-color: #3DAA4E;
+    border-radius: 5px;
+    color: #ffffff;
+}
 
 .customNavbarBrand {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
@@ -48,7 +52,7 @@
     padding: 11px 21px;
 }
 
-.customNavbarBrand:hover{
+.customNavbarBrand:hover {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
     color: white;
     border-top-left-radius: 5px;
@@ -64,16 +68,16 @@
     border-top-right-radius: 5px;
     font-size: 14px;
     padding: 10px;
+
 }
 
-.customNavLink a{
+.customNavLink a {
     color: #ffffff;
     text-decoration: none;
     padding: 12px 0px;
 }
 
-
-.customNavLink a:hover{
+.customNavLink a:hover {
     color: #ffffff;
     text-decoration: none;
 }
@@ -90,17 +94,76 @@
     margin: 0px 10px 0px 0px;
 }
 
-.linknav ul li {
-    width: 117px;
-    height: 42px;
-}
-.linknav ul li:not(:first-child) {
-    margin-left: 6px;
-}
-.linknav ul li:nth-child(2) {
-    width: 127px;
-}
-.linknav ul li:nth-child(5) {
-    width: 122px;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .linknav ul li {
+        width: 117px;
+        height: 42px;
+    }
+
+    .linknav ul li:not(:first-child) {
+        margin-left: 6px;
+    }
+
+    .linknav ul li:nth-child(2) {
+        width: 127px;
+    }
+
+    .linknav ul li:nth-child(5) {
+        width: 122px;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    .linknav ul li {
+        width: 117px;
+        height: 42px;
+    }
+
+    .linknav ul li:not(:first-child) {
+        margin-left: 6px;
+    }
+
+    .linknav ul li:nth-child(2) {
+        width: 127px;
+    }
+
+    .linknav ul li:nth-child(5) {
+        width: 122px;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .linknav ul li {
+        width: 117px;
+        height: 42px;
+    }
+
+    .linknav ul li:not(:first-child) {
+        margin-left: 6px;
+    }
+
+    .linknav ul li:nth-child(2) {
+        width: 127px;
+    }
+
+    .linknav ul li:nth-child(5) {
+        width: 122px;
+    }
+}

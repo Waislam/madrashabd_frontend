@@ -8,42 +8,36 @@ import Box from "@mui/material/Box";
 import {isAssetError} from 'next/dist/client/route-loader';
 
 const ResutSheet = ({result_list}) => {
-    // console.log("result list : ", result_list)
 
     const columns = [
-        // {
-        //     field:"counting",
-        //     headerName: "Counting",
-        //     valueGetter:()=>{
-        //         // console.log("index value: ", params?.api?.getRowIndex())
-        //         // console.log("cout: ", Object(params))
-        //         // const index = getIndexValue()
-        //         // console.log("value: ", index)
-
-        //     }
-        // },
         {
             field: "student.student_roll_id",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             headerName: "Roll",
             valueGetter: (parmas) => {
                 return `${parmas?.row?.student?.student_roll_id}`
             },
-            width: 100
         },
         {
             field: "student.user",
             headerName: "Name",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (parmas) => {
-                const user = parmas?.row?.student?.user
-                const name = `${user?.first_name} ${user?.last_name}`
+                const user = parmas?.row?.student?.user;
+                const name = `${user?.first_name} ${user?.last_name}`;
                 return name
             }
         },
         {
             field: "student_class",
-            headerName: "Class",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (parmas) => {
-                // console.log(parmas?.row?.student_class?.name)
                 return `${parmas?.row?.student_class?.name}`
             }
 
@@ -51,27 +45,43 @@ const ResutSheet = ({result_list}) => {
         {
             field: "exam_term",
             headerName: "Exam Term",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             valueGetter: (params) => {
                 return `${params?.row?.exam_term?.term_name}`
             }
         },
         {
             field: "total_marks",
-            headerName: "Total Marks"
+            headerName: "Total Marks",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             field: "division",
-            headerName: "Division"
+            headerName: "Division",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             field: "merit_position",
-            headerName: "Merit"
+            headerName: "Merit",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
         },
         {
             field: "detail",
-            headerName: "Detail"
+            headerName: "Detail",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+
         },
-    ]
+    ];
 
     return (
         <>

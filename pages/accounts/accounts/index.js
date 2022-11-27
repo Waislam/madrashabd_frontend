@@ -99,9 +99,7 @@ const Accounts = (props) => {
                 setTransactionCaterory={setTransactionCaterory}
                 transactionSubCaterory={transactionSubCaterory}
                 studentFees={studentFees}
-            >
-
-            </AddStudentIncomeModal>
+            />
 
             {loader ? <h1></h1> :
                 <StudentIncomeUpdateModal
