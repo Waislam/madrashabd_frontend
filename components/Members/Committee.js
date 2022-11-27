@@ -93,7 +93,7 @@ const CommitteeMembers = ({committee, handleCommitteeModal, handleUpdateCommitte
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body p-0">
                                     <div className="row">
                                         <div className="col">
                                             <Box sx={{height: 500, width: '100%'}}>
