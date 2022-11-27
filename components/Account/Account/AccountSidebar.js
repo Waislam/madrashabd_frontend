@@ -24,7 +24,7 @@ const AccountSidebar = () => {
                         </h4>
                     </div>
                     <div className="card-body p-0">
-                        <div className={router.pathname == "/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                        <div className={router.pathname == "/accounts/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/accounts">
                                 <a className="text-left ps-4">Income</a>
                             </Link>

@@ -5,39 +5,62 @@ import Box from "@mui/material/Box";
 import styles from './TeacherList.module.css';
 
 const columns = [
-    {field: 'id', headerName: 'ID', width: 90},
+    {
+        field: 'id',
+        headerName: 'ID',
+        headerAlign: 'center',
+        align: 'center',
+        width: 100,
+        editable: true,
+        renderCell: (params) => {
+            return (
+                <div>
+                    {params.id}
+                </div>
+            );
+        }
+
+    },
+
     {
         field: 'teacher_id',
         headerName: 'Teacher ID',
-        width: 150,
-        // editable: true,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
     },
     {
         field: 'father_name',
         headerName: 'Father name',
-        width: 150,
-        // editable: true,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
     },
     {
         field: 'mother_name',
         headerName: 'Mother Name',
-        width: 110,
-        // editable: true,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
     },
     {
         field: 'department',
         headerName: 'Department',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 160,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row.department.name || ''}`,
     },
     {
         field: 'Detail',
         headerName: 'Detail',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         sortable: false,
-        width: 160,
         renderCell: (params) => {
             return <a href={`/teachers/${params.row.slug}`}>Details</a>;
         }
@@ -50,15 +73,19 @@ const TeacherList = ({teachers}) => {
             <div className="teacherListSection">
                 <div className="container">
                     <div className="card pb-0 mb-4">
-                        <div className="card-body pb-0">
-                            <div className="row mb-3">
-                                <div className="col-md-3">
-                                    <Link href="teachers/add-teacher">
-                                        <a className={`btn ${styles.teacherStaffButton}`}>Add Teacher</a>
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-md-6 mb-2">
+                                    <h4 className="mt-2"><u>Teacher & Staff</u></h4>
+                                </div>
+                                <div className="col-md-6 mb-2">
+                                    <Link href={`teachers/add-teacher`}>
+                                        <a className={`btn ${styles.teacherStaffButton} float-end`}>Add Teacher</a>
                                     </Link>
                                 </div>
-                                <div className="col-md-6"/>
                             </div>
+                        </div>
+                        <div className="card-body p-0">
                             <div className="row">
                                 <div className="col">
                                     <Box sx={{height: 500, width: '100%'}}>

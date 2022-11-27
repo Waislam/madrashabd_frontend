@@ -10,10 +10,10 @@ const Payment = () => {
                     <h3 className={styles.paymentTitle}>Accounts</h3>
                     <hr/>
                     <div className="row">
-                        <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div className="col-sm-12 col-md-2 col-lg-2 col-xl-2">
                             <AccountSideBar/>
                         </div>
-                        <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10">
                             <div className="income">
                                 <div className="card">
                                     <div className="card-header">
