@@ -19,28 +19,21 @@ const columns = [
                 </div>
             );
         }
-
     },
 
     {
         field: 'teacher_id',
         headerName: 'Teacher ID',
-        headerAlign: 'center',
-        align: 'center',
         flex: 1,
     },
     {
         field: 'father_name',
         headerName: 'Father name',
-        headerAlign: 'center',
-        align: 'center',
         flex: 1,
     },
     {
         field: 'mother_name',
         headerName: 'Mother Name',
-        headerAlign: 'center',
-        align: 'center',
         flex: 1,
     },
     {
@@ -48,8 +41,6 @@ const columns = [
         headerName: 'Department',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        headerAlign: 'center',
-        align: 'center',
         flex: 1,
         valueGetter: (params) =>
             `${params.row.department.name || ''}`,
@@ -57,8 +48,6 @@ const columns = [
     {
         field: 'Detail',
         headerName: 'Detail',
-        headerAlign: 'center',
-        align: 'center',
         flex: 1,
         sortable: false,
         renderCell: (params) => {
