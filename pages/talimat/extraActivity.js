@@ -30,20 +30,6 @@ const ExtraActivityPage = (props) => {
     const [updateExtraActivityModal, setUpdateExtraActivityModal] = useState(false);
     const [extraActivityUpdateOldData, setExtraActivityUpdateOldData] = useState(null);
 
-
-    // //get Extra activity list list
-    // const getExtraActivityData = async () => {
-    //     const list = await api.get(`talimat/${session.user?.madrasha_slug}/extra-activity/`);
-    //     const data = list.data;
-    //     setExtraActivity(data);
-    //     setLoading(false);
-    // };
-    //
-    // useEffect(() => {
-    //     getExtraActivityData()
-    // }, []);
-
-
     // Add Post
     const handleAddExtraActivity = () => {
         setExtraActivityModal(true)
@@ -76,7 +62,7 @@ const ExtraActivityPage = (props) => {
         )
     }
 
-    if (props.extra_activity) {
+    // if (props.extra_activity) {
         return (
             <div>
                 <ExtraActivity
@@ -111,16 +97,16 @@ const ExtraActivityPage = (props) => {
 
             </div>
         )
-    }
-    else {
-        return (
-            <div className="text-center">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">No Data Found !</span>
-                </div>
-            </div>
-        )
-    }
+    // }
+    // else {
+    //     return (
+    //         <div className="text-center">
+    //             <div className="spinner-border" role="status">
+    //                 <span className="visually-hidden">No Data Found !</span>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 };
 
 

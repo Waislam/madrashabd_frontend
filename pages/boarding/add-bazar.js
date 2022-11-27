@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import {useSession} from "next-auth/react";
-import {useRouter} from "next/router";
-import api, {BASE_URL} from "../../pages/api/api";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import api, { BASE_URL } from "../../pages/api/api";
 
 
 const AddBazarPage = () => {
 
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const { data: session, status } = useSession();
+
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -27,7 +28,7 @@ const AddBazarPage = () => {
     const handleBazarListForm = (event) => {
         event.preventDefault();
 
-        fetch(`${BASE_URL}/boarding/bazarlist/${session.user?.madrasha_slug}/`, {
+        fetch(`${BASE_URL}/boarding/bazarlist/${porps?.madrasha_slug}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -35,9 +36,9 @@ const AddBazarPage = () => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props?.madrasha_id,
                     "item": {
-                        "madrasha": 1,
+                        "madrasha": props?.madrasha_id,
                         "bazar_item_name": bazar_item_name,
                         "quantity": quantity,
                         "measurement": measurement,
@@ -63,7 +64,7 @@ const AddBazarPage = () => {
                         <div className="card">
                             <div className="card-body">
                                 <h3>Add New Bazar</h3>
-                                <hr/>
+                                <hr />
                                 <form method="POST">
                                     <div className="row">
                                         <div className="col-md-4 mb-3">
