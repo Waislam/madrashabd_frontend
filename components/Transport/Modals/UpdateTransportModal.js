@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 
 const UpdateTransportModal = (props) => {
 
-
     return (
         <>
             <Modal {...props} size="lg">

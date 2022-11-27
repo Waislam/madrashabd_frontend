@@ -33,8 +33,8 @@ const DeleteTransportModel = (props) => {
                 <Modal.Body>
                     <div className="text-center mb-4">
                         <h5 className="mb-4">Do you want to delete this Transport</h5>
-                        <button className="btn btn-primary mx-2" onClick={() => deleteTransport()}>Yes</button>
-                        <button className="btn btn-danger">No</button>
+                        <button className="brand-btn mx-2" onClick={() => deleteTransport()}>Yes</button>
+                        <button className="brand-btn" onClick={(props.onHide)}>No</button>
                     </div>
                 </Modal.Body>
             </Modal>

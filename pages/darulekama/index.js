@@ -10,7 +10,7 @@ import api from "../api/api";
 
 const DarulEkamaPage = (props) => {
     // console.log(props.distributedseat)
-    const distributedSeatList = props.distributedseat
+    const distributedSeatList = props.distributedseat;
 
     const router = useRouter();
     const {data: session, status} = useSession();
@@ -32,19 +32,19 @@ const DarulEkamaPage = (props) => {
 
 export const getServerSideProps = async ({req}) => {
 
-    const session = await getSession({req})
+    const session = await getSession({req});
     // console.log("session: ", session.user?.madrasha_slug)
-    const madrasha_slug = session.user?.madrasha_slug
+    const madrasha_slug = session.user?.madrasha_slug;
 
-    const distributedSeatList = await api.get(`/darul-ekama/${madrasha_slug}/seat-booking/`)
-    const distributedseat = distributedSeatList.data
+    const distributedSeatList = await api.get(`/darul-ekama/${madrasha_slug}/seat-booking/`);
+    const distributedseat = distributedSeatList.data;
 
     return {
         props: {
             distributedseat
         }
     }
-}
+};
 
 export default DarulEkamaPage;
 

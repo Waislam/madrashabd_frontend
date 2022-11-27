@@ -32,8 +32,8 @@ const DeleteExtraActivityModal = (props) => {
                 <Modal.Body>
                     <div className="text-center">
                         <h3>Do you want to delete this ExtraActivity</h3>
-                        <button className="btn btn-primary mx-2" onClick={() => deleteExtraActivity()}>Yes</button>
-                        <button className="btn btn-danger">No</button>
+                        <button className="brand-btn mx-2" onClick={() => deleteExtraActivity()}>Yes</button>
+                        <button className="brand-btn" onClick={(props.onHide)}>No</button>
                     </div>
                 </Modal.Body>
             </Modal>

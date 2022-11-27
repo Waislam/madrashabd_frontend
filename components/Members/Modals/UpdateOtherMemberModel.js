@@ -65,7 +65,6 @@ const UpdateOtherMemberModel = (props) => {
                                     type="text"
                                     placeholder="Address"
                                     className="form-control"
-
                                     name="address"
                                     {...register("address")}
                                 />
@@ -80,10 +79,7 @@ const UpdateOtherMemberModel = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Update</button>
                     </form>
                 </Modal.Body>
             </Modal>

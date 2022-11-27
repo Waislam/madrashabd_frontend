@@ -24,33 +24,32 @@ const HallNigran = (props) => {
     const handleHallNigranDeleteModalShow = () => setHallNigranDeleteModalShow(true);
 
     const handleHallNigranDelete = (hallNigranIdValue) => {
-        setHallNigranId(hallNigranIdValue)
+        setHallNigranId(hallNigranIdValue);
         handleHallNigranDeleteModalShow()
-    }
+    };
 
     // edit modal
     const getHallNigar = (hallNigranIdValue) => {
-        setLoading(true)
+        setLoading(true);
         api.get(`talimat/hall-duty/detail/${hallNigranIdValue}/`)
             .then((response) => {
-                console.log("response", response.data)
-                setHallNigarData(response.data.data)
+                console.log("response", response.data);
+                setHallNigarData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            console.log(error)
             setLoading(false)
         })
-    }
+    };
 
     const handleHallNigranEditModalClose = () => setHallNigranEditModalShow(false);
     const handleHallNigranEditModalShow = () => setHallNigranEditModalShow(true);
 
     const handleHallNigranEdit = (hallNigranIdValue) => {
         // console.log("hallNigranIdValue", hallNigranIdValue)
-        setHallNigranId(hallNigranIdValue)
-        getHallNigar(hallNigranIdValue)
+        setHallNigranId(hallNigranIdValue);
+        getHallNigar(hallNigranIdValue);
         handleHallNigranEditModalShow()
-    }
+    };
 
     return (
         <>
@@ -164,7 +163,7 @@ const HallNigran = (props) => {
                 </div>
             </section>
 
-            // modals
+            {/*modals*/}
             <HallNigranCreateModal
                 show={hallNigranModalShow}
                 handleClose={handleHallNigranModalClose}

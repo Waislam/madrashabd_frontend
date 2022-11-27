@@ -19,7 +19,7 @@ const AddGariListModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha?.id,
                     "car_number": values.car_number,
                     "driver_name": values.driver_name,
                     "driver_number": values.driver_number,
@@ -95,10 +95,7 @@ const AddGariListModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Submit</button>
                     </form>
                 </Modal.Body>
             </Modal>
