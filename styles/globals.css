@@ -34,3 +34,11 @@ body {
     border-radius: 4px;
     transition: box-shadow 2s linear;
 }
+
+
+
+.cardDashboard{
+    border-bottom-left-radius: 120px;
+    border-top-right-radius: 120px;
+
+}

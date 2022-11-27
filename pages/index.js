@@ -53,73 +53,64 @@ export default function Home() {
     if (session) {
         return (
             <>
-                {!session && <>
-                    <h1>You are not signed in</h1> <br/>
-                    <button onClick={signIn}>Sign in</button>
-                </>}
 
-                {session && <>
-                    <h1>user token {session.user.madrasha_slug} </h1> <br/>
-                    {/*<h1>madrasha user {session.useInfo.user} </h1> <br/>*/}
-                    {/*<h1>madrasha slug {session.useInfo.user_madrasha_slug} </h1> <br/>*/}
-                    <button className="btn btn-primary" onClick={signOut}>Sign out</button>
-                </>}
+                {/*{!session && <>*/}
+                    {/*<h1>You are not signed in</h1> <br/>*/}
+                    {/*<button onClick={signIn}>Sign in</button>*/}
+                {/*</>}*/}
 
-                <div className="container my-5">
+                {/*{session && <>*/}
+                    {/*<h1>user token {session.user.madrasha_slug} </h1> <br/>*/}
+                    {/*/!*<h1>madrasha user {session.useInfo.user} </h1> <br/>*!/*/}
+                    {/*/!*<h1>madrasha slug {session.useInfo.user_madrasha_slug} </h1> <br/>*!/*/}
+                    {/*<button className="btn btn-primary" onClick={signOut}>Sign out</button>*/}
+                {/*</>}*/}
+
+                <div className="container">
+                    <h3 className="text-center" style={{fontStyle: "italic"}}>Welcome to Dashboard</h3>
+                    <hr/>
                     <div className="row">
-                        <div className="col-md-6 mb-4">
-                            <div className="card">
-                                <h2 className="card-header text-center">
-                                    <span style={{fontStyle: "italic"}}>Students</span>
-                                </h2>
+                        <div className="col-md-4 mb-4 ">
+                            <div className="card bg-primary">
+                                <h4 className="card-header text-center">
+                                    <i className="fa fa-user mx-2"/>
+                                    Teacher & Staff
+                                </h4>
                                 <div className="card-body">
-                                    <h5 className="mb-3">
-                                        Total Student
-                                        <span className="mx-3">:</span>
-                                        100
-                                    </h5>
-                                    <h5 className="mb-3">
-                                        Present Student
-                                        <span className="mx-3">:</span>
-                                        80
-                                    </h5>
-                                    <h5 className="mb-3">
-                                        Absent Student
-                                        <span className="mx-3">:</span>
-                                        10
-                                    </h5>
+                                    <h5>Coming soon ....</h5>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 mb-4">
-                            <div className="card">
-                                <h2 className="card-header text-center">
-                                    <span style={{fontStyle: "italic"}}>Teacher</span>
-                                </h2>
+                        <div className="col-md-4 mb-4">
+                            <div className="card bg-warning">
+                                <h4 className="card-header text-center">
+                                    <i className="fa fa-user mx-2"/>
+                                    Students
+                                </h4>
                                 <div className="card-body">
-                                    <h5 className="mb-3">Link</h5>
-                                    <h5 className="mb-3">Link</h5>
-                                    <h5 className="mb-3">Link</h5>
+                                    <h5>Coming soon ....</h5>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 mb-4">
-                            <div className="card">
-                                <h2 className="card-header text-center">
-                                    <span style={{fontStyle: "italic"}}>SMS</span>
-                                </h2>
+                        <div className="col-md-4 mb-4">
+                            <div className="card bg-success">
+                                <h4 className="card-header text-center">
+                                    <i className="fa fa-user mx-2"/>
+                                    Accounts
+                                </h4>
                                 <div className="card-body">
-                                    <h5 className="mb-3">Link</h5>
+                                    <h5>Coming soon ....</h5>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 mb-4">
-                            <div className="card">
-                                <h2 className="card-header text-center">
-                                    <span style={{fontStyle: "italic"}}>Accounts</span>
-                                </h2>
+                        <div className="col-md-4 mb-4">
+                            <div className="card bg-danger">
+                                <h4 className="card-header text-center">
+                                    <i className="fa fa-user mx-1"/>
+                                    SMS
+                                </h4>
                                 <div className="card-body">
-                                    <h5 className="mb-3">Link</h5>
+                                    <h5>Coming soon ....</h5>
                                 </div>
                             </div>
                         </div>
