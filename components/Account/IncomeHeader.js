@@ -5,7 +5,7 @@ const IncomeHeader = () =>{
     return (
         <>
             <div className={styles.breadcumCustom}>
-                <nav aria-label="breadcrumb">
+                <nav aria-label="breadcrumb mb-1">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item active" aria-current="page">
                             <Link href="/accounts/accounts">

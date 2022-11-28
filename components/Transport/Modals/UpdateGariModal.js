@@ -100,9 +100,8 @@ const UpdateGariModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
+                        <button className="brand-btn">
+                            Update
                         </button>
                     </form>
                 </Modal.Body>

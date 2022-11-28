@@ -12,13 +12,19 @@ const AccountSidebar = () => {
         <>
             <div className={styles.listRightSide}>
                 <div className="card">
-                    <h4 className="text-center mt-3">
-                        <Image src={studentLogo} className="img-responsive"
-                               alt="Logo missing" height={40} width={40}/>
-                    </h4>
-                    <hr/>
+                    <div className="card-header">
+                        <h4 className="text-center">
+                            <Image
+                                src={studentLogo}
+                                className="img-responsive"
+                                alt="Logo missing"
+                                height={40}
+                                width={40}
+                            />
+                        </h4>
+                    </div>
                     <div className="card-body p-0">
-                        <div className={router.pathname == "/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                        <div className={router.pathname == "/accounts/accounts" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/accounts/accounts">
                                 <a className="text-left ps-4">Income</a>
                             </Link>

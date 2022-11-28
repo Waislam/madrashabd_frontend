@@ -5,9 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 import api, {BASE_URL} from "../../../pages/api/api";
 
 const AddCommitteeModal = (props) => {
-
-    console.log("Props ========", props.session);
-
     const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
 
@@ -20,7 +17,7 @@ const AddCommitteeModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session.user?.madrasha?.id,
                     "member_name": values.member_name,
                     "member_designation": values.member_designation,
                     "phone_number": values.phone_number
@@ -75,8 +72,7 @@ const AddCommitteeModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
+                        <button className="brand-btn">
                             Submit
                         </button>
                     </form>

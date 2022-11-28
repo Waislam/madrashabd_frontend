@@ -32,7 +32,7 @@ const AddTransportModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha?.id,
                     "vehicle": values.vehicle
                 },
             )

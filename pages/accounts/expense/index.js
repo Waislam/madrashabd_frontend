@@ -15,7 +15,7 @@ const ExpensePage = (props) => {
 
     const router = useRouter();
     const {data: session, status} = useSession();
-    const madrasha_slug = session?.user?.madrasha_slug 
+    const madrasha_slug = session?.user?.madrasha_slug ;
 
     useEffect(() => {
         if (status === "unauthenticated") {

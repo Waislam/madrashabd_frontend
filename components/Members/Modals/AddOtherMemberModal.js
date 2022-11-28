@@ -18,7 +18,7 @@ const AddOtherMemberModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session.user?.madrasha?.id,
                     "member_name": values.member_name,
                     "address": values.address,
                     "phone_number": values.phone_number
@@ -60,7 +60,6 @@ const AddOtherMemberModal = (props) => {
                                     type="text"
                                     placeholder="Address"
                                     className="form-control"
-
                                     name="address"
                                     {...register("address")}
                                 />
@@ -75,10 +74,7 @@ const AddOtherMemberModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Submit</button>
                     </form>
                 </Modal.Body>
             </Modal>

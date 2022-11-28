@@ -35,8 +35,8 @@ const Talimat = () => {
                                     <a className="text-center">Dawah</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "/talimat/extraActivity" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                                <Link href="/talimat/extraActivity">
+                            <div className={router.pathname == "/talimat/extra-activity" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                                <Link href="/talimat/extra-activity">
                                     <a className="text-center">Extra-Activity</a>
                                 </Link>
                             </div>

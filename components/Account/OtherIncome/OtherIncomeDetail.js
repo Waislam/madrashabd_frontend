@@ -10,7 +10,7 @@ const OtherIncomeDetail = ({other_income}) => {
         <div>
             <div className="text-center">
                 <ReactToPrint
-                    trigger={() => <button className="btn btn-secondary mb-2">Print this out!</button>}
+                    trigger={() => <button className="brand-btn mb-2">Print this out!</button>}
                     content={() => componentRef.current}
                 />
             </div>

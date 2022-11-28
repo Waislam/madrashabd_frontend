@@ -8,8 +8,6 @@ import { getSession } from "next-auth/react";
 
 const ResultSheetPage = (props) => {
 
-    // console.log("result: ", props.resultInfoList)
-
     return (
         <>
             <ResultSheet
@@ -20,20 +18,20 @@ const ResultSheetPage = (props) => {
 };
 
 export const getServerSideProps = async ({ req }) => {
-    const session = await getSession({ req })
-    const madrasha_slug = session?.user?.madrasha_slug
+    const session = await getSession({ req });
+    const madrasha_slug = session?.user?.madrasha_slug;
 
-    const resultInfo = await api.get(`talimat/${madrasha_slug}/result-info/`)
-    const resultInfoList = resultInfo.data
+    const resultInfo = await api.get(`talimat/${madrasha_slug}/result-info/`);
+    const resultInfoList = resultInfo.data;
+    const result = "do something";
 
-    const result = "do something"
     return {
         props: {
             resultInfoList,
 
         }
     }
-}
+};
 
 export default ResultSheetPage;
 

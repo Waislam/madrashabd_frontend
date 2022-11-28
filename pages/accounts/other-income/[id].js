@@ -3,7 +3,6 @@ import OtherIncomeDetail from '../../../components/Account/OtherIncome/OtherInco
 import Layout from "../../../components/Layout/Layout"
 
 const OtherIncomeDetailPage = ({other_income}) => {
-    console.log("other_income :", other_income);
     return (
         <div>
             <OtherIncomeDetail other_income={other_income} />
