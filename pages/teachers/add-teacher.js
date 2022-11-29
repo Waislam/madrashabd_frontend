@@ -31,7 +31,7 @@ const AddTeacherPage = (props) => {
     const madrasha_id = session?.user.madrasha_id;
 
 
-    const { handleSubmit, register, formState: { errors }, control } = useForm()
+    const { handleSubmit, register, formState: { errors }, control, setError } = useForm()
 
     // console.log("@@@@@ session:", session)
 
@@ -278,13 +278,12 @@ const AddTeacherPage = (props) => {
                                                     name="department"
                                                     {...register("department")}
                                                 >
-                                                    <option value="" disabled>Select Department</option>
+                                                    <option>Select Department</option>
                                                     {
-                                                        props.departmentList.map(department => <option
-                                                            key={department.id}
-                                                            value={department.id}
-                                                        >{department.name}
-                                                        </option>)
+                                                        props.departmentList && props.departmentList.map(department =>
+                                                            <option key={department.id} value={department.id}>
+                                                                {department.name}
+                                                            </option>)
                                                     }
                                                 </select>
                                             </div>
@@ -295,13 +294,12 @@ const AddTeacherPage = (props) => {
                                                     name="designation"
                                                     {...register("designation")}
                                                 >
-                                                    <option value="" disabled>Select Designation</option>
+                                                    <option>Select Designation</option>
                                                     {
-                                                        props.designationList.map(designation => <option
-                                                            key={designation.id}
-                                                            value={designation.id}
-                                                        >{designation.name}
-                                                        </option>)
+                                                        props.designationList.map(designation =>
+                                                            <option key={designation.id} value={designation.id}>
+                                                                {designation.name}
+                                                            </option>)
                                                     }
                                                 </select>
                                             </div>
@@ -570,8 +568,9 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Passing year"
                                                     className="form-control"
                                                     name="passing_year"
-                                                    {...register("passing_year")}
+                                                    {...register("passing_year", {required:"Passing year is required"})}
                                                 />
+                                                <p className="text-danger">{errors?.passing_year?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Result</label>
@@ -579,8 +578,9 @@ const AddTeacherPage = (props) => {
                                                     placeholder="CGPA/GPA-5/First Class"
                                                     className="form-control"
                                                     name="result"
-                                                    {...register("result")}
+                                                    {...register("result", {required:"Result is required"})}
                                                 />
+                                                <p className="text-danger">{errors?.result?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Institution Name</label>
@@ -588,8 +588,9 @@ const AddTeacherPage = (props) => {
                                                     placeholder="University/college/Madrasha"
                                                     className="form-control"
                                                     name="institution_name"
-                                                    {...register("institution_name")}
+                                                    {...register("institution_name",  {required:"Institution name is required"})}
                                                 />
+                                                <p className="text-danger">{errors?.institution_name?.message}</p>
                                             </div>
                                             <div>
                                                 {/* <button type="button"
@@ -682,7 +683,8 @@ const AddTeacherPage = (props) => {
                                                     type="email"
                                                     placeholder="E-mail"
                                                     className="form-control"
-                                                    name="email" // user obj field
+                                                    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                                    name="email"
                                                     {...register("email")}
                                                 />
                                             </div>
