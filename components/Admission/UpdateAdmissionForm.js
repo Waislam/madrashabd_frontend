@@ -227,7 +227,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                         sessionList.map(session => <option
                                             key={session.id}
                                             value={session.id}
-                                            >{session.name}
+                                            >{session.actual_year}
                                             </option>)
                                     }
                                 </select>

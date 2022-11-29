@@ -1,9 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import styles from './TeacherDetails.module.css';
-
 import {useForm} from "react-hook-form";
-
 import {BASE_URL} from "../../pages/api/api";
 import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 

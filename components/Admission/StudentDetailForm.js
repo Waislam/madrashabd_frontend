@@ -6,21 +6,6 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
-import api from "../../pages/api/api";
-
-const schema = yup.object({
-    full_name: yup.string().required(),
-    // password: yup.string()
-    //     .required("Password is required"),
-    // password2: yup.string()
-    //     .required("Confirm Password is required")
-    //     .oneOf([yup.ref("password")], "Passwords do not match"),
-    student_phone_number: yup.string()
-        .required("Phone number is required."),
-    date_of_birth: yup.string()
-        .required("Date of birth is required."),
-
-}).required();
 
 const StudentDetailForm = (props) => {
     const [loading, setLoading] = useState(false)
@@ -66,42 +51,6 @@ const StudentDetailForm = (props) => {
                                 <h4>Student Details</h4>
                                 <hr/>
                                 <div className="row">
-                                    {/*<div className="col-md-6 mb-6">*/}
-                                    {/*    <div>*/}
-                                    {/*        <label>Password</label>*/}
-                                    {/*        <input*/}
-                                    {/*            type="password"*/}
-                                    {/*            defaultValue={admissionData.password}*/}
-                                    {/*            className="form-control"*/}
-                                    {/*            placeholder="Type password"*/}
-                                    {/*            id="password"*/}
-                                    {/*            {...register("password")}*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div>*/}
-                                    {/*        {errors.password && (*/}
-                                    {/*            <p className="text-danger">{errors.password?.message}</p>*/}
-                                    {/*        )}*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="col-md-6 mb-6">*/}
-                                    {/*    <div>*/}
-                                    {/*        <label>Re-type password</label>*/}
-                                    {/*        <input*/}
-                                    {/*            type="password"*/}
-                                    {/*            defaultValue={admissionData.password2}*/}
-                                    {/*            className="form-control"*/}
-                                    {/*            placeholder="Re-type password"*/}
-                                    {/*            id="password2"*/}
-                                    {/*            {...register("password2")}*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div>*/}
-                                    {/*        {errors.password2 && (*/}
-                                    {/*            <p className="text-danger">{errors.password2?.message}</p>*/}
-                                    {/*        )}*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
                                             <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
@@ -116,7 +65,7 @@ const StudentDetailForm = (props) => {
                                         </div>
                                         <div>
                                             {errors.date_of_birth && (
-                                                <p className="text-danger">{errors.date_of_birth?.message}</p>
+                                                <p className="text-danger">{errors.date_of_birth?.message ? errors.date_of_birth?.message: "Date of Birth is Required"}</p>
                                             )}
                                         </div>
                                     </div>
@@ -167,13 +116,8 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Passport"
                                                 id="passport_number"
-                                                {...register("passport_number", {required: true})}
+                                                {...register("passport_number")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.passport_number && (
-                                                <p className="text-danger">{errors.passport_number.message ? errors.passport_number.message : "Passport Number is required"}</p>
-                                            )}
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-4">
@@ -185,14 +129,8 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Give Student NID number if has"
                                                 id="student_nid"
-                                                {...register("student_nid", {required: true})}
+                                                {...register("student_nid")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.student_nid && (
-
-                                                <p className="text-danger">{errors.student_nid.message ? errors.student_nid.message : "NID is required"}</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -412,6 +350,11 @@ const StudentDetailForm = (props) => {
                                             {...register("student_present_address_info", {required: true})}
                                         />
                                     </div>
+                                    <div>
+                                        {errors.student_present_address_info && (
+                                            <p className="text-danger">Address Details is Required</p>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
@@ -421,21 +364,6 @@ const StudentDetailForm = (props) => {
                                     <div className="col-md-3">
                                         <h5 className="mt-3">Permanent Address</h5>
                                     </div>
-                                    {/* <div className="col-md-9">
-                                        <div className="form-check mt-3">
-                                            <input
-                                                className="form-check-input"
-                                                type="checkbox"
-                                                value=""
-                                                id="flexCheckDefault"
-                                            />
-                                            <label
-                                                className="form-check-label"
-                                                htmlFor="flexCheckDefault">
-                                                Same as present address
-                                            </label>
-                                        </div>
-                                    </div> */}
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
@@ -586,6 +514,11 @@ const StudentDetailForm = (props) => {
                                             id="student_permanent_address_info"
                                             {...register("student_permanent_address_info", {required: true})}
                                         />
+                                    </div>
+                                    <div>
+                                        {errors.student_permanent_address_info && (
+                                            <p className="text-danger">Address Details is Required</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
