@@ -38,11 +38,7 @@ const PreviousInstitutionForm = (props) => {
             "password2": admissionData.student_phone_number,
             "madrasha_id": props.session.user?.madrasha_id
         }
-
-        // create a user
-        // api.post('/accounts/madrasha-admin/', JSON.stringify(user_data))
-        //     .then((res) => {
-        //         if (res.data.user_id) {
+        
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -81,7 +77,7 @@ const PreviousInstitutionForm = (props) => {
             },
             "father_info": {
                 "parent_name": admissionData.parents_information_father_name,
-                "parent_date_of_birth": admissionData.parents_information_father_date_of_birth,
+                "parent_date_of_birth": admissionData.parents_information_father_date_of_birth || null,
                 "occupation": admissionData.parents_information_father_occupation,
                 "organization_with_designation": admissionData.parents_information_father_organization_with_designation,
                 "education": admissionData.parents_information_father_education,
@@ -91,7 +87,7 @@ const PreviousInstitutionForm = (props) => {
             },
             "mother_info": {
                 "parent_name": admissionData.parents_information_mother_name,
-                "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth,
+                "parent_date_of_birth": admissionData.parents_information_mother_date_of_birth || null,
                 "parent_nid": admissionData.parents_information_mother_nid,
                 "occupation": admissionData.parents_information_mother_occupation,
                 "organization_with_designation": admissionData.parents_information_mother_organization_with_designation,
@@ -149,7 +145,7 @@ const PreviousInstitutionForm = (props) => {
                 }
 
                 else if(result.user?.phone) {
-                    return toast.error('User with this phone number are already exists !!')
+                    return toast.error(`${result.user.phone}`)
                 }
             })
             .catch((error) => {
@@ -157,15 +153,6 @@ const PreviousInstitutionForm = (props) => {
                 setLoading(false)
                 return toast.error('Something went wrong! Please try again!')
             })
-        // } else {
-        //     console.log("User is not created.")
-        //     return toast.error('User is not created.')
-        // }
-
-        // })
-        // .catch((err) => {
-        //     console.log("user create err", err)
-        // })
     }
 
     const Continue = e => {
@@ -413,7 +400,7 @@ const PreviousInstitutionForm = (props) => {
                                             defaultValue={admissionData.admitted_group}
                                             className="form-select"
                                             id="admitted_group"
-                                            {...register("admitted_group", { required: true })}
+                                            {...register("admitted_group")}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -422,9 +409,6 @@ const PreviousInstitutionForm = (props) => {
                                                 ))
                                             }
                                         </select>
-                                        {errors.admitted_group && (
-                                            <p className="text-danger">Group in required !!</p>
-                                        )}
                                     </div>
                                     <div className="col-md-3">
                                         <label htmlFor="admitted_shift" className="form-label">Admitted Shift</label>
@@ -433,7 +417,7 @@ const PreviousInstitutionForm = (props) => {
                                             defaultValue={admissionData.admitted_shift}
                                             className="form-select"
                                             id="admitted_shift"
-                                            {...register("admitted_shift", { required: true })}
+                                            {...register("admitted_shift")}
                                         >
                                             <option value=''>Choose class...</option>
                                             {
@@ -442,9 +426,6 @@ const PreviousInstitutionForm = (props) => {
                                                 ))
                                             }
                                         </select>
-                                        {errors.admitted_shift && (
-                                            <p className="text-danger">Shift in required !!</p>
-                                        )}
                                     </div>
                                 </div>
                                 <div className="row mb-3">
