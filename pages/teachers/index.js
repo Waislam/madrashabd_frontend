@@ -5,7 +5,7 @@ import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
 
 // api
-import api from '../api/api'
+import api, {BASE_URL} from '../api/api'
 import {getSession} from "next-auth/react";
 
 const Index = (props) => {
