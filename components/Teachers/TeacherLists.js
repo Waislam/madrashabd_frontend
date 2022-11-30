@@ -50,7 +50,7 @@ const columns = [
         flex: 1,
         editable: true,
         renderCell: (params) => <img
-            src={`BASE_URL` + params.row?.user?.avatar}
+            src={`http://127.0.0.1:8086` + params.row?.user?.avatar}
             alt="Oops image missing"
         />,
     },
