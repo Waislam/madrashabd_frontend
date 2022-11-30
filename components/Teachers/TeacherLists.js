@@ -24,23 +24,43 @@ const columns = [
     {
         field: 'teacher_id',
         headerName: 'Teacher ID',
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
     },
     {
         field: 'father_name',
         headerName: 'Father name',
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
     },
     {
         field: 'mother_name',
         headerName: 'Mother Name',
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
+    },
+    {
+        field: 'avatar',
+        headerName: 'avatar',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
+        editable: true,
+        renderCell: (params) => <img
+            src={`http://127.0.0.1:8086` + params.row?.user?.avatar}
+            alt="Oops image missing"
+        />,
     },
     {
         field: 'department',
         headerName: 'Department',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
         valueGetter: (params) =>
             `${params.row.department.name || ''}`,
@@ -48,6 +68,8 @@ const columns = [
     {
         field: 'Detail',
         headerName: 'Detail',
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
         sortable: false,
         renderCell: (params) => {

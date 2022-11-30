@@ -32,7 +32,7 @@ const StudentDetails = ({student}) => {
                 console.log(result)
             })
             .catch(error => console.log('error', error));
-    }
+    };
 
     return (
         <>
@@ -152,9 +152,12 @@ const StudentDetails = ({student}) => {
                                                         <div className="text-center">
                                                             {student?.data?.user?.avatar ?
                                                                 <img
-                                                                    src={student?.data?.user?.avatar}
+                                                                    src={`${BASE_URL}` + student?.data?.user?.avatar}
                                                                     className="rounded-circle shadow-4-strong"
                                                                     alt="Oops image missing"
+                                                                    width={70}
+                                                                    height={70}
+
                                                                 />
                                                                 :
                                                                 <Image
@@ -565,12 +568,12 @@ const StudentDetails = ({student}) => {
                     </div>
                 </div>
             </section>
-            < />
-            )
-            };
+        </>
+    )
+};
 
 
-            export default StudentDetails;
+export default StudentDetails;
 
 
 

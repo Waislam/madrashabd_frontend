@@ -86,12 +86,12 @@ const Index = ({studentListData}) => {
 };
 
 export async function getServerSideProps({req}) {
-    const session = await getSession({req})
-    const madrasha_slug = session?.user.madrasha_slug
+    const session = await getSession({req});
+    const madrasha_slug = session?.user.madrasha_slug;
 
     // Fetch data from external API
-    const res = await api.get(`/students/${madrasha_slug}`)
-    const studentListData = await res.data
+    const res = await api.get(`/students/${madrasha_slug}`);
+    const studentListData = await res.data;
 
     // Pass data to the page via props
     return {

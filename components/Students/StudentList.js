@@ -6,6 +6,7 @@ import studentLogo from '../../public/assets/admission/students.png'
 import {useRouter} from "next/router";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import {BASE_URL} from "../../pages/api/api";
 
 const columns = [
     {field: 'student_id', headerName: 'Student ID', width: 90},
@@ -31,11 +32,21 @@ const columns = [
             `${params.row?.admitted_class?.name || ''}`,
     },
     {
-        field: 'admitted_class',
-        headerName: 'Class',
+        field: 'phone',
+        headerName: 'Phone',
         width: 150,
         valueGetter: (params) =>
-            `${params.row?.admitted_class?.name || ''}`,
+            `${params.row?.user?.phone}`,
+    },
+    {
+        field: 'avatar',
+        headerName: 'avatar',
+        width: 150,
+        editable: true,
+        renderCell: (params) => <img
+            src={`http://127.0.0.1:8086` + params.row?.user?.avatar}
+            alt="Oops image missing"
+        />,
     },
     {
         field: 'Detail',
@@ -48,34 +59,35 @@ const columns = [
 ];
 
 
-const StudentList = ({
-                         students
-                     }) => {
+const StudentList = ({students}) => {
     const router = useRouter();
 
     return (
         <>
             <section className={styles.promotedStudentSection}>
                 <div className="container-fluid">
-                    {/* <h3 className={styles.promotedStudentTitle}>Student List</h3> */}
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.promotedStudentList}>
                                 <div className="card">
                                     <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
+                                        <Image
+                                            src={studentLogo}
+                                            className="img-responsive"
+                                            alt="Logo missing"
+                                            height={40} width={40}
+                                        />
                                     </h4>
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
-                                            <Link href="/students">
+                                            <Link href={`/students`}>
                                                 <a className="text-center">Student List</a>
                                             </Link>
                                         </div>
 
                                         <div className={styles.promotedLink}>
-                                            <Link href="/students/promoted-student">
+                                            <Link href={`/students/promoted-student`}>
                                                 <a className="text-center">Promoted List</a>
                                             </Link>
                                         </div>
@@ -85,7 +97,7 @@ const StudentList = ({
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="card">
-                                <div className="card-body mt-3">
+                                <div className="card-body p-0">
                                     <Box sx={{height: 400, width: '100%'}}>
                                         <DataGrid
                                             rows={students}
