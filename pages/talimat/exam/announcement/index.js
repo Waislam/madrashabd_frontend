@@ -3,8 +3,6 @@ import React, {useEffect, useState} from "react";
 // Talimat Component
 import Exam from "../../../../components/Talimat/Examination/Examination";
 import Layout from "../../../../components/Layout/Layout";
-
-// api
 import api from "../../../api/api";
 import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 

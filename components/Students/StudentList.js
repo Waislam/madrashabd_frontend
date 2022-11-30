@@ -13,44 +13,56 @@ const columns = [
     {
         field: 'first_name',
         headerName: 'Student Name',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row.user?.first_name || ''}`,
     },
     {
         field: 'father_info',
         headerName: 'Father Name',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row?.father_info?.parent_name || ''}`,
     },
     {
         field: 'admitted_class',
         headerName: 'Class',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row?.admitted_class?.name || ''}`,
     },
     {
         field: 'phone',
         headerName: 'Phone',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row?.user?.phone}`,
     },
     {
         field: 'avatar',
         headerName: 'avatar',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         editable: true,
         renderCell: (params) => <img
-            src={`http://127.0.0.1:8086` + params.row?.user?.avatar}
+            src={`${params.row.user?.avatar}`}
             alt="Oops image missing"
         />,
     },
     {
         field: 'Detail',
         headerName: 'Detail',
+        headerAlign: 'center',
+        align: 'center',
         width: 160,
         renderCell: (params) => {
             return <a href={`/students/${params.row.slug}`}>Details</a>;
