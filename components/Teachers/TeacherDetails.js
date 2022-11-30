@@ -133,9 +133,12 @@ const TeacherDetail = ({teacher}) => {
                                                     <div className="text-center">
                                                         {teacher?.data?.user?.avatar ?
                                                             <img
-                                                                src={teacher?.data?.user?.avatar}
+                                                                src={`${BASE_URL}` + teacher?.data?.user?.avatar}
                                                                 className="rounded-circle shadow-4-strong"
                                                                 alt="Oops image missing"
+                                                                width={70}
+                                                                height={70}
+
                                                             />
                                                             :
                                                             <Image
@@ -311,7 +314,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Experience</h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.experience?.experience_name}</p>
+                                            <p>{teacher.data.experience?.experience_name}</p>
                                         </div>
                                     </div>
                                 </div>

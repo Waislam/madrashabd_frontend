@@ -38,12 +38,9 @@ const modalpage = (props) => {
             .catch((error) => {
                 console.log('Error Message: ', error.response.data.number)
             });
-
         props.onHide();
         router.reload();
-
     };
-
 
     return (
         <>

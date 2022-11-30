@@ -24,13 +24,14 @@ const AddPermanentMemberModal = (props) => {
                 },
             )
         }).then((res) => res.json())
+            .then((res) => {
+                router.reload();
+            })
             .catch((err) => {
                 console.log(err.message)
             });
 
         props.onHide();
-        router.reload();
-
     };
 
     return (
