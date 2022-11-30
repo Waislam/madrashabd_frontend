@@ -8,7 +8,7 @@ import {getSession, useSession} from "next-auth/react";
 
 
 const Index = ({studentListData}) => {
-    console.log("studentListData", studentListData)
+    console.log("studentListData", studentListData);
     const [students, setStudents] = useState(null);
     const [isLoading, setLoading] = useState(false);
     const [studentId, setStudentID] = useState('');
@@ -17,7 +17,7 @@ const Index = ({studentListData}) => {
     const [studentListRecords, setStudentListRecords] = useState('');
     const {data: session, status} = useSession();
 
-    const madrasha_slug = session?.user.madrasha_slug
+    const madrasha_slug = session?.user.madrasha_slug;
 
     const getStudents = async () => {
         setLoading(true);
