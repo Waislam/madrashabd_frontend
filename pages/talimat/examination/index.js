@@ -3,8 +3,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 // Examination Component
-import Examination from "../../components/Talimat/Examination/Examination";
-import Layout from "../../components/Layout/Layout";
+import Examination from "../../../components/Talimat/Examination/Examination";
+import Layout from "../../../components/Layout/Layout";
 
 const ExaminationPage = () => {
     const router = useRouter();

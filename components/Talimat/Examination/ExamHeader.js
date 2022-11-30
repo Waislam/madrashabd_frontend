@@ -10,56 +10,56 @@ const ExamHeader = () =>{
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam">
+                            <Link href={`/talimat/exam/announcement`}>
                                 <a>
                                     Announcement
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/registration">
+                            <Link href={`/talimat/exam/registration`}>
                                 <a>
                                     Registration
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/admit">
+                            <Link href={`/talimat/exam/admit`}>
                                 <a>
                                     Admit Card
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/seatplan">
+                            <Link href={`/talimat/exam/seatplan`}>
                                 <a>
                                     Seat plan
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/routine">
+                            <Link href={`/talimat/exam/routine`}>
                                 <a>
                                     Exam. Routine
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/hallnigran">
+                            <Link href={`/talimat/exam/hallnigran`}>
                                 <a>
                                     Hall Nigran plan
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/papermonitoring">
+                            <Link href={`/talimat/exam/papermonitoring`}>
                                 <a>
                                     Answer paper Monitoring
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/exam/result">
+                            <Link href={`/talimat/exam/result`}>
                                 <a>
                                     Result sheet 
                                 </a> 

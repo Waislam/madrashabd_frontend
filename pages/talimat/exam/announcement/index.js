@@ -1,20 +1,19 @@
 import React, {useEffect, useState} from "react";
 
 // Talimat Component
-import Exam from "../../../components/Talimat/Examination/Examination";
-import Layout from "../../../components/Layout/Layout";
+import Exam from "../../../../components/Talimat/Examination/Examination";
+import Layout from "../../../../components/Layout/Layout";
 
 // api
-import api from "../../api/api";
+import api from "../../../api/api";
 import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 const ExamPage = () => {
-    const [isLoading, setLoading] = useState(false)
-    const [examAnnouncementList, setExamAnnouncementList] = useState(null)
+    const [isLoading, setLoading] = useState(false);
+    const [examAnnouncementList, setExamAnnouncementList] = useState(null);
 
     const getExamListApi = async () => {
         setLoading(true);
-        // console.log(`students/100/?student_id=${studentId && studentId}&search=${searchStudent && searchStudent}&page=${studentListPageNum}&records=${studentListRecords && studentListRecords}`);
         api.get(`talimat/100/exam-announcement/`)
             .then((response) => {
                 console.log("response", response.data);
@@ -32,7 +31,7 @@ const ExamPage = () => {
 
         })
 
-    }, [])
+    }, []);
 
     if (isLoading) {
         return (
