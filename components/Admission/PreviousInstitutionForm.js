@@ -13,13 +13,15 @@ function getRandomNumberBetween(min, max) {
 }
 
 const PreviousInstitutionForm = (props) => {
+
+    // console.log("departmentList value: inside previous instittuon form page: ", props.departmentList)
     const [loading, setLoading] = useState(false)
     const { nextStep, prevStep } = props
     const router = useRouter()
 
     const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
 
-    console.log(props.session.user?.madrasha_id)
+    // console.log(props.session.user?.madrasha_id)
 
     const {
         handleSubmit,
@@ -29,8 +31,12 @@ const PreviousInstitutionForm = (props) => {
 
 
     const onSubmit = (values) => {
+
+        console.log("last page with murobbi: ", values)
         setLoading(true)
         setAdmissionFormValues(values);
+
+        console.log("user data first namea nd last name: ", admissionData)
 
         const user_data = {
             "phone": admissionData.student_phone_number,
@@ -38,15 +44,15 @@ const PreviousInstitutionForm = (props) => {
             "password2": admissionData.student_phone_number,
             "madrasha_id": props.session.user?.madrasha_id
         }
-        
+
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         let studentRawData = JSON.stringify({
             "user": {
                 "username": values.phone_number_new,
-                "first_name": values.first_name,
-                "last_name": values.last_name,
+                "first_name": admissionData.first_name,
+                "last_name": admissionData.last_name,
                 "phone": values.phone_number_new
             },
             "madrasha": props.session.user?.madrasha_id,
@@ -107,8 +113,8 @@ const PreviousInstitutionForm = (props) => {
             "sibling_id": admissionData.sibling_id,
             "previous_institution_name": values.previous_institution_name,
             "previous_institution_contact": values.previous_institution_contact,
-            "previous_started_at": values.previous_started_at,
-            "previous_ending_at": values.previous_ending_at,
+            "previous_started_at": values.previous_started_at || null,
+            "previous_ending_at": values.previous_ending_at || null,
             "previous_ending_class": values.previous_ending_class,
             "previous_ending_result": values.previous_ending_result,
             "board_exam_name": values.board_exam_name,
@@ -124,7 +130,8 @@ const PreviousInstitutionForm = (props) => {
             "student_blood_group": values.student_blood_group,
             "special_body_sign": values.special_body_sign,
             "academic_fees": null,
-            "talimi_murobbi_name": "class teacher"
+            "talimi_murobbi_name": values.talimi_murobbi_name,
+            "eslahi_murobbi_name": values.eslahi_murobbi_name
         });
 
         let requestOptions = {
@@ -140,11 +147,11 @@ const PreviousInstitutionForm = (props) => {
                 console.log("data submited result", result)
                 setLoading(false)
 
-                if(result.id) {
+                if (result.id) {
                     return toast.success('Student has been created!')
                 }
 
-                else if(result.user?.phone) {
+                else if (result.user?.phone) {
                     return toast.error(`${result.user.phone}`)
                 }
             })
@@ -171,36 +178,7 @@ const PreviousInstitutionForm = (props) => {
                                 <h4>Part A</h4>
                                 <h5>Student Account Basic Information</h5>
                                 <div className="row mb-3 row-cols-1 row-cols-md-3">
-                                    <div className="col">
-                                        <label htmlFor="first_name" className="form-label">First Name</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.first_name}
-                                            placeholder="Student's First name"
-                                            className="form-control"
-                                            id="first_name"
-                                            {...register("first_name")}
-                                        />
-                                    </div>
-                                    {errors.first_name && (
-                                        <p className="text-danger">First name is required</p>
-                                    )}
-
-                                    <div className="col">
-                                        <label htmlFor="last_name" className="form-label">Last Name</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.last_name}
-                                            placeholder="Last name"
-                                            className="form-control"
-                                            id="last_name"
-                                            {...register("last_name")}
-                                        />
-                                    </div>
-                                    {errors.last_name && (
-                                        <p className="text-danger">Last name is required</p>
-                                    )}
-                                    <div className="col">
+                                    <div className="col-md-12">
                                         <label htmlFor="phone_number_new" className="form-label">Phone Number</label>
                                         <input
                                             type="text"
@@ -308,7 +286,7 @@ const PreviousInstitutionForm = (props) => {
                                             id="board_exam_name"
                                             {...register("board_exam_name")}
                                         >
-                                            <option>Select Board Exam</option>
+                                            <option value="null">Select Board Exam</option>
                                             <option value="befak">Befak</option>
                                             <option value="haya">Haya</option>
                                         </select>
@@ -364,13 +342,13 @@ const PreviousInstitutionForm = (props) => {
                                         >
                                             <option value=''>Choose department...</option>
                                             {
-                                                props.departmentList.map((department) => (
+                                               props.departmentList && props.departmentList.map((department) => (
                                                     <option value={department.id}>{department.name}</option>
                                                 ))
                                             }
                                         </select>
                                         {errors.admitted_department && (
-                                            <p className="text-danger">Nationality is required</p>
+                                            <p className="text-danger">Select Department please</p>
                                         )}
                                     </div>
                                     <div className="col-md-3">
@@ -489,7 +467,7 @@ const PreviousInstitutionForm = (props) => {
                                         <small>Food bill / boarding</small>
                                         <div className="input-group">
                                             <select className="form-select">
-                                                <option selected>Percent</option>
+                                                <option>Percent</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -500,7 +478,7 @@ const PreviousInstitutionForm = (props) => {
                                         <small>Monthly tution fee</small>
                                         <div className="input-group">
                                             <select className="form-select">
-                                                <option selected>Percent</option>
+                                                <option>Percent</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -511,7 +489,7 @@ const PreviousInstitutionForm = (props) => {
                                         <small>Scholarship</small>
                                         <div className="input-group">
                                             <select className="form-select">
-                                                <option selected>Taka</option>
+                                                <option>Taka</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -523,17 +501,28 @@ const PreviousInstitutionForm = (props) => {
                             {/*Talimat**************************************************/}
                             <div className="talimi mb-5">
                                 <h4>Part E</h4>
-                                <h5>Talimat Morobbi, Eslahi Mourobbi</h5>
+                                <h5>Talimat Morobbi</h5>
                                 <div className="row mb-3">
                                     <div className="col">
-                                        <div className="input-group mb-3">
-                                            <select className="form-select">
-                                                <option selected>Mourobbi Name</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="talimi_murobbi_name"
+                                            {...register("talimi_murobbi_name")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="eslahi mb-5">
+                                <h5>Eslahi Mourobbi</h5>
+                                <div className="row mb-3">
+                                    <div className="col">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="eslahi_murobbi_name"
+                                            {...register("eslahi_murobbi_name")}
+                                        />
                                     </div>
                                 </div>
                             </div>

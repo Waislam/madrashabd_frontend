@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from './Admission.module.css'
 
-import {useForm} from "react-hook-form";
-import {yupResolver} from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { calculateAge } from '../Utils/utils'
 
-import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 const StudentDetailForm = (props) => {
     const [loading, setLoading] = useState(false)
@@ -13,6 +14,9 @@ const StudentDetailForm = (props) => {
         nextStep, prevStep,
         divisionList, districtList, postOfficeList,
         postCodeList, thanaList,
+
+        pdistrictList, pthanaList, ppostOfficeList, ppostCodeList,
+
         setSelectPresentAddressDistrict, setSelectPresentAddressDivision,
         setSelectPresentAddressThana, setSelectPresentAddressPostCode,
         setSelectPresentAddressPostOffice,
@@ -20,17 +24,30 @@ const StudentDetailForm = (props) => {
         setSelectPermanentAddressPostCode, setSelectPermanentAddressPostOffice,
         setSelectPermanentAddressThana, session
     } = props
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
+    const [getAge, setAge] = useState('')
 
 
     const {
         handleSubmit,
         setError,
-        formState: {errors},
+        formState: { errors },
         register,
+        setValue
     } = useForm({
         mode: "onChange",
     });
+
+    //handle calculate age
+    const setAgeonChangeofdateOfBirth = (e) => {
+        e.preventDefault()
+        console.log("e.target.value: ", e.target.value)
+        const birthDate = e.target.value
+        calculateAge(birthDate)
+        const result = calculateAge(birthDate)
+        setAge(result)
+        setValue('age', result);
+    }
 
     const onSubmit = (values) => {
         console.log("values", values)
@@ -39,6 +56,27 @@ const StudentDetailForm = (props) => {
         nextStep();
         setLoading(false)
     };
+
+    //handle address field generation
+    //get division
+    // const [division_List, setDivisionList] = useState(null)
+
+
+    // const getDivision = async () => {
+    //     const list = await axios.get(`${BASE_URL}/accounts/division/`)
+    //     const division = list.data
+    //     setDivisionList(division)
+    // }
+
+    //set single division valuel 
+    // const getSingleDivison=(e)=>{
+    //     console.log("divison value: ", e.target.value)
+    //     setSelectPresentAddressDivision(e.target.value)
+    //     console.log(setSelectPresentAddressDivision)
+    // }
+
+    // console.log("setSelectPresentAddressDivision: ", setSelectPresentAddressDivision)
+    // console.log("division: ", divisionList)
 
     return (
         <>
@@ -49,8 +87,34 @@ const StudentDetailForm = (props) => {
                             {/* Student Details ****************** */}
                             <div className="student-detail">
                                 <h4>Student Details</h4>
-                                <hr/>
+                                <hr />
                                 <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="first_name" className="form-label">First Name</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.first_name}
+                                            placeholder="Student's First name"
+                                            className="form-control"
+                                            id="first_name"
+                                            {...register("first_name", { required: "First name is required" })}
+                                        />
+                                        <p className="text-danger">{errors?.first_name?.message}</p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="last_name" className="form-label">Last Name</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.last_name}
+                                            placeholder="Last name"
+                                            className="form-control"
+                                            id="last_name"
+                                            {...register("last_name", { required: "Last name is required" })}
+                                        />
+                                        <p className="text-danger">{errors?.last_name?.message}</p>
+                                    </div>
+
+
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
                                             <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
@@ -60,25 +124,28 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Date of Birth"
                                                 id="date_of_birth"
-                                                {...register("date_of_birth", {required: true})}
+                                                {...register("date_of_birth", { required: true })}
+                                                onChange={setAgeonChangeofdateOfBirth}
                                             />
                                         </div>
                                         <div>
                                             {errors.date_of_birth && (
-                                                <p className="text-danger">{errors.date_of_birth?.message ? errors.date_of_birth?.message: "Date of Birth is Required"}</p>
+                                                <p className="text-danger">{errors.date_of_birth?.message ? errors.date_of_birth?.message : "Date of Birth is Required"}</p>
                                             )}
                                         </div>
                                     </div>
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
-                                        <label htmlFor="age" className="form-label">Age</label>
+                                            <label htmlFor="age" className="form-label">Age</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.age}
+                                                value={getAge}
                                                 className="form-control"
                                                 placeholder="Age"
+                                                name="age"
                                                 id="age"
-                                                {...register("age", {required: true})}
+                                                {...register("age", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -96,7 +163,7 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Birth Certificate"
                                                 id="birth_certificate"
-                                                {...register("birth_certificate", {required: true})}
+                                                {...register("birth_certificate", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -142,7 +209,7 @@ const StudentDetailForm = (props) => {
                                             defaultValue={admissionData.nationality}
                                             className="form-select"
                                             id="nationality"
-                                            {...register("nationality", {required: true})}
+                                            {...register("nationality", { required: true })}
                                         >
                                             <option value='' disabled>Select nationality...</option>
                                             <option value="bangladeshi">Bangladeshi</option>
@@ -159,7 +226,7 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.religion}
                                                 className="form-select"
                                                 id="religion"
-                                                {...register("religion", {required: true})}
+                                                {...register("religion", { required: true })}
                                             >
                                                 <option value='' disabled>Select religion...</option>
                                                 <option value="islam">
@@ -181,7 +248,7 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.gender}
                                                 className="form-select"
                                                 id="gender"
-                                                {...register("gender", {required: true})}
+                                                {...register("gender", { required: true })}
                                             >
                                                 <option value='' disabled >Select Gender...</option>
                                                 <option value="male">Male</option>
@@ -208,13 +275,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.present_address_division}
                                                 id="present_address_division"
                                                 className="form-select"
-                                                {...register("present_address_division", {required: true})}
+                                                {...register("present_address_division", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressDivision(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Division...</option>
+                                                <option>Select Division</option>
                                                 {
-                                                    divisionList.map((division) => (
-                                                        <option key={division.pk} defaultValue={division.pk}>
+                                                    divisionList && divisionList.map((division) => (
+                                                        <option key={division.pk} value={division.pk}>
                                                             {division.name}
                                                         </option>
                                                     ))
@@ -235,13 +302,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.present_address_district}
                                                 id="present_address_district"
                                                 className="form-select"
-                                                {...register("present_address_district", {required: true})}
+                                                {...register("present_address_district", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressDistrict(e.target.value)}
                                             >
-                                                <option value='' disabled >Select District...</option>
+                                                <option>Select District</option>
                                                 {
                                                     districtList.map((district) => (
-                                                        <option key={district.pk} defaultValue={district.pk}>
+                                                        <option key={district.pk} value={district.pk}>
                                                             {district.name}
                                                         </option>
                                                     ))
@@ -263,13 +330,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.present_address_thana}
                                                 id="present_address_thana"
                                                 className="form-select"
-                                                {...register("present_address_thana", {required: true})}
+                                                {...register("present_address_thana", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressThana(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Thana...</option>
+                                                <option>Select Thana</option>
                                                 {
                                                     thanaList.map((thana) => (
-                                                        <option key={thana.pk} defaultValue={thana.pk}>
+                                                        <option key={thana.pk} value={thana.pk}>
                                                             {thana.name}
                                                         </option>
                                                     ))
@@ -292,13 +359,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.present_address_post_office}
                                                 id="present_address_post_office"
                                                 className="form-select"
-                                                {...register("present_address_post_office", {required: true})}
+                                                {...register("present_address_post_office", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Post Office...</option>
+                                                <option>Select Post Office</option>
                                                 {
                                                     postOfficeList.map((post_office) => (
-                                                        <option key={post_office.pk} defaultValue={post_office.pk}>
+                                                        <option key={post_office.pk} value={post_office.pk}>
                                                             {post_office.name}
                                                         </option>
                                                     ))
@@ -319,13 +386,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.present_address_post_code}
                                                 id="present_address_post_code"
                                                 className="form-select"
-                                                {...register("present_address_post_code", {required: true})}
+                                                {...register("present_address_post_code", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressPostCode(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Post Code ...</option>
+                                                <option>Select Post Code ...</option>
                                                 {
                                                     postCodeList.map((post_code) => (
-                                                        <option key={post_code.pk} defaultValue={post_code.pk}>
+                                                        <option key={post_code.pk} value={post_code.pk}>
                                                             {post_code.name}
                                                         </option>
                                                     ))
@@ -347,7 +414,7 @@ const StudentDetailForm = (props) => {
                                             defaultValue={admissionData.student_present_address_info}
                                             placeholder="House/Flat/Road/Town/Village"
                                             id="student_present_address_info"
-                                            {...register("student_present_address_info", {required: true})}
+                                            {...register("student_present_address_info", { required: true })}
                                         />
                                     </div>
                                     <div>
@@ -374,13 +441,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.permanent_address_division}
                                                 id="permanent_address_division"
                                                 className="form-select"
-                                                {...register("permanent_address_division", {required: true})}
+                                                {...register("permanent_address_division", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressDivision(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Division...</option>
+                                                <option>Select Division</option>
                                                 {
                                                     divisionList.map((division) => (
-                                                        <option key={division.pk} defaultValue={division.pk}>
+                                                        <option key={division.pk} value={division.pk}>
                                                             {division.name}
                                                         </option>
                                                     ))
@@ -401,13 +468,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.permanent_address_district}
                                                 id="permanent_address_district"
                                                 className="form-select"
-                                                {...register("permanent_address_district", {required: true})}
+                                                {...register("permanent_address_district", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressDistrict(e.target.value)}
                                             >
-                                                <option value='' disabled >Select District...</option>
+                                                <option>Select District</option>
                                                 {
-                                                    districtList.map((district) => (
-                                                        <option key={district.pk} defaultValue={district.pk}>
+                                                    pdistrictList && pdistrictList.map((district) => (
+                                                        <option key={district.pk} value={district.pk}>
                                                             {district.name}
                                                         </option>
                                                     ))
@@ -428,13 +495,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.permanent_address_thana}
                                                 id="permanent_address_thana"
                                                 className="form-select"
-                                                {...register("permanent_address_thana", {required: true})}
+                                                {...register("permanent_address_thana", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressThana(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Thana...</option>
+                                                <option>Select Thana</option>
                                                 {
-                                                    thanaList.map((thana) => (
-                                                        <option key={thana.pk} defaultValue={thana.pk}>
+                                                    pthanaList && pthanaList.map((thana) => (
+                                                        <option key={thana.pk} value={thana.pk}>
                                                             {thana.name}
                                                         </option>
                                                     ))
@@ -457,13 +524,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.permanent_address_post_office}
                                                 id="permanent_address_post_office"
                                                 className="form-select"
-                                                {...register("permanent_address_post_office", {required: true})}
+                                                {...register("permanent_address_post_office", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Post Office...</option>
+                                                <option>Select Post Office</option>
                                                 {
-                                                    postOfficeList.map((post_office) => (
-                                                        <option key={post_office.pk} defaultValue={post_office.pk}>
+                                                    ppostOfficeList && ppostOfficeList.map((post_office) => (
+                                                        <option key={post_office.pk} value={post_office.pk}>
                                                             {post_office.name}
                                                         </option>
                                                     ))
@@ -484,13 +551,13 @@ const StudentDetailForm = (props) => {
                                                 defaultValue={admissionData.permanent_address_post_code}
                                                 id="permanent_address_post_code"
                                                 className="form-select"
-                                                {...register("permanent_address_post_code", {required: true})}
+                                                {...register("permanent_address_post_code", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressPostCode(e.target.value)}
                                             >
-                                                <option value='' disabled >Select Post Code ...</option>
+                                                <option>Select Post Code</option>
                                                 {
-                                                    postCodeList.map((post_code) => (
-                                                        <option key={post_code.pk} defaultValue={post_code.pk}>
+                                                    ppostCodeList && ppostCodeList.map((post_code) => (
+                                                        <option key={post_code.pk} value={post_code.pk}>
                                                             {post_code.name}
                                                         </option>
                                                     ))
@@ -512,7 +579,7 @@ const StudentDetailForm = (props) => {
                                             defaultValue={admissionData.student_permanent_address_info}
                                             placeholder="House/Flat/Road/Town/Village"
                                             id="student_permanent_address_info"
-                                            {...register("student_permanent_address_info", {required: true})}
+                                            {...register("student_permanent_address_info", { required: true })}
                                         />
                                     </div>
                                     <div>

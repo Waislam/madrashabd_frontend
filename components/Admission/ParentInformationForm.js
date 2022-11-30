@@ -220,9 +220,9 @@ const ParentInformationForm = (props) => {
                                             defaultValue={admissionData.parents_information_father_education}
                                             className="form-select"
                                             id="parents_information_father_education"
-                                            {...register("parents_information_father_education", {required: true})}
+                                            {...register("parents_information_father_education")}
                                         >
-                                            <option value=''>Choose Father Education ...</option>
+                                            <option value="literate">Choose Father Education</option>
                                             <option value="literate">Literate</option>
                                             <option value="ssc/equivalent">SSC/equivalent</option>
                                             <option value="hsc/equivalent">HSC/equivalent</option>
@@ -238,9 +238,9 @@ const ParentInformationForm = (props) => {
                                             defaultValue={admissionData.parents_information_mother_education}
                                             className="form-select"
                                             id="parents_information_mother_education"
-                                            {...register("parents_information_mother_education", {required: true})}
+                                            {...register("parents_information_mother_education")}
                                         >
-                                            <option value=''>Choose Mother Education ...</option>
+                                            <option value="literate">Choose Mother Education</option>
                                             <option value="literate">Literate</option>
                                             <option value="ssc/equivalent">SSC/equivalent</option>
                                             <option value="hsc/equivalent">HSC/equivalent</option>
@@ -324,8 +324,9 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Guardian Name"
                                                 className="form-control"
                                                 id="guardian_name"
-                                                {...register("guardian_name", {required: true})}
+                                                {...register("guardian_name", {required: "Guarding Name is required"})}
                                             />
+                                            <p className="text-danger">{errors?.guardian_name?.message}</p>
                                         </div>
                                         <div className="col-md-4  mb-3">
                                             <label htmlFor="guardian_relation" className="form-label">Guardian Relation</label>
@@ -334,9 +335,9 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.guardian_relation}
                                                 className="form-select"
                                                 id="guardian_relation"
-                                                {...register("guardian_relation", {required: true})}
+                                                {...register("guardian_relation", {required: "This field is required"})}
                                             >
-                                                <option value=''>Choose guardian relation ...</option>
+                                                <option value="null">Choose guardian relation ...</option>
                                                 <option value="father">Father</option>
                                                 <option value="mother">Mother</option>
                                                 <option value="brother">Brother</option>
@@ -344,6 +345,7 @@ const ParentInformationForm = (props) => {
                                                 <option value="uncle">Uncle</option>
                                                 <option value="cousine">Cousine</option>
                                             </select>
+                                            <p className="text-danger">{errors?.guardian_relation?.message}</p>
                                         </div>
                                         <div className="col-md-4 mb-3">
                                             <label htmlFor="guardian_occupation" className="form-label">Guardian Occupation</label>
@@ -352,9 +354,9 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.guardian_occupation}
                                                 className="form-select"
                                                 id="guardian_occupation"
-                                                {...register("guardian_occupation", {required: true})}
+                                                {...register("guardian_occupation")}
                                             >
-                                                <option value=''>Guardian occupation ...</option>
+                                                <option value="null">Guardian occupation</option>
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
                                                 <option value="doctor">Doctor</option>
@@ -427,7 +429,7 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.other_contact_person_relation}
                                                 className="form-select"
                                                 id="other_contact_person_relation"
-                                                {...register("other_contact_person_relation", {required: true})}
+                                                {...register("other_contact_person_relation")}
                                             >
                                                 <option value=''>Other Guardian Relation ...</option>
                                                 <option value="father">Father</option>
