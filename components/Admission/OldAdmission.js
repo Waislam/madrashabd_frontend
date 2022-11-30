@@ -4,17 +4,18 @@ import AdmissionSidebar from './AdmissionSidebar'
 import { useForm } from "react-hook-form";
 import { getStudentDetailById } from '../../pages/api/StudentAPI/students_api';
 import UpdateAdmissionForm from "./UpdateAdmissionForm";
+import { toast } from "react-toastify";
 
 
 const OldAdmission = ({madrashaData}) => {
     const [studentDetails, setStudentDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: { errors }} = useForm();
 
     // Function for handle search form
     const handleSearch = data => {
         setIsLoading(true)
-        const searchValue = data.search;
+        const searchValue = data.search.toUpperCase();
 
         getStudentDetailById(searchValue)
             .then(data => {
@@ -27,6 +28,10 @@ const OldAdmission = ({madrashaData}) => {
 
     if(isLoading) {
         return <h1>loading......</h1>
+    }
+
+    if(studentDetails === null || undefined) {
+        return toast.error("Not Find")
     }
 
     return (
@@ -47,7 +52,7 @@ const OldAdmission = ({madrashaData}) => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Search student by id"
-                                                {...register("search")}
+                                                {...register("search", {required:true})}
                                             />
                                             <button
                                                 className="btn btn-outline-secondary"
@@ -55,15 +60,27 @@ const OldAdmission = ({madrashaData}) => {
                                                 id="search-btn"
                                             >Search</button>
                                         </div>
+                                        <div>
+                                            {errors.search && (
+                                                <p className="text-danger">Please enter student id</p>
+                                            )}
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                             {/* End search form section */}
 
                             {/* Start update form section */}
-                            {
+                            {   
+                                studentDetails === undefined ?
+                                    <div className="card mt-2">
+                                        <div className="card-body">
+                                            <h5 className="text-center text-danger">The student with this id does not exist.</h5>
+                                        </div>
+                                    </div>
+                                :
                                 (Object.keys(studentDetails).length === 0) ?
-                                    <p>Show something</p>
+                                    <p>Search student by there id.</p>
                                     :
                                     <UpdateAdmissionForm
                                     madrashaData={madrashaData}

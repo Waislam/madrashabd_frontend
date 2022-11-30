@@ -116,8 +116,6 @@ export async function getServerSideProps({req}) {
     const res = await api.get(`/library/${session_data.user?.madrasha_slug}/book-distribution/`);
     const book_distribution = await res.data;
 
-    console.log("book_distribution :", book_distribution);
-
     return {
         props: {
             book_distribution,

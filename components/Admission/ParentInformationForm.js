@@ -83,11 +83,6 @@ const ParentInformationForm = (props) => {
                                                 {...register("parents_information_father_date_of_birth")}
                                             />
                                         </div>
-                                        {/*<div>*/}
-                                        {/*    {errors.parents_information_father_date_of_birth && (*/}
-                                        {/*        <p className="text-danger">Date of birth is required</p>*/}
-                                        {/*    )}*/}
-                                        {/*</div>*/}
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <div>
@@ -113,8 +108,13 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Father NID"
                                                 className="form-control"
                                                 id="parents_information_father_nid"
-                                                {...register("parents_information_father_nid")}
+                                                {...register("parents_information_father_nid", {required: true})}
                                             />
+                                        </div>
+                                        <div>
+                                            {errors.parents_information_father_nid && (
+                                                <p className="text-danger">Father's NID is Required</p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-3">
@@ -126,8 +126,13 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Mothers NID"
                                                 className="form-control"
                                                 id="parents_information_mother_nid"
-                                                {...register("parents_information_mother_nid")}
+                                                {...register("parents_information_mother_nid", {required: true})}
                                             />
+                                        </div>
+                                        <div>
+                                            {errors.parents_information_mother_nid && (
+                                                <p className="text-danger">Mother's NID is Required</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -274,13 +279,8 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Mother Contact"
                                                 className="form-control"
                                                 id="parents_information_mother_contact"
-                                                {...register("parents_information_mother_contact", {required: true})}
+                                                {...register("parents_information_mother_contact")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.parents_information_mother_contact && (
-                                                <p className="text-danger">Mother Contact is required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
