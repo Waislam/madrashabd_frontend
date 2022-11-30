@@ -1,14 +1,14 @@
-import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import {useRef, useState} from 'react';
+import {useForm} from 'react-hook-form';
 import Modal from 'react-bootstrap/Modal';
-import api, { BASE_URL } from "../../../pages/api/api"
-import { useRouter } from 'next/router';
+import api, {BASE_URL} from "../../../pages/api/api"
+import {useRouter} from 'next/router';
 
 
 const AddGariListModal = (props) => {
     const router = useRouter();
 
-    const { register, handleSubmit } = useForm({ mode: 'all' });
+    const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
         fetch(`${BASE_URL}/transport/${props.session_data.user?.madrasha_slug}/vehicle-info-list/`, {
@@ -28,11 +28,13 @@ const AddGariListModal = (props) => {
                 }
             )
         }).then((res) => res.json())
+            .then((res) => {
+                router.reload();
+            })
             .catch((err) => {
                 console.log(err.message)
             });
         props.onHide();
-        router.reload();
 
     };
 
