@@ -44,7 +44,7 @@ const columns = [
         width: 150,
         editable: true,
         renderCell: (params) => <img
-            src={$`BASE_URL` + params.row?.user?.avatar}
+            src={`BASE_URL` + params.row?.user?.avatar}
             alt="Oops image missing"
         />,
     },
