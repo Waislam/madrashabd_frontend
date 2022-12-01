@@ -279,7 +279,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                     </div>
                     {/*Academic Fees*/}
                     <div className="part-b-admission-information">
-                        <div className="academic-fees mb-4">
+                        {/* <div className="academic-fees mb-4">
                             <h4>Part B</h4>
                             <h5>Academic Fees</h5>
                             <div className="row mb-3">
@@ -326,7 +326,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="talimi mb-3">
                             <h4>Part C</h4>
                             <h5>Murubbi</h5>
@@ -361,11 +361,11 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="student-image mb-3">
+                        <div className="student-image mb-3">
                             <h4>Student image upload</h4>
                             <input type="file" className="form-control"
                                     placeholder="Upload Image Here"/>
-                        </div> */}
+                        </div>
                         <button className={styles.defaultBtn}>Save</button>
                     </div>
                 </form>
