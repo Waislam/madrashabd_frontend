@@ -89,6 +89,7 @@ const Accounts = (props) => {
                 studentIncomeList={props.transaction_student_income.results}
                 addStudentIncomekModalShow={handleModalShow}
                 handleModalShowandId={getStudentIncomeIndividualData}
+                session_data={props.session_data}
             />
 
             <AddStudentIncomeModal

@@ -4,9 +4,12 @@ import StudentIncomeDetail from '../../../components/Account/StudentIncome/Stude
 import Layout from "../../../components/Layout/Layout"
 
 const AccountDetailPage = ({student_income}) => {
+
     return (
         <div>
-            <StudentIncomeDetail student_income={student_income}/>
+            <StudentIncomeDetail
+                student_income={student_income}
+            />
         </div>
     )
 };

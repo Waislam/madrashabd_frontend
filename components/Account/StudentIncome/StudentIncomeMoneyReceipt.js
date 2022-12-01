@@ -1,14 +1,16 @@
 // Using a class component, everything works without issue
 import React from 'react';
+import {useSession} from "next-auth/react"
 
 export const StudentIncomeMoneyReceipt = React.forwardRef((props, ref) => {
-    console.log("Props :", props.student_income);
+    const {data: session} = useSession();
+
     return (
         <div ref={ref}>
             <div className="container mb-5">
                 <div className="moneyReceipt" style={{borderRadius: 5, border: "10px solid #DDDDDD", padding: 10}}>
-                    <h4 className="text-center">Institute Name</h4>
-                    <h5 className="text-center mb-4">Address</h5>
+                    <h4 className="text-center text-capitalize mt-2">{session.user?.madrasha_name}</h4>
+                    <h5 className="text-center mb-4 text-center">Address</h5>
                     <hr/>
                     <div className="row">
                         <div className="col-md-6">

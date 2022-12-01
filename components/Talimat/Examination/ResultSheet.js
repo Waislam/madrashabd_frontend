@@ -9,7 +9,7 @@ import {isAssetError} from 'next/dist/client/route-loader';
 import React from "react";
 
 const ResutSheet = ({result_list}) => {
-    console.log("result_list", result_list)
+    console.log("result_list", result_list);
 
     const columns = [
         {
@@ -202,7 +202,7 @@ const ResutSheet = ({result_list}) => {
                                                                 <div className="col-md-1">
                                                                     <Link
                                                                         href="/talimat/exam/result_upload"
-                                                                        className={`${styles.defaultBtnResult}`}
+                                                                        className="btn btn-primary"
                                                                     >
                                                                         Add
                                                                     </Link>

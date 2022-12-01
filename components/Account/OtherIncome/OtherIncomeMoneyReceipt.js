@@ -1,6 +1,8 @@
 import React from 'react';
+import {useSession} from "next-auth/react"
 
 export const OtherIncomeMoneyReceipt = React.forwardRef((props, ref) => {
+    const {data: session} = useSession();
 
     return (
         <div ref={ref}>
@@ -9,7 +11,7 @@ export const OtherIncomeMoneyReceipt = React.forwardRef((props, ref) => {
                     <div className="col">
                         <div className="moneyReceipt"
                              style={{borderRadius: 5, border: "10px solid #DDDDDD", padding: 10}}>
-                            <h4 className="text-center">Institute Name</h4>
+                             <h4 className="text-center text-capitalize mt-2">{session.user?.madrasha_name}</h4>
                             <h5 className="text-center mb-4">Address</h5>
                             <hr/>
                             <div className="row">
@@ -17,7 +19,7 @@ export const OtherIncomeMoneyReceipt = React.forwardRef((props, ref) => {
                                     <div className="mx-2 text-capitalize">
                                         <p>Category : {props.other_income?.category.name}</p>
                                         <p>Sub Category : {props.other_income?.sub_category.name}</p>
-                                        <p>Month  : {props.other_income?.for_month}</p>
+                                        <p>Month : {props.other_income?.for_month}</p>
                                         <p>Amount : {props.other_income?.for_months}</p>
                                         <p>Receipt Book Number : {props.other_income?.receipt_book_number}</p>
                                         <p>Donar Name : {props.other_income?.donar_name}</p>
