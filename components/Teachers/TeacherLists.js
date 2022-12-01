@@ -49,7 +49,8 @@ const columns = [
         headerName: 'avatar',
         headerAlign: 'center',
         align: 'center',
-        flex: 1,
+        width:100,
+        height:100,
         editable: true,
         renderCell: (params) => <img
             src={`${params.row.user?.avatar}`}
