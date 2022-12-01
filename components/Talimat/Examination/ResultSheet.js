@@ -6,8 +6,10 @@ import styles from './Examination.module.css'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import {isAssetError} from 'next/dist/client/route-loader';
+import React from "react";
 
 const ResutSheet = ({result_list}) => {
+    console.log("result_list", result_list)
 
     const columns = [
         {
@@ -74,12 +76,15 @@ const ResutSheet = ({result_list}) => {
             flex: 1,
         },
         {
-            field: "detail",
-            headerName: "Detail",
+            field: 'Detail',
+            headerName: 'Detail',
             headerAlign: 'center',
             align: 'center',
             flex: 1,
-
+            sortable: false,
+            renderCell: (params) => {
+                return <a href={`/talimat/exam/result/${params.row.id}`}>Details</a>;
+            }
         },
     ];
 
