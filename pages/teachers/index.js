@@ -5,7 +5,7 @@ import TeacherLists from "../../components/Teachers/TeacherLists";
 import Layout from '../../layouts/Layout';
 
 // api
-import api from '../api/api'
+import api, {BASE_URL} from '../api/api'
 import {getSession} from "next-auth/react";
 
 const Index = (props) => {
@@ -22,12 +22,12 @@ const Index = (props) => {
 };
 
 export async function getServerSideProps({req}) {
-    const session = await getSession({req})
-    const madrasha_slug = session?.user.madrasha_slug
+    const session = await getSession({req});
+    const madrasha_slug = session?.user.madrasha_slug;
 
     // Fetch data from external API
-    const res = await api.get(`/teachers/${madrasha_slug}/`)
-    const teacher_list = await res.data
+    const res = await api.get(`/teachers/${madrasha_slug}/`);
+    const teacher_list = await res.data;
 
     // Pass data to the page via props
     return {

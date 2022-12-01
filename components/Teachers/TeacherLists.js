@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import styles from './TeacherList.module.css';
+import api, {BASE_URL} from "../../pages/api/api";
 
 const columns = [
     {
@@ -28,6 +29,7 @@ const columns = [
         align: 'center',
         flex: 1,
     },
+
     {
         field: 'father_name',
         headerName: 'Father name',
@@ -50,9 +52,10 @@ const columns = [
         flex: 1,
         editable: true,
         renderCell: (params) => <img
-            src={`http://127.0.0.1:8086` + params.row?.user?.avatar}
+            src={`${params.row.user?.avatar}`}
             alt="Oops image missing"
         />,
+
     },
     {
         field: 'department',
@@ -77,6 +80,8 @@ const columns = [
         }
     },
 ];
+
+
 
 const TeacherList = ({teachers}) => {
     return (

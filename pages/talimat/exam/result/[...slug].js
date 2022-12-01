@@ -1,7 +1,9 @@
 import React from "react";
 import Layout from "../../../../components/Layout/Layout";
+import {getSession} from "next-auth/react";
+import api from "../../../api/api";
 
-const ResultSheetPage = () => {
+const ResultSheetPage = (props) => {
 
     return (
         <>
@@ -31,14 +33,16 @@ const ResultSheetPage = () => {
                             </dt>
                             <dd className="col-sm-6">
                                 <span className="mx-2">:</span>
-                                100
+                                {props.subject_mark_list[0].student.student_id}
+
                             </dd>
                             <dt className="col-sm-6">
                                 Student Roll
                             </dt>
                             <dd className="col-sm-6">
                                 <span className="mx-2">:</span>
-                                9
+                                {props.subject_mark_list[0].student.student_roll_id}
+
                             </dd>
                         </dl>
                     </div>
@@ -56,14 +60,15 @@ const ResultSheetPage = () => {
                             </dt>
                             <dd className="col-sm-6">
                                 <span className="mx-2">:</span>
-                                2020-2022
+                                {props.subject_mark_list[0].exam_year.actual_year}
+
                             </dd>
                             <dt className="col-sm-6">
                                 Exam Term
                             </dt>
                             <dd className="col-sm-6">
                                 <span className="mx-2">:</span>
-                                Do noting
+                                {props.subject_mark_list[0].exam_term.term_name}
                             </dd>
                         </dl>
                     </div>
@@ -81,18 +86,15 @@ const ResultSheetPage = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr className="text-center">
-                                    <th scope="row">1</th>
-                                    <td>Bukhari First</td>
-                                    <td>80</td>
-                                    <td>Sakib</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th scope="row">2</th>
-                                    <td>Bukhari Second</td>
-                                    <td>90</td>
-                                    <td>Tamim</td>
-                                </tr>
+                                {props.subject_mark_list.map((mark, index) => (
+                                    <tr className="text-center" key={index}>
+                                        <th scope="row">{index}</th>
+                                        <td>{mark?.subject?.name}</td>
+                                        <td>{mark.mark}</td>
+                                        <td>Sakib</td>
+                                    </tr>
+
+                                ))}
                                 </tbody>
                             </table>
                         </div>
@@ -116,6 +118,21 @@ const ResultSheetPage = () => {
     )
 };
 
+export const getServerSideProps = async ({req, params}) => {
+    const session_data = await getSession({req});
+    const madrasha_slug = session_data?.user?.madrasha_slug;
+
+    const subject_marks_response = await api.get(`/talimat/${params.slug}/subject-mark/`);
+    const subject_mark_list = subject_marks_response.data;
+    console.log("session_data", session_data)
+
+    return {
+        props: {
+            subject_mark_list,
+            session_data
+        }
+    }
+};
 
 export default ResultSheetPage;
 

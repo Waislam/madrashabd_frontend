@@ -31,7 +31,7 @@ const SyllabusPage = () => {
     const handlePutRequest = async (e, bookDistId) => {
         setLoader(true);
         e.preventDefault();
-        const list = await axios.get(`${BASE_URL}/talimat/book-dist-teacher/detail/${bookDistId}/`)
+        const list = await axios.get(`${BASE_URL}/talimat/book-dist-teacher/detail/${bookDistId}/`);
         const bookDistData = list.data;
         setBookDistOldData(bookDistData.data);
         getClassList();

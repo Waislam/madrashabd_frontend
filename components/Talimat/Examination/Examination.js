@@ -1,19 +1,12 @@
 import {useState} from "react";
-
-// styles
 import taliamatstyles from '../Talimat.module.css'
 import styles from './Examination.module.css'
-
-// models
+import Link from 'next/link'
 import ExamAnnouncementModal from './Modal/ExamAnnouncementModal'
 import ExamAnnouncementDeleteModal from "./Modal/ExamAnnouncementDeleteModal";
 import ExamAnnouncementEditModal from "./Modal/ExamAnnouncmentEditModal";
-
-// components
 import SideMenu from './ExamSideMenu';
 import ExamHeader from './ExamHeader'
-
-// api
 import api from "../../../pages/api/api";
 
 
@@ -94,7 +87,8 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                             <tr>
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Exam</th>
-                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Description</th>
+                                                                <th scope="col">Detail</th>
                                                                 <th scope="col">Action</th>
                                                             </tr>
                                                             </thead>
@@ -105,11 +99,16 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                     <td>{exam.exam_title}</td>
                                                                     <td>{exam.exam_description}</td>
                                                                     <td>
+                                                                        <Link
+                                                                            href={`/talimat/exam/announcement/${exam.id}`}>
+                                                                            <a className="btn btn-secondary primary">Details</a>
+                                                                        </Link>
+                                                                    </td>
+                                                                    <td>
                                                                         <button
                                                                             type='button'
                                                                             className="btn btn-primary primary"
                                                                             onClick={() => handleExamAnnouncementEdit(exam.id)}
-
                                                                         >
                                                                             Edit
                                                                         </button>
