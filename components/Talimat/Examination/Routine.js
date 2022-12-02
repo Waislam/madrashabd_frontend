@@ -104,7 +104,8 @@ const ExamRoutine = (props) => {
                                                                 />
                                                             </Box> */}
                                                             <div className="table-responsive">
-                                                                <table className="table table-striped">
+                                                                <h1>Comming Soon</h1>
+                                                                {/* <table className="table table-striped">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Jamat</th>
@@ -155,7 +156,7 @@ const ExamRoutine = (props) => {
                                                                             <td>subject5</td>
                                                                         </tr>
                                                                     </tbody>
-                                                                </table>
+                                                                </table> */}
                                                             </div>
                                                         </div>
                                                         {/* <div className="downloadButton">

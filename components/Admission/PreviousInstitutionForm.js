@@ -14,7 +14,7 @@ function getRandomNumberBetween(min, max) {
 
 const PreviousInstitutionForm = (props) => {
 
-    // console.log("departmentList value: inside previous instittuon form page: ", props.departmentList)
+    console.log("departmentList value: inside previous instittuon form page: ", props.departmentList)
     const [loading, setLoading] = useState(false)
     const { nextStep, prevStep } = props
     const router = useRouter()

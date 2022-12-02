@@ -21,6 +21,7 @@ import {
     getGroupList,
     getSessionList, getShiftList
 } from "../../pages/api/settings_api";
+import { getSession } from "next-auth/react";
 
 const AdmissionForm = (props) => {
 
@@ -279,6 +280,14 @@ const AdmissionForm = (props) => {
     }
 };
 
+
+// export const serverSideProps = async ({ req }) => {
+
+//     const session = await getSession({req})
+//     const madrasha_id = props.session?.user?.madrasha_id
+//     const madrasha_slug = props.session?.user?.madrasha_slug
+
+// }
 
 export default AdmissionForm;
 

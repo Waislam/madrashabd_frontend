@@ -8,13 +8,13 @@ import styles from './StudentDetails.module.css'
 // components
 import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
-import {useForm} from "react-hook-form";
-import {BASE_URL} from "../../pages/api/api";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
+import { useForm } from "react-hook-form";
+import { BASE_URL } from "../../pages/api/api";
+import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
 
 
-const StudentDetails = ({student}) => {
-    const {handleSubmit, register, formState: {errors}, control} = useForm()
+const StudentDetails = ({ student }) => {
+    const { handleSubmit, register, formState: { errors }, control } = useForm()
 
     const onSubmit = (values) => {
         let formdata = new FormData();
@@ -45,7 +45,7 @@ const StudentDetails = ({student}) => {
                                 <div className="card">
                                     <h4 className={styles.sideBarLogo}>
                                         <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
+                                            alt="Logo missing" height={40} width={40} />
                                     </h4>
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
@@ -69,7 +69,7 @@ const StudentDetails = ({student}) => {
                                         <div className="card mb-4">
                                             <div className="card-body">
                                                 <h4>Student Information</h4>
-                                                <hr/>
+                                                <hr />
                                                 <div className="row">
                                                     <div className="col-md-9">
                                                         <div className="row">
@@ -196,14 +196,14 @@ const StudentDetails = ({student}) => {
                                         <div className="card">
                                             <div className="card-body pb-0">
                                                 <h4>Present Address</h4>
-                                                <hr/>
+                                                <hr />
                                                 <dl className="row">
                                                     <dt className="col-sm-3">Address</dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
                                                         <span className="text-capitalize">
                                                             {student.data.present_address?.address_info}
-                                                            </span>
+                                                        </span>
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Office
@@ -248,14 +248,14 @@ const StudentDetails = ({student}) => {
                                         <div className="card">
                                             <div className="card-body pb-0">
                                                 <h4>Permanent Address</h4>
-                                                <hr/>
+                                                <hr />
                                                 <dl className="row">
                                                     <dt className="col-sm-3">Address</dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
                                                         <span className="text-capitalize">
                                                             {student.data.permanent_address?.address_info}
-                                                            </span>
+                                                        </span>
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Office
@@ -300,13 +300,13 @@ const StudentDetails = ({student}) => {
 
                                 <div className="guardianInformation">
                                     <h4>Guardian Information</h4>
-                                    <hr/>
+                                    <hr />
                                     <div className="row">
                                         <div className="col-md-6 mb-4">
                                             <div className="card">
                                                 <div className="card-body  pb-0">
                                                     <h4>Father</h4>
-                                                    <hr/>
+                                                    <hr />
                                                     <dl className="row">
                                                         <dt className="col-sm-4">Name</dt>
                                                         <dd className="col-sm-8">
@@ -367,7 +367,7 @@ const StudentDetails = ({student}) => {
                                             <div className="card">
                                                 <div className="card-body pb-0">
                                                     <h4>Mother</h4>
-                                                    <hr/>
+                                                    <hr />
                                                     <dl className="row">
                                                         <dt className="col-sm-4">Name</dt>
                                                         <dd className="col-sm-8">
@@ -427,7 +427,7 @@ const StudentDetails = ({student}) => {
                                     </div>
                                     <div className="row">
                                         <h4>Guardian</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="col-md-6 mb-4">
                                             <div className="card">
                                                 <div className="card-body pb-0">
@@ -459,10 +459,10 @@ const StudentDetails = ({student}) => {
                                                             {student.data?.yearly_income}
                                                         </dd>
                                                         <dt className="col-sm-4">
-                                                            <span className="mx-2"/>
+                                                            <span className="mx-2" />
                                                         </dt>
                                                         <dd className="col-sm-8">
-                                                            <span className="mx-2"/>
+                                                            <span className="mx-2" />
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -515,7 +515,7 @@ const StudentDetails = ({student}) => {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                             <h4>Academic Information</h4>
-                                            <hr/>
+                                            <hr />
                                             <div className="row text-capitalize">
                                                 <div className="col-md-4">
                                                     <p>Class : {student.data.admitted_class?.name}</p>
@@ -537,27 +537,27 @@ const StudentDetails = ({student}) => {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                             <h4>Attendance</h4>
-                                            <hr/>
+                                            <hr />
                                             <table className="table">
                                                 <thead>
-                                                <tr>
-                                                    <th scope="col">Year</th>
-                                                    <th scope="col">Month</th>
-                                                    <th scope="col">Total Class</th>
-                                                    <th scope="col">Present</th>
-                                                    <th scope="col">Absent</th>
-                                                    <th scope="col">Comment</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th scope="col">Year</th>
+                                                        <th scope="col">Month</th>
+                                                        <th scope="col">Total Class</th>
+                                                        <th scope="col">Present</th>
+                                                        <th scope="col">Absent</th>
+                                                        <th scope="col">Comment</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                </tr>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                        <td>@mdo</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>

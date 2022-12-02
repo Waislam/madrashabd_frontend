@@ -57,27 +57,6 @@ const StudentDetailForm = (props) => {
         setLoading(false)
     };
 
-    //handle address field generation
-    //get division
-    // const [division_List, setDivisionList] = useState(null)
-
-
-    // const getDivision = async () => {
-    //     const list = await axios.get(`${BASE_URL}/accounts/division/`)
-    //     const division = list.data
-    //     setDivisionList(division)
-    // }
-
-    //set single division valuel 
-    // const getSingleDivison=(e)=>{
-    //     console.log("divison value: ", e.target.value)
-    //     setSelectPresentAddressDivision(e.target.value)
-    //     console.log(setSelectPresentAddressDivision)
-    // }
-
-    // console.log("setSelectPresentAddressDivision: ", setSelectPresentAddressDivision)
-    // console.log("division: ", divisionList)
-
     return (
         <>
             <div className="student-details">
