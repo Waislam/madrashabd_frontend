@@ -1,79 +1,33 @@
-import React, { useState } from "react";
-import styles from './Admission.module.css'
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { calculateAge } from '../Utils/utils'
 
-import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
-
-const StudentDetailForm = (props) => {
-    const [loading, setLoading] = useState(false)
+const StudentUpdateForm = ({data}) => {
+    // Distracturing Props
     const {
-        nextStep, prevStep,
-        divisionList, districtList, postOfficeList,
-        postCodeList, thanaList,
+        studentDetails,
+        divisionList,
+        districtList,
+        postCodeList,
+        postOfficeList,
+        thanaList,
+        designationList
+    } = data;
 
-        pdistrictList, pthanaList, ppostOfficeList, ppostCodeList,
+    // Object for set default value in react hook form for update
+    const formDefaultValues = {}
 
-        setSelectPresentAddressDistrict, setSelectPresentAddressDivision,
-        setSelectPresentAddressThana, setSelectPresentAddressPostCode,
-        setSelectPresentAddressPostOffice,
-        setSelectPermanentAddressDistrict, setSelectPermanentAddressDivision,
-        setSelectPermanentAddressPostCode, setSelectPermanentAddressPostOffice,
-        setSelectPermanentAddressThana, session
-    } = props
-    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
-    const [getAge, setAge] = useState('')
+    // Use react-hook-form
+    const { register, handleSubmit, loading, formState: { errors } } = useForm(
+        {
+            mode: "onChange",
+            defaultValues: formDefaultValues
+        }
+    );
 
-
-    const {
-        handleSubmit,
-        setError,
-        formState: { errors },
-        register,
-        setValue
-    } = useForm({
-        mode: "onChange",
-    });
-
-    //handle calculate age
-    const setAgeonChangeofdateOfBirth = (e) => {
-        e.preventDefault()
-        console.log("e.target.value: ", e.target.value)
-        const birthDate = e.target.value
-        calculateAge(birthDate)
-        const result = calculateAge(birthDate)
-        setAge(result)
-        setValue('age', result);
+    // Function for updating student
+    const onSubmit = () => {
+        console.log("Hello I'm clicked")
     }
-
-    const onSubmit = (values) => {
-        console.log("values", values)
-        setLoading(true)
-        setAdmissionFormValues(values);
-        nextStep();
-        setLoading(false)
-    };
-
-    //handle address field generation
-    //get division
-    // const [division_List, setDivisionList] = useState(null)
-
-
-    // const getDivision = async () => {
-    //     const list = await axios.get(`${BASE_URL}/accounts/division/`)
-    //     const division = list.data
-    //     setDivisionList(division)
-    // }
-
-    //set single division valuel 
-    // const getSingleDivison=(e)=>{
-    //     console.log("divison value: ", e.target.value)
-    //     setSelectPresentAddressDivision(e.target.value)
-    //     console.log(setSelectPresentAddressDivision)
-    // }
-
-    // console.log("setSelectPresentAddressDivision: ", setSelectPresentAddressDivision)
-    // console.log("division: ", divisionList)
 
     return (
         <>
@@ -90,7 +44,6 @@ const StudentDetailForm = (props) => {
                                         <label htmlFor="first_name" className="form-label">First Name</label>
                                         <input
                                             type="text"
-                                            defaultValue={admissionData.first_name}
                                             placeholder="Student's First name"
                                             className="form-control"
                                             id="first_name"
@@ -102,7 +55,6 @@ const StudentDetailForm = (props) => {
                                         <label htmlFor="last_name" className="form-label">Last Name</label>
                                         <input
                                             type="text"
-                                            defaultValue={admissionData.last_name}
                                             placeholder="Last name"
                                             className="form-control"
                                             id="last_name"
@@ -117,12 +69,12 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
                                             <input
                                                 type="date"
-                                                defaultValue={admissionData.date_of_birth}
+
                                                 className="form-control"
                                                 placeholder="Date of Birth"
                                                 id="date_of_birth"
                                                 {...register("date_of_birth", { required: true })}
-                                                onChange={setAgeonChangeofdateOfBirth}
+                                                // onChange={setAgeonChangeofdateOfBirth}
                                             />
                                         </div>
                                         <div>
@@ -136,8 +88,6 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="age" className="form-label">Age</label>
                                             <input
                                                 type="text"
-                                                defaultValue={admissionData.age}
-                                                value={getAge}
                                                 className="form-control"
                                                 placeholder="Age"
                                                 name="age"
@@ -156,7 +106,7 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="birth_certificate" className="form-label">Barth Certificate Number</label>
                                             <input
                                                 type="text"
-                                                defaultValue={admissionData.birth_certificate}
+
                                                 className="form-control"
                                                 placeholder="Birth Certificate"
                                                 id="birth_certificate"
@@ -176,7 +126,7 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="passport_number" className="form-label">Passport Number</label>
                                             <input
                                                 type="text"
-                                                defaultValue={admissionData.passport_number}
+
                                                 className="form-control"
                                                 placeholder="Passport"
                                                 id="passport_number"
@@ -189,7 +139,7 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="student_nid" className="form-label">Student NID (If Has)</label>
                                             <input
                                                 type="text"
-                                                defaultValue={admissionData.student_nid}
+
                                                 className="form-control"
                                                 placeholder="Give Student NID number if has"
                                                 id="student_nid"
@@ -203,7 +153,6 @@ const StudentDetailForm = (props) => {
                                         <label htmlFor="nationality" className="form-label">Nationality</label>
                                         <select
                                             name="nationality"
-                                            defaultValue={admissionData.nationality}
                                             className="form-select"
                                             id="nationality"
                                             {...register("nationality", { required: true })}
@@ -220,7 +169,7 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="religion" className="form-label">Religion</label>
                                             <select
                                                 name="religion"
-                                                defaultValue={admissionData.religion}
+
                                                 className="form-select"
                                                 id="religion"
                                                 {...register("religion", { required: true })}
@@ -242,7 +191,7 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="gender" className="form-label">Gender</label>
                                             <select
                                                 name="gender"
-                                                defaultValue={admissionData.gender}
+
                                                 className="form-select"
                                                 id="gender"
                                                 {...register("gender", { required: true })}
@@ -269,11 +218,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="present_address_division" className="form-label">Division</label>
                                             <select
                                                 name="present_address_division"
-                                                defaultValue={admissionData.present_address_division}
+
                                                 id="present_address_division"
                                                 className="form-select"
                                                 {...register("present_address_division", { required: true })}
-                                                onChange={(e) => setSelectPresentAddressDivision(e.target.value)}
                                             >
                                                 <option>Select Division</option>
                                                 {
@@ -296,11 +244,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="present_address_district" className="form-label">District</label>
                                             <select
                                                 name="present_address_district"
-                                                defaultValue={admissionData.present_address_district}
+
                                                 id="present_address_district"
                                                 className="form-select"
-                                                {...register("present_address_district", { required: true })}
-                                                onChange={(e) => setSelectPresentAddressDistrict(e.target.value)}
+                                                {...register("present_address_district", { required: true })}                                                
                                             >
                                                 <option>Select District</option>
                                                 {
@@ -324,11 +271,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="present_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="present_address_thana"
-                                                defaultValue={admissionData.present_address_thana}
+
                                                 id="present_address_thana"
                                                 className="form-select"
                                                 {...register("present_address_thana", { required: true })}
-                                                onChange={(e) => setSelectPresentAddressThana(e.target.value)}
                                             >
                                                 <option>Select Thana</option>
                                                 {
@@ -353,11 +299,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="present_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="present_address_post_office"
-                                                defaultValue={admissionData.present_address_post_office}
+
                                                 id="present_address_post_office"
                                                 className="form-select"
-                                                {...register("present_address_post_office", { required: true })}
-                                                onChange={(e) => setSelectPresentAddressPostOffice(e.target.value)}
+                                                {...register("present_address_post_office", { required: true })}                                                
                                             >
                                                 <option>Select Post Office</option>
                                                 {
@@ -380,11 +325,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="present_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="present_address_post_code"
-                                                defaultValue={admissionData.present_address_post_code}
+
                                                 id="present_address_post_code"
                                                 className="form-select"
-                                                {...register("present_address_post_code", { required: true })}
-                                                onChange={(e) => setSelectPresentAddressPostCode(e.target.value)}
+                                                {...register("present_address_post_code", { required: true })}                                                
                                             >
                                                 <option>Select Post Code ...</option>
                                                 {
@@ -408,7 +352,6 @@ const StudentDetailForm = (props) => {
                                         <label htmlFor="student_present_address_info" className="form-label">Address Details</label>
                                         <textarea
                                             className="form-control"
-                                            defaultValue={admissionData.student_present_address_info}
                                             placeholder="House/Flat/Road/Town/Village"
                                             id="student_present_address_info"
                                             {...register("student_present_address_info", { required: true })}
@@ -435,11 +378,10 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="permanent_address_division" className="form-label">Division</label>
                                             <select
                                                 name="permanent_address_division"
-                                                defaultValue={admissionData.permanent_address_division}
+
                                                 id="permanent_address_division"
                                                 className="form-select"
                                                 {...register("permanent_address_division", { required: true })}
-                                                onChange={(e) => setSelectPermanentAddressDivision(e.target.value)}
                                             >
                                                 <option>Select Division</option>
                                                 {
@@ -462,15 +404,14 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="permanent_address_district" className="form-label">District</label>
                                             <select
                                                 name="permanent_address_district"
-                                                defaultValue={admissionData.permanent_address_district}
+
                                                 id="permanent_address_district"
                                                 className="form-select"
-                                                {...register("permanent_address_district", { required: true })}
-                                                onChange={(e) => setSelectPermanentAddressDistrict(e.target.value)}
+                                                {...register("permanent_address_district", { required: true })}        
                                             >
                                                 <option>Select District</option>
                                                 {
-                                                    pdistrictList && pdistrictList.map((district) => (
+                                                    districtList && districtList.map((district) => (
                                                         <option key={district.pk} value={district.pk}>
                                                             {district.name}
                                                         </option>
@@ -489,15 +430,14 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="permanent_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="permanent_address_thana"
-                                                defaultValue={admissionData.permanent_address_thana}
+
                                                 id="permanent_address_thana"
                                                 className="form-select"
-                                                {...register("permanent_address_thana", { required: true })}
-                                                onChange={(e) => setSelectPermanentAddressThana(e.target.value)}
+                                                {...register("permanent_address_thana", { required: true })}                                                
                                             >
                                                 <option>Select Thana</option>
                                                 {
-                                                    pthanaList && pthanaList.map((thana) => (
+                                                    thanaList && thanaList.map((thana) => (
                                                         <option key={thana.pk} value={thana.pk}>
                                                             {thana.name}
                                                         </option>
@@ -518,15 +458,14 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="permanent_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="permanent_address_post_office"
-                                                defaultValue={admissionData.permanent_address_post_office}
+
                                                 id="permanent_address_post_office"
                                                 className="form-select"
-                                                {...register("permanent_address_post_office", { required: true })}
-                                                onChange={(e) => setSelectPermanentAddressPostOffice(e.target.value)}
+                                                {...register("permanent_address_post_office", { required: true })}                                                
                                             >
                                                 <option>Select Post Office</option>
                                                 {
-                                                    ppostOfficeList && ppostOfficeList.map((post_office) => (
+                                                    postOfficeList && postOfficeList.map((post_office) => (
                                                         <option key={post_office.pk} value={post_office.pk}>
                                                             {post_office.name}
                                                         </option>
@@ -545,15 +484,14 @@ const StudentDetailForm = (props) => {
                                             <label htmlFor="permanent_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="permanent_address_post_code"
-                                                defaultValue={admissionData.permanent_address_post_code}
+
                                                 id="permanent_address_post_code"
                                                 className="form-select"
-                                                {...register("permanent_address_post_code", { required: true })}
-                                                onChange={(e) => setSelectPermanentAddressPostCode(e.target.value)}
+                                                {...register("permanent_address_post_code", { required: true })}                                                
                                             >
                                                 <option>Select Post Code</option>
                                                 {
-                                                    ppostCodeList && ppostCodeList.map((post_code) => (
+                                                    postCodeList && postCodeList.map((post_code) => (
                                                         <option key={post_code.pk} value={post_code.pk}>
                                                             {post_code.name}
                                                         </option>
@@ -573,7 +511,6 @@ const StudentDetailForm = (props) => {
                                         <label htmlFor="student_permanent_address_info" className="form-label">Address Details</label>
                                         <textarea
                                             className="form-control"
-                                            defaultValue={admissionData.student_permanent_address_info}
                                             placeholder="House/Flat/Road/Town/Village"
                                             id="student_permanent_address_info"
                                             {...register("student_permanent_address_info", { required: true })}
@@ -586,24 +523,12 @@ const StudentDetailForm = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            {
-                                loading ?
-                                    <button className={styles.defaultBtn}>Loading</button>
-                                    :
-                                    <button className={styles.defaultBtn} type='submit'>Next Step</button>
-                            }
                         </form>
                     </div>
                 </div>
             </div>
         </>
-    )
-
+    );
 };
 
-
-export default StudentDetailForm;
-
-
-
-
+export default StudentUpdateForm;

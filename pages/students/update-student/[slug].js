@@ -1,22 +1,35 @@
 import React from "react";
+import {useRouter} from 'next/router'
+import StudentUpdateForm from "../../../components/Students/StudentUpdateForm";
+import { getStudentDetailApi } from "../../api/StudentAPI/students_api";
 import Layout from "../../../components/Layout/Layout";
+import { getSession } from "next-auth/react";
 import {BASE_URL} from "../../api/api";
-import {getSession} from "next-auth/react";
 import {getDepartmentList, getDesignationList} from "../../api/settings_api";
-import {getTeacherDetailApi} from "../../api/TeacherAPI/teacher_api";
-import TeacherUpdate from "../../../components/Teachers/TeacherUpdate";
 
-const UpdateTeacherPage = (props) => {
+const StudentDetail = (props) => {
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return (
+            <h1>Loading....</h1>
+        )
+    }
+
     return (
-        <>
-            <TeacherUpdate data={props}/>
-        </>
+        <div className="container">
+            <StudentUpdateForm
+                data={props}
+            />
+        </div>
     )
 };
 
 
-export async function getServerSideProps({req, params}) {
-    const session = await getSession({req})
+export async function getServerSideProps({ req, params }) {
+    const studentDetails = await getStudentDetailApi(params.slug);
+
+    const session = await getSession({ req })
     const madrasha_slug = session?.user.madrasha_slug
 
     const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
@@ -35,37 +48,28 @@ export async function getServerSideProps({req, params}) {
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
+    const designationList = await getDesignationList(madrasha_slug).then(data => data)
 
-    const teacher = await getTeacherDetailApi(params.slug).then(data => data);
-
-    const designationList = await getDesignationList(madrasha_slug).then(data => data);
-
-
-    // will receive `posts` as a prop at build time
     return {
         props: {
+            studentDetails,
             divisionList,
             districtList,
             postCodeList,
             postOfficeList,
             thanaList,
-            departmentList,
-            teacher,
-            designationList
+            designationList,
+            departmentList
         },
-    }
+    };
 }
 
+export default StudentDetail;
 
-export default UpdateTeacherPage;
-
-
-UpdateTeacherPage.getLayout = (page) => {
-
+StudentDetail.getLayout = (page) => {
     return (
         <Layout>
             {page}
         </Layout>
     )
 };
-
