@@ -5,8 +5,8 @@ import Routine from "../../../components/Talimat/Examination/Routine";
 import Layout from "../../../components/Layout/Layout";
 
 // api
-import {BASE_URL} from "../../api/api";
-import {getSession} from "next-auth/react";
+import api, { BASE_URL } from "../../api/api";
+import { getSession } from "next-auth/react";
 
 const RoutinePage = (props) => {
     // console.log('props data', props)
@@ -17,15 +17,20 @@ const RoutinePage = (props) => {
                 classList={props.classList}
                 examTermList={props.examTermList}
                 madrashaBookList={props.madrashaBookList}
+                routineList={props.routineDataList}
             />
         </>
     )
 };
 
 
-export async function getServerSideProps({req}) {
-    const session = await getSession({req})
+export async function getServerSideProps({ req }) {
+    const session = await getSession({ req })
     const madrasha_slug = session?.user.madrasha_slug
+
+    //get routine list
+    const routineData = await api.get(`/talimat/${madrasha_slug}/exam-routine/`)
+    const routineDataList = routineData.data
 
     const madrashaBookRes = await fetch(`${BASE_URL}/settings/${madrasha_slug}/books/`)
     const madrashaBookList = await madrashaBookRes.json()
@@ -41,7 +46,8 @@ export async function getServerSideProps({req}) {
         props: {
             madrashaBookList,
             classList,
-            examTermList
+            examTermList,
+            routineDataList
         },
     }
 }

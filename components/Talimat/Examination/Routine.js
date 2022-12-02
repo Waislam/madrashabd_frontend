@@ -9,11 +9,45 @@ import SideMenu from './ExamSideMenu';
 import RoutineCreateModal from "../Routine/RoutineModal/RoutineCreateModal";
 import { useState } from "react";
 
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
+
 const ExamRoutine = (props) => {
+
+    // console.log("props value in Routine.js file: ", props.routineList)
     const [showExamRoutineCreateModal, setShowExamRoutineCreateModal] = useState(false)
 
     const handleExamRoutineCreateModalClose = () => setShowExamRoutineCreateModal(false)
     const handleExamRoutineCreateModalOpen = () => setShowExamRoutineCreateModal(true)
+
+    //handle get field value of routine list
+
+    // const columns = [
+    //     {
+    //         field: "routine_class.name",
+    //         headerName: 'Class',
+    //         valueGetter: (params) => {
+    //             return (
+    //                 `${params?.row?.routine_class?.name}`
+    //             )
+    //         }
+    //     },
+    //     {
+    //         field: "subject",
+    //         renderHeader: () => {
+    //             console.log("do something: ", props.routineList)
+    //             return (
+    //                 <h5>do</h5>
+    //             )
+    //         },
+    //         // valueGetter: (params: GridColumnHeaderParams) => {
+    //         //     return (
+    //         //         `${params?.row?.routine_class?.name}`
+    //         //     )
+    //         // }
+    //     },
+    // ]
+
 
     return (
         <>
@@ -46,6 +80,29 @@ const ExamRoutine = (props) => {
                                                     </div>
                                                     <div className="row">
                                                         <div className="register-table mt-4">
+
+                                                            {/* <Box sx={{ height: 500, width: '100%' }}>
+                                                                <DataGrid
+                                                                    rows={props.routineList}
+                                                                    columns={columns}
+                                                                    // pageSize={5}
+                                                                    // rowsPerPageOptions={[5]}
+                                                                    disableColumnMenu
+                                                                    checkboxSelection
+                                                                    disableSelectionOnClick
+                                                                    disableColumnFilter
+                                                                    disableColumnSelector
+                                                                    disableDensitySelector
+                                                                    components={{ Toolbar: GridToolbar }}
+                                                                    experimentalFeatures={{ newEditingApi: false }}
+                                                                    componentsProps={{
+                                                                        toolbar: {
+                                                                            showQuickFilter: true,
+                                                                            quickFilterProps: { debounceMs: 500 },
+                                                                        },
+                                                                    }}
+                                                                />
+                                                            </Box> */}
                                                             <div className="table-responsive">
                                                                 <table className="table table-striped">
                                                                     <thead>
@@ -101,12 +158,12 @@ const ExamRoutine = (props) => {
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div className="downloadButton">
+                                                        {/* <div className="downloadButton">
                                                             <button type='button' className={styles.defaultBtn}>Download</button>
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                     {/* exam routine create form */}
-                                                    <div className="exam-routine-form mt-5">
+                                                    {/* <div className="exam-routine-form mt-5">
                                                         <form action="#" method="POST">
                                                             <div className="row">
                                                                 <div className="col-md-2">
@@ -127,7 +184,7 @@ const ExamRoutine = (props) => {
                                                             </div>
                                                             <button type="submit" className={`${styles.defaultBtn} my-3`}>Save</button>
                                                         </form>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +196,7 @@ const ExamRoutine = (props) => {
                 </div>
             </section>
 
-            // create modal
+            {/* // create modal */}
             <RoutineCreateModal
                 show={showExamRoutineCreateModal}
                 handleClose={handleExamRoutineCreateModalClose}

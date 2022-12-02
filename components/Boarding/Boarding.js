@@ -108,7 +108,6 @@ const Boarding = ({ handleAddBazarListModal, bazarlist, madrasha_slug, madrasha_
             headerName: "Action",
             flex: 1,
             renderCell: (params) => {
-                console.log("parama:", params)
                 return (
                     < div className = "float-md-end" >
                         <button className="btn btn-primary me-3"
