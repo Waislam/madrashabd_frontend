@@ -3,7 +3,7 @@ import ReactToPrint from 'react-to-print';
 
 import {StudentIncomeMoneyReceipt} from './StudentIncomeMoneyReceipt';
 
-const StudentIncomeDetail = ({student_income}) => {
+const StudentIncomeDetail = ({student_income, madrasha_name}) => {
     const componentRef = useRef();
 
     return (
@@ -14,7 +14,11 @@ const StudentIncomeDetail = ({student_income}) => {
                     content={() => componentRef.current}
                 />
             </div>
-            <StudentIncomeMoneyReceipt ref={componentRef} student_income={student_income} />
+            <StudentIncomeMoneyReceipt
+                ref={componentRef}
+                student_income={student_income}
+                madrasha_name={madrasha_name}
+            />
         </div>
     );
 };

@@ -82,6 +82,7 @@ const ResultSheetPage = (props) => {
                                     <th scope="col">#</th>
                                     <th scope="col">Subject Name</th>
                                     <th scope="col">Marks</th>
+                                    <th scope="col">Total marks</th>
                                     <th scope="col">Teacher</th>
                                 </tr>
                                 </thead>
@@ -91,6 +92,7 @@ const ResultSheetPage = (props) => {
                                         <th scope="row">{index}</th>
                                         <td>{mark?.subject?.name}</td>
                                         <td>{mark.mark}</td>
+                                        <td>Total marks</td>
                                         <td>Sakib</td>
                                     </tr>
 
@@ -124,12 +126,13 @@ export const getServerSideProps = async ({req, params}) => {
 
     const subject_marks_response = await api.get(`/talimat/${params.slug}/subject-mark/`);
     const subject_mark_list = subject_marks_response.data;
-    console.log("session_data", session_data)
+    console.log("session_data", session_data);
 
     return {
         props: {
             subject_mark_list,
-            session_data
+            session_data,
+            madrasha_slug
         }
     }
 };
