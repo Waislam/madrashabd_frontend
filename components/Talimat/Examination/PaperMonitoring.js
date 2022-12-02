@@ -21,11 +21,12 @@ const ExamPaperMonitoring = () =>{
                                             <div className={styles.exam}>
                                                 <div className="row">
                                                     <h2 className="col-md-6"><u>Answer Paper Monitoring</u></h2>
-                                                    <div className="col-md-6">
+                                                    <h1>Comming Soon.....</h1>
+                                                    {/* <div className="col-md-6">
                                                         <button type="button" className={`${styles.defaultBtn} float-md-end`} >Add</button>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
-                                                <div className="motoring-table">
+                                                {/* <div className="motoring-table">
                                                     <div className="table-responsive">
                                                         <table className="table table-striped">
                                                             <thead>
@@ -69,12 +70,12 @@ const ExamPaperMonitoring = () =>{
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                </div>
-                                                <div>
+                                                </div> */}
+                                                {/* <div>
                                                     <button type="button" className={styles.defaultBtn}> download</button>
-                                                </div>
+                                                </div> */}
                                                 {/* add motor list */}
-                                                <div className="add-moitors mt-5">
+                                                {/* <div className="add-moitors mt-5">
                                                     <form action="#" method="POST">
                                                         <div className="row">
                                                             <div className="col-md-3">
@@ -94,7 +95,7 @@ const ExamPaperMonitoring = () =>{
                                                             <button type="submit" className={styles.defaultBtn}>Save</button>
                                                         </div>
                                                     </form>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
