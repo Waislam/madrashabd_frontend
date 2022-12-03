@@ -30,6 +30,7 @@ const AdmissionForm = (props) => {
 
 
     const [step, setStep] = useState(1);
+    const [isloading, setIsloading] = useState(false)
 
     const [divisionList, setDivisionList] = useState([]);
     const [postOfficeList, setPostOfficeList] = useState([]);
@@ -44,12 +45,12 @@ const AdmissionForm = (props) => {
 
 
 
-    const [departmentList, setDepartmentList] = useState([]);
+    // const [departmentList, setDepartmentList] = useState([]);
     const [designationList, setDesignationList] = useState([]);
-    const [classList, setClassList] = useState([]);
-    const [groupList, setGroupList] = useState([]);
-    const [sessionList, setSessionList] = useState([]);
-    const [shiftList, setShiftList] = useState([]);
+    // const [classList, setClassList] = useState([]);
+    // const [groupList, setGroupList] = useState([]);
+    // const [sessionList, setSessionList] = useState([]);
+    // const [shiftList, setShiftList] = useState([]);
 
     const [selectPresentAddressDistrict, setSelectPresentAddressDistrict] = useState('');
     const [selectPresentAddressDivision, setSelectPresentAddressDivision] = useState('');
@@ -74,34 +75,34 @@ const AdmissionForm = (props) => {
     };
 
     useEffect(() => {
-        getDepartmentList(madrasha_slug).then((data) => {
-            setDepartmentList(data)
-        })
+        // getDepartmentList(`${madrasha_slug}`).then((data) => {
+        //     setDepartmentList(data)
+        // })
 
         getDesignationList(madrasha_slug).then((data) => {
             setDesignationList(data)
         })
 
-        getClassList(madrasha_slug).then((data) => {
-            setClassList(data)
-        })
+        // getClassList(madrasha_slug).then((data) => {
+        //     setClassList(data)
+        // })
 
-        getGroupList(madrasha_slug).then((data) => {
-            setGroupList(data)
-        })
+        // getGroupList(madrasha_slug).then((data) => {
+        //     setGroupList(data)
+        // })
 
-        getSessionList(madrasha_slug).then((data) => {
-            setSessionList(data)
-        })
+        // getSessionList(madrasha_slug).then((data) => {
+        //     setSessionList(data)
+        // })
 
-        getShiftList(madrasha_slug).then((data) => {
-            setShiftList(data)
-        })
+        // getShiftList(madrasha_slug).then((data) => {
+        //     setShiftList(data)
+        // })
 
     }, [])
 
 
-    console.log("department list inside admission form: ", departmentList)
+    console.log("department list inside admission form: ", props.deapartments)
 
     useEffect(() => {
 
@@ -264,16 +265,18 @@ const AdmissionForm = (props) => {
             );
         case 3:
             return (
-                <PreviousInstitutionForm
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                    session={props.session}
-                    departmentList={departmentList}
-                    shiftList={shiftList}
-                    classList={classList}
-                    groupList={groupList}
-                    sessionList={sessionList}
-                />
+                <>
+                    <PreviousInstitutionForm
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        session={props.session}
+                        departmentList={props.deapartments}
+                        classList={props.classes}
+                        groupList={props.groups}
+                        shiftList={props.shifts}
+                        sessionList={props.session_year}
+                    />
+                </>
             );
         default:
 
@@ -281,13 +284,6 @@ const AdmissionForm = (props) => {
 };
 
 
-// export const serverSideProps = async ({ req }) => {
-
-//     const session = await getSession({req})
-//     const madrasha_id = props.session?.user?.madrasha_id
-//     const madrasha_slug = props.session?.user?.madrasha_slug
-
-// }
 
 export default AdmissionForm;
 
