@@ -10,14 +10,17 @@ const HallNigranPage = (props) => {
 
     return (
         <>
-            <HallNigran hallDutyList={props.hallDutyList}/>
+            <HallNigran
+                hallDutyList={props.hallDutyList}
+                session_data={props.session_data}
+            />
         </>
     )
 };
 
 export async function getServerSideProps({req}) {
-    const session = await getSession({req})
-    const madrasha_slug = session?.user.madrasha_slug
+    const session_data = await getSession({req})
+    const madrasha_slug = session_data?.user.madrasha_slug
 
     const hallDutyListRes = await fetch(`${BASE_URL}/talimat/${madrasha_slug}/hall-duty/`)
     const hallDutyList = await hallDutyListRes.json()
@@ -25,7 +28,8 @@ export async function getServerSideProps({req}) {
     // will receive `posts` as a prop at build time
     return {
         props: {
-            hallDutyList
+            hallDutyList,
+            session_data
         },
     }
 }
