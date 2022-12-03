@@ -38,15 +38,19 @@ const StudentDetailForm = (props) => {
         mode: "onChange",
     });
 
+    // const [year, month, totalDay] = ageCalculate(birthDate)
+    // console.log("year:", year)
+    // console.log("months: ", month)
+    // console.log("days: ", totalDay)
     //handle calculate age
     const setAgeonChangeofdateOfBirth = (e) => {
         e.preventDefault()
-        console.log("e.target.value: ", e.target.value)
         const birthDate = e.target.value
-        calculateAge(birthDate)
-        const result = calculateAge(birthDate)
-        setAge(result)
-        setValue('age', result);
+        // calculateAge(birthDate)
+        const [year, month, totalDay] = calculateAge(birthDate)
+        // const result = calculateAge(birthDate)
+        setAge(`year:  ${year} month: ${month} day: ${totalDay}`)
+        setValue('age', `year:  ${year} month: ${month} day: ${totalDay}`); // setValue setting the value and setAGe getting the value to the field
     }
 
     const onSubmit = (values) => {
