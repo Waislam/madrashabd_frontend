@@ -146,7 +146,6 @@ const ParentInformationForm = (props) => {
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
                                                 <option value="doctor">Doctor</option>
-                                                <option value="police">Police</option>
                                                 <option value="businessman">Businessman</option>
                                                 <option value="non-govt-employee">Non govt. employee</option>
                                                 <option value="other">Other</option>
@@ -172,7 +171,6 @@ const ParentInformationForm = (props) => {
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
                                                 <option value="doctor">Doctor</option>
-                                                <option value="police">Police</option>
                                                 <option value="businessman">Businessman</option>
                                                 <option value="non-govt-employee">Non govt. employee</option>
                                                 <option value="other">Other</option>
@@ -222,7 +220,7 @@ const ParentInformationForm = (props) => {
                                             <option value="ssc/equivalent">SSC/equivalent</option>
                                             <option value="hsc/equivalent">HSC/equivalent</option>
                                             <option value="hons/equivalent">Hons/equivalent</option>
-                                            <option value="m.a./equivalent">M.A./equivalent</option>
+                                            <option value="ma/equivalent">M.A./equivalent</option>
                                             <option value="higher/equivalent">Higher/equivalent</option>
                                         </select>
                                     </div>

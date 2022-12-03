@@ -568,7 +568,7 @@ const StudentDetailForm = (props) => {
                                 loading ?
                                     <button className={styles.defaultBtn}>Loading</button>
                                     :
-                                    <button className={styles.defaultBtn} type='submit'>Next Step</button>
+                                    <button className={`${styles.defaultBtn} float-end`} type='submit'>Next Step</button>
                             }
                         </form>
                     </div>

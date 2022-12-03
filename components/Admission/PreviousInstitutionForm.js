@@ -274,7 +274,7 @@ const PreviousInstitutionForm = (props) => {
                             </div>
                             {/*Board exam information **********************************/}
                             <div className="board-exam-information mb-5">
-                                <h4>Board exam information</h4>
+                                <h4>Last Board exam information</h4>
                                 <div className="row">
                                     <div className="col-md-3">
                                         <label htmlFor="board_exam_name" className="form-label">Board Exam Name</label>
@@ -289,6 +289,9 @@ const PreviousInstitutionForm = (props) => {
                                             <option value="null">Select Board Exam</option>
                                             <option value="befak">Befak</option>
                                             <option value="haya">Haya</option>
+                                            <option value="befak_arabia">Befaq(Arabiya)</option>
+                                            <option value="befak_diniya">Befaq(Diniya)</option>
+                                            <option value="tanjimul madares">Tanjimul Madares</option>
                                         </select>
                                     </div>
                                     <div className="col-md-3">
@@ -459,7 +462,7 @@ const PreviousInstitutionForm = (props) => {
                                 </div>
                             </div>
                             {/*Academic Fees *******************************************/}
-                            <div className="academic-fees mb-5">
+                            {/* <div className="academic-fees mb-5">
                                 <h4>Part E</h4>
                                 <h5>Academic Fees</h5>
                                 <div className="row mb-3">
@@ -497,7 +500,7 @@ const PreviousInstitutionForm = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/*Talimat**************************************************/}
                             <div className="talimi mb-5">
                                 <h4>Part E</h4>
