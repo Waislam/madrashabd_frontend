@@ -5,7 +5,7 @@ import { getStudentDetailApi } from "../../api/StudentAPI/students_api";
 import Layout from "../../../components/Layout/Layout";
 import { getSession } from "next-auth/react";
 import {BASE_URL} from "../../api/api";
-import {getDepartmentList, getDesignationList} from "../../api/settings_api";
+import {getClassList, getDepartmentList, getDesignationList, getGroupList, getSessionList, getShiftList} from "../../api/settings_api";
 
 const StudentDetail = (props) => {
     const router = useRouter();
@@ -49,6 +49,11 @@ export async function getServerSideProps({ req, params }) {
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
     const designationList = await getDesignationList(madrasha_slug).then(data => data)
+    const classList = await getClassList(madrasha_slug).then(data => data)
+    const groupList = await getGroupList(madrasha_slug).then(data => data)
+    const shiftList = await getShiftList(madrasha_slug).then(data => data)
+    const sessionList = await getSessionList(madrasha_slug).then(data => data)
+    
 
     return {
         props: {
@@ -59,7 +64,11 @@ export async function getServerSideProps({ req, params }) {
             postOfficeList,
             thanaList,
             designationList,
-            departmentList
+            departmentList,
+            classList,
+            groupList,
+            shiftList,
+            sessionList
         },
     };
 }

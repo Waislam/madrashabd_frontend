@@ -10,7 +10,12 @@ const StudentUpdateForm = ({data}) => {
         postCodeList,
         postOfficeList,
         thanaList,
-        designationList
+        designationList,
+        departmentList,
+        classList,
+        groupList,
+        shiftList,
+        sessionList
     } = data;
 
     // Destructuring student Details
@@ -68,6 +73,26 @@ const StudentUpdateForm = ({data}) => {
             other_contact_person_relation: student?.other_contact_person_relation,
             other_contact_person_contact: student?.other_contact_person_contact,
             sibling_id: student?.sibling_id,
+            previous_institution_name: student?.previous_institution_name,
+            previous_institution_contact: student?.previous_institution_contact,
+            previous_started_at: student?.previous_started_at,
+            previous_ending_at: student?.previous_ending_at,
+            previous_ending_class: student?.previous_ending_class,
+            previous_ending_result: student?.previous_ending_result,
+            board_exam_name: student?.board_exam_name,
+            board_exam_registration: student?.board_exam_registration,
+            board_exam_roll: student?.board_exam_roll,
+            board_exam_result: student?.board_exam_result,
+            admitted_department: student?.admitted_department.id,
+            admitted_class: student?.admitted_class.id,
+            admitted_group: student?.admitted_group.id,
+            admitted_shift: student?.admitted_shift.id,
+            admitted_roll: student?.admitted_roll,
+            admitted_session: student?.admitted_session.id,
+            student_blood_group: student?.student_blood_group,
+            special_body_sign: student?.special_body_sign,
+            talimi_murobbi_name: student?.talimi_murobbi_name,
+            eslahi_murobbi_name: student?.eslahi_murobbi_name,
         }
 
     // Use react-hook-form
@@ -993,6 +1018,287 @@ const StudentUpdateForm = ({data}) => {
                                 </div>
                             </div>
                             {/* ========End Student's Parent and Guardian Information section ======= */}
+
+                            {/* ========Start Student's Previous Institute Information section ======= */}
+                            {/*Previous Institution ************************************/}
+                            <div className="previous-institution mt-5">
+                                <h4>Previous Institution Information</h4>
+                                <div className="row mb-3 mt-3">
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_institution_name" className="form-label">Previous Institution Name</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Name of institution"
+                                            className="form-control"
+                                            id="previous_institution_name"
+                                            {...register("previous_institution_name")}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_institution_contact" className="form-label">Previous Institution Contact</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Institution Contact Number"
+                                            className="form-control"
+                                            id="previous_institution_contact"
+                                            {...register("previous_institution_contact")}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_started_at" className="form-label">Previous Institution Start To</label>
+                                        <input
+                                            type="date"                                            
+                                            placeholder="Start Date"
+                                            className="form-control"
+                                            id="previous_started_at"
+                                            {...register("previous_started_at")}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_ending_at" className="form-label">Previous Institution Start From</label>
+                                        <input
+                                            type="date"                                            
+                                            placeholder="Finished Date"
+                                            className="form-control"
+                                            id="previous_ending_at"
+                                            {...register("previous_ending_at")}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_ending_class" className="form-label">Previous Institution Ending Class</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Finished Class"
+                                            className="form-control"
+                                            id="previous_ending_class"
+                                            {...register("previous_ending_class")}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="previous_ending_result" className="form-label">Previous Institution Result</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Results/Marks"
+                                            className="form-control"
+                                            id="previous_ending_result"
+                                            {...register("previous_ending_result")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            {/*Board exam information **********************************/}
+                            <div className="board-exam-information mt-4">
+                                <h4>Board exam information</h4>
+                                <div className="row">
+                                    <div className="col-md-3">
+                                        <label htmlFor="board_exam_name" className="form-label">Board Exam Name</label>
+                                        <select
+                                            type="text"                                            
+                                            placeholder="Exam Name"
+                                            className="form-select"
+                                            id="board_exam_name"
+                                            {...register("board_exam_name")}
+                                        >
+                                            <option value="null">Select Board Exam</option>
+                                            <option value="befak">Befak</option>
+                                            <option value="haya">Haya</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="board_exam_registration" className="form-label">Board Exam Registration</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Registration No"
+                                            className="form-control"
+                                            id="board_exam_registration"
+                                            {...register("board_exam_registration")}
+                                        />
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="board_exam_roll" className="form-label">Board Exam Roll</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Roll No"
+                                            className="form-control"
+                                            id="board_exam_roll"
+                                            {...register("board_exam_roll")}
+                                        />
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="board_exam_result" className="form-label">Board Exam Result</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="GPA"
+                                            className="form-control"
+                                            id="board_exam_result"
+                                            {...register("board_exam_result")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            {/*Admission Information ***********************************/}
+                            <div className="admission-information mt-4">
+                                <h4>Admission Information</h4>
+                                <div className="row mb-3">
+                                    <div className="col-md-3">
+                                        <label htmlFor="admitted_department" className="form-label">Admitted Department</label>
+                                        <select
+                                            name="admitted_department"                                            
+                                            className="form-select"
+                                            id="admitted_department"
+                                            {...register("admitted_department", { required: true })}
+                                        >
+                                            <option value=''>Choose department...</option>
+                                            {
+                                               departmentList && departmentList.map((department) => (
+                                                    <option value={department.id}>{department.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_department && (
+                                            <p className="text-danger">Select Department please</p>
+                                        )}
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="admitted_class" className="form-label">Admitted Class</label>
+                                        <select
+                                            name="admitted_class"                                            
+                                            className="form-select"
+                                            id="admitted_class"
+                                            {...register("admitted_class", { required: true })}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                classList.map((classData) => (
+                                                    <option value={classData.id}>{classData.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_class && (
+                                            <p className="text-danger">Class in required !!</p>
+                                        )}
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="admitted_group" className="form-label">Admitted Group</label>
+                                        <select
+                                            name="admitted_group"                                            
+                                            className="form-select"
+                                            id="admitted_group"
+                                            {...register("admitted_group")}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                groupList.map((group) => (
+                                                    <option value={group.id}>{group.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label htmlFor="admitted_shift" className="form-label">Admitted Shift</label>
+                                        <select
+                                            name="admitted_shift"                                            
+                                            className="form-select"
+                                            id="admitted_shift"
+                                            {...register("admitted_shift")}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                shiftList.map((shift) => (
+                                                    <option value={shift.id}>{shift.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-md-4">
+                                        <label htmlFor="admitted_session" className="form-label">Admitted Session</label>
+                                        <select
+                                            name="admitted_session"                                            
+                                            className="form-select"
+                                            id="admitted_session"
+                                            {...register("admitted_session", { required: true })}
+                                        >
+                                            <option value=''>Choose class...</option>
+                                            {
+                                                sessionList.map((sessionData) => (
+                                                    <option value={sessionData.id}>{sessionData.actual_year}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.admitted_session && (
+                                            <p className="text-danger">Session in required !!</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            {/*Others Information **************************************/}
+                            <div className="others-information mt-4">
+                                <h4>Others Information</h4>
+                                <div className="row mt-3">
+                                    <div className="col-md-6">
+                                        <label htmlFor="student_blood_group" className="form-label">Blood Group</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Blood Group"
+                                            className="form-control"
+                                            id="student_blood_group"
+                                            {...register("student_blood_group")}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="special_body_sign" className="form-label">Special Body Sign</label>
+                                        <input
+                                            type="text"                                            
+                                            placeholder="Special Body Identity Sign"
+                                            className="form-control"
+                                            id="special_body_sign"
+                                            {...register("special_body_sign")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/*Talimat**************************************************/}
+                            <div className="talimi mt-4 mb-3">
+                                <h4>Murobbi Selection</h4>
+                                <div className="row row-cols-1 row-cols-md-2">
+                                    <div className="col">
+                                        <h5>Talimat Murobbi</h5>
+                                        <div className="row mb-3">
+                                            <div className="col">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="talimi_murobbi_name"
+                                                    placeholder="Talimat Murobbi"
+                                                    {...register("talimi_murobbi_name")}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <h5>Eslahi Murobbi</h5>
+                                        <div className="row mb-3">
+                                            <div className="col">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="eslahi_murobbi_name"
+                                                    placeholder="Eslahi Murobbi"
+                                                    {...register("eslahi_murobbi_name")}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* ========End Student's Previous Institute Information section ======= */}
                         </form>
                     </div>
                 </div>
