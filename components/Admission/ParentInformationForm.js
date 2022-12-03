@@ -1,17 +1,17 @@
 import React from "react";
 import styles from './Admission.module.css'
-import {useForm} from "react-hook-form";
-import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import { useForm } from "react-hook-form";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 const ParentInformationForm = (props) => {
-    const {nextStep, prevStep} = props
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { nextStep, prevStep } = props
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
 
     const {
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
         register,
-    } = useForm({mode: "all"});
+    } = useForm({ mode: "all" });
 
     const onSubmit = (values) => {
         setAdmissionFormValues(values);
@@ -42,7 +42,7 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Father Name"
                                                 className="form-control"
                                                 id="parents_information_father_name"
-                                                {...register("parents_information_father_name", {required: true})}
+                                                {...register("parents_information_father_name", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -60,7 +60,7 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Mother Name"
                                                 className="form-control"
                                                 id="parents_information_mother_name"
-                                                {...register("parents_information_mother_name", {required: true})}
+                                                {...register("parents_information_mother_name", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -108,7 +108,7 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Father NID"
                                                 className="form-control"
                                                 id="parents_information_father_nid"
-                                                {...register("parents_information_father_nid", {required: true})}
+                                                {...register("parents_information_father_nid", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -126,13 +126,8 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Mothers NID"
                                                 className="form-control"
                                                 id="parents_information_mother_nid"
-                                                {...register("parents_information_mother_nid", {required: true})}
+                                                {...register("parents_information_mother_nid")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.parents_information_mother_nid && (
-                                                <p className="text-danger">Mother's NID is Required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +140,7 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.parents_information_father_occupation}
                                                 className="form-select"
                                                 id="parents_information_father_occupation"
-                                                {...register("parents_information_father_occupation", {required: true})}
+                                                {...register("parents_information_father_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Father occupation ...</option>
                                                 <option value="teacher">Teacher</option>
@@ -171,7 +166,7 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.parents_information_mother_occupation}
                                                 className="form-select"
                                                 id="parents_information_mother_occupation"
-                                                {...register("parents_information_mother_occupation", {required: true})}
+                                                {...register("parents_information_mother_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Mother occupation ...</option>
                                                 <option value="teacher">Teacher</option>
@@ -260,7 +255,7 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Father Contact"
                                                 className="form-control"
                                                 id="parents_information_father_contact"
-                                                {...register("parents_information_father_contact", {required: true})}
+                                                {...register("parents_information_father_contact", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -324,7 +319,7 @@ const ParentInformationForm = (props) => {
                                                 placeholder="Guardian Name"
                                                 className="form-control"
                                                 id="guardian_name"
-                                                {...register("guardian_name", {required: "Guarding Name is required"})}
+                                                {...register("guardian_name", { required: "Guarding Name is required" })}
                                             />
                                             <p className="text-danger">{errors?.guardian_name?.message}</p>
                                         </div>
@@ -335,7 +330,7 @@ const ParentInformationForm = (props) => {
                                                 defaultValue={admissionData.guardian_relation}
                                                 className="form-select"
                                                 id="guardian_relation"
-                                                {...register("guardian_relation", {required: "This field is required"})}
+                                                {...register("guardian_relation", { required: "This field is required" })}
                                             >
                                                 <option value="null">Choose guardian relation ...</option>
                                                 <option value="father">Father</option>
@@ -388,7 +383,7 @@ const ParentInformationForm = (props) => {
                                                     placeholder="Guardian Contact"
                                                     className="form-control"
                                                     id="guardian_contact"
-                                                    {...register("guardian_contact", {required: true})}
+                                                    {...register("guardian_contact", { required: true })}
                                                 />
                                             </div>
                                             <div>

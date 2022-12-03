@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import {
-    getClassList,
-    getDepartmentList,
-    getDesignationList,
-    getGroupList,
-    getSessionList, getShiftList
-} from "../api/settings_api";
+
 
 // components
 import Layout from '../../layouts/Layout';

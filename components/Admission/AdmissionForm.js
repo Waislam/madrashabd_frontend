@@ -102,8 +102,6 @@ const AdmissionForm = (props) => {
     }, [])
 
 
-    console.log("department list inside admission form: ", props.deapartments)
-
     useEffect(() => {
 
         const divisionDataLoad = async () => {
