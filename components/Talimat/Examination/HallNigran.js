@@ -211,12 +211,14 @@ const HallNigran = (props) => {
             <HallNigranCreateModal
                 show={hallNigranModalShow}
                 handleClose={handleHallNigranModalClose}
+                session_data={props.session_data}
             />
 
             <HallNigranDeleteModal
                 show={hallNigranDeleteModalShow}
                 handleClose={handleHallNigranDeleteModalClose}
                 hallNigranId={hallNigranId}
+                session_data={props.session_data}
             />
 
             {!loading && (
@@ -225,6 +227,7 @@ const HallNigran = (props) => {
                     handleClose={handleHallNigranEditModalClose}
                     hallNigranId={hallNigranId}
                     hallNigarData={hallNigarData}
+                    session_data={props.session_data}
                 />
             )}
 
