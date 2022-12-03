@@ -88,8 +88,8 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Exam</th>
                                                                 <th scope="col">Description</th>
-                                                                <th scope="col">Detail</th>
                                                                 <th scope="col">Action</th>
+                                                                <th scope="col">Detail</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -98,12 +98,6 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                     <th scope="row">{index + 1}</th>
                                                                     <td>{exam.exam_title}</td>
                                                                     <td>{exam.exam_description}</td>
-                                                                    <td>
-                                                                        <Link
-                                                                            href={`/talimat/exam/announcement/${exam.id}`}>
-                                                                            <a className="btn btn-secondary primary">Details</a>
-                                                                        </Link>
-                                                                    </td>
                                                                     <td>
                                                                         <button
                                                                             type='button'
@@ -119,6 +113,12 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                         >
                                                                             Remove
                                                                         </button>
+                                                                    </td>
+                                                                    <td>
+                                                                        <Link
+                                                                            href={`/talimat/exam/announcement/${exam.id}`}>
+                                                                            <a className="btn btn-secondary primary">Details</a>
+                                                                        </Link>
                                                                     </td>
                                                                 </tr>
                                                             ))}

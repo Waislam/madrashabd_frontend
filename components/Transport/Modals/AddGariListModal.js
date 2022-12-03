@@ -19,7 +19,7 @@ const AddGariListModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.session_data.user?.madrasha?.id,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "car_number": values.car_number,
                     "driver_name": values.driver_name,
                     "driver_number": values.driver_number,

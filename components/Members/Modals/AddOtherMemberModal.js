@@ -10,7 +10,7 @@ const AddOtherMemberModal = (props) => {
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/committee/${props.session.user?.madrasha_slug}/other-members/`, {
+        fetch(`${BASE_URL}/committee/${props.session_data.user?.madrasha_slug}/other-members/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -18,7 +18,7 @@ const AddOtherMemberModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.session.user?.madrasha?.id,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "member_name": values.member_name,
                     "address": values.address,
                     "phone_number": values.phone_number

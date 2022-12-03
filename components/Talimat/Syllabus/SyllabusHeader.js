@@ -50,6 +50,6 @@ const SyllabusHeader = () =>{
             </div>
         </>
     )
-}
+};
 
 export default SyllabusHeader;

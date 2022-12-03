@@ -3,9 +3,11 @@ import taliamatstyles from '../../Talimat.module.css'
 import SyllabusHeader from '../SyllabusHeader'
 import SyllabuSideMenu from '../SyllabusSideMenu';
 import {useState, useEffect} from 'react';
+import React, {useRef} from 'react';
+import ReactToPrint from 'react-to-print';
 
 const TeacherTrainingDetail = ({teacher_training_detail}) => {
-
+    const componentRef = useRef();
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
@@ -18,23 +20,24 @@ const TeacherTrainingDetail = ({teacher_training_detail}) => {
                                     <div className="card-body">
                                         <SyllabusHeader/>
                                         <hr/>
-                                        <div className="row">
-                                            <h2 className="text-center">Teachers Training</h2>
-                                            <hr/>
-                                            <div className="sub-page">
-                                                <div className={styles.syllabus}>
-                                                    <div className="row">
-                                                        <div className="col">
-                                                            <h3 className="text-center">{teacher_training_detail?.data?.training_title}</h3>
-                                                            <p className="text-justify">
-                                                                {teacher_training_detail?.data?.training_description}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <h2 className="text-center">Teachers Training</h2>
+                                        <hr/>
+                                        <div className="sub-page" ref={componentRef}>
+                                            <div className={styles.syllabus}>
+                                                <h3 className="text-center">{teacher_training_detail?.data?.training_title}</h3>
+                                                <p className="text-justify">
+                                                    {teacher_training_detail?.data?.training_description}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="text-center my-2">
+                                    <ReactToPrint
+                                        trigger={() => <button className="btn btn-primary primary">Print this
+                                            out!</button>}
+                                        content={() => componentRef.current}
+                                    />
                                 </div>
                             </div>
                         </div>

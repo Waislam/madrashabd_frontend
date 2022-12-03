@@ -4,12 +4,13 @@ import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
 import api, {BASE_URL} from "../../../pages/api/api";
 
+
 const AddCommitteeModal = (props) => {
     const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/committee/${props.session.user?.madrasha_slug}/list/`, {
+        fetch(`${BASE_URL}/committee/${props.session_data.user?.madrasha_slug}/list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -17,7 +18,7 @@ const AddCommitteeModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.session.user?.madrasha?.id,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "member_name": values.member_name,
                     "member_designation": values.member_designation,
                     "phone_number": values.phone_number

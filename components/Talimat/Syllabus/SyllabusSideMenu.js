@@ -24,7 +24,7 @@ const SyllabuSideMenu = () => {
                                 </Link>
                             </div>
                             <div className={styles.inActiveLink}>
-                                <Link href="/talimat/exam">
+                                <Link href="/talimat/exam/announcement">
                                     <a className="text-center">Examination</a>
                                 </Link>
                             </div>
