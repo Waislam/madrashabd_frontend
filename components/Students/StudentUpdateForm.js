@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const StudentUpdateForm = ({data}) => {
-    // Distracturing Props
+    // Destructuring Props
     const {
         studentDetails,
         divisionList,
@@ -13,8 +13,36 @@ const StudentUpdateForm = ({data}) => {
         designationList
     } = data;
 
+    // Destructuring student Details
+    const {data: student} = studentDetails;
+
+    console.log("I am student details object",student)
+
     // Object for set default value in react hook form for update
-    const formDefaultValues = {}
+    const formDefaultValues ={
+            first_name: student.user.first_name,
+            last_name: student.user.last_name,
+            date_of_birth: student.date_of_birth,
+            age: student.age,
+            birth_certificate: student.birth_certificate,
+            passport_number: student?.passport_number,
+            student_nid: student?.student_nid,
+            nationality: student?.nationality,
+            religion: student?.religion,
+            gender: student?.gender,
+            present_address_division: student?.present_address?.division.pk,
+            present_address_district: student?.present_address?.district.pk,
+            present_address_thana: student?.present_address?.thana.pk,
+            present_address_post_office: student?.present_address?.post_office.pk,
+            present_address_post_code: student?.present_address?.post_code.pk,
+            student_present_address_info: student?.present_address?.address_info,
+            permanent_address_division: student?.permanent_address?.division.pk,
+            permanent_address_district: student?.permanent_address?.district.pk,
+            permanent_address_thana: student?.permanent_address?.thana.pk,
+            permanent_address_post_office: student?.permanent_address?.post_office.pk,
+            permanent_address_post_code: student?.permanent_address?.post_code.pk,
+            student_permanent_address_info: student?.permanent_address?.address_info,
+        }
 
     // Use react-hook-form
     const { register, handleSubmit, loading, formState: { errors } } = useForm(
@@ -69,7 +97,6 @@ const StudentUpdateForm = ({data}) => {
                                             <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
                                             <input
                                                 type="date"
-
                                                 className="form-control"
                                                 placeholder="Date of Birth"
                                                 id="date_of_birth"
