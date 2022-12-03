@@ -152,6 +152,7 @@ const ExamARegistration = (props) => {
                 handleClose={handleRegistrationModalClose}
                 classList={classList}
                 termList={termList}
+                session_data={props.session_data}
             />
         </>
     )

@@ -20,8 +20,8 @@ const RegistrationPage = (props) => {
 };
 
 export async function getServerSideProps({req}) {
-    const session = await getSession({req})
-    const madrasha_slug = session?.user.madrasha_slug
+    const session_data = await getSession({req})
+    const madrasha_slug = session_data?.user.madrasha_slug
 
     const examRegistrationRes = await fetch(`${BASE_URL}/talimat/${madrasha_slug}/exam-registration/`)
     const examRegistrationList = await examRegistrationRes.json()
@@ -37,7 +37,8 @@ export async function getServerSideProps({req}) {
         props: {
             examRegistrationList,
             termList,
-            classList
+            classList,
+            session_data
         },
     }
 }
