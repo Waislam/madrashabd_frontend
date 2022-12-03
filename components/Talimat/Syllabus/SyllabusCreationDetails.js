@@ -1,9 +1,12 @@
+import React, {useRef} from 'react';
+import ReactToPrint from 'react-to-print';
 import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
 
 
 const SyllabusCreationDetails = ({syllabus_detail}) => {
+    const componentRef = useRef();
 
     return (
         <>
@@ -17,17 +20,22 @@ const SyllabusCreationDetails = ({syllabus_detail}) => {
                                     <div className="card-body">
                                         <SyllabusHeader/>
                                         <hr/>
-                                        <div className="row">
-                                            <div className="sub-page">
-                                                <h3 className="text-center">Syllabus Creation Details</h3>
-                                                <hr/>
-                                                <div className="col">
-                                                    <h4>{syllabus_detail?.data?.session_year}</h4>
-                                                    <p>{syllabus_detail?.data?.syllabus_details}</p>
-                                                </div>
+                                        <h3 className="text-center mb-2">Syllabus Creation Details</h3>
+                                        <hr/>
+                                        <div className="sub-page" ref={componentRef}>
+                                            <div className="p-2">
+                                                <h4 className="text-center">{syllabus_detail?.data?.session_year}</h4>
+                                                <p className="text-justify">{syllabus_detail?.data?.syllabus_details}</p>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="text-center my-2">
+                                    <ReactToPrint
+                                        trigger={() => <button className="btn btn-primary primary">Print this
+                                            out!</button>}
+                                        content={() => componentRef.current}
+                                    />
                                 </div>
                             </div>
                         </div>

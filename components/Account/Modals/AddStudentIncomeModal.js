@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react';
 
 const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees}) => {
 
-    const {data: session} = useSession()
+    const {data: session} = useSession();
 
     const { handleSubmit, formState: { errors }, register, } = useForm({
         mode: "all",
@@ -41,8 +41,6 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
         close()
 
     };
-
-
 
     const router = useRouter();
     //return shown ? (): null

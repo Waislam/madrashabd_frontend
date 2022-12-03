@@ -32,20 +32,21 @@ const AddTransportModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": props.session_data.user?.madrasha?.id,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "vehicle": values.vehicle
                 },
             )
         }).then((res) => res.json())
-
             .then((res) => {
                 console.log(res)
+            })
+            .then((res) => {
+                router.reload();
             })
             .catch((err) => {
                 console.log(err.message)
             });
         props.onHide();
-        router.reload();
 
     };
 
@@ -87,7 +88,7 @@ const AddTransportModal = (props) => {
                             </div>
                         </div>
                         <button
-                            className="btn btn-primary">
+                            className="btn btn-primary primary">
                             Submit
                         </button>
                     </form>
