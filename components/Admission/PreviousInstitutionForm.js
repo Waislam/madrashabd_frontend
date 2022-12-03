@@ -186,7 +186,7 @@ const PreviousInstitutionForm = (props) => {
                                             placeholder="New phone number"
                                             className="form-control"
                                             id="phone_number_new"
-                                            {...register("phone_number_new")}
+                                            {...register("phone_number_new", {required:true})}
                                         />
                                     </div>
                                     {errors.phone_number_new && (

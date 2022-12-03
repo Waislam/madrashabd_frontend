@@ -142,13 +142,8 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Birth Certificate"
                                                 id="birth_certificate"
-                                                {...register("birth_certificate", { required: true })}
+                                                {...register("birth_certificate")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.birth_certificate && (
-                                                <p className="text-danger">Birth Certificate is required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
