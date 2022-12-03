@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styles from './Admission.module.css'
-
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { calculateAge } from '../Utils/utils'
 
 import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
