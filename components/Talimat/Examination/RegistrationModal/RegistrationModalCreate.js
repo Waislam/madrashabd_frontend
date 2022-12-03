@@ -41,9 +41,8 @@ const RegistrationCreateModal = (props) => {
                     data.session = 1
                     api.post(`talimat/${props.session_data?.madrasha_slug}/exam-registration/`, JSON.stringify(data))
                         .then((response) => {
-                            console.log(response.data)
                             props.handleClose()
-                            // router.reload()
+                            router.reload()
                         }).catch((error) => {
                         console.log("error", error)
                     })

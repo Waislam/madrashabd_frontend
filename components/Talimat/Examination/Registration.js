@@ -115,7 +115,7 @@ const ExamARegistration = (props) => {
                                                         <div className="register-table">
                                                             <Box sx={{height: 500, width: '100%'}}>
                                                                 <DataGrid
-                                                                    rows={examRegistrationList.results}
+                                                                    rows={examRegistrationList}
                                                                     columns={columns}
                                                                     pageSize={5}
                                                                     rowsPerPageOptions={[5]}
