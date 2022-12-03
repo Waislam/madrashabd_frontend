@@ -3,10 +3,12 @@ import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 import HallNigranCreateModal from "./HallNigranModal/HallNigranCreateModal";
-import {useState} from "react";
+import { useState } from "react";
 import HallNigranDeleteModal from "./HallNigranModal/HallNigranDeleteModal";
 import HallNigranEditModal from "./HallNigranModal/HallNigranEditModal";
 import api from "../../../pages/api/api";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 
 const HallNigran = (props) => {
     const [hallNigranId, setHallNigranId] = useState(null);
@@ -37,8 +39,8 @@ const HallNigran = (props) => {
                 setHallNigarData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            setLoading(false)
-        })
+                setLoading(false)
+            })
     };
 
     const handleHallNigranEditModalClose = () => setHallNigranEditModalShow(false);
@@ -51,18 +53,66 @@ const HallNigran = (props) => {
         handleHallNigranEditModalShow()
     };
 
+    // handle get request
+
+    const columns = [
+        {
+            field: "duty_date",
+            headerName: 'Date',
+            flex: 1,
+        },
+        {
+            field: "chief_of_hall",
+            headerName: 'Chief of Nigran',
+            flex: 1,
+        },
+        {
+            field: "assistant_of_hall",
+            headerName: 'Assistant Nigran',
+            flex: 1,
+        },
+        {
+            field: "room_no",
+            headerName: 'Room / Hall',
+            flex: 1,
+        },
+        {
+            field: "action",
+            headerName: 'Action',
+            flex: 1,
+            renderCell: (params) => {
+                console.log("parama:", params)
+                return (
+                    < div className="float-md-end" >
+                        <button className="btn btn-primary me-3"
+                            onClick={() => handleHallNigranEdit(params.id)}
+                        >
+                            Edit
+                        </button>
+                        <button className="btn btn-danger me-3"
+                            onClick={() => handleHallNigranDelete(params.id)}
+                        >
+                            Remove
+                        </button>
+                    </div >
+                )
+            }
+        },
+
+    ]
+
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu/>
+                        <SideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader/>
-                                        <hr/>
+                                        <ExamHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
@@ -79,7 +129,7 @@ const HallNigran = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className="nigrani-table mt-4">
-                                                        <div className="table-responsive">
+                                                        {/* <div className="table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
                                                                 <tr>
@@ -119,39 +169,33 @@ const HallNigran = (props) => {
                                                                 }
                                                                 </tbody>
                                                             </table>
-                                                        </div>
+                                                        </div> */}
+                                                        <Box sx={{ height: 500, width: '100%' }}>
+                                                            <DataGrid
+                                                                rows={props.hallDutyList}
+                                                                columns={columns}
+                                                                // pageSize={5}
+                                                                // rowsPerPageOptions={[5]}
+                                                                checkboxSelection
+                                                                disableSelectionOnClick
+                                                                disableColumnFilter
+                                                                disableColumnSelector
+                                                                disableDensitySelector
+                                                                components={{ Toolbar: GridToolbar }}
+                                                                experimentalFeatures={{ newEditingApi: false }}
+                                                                componentsProps={{
+                                                                    toolbar: {
+                                                                        showQuickFilter: true,
+                                                                        quickFilterProps: { debounceMs: 500 },
+                                                                    },
+                                                                }}
+                                                            />
+                                                        </Box>
                                                     </div>
                                                     <div>
                                                         <button type="button" className={styles.defaultBtn}>download
                                                         </button>
                                                     </div>
-                                                </div>
-                                                <div className="add-hall-nigran mt-5">
-                                                    <form action="#" method="POST">
-                                                        <div className="row">
-                                                            <div className="col-md-3">
-                                                                <input type="text" className="form-control"
-                                                                       placeholder="date"/>
-                                                            </div>
-                                                            <div className="col-md-3">
-                                                                <input type="text" className="form-control"
-                                                                       placeholder="Chief of Nigran Name"/>
-                                                            </div>
-                                                            <div className="col-md-3">
-                                                                <input type="text" className="form-control"
-                                                                       placeholder="Assitant Nigran/s"/>
-                                                            </div>
-                                                            <div className="col-md-3">
-                                                                <input type="text" className="form-control"
-                                                                       placeholder="Room/Hall number"/>
-                                                            </div>
-                                                            <div className="mt-3">
-                                                                <button type="submit"
-                                                                        className={styles.defaultBtn}>Save
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -167,12 +211,14 @@ const HallNigran = (props) => {
             <HallNigranCreateModal
                 show={hallNigranModalShow}
                 handleClose={handleHallNigranModalClose}
+                session_data={props.session_data}
             />
 
             <HallNigranDeleteModal
                 show={hallNigranDeleteModalShow}
                 handleClose={handleHallNigranDeleteModalClose}
                 hallNigranId={hallNigranId}
+                session_data={props.session_data}
             />
 
             {!loading && (
@@ -181,6 +227,7 @@ const HallNigran = (props) => {
                     handleClose={handleHallNigranEditModalClose}
                     hallNigranId={hallNigranId}
                     hallNigarData={hallNigarData}
+                    session_data={props.session_data}
                 />
             )}
 

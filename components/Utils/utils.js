@@ -19,18 +19,43 @@ export const AmPm = (value) => {
 
 
 export const calculateAge = (birthDate) => {
-    // let now = new Date();
-    // let currentYear = now.getFullYear();
-    // let birthYear = birthDate.getFullYear();
-    // let age = currentYear - birthYear;
-    // if (now < new Date(birthDate.setFullYear(currentYear))) {
-    //     age = age - 1;
-    //     return age
-    // }
-    // console.log("current date: ", birthDate)
-    let getBirthYear = birthDate.split("-")[0].trim()
-    let getCurrentYear = new Date().getFullYear()
-    let age = getCurrentYear - getBirthYear
-    return age
+
+  let currentDate = new Date()
+
+  let currentYear = currentDate.getFullYear()
+  let currentMonth = currentDate.getMonth() + 1
+  let currentDay = currentDate.getDate()
+  
+  let birthYear = birthDate.split("-")[0].trim()
+  let birthMonth = birthDate.split('-')[1].trim()
+  let birthDay = birthDate.split('-')[2].trim()
+
+  if (birthMonth > currentMonth & birthDay > currentDay){
+      let totalYear = currentYear-birthYear - 1
+      let totalMonth = (currentMonth + 12) - birthMonth
+      let totalDay = (currentDay + 30) - birthDay
+      return [totalYear, totalMonth, totalDay]
+  }else if(birthMonth > currentMonth){
+      if (!(birthDay > currentDay)){
+          let totalYear = currentYear-birthYear - 1
+          let totalMonth = (currentMonth + 12) - birthMonth
+          let totalDay = currentDay - birthDay
+          return [totalYear, totalMonth, totalDay]
+      }
+  }
+   else if(birthDay > currentDay ){
+      if (!(birthMonth > currentMonth)){
+          let totalYear = currentYear - birthYear
+          let totalMonth = ((currentMonth - birthMonth) -1 )
+          let totalDay = (currentDay + 30) - birthDay
+          return [totalYear, totalMonth, totalDay]
+      }
+  }else{
+    let totalYear = currentYear - birthYear
+    let totalMonth = currentMonth - birthMonth
+    let totalDay = currentDay - birthDay
+    let result = [totalYear, totalMonth, totalDay]
+    return result
+  }
 
 }

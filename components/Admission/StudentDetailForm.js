@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styles from './Admission.module.css'
-
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { calculateAge } from '../Utils/utils'
 
 import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
@@ -38,15 +35,19 @@ const StudentDetailForm = (props) => {
         mode: "onChange",
     });
 
+    // const [year, month, totalDay] = ageCalculate(birthDate)
+    // console.log("year:", year)
+    // console.log("months: ", month)
+    // console.log("days: ", totalDay)
     //handle calculate age
     const setAgeonChangeofdateOfBirth = (e) => {
         e.preventDefault()
-        console.log("e.target.value: ", e.target.value)
         const birthDate = e.target.value
-        calculateAge(birthDate)
-        const result = calculateAge(birthDate)
-        setAge(result)
-        setValue('age', result);
+        // calculateAge(birthDate)
+        const [year, month, totalDay] = calculateAge(birthDate)
+        // const result = calculateAge(birthDate)
+        setAge(`year:  ${year} month: ${month} day: ${totalDay}`)
+        setValue('age', `year:  ${year} month: ${month} day: ${totalDay}`); // setValue setting the value and setAGe getting the value to the field
     }
 
     const onSubmit = (values) => {
@@ -56,27 +57,6 @@ const StudentDetailForm = (props) => {
         nextStep();
         setLoading(false)
     };
-
-    //handle address field generation
-    //get division
-    // const [division_List, setDivisionList] = useState(null)
-
-
-    // const getDivision = async () => {
-    //     const list = await axios.get(`${BASE_URL}/accounts/division/`)
-    //     const division = list.data
-    //     setDivisionList(division)
-    // }
-
-    //set single division valuel 
-    // const getSingleDivison=(e)=>{
-    //     console.log("divison value: ", e.target.value)
-    //     setSelectPresentAddressDivision(e.target.value)
-    //     console.log(setSelectPresentAddressDivision)
-    // }
-
-    // console.log("setSelectPresentAddressDivision: ", setSelectPresentAddressDivision)
-    // console.log("division: ", divisionList)
 
     return (
         <>
@@ -163,13 +143,8 @@ const StudentDetailForm = (props) => {
                                                 className="form-control"
                                                 placeholder="Birth Certificate"
                                                 id="birth_certificate"
-                                                {...register("birth_certificate", { required: true })}
+                                                {...register("birth_certificate")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.birth_certificate && (
-                                                <p className="text-danger">Birth Certificate is required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -593,7 +568,7 @@ const StudentDetailForm = (props) => {
                                 loading ?
                                     <button className={styles.defaultBtn}>Loading</button>
                                     :
-                                    <button className={styles.defaultBtn} type='submit'>Next Step</button>
+                                    <button className={`${styles.defaultBtn} float-end`} type='submit'>Next Step</button>
                             }
                         </form>
                     </div>
