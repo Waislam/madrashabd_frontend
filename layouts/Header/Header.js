@@ -84,7 +84,7 @@ const Header = () => {
                                                 className="nav-link dropdown-toggle link-dark"
                                                 data-bs-toggle="dropdown"
                                                 role="button" aria-expanded="false">
-                                                <i className="fa fa-language" aria-hidden="true"/>
+                                                <i className="fa fa-language pe-2" aria-hidden="true"/>
                                                 Language
                                             </a>
                                             <ul className="dropdown-menu">

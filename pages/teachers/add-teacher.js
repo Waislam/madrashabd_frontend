@@ -18,7 +18,7 @@ const AddTeacherPage = (props) => {
     const router = useRouter();
 
     // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('');
+
     const [disctrictList, setDistrictList] = useState(null);
     const [singleDistrict, setSingleDristrict] = useState('');
     const [departmentList, setDepartmentList] = useState('');
@@ -159,11 +159,22 @@ const AddTeacherPage = (props) => {
     //     setDivisionList(division)
     // }
 
-    const handleSetSingleDivisionValue = (e) => {
+    const handleSetDistrict = async (e) => {
         e.stopPropagation()
         e.preventDefault()
-        const pk_value = e.target.value
-        setSingleDivision(pk_value)
+        const division = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setDistrictList(districts)
+
+    }
+
+    const getThanaList = async (e) => {
+        e.preventDefault()
+        const district = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setDistrictList(districts)
     }
 
 
@@ -317,7 +328,7 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_division"
                                                     {...register("present_address_division", { required: "This field is required" })}
-                                                    onChange={handleSetSingleDivisionValue}
+                                                    onChange={handleSetDistrict}
                                                 >
                                                     <option value="">Select Division</option>
                                                     {props.divisionList && props.divisionList.map((division) => (
@@ -337,9 +348,10 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_district"
                                                     {...register("present_address_district", { required: "This field is required" })}
+                                                    onChange={getThanaList}
                                                 >
                                                     <option>District select</option>
-                                                    {props.districtList && props.districtList.map((district) => (
+                                                    {disctrictList && disctrictList.map((district) => (
                                                         <option
                                                             value={district.pk}
                                                             key={district.pk}
@@ -443,7 +455,7 @@ const AddTeacherPage = (props) => {
                                                         className="form-select"
                                                         name="permanent_address_division"
                                                         {...register("permanent_address_division", { required: "This field is required" })}
-                                                        onChange={handleSetSingleDivisionValue}
+                                                    // onChange={handleSetSingleDivisionValue}
                                                     >
                                                         <option>Select Division</option>
                                                         {props.divisionList && props.divisionList.map((division) => (
@@ -465,7 +477,7 @@ const AddTeacherPage = (props) => {
                                                         {...register("permanent_address_district", { required: "This field is required" })}
                                                     >
                                                         <option>District select</option>
-                                                        {props.districtList && props.districtList.map((district) => (
+                                                        {disctrictList && disctrictList.map((district) => (
                                                             <option
                                                                 value={district.pk}
                                                                 key={district.pk}
@@ -568,7 +580,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Passing year"
                                                     className="form-control"
                                                     name="passing_year"
-                                                    {...register("passing_year", {required:"Passing year is required"})}
+                                                    {...register("passing_year", { required: "Passing year is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.passing_year?.message}</p>
                                             </div>
@@ -578,7 +590,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="CGPA/GPA-5/First Class"
                                                     className="form-control"
                                                     name="result"
-                                                    {...register("result", {required:"Result is required"})}
+                                                    {...register("result", { required: "Result is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.result?.message}</p>
                                             </div>
@@ -588,7 +600,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="University/college/Madrasha"
                                                     className="form-control"
                                                     name="institution_name"
-                                                    {...register("institution_name",  {required:"Institution name is required"})}
+                                                    {...register("institution_name", { required: "Institution name is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.institution_name?.message}</p>
                                             </div>
@@ -891,17 +903,17 @@ export async function getServerSideProps({ req }) {
     const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
     const divisionList = await divisionListRes.json()
 
-    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
-    const districtList = await districtListRes.json()
+    // const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
+    // const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
-    const postCodeList = await postCodeListRes.json()
+    // const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
+    // const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
-    const postOfficeList = await postOfficeListRes.json()
+    // const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
+    // const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
-    const thanaList = await thanaListRes.json()
+    // const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
+    // const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
     const designationList = await getDesignationList(madrasha_slug).then(data => data)
@@ -910,10 +922,10 @@ export async function getServerSideProps({ req }) {
     return {
         props: {
             divisionList,
-            districtList,
-            postCodeList,
-            postOfficeList,
-            thanaList,
+            // districtList,
+            // postCodeList,
+            // postOfficeList,
+            // thanaList,
             departmentList,
             designationList
         },
