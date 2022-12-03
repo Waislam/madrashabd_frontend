@@ -18,7 +18,7 @@ const AddTeacherPage = (props) => {
     const router = useRouter();
 
     // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('');
+
     const [disctrictList, setDistrictList] = useState(null);
     const [singleDistrict, setSingleDristrict] = useState('');
     const [departmentList, setDepartmentList] = useState('');
@@ -159,11 +159,14 @@ const AddTeacherPage = (props) => {
     //     setDivisionList(division)
     // }
 
-    const handleSetSingleDivisionValue = (e) => {
+    const handleSetDistrict = async (e) => {
         e.stopPropagation()
         e.preventDefault()
-        const pk_value = e.target.value
-        setSingleDivision(pk_value)
+        const division = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setDistrictList(districts)
+        
     }
 
 
@@ -317,7 +320,7 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_division"
                                                     {...register("present_address_division", { required: "This field is required" })}
-                                                    onChange={handleSetSingleDivisionValue}
+                                                    onChange={handleSetDistrict}
                                                 >
                                                     <option value="">Select Division</option>
                                                     {props.divisionList && props.divisionList.map((division) => (
@@ -443,7 +446,7 @@ const AddTeacherPage = (props) => {
                                                         className="form-select"
                                                         name="permanent_address_division"
                                                         {...register("permanent_address_division", { required: "This field is required" })}
-                                                        onChange={handleSetSingleDivisionValue}
+                                                        // onChange={handleSetSingleDivisionValue}
                                                     >
                                                         <option>Select Division</option>
                                                         {props.divisionList && props.divisionList.map((division) => (
@@ -891,17 +894,17 @@ export async function getServerSideProps({ req }) {
     const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
     const divisionList = await divisionListRes.json()
 
-    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
-    const districtList = await districtListRes.json()
+    // const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
+    // const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
-    const postCodeList = await postCodeListRes.json()
+    // const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
+    // const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
-    const postOfficeList = await postOfficeListRes.json()
+    // const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
+    // const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
-    const thanaList = await thanaListRes.json()
+    // const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
+    // const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
     const designationList = await getDesignationList(madrasha_slug).then(data => data)
@@ -910,10 +913,10 @@ export async function getServerSideProps({ req }) {
     return {
         props: {
             divisionList,
-            districtList,
-            postCodeList,
-            postOfficeList,
-            thanaList,
+            // districtList,
+            // postCodeList,
+            // postOfficeList,
+            // thanaList,
             departmentList,
             designationList
         },
