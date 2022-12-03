@@ -18,7 +18,6 @@ const HallNigranDeleteModal = (props) => {
 
         api.delete(`talimat/hall-duty/detail/${props.hallNigranId}/`)
             .then((response) => {
-                console.log("response", response.data)
                 props.handleClose()
                 setDeleteLoading(true)
                 router.reload()

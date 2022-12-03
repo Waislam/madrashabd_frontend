@@ -34,18 +34,15 @@ const RegistrationCreateModal = (props) => {
     const onSubmit = data => {
         api.get(`students/detail-by-id/${data.student}/`)
             .then((response) => {
-                console.log(response.data)
                 if (response.data.status) {
-                    console.log("Inside status")
                     data.madrasha = 1
                     data.student = response.data.data.id
                     data.is_registered = true
                     data.session = 1
-                    api.post(`talimat/100/exam-registration/`, JSON.stringify(data))
+                    api.post(`talimat/${props.session_data?.madrasha_slug}/exam-registration/`, JSON.stringify(data))
                         .then((response) => {
-                            console.log("response", response.data)
                             props.handleClose()
-                            // router.reload()
+                            router.reload()
                         }).catch((error) => {
                         console.log("error", error)
                     })
@@ -59,8 +56,6 @@ const RegistrationCreateModal = (props) => {
             }).catch((error) => {
             console.log("error", error)
         })
-
-        console.log("onSubmit status", status)
 
         // data.madrasha = 1
         // data.is_registered = true
