@@ -1,7 +1,12 @@
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { updateStudentDetail } from "../../pages/api/StudentAPI/students_api";
 
 const StudentUpdateForm = ({data}) => {
+    const {data:session} = useSession();
+
     // Destructuring Props
     const {
         studentDetails,
@@ -10,7 +15,6 @@ const StudentUpdateForm = ({data}) => {
         postCodeList,
         postOfficeList,
         thanaList,
-        designationList,
         departmentList,
         classList,
         groupList,
@@ -20,8 +24,6 @@ const StudentUpdateForm = ({data}) => {
 
     // Destructuring student Details
     const {data: student} = studentDetails;
-
-    console.log("I am student details object",student)
 
     // Object for set default value in react hook form for update
     const formDefaultValues ={
@@ -104,8 +106,99 @@ const StudentUpdateForm = ({data}) => {
     );
 
     // Function for updating student
-    const onSubmit = () => {
-        console.log("Hello I'm clicked")
+    const onSubmit = (data) => {
+        console.log("Hello I'm clicked", data)
+
+        // Prepare Object for update data
+        const updatedData = {
+            madrasha: session.user.madrasha_id,
+            student_id: student?.student_id,
+            student_roll_id: student?.student_roll_id,
+            date_of_birth: student?.date_of_birth,
+            age: data?.age,
+            birth_certificate: data?.birth_certificate,
+            student_nid: data?.student_nid,
+            passport_number: data?.passport_number,
+            nationality: data?.nationality,
+            religion: data?.religion,
+            gender: data?.gender,
+            present_address: {
+                id: student?.present_address?.id,
+                division: parseInt(data?.present_address_division),
+                district: parseInt(data?.present_address_district),
+                thana: parseInt(data?.present_address_thana),
+                post_office: parseInt(data?.present_address_post_office),
+                post_code: parseInt(data?.present_address_post_code),
+                address_info: data?.student_present_address_info,
+            },
+            permanent_address: {
+                id: student?.permanent_address?.id,
+                division: parseInt(data?.permanent_address_division),
+                district: parseInt(data?.permanent_address_district),
+                thana: parseInt(data?.permanent_address_thana),
+                post_office: parseInt(data?.permanent_address_post_office),
+                post_code: parseInt(data?.permanent_address_post_code),
+                address_info: data?.student_permanent_address_info,
+            },
+            father_info: {
+                id: student?.father_info?.id,
+                parent_name: data?.parents_information_father_name,
+                parent_date_of_birth: data?.parents_information_father_date_of_birth || null,
+                parent_nid: data?.parents_information_father_nid,
+                occupation: data?.parents_information_father_occupation,
+                organization_with_designation: data?.parents_information_father_organization_with_designation,
+                education: data?.parents_information_father_education,
+                contact_number: data?.parents_information_father_contact,
+                parent_email: data?.father_email
+            },
+            mother_info: {
+                id: student?.mother_info?.id,
+                parent_name: data?.parents_information_mother_name,
+                parent_date_of_birth: data?.parents_information_mother_date_of_birth || null,
+                parent_nid: data?.parents_information_mother_nid,
+                occupation: data?.parents_information_mother_occupation,
+                organization_with_designation: data?.parents_information_mother_organization_with_designation,
+                education: data?.parents_information_mother_education,
+                contact_number: data?.parents_information_mother_contact,
+                parent_email: data?.mother_email
+            },
+            guardian_name: data?.guardian_name,
+            guardian_relation: data?.guardian_relation,
+            guardian_occupation: data?.guardian_occupation,
+            yearly_income: data?.guardian_yearly_income,
+            guardian_contact: data?.guardian_contact,
+            guardian_email: data?.guardian_email,
+            other_contact_person: data?.other_contact_person,
+            other_contact_person_relation: data?.other_contact_person_relation,
+            other_contact_person_contact: data?.other_contact_person_contact,
+            sibling_id: data?.sibling_id,
+            previous_institution_name: data?.previous_institution_name,
+            previous_institution_contact: data?.previous_institution_contact,
+            previous_started_at: data?.previous_started_at,
+            previous_ending_at: data?.previous_ending_at,
+            previous_ending_class: data?.previous_ending_class,
+            previous_ending_result: data?.previous_ending_result,
+            board_exam_name: data?.board_exam_name,
+            board_exam_registration: data?.board_exam_registration,
+            board_exam_roll: data?.board_exam_roll,
+            board_exam_result: data?.board_exam_result,
+            admitted_department: data?.admitted_department,
+            admitted_class: data?.admitted_class,
+            admitted_group: data?.admitted_group,
+            admitted_shift: data?.admitted_shift,
+            admitted_roll: data?.admitted_roll,
+            admitted_session: data?.admitted_session,
+            student_blood_group: data?.student_blood_group,
+            special_body_sign: null,
+            academic_fees: null,
+            talimi_murobbi_name: data?.talimi_murobbi_name,
+            eslahi_murobbi_name: data?.eslahi_murobbi_name,
+            slug: data?.slug
+        }
+
+        updateStudentDetail(student.student_id, updatedData)
+        .then(data =>  data.message && toast.success(data.message))
+        .catch(error => console.log(error));
     }
 
     return (
@@ -247,7 +340,6 @@ const StudentUpdateForm = ({data}) => {
                                             <label htmlFor="religion" className="form-label">Religion</label>
                                             <select
                                                 name="religion"
-
                                                 className="form-select"
                                                 id="religion"
                                                 {...register("religion", { required: true })}
@@ -269,7 +361,6 @@ const StudentUpdateForm = ({data}) => {
                                             <label htmlFor="gender" className="form-label">Gender</label>
                                             <select
                                                 name="gender"
-
                                                 className="form-select"
                                                 id="gender"
                                                 {...register("gender", { required: true })}
@@ -296,7 +387,6 @@ const StudentUpdateForm = ({data}) => {
                                             <label htmlFor="present_address_division" className="form-label">Division</label>
                                             <select
                                                 name="present_address_division"
-
                                                 id="present_address_division"
                                                 className="form-select"
                                                 {...register("present_address_division", { required: true })}
@@ -1155,7 +1245,7 @@ const StudentUpdateForm = ({data}) => {
                                             <option value=''>Choose department...</option>
                                             {
                                                departmentList && departmentList.map((department) => (
-                                                    <option value={department.id}>{department.name}</option>
+                                                    <option key={department.id} value={department.id}>{department.name}</option>
                                                 ))
                                             }
                                         </select>
@@ -1174,7 +1264,7 @@ const StudentUpdateForm = ({data}) => {
                                             <option value=''>Choose class...</option>
                                             {
                                                 classList.map((classData) => (
-                                                    <option value={classData.id}>{classData.name}</option>
+                                                    <option key={classData.id} value={classData.id}>{classData.name}</option>
                                                 ))
                                             }
                                         </select>
@@ -1193,7 +1283,7 @@ const StudentUpdateForm = ({data}) => {
                                             <option value=''>Choose class...</option>
                                             {
                                                 groupList.map((group) => (
-                                                    <option value={group.id}>{group.name}</option>
+                                                    <option key={group.id} value={group.id}>{group.name}</option>
                                                 ))
                                             }
                                         </select>
@@ -1209,7 +1299,7 @@ const StudentUpdateForm = ({data}) => {
                                             <option value=''>Choose class...</option>
                                             {
                                                 shiftList.map((shift) => (
-                                                    <option value={shift.id}>{shift.name}</option>
+                                                    <option key={shift.id} value={shift.id}>{shift.name}</option>
                                                 ))
                                             }
                                         </select>
@@ -1227,7 +1317,7 @@ const StudentUpdateForm = ({data}) => {
                                             <option value=''>Choose class...</option>
                                             {
                                                 sessionList.map((sessionData) => (
-                                                    <option value={sessionData.id}>{sessionData.actual_year}</option>
+                                                    <option key={sessionData.id} value={sessionData.id}>{sessionData.actual_year}</option>
                                                 ))
                                             }
                                         </select>
@@ -1299,6 +1389,8 @@ const StudentUpdateForm = ({data}) => {
                                 </div>
                             </div>
                             {/* ========End Student's Previous Institute Information section ======= */}
+
+                            <button type="submit" className="default-btn">Save Updates</button>
                         </form>
                     </div>
                 </div>

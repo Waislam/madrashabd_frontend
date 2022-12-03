@@ -48,7 +48,6 @@ export async function getServerSideProps({ req, params }) {
     const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
-    const designationList = await getDesignationList(madrasha_slug).then(data => data)
     const classList = await getClassList(madrasha_slug).then(data => data)
     const groupList = await getGroupList(madrasha_slug).then(data => data)
     const shiftList = await getShiftList(madrasha_slug).then(data => data)
@@ -63,7 +62,6 @@ export async function getServerSideProps({ req, params }) {
             postCodeList,
             postOfficeList,
             thanaList,
-            designationList,
             departmentList,
             classList,
             groupList,
