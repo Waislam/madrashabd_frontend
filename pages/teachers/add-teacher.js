@@ -20,7 +20,7 @@ const AddTeacherPage = (props) => {
     // const [divisionList, setDivisionList] = useState(null)
 
     const [disctrictList, setDistrictList] = useState(null);
-    const [singleDistrict, setSingleDristrict] = useState('');
+    const [thanaList, setThanaList] = useState(null);
     const [departmentList, setDepartmentList] = useState('');
 
     const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
@@ -172,9 +172,9 @@ const AddTeacherPage = (props) => {
     const getThanaList = async (e) => {
         e.preventDefault()
         const district = e.target.value
-        const response = await api.get(`/accounts/district/${division}/`)
-        const districts = response.data
-        setDistrictList(districts)
+        const response = await api.get(`/accounts/thana/${district}/`)
+        const thanas = response.data
+        setThanaList(thanas)
     }
 
 
@@ -369,8 +369,8 @@ const AddTeacherPage = (props) => {
                                                     name="present_address_thana"
                                                     {...register("present_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option>Thana Name</option>
-                                                    {props.thanaList && props.thanaList.map((thana) => (
+                                                    <option>Select Thana</option>
+                                                    {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
                                                             key={thana.pk}
