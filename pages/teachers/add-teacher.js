@@ -166,7 +166,7 @@ const AddTeacherPage = (props) => {
         const response = await api.get(`/accounts/district/${division}/`)
         const districts = response.data
         setDistrictList(districts)
-        
+
     }
 
 
@@ -342,7 +342,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_district", { required: "This field is required" })}
                                                 >
                                                     <option>District select</option>
-                                                    {props.districtList && props.districtList.map((district) => (
+                                                    {disctrictList && disctrictList.map((district) => (
                                                         <option
                                                             value={district.pk}
                                                             key={district.pk}
@@ -446,7 +446,7 @@ const AddTeacherPage = (props) => {
                                                         className="form-select"
                                                         name="permanent_address_division"
                                                         {...register("permanent_address_division", { required: "This field is required" })}
-                                                        // onChange={handleSetSingleDivisionValue}
+                                                    // onChange={handleSetSingleDivisionValue}
                                                     >
                                                         <option>Select Division</option>
                                                         {props.divisionList && props.divisionList.map((division) => (
@@ -468,7 +468,7 @@ const AddTeacherPage = (props) => {
                                                         {...register("permanent_address_district", { required: "This field is required" })}
                                                     >
                                                         <option>District select</option>
-                                                        {props.districtList && props.districtList.map((district) => (
+                                                        {disctrictList && disctrictList.map((district) => (
                                                             <option
                                                                 value={district.pk}
                                                                 key={district.pk}
@@ -571,7 +571,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Passing year"
                                                     className="form-control"
                                                     name="passing_year"
-                                                    {...register("passing_year", {required:"Passing year is required"})}
+                                                    {...register("passing_year", { required: "Passing year is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.passing_year?.message}</p>
                                             </div>
@@ -581,7 +581,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="CGPA/GPA-5/First Class"
                                                     className="form-control"
                                                     name="result"
-                                                    {...register("result", {required:"Result is required"})}
+                                                    {...register("result", { required: "Result is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.result?.message}</p>
                                             </div>
@@ -591,7 +591,7 @@ const AddTeacherPage = (props) => {
                                                     placeholder="University/college/Madrasha"
                                                     className="form-control"
                                                     name="institution_name"
-                                                    {...register("institution_name",  {required:"Institution name is required"})}
+                                                    {...register("institution_name", { required: "Institution name is required" })}
                                                 />
                                                 <p className="text-danger">{errors?.institution_name?.message}</p>
                                             </div>

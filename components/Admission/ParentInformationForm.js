@@ -143,13 +143,14 @@ const ParentInformationForm = (props) => {
                                                 {...register("parents_information_father_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Father occupation ...</option>
-                                                <option value="teacher">Teacher</option>
-                                                <option value="farmer">Farmer</option>
-                                                <option value="doctor">Doctor</option>
-                                                <option value="businessman">Businessman</option>
                                                 <option value="non-govt-employee">Non govt. employee</option>
                                                 <option value="govt-employee">Govt. employee</option>
+                                                <option value="businessman">Businessman</option>
+                                                <option value="teacher">Teacher</option>
+                                                <option value="farmer">Farmer</option>
+                                                <option value="doctor">Doctor</option>                                      
                                                 <option value="other">Other</option>
+                                                <option value="alim">Alim</option>
                                             </select>
                                         </div>
                                         <div>
@@ -169,13 +170,13 @@ const ParentInformationForm = (props) => {
                                                 {...register("parents_information_mother_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Mother occupation ...</option>
+                                                <option value="non-govt-employee">Non govt. employee</option>
+                                                <option value="govt-employee">Govt. employee</option>
+                                                <option value="businessman">Businessman</option>
                                                 <option value="house-wife">House Wife</option>
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
-                                                <option value="doctor">Doctor</option>
-                                                <option value="businessman">Businessman</option>
-                                                <option value="non-govt-employee">Non govt. employee</option>
-                                                <option value="govt-employee">Govt. employee</option>
+                                                <option value="doctor">Doctor</option>                                      
                                                 <option value="other">Other</option>
                                             </select>
                                         </div>
