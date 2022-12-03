@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Layout from "../../../components/Layout/Layout";
-import {useForm, useFieldArray} from "react-hook-form"
-import api, {BASE_URL} from "../../api/api";
-import {getSession, useSession} from "next-auth/react";
+import {BASE_URL} from "../../api/api";
+import {getSession} from "next-auth/react";
 import {getDepartmentList, getDesignationList} from "../../api/settings_api";
 import {getTeacherDetailApi} from "../../api/TeacherAPI/teacher_api";
 import TeacherUpdate from "../../../components/Teachers/TeacherUpdate";

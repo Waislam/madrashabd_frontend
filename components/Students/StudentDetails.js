@@ -68,7 +68,12 @@ const StudentDetails = ({ student }) => {
                                     <div className="col">
                                         <div className="card mb-4">
                                             <div className="card-body">
-                                                <h4>Student Information</h4>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <h4>Student Information</h4>
+                                                    <Link href={`/students/update-student/${student.data.slug}`}>
+                                                        <button className="default-btn">Update</button>
+                                                    </Link>
+                                                </div>
                                                 <hr />
                                                 <div className="row">
                                                     <div className="col-md-9">

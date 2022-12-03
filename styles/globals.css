@@ -40,5 +40,16 @@ body {
 .cardDashboard{
     border-bottom-left-radius: 120px;
     border-top-right-radius: 120px;
+}
 
+
+.default-btn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
