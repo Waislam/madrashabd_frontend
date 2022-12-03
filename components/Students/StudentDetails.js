@@ -71,7 +71,7 @@ const StudentDetails = ({ student }) => {
                                                 <div className="d-flex justify-content-between align-items-center">
                                                     <h4>Student Information</h4>
                                                     <Link href={`/students/update-student/${student.data.slug}`}>
-                                                        <button className="default-btn">My Button</button>
+                                                        <button className="default-btn">Update</button>
                                                     </Link>
                                                 </div>
                                                 <hr />
