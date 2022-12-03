@@ -45,7 +45,7 @@ const RegistrationCreateModal = (props) => {
                         .then((response) => {
                             console.log("response", response.data)
                             props.handleClose()
-                            // router.reload()
+                            router.reload()
                         }).catch((error) => {
                         console.log("error", error)
                     })
@@ -59,8 +59,6 @@ const RegistrationCreateModal = (props) => {
             }).catch((error) => {
             console.log("error", error)
         })
-
-        console.log("onSubmit status", status)
 
         // data.madrasha = 1
         // data.is_registered = true
