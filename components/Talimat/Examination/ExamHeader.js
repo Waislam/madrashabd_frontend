@@ -30,20 +30,20 @@ const ExamHeader = () =>{
                                 </a> 
                             </Link>
                         </li>
-                        <li className="breadcrumb-item active" aria-current="page">
+                        {/* <li className="breadcrumb-item active" aria-current="page">
                             <Link href={`/talimat/exam/seatplan`}>
                                 <a>
                                     Seat plan
                                 </a> 
                             </Link>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
+                        </li> */}
+                        {/* <li className="breadcrumb-item active" aria-current="page">
                             <Link href={`/talimat/exam/routine`}>
                                 <a>
                                     Exam. Routine
                                 </a> 
                             </Link>
-                        </li>
+                        </li> */}
                         <li className="breadcrumb-item active" aria-current="page">
                             <Link href={`/talimat/exam/hallnigran`}>
                                 <a>
@@ -51,13 +51,13 @@ const ExamHeader = () =>{
                                 </a> 
                             </Link>
                         </li>
-                        <li className="breadcrumb-item active" aria-current="page">
+                        {/* <li className="breadcrumb-item active" aria-current="page">
                             <Link href={`/talimat/exam/papermonitoring`}>
                                 <a>
                                     Answer paper Monitoring
                                 </a> 
                             </Link>
-                        </li>
+                        </li> */}
                         <li className="breadcrumb-item active" aria-current="page">
                             <Link href={`/talimat/exam/result`}>
                                 <a>
