@@ -287,10 +287,9 @@ const PreviousInstitutionForm = (props) => {
                                             {...register("board_exam_name")}
                                         >
                                             <option value="null">Select Board Exam</option>
-                                            <option value="befak">Befak</option>
-                                            <option value="haya">Haya</option>
-                                            <option value="befak_arabia">Befaq(Arabiya)</option>
-                                            <option value="befak_diniya">Befaq(Diniya)</option>
+                                            <option value="haya">Al Haiatul Ulya</option>
+                                            <option value="befak_arabia">Befaq(Arabia)</option>
+                                            <option value="befak_dinia">Befaq(Dinia)</option>
                                             <option value="tanjimul madares">Tanjimul Madares</option>
                                         </select>
                                     </div>

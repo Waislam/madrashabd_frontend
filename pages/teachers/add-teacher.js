@@ -169,6 +169,14 @@ const AddTeacherPage = (props) => {
 
     }
 
+    const getThanaList = async (e) => {
+        e.preventDefault()
+        const district = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setDistrictList(districts)
+    }
+
 
     const handleHidingEndDate = (e) => {
         const checkValue = e.target.checked
@@ -340,6 +348,7 @@ const AddTeacherPage = (props) => {
                                                     className="form-select"
                                                     name="present_address_district"
                                                     {...register("present_address_district", { required: "This field is required" })}
+                                                    onChange={getThanaList}
                                                 >
                                                     <option>District select</option>
                                                     {disctrictList && disctrictList.map((district) => (
