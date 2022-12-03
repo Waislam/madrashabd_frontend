@@ -7,6 +7,7 @@ import styles from './OldAdmission.module.css'
 const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
     // Destructuring madrashaData
     const {departmentList, classes, groups, sessionList, shifts} = madrashaData;
+    const {data: session} = useSession()
 
     // Set form default value
     const formDefaultValues = {
@@ -23,6 +24,8 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
         talimi_murobbi_name: studentDetails.talimi_murobbi_name,
     }
 
+    console.log('@@ eslahi', studentDetails.eslahi_murobbi_name)
+
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
         mode: "onChange",
         defaultValues: formDefaultValues
@@ -31,10 +34,10 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
     // Function for update student details
     const handleUpdateStudent = data => {
         const updatedData = {
-            user: studentDetails?.user?.id,
-            madrasha: 1,
+            // user: studentDetails?.user?.id,
+            madrasha: session.user.madrasha_id,
             student_id: studentDetails?.student_id,
-            student_roll_id: studentDetails?.student_roll_id,
+            student_roll_id: data?.student_roll_id,
             date_of_birth: studentDetails?.date_of_birth,
             age: studentDetails?.age,
             birth_certificate: studentDetails?.birth_certificate,
@@ -109,9 +112,9 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
             admitted_shift: data?.admitted_shift,
             admitted_roll: data?.admitted_roll,
             admitted_session: data?.admitted_session,
-            student_blood_group: "A0+",
+            // student_blood_group: "A0+",
             special_body_sign: null,
-            academic_fees: 1,
+            academic_fees: null,
             talimi_murobbi_name: data?.talimi_murobbi_name,
             eslahi_murobbi_name: data?.eslahi_murobbi_name,
             slug: data?.slug
@@ -227,7 +230,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                         sessionList.map(session => <option
                                             key={session.id}
                                             value={session.id}
-                                            >{session.name}
+                                            >{session.actual_year}
                                             </option>)
                                     }
                                 </select>
@@ -276,7 +279,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                     </div>
                     {/*Academic Fees*/}
                     <div className="part-b-admission-information">
-                        <div className="academic-fees mb-4">
+                        {/* <div className="academic-fees mb-4">
                             <h4>Part B</h4>
                             <h5>Academic Fees</h5>
                             <div className="row mb-3">
@@ -323,7 +326,7 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="talimi mb-3">
                             <h4>Part C</h4>
                             <h5>Murubbi</h5>
@@ -358,11 +361,11 @@ const UpdateAdmissionForm = ({madrashaData, studentDetails}) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="student-image mb-3">
+                        <div className="student-image mb-3">
                             <h4>Student image upload</h4>
                             <input type="file" className="form-control"
                                     placeholder="Upload Image Here"/>
-                        </div> */}
+                        </div>
                         <button className={styles.defaultBtn}>Save</button>
                     </div>
                 </form>

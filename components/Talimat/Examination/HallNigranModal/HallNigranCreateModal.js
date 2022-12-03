@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
-import styles from "../../../Account/Account.module.css";
+import styles from "../../../Account/Account/Account.module.css";
 
 import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
@@ -23,7 +23,7 @@ const HallNigranCreateModal = (props) => {
     const onSubmit = data => {
         console.log("data", data)
         data.madrasha = 1
-        api.post(`talimat/100/hall-duty/`, JSON.stringify(data))
+        api.post(`talimat/${props.session_data?.madrasha_slug}/hall-duty/`, JSON.stringify(data))
             .then((response) => {
                 console.log("response", response.data)
                 props.handleClose()

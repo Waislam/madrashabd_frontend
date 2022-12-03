@@ -120,10 +120,7 @@ const UpdateDawahModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Update</button>
                     </form>
                 </Modal.Body>
             </Modal>

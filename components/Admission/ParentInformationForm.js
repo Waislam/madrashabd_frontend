@@ -1,17 +1,17 @@
 import React from "react";
 import styles from './Admission.module.css'
-import {useForm} from "react-hook-form";
-import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
+import { useForm } from "react-hook-form";
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 const ParentInformationForm = (props) => {
-    const {nextStep, prevStep} = props
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { nextStep, prevStep } = props
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
 
     const {
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
         register,
-    } = useForm({mode: "all"});
+    } = useForm({ mode: "all" });
 
     const onSubmit = (values) => {
         setAdmissionFormValues(values);
@@ -35,13 +35,14 @@ const ParentInformationForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="parents_information_father_name" className="form-label">Father's Name</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_father_name}
                                                 placeholder="Father Name"
                                                 className="form-control"
                                                 id="parents_information_father_name"
-                                                {...register("parents_information_father_name", {required: true})}
+                                                {...register("parents_information_father_name", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -52,13 +53,14 @@ const ParentInformationForm = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div>
+                                            <label htmlFor="parents_information_mother_name" className="form-label">Mother's Name</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_mother_name}
                                                 placeholder="Mother Name"
                                                 className="form-control"
                                                 id="parents_information_mother_name"
-                                                {...register("parents_information_mother_name", {required: true})}
+                                                {...register("parents_information_mother_name", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -71,6 +73,7 @@ const ParentInformationForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_father_date_of_birth" className="form-label">Father's Date of birth</label>
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.parents_information_father_date_of_birth}
@@ -80,14 +83,10 @@ const ParentInformationForm = (props) => {
                                                 {...register("parents_information_father_date_of_birth")}
                                             />
                                         </div>
-                                        {/*<div>*/}
-                                        {/*    {errors.parents_information_father_date_of_birth && (*/}
-                                        {/*        <p className="text-danger">Date of birth is required</p>*/}
-                                        {/*    )}*/}
-                                        {/*</div>*/}
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_mother_date_of_birth" className="form-label">Mother's Date of birth</label>
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.parents_information_mother_date_of_birth}
@@ -97,33 +96,30 @@ const ParentInformationForm = (props) => {
                                                 {...register("parents_information_mother_date_of_birth")}
                                             />
                                         </div>
-                                        {/*<div>*/}
-                                        {/*    {errors.parents_information_mother_date_of_birth && (*/}
-                                        {/*        <p className="text-danger">Date of birth is required</p>*/}
-                                        {/*    )}*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_father_nid" className="form-label">Father's NID</label>
                                             <input
                                                 type="name"
                                                 defaultValue={admissionData.parents_information_father_nid}
                                                 placeholder="Father NID"
                                                 className="form-control"
                                                 id="parents_information_father_nid"
-                                                {...register("parents_information_father_nid")}
+                                                {...register("parents_information_father_nid", { required: true })}
                                             />
                                         </div>
-                                        {/*<div>*/}
-                                        {/*    {errors.parents_information_father_nid && (*/}
-                                        {/*        <p className="text-danger">Father's NID is required</p>*/}
-                                        {/*    )}*/}
-                                        {/*</div>*/}
+                                        <div>
+                                            {errors.parents_information_father_nid && (
+                                                <p className="text-danger">Father's NID is Required</p>
+                                            )}
+                                        </div>
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_mother_nid" className="form-label">Mother's NID</label>
                                             <input
                                                 type="name"
                                                 defaultValue={admissionData.parents_information_mother_nid}
@@ -138,21 +134,23 @@ const ParentInformationForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_father_occupation" className="form-label">Father's Occupation</label>
                                             <select
                                                 name="parents_information_father_occupation"
                                                 defaultValue={admissionData.parents_information_father_occupation}
                                                 className="form-select"
                                                 id="parents_information_father_occupation"
-                                                {...register("parents_information_father_occupation", {required: true})}
+                                                {...register("parents_information_father_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Father occupation ...</option>
+                                                <option value="non-govt-employee">Non govt. employee</option>
+                                                <option value="govt-employee">Govt. employee</option>
+                                                <option value="businessman">Businessman</option>
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
-                                                <option value="doctor">Doctor</option>
-                                                <option value="police">Police</option>
-                                                <option value="businessman">Businessman</option>
-                                                <option value="non-govt-employee">Non govt. employee</option>
+                                                <option value="doctor">Doctor</option>                                      
                                                 <option value="other">Other</option>
+                                                <option value="alim">Alim</option>
                                             </select>
                                         </div>
                                         <div>
@@ -163,20 +161,22 @@ const ParentInformationForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_mother_occupation" className="form-label">Mother's Occupation</label>
                                             <select
                                                 name="parents_information_mother_occupation"
                                                 defaultValue={admissionData.parents_information_mother_occupation}
                                                 className="form-select"
                                                 id="parents_information_mother_occupation"
-                                                {...register("parents_information_mother_occupation", {required: true})}
+                                                {...register("parents_information_mother_occupation", { required: true })}
                                             >
                                                 <option value=''>Choose Mother occupation ...</option>
+                                                <option value="non-govt-employee">Non govt. employee</option>
+                                                <option value="govt-employee">Govt. employee</option>
+                                                <option value="businessman">Businessman</option>
+                                                <option value="house-wife">House Wife</option>
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
-                                                <option value="doctor">Doctor</option>
-                                                <option value="police">Police</option>
-                                                <option value="businessman">Businessman</option>
-                                                <option value="non-govt-employee">Non govt. employee</option>
+                                                <option value="doctor">Doctor</option>                                      
                                                 <option value="other">Other</option>
                                             </select>
                                         </div>
@@ -189,47 +189,55 @@ const ParentInformationForm = (props) => {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
+                                        <label htmlFor="parents_information_father_organization_with_designation" className="form-label">Father's Organization</label>
                                         <input
                                             type="text"
                                             placeholder="Organization name, Designation"
                                             className="form-control"
+                                            id="parents_information_father_organization_with_designation"
+                                            {...register("parents_information_father_organization_with_designation")}
                                         />
                                     </div>
                                     <div className="col-md-6 mb-3">
+                                        <label htmlFor="parents_information_father_organization_with_designation" className="form-label">Mother's Organization</label>
                                         <input
                                             type="text"
                                             placeholder="Organization name, Designation"
                                             className="form-control"
+                                            id="parents_information_mother_organization_with_designation"
+                                            {...register("parents_information_mother_organization_with_designation")}
                                         />
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6  mb-3">
+                                        <label htmlFor="parents_information_father_education" className="form-label">Father's Education</label>
                                         <select
                                             name="parents_information_father_education"
                                             defaultValue={admissionData.parents_information_father_education}
                                             className="form-select"
                                             id="parents_information_father_education"
-                                            {...register("parents_information_father_education", {required: true})}
+                                            {...register("parents_information_father_education")}
                                         >
-                                            <option value=''>Choose Father Education ...</option>
+                                            <option value="literate">Choose Father Education</option>
                                             <option value="literate">Literate</option>
                                             <option value="ssc/equivalent">SSC/equivalent</option>
                                             <option value="hsc/equivalent">HSC/equivalent</option>
                                             <option value="hons/equivalent">Hons/equivalent</option>
-                                            <option value="m.a./equivalent">M.A./equivalent</option>
+                                            <option value="ma/equivalent">M.A./equivalent</option>
                                             <option value="higher/equivalent">Higher/equivalent</option>
                                         </select>
                                     </div>
                                     <div className="col-md-6  mb-3">
+                                        <label htmlFor="parents_information_mother_education" className="form-label">Mother's Education</label>
                                         <select
                                             name="parents_information_mother_education"
                                             defaultValue={admissionData.parents_information_mother_education}
                                             className="form-select"
                                             id="parents_information_mother_education"
-                                            {...register("parents_information_mother_education", {required: true})}
+                                            {...register("parents_information_mother_education")}
                                         >
-                                            <option value=''>Choose Mother Education ...</option>
+                                            <option value="literate">Choose Mother Education</option>
                                             <option value="literate">Literate</option>
                                             <option value="ssc/equivalent">SSC/equivalent</option>
                                             <option value="hsc/equivalent">HSC/equivalent</option>
@@ -242,13 +250,14 @@ const ParentInformationForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6  mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_father_contact" className="form-label">Father's Contact</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_father_contact}
                                                 placeholder="Father Contact"
                                                 className="form-control"
                                                 id="parents_information_father_contact"
-                                                {...register("parents_information_father_contact", {required: true})}
+                                                {...register("parents_information_father_contact", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -260,24 +269,21 @@ const ParentInformationForm = (props) => {
                                     </div>
                                     <div className="col-md-6  mb-3">
                                         <div>
+                                            <label htmlFor="parents_information_mother_contact" className="form-label">Mother's Contact</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.parents_information_mother_contact}
                                                 placeholder="Mother Contact"
                                                 className="form-control"
                                                 id="parents_information_mother_contact"
-                                                {...register("parents_information_mother_contact", {required: true})}
+                                                {...register("parents_information_mother_contact")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.parents_information_mother_contact && (
-                                                <p className="text-danger">Mother Contact is required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
+                                        <label htmlFor="father_email" className="form-label">Father's Email</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.father_email}
@@ -288,6 +294,7 @@ const ParentInformationForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-md-6 mb-3">
+                                        <label htmlFor="mother_email" className="form-label">Mother's Email</label>
                                         <input
                                             type="text"
                                             defaultValue={admissionData.mother_email}
@@ -305,41 +312,29 @@ const ParentInformationForm = (props) => {
                                     <div className="col-md-3">
                                         <h5 className="mt-3">Guardian Information</h5>
                                     </div>
-                                    <div className="col-md-9">
-                                        <div className="form-check mt-3">
-                                            <input
-                                                className="form-check-input"
-                                                type="checkbox"
-                                                value=""
-                                                id="flexCheckDefault"
-                                            />
-                                            <label
-                                                className="form-check-label"
-                                                htmlFor="flexCheckDefault">
-                                                Save as present address
-                                            </label>
-                                        </div>
-                                    </div>
                                     <div className="row">
                                         <div className="col-md-4  mb-3">
+                                            <label htmlFor="guardian_name" className="form-label">Guardian Name</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.guardian_name}
                                                 placeholder="Guardian Name"
                                                 className="form-control"
                                                 id="guardian_name"
-                                                {...register("guardian_name", {required: true})}
+                                                {...register("guardian_name", { required: "Guarding Name is required" })}
                                             />
+                                            <p className="text-danger">{errors?.guardian_name?.message}</p>
                                         </div>
                                         <div className="col-md-4  mb-3">
+                                            <label htmlFor="guardian_relation" className="form-label">Guardian Relation</label>
                                             <select
                                                 name="guardian_relation"
                                                 defaultValue={admissionData.guardian_relation}
                                                 className="form-select"
                                                 id="guardian_relation"
-                                                {...register("guardian_relation", {required: true})}
+                                                {...register("guardian_relation", { required: "This field is required" })}
                                             >
-                                                <option value=''>Choose guardian relation ...</option>
+                                                <option value="null">Choose guardian relation ...</option>
                                                 <option value="father">Father</option>
                                                 <option value="mother">Mother</option>
                                                 <option value="brother">Brother</option>
@@ -347,16 +342,18 @@ const ParentInformationForm = (props) => {
                                                 <option value="uncle">Uncle</option>
                                                 <option value="cousine">Cousine</option>
                                             </select>
+                                            <p className="text-danger">{errors?.guardian_relation?.message}</p>
                                         </div>
                                         <div className="col-md-4 mb-3">
+                                            <label htmlFor="guardian_occupation" className="form-label">Guardian Occupation</label>
                                             <select
                                                 name="guardian_occupation"
                                                 defaultValue={admissionData.guardian_occupation}
                                                 className="form-select"
                                                 id="guardian_occupation"
-                                                {...register("guardian_occupation", {required: true})}
+                                                {...register("guardian_occupation")}
                                             >
-                                                <option value=''>Guardian occupation ...</option>
+                                                <option value="null">Guardian occupation</option>
                                                 <option value="teacher">Teacher</option>
                                                 <option value="farmer">Farmer</option>
                                                 <option value="doctor">Doctor</option>
@@ -369,6 +366,7 @@ const ParentInformationForm = (props) => {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-4">
+                                            <label htmlFor="guardian_yearly_income" className="form-label">Guardian Annual Income</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.guardian_yearly_income}
@@ -380,13 +378,14 @@ const ParentInformationForm = (props) => {
                                         </div>
                                         <div className="col-md-4">
                                             <div>
+                                                <label htmlFor="guardian_contact" className="form-label">Guardian Contact</label>
                                                 <input
                                                     type="text"
                                                     defaultValue={admissionData.guardian_contact}
                                                     placeholder="Guardian Contact"
                                                     className="form-control"
                                                     id="guardian_contact"
-                                                    {...register("guardian_contact", {required: true})}
+                                                    {...register("guardian_contact", { required: true })}
                                                 />
                                             </div>
                                             <div>
@@ -397,6 +396,7 @@ const ParentInformationForm = (props) => {
                                             </div>
                                         </div>
                                         <div className="col-md-4  mb-3">
+                                            <label htmlFor="guardian_email" className="form-label">Guardian Email</label>
                                             <input
                                                 type="email"
                                                 defaultValue={admissionData.guardian_email}
@@ -409,6 +409,7 @@ const ParentInformationForm = (props) => {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-4 mb-3">
+                                            <label htmlFor="other_contact_person" className="form-label">Other Contact</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.other_contact_person}
@@ -419,12 +420,13 @@ const ParentInformationForm = (props) => {
                                             />
                                         </div>
                                         <div className="col-md-4 mb-3">
+                                            <label htmlFor="other_contact_person_relation" className="form-label">Other Guardian Relation</label>
                                             <select
                                                 name="other_contact_person_relation"
                                                 defaultValue={admissionData.other_contact_person_relation}
                                                 className="form-select"
                                                 id="other_contact_person_relation"
-                                                {...register("other_contact_person_relation", {required: true})}
+                                                {...register("other_contact_person_relation")}
                                             >
                                                 <option value=''>Other Guardian Relation ...</option>
                                                 <option value="father">Father</option>
@@ -436,6 +438,7 @@ const ParentInformationForm = (props) => {
                                             </select>
                                         </div>
                                         <div className="col-md-4 mb-3">
+                                            <label htmlFor="other_contact_person_contact" className="form-label">Other Guardian Another Contact</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.other_contact_person_contact}
@@ -446,50 +449,21 @@ const ParentInformationForm = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    {/*<div className="row">*/}
-                                    {/*    <div className="col-md-3 mb-3">*/}
-                                    {/*        <input*/}
-                                    {/*            type="text"*/}
-                                    {/*            placeholder="Yearly Income"*/}
-                                    {/*            className="form-control"*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-md-3 mb-3">*/}
-                                    {/*        <input*/}
-                                    {/*            type="text"*/}
-                                    {/*            placeholder="Second contact person"*/}
-                                    {/*            className="form-control"*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-md-3 mb-3">*/}
-                                    {/*        <input*/}
-                                    {/*            type="text"*/}
-                                    {/*            placeholder="Relation"*/}
-                                    {/*            className="form-control"*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-md-3 mb-3">*/}
-                                    {/*        <input*/}
-                                    {/*            type="text"*/}
-                                    {/*            placeholder="Number"*/}
-                                    {/*            className="form-control"*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
                                     <div className="row">
                                         <div className="col">
-                                            <p>Siblings Information (if any)</p>
+                                            <label htmlFor="sibling_id" className="form-label">Sibling</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.sibling_id}
-                                                placeholder="Student ID"
+                                                placeholder="Sibling ID"
                                                 className="form-control mb-3"
                                                 id="sibling_id"
                                                 {...register("sibling_id")}
                                             />
-                                            <button className={styles.defaultBtn}>Next Step</button>
-                                            <button className={styles.defaultBtn} onClick={prevStep}>Previous Step
-                                            </button>
+                                            <div className="d-flex justify-content-between">
+                                                <button className={styles.defaultBtn} onClick={prevStep}>Previous Step</button>
+                                                <button className={styles.defaultBtn}>Next Step</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

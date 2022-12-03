@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
-import styles from "../../../Account/Account.module.css";
+import styles from "../../../Account/Account/Account.module.css";
 
 import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
@@ -34,16 +34,14 @@ const RegistrationCreateModal = (props) => {
     const onSubmit = data => {
         api.get(`students/detail-by-id/${data.student}/`)
             .then((response) => {
-                console.log(response.data)
                 if (response.data.status) {
-                    console.log("Inside status")
                     data.madrasha = 1
                     data.student = response.data.data.id
                     data.is_registered = true
                     data.session = 1
-                    api.post(`talimat/100/exam-registration/`, JSON.stringify(data))
+                    api.post(`talimat/${props.session_data?.madrasha_slug}/exam-registration/`, JSON.stringify(data))
                         .then((response) => {
-                            console.log("response", response.data)
+                            console.log(response.data)
                             props.handleClose()
                             // router.reload()
                         }).catch((error) => {
@@ -59,8 +57,6 @@ const RegistrationCreateModal = (props) => {
             }).catch((error) => {
             console.log("error", error)
         })
-
-        console.log("onSubmit status", status)
 
         // data.madrasha = 1
         // data.is_registered = true
@@ -102,7 +98,7 @@ const RegistrationCreateModal = (props) => {
                                     className="form-control form-select"
                                     name="exam_term"
                                     {...register("exam_term", {required: "this field is required"})}
-                                    onChange={(e) => props.setExpenseCategoryValue(e.target.value)}
+                                    // onChange={(e) => props.setExpenseCategoryValue(e.target.value)}
                                 >
                                     {props.termList && props.termList.map((term) => (
                                         <option value={term?.id} key={term?.id}>{term?.term_name}</option>
@@ -119,7 +115,7 @@ const RegistrationCreateModal = (props) => {
                                     className="form-control form-select"
                                     name="student_class"
                                     {...register("student_class", {required: "this field is required"})}
-                                    onChange={(e) => props.setExpenseCategoryValue(e.target.value)}
+                                    // onChange={(e) => props.setExpenseCategoryValue(e.target.value)}
                                 >
                                     {props.classList && props.classList.map((classData) => (
                                         <option value={classData?.id} key={classData?.id}>{classData?.name}</option>

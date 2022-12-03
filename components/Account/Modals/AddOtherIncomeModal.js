@@ -1,4 +1,4 @@
-import styles from '../Account.module.css'
+import styles from '../Account/Account.module.css'
 import {useRouter} from 'next/router';
 import {useRef, useState} from 'react';
 import {useForm} from "react-hook-form";
@@ -31,19 +31,16 @@ const modalpage = (props) => {
         };
 
         console.log('data to be shown', otherIncomeData);
-        await axios.post(`${BASE_URL}/transactions/${props.session.user?.madrasha_slug}/other-income/`, otherIncomeData)
+        await axios.post(`${BASE_URL}/transactions/${props?.madrasha_slug}/other-income/`, otherIncomeData)
             .then((response) => {
                 console.log('Success Response: ', response.data)
             })
             .catch((error) => {
                 console.log('Error Message: ', error.response.data.number)
             });
-
         props.onHide();
         router.reload();
-
     };
-
 
     return (
         <>

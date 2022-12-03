@@ -1,23 +1,25 @@
-import styles from './BookList.module.css'
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Sidemenu from './LibrarySideMenu'
 import Modal from './BookDistributionListModal'
-import Link from 'next/link'
 
 const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
     const columns = [
         {
             headerName: 'Student ID',
             field: 'id',
-            width: 50,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Student Name',
             field: 'first_name',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.user?.first_name} ${params.row.student_roll_id?.user?.last_name}`,
         },
@@ -25,15 +27,16 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
             headerName: 'Class',
             field: 'name',
             sortable: false,
-            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.admitted_class?.name}`,
         },
         {
             headerName: 'Phone',
             field: 'phone',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 100,
             valueGetter: (params) =>
                 `${params.row.student_roll_id?.user?.phone}`,
         },
@@ -48,35 +51,41 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
         {
 
             headerName: 'Book Name',
+            headerAlign: 'center',
+            align: 'center',
             field: 'name',
+            width: 100,
             sortable: false,
-            width: 140,
             valueGetter: (params) =>
                 `${params.row?.book_number?.name}`,
         },
         {
-
             headerName: 'Taken Date',
             field: 'taken_date',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             sortable: false,
-            width: 140,
+
             valueGetter: (params) =>
                 `${params.row?.taken_date}`,
         },
         {
             headerName: 'Action',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 140,
+            width: 150,
 
             renderCell: (params) => {
                 return (
                     <div>
                         <button
-                            className="btn btn-primary">
+                            className="btn btn-primary primary mx-1">
                             Edit
                         </button>
                         <button
-                            className="btn btn-danger"
+                            className="btn btn-danger primary"
                             onClick={() => handleDelete(params.row.id)}>
                             Delete
                         </button>
@@ -99,12 +108,10 @@ const BookList = ({showmodal, shown, bookDistribution, handleDelete}) => {
                             <div className='col-sm-12 col-md-10 col-lg-10 col-xl-10'>
                                 <div className="right-section">
                                     <div className='card'>
-                                        <div className='card-body'>
-                                            <div className='row'>
-                                                <div className='col-md-12'>
-                                                    <h4><u>Book Distribution List</u></h4>
-                                                </div>
-                                            </div>
+                                        <div className="card-header">
+                                            <h4><u>Book Distribution List</u></h4>
+                                        </div>
+                                        <div className='card-body p-0'>
                                             <div className="book-list-table">
                                                 <Box sx={{height: 500, width: '100%'}}>
                                                     <DataGrid

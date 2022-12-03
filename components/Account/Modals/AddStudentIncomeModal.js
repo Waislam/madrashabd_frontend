@@ -1,13 +1,16 @@
-import styles from '../Account.module.css'
+import styles from '../Account/Account.module.css'
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { BASE_URL } from '../../../pages/api/api';
 import Modal from 'react-bootstrap/Modal';
+import { useSession } from 'next-auth/react';
 
 
-const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees, session }) => {
+const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, transactionSubCaterory, studentFees}) => {
+
+    const {data: session} = useSession();
 
     const { handleSubmit, formState: { errors }, register, } = useForm({
         mode: "all",
@@ -20,14 +23,14 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
             "madrasha": 1,
             "category": values.category,
             "sub_category": values.sub_category,
-            "student_class_id": values.student_class_id,
+            "student": values.student_class_id,
             "amount": values.amount,
             "for_month": values.for_month,
             "for_months": values.for_months,
             "date": values.date,
         };
 
-        await axios.post(`${BASE_URL}/transactions/${session.user?.madrasha_slug}/student-income/`, newStudetnIncome)
+        await axios.post(`${BASE_URL}/transactions/${session?.user?.madrasha_slug}/student-income/`, newStudetnIncome)
             .then((response) => {
                 console.log('Success Response: ', response.data)
             })
@@ -38,8 +41,6 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
         close()
 
     };
-
-
 
     const router = useRouter();
     //return shown ? (): null
@@ -90,10 +91,10 @@ const modalpage = ({ shown, close, incomeCategoryList, setTransactionCaterory, t
                                     <div className="col-md-4 mb-3">
                                         <label className="mb-2">Student Id</label>
                                         <input type="text"
-                                            name="student_class_id"
+                                            name="student"
                                             className="form-control"
                                             placeholder="student id"
-                                            {...register("student_class_id", { required: "this field is required" })}
+                                            {...register("student", { required: "this field is required" })}
                                         />
                                         <p className="text-danger">{errors.student_class_id?.message}</p>
                                     </div>

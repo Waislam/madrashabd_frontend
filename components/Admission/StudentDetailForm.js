@@ -1,26 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from './Admission.module.css'
+import { useForm } from "react-hook-form";
+import { calculateAge } from '../Utils/utils'
 
-import {useForm} from "react-hook-form";
-import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from "yup";
-
-import {useAdmissionFormData} from "../../context/AdmissionFormProvider";
-import api from "../../pages/api/api";
-
-const schema = yup.object({
-    full_name: yup.string().required(),
-    // password: yup.string()
-    //     .required("Password is required"),
-    // password2: yup.string()
-    //     .required("Confirm Password is required")
-    //     .oneOf([yup.ref("password")], "Passwords do not match"),
-    student_phone_number: yup.string()
-        .required("Phone number is required."),
-    date_of_birth: yup.string()
-        .required("Date of birth is required."),
-
-}).required();
+import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
 
 const StudentDetailForm = (props) => {
     const [loading, setLoading] = useState(false)
@@ -28,6 +11,9 @@ const StudentDetailForm = (props) => {
         nextStep, prevStep,
         divisionList, districtList, postOfficeList,
         postCodeList, thanaList,
+
+        pdistrictList, pthanaList, ppostOfficeList, ppostCodeList,
+
         setSelectPresentAddressDistrict, setSelectPresentAddressDivision,
         setSelectPresentAddressThana, setSelectPresentAddressPostCode,
         setSelectPresentAddressPostOffice,
@@ -35,31 +21,42 @@ const StudentDetailForm = (props) => {
         setSelectPermanentAddressPostCode, setSelectPermanentAddressPostOffice,
         setSelectPermanentAddressThana, session
     } = props
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
+    const [getAge, setAge] = useState('')
 
 
     const {
         handleSubmit,
         setError,
-        formState: {errors},
+        formState: { errors },
         register,
+        setValue
     } = useForm({
-        mode: "onTouched",
-        resolver: yupResolver(schema)
+        mode: "onChange",
     });
 
+    // const [year, month, totalDay] = ageCalculate(birthDate)
+    // console.log("year:", year)
+    // console.log("months: ", month)
+    // console.log("days: ", totalDay)
+    //handle calculate age
+    const setAgeonChangeofdateOfBirth = (e) => {
+        e.preventDefault()
+        const birthDate = e.target.value
+        // calculateAge(birthDate)
+        const [year, month, totalDay] = calculateAge(birthDate)
+        // const result = calculateAge(birthDate)
+        setAge(`year:  ${year} month: ${month} day: ${totalDay}`)
+        setValue('age', `year:  ${year} month: ${month} day: ${totalDay}`); // setValue setting the value and setAGe getting the value to the field
+    }
+
     const onSubmit = (values) => {
+        console.log("values", values)
         setLoading(true)
         setAdmissionFormValues(values);
         nextStep();
         setLoading(false)
     };
-
-    const Continue = e => {
-        e.preventDefault();
-        nextStep();
-    };
-
 
     return (
         <>
@@ -70,106 +67,65 @@ const StudentDetailForm = (props) => {
                             {/* Student Details ****************** */}
                             <div className="student-detail">
                                 <h4>Student Details</h4>
-                                <hr/>
-                                <div className="mb-4">
-                                    <div>
-                                        <label>Student/Parents phone number</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData?.student_phone_number}
-                                            className="form-control"
-                                            placeholder="student/parents phone number"
-                                            id="student_phone_number"
-                                            {...register("student_phone_number", {required: true})}
-                                        />
-                                    </div>
-                                    <div>
-                                        {errors.student_phone_number && (
-                                            <p className="text-danger">Number is required</p>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="mb-4">
-                                    <div>
-                                        <label>Full name</label>
-                                        <input
-                                            type="text"
-                                            defaultValue={admissionData.full_name}
-                                            className="form-control"
-                                            placeholder="Full Name"
-                                            id="full_name"
-                                            {...register("full_name",)}
-                                        />
-                                    </div>
-                                    <div>
-                                        {errors.full_name && (
-                                            <p className="text-danger">Full Name is required</p>
-                                        )}
-                                    </div>
-                                </div>
+                                <hr />
                                 <div className="row">
-                                    {/*<div className="col-md-6 mb-6">*/}
-                                    {/*    <div>*/}
-                                    {/*        <label>Password</label>*/}
-                                    {/*        <input*/}
-                                    {/*            type="password"*/}
-                                    {/*            defaultValue={admissionData.password}*/}
-                                    {/*            className="form-control"*/}
-                                    {/*            placeholder="Type password"*/}
-                                    {/*            id="password"*/}
-                                    {/*            {...register("password")}*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div>*/}
-                                    {/*        {errors.password && (*/}
-                                    {/*            <p className="text-danger">{errors.password?.message}</p>*/}
-                                    {/*        )}*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="col-md-6 mb-6">*/}
-                                    {/*    <div>*/}
-                                    {/*        <label>Re-type password</label>*/}
-                                    {/*        <input*/}
-                                    {/*            type="password"*/}
-                                    {/*            defaultValue={admissionData.password2}*/}
-                                    {/*            className="form-control"*/}
-                                    {/*            placeholder="Re-type password"*/}
-                                    {/*            id="password2"*/}
-                                    {/*            {...register("password2")}*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*    <div>*/}
-                                    {/*        {errors.password2 && (*/}
-                                    {/*            <p className="text-danger">{errors.password2?.message}</p>*/}
-                                    {/*        )}*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
+                                    <div className="col-md-6">
+                                        <label htmlFor="first_name" className="form-label">First Name</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.first_name}
+                                            placeholder="Student's First name"
+                                            className="form-control"
+                                            id="first_name"
+                                            {...register("first_name", { required: "First name is required" })}
+                                        />
+                                        <p className="text-danger">{errors?.first_name?.message}</p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="last_name" className="form-label">Last Name</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.last_name}
+                                            placeholder="Last name"
+                                            className="form-control"
+                                            id="last_name"
+                                            {...register("last_name", { required: "Last name is required" })}
+                                        />
+                                        <p className="text-danger">{errors?.last_name?.message}</p>
+                                    </div>
+
+
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                            <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
                                             <input
                                                 type="date"
                                                 defaultValue={admissionData.date_of_birth}
                                                 className="form-control"
                                                 placeholder="Date of Birth"
                                                 id="date_of_birth"
-                                                {...register("date_of_birth", {required: true})}
+                                                {...register("date_of_birth", { required: true })}
+                                                onChange={setAgeonChangeofdateOfBirth}
                                             />
                                         </div>
                                         <div>
                                             {errors.date_of_birth && (
-                                                <p className="text-danger">{errors.date_of_birth?.message}</p>
+                                                <p className="text-danger">{errors.date_of_birth?.message ? errors.date_of_birth?.message : "Date of Birth is Required"}</p>
                                             )}
                                         </div>
                                     </div>
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                            <label htmlFor="age" className="form-label">Age</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.age}
+                                                value={getAge}
                                                 className="form-control"
                                                 placeholder="Age"
+                                                name="age"
                                                 id="age"
-                                                {...register("age", {required: true})}
+                                                {...register("age", { required: true })}
                                             />
                                         </div>
                                         <div>
@@ -180,69 +136,57 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
+                                            <label htmlFor="birth_certificate" className="form-label">Barth Certificate Number</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.birth_certificate}
                                                 className="form-control"
                                                 placeholder="Birth Certificate"
                                                 id="birth_certificate"
-                                                {...register("birth_certificate", {required: true})}
+                                                {...register("birth_certificate")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.birth_certificate && (
-                                                <p className="text-danger">Birth Certificate is required</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="passport_number" className="form-label">Passport Number</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.passport_number}
                                                 className="form-control"
                                                 placeholder="Passport"
                                                 id="passport_number"
-                                                {...register("passport_number", {required: true})}
+                                                {...register("passport_number")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.passport_number && (
-                                                <p className="text-danger">{errors.passport_number.message ? errors.passport_number.message : "Passport Number is required"}</p>
-                                            )}
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="student_nid" className="form-label">Student NID (If Has)</label>
                                             <input
                                                 type="text"
                                                 defaultValue={admissionData.student_nid}
                                                 className="form-control"
-                                                placeholder="NID"
+                                                placeholder="Give Student NID number if has"
                                                 id="student_nid"
-                                                {...register("student_nid", {required: true})}
+                                                {...register("student_nid")}
                                             />
-                                        </div>
-                                        <div>
-                                            {errors.student_nid && (
-
-                                                <p className="text-danger">{errors.student_nid.message ? errors.student_nid.message : "NID is required"}</p>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
+                                        <label htmlFor="nationality" className="form-label">Nationality</label>
                                         <select
                                             name="nationality"
                                             defaultValue={admissionData.nationality}
                                             className="form-select"
                                             id="nationality"
-                                            {...register("nationality", {required: true})}
+                                            {...register("nationality", { required: true })}
                                         >
-                                            <option value=''>Choose nationality...</option>
+                                            <option value='' disabled>Select nationality...</option>
                                             <option value="bangladeshi">Bangladeshi</option>
                                         </select>
                                         {errors.nationality && (
@@ -251,14 +195,15 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="religion" className="form-label">Religion</label>
                                             <select
                                                 name="religion"
                                                 defaultValue={admissionData.religion}
                                                 className="form-select"
                                                 id="religion"
-                                                {...register("religion", {required: true})}
+                                                {...register("religion", { required: true })}
                                             >
-                                                <option value=''>Choose religion...</option>
+                                                <option value='' disabled>Select religion...</option>
                                                 <option value="islam">
                                                     Islam
                                                 </option>
@@ -272,14 +217,15 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="gender" className="form-label">Gender</label>
                                             <select
                                                 name="gender"
                                                 defaultValue={admissionData.gender}
                                                 className="form-select"
                                                 id="gender"
-                                                {...register("gender", {required: true})}
+                                                {...register("gender", { required: true })}
                                             >
-                                                <option value=''>Choose gender...</option>
+                                                <option value='' disabled >Select Gender...</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
@@ -298,18 +244,19 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_division" className="form-label">Division</label>
                                             <select
                                                 name="present_address_division"
                                                 defaultValue={admissionData.present_address_division}
                                                 id="present_address_division"
                                                 className="form-select"
-                                                {...register("present_address_division", {required: true})}
+                                                {...register("present_address_division", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressDivision(e.target.value)}
                                             >
-                                                <option value=''>Choose division...</option>
+                                                <option>Select Division</option>
                                                 {
-                                                    divisionList.map((division) => (
-                                                        <option key={division.pk} defaultValue={division.pk}>
+                                                    divisionList && divisionList.map((division) => (
+                                                        <option key={division.pk} value={division.pk}>
                                                             {division.name}
                                                         </option>
                                                     ))
@@ -324,18 +271,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_district" className="form-label">District</label>
                                             <select
                                                 name="present_address_district"
                                                 defaultValue={admissionData.present_address_district}
                                                 id="present_address_district"
                                                 className="form-select"
-                                                {...register("present_address_district", {required: true})}
+                                                {...register("present_address_district", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressDistrict(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option>Select District</option>
                                                 {
                                                     districtList.map((district) => (
-                                                        <option key={district.pk} defaultValue={district.pk}>
+                                                        <option key={district.pk} value={district.pk}>
                                                             {district.name}
                                                         </option>
                                                     ))
@@ -351,18 +299,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="present_address_thana"
                                                 defaultValue={admissionData.present_address_thana}
                                                 id="present_address_thana"
                                                 className="form-select"
-                                                {...register("present_address_thana", {required: true})}
+                                                {...register("present_address_thana", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressThana(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option>Select Thana</option>
                                                 {
                                                     thanaList.map((thana) => (
-                                                        <option key={thana.pk} defaultValue={thana.pk}>
+                                                        <option key={thana.pk} value={thana.pk}>
                                                             {thana.name}
                                                         </option>
                                                     ))
@@ -379,18 +328,19 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6  mb-4">
                                         <div>
+                                            <label htmlFor="present_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="present_address_post_office"
                                                 defaultValue={admissionData.present_address_post_office}
                                                 id="present_address_post_office"
                                                 className="form-select"
-                                                {...register("present_address_post_office", {required: true})}
+                                                {...register("present_address_post_office", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value=''>Choose post office...</option>
+                                                <option>Select Post Office</option>
                                                 {
                                                     postOfficeList.map((post_office) => (
-                                                        <option key={post_office.pk} defaultValue={post_office.pk}>
+                                                        <option key={post_office.pk} value={post_office.pk}>
                                                             {post_office.name}
                                                         </option>
                                                     ))
@@ -405,18 +355,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="present_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="present_address_post_code"
                                                 defaultValue={admissionData.present_address_post_code}
                                                 id="present_address_post_code"
                                                 className="form-select"
-                                                {...register("present_address_post_code", {required: true})}
+                                                {...register("present_address_post_code", { required: true })}
                                                 onChange={(e) => setSelectPresentAddressPostCode(e.target.value)}
                                             >
-                                                <option value=''>Choose Post code ...</option>
+                                                <option>Select Post Code ...</option>
                                                 {
                                                     postCodeList.map((post_code) => (
-                                                        <option key={post_code.pk} defaultValue={post_code.pk}>
+                                                        <option key={post_code.pk} value={post_code.pk}>
                                                             {post_code.name}
                                                         </option>
                                                     ))
@@ -432,13 +383,19 @@ const StudentDetailForm = (props) => {
                                 </div>
                                 <div className="form-floating">
                                     <div>
+                                        <label htmlFor="student_present_address_info" className="form-label">Address Details</label>
                                         <textarea
                                             className="form-control"
                                             defaultValue={admissionData.student_present_address_info}
-                                            placeholder=" Village/Town/Road/House/Flat"
+                                            placeholder="House/Flat/Road/Town/Village"
                                             id="student_present_address_info"
-                                            {...register("student_present_address_info", {required: true})}
+                                            {...register("student_present_address_info", { required: true })}
                                         />
+                                    </div>
+                                    <div>
+                                        {errors.student_present_address_info && (
+                                            <p className="text-danger">Address Details is Required</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -449,37 +406,23 @@ const StudentDetailForm = (props) => {
                                     <div className="col-md-3">
                                         <h5 className="mt-3">Permanent Address</h5>
                                     </div>
-                                    <div className="col-md-9">
-                                        <div className="form-check mt-3">
-                                            <input
-                                                className="form-check-input"
-                                                type="checkbox"
-                                                value=""
-                                                id="flexCheckDefault"
-                                            />
-                                            <label
-                                                className="form-check-label"
-                                                htmlFor="flexCheckDefault">
-                                                Save as present address
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_division" className="form-label">Division</label>
                                             <select
                                                 name="permanent_address_division"
                                                 defaultValue={admissionData.permanent_address_division}
                                                 id="permanent_address_division"
                                                 className="form-select"
-                                                {...register("permanent_address_division", {required: true})}
+                                                {...register("permanent_address_division", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressDivision(e.target.value)}
                                             >
-                                                <option value=''>Choose division...</option>
+                                                <option>Select Division</option>
                                                 {
                                                     divisionList.map((division) => (
-                                                        <option key={division.pk} defaultValue={division.pk}>
+                                                        <option key={division.pk} value={division.pk}>
                                                             {division.name}
                                                         </option>
                                                     ))
@@ -494,18 +437,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4  mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_district" className="form-label">District</label>
                                             <select
                                                 name="permanent_address_district"
                                                 defaultValue={admissionData.permanent_address_district}
                                                 id="permanent_address_district"
                                                 className="form-select"
-                                                {...register("permanent_address_district", {required: true})}
+                                                {...register("permanent_address_district", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressDistrict(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option>Select District</option>
                                                 {
-                                                    districtList.map((district) => (
-                                                        <option key={district.pk} defaultValue={district.pk}>
+                                                    pdistrictList && pdistrictList.map((district) => (
+                                                        <option key={district.pk} value={district.pk}>
                                                             {district.name}
                                                         </option>
                                                     ))
@@ -520,18 +464,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-4 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_thana" className="form-label">Thana</label>
                                             <select
                                                 name="permanent_address_thana"
                                                 defaultValue={admissionData.permanent_address_thana}
                                                 id="permanent_address_thana"
                                                 className="form-select"
-                                                {...register("permanent_address_thana", {required: true})}
+                                                {...register("permanent_address_thana", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressThana(e.target.value)}
                                             >
-                                                <option value=''>Choose district...</option>
+                                                <option>Select Thana</option>
                                                 {
-                                                    thanaList.map((thana) => (
-                                                        <option key={thana.pk} defaultValue={thana.pk}>
+                                                    pthanaList && pthanaList.map((thana) => (
+                                                        <option key={thana.pk} value={thana.pk}>
                                                             {thana.name}
                                                         </option>
                                                     ))
@@ -548,18 +493,19 @@ const StudentDetailForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_post_office" className="form-label">Post Office</label>
                                             <select
                                                 name="permanent_address_post_office"
                                                 defaultValue={admissionData.permanent_address_post_office}
                                                 id="permanent_address_post_office"
                                                 className="form-select"
-                                                {...register("permanent_address_post_office", {required: true})}
+                                                {...register("permanent_address_post_office", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressPostOffice(e.target.value)}
                                             >
-                                                <option value=''>Choose post office...</option>
+                                                <option>Select Post Office</option>
                                                 {
-                                                    postOfficeList.map((post_office) => (
-                                                        <option key={post_office.pk} defaultValue={post_office.pk}>
+                                                    ppostOfficeList && ppostOfficeList.map((post_office) => (
+                                                        <option key={post_office.pk} value={post_office.pk}>
                                                             {post_office.name}
                                                         </option>
                                                     ))
@@ -574,18 +520,19 @@ const StudentDetailForm = (props) => {
                                     </div>
                                     <div className="col-md-6 mb-4">
                                         <div>
+                                            <label htmlFor="permanent_address_post_code" className="form-label">Post Code</label>
                                             <select
                                                 name="permanent_address_post_code"
                                                 defaultValue={admissionData.permanent_address_post_code}
                                                 id="permanent_address_post_code"
                                                 className="form-select"
-                                                {...register("permanent_address_post_code", {required: true})}
+                                                {...register("permanent_address_post_code", { required: true })}
                                                 onChange={(e) => setSelectPermanentAddressPostCode(e.target.value)}
                                             >
-                                                <option value=''>Choose Post code ...</option>
+                                                <option>Select Post Code</option>
                                                 {
-                                                    postCodeList.map((post_code) => (
-                                                        <option key={post_code.pk} defaultValue={post_code.pk}>
+                                                    ppostCodeList && ppostCodeList.map((post_code) => (
+                                                        <option key={post_code.pk} value={post_code.pk}>
                                                             {post_code.name}
                                                         </option>
                                                     ))
@@ -600,26 +547,30 @@ const StudentDetailForm = (props) => {
                                     </div>
                                 </div>
                                 <div className="form-floating">
-                                    <textarea
-                                        className="form-control"
-                                        defaultValue={admissionData.student_permanent_address_info}
-                                        placeholder="Village/Town/Road/House/Flat"
-                                        id="student_permanent_address_info"
-                                        {...register("student_permanent_address_info", {required: true})}
-                                    />
-                                    <label htmlFor="floatingTextarea">
-                                        Village/Town/Road/House/Flat
-                                    </label>
+                                    <div>
+                                        <label htmlFor="student_permanent_address_info" className="form-label">Address Details</label>
+                                        <textarea
+                                            className="form-control"
+                                            defaultValue={admissionData.student_permanent_address_info}
+                                            placeholder="House/Flat/Road/Town/Village"
+                                            id="student_permanent_address_info"
+                                            {...register("student_permanent_address_info", { required: true })}
+                                        />
+                                    </div>
+                                    <div>
+                                        {errors.student_permanent_address_info && (
+                                            <p className="text-danger">Address Details is Required</p>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                             {
                                 loading ?
                                     <button className={styles.defaultBtn}>Loading</button>
                                     :
-                                    <button className={styles.defaultBtn}>Next Step</button>
+                                    <button className={`${styles.defaultBtn} float-end`} type='submit'>Next Step</button>
                             }
                         </form>
-
                     </div>
                 </div>
             </div>

@@ -6,40 +6,63 @@ import studentLogo from '../../public/assets/admission/students.png'
 import {useRouter} from "next/router";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import {BASE_URL} from "../../pages/api/api";
 
 const columns = [
     {field: 'student_id', headerName: 'Student ID', width: 90},
     {
         field: 'first_name',
         headerName: 'Student Name',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row.user?.first_name || ''}`,
     },
     {
         field: 'father_info',
         headerName: 'Father Name',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row?.father_info?.parent_name || ''}`,
     },
     {
         field: 'admitted_class',
         headerName: 'Class',
-        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
             `${params.row?.admitted_class?.name || ''}`,
     },
     {
-        field: 'admitted_class',
-        headerName: 'Class',
-        width: 150,
+        field: 'phone',
+        headerName: 'Phone',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) =>
-            `${params.row?.admitted_class?.name || ''}`,
+            `${params.row?.user?.phone}`,
+    },
+    {
+        field: 'avatar',
+        headerName: 'avatar',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
+        editable: true,
+        renderCell: (params) => <img
+            src={`${params.row.user?.avatar}`}
+            alt="Oops image missing"
+        />,
     },
     {
         field: 'Detail',
         headerName: 'Detail',
+        headerAlign: 'center',
+        align: 'center',
         width: 160,
         renderCell: (params) => {
             return <a href={`/students/${params.row.slug}`}>Details</a>;
@@ -48,34 +71,35 @@ const columns = [
 ];
 
 
-const StudentList = ({
-                         students
-                     }) => {
+const StudentList = ({students}) => {
     const router = useRouter();
 
     return (
         <>
             <section className={styles.promotedStudentSection}>
                 <div className="container-fluid">
-                    {/* <h3 className={styles.promotedStudentTitle}>Student List</h3> */}
                     <div className="row">
                         <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div className={styles.promotedStudentList}>
                                 <div className="card">
                                     <h4 className="text-center mt-3">
-                                        <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
+                                        <Image
+                                            src={studentLogo}
+                                            className="img-responsive"
+                                            alt="Logo missing"
+                                            height={40} width={40}
+                                        />
                                     </h4>
                                     <hr/>
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
-                                            <Link href="/students">
+                                            <Link href={`/students`}>
                                                 <a className="text-center">Student List</a>
                                             </Link>
                                         </div>
 
                                         <div className={styles.promotedLink}>
-                                            <Link href="/students/promoted-student">
+                                            <Link href={`/students/promoted-student`}>
                                                 <a className="text-center">Promoted List</a>
                                             </Link>
                                         </div>
@@ -85,7 +109,7 @@ const StudentList = ({
                         </div>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="card">
-                                <div className="card-body mt-3">
+                                <div className="card-body p-0">
                                     <Box sx={{height: 400, width: '100%'}}>
                                         <DataGrid
                                             rows={students}

@@ -10,35 +10,35 @@ const SyllabusHeader = () =>{
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/syllabus">
+                            <Link href={`talimat/syllabus`}>
                                 <a>
                                     Book distribution to Teacher
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/syllabus/training">
+                            <Link href={`/talimat/syllabus/training`}>
                                 <a>
                                     Teacher’s Training
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/syllabus/create">
+                            <Link href={`/talimat/syllabus/syllabus-creation`}>
                                 <a>
                                     Syllabus Creation
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/syllabus/responsibility">
+                            <Link href={`/talimat/syllabus/responsibility`}>
                                 <a>
                                     Teacher and staff responsibility distribution
                                 </a> 
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href="/talimat/syllabus/calendar">
+                            <Link href={`/talimat/syllabus/calendar`}>
                                 <a>
                                     Academic calender
                                 </a> 
@@ -50,6 +50,6 @@ const SyllabusHeader = () =>{
             </div>
         </>
     )
-}
+};
 
 export default SyllabusHeader;

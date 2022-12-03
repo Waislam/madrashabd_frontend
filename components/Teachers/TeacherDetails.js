@@ -1,9 +1,32 @@
 import React from "react";
 import Link from 'next/link';
-import Image from "next/image";
 import styles from './TeacherDetails.module.css';
+import { useForm } from "react-hook-form";
+import { BASE_URL } from "../../pages/api/api";
+import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
+import Image from "next/image";
 
-const TeacherDetail = ({teacher}) => {
+const TeacherDetail = ({ teacher }) => {
+    const { handleSubmit, register, formState: { errors }, control } = useForm()
+
+    const onSubmit = (values) => {
+        let formdata = new FormData();
+        formdata.append("avatar", values.avatar[0], values.avatar[0].name);
+
+        let requestOptions = {
+            method: 'PUT',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/accounts/avatar/${teacher.data.id}/`, requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+    }
+
     return (
         <>
             <section className={styles.mainSection}>
@@ -108,7 +131,42 @@ const TeacherDetail = ({teacher}) => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    {/* <Image src={teacher} className="img-responsive" width={400} height={300}/> */}
+                                                    <div className="text-center">
+                                                        {teacher?.data?.user?.avatar ?
+                                                            <img
+                                                                src={`${BASE_URL}` + teacher?.data?.user?.avatar}
+                                                                className="rounded-circle shadow-4-strong"
+                                                                alt="Oops image missing"
+                                                                width={70}
+                                                                height={70}
+
+                                                            />
+                                                            :
+                                                            <Image
+                                                                className="rounded-circle shadow-4-strong"
+                                                                alt="avatar2"
+                                                                src={teacher}
+                                                                width={90}
+                                                                height={90}
+                                                            />
+                                                        }
+                                                    </div>
+                                                    <form onSubmit={handleSubmit(onSubmit)}>
+                                                        <div className="form-group mb-2">
+                                                            <input
+                                                                className="form-control"
+                                                                type="file"
+                                                                id="avatar"
+                                                                name='avatar'
+                                                                {...register("avatar")}
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            type="submit"
+                                                            className="btn btn-primary mb-2">
+                                                            Save
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +178,7 @@ const TeacherDetail = ({teacher}) => {
                                     <div className="card">
                                         <div className="card-body">
                                             <h4>Present Address</h4>
-                                            <hr/>
+                                            <hr />
                                             <dl className="row">
                                                 <dt className="col-sm-3">Address</dt>
                                                 <dd className="col-sm-9">
@@ -172,7 +230,7 @@ const TeacherDetail = ({teacher}) => {
                                     <div className="card">
                                         <div className="card-body">
                                             <h4>Permanent Address</h4>
-                                            <hr/>
+                                            <hr />
                                             <dl className="row">
                                                 <dt className="col-sm-3">Address</dt>
                                                 <dd className="col-sm-9">
@@ -229,22 +287,22 @@ const TeacherDetail = ({teacher}) => {
                                             <div className="table-responsive">
                                                 <table className="table">
                                                     <thead>
-                                                    <tr>
-                                                        <th scope="row">Institution Name</th>
-                                                        <th scope="col">Degree</th>
-                                                        <th scope="col">Session</th>
-                                                        <th scope="col">Result (GPA)</th>
-                                                        <th scope="col">Result (marks)</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th scope="row">Institution Name</th>
+                                                            <th scope="col">Degree</th>
+                                                            <th scope="col">Session</th>
+                                                            <th scope="col">Result (GPA)</th>
+                                                            <th scope="col">Result (marks)</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>{teacher.data.education.institution_name}</td>
-                                                        <td>{teacher.data.education.degree_name}</td>
-                                                        <td>{teacher.data.education.passing_year}</td>
-                                                        <td>{teacher.data.education.result}</td>
-                                                        <td>-----------</td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td>{teacher.data.education.institution_name}</td>
+                                                            <td>{teacher.data.education.degree_name}</td>
+                                                            <td>{teacher.data.education.passing_year}</td>
+                                                            <td>{teacher.data.education.result}</td>
+                                                            <td>-----------</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -257,7 +315,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Experience</h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.experience.experience_name}</p>
+                                            <p>{teacher.data.experience?.experience_name}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -267,7 +325,7 @@ const TeacherDetail = ({teacher}) => {
                                     <h4>Skills </h4>
                                     <div className="card">
                                         <div className="card-body">
-                                        <p>{teacher.data.skill.skill_name}</p>
+                                            <p>{teacher.data.skill.skill_name}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +336,7 @@ const TeacherDetail = ({teacher}) => {
 
                                         <div className="card-body">
                                             <h4>Contact </h4>
-                                            <hr/>
+                                            <hr />
                                             <dl className="row">
                                                 <dt className="col-sm-4">Phone</dt>
                                                 <dd className="col-sm-8">
@@ -303,7 +361,7 @@ const TeacherDetail = ({teacher}) => {
                                     <div className="card">
                                         <div className="card-body">
                                             <h4>Others information</h4>
-                                            <hr/>
+                                            <hr />
                                             <dl className="row">
                                                 <dt className="col-sm-3">NID</dt>
                                                 <dd className="col-sm-9">
@@ -331,7 +389,7 @@ const TeacherDetail = ({teacher}) => {
                             <div className="card pb-0 mb-2">
                                 <div className="card-body pb-0">
                                     <h4>Working Duration </h4>
-                                    <hr/>
+                                    <hr />
                                     <div className="row">
                                         <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-4">
                                             <p>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useRouter} from 'next/router'
 
 // StudentDetails
@@ -12,6 +12,7 @@ import {getStudentDetailApi} from "../api/StudentAPI/students_api";
 import {getSession} from "next-auth/react";
 
 const StudentDetail = ({student}) => {
+    console.log("student :", student);
     const router = useRouter();
 
     if (router.isFallback) {
