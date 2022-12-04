@@ -55,7 +55,11 @@ body {
 }
 
 
+/* data grid customization */
 .css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel {
     display: block;
+    margin-bottom: 0;
+}
+.css-levciy-MuiTablePagination-displayedRows {
     margin-bottom: 0;
 }

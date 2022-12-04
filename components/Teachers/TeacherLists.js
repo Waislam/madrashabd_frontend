@@ -54,11 +54,19 @@ const TeacherList = ({teachers}) => {
             width:100,
             height:100,
             editable: true,
-            renderCell: (params) => <img
-                src={`${params.row.user?.avatar}`}
-                alt="Oops image missing"
-            />,
-    
+            renderCell: (params) => {
+                return (
+                    <div className="text-center">
+                        <img
+                            src={`${params.row.user?.avatar}`}
+                            alt="Oops image missing"
+                            height={40}
+                            width={40}
+                            className="rounded-circle shadow-4-strong"
+                        />
+                    </div>
+                )
+            }
         },
         {
             field: 'department',

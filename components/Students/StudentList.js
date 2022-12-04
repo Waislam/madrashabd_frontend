@@ -3,18 +3,17 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from './StudentList.module.css'
 import studentLogo from '../../public/assets/admission/students.png'
-import {useRouter} from "next/router";
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import { useRouter } from "next/router";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import {BASE_URL} from "../../pages/api/api";
+import { BASE_URL } from "../../pages/api/api";
 
 const columns = [
-    {field: 'student_id', headerName: 'Student ID', width: 90},
+    { field: 'student_id', headerName: 'Student ID', width: 90 },
     {
         field: 'first_name',
         headerName: 'Student Name',
         headerAlign: 'center',
-        align: 'center',
         flex: 1,
         valueGetter: (params) =>
             `${params.row.user?.first_name || ''}`,
@@ -23,7 +22,6 @@ const columns = [
         field: 'father_info',
         headerName: 'Father Name',
         headerAlign: 'center',
-        align: 'center',
         flex: 1,
         valueGetter: (params) =>
             `${params.row?.father_info?.parent_name || ''}`,
@@ -32,7 +30,6 @@ const columns = [
         field: 'admitted_class',
         headerName: 'Class',
         headerAlign: 'center',
-        align: 'center',
         flex: 1,
         valueGetter: (params) =>
             `${params.row?.admitted_class?.name || ''}`,
@@ -53,10 +50,19 @@ const columns = [
         align: 'center',
         flex: 1,
         editable: true,
-        renderCell: (params) => <img
-            src={`${params.row.user?.avatar}`}
-            alt="Oops image missing"
-        />,
+        renderCell: (params) => {
+            return (
+                <div className="text-center">
+                    <img
+                        src={`${params.row.user?.avatar}`}
+                        alt="Oops image missing"
+                        height={40}
+                        width={40}
+                        className="rounded-circle shadow-4-strong"
+                    />
+                </div>
+            )
+        }
     },
     {
         field: 'Detail',
@@ -71,7 +77,7 @@ const columns = [
 ];
 
 
-const StudentList = ({students}) => {
+const StudentList = ({ students }) => {
     const router = useRouter();
 
     return (
@@ -90,17 +96,17 @@ const StudentList = ({students}) => {
                                             height={40} width={40}
                                         />
                                     </h4>
-                                    <hr/>
+                                    <hr />
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
                                             <Link href={`/students`}>
-                                                <a className="text-center">Student List</a>
+                                                <a className="ps-5">Student List</a>
                                             </Link>
                                         </div>
 
                                         <div className={styles.promotedLink}>
                                             <Link href={`/students/promoted-student`}>
-                                                <a className="text-center">Promoted List</a>
+                                                <a className="ps-5">Promoted List</a>
                                             </Link>
                                         </div>
                                     </div>
@@ -110,22 +116,24 @@ const StudentList = ({students}) => {
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="card">
                                 <div className="card-body p-0">
-                                    <Box sx={{height: 400, width: '100%'}}>
+                                    <Box sx={{ height: 500, width: '100%' }}>
                                         <DataGrid
                                             rows={students}
                                             columns={columns}
-                                            pageSize={5}
-                                            rowsPerPageOptions={[5]}
+                                            rowsPerPageOptions={[5, 10, 25, 100]}
                                             checkboxSelection
                                             disableSelectionOnClick
                                             disableColumnSelector
                                             disableDensitySelector
-                                            components={{Toolbar: GridToolbar}}
-                                            experimentalFeatures={{newEditingApi: false}}
+                                            localeText={{
+                                                toolbarExport: "Download"
+                                            }}
+                                            components={{ Toolbar: GridToolbar }}
+                                            experimentalFeatures={{ newEditingApi: false }}
                                             componentsProps={{
                                                 toolbar: {
                                                     showQuickFilter: true,
-                                                    quickFilterProps: {debounceMs: 500},
+                                                    quickFilterProps: { debounceMs: 500 },
                                                 },
                                             }}
                                         />
