@@ -197,7 +197,9 @@ const StudentUpdateForm = ({data}) => {
         }
 
         updateStudentDetail(student.student_id, updatedData)
-        .then(data =>  data.message && toast.success(data.message))
+        .then(data => {
+            return data.message && toast.success(data.message)
+        })
         .catch(error => console.log(error));
     }
 
@@ -212,30 +214,6 @@ const StudentUpdateForm = ({data}) => {
                                 <h4>Student Update</h4>
                                 <hr />
                                 <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor="first_name" className="form-label">First Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Student's First name"
-                                            className="form-control"
-                                            id="first_name"
-                                            {...register("first_name", { required: "First name is required" })}
-                                        />
-                                        <p className="text-danger">{errors?.first_name?.message}</p>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label htmlFor="last_name" className="form-label">Last Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Last name"
-                                            className="form-control"
-                                            id="last_name"
-                                            {...register("last_name", { required: "Last name is required" })}
-                                        />
-                                        <p className="text-danger">{errors?.last_name?.message}</p>
-                                    </div>
-
-
                                     <div className="col-md-4 mb-4 mt-4">
                                         <div>
                                             <label htmlFor="date_of_birth" className="form-label">Date Of Birth</label>
@@ -357,24 +335,6 @@ const StudentUpdateForm = ({data}) => {
                                         </div>
                                     </div>
                                     <div className="col-md-4 mb-4">
-                                        <div>
-                                            <label htmlFor="gender" className="form-label">Gender</label>
-                                            <select
-                                                name="gender"
-                                                className="form-select"
-                                                id="gender"
-                                                {...register("gender", { required: true })}
-                                            >
-                                                <option value='' disabled >Select Gender...</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            {errors.gender && (
-                                                <p className="text-danger">Gender is required</p>
-                                            )}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
