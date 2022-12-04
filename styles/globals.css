@@ -53,3 +53,9 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+
+.css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel {
+    display: block;
+    margin-bottom: 0;
+}

@@ -5,86 +5,85 @@ import Box from "@mui/material/Box";
 import styles from './TeacherList.module.css';
 import api, {BASE_URL} from "../../pages/api/api";
 
-const columns = [
-    {
-        field: 'id',
-        headerName: 'ID',
-        headerAlign: 'center',
-        align: 'center',
-        width: 100,
-        editable: true,
-        renderCell: (params) => {
-            return (
-                <div>
-                    {params.id}
-                </div>
-            );
-        }
-    },
-
-    {
-        field: 'teacher_id',
-        headerName: 'Teacher ID',
-        headerAlign: 'center',
-        align: 'center',
-        flex: 1,
-    },
-
-    {
-        field: 'father_name',
-        headerName: 'Father name',
-        headerAlign: 'center',
-        align: 'center',
-        flex: 1,
-    },
-    {
-        field: 'mother_name',
-        headerName: 'Mother Name',
-        headerAlign: 'center',
-        align: 'center',
-        flex: 1,
-    },
-    {
-        field: 'avatar',
-        headerName: 'Picture',
-        headerAlign: 'center',
-        align: 'center',
-        width:100,
-        height:100,
-        editable: true,
-        renderCell: (params) => <img
-            src={`${params.row.user?.avatar}`}
-            alt="Oops image missing"
-        />,
-
-    },
-    {
-        field: 'department',
-        headerName: 'Department',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        headerAlign: 'center',
-        align: 'center',
-        flex: 1,
-        valueGetter: (params) =>
-            `${params.row.department.name || ''}`,
-    },
-    {
-        field: 'Detail',
-        headerName: 'Detail',
-        headerAlign: 'center',
-        align: 'center',
-        flex: 1,
-        sortable: false,
-        renderCell: (params) => {
-            return <a href={`/teachers/${params.row.slug}`}>Details</a>;
-        }
-    },
-];
-
-
 
 const TeacherList = ({teachers}) => {
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
+            editable: true,
+            renderCell: (params) => {
+                console.log("index vlaue: ", params)
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
+        },
+    
+        {
+            field: 'teacher_id',
+            headerName: 'Teacher ID',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+        },
+    
+        {
+            field: 'father_name',
+            headerName: 'Father name',
+            headerAlign: 'center',
+            flex: 1,
+        },
+        {
+            field: 'mother_name',
+            headerName: 'Mother Name',
+            headerAlign: 'center',
+            flex: 1,
+        },
+        {
+            field: 'avatar',
+            headerName: 'Picture',
+            headerAlign: 'center',
+            align: 'center',
+            width:100,
+            height:100,
+            editable: true,
+            renderCell: (params) => <img
+                src={`${params.row.user?.avatar}`}
+                alt="Oops image missing"
+            />,
+    
+        },
+        {
+            field: 'department',
+            headerName: 'Department',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            headerAlign: 'center',
+            flex: 1,
+            valueGetter: (params) =>
+                `${params.row.department.name || ''}`,
+        },
+        {
+            field: 'Detail',
+            headerName: 'Detail',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            sortable: false,
+            renderCell: (params) => {
+                return <a href={`/teachers/${params.row.slug}`}>Details</a>;
+            }
+        },
+    ];
+
+
     return (
         <div>
             <div className="teacherListSection">
@@ -107,15 +106,18 @@ const TeacherList = ({teachers}) => {
                                 <div className="col">
                                     <Box sx={{height: 500, width: '100%'}}>
                                         <DataGrid
-                                            rows={teachers.results}
+                                            rows={teachers}
+                                            // rows={teachers.results}
                                             columns={columns}
-                                            pageSize={5}
-                                            rowsPerPageOptions={[5]}
+                                            rowsPerPageOptions={[5, 10, 25, 100]}
                                             checkboxSelection
                                             disableSelectionOnClick
                                             disableColumnFilter
                                             disableColumnSelector
                                             disableDensitySelector
+                                            localeText={{
+                                                toolbarExport: "Download"
+                                              }}
                                             components={{Toolbar: GridToolbar}}
                                             // experimentalFeatures={{newEditingApi: false}}
                                             componentsProps={{
