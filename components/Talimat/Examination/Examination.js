@@ -88,8 +88,7 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Exam</th>
                                                                 <th scope="col">Description</th>
-                                                                <th scope="col">Action</th>
-                                                                <th scope="col">Detail</th>
+                                                                <th scope="col" className="text-center">Action</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -98,7 +97,7 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                     <th scope="row">{index + 1}</th>
                                                                     <td>{exam.exam_title}</td>
                                                                     <td>{exam.exam_description}</td>
-                                                                    <td>
+                                                                    <td className="float-end">
                                                                         <button
                                                                             type='button'
                                                                             className="btn btn-primary primary"
@@ -113,11 +112,9 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                                         >
                                                                             Remove
                                                                         </button>
-                                                                    </td>
-                                                                    <td>
                                                                         <Link
                                                                             href={`/talimat/exam/announcement/${exam.id}`}>
-                                                                            <a className="btn btn-secondary primary">Details</a>
+                                                                            <a className="btn btn-secondary primary ms-2">Details</a>
                                                                         </Link>
                                                                     </td>
                                                                 </tr>
