@@ -10,7 +10,7 @@ const SyllabusHeader = () =>{
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link href={`talimat/syllabus`}>
+                            <Link href={`/talimat/syllabus`}>
                                 <a>
                                     Book distribution to Teacher
                                 </a> 

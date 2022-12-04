@@ -85,8 +85,7 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                     <th scope="col">Counting</th>
                                                                     <th scope="col">Title</th>
                                                                     <th scope="col">Description</th>
-                                                                    <th scope="col">Details</th>
-                                                                    <th scope="col">Action</th>
+                                                                    <th scope="col" className="text-center">Action</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -101,13 +100,7 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                             style={{"maxWidth": 250}}>
                                                                             {data.training_description}
                                                                         </td>
-                                                                        <td>
-                                                                            <Link
-                                                                                href={`/talimat/syllabus/training/${data.id}`}>
-                                                                                <a className="btn btn-secondary primary">Details</a>
-                                                                            </Link>
-                                                                        </td>
-                                                                        <td>
+                                                                        <td className='float-end'>
                                                                             <button className="btn btn-primary me-2 primary"
                                                                                     onClick={(e) => handlePutRequest(e, data.id)}>
                                                                                 Edit
@@ -116,6 +109,10 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                                     onClick={() => handleDeleteRequest(data.id)}>
                                                                                 Remove
                                                                             </button>
+                                                                            <Link
+                                                                                href={`/talimat/syllabus/training/${data.id}`}>
+                                                                                <a className="btn btn-secondary primary ms-2">Details</a>
+                                                                            </Link>
                                                                         </td>
                                                                     </tr>
                                                                 ))}

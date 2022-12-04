@@ -20,22 +20,22 @@ const SyllabuSideMenu = () => {
                         <div className="card-body p-0">
                             <div className={styles.activeLink}>
                                 <Link href="/talimat/syllabus">
-                                    <a className="text-center">Syllabus</a>
+                                    <a className="ps-5">Syllabus</a>
                                 </Link>
                             </div>
                             <div className={styles.inActiveLink}>
                                 <Link href="/talimat/exam/announcement">
-                                    <a className="text-center">Examination</a>
+                                    <a className="ps-5">Examination</a>
                                 </Link>
                             </div>
                             <div className={styles.inActiveLink}>
                                 <Link href="/talimat/dawah">
-                                    <a className="text-center">Dawah</a>
+                                    <a className="ps-5">Dawah</a>
                                 </Link>
                             </div>
                             <div className={styles.inActiveLink}>
                                 <Link href="/talimat/extraActivity">
-                                    <a className="text-center">Extra-Activity</a>
+                                    <a className="ps-5">Extra-Activity</a>
                                 </Link>
                             </div>
                         </div>
