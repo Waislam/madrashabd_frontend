@@ -46,6 +46,17 @@ const TeacherList = ({teachers}) => {
             headerAlign: 'center',
             flex: 1,
         },
+        
+        {
+            field: 'department',
+            headerName: 'Department',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            headerAlign: 'center',
+            flex: 1,
+            valueGetter: (params) =>
+                `${params.row.department.name || ''}`,
+        },
         {
             field: 'avatar',
             headerName: 'Picture',
@@ -67,16 +78,6 @@ const TeacherList = ({teachers}) => {
                     </div>
                 )
             }
-        },
-        {
-            field: 'department',
-            headerName: 'Department',
-            description: 'This column has a value getter and is not sortable.',
-            sortable: false,
-            headerAlign: 'center',
-            flex: 1,
-            valueGetter: (params) =>
-                `${params.row.department.name || ''}`,
         },
         {
             field: 'Detail',

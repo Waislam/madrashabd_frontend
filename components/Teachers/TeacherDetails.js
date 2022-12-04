@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form";
 import { BASE_URL } from "../../pages/api/api";
 import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const TeacherDetail = ({ teacher }) => {
+    const router = useRouter()
+
     const { handleSubmit, register, formState: { errors }, control } = useForm()
 
     const onSubmit = (values) => {
@@ -20,7 +23,9 @@ const TeacherDetail = ({ teacher }) => {
         };
 
         fetch(`${BASE_URL}/accounts/avatar/${teacher.data.user.id}/`, requestOptions)
-            .then(response => response.text())
+            .then(response => response.text(
+                router.reload()
+            ))
             .then((result) => {
                 console.log(result)
             })
@@ -130,20 +135,20 @@ const TeacherDetail = ({ teacher }) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-3">
+                                                <div className="col-md-2">
                                                     <div className="text-center">
                                                         {teacher?.data?.user?.avatar ?
                                                             <img
                                                                 src={`${BASE_URL}` + teacher?.data?.user?.avatar}
-                                                                className="rounded-circle shadow-4-strong"
+                                                                className="img-thumbnail"
                                                                 alt="Oops image missing"
-                                                                width={70}
-                                                                height={70}
+                                                                width={125}
+                                                                height={130}
 
                                                             />
                                                             :
                                                             <Image
-                                                                className="rounded-circle shadow-4-strong"
+                                                                className="img-thumbnail"
                                                                 alt="avatar2"
                                                                 src={teacher}
                                                                 width={90}
@@ -154,8 +159,9 @@ const TeacherDetail = ({ teacher }) => {
                                                     <form onSubmit={handleSubmit(onSubmit)}>
                                                         <div className="form-group mb-2">
                                                             <input
-                                                                className="form-control"
+                                                                className="inputfile"
                                                                 type="file"
+                                                                // style ={{display:"none"}}
                                                                 id="avatar"
                                                                 name='avatar'
                                                                 {...register("avatar")}

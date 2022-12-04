@@ -8,6 +8,7 @@ import api from "../../pages/api/api";
 import styles from './TeacherList.module.css';
 
 const TeacherUpdate = ({data}) => {
+    
     const [isChecked, setIsChecked] = useState(false);
     const { data: session, status } = useSession();
 
@@ -23,11 +24,13 @@ const TeacherUpdate = ({data}) => {
         designationList
     } = data
 
+    // console.log("teacher info to uddate detaila: ", teacher.data.user?.first_name)
+
     console.log('@@@ Teacher', session)
 
     const formDefaultValues = {
         "user": teacher.data.user.id,
-        "fast_name": teacher.data.user.first_name,
+        "first_name": teacher.data.user.first_name,
         "last_name": teacher.data.user.last_name,
         "madrasha": teacher.data.madrasha,
         "teacher_id": teacher.data.teacher_id,
