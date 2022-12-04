@@ -74,7 +74,7 @@ const AddTeacherPage = (props) => {
                 "division": data.present_address_division,
                 "district": data.present_address_district,
                 "thana": data.present_address_thana,
-                "post_office": data.present_address_post_office,
+                "post_office": data.present_address_post_office || null,
                 "post_code": data.present_address_post_code,
                 "address_info": data.present_address_address_info,
             },
@@ -82,7 +82,7 @@ const AddTeacherPage = (props) => {
                 "division": data.permanent_address_division,
                 "district": data.permanent_address_district,
                 "thana": data.permanent_address_thana,
-                "post_office": parseInt(data.permanent_address_post_office),
+                "post_office": data.permanent_address_post_office || null,
                 "post_code": data.permanent_address_post_code,
                 "address_info": data.permanent_address_address_info
             },
@@ -439,7 +439,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_post_office", { required: "This field is required" })}
                                                     onChange={getPostcodes}
                                                 >
-                                                    <option>Post office name</option>
+                                                    <option value="">Post office name</option>
                                                     {postOfficeList && postOfficeList.map((post_office) => (
                                                         <option
                                                             value={post_office.pk}
@@ -567,7 +567,7 @@ const AddTeacherPage = (props) => {
                                                         {...register("permanent_address_post_office", { required: "This field is required" })}
                                                         onChange={getpPostcodes}
                                                     >
-                                                        <option>Post office name</option>
+                                                        <option value="">Post office name</option>
                                                         {ppostOfficeList && ppostOfficeList.map((post_office) => (
                                                             <option
                                                                 value={post_office.pk}
