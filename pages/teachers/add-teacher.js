@@ -390,7 +390,7 @@ const AddTeacherPage = (props) => {
                                                         </option>
                                                     ))}
                                                 </select>
-                                                <p className="text-danger">{errors.division?.message}</p>
+                                                <p className="text-danger">{errors.present_address_division?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">District</label>
@@ -410,7 +410,7 @@ const AddTeacherPage = (props) => {
                                                         </option>
                                                     ))}
                                                 </select>
-                                                <p className="text-danger">{errors.district?.message}</p>
+                                                <p className="text-danger">{errors.present_address_district?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Thana</label>
@@ -623,9 +623,8 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Degree Name "
                                                     className="form-control"
                                                     name="degree_name"
-                                                    {...register("degree_name", { required: "This field is required" })}
+                                                    {...register("degree_name")}
                                                 />
-                                                <p className="text-danger">{errors.degree_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Passing Year</label>
@@ -633,9 +632,8 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Passing year"
                                                     className="form-control"
                                                     name="passing_year"
-                                                    {...register("passing_year", { required: "Passing year is required" })}
+                                                    {...register("passing_year")}
                                                 />
-                                                <p className="text-danger">{errors?.passing_year?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Result</label>
@@ -643,9 +641,8 @@ const AddTeacherPage = (props) => {
                                                     placeholder="CGPA/GPA-5/First Class"
                                                     className="form-control"
                                                     name="result"
-                                                    {...register("result", { required: "Result is required" })}
+                                                    {...register("result")}
                                                 />
-                                                <p className="text-danger">{errors?.result?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Institution Name</label>
@@ -653,9 +650,8 @@ const AddTeacherPage = (props) => {
                                                     placeholder="University/college/Madrasha"
                                                     className="form-control"
                                                     name="institution_name"
-                                                    {...register("institution_name", { required: "Institution name is required" })}
+                                                    {...register("institution_name")}
                                                 />
-                                                <p className="text-danger">{errors?.institution_name?.message}</p>
                                             </div>
                                             <div>
                                                 {/* <button type="button"
