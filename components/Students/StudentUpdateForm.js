@@ -27,11 +27,11 @@ const StudentUpdateForm = ({data}) => {
 
     // Object for set default value in react hook form for update
     const formDefaultValues ={
-            first_name: student.user.first_name,
-            last_name: student.user.last_name,
-            date_of_birth: student.date_of_birth,
-            age: student.age,
-            birth_certificate: student.birth_certificate,
+            first_name: student?.user?.first_name,
+            last_name: student?.user?.last_name,
+            date_of_birth: student?.date_of_birth,
+            age: student?.age,
+            birth_certificate: student?.birth_certificate,
             passport_number: student?.passport_number,
             student_nid: student?.student_nid,
             nationality: student?.nationality,
@@ -111,7 +111,7 @@ const StudentUpdateForm = ({data}) => {
 
         // Prepare Object for update data
         const updatedData = {
-            madrasha: session.user.madrasha_id,
+            madrasha: session?.user?.madrasha_id,
             student_id: student?.student_id,
             student_roll_id: student?.student_roll_id,
             date_of_birth: student?.date_of_birth,

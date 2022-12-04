@@ -93,21 +93,19 @@ const SyllabusCreation = ({getClassList, class_list, handlePutRequest}) => {
                                                                     <th>Exam Term</th>
                                                                     <th>Syllabus Details</th>
                                                                     <th>Active year</th>
-                                                                    <th>File</th>
                                                                     <th>Details</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                 {syllabusList && syllabusList.map((data, index) => (
-                                                                    <tr key={data.id}>
+                                                                    <tr key={index}>
                                                                         <td>{data.madrasha_class?.name}</td>
                                                                         <td>{data.madrasha_class?.department?.name}</td>
                                                                         <td>{data.exam_term?.term_name}</td>
                                                                         <td className="text-truncate"
                                                                             style={{"maxWidth": 150}}>{data.syllabus_details}</td>
                                                                         <td>{data.session_year}</td>
-                                                                        <td>file container</td>
                                                                         <td>
                                                                             <Link
                                                                                 href={`/talimat/syllabus/syllabus-creation/${data.id}`}>
@@ -178,16 +176,11 @@ const SyllabusCreation = ({getClassList, class_list, handlePutRequest}) => {
                                                                     <div className="mb-3">
                                                                         <label className="mb-2">Syllabus Detail</label>
                                                                         <textarea
-                                                                            className="form-control" placeholder="year"
+                                                                            className="form-control" placeholder="Syllabus Detail, Years"
                                                                             name="syllabus_details"
                                                                             {...register("syllabus_details")}
                                                                         >
                                                                         </textarea>
-                                                                    </div>
-                                                                    <div className="mb-3">
-                                                                        <input type="file"
-                                                                               className="form-control"
-                                                                               placeholder="syllabus_file"/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="mb-2">
@@ -209,6 +202,6 @@ const SyllabusCreation = ({getClassList, class_list, handlePutRequest}) => {
 
         </>
     )
-}
+};
 
 export default SyllabusCreation;

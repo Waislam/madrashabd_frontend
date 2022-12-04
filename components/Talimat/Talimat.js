@@ -25,7 +25,7 @@ const Talimat = () => {
                                     <a className="text-center">Syllabus</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "talimat/exam" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                            <div className={router.pathname == "/talimat/exam/announcement" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                                 <Link href="/talimat/exam/announcement">
                                     <a className="text-center">Examination</a>
                                 </Link>

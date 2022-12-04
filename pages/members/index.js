@@ -65,7 +65,7 @@ const CommitteePage = (props) => {
                 />
 
                 <AddCommitteeModal
-                    session={props.session_data}
+                    session_data={props.session_data}
                     show={addCommitteeModal}
                     onHide={() => setCommitteeModal(false)}
                 />
