@@ -32,7 +32,7 @@ const TeacherTrainingDetail = ({teacher_training_detail}) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="text-center my-2">
+                                <div className="text-end my-2">
                                     <ReactToPrint
                                         trigger={() => <button className="btn btn-primary primary">Print this
                                             out!</button>}

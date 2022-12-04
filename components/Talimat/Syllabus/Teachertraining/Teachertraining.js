@@ -100,12 +100,12 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                             style={{"maxWidth": 250}}>
                                                                             {data.training_description}
                                                                         </td>
-                                                                        <td className='float-end'>
+                                                                        <td className='text-end'>
                                                                             <button className="btn btn-primary me-2 primary"
                                                                                     onClick={(e) => handlePutRequest(e, data.id)}>
                                                                                 Edit
                                                                             </button>
-                                                                            <button className="btn btn-danger primary"
+                                                                            <button className="btn btn-danger"
                                                                                     onClick={() => handleDeleteRequest(data.id)}>
                                                                                 Remove
                                                                             </button>

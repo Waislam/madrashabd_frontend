@@ -280,57 +280,6 @@ const TeacherDetail = ({ teacher }) => {
                                 </div>
                             </div>
                             <div className="row">
-                                <h4 className="mb-2">Education</h4>
-                                <div className="col mb-4">
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <div className="table-responsive">
-                                                <table className="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="row">Institution Name</th>
-                                                            <th scope="col">Degree</th>
-                                                            <th scope="col">Session</th>
-                                                            <th scope="col">Result (GPA)</th>
-                                                            <th scope="col">Result (marks)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>{teacher.data.education.institution_name}</td>
-                                                            <td>{teacher.data.education.degree_name}</td>
-                                                            <td>{teacher.data.education.passing_year}</td>
-                                                            <td>{teacher.data.education.result}</td>
-                                                            <td>-----------</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col mb-3">
-                                    <h4>Experience</h4>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{teacher.data.experience?.experience_name}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col mb-4">
-                                    <h4>Skills </h4>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{teacher.data.skill.skill_name}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
                                 <div className="col-md-6 mb-4">
                                     <div className="card">
 
@@ -382,6 +331,57 @@ const TeacherDetail = ({ teacher }) => {
                                                     </span>
                                                 </dd>
                                             </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <h4 className="mb-2">Education</h4>
+                                <div className="col mb-4">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <div className="table-responsive">
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="row">Institution Name</th>
+                                                            <th scope="col">Degree</th>
+                                                            <th scope="col">Session</th>
+                                                            <th scope="col">Result (GPA)</th>
+                                                            <th scope="col">Result (marks)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{teacher.data.education.institution_name}</td>
+                                                            <td>{teacher.data.education.degree_name}</td>
+                                                            <td>{teacher.data.education.passing_year}</td>
+                                                            <td>{teacher.data.education.result}</td>
+                                                            <td>-----------</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col mb-3">
+                                    <h4>Experience</h4>
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <p>{teacher.data.experience?.experience_name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col mb-4">
+                                    <h4>Skills </h4>
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <p>{teacher.data.skill.skill_name}</p>
                                         </div>
                                     </div>
                                 </div>
