@@ -74,7 +74,7 @@ const AddTeacherPage = (props) => {
                 "division": data.present_address_division,
                 "district": data.present_address_district,
                 "thana": data.present_address_thana,
-                "post_office": data.present_address_post_office || null,
+                "post_office": data.present_address_post_office,
                 "post_code": data.present_address_post_code,
                 "address_info": data.present_address_address_info,
             },
@@ -82,7 +82,7 @@ const AddTeacherPage = (props) => {
                 "division": data.permanent_address_division,
                 "district": data.permanent_address_district,
                 "thana": data.permanent_address_thana,
-                "post_office": data.permanent_address_post_office || null,
+                "post_office": data.permanent_address_post_office,
                 "post_code": data.permanent_address_post_code,
                 "address_info": data.permanent_address_address_info
             },
@@ -400,7 +400,7 @@ const AddTeacherPage = (props) => {
                                                     {...register("present_address_district", { required: "This field is required" })}
                                                     onChange={getThanaandPostOfficeList}
                                                 >
-                                                    <option>District select</option>
+                                                    <option value="">District select</option>
                                                     {disctrictList && disctrictList.map((district) => (
                                                         <option
                                                             value={district.pk}
@@ -419,7 +419,7 @@ const AddTeacherPage = (props) => {
                                                     name="present_address_thana"
                                                     {...register("present_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option>Select Thana</option>
+                                                    <option value="">Select Thana</option>
                                                     {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
@@ -458,7 +458,7 @@ const AddTeacherPage = (props) => {
                                                     name="present_address_post_code"
                                                     {...register("present_address_post_code", { required: "This field is required" })}
                                                 >
-                                                    <option>Post code number</option>
+                                                    <option value="">Post code number</option>
                                                     {postCode && postCode.map((post_code) => (
                                                         <option
                                                             value={post_code.pk}
@@ -508,7 +508,7 @@ const AddTeacherPage = (props) => {
                                                         {...register("permanent_address_division", { required: "This field is required" })}
                                                         onChange={handlepSetDistrict}
                                                     >
-                                                        <option>Select Division</option>
+                                                        <option value="">Select Division</option>
                                                         {props.divisionList && props.divisionList.map((division) => (
                                                             <option
                                                                 value={division.pk}
@@ -528,7 +528,7 @@ const AddTeacherPage = (props) => {
                                                         {...register("permanent_address_district", { required: "This field is required" })}
                                                         onChange={getpThanaandPostOfficeList}
                                                     >
-                                                        <option>District select</option>
+                                                        <option value="">District select</option>
                                                         {pdisctrictList && pdisctrictList.map((district) => (
                                                             <option
                                                                 value={district.pk}
@@ -547,7 +547,7 @@ const AddTeacherPage = (props) => {
                                                         name="permanent_address_thana"
                                                         {...register("permanent_address_thana", { required: "This field is required" })}
                                                     >
-                                                        <option>Thana Name</option>
+                                                        <option value="">Thana Name</option>
                                                         {pthanaList && pthanaList.map((thana) => (
                                                             <option
                                                                 value={thana.pk}
@@ -586,7 +586,7 @@ const AddTeacherPage = (props) => {
                                                         name="permanent_address_post_code"
                                                         {...register("permanent_address_post_code", { required: "This field is required" })}
                                                     >
-                                                        <option>Post code number</option>
+                                                        <option value="">Post code number</option>
                                                         {ppostCode && ppostCode.map((post_code) => (
                                                             <option
                                                                 value={post_code.pk}
