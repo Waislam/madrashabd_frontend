@@ -523,16 +523,16 @@ const StudentDetails = ({ student }) => {
                                             <hr />
                                             <div className="row text-capitalize">
                                                 <div className="col-md-4">
-                                                    <p>Class : {student.data.admitted_class?.name}</p>
-                                                    <p>Session : {student.data?.admitted_session?.name}</p>
+                                                    <p>Class &nbsp; &nbsp;&nbsp;: {student.data.admitted_class?.name}</p>
+                                                    <p>Session : {student.data?.admitted_session?.actual_year}</p>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <p>Section : No attribute found</p>
+                                                    <p>DepartMent : {student.data?.admitted_department?.name}</p>
                                                     {/*<p>Class Roll : {student.data?.admitted_roll}</p>*/}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    {/*<p>Group : {student.data?.admitted_group}</p>*/}
-                                                    {/*<p>Shift : {student.data?.admitted_shift}</p>*/}
+                                                    <p>Group : {student.data?.admitted_group?.name}</p>
+                                                    <p>Shift &nbsp; &nbsp;: {student.data?.admitted_shift?.name}</p>
                                                 </div>
                                             </div>
                                         </div>

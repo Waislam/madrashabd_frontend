@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import taliamatstyles from '../Talimat.module.css'
 import styles from './Examination.module.css'
 import Link from 'next/link'
@@ -10,7 +10,7 @@ import ExamHeader from './ExamHeader'
 import api from "../../../pages/api/api";
 
 
-const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
+const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => {
     const [show, setShow] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -43,9 +43,9 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                 setExamAnnouncementData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            console.log(error);
-            setLoading(false)
-        })
+                console.log(error);
+                setLoading(false)
+            })
     };
 
     const handleExamAnnouncementEdit = (examAnnouncementIdValue) => {
@@ -59,13 +59,13 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu/>
+                        <SideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader/>
-                                        <hr/>
+                                        <ExamHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
@@ -84,41 +84,41 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                     <div className="table-responsive">
                                                         <table className="table table-striped">
                                                             <thead>
-                                                            <tr>
-                                                                <th scope="col">ID</th>
-                                                                <th scope="col">Exam</th>
-                                                                <th scope="col">Description</th>
-                                                                <th scope="col" className="text-center">Action</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th scope="col">ID</th>
+                                                                    <th scope="col">Exam</th>
+                                                                    <th scope="col">Description</th>
+                                                                    <th scope="col" className="text-center">Action</th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                            {examAnnouncementList && examAnnouncementList.map((exam, index) => (
-                                                                <tr key={exam.id}>
-                                                                    <th scope="row">{index + 1}</th>
-                                                                    <td>{exam.exam_title}</td>
-                                                                    <td>{exam.exam_description}</td>
-                                                                    <td className="float-end">
-                                                                        <button
-                                                                            type='button'
-                                                                            className="btn btn-primary primary"
-                                                                            onClick={() => handleExamAnnouncementEdit(exam.id)}
-                                                                        >
-                                                                            Edit
-                                                                        </button>
-                                                                        <button
-                                                                            type='button'
-                                                                            className="btn btn-danger primary ms-2"
-                                                                            onClick={() => handleExamAnnouncementDelete(exam.id)}
-                                                                        >
-                                                                            Remove
-                                                                        </button>
-                                                                        <Link
-                                                                            href={`/talimat/exam/announcement/${exam.id}`}>
-                                                                            <a className="btn btn-secondary primary ms-2">Details</a>
-                                                                        </Link>
-                                                                    </td>
-                                                                </tr>
-                                                            ))}
+                                                                {examAnnouncementList && examAnnouncementList.map((exam, index) => (
+                                                                    <tr key={exam.id}>
+                                                                        <th scope="row">{index + 1}</th>
+                                                                        <td>{exam.exam_title}</td>
+                                                                        <td>{exam.exam_description}</td>
+                                                                        <td className="text-end">
+                                                                            <button
+                                                                                type='button'
+                                                                                className="btn btn-primary primary"
+                                                                                onClick={() => handleExamAnnouncementEdit(exam.id)}
+                                                                            >
+                                                                                Edit
+                                                                            </button>
+                                                                            <button
+                                                                                type='button'
+                                                                                className="btn btn-danger ms-2"
+                                                                                onClick={() => handleExamAnnouncementDelete(exam.id)}
+                                                                            >
+                                                                                Remove
+                                                                            </button>
+                                                                            <Link
+                                                                                href={`/talimat/exam/announcement/${exam.id}`}>
+                                                                                <a className="btn btn-secondary primary ms-2 ms-2">Details</a>
+                                                                            </Link>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -146,12 +146,12 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
             />
 
             {!loading &&
-            <ExamAnnouncementEditModal
-                show={showEditModal}
-                handleClose={handleEditAnnouncementClose}
-                examAnnouncementId={examAnnouncementId}
-                examAnnouncementData={examAnnouncementData}
-            />
+                <ExamAnnouncementEditModal
+                    show={showEditModal}
+                    handleClose={handleEditAnnouncementClose}
+                    examAnnouncementId={examAnnouncementId}
+                    examAnnouncementData={examAnnouncementData}
+                />
             }
 
         </>

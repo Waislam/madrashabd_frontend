@@ -46,7 +46,7 @@ const columns = [
     },
     {
         field: 'avatar',
-        headerName: 'avatar',
+        headerName: 'Picture',
         headerAlign: 'center',
         align: 'center',
         width:100,
