@@ -70,7 +70,7 @@ const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => 
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
                                                     <div className="row">
-                                                        <h2 className="col-md-7 mt-1">Examination ExamAnnouncement</h2>
+                                                        <h2 className="col-md-7 mt-1">Examination Exam Announcement</h2>
                                                         <div className="col-md-5">
                                                             <button
                                                                 type="button"
@@ -86,7 +86,8 @@ const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => 
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">ID</th>
-                                                                    <th scope="col">Exam</th>
+                                                                    <th scope="col"></th>
+                                                                    <th scope="col">Examination Term</th>
                                                                     <th scope="col">Description</th>
                                                                     <th scope="col" className="text-center">Action</th>
                                                                 </tr>
@@ -95,9 +96,14 @@ const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => 
                                                                 {examAnnouncementList && examAnnouncementList.map((exam, index) => (
                                                                     <tr key={exam.id}>
                                                                         <th scope="row">{index + 1}</th>
+                                                                        <th></th>
                                                                         <td>{exam.exam_title}</td>
                                                                         <td>{exam.exam_description}</td>
                                                                         <td className="text-end">
+                                                                            <Link
+                                                                                href={`/talimat/exam/announcement/${exam.id}`}>
+                                                                                <a className="btn btn-secondary primary me-4">Details</a>
+                                                                            </Link>
                                                                             <button
                                                                                 type='button'
                                                                                 className="btn btn-primary primary"
@@ -112,10 +118,6 @@ const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => 
                                                                             >
                                                                                 Remove
                                                                             </button>
-                                                                            <Link
-                                                                                href={`/talimat/exam/announcement/${exam.id}`}>
-                                                                                <a className="btn btn-secondary primary ms-2 ms-2">Details</a>
-                                                                            </Link>
                                                                         </td>
                                                                     </tr>
                                                                 ))}
