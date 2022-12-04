@@ -4,14 +4,14 @@ import taliamatstyles from '../../Talimat.module.css'
 import SyllabusHeader from '../SyllabusHeader'
 import SyllabuSideMenu from '../SyllabusSideMenu';
 import Modal from "react-bootstrap/Modal"
-import {useForm} from "react-hook-form";
-import {useState, useEffect} from 'react';
-import {useRouter} from 'next/router';
+import { useForm } from "react-hook-form";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
-import api, {BASE_URL} from '../../../../pages/api/api';
+import api, { BASE_URL } from '../../../../pages/api/api';
 
 
-const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
+const TeacherTraining = ({ handlePutRequest, handleDeleteRequest }) => {
 
     const router = useRouter();
 
@@ -32,7 +32,7 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
 
 
     //handle post request
-    const {register, handleSubmit} = useForm({mode: "all"});
+    const { register, handleSubmit } = useForm({ mode: "all" });
 
     const handlePostRequest = () => {
         setShowInputForm(true)
@@ -57,13 +57,13 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SyllabuSideMenu/>
+                        <SyllabuSideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <SyllabusHeader/>
-                                        <hr/>
+                                        <SyllabusHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.syllabus}>
@@ -71,8 +71,8 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                         <h2 className="col-md-6">Teachers Training</h2>
                                                         <div className="col-md-6">
                                                             <button type="button"
-                                                                    className={`${styles.defaultBtn} float-md-end`}
-                                                                    onClick={handlePostRequest}>
+                                                                className={`${styles.defaultBtn} float-md-end`}
+                                                                onClick={handlePostRequest}>
                                                                 Add
                                                             </button>
                                                         </div>
@@ -81,41 +81,41 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                         <div className="table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
-                                                                <tr>
-                                                                    <th scope="col">Counting</th>
-                                                                    <th scope="col">Title</th>
-                                                                    <th scope="col">Description</th>
-                                                                    <th scope="col" className="text-center">Action</th>
-                                                                </tr>
+                                                                    <tr>
+                                                                        <th scope="col">Counting</th>
+                                                                        <th scope="col">Title</th>
+                                                                        <th scope="col">Description</th>
+                                                                        <th scope="col" className="text-center">Action</th>
+                                                                    </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                {trainingDataList && trainingDataList.map((data, index) => (
-                                                                    <tr key={data.id}>
-                                                                        <th scope="row">{index + 1}</th>
-                                                                        <td className="text-truncate"
-                                                                            style={{"maxWidth": 150}}>
-                                                                            {data.training_title}
-                                                                        </td>
-                                                                        <td className="text-truncate"
-                                                                            style={{"maxWidth": 250}}>
-                                                                            {data.training_description}
-                                                                        </td>
-                                                                        <td className='text-end'>
-                                                                            <button className="btn btn-primary me-2 primary"
+                                                                    {trainingDataList && trainingDataList.map((data, index) => (
+                                                                        <tr key={data.id}>
+                                                                            <th scope="row">{index + 1}</th>
+                                                                            <td className="text-truncate"
+                                                                                style={{ "maxWidth": 150 }}>
+                                                                                {data.training_title}
+                                                                            </td>
+                                                                            <td className="text-truncate"
+                                                                                style={{ "maxWidth": 250 }}>
+                                                                                {data.training_description}
+                                                                            </td>
+                                                                            <td className='text-end'>
+                                                                                <Link
+                                                                                    href={`/talimat/syllabus/training/${data.id}`}>
+                                                                                    <a className="btn btn-secondary primary me-4">Details</a>
+                                                                                </Link>
+                                                                                <button className="btn btn-primary me-2 primary"
                                                                                     onClick={(e) => handlePutRequest(e, data.id)}>
-                                                                                Edit
-                                                                            </button>
-                                                                            <button className="btn btn-danger"
+                                                                                    Edit
+                                                                                </button>
+                                                                                <button className="btn btn-danger"
                                                                                     onClick={() => handleDeleteRequest(data.id)}>
-                                                                                Remove
-                                                                            </button>
-                                                                            <Link
-                                                                                href={`/talimat/syllabus/training/${data.id}`}>
-                                                                                <a className="btn btn-secondary primary ms-2">Details</a>
-                                                                            </Link>
-                                                                        </td>
-                                                                    </tr>
-                                                                ))}
+                                                                                    Remove
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))}
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -140,10 +140,10 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                             <label className="mb-2">Training
                                                                                 Title</label>
                                                                             <input type="text"
-                                                                                   className="form-control"
-                                                                                   placeholder="title"
-                                                                                   name="training_title"
-                                                                                   {...register("training_title")}
+                                                                                className="form-control"
+                                                                                placeholder="title"
+                                                                                name="training_title"
+                                                                                {...register("training_title")}
                                                                             />
                                                                         </div>
                                                                         <div className="my-4">
@@ -161,7 +161,7 @@ const TeacherTraining = ({handlePutRequest, handleDeleteRequest}) => {
                                                                     </div>
                                                                     <div className="col-md-4">
                                                                         <button type="submit"
-                                                                                className={styles.defaultBtn}>Save
+                                                                            className={styles.defaultBtn}>Save
                                                                         </button>
                                                                     </div>
                                                                 </form>
