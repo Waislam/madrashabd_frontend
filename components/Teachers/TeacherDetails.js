@@ -19,7 +19,7 @@ const TeacherDetail = ({ teacher }) => {
             redirect: 'follow'
         };
 
-        fetch(`${BASE_URL}/accounts/avatar/${teacher.data.id}/`, requestOptions)
+        fetch(`${BASE_URL}/accounts/avatar/${teacher.data.user.id}/`, requestOptions)
             .then(response => response.text())
             .then((result) => {
                 console.log(result)
