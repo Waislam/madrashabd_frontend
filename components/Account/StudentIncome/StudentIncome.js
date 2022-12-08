@@ -34,7 +34,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.student_class_id}`,
+                `${params.row?.student_class_id}`,
         },
         {
             headerName: 'Category',
@@ -44,7 +44,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.category.name}`,
+                `${params.row?.category.name}`,
         },
 
         {
@@ -55,7 +55,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.sub_category.name}`,
+                `${params.row?.sub_category.name}`,
         },
 
         {
@@ -66,7 +66,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.amount.amount}`,
+                `${params.row?.amount?.amount}`,
         },
 
         {
@@ -77,7 +77,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.paid_date}`,
+                `${params.row?.paid_date}`,
         },
 
         {
@@ -88,7 +88,7 @@ const StudentIncome = ({studentIncomeList, addStudentIncomekModalShow, handleMod
             align: 'center',
             flex: 1,
             valueGetter: (params) =>
-                `${params.row.receipt_number}`,
+                `${params.row?.receipt_number}`,
         },
 
         {

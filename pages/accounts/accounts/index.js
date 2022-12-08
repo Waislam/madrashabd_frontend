@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react"
-import {getSession} from "next-auth/react";
-import {useRouter} from "next/router";
-import api, {BASE_URL} from '../../api/api'
+import React, { useState, useEffect } from "react"
+import { getSession, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import api, { BASE_URL } from '../../api/api'
 import axios from "axios"
 
 // StudentList Component
@@ -15,7 +15,11 @@ import StudentIncomeUpdateModal from "../../../components/Account/Modals/UpdateS
 
 const Accounts = (props) => {
     const router = useRouter();
-    const {data: session, status} = getSession();
+    const { data: session, status } = useSession();
+    const madrasha_id = session?.user?.madrasha_id
+    const madrasha_slug = session?.user?.madrasha_slug
+    // console.log("madrasha id: ", madrasha_slug)
+
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -26,26 +30,26 @@ const Accounts = (props) => {
     const [loader, setLoader] = useState(false);
     const [studentIncome, setStudentIncome] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [transactioncategoryList, setTransactioncategoryList] = useState(null);
-    const [transactionCaterory, setTransactionCaterory] = useState('');
+    // const [transactioncategoryList, setTransactioncategoryList] = useState(null);
+    // const [transactionCaterory, setTransactionCaterory] = useState('');
     const [transactionSubCaterory, setTransactionSubCaterory] = useState('');
     const [studentFees, setStudentFees] = useState('');
     const [studetnIncomeUpdateModalShow, setStudentIncomeUpdateModalShow] = useState(false);
     const [studentIncomePreValue, setStudentIncomePreValue] = useState({});
 
     // get income category, subCategory and student income amount
-    const getTransactioCategory = async () => {
-        const list = await axios.get(`${BASE_URL}/transactions/category/`);
-        const category = list.data;
-        setTransactioncategoryList(category);
-        console.log(transactioncategoryList)
-    };
+    // const getTransactioCategory = async () => {
+    //     const list = await axios.get(`${BASE_URL}/transactions/category/`);
+    //     const category = list.data;
+    //     setTransactioncategoryList(category);
+    //     console.log(transactioncategoryList)
+    // };
 
+    const transactionCaterory = 1;
     const getTransactioSubCategory = async () => {
         const list = await axios.get(`${BASE_URL}/transactions/sub-category/${transactionCaterory}/`);
         const subCategory = list.data;
         setTransactionSubCaterory(subCategory);
-        console.log(transactionSubCaterory)
     };
 
     const getStudentFeesAmount = async () => {
@@ -55,14 +59,13 @@ const Accounts = (props) => {
     };
 
     useEffect(() => {
-        getTransactioCategory();
+        // getTransactioCategory();
         getStudentFeesAmount()
     }, []);
 
     useEffect(() => {
-        console.log("call sub category");
         getTransactioSubCategory()
-    }, [transactionCaterory]);
+    }, []);
 
     const handleModalShow = (event) => {
         // event.preventDefault()
@@ -96,18 +99,20 @@ const Accounts = (props) => {
                 session={session}
                 shown={showModal}
                 close={handleModalClose}
-                incomeCategoryList={transactioncategoryList}
-                setTransactionCaterory={setTransactionCaterory}
+                // incomeCategoryList={transactioncategoryList}
+                // setTransactionCaterory={setTransactionCaterory}
                 transactionSubCaterory={transactionSubCaterory}
                 studentFees={studentFees}
+                madrasha_id={madrasha_id}
+                madrasha_slug={madrasha_slug}
             />
 
             {loader ? <h1></h1> :
                 <StudentIncomeUpdateModal
                     show={studetnIncomeUpdateModalShow}
                     onHide={() => setStudentIncomeUpdateModalShow(false)}
-                    incomeCategoryList={transactioncategoryList}
-                    setTransactionCaterory={setTransactionCaterory}
+                    // incomeCategoryList={transactioncategoryList}
+                    // setTransactionCaterory={setTransactionCaterory}
                     transactionSubCaterory={transactionSubCaterory}
                     studentFees={studentFees}
                     studentIncomePreValue={studentIncomePreValue}
@@ -118,9 +123,9 @@ const Accounts = (props) => {
     )
 };
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps({ req }) {
 
-    const session_data = await getSession({req});
+    const session_data = await getSession({ req });
     const res = await api.get(`/transactions/${session_data.user?.madrasha_slug}/student-income/`);
     const transaction_student_income = await res.data;
 

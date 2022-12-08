@@ -6,6 +6,7 @@ import { BASE_URL } from "../../pages/api/api";
 import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import teacherImg from '../../public/assets/login/teacher-2.jpg'
 
 const TeacherDetail = ({ teacher }) => {
     const router = useRouter()
@@ -150,7 +151,7 @@ const TeacherDetail = ({ teacher }) => {
                                                             <Image
                                                                 className="img-thumbnail"
                                                                 alt="avatar2"
-                                                                src={teacher}
+                                                                src={teacherImg}
                                                                 width={90}
                                                                 height={90}
                                                             />
@@ -159,7 +160,7 @@ const TeacherDetail = ({ teacher }) => {
                                                     <form onSubmit={handleSubmit(onSubmit)}>
                                                         <div className="form-group mb-2">
                                                             <input
-                                                                className="inputfile"
+                                                                className="inputfile col-md-7 ms-5"
                                                                 type="file"
                                                                 // style ={{display:"none"}}
                                                                 id="avatar"
@@ -169,7 +170,7 @@ const TeacherDetail = ({ teacher }) => {
                                                         </div>
                                                         <button
                                                             type="submit"
-                                                            className="btn btn-primary mb-2">
+                                                            className="btn btn-primary mb-2 ms-5">
                                                             Save
                                                         </button>
                                                     </form>
