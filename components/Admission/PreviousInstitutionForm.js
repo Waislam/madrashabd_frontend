@@ -461,7 +461,7 @@ const PreviousInstitutionForm = (props) => {
                                 </div>
                             </div>
                             {/*Academic Fees *******************************************/}
-                            {/* <div className="academic-fees mb-5">
+                            <div className="academic-fees mb-5">
                                 <h4>Part E</h4>
                                 <h5>Academic Fees</h5>
                                 <div className="row mb-3">
@@ -499,10 +499,10 @@ const PreviousInstitutionForm = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
                             {/*Talimat**************************************************/}
                             <div className="talimi mb-5">
-                                <h4>Part E</h4>
+                                <h4>Part F</h4>
                                 <h5>Talimat Morobbi</h5>
                                 <div className="row mb-3">
                                     <div className="col">

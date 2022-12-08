@@ -81,7 +81,7 @@ const Fees = ({handlePutRequest, classList, departmentList}) => {
                                                         </thead>
                                                         <tbody>
                                                             {feesList && feesList.map((fee, index) => (
-                                                                <tr>
+                                                                <tr key={fee.id}>
                                                                     <th scope="row">{index + 1}</th>
                                                                     <td className="text-sm">{fee.name}</td>
                                                                     <td className="text-sm">{fee.madrasha_class.name}</td>
@@ -126,7 +126,7 @@ const Fees = ({handlePutRequest, classList, departmentList}) => {
                                                                         {...register("department")}
                                                                     >
                                                                         {departmentList && departmentList.map((department) => (
-                                                                            <option className="dropdown-item" value={department.id} key={department.name}>
+                                                                            <option className="dropdown-item" value={department.id} key={department.id}>
                                                                                 {department.name}
                                                                             </option>
                                                                         ))}
@@ -140,7 +140,7 @@ const Fees = ({handlePutRequest, classList, departmentList}) => {
                                                                         {...register("madrasha_class")}
                                                                     >
                                                                         {classList && classList.map((className) => (
-                                                                            <option value={className.id} key={className.name}>
+                                                                            <option value={className.id} key={className.id}>
                                                                                 {className.name}
                                                                             </option>
                                                                         ))}

@@ -1,12 +1,13 @@
 import React from "react";
 import Link from 'next/link'
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import styles from './TeacherList.module.css';
-import api, {BASE_URL} from "../../pages/api/api";
+import api, { BASE_URL } from "../../pages/api/api";
+import teacherImg from '../../public/assets/login/teacher-2.jpg'
 
 
-const TeacherList = ({teachers}) => {
+const TeacherList = ({ teachers }) => {
 
     const columns = [
         {
@@ -17,7 +18,15 @@ const TeacherList = ({teachers}) => {
             width: 100,
             editable: true,
             renderCell: (params) => {
-                console.log("index vlaue: ", params)
+                // console.log("index vlaue: ", params)
+                // console.log("params: ", params.api.getRowsCount())
+                // const rowRange = `${params.api.getRowsCount()}`
+                // console.log("row range: ", rowRange)
+                // for (let i = 1; i > rowRange; i++){
+                //     console.log("index: ",rowRange[i])
+                // }
+                // console.log("rowRange", rowRange)
+
                 return (
                     <div>
                         {params.id}
@@ -25,7 +34,7 @@ const TeacherList = ({teachers}) => {
                 );
             }
         },
-    
+
         {
             field: 'teacher_id',
             headerName: 'Teacher ID',
@@ -33,7 +42,7 @@ const TeacherList = ({teachers}) => {
             align: 'center',
             flex: 1,
         },
-    
+
         {
             field: 'father_name',
             headerName: 'Father name',
@@ -46,7 +55,7 @@ const TeacherList = ({teachers}) => {
             headerAlign: 'center',
             flex: 1,
         },
-        
+
         {
             field: 'department',
             headerName: 'Department',
@@ -62,15 +71,16 @@ const TeacherList = ({teachers}) => {
             headerName: 'Picture',
             headerAlign: 'center',
             align: 'center',
-            width:100,
-            height:100,
+            width: 100,
+            height: 100,
             editable: true,
             renderCell: (params) => {
+
                 return (
                     <div className="text-center">
                         <img
                             src={`${params.row.user?.avatar}`}
-                            alt="Oops image missing"
+                            // alt="Oops image missing"
                             height={40}
                             width={40}
                             className="rounded-circle shadow-4-strong"
@@ -113,7 +123,7 @@ const TeacherList = ({teachers}) => {
                         <div className="card-body p-0">
                             <div className="row">
                                 <div className="col">
-                                    <Box sx={{height: 500, width: '100%'}}>
+                                    <Box sx={{ height: 500, width: '100%' }}>
                                         <DataGrid
                                             rows={teachers}
                                             // rows={teachers.results}
@@ -126,13 +136,13 @@ const TeacherList = ({teachers}) => {
                                             disableDensitySelector
                                             localeText={{
                                                 toolbarExport: "Download"
-                                              }}
-                                            components={{Toolbar: GridToolbar}}
+                                            }}
+                                            components={{ Toolbar: GridToolbar }}
                                             // experimentalFeatures={{newEditingApi: false}}
                                             componentsProps={{
                                                 toolbar: {
                                                     showQuickFilter: true,
-                                                    quickFilterProps: {debounceMs: 500},
+                                                    quickFilterProps: { debounceMs: 500 },
                                                 },
                                             }}
                                         />
