@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import ReactToPrint from 'react-to-print';
 import taliamatstyles from '../Talimat.module.css'
 import styles from './Examination.module.css'
+import PrintBanner from '../../PrintBanner/PrintBanner'
 
 // components
 import ExamHeader from './ExamHeader'
@@ -24,13 +25,12 @@ const ExamAnnouncementDetails = ({exam_announcement}) => {
                                         <div className="row">
                                             <h3 className="text-center">Exam Announcement Details</h3>
                                             <hr/>
-                                            <div className="sub-page p-2" ref={componentRef}>
-                                                <div className={styles.exam}>
-                                                    <h4 className="text-center">{exam_announcement?.data?.exam_title}</h4>
-                                                    <p className="text-justify">
-                                                        {exam_announcement?.data?.exam_description}
-                                                    </p>
-                                                </div>
+                                            <div className="print-container" ref={componentRef}>
+                                                <PrintBanner data="Exam Announcement Details"/>
+                                                <h4 className="text-center">{exam_announcement?.data?.exam_title}</h4>
+                                                <p className="text-justify">
+                                                    {exam_announcement?.data?.exam_description}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

@@ -3,6 +3,7 @@ import ReactToPrint from 'react-to-print';
 import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
+import PrintBanner from '../../PrintBanner/PrintBanner'
 
 
 const SyllabusCreationDetails = ({syllabus_detail}) => {
@@ -22,7 +23,8 @@ const SyllabusCreationDetails = ({syllabus_detail}) => {
                                         <hr/>
                                         <h3 className="text-center mb-2">Syllabus Creation Details</h3>
                                         <hr/>
-                                        <div className="sub-page" ref={componentRef}>
+                                        <div className="print-container" ref={componentRef}>
+                                            <PrintBanner data="Syllabus Creation Details"/>
                                             <div className="p-2">
                                                 <h4 className="text-center">{syllabus_detail?.data?.session_year}</h4>
                                                 <p className="text-justify">{syllabus_detail?.data?.syllabus_details}</p>
@@ -32,8 +34,7 @@ const SyllabusCreationDetails = ({syllabus_detail}) => {
                                 </div>
                                 <div className="text-center my-2">
                                     <ReactToPrint
-                                        trigger={() => <button className="btn btn-primary primary">Print this
-                                            out!</button>}
+                                        trigger={() => <button className="btn btn-primary primary">Print </button>}
                                         content={() => componentRef.current}
                                     />
                                 </div>
