@@ -29,12 +29,12 @@ const BoardingSidebar = () => {
                                 <a className="ps-3">Bazar List</a>
                             </Link>
                         </div>
-                        <div
+                        {/* <div
                             className={router.pathname == "/boarding/khabar-distribution" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/boarding/khabar-distribution">
                                 <a className="ps-3">Khabar Distribution</a>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
