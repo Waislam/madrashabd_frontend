@@ -78,7 +78,7 @@ const BooksPage = () => {
             }
         </>
     )
-}
+};
 
 export default BooksPage;
 
@@ -90,4 +90,4 @@ BooksPage.getLayout = (page) => {
             </Layout>
         </>
     )
-}
+};

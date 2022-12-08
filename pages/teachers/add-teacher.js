@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from '../../components/Teachers/TeacherList.module.css'
-import {useForm, useFieldArray} from "react-hook-form"
-import api, {BASE_URL} from "../api/api";
+import { useForm, useFieldArray } from "react-hook-form"
+import api, { BASE_URL } from "../api/api";
 import { getSession, useSession } from "next-auth/react";
 import { getDepartmentList, getDesignationList } from "../api/settings_api";
 import { useAdmissionFormData } from "../../context/AdmissionFormProvider";
@@ -13,15 +13,25 @@ import { useRouter } from "next/router";
 const AddTeacherPage = (props) => {
     const [isChecked, setIsChecked] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const {data: session, status} = useSession();
+
+    const { data: session, status } = useSession();
     const router = useRouter();
+
     // const [divisionList, setDivisionList] = useState(null)
-    const [singleDivision, setSingleDivision] = useState('');
+
     const [disctrictList, setDistrictList] = useState(null);
-    const [singleDistrict, setSingleDristrict] = useState('');
+    const [thanaList, setThanaList] = useState(null);
+    const [postOfficeList, setPostOfficeList] = useState(null);
+    const [postCode, setPostCode] = useState('')
+
+    const [pdisctrictList, setpDistrictList] = useState(null);
+    const [pthanaList, setpThanaList] = useState(null);
+    const [ppostOfficeList, setpPostOfficeList] = useState(null);
+    const [ppostCode, setpPostCode] = useState('')
+
     const [departmentList, setDepartmentList] = useState('');
 
-    const {setAdmissionFormValues, admissionData} = useAdmissionFormData();
+    const { setAdmissionFormValues, admissionData } = useAdmissionFormData();
 
     // console.log("@@ departmentList",departmentList)
 
@@ -29,15 +39,19 @@ const AddTeacherPage = (props) => {
     const madrasha_id = session?.user.madrasha_id;
 
 
-    const {
-        handleSubmit,
-        register,
-        formState: {errors}, control
-    } = useForm()
+    const { handleSubmit, register, formState: { errors }, control, setError } = useForm()
 
-    console.log("@@@@@ session:", session)
+    // console.log("@@@@@ session:", session)
 
-    const onSubmit = data => {
+    const onSubmit = (data) => {
+        // console.log("end date foramte: ", data)
+        let ending_date_value = data.ending_date
+        // console.log("let check: ", ending_date_value)
+        if (ending_date_value == "") {
+            ending_date_value = null
+        }
+        console.log('ending_date_value', ending_date_value)
+
         setIsLoading(true);
         setAdmissionFormValues(data);
 
@@ -68,7 +82,7 @@ const AddTeacherPage = (props) => {
                 "division": data.permanent_address_division,
                 "district": data.permanent_address_district,
                 "thana": data.permanent_address_thana,
-                "post_office": parseInt(data.permanent_address_post_office),
+                "post_office": data.permanent_address_post_office,
                 "post_code": data.permanent_address_post_code,
                 "address_info": data.permanent_address_address_info
             },
@@ -84,7 +98,7 @@ const AddTeacherPage = (props) => {
             "skill": {
                 "skill_name": data.skill_name
             },
-            "phone_home": data.phone_number,
+            "phone_home": data.second_phone_number,
             "nid": data.nid,
             "birth_certificate": data.birth_certificate,
             "nationality": data.nationality,
@@ -92,19 +106,24 @@ const AddTeacherPage = (props) => {
             "department": data.department,
             "designation": data.designation,
             "starting_date": data.starting_date,
-            "ending_date": data.ending_date
+            "ending_date": ending_date_value
         }
 
         // Create New Teacher
-        api.post(`teachers/${madrasha_slug}/`, JSON.stringify(teacher_data))
-        .then((res) => {
-            router.push('/teachers');
-            return res && toast.success('The Teacher is Successfully added!!');
-        })
-        .catch((error) => {
-            console.log("error", error)
-            return error && toast.error('User with this phone already exists!')
-        })
+        api.post(`teachers/${madrasha_slug}/`, teacher_data)
+            .then((res) => {
+                console.log("success response: ", res)
+                router.push('/teachers');
+                return res && toast.success('The Teacher is Successfully added!!');
+            })
+            .catch((error) => {
+                const errorUser = '{"user":{"username":["custom user with this username already exists."],"phone":["custom user with this phone already exists."]}}'
+                if (error && error?.request?.responseText == errorUser) {
+                    return toast.error('Teacher with this phone already exists!')
+                } else {
+                    return toast.error(error?.request?.responseText)
+                }
+            })
     }
 
 
@@ -114,12 +133,12 @@ const AddTeacherPage = (props) => {
     //     name: "Experience"
     // })
 
-    const {fields: skillFields, remove: skillRemove, append: skillAppend} = useFieldArray({
+    const { fields: skillFields, remove: skillRemove, append: skillAppend } = useFieldArray({
         control,
         name: "Skill"
     })
 
-    const {fields: educationFields, remove: educationRemove, append: educationAppend} = useFieldArray({
+    const { fields: educationFields, remove: educationRemove, append: educationAppend } = useFieldArray({
         control,
         name: "Education"
     })
@@ -128,17 +147,17 @@ const AddTeacherPage = (props) => {
     // Extending field on click / that means add more working by using below
     const handleExperienceAppend = (e) => {
         e.preventDefault()
-        experienceAppend({name: ""})
+        experienceAppend({ name: "" })
     }
 
     const handleSkillAppend = (e) => {
         e.preventDefault()
-        skillAppend({name: ""})
+        skillAppend({ name: "" })
     }
 
     const handleEducationAppend = (e) => {
         e.preventDefault()
-        educationAppend({name: ""})
+        educationAppend({ name: "" })
     }
 
     //get and handle dependable address section
@@ -148,13 +167,66 @@ const AddTeacherPage = (props) => {
     //     setDivisionList(division)
     // }
 
-    const handleSetSingleDivisionValue = (e) => {
+    const handleSetDistrict = async (e) => {
         e.stopPropagation()
         e.preventDefault()
-        const pk_value = e.target.value
-        setSingleDivision(pk_value)
+        const division = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setDistrictList(districts)
+
     }
 
+    const getThanaandPostOfficeList = async (e) => {
+        e.preventDefault()
+        const district = e.target.value
+        const response = await api.get(`/accounts/thana/${district}/`)
+        const postOffice = await api.get(`/accounts/post-office/${district}/`)
+        const thanas = response.data
+        const postOffices = postOffice.data
+        setThanaList(thanas)
+        setPostOfficeList(postOffices)
+    }
+
+    const getPostcodes = async (e) => {
+        e.preventDefault()
+        const post_office = e.target.value
+        const response = await api.get(`/accounts/post-code/${post_office}/`)
+        const postCodes = response.data
+        setPostCode(postCodes)
+    }
+
+    // handle permanent address section
+    const handlepSetDistrict = async (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        const division = e.target.value
+        const response = await api.get(`/accounts/district/${division}/`)
+        const districts = response.data
+        setpDistrictList(districts)
+
+    }
+
+    const getpThanaandPostOfficeList = async (e) => {
+        e.preventDefault()
+        const district = e.target.value
+        const response = await api.get(`/accounts/thana/${district}/`)
+        const postOffice = await api.get(`/accounts/post-office/${district}/`)
+        const thanas = response.data
+        const postOffices = postOffice.data
+        setpThanaList(thanas)
+        setpPostOfficeList(postOffices)
+    }
+
+    const getpPostcodes = async (e) => {
+        e.preventDefault()
+        const post_office = e.target.value
+        const response = await api.get(`/accounts/post-code/${post_office}/`)
+        const postCodes = response.data
+        setpPostCode(postCodes)
+    }
+
+    //something else
 
     const handleHidingEndDate = (e) => {
         const checkValue = e.target.checked
@@ -169,7 +241,7 @@ const AddTeacherPage = (props) => {
                         <div className="card">
                             <div className="card-body">
                                 <h4>Teacher / Staff Details</h4>
-                                <hr/>
+                                <hr />
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     {/*Teacher*/}
                                     <div className="teacher mb-3">
@@ -177,40 +249,40 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">First Name</label>
                                                 <input type="text"
-                                                       placeholder="first_name"
-                                                       className="form-control"
-                                                       name="first_name" // use obj field
-                                                       {...register("first_name", {required: "this field is required"})}
+                                                    placeholder="first_name"
+                                                    className="form-control"
+                                                    name="first_name" // use obj field
+                                                    {...register("first_name", { required: "this field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.first_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Last Name</label>
                                                 <input type="text"
-                                                       placeholder="last name"
-                                                       className="form-control"
-                                                       name="last_name" //user obj field
-                                                       {...register("last_name", {required: "this field is required"})}
+                                                    placeholder="last name"
+                                                    className="form-control"
+                                                    name="last_name" //user obj field
+                                                    {...register("last_name", { required: "this field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.last_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Father Name</label>
                                                 <input type="text"
-                                                       placeholder="Father Name"
-                                                       className="form-control"
-                                                       name="father_name"
-                                                       {...register("father_name", {required: "This field is required"})}
+                                                    placeholder="Father Name"
+                                                    className="form-control"
+                                                    name="father_name"
+                                                    {...register("father_name", { required: "This field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.father_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Mother Name</label>
                                                 <input type="text"
-                                                       placeholder="Mother Name"
-                                                       className="form-control"
-                                                       name="mother_name"
-                                                       {...register("mother_name", {required: "This field is required"})}
+                                                    placeholder="Mother Name"
+                                                    className="form-control"
+                                                    name="mother_name"
+                                                    {...register("mother_name", { required: "This field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.mother_name?.message}</p>
                                             </div>
@@ -219,20 +291,20 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Date of Birth</label>
                                                 <input type="text"
-                                                       placeholder="date of birth"
-                                                       className="form-control"
-                                                       name="date_of_birth"
-                                                       onFocus={(e) => (e.target.type = "date")}
-                                                       onBlur={(e) => (e.target.type = "text")}
-                                                       {...register("date_of_birth", {required: "This field is required"})}
+                                                    placeholder="date of birth"
+                                                    className="form-control"
+                                                    name="date_of_birth"
+                                                    onFocus={(e) => (e.target.type = "date")}
+                                                    onBlur={(e) => (e.target.type = "text")}
+                                                    {...register("date_of_birth", { required: "This field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.date_of_birth?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Gender</label>
                                                 <select className="form-select"
-                                                        name="gender"
-                                                        {...register("gender")}
+                                                    name="gender"
+                                                    {...register("gender")}
                                                 >
                                                     <option value="male">Male</option>
                                                     <option value="female">Female</option>
@@ -241,8 +313,8 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Religion</label>
                                                 <select className="form-select"
-                                                        name="religion"
-                                                        {...register("religion")}
+                                                    name="religion"
+                                                    {...register("religion")}
                                                 >
                                                     <option value="islam">Islam</option>
                                                     <option value="shonaton">Shonaton</option>
@@ -252,8 +324,8 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3">
                                                 <label className="mb-2">Marital Status</label>
                                                 <select className="form-select"
-                                                        name="marital_status"
-                                                        {...register("marital_status")}
+                                                    name="marital_status"
+                                                    {...register("marital_status")}
                                                 >
                                                     <option value="married">Married</option>
                                                     <option value="unmarried">Unmarried</option>
@@ -264,15 +336,14 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3">
                                                 <label className="mb-2">Department</label>
                                                 <select className="form-select"
-                                                        name="department"
-                                                        {...register("department")}
+                                                    name="department"
+                                                    {...register("department")}
                                                 >
-                                                    <option value="" disabled>Select Department</option>
+                                                    <option>Select Department</option>
                                                     {
-                                                        props.departmentList.map(department => <option
-                                                            key={department.id}
-                                                            value={department.id}
-                                                            >{department.name}
+                                                        props.departmentList && props.departmentList.map(department =>
+                                                            <option key={department.id} value={department.id}>
+                                                                {department.name}
                                                             </option>)
                                                     }
                                                 </select>
@@ -281,15 +352,14 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-3">
                                                 <label className="mb-2">Designation</label>
                                                 <select className="form-select"
-                                                        name="designation"
-                                                        {...register("designation")}
+                                                    name="designation"
+                                                    {...register("designation")}
                                                 >
-                                                    <option value="" disabled>Select Designation</option>
+                                                    <option>Select Designation</option>
                                                     {
-                                                        props.designationList.map(designation => <option
-                                                            key={designation.id}
-                                                            value={designation.id}
-                                                            >{designation.name}
+                                                        props.designationList.map(designation =>
+                                                            <option key={designation.id} value={designation.id}>
+                                                                {designation.name}
                                                             </option>)
                                                     }
                                                 </select>
@@ -300,15 +370,15 @@ const AddTeacherPage = (props) => {
                                     {/*Present Address*/}
                                     <div className="presentAddress mb-3">
                                         <h4>Present Address</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="row">
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Division</label>
                                                 <select
                                                     className="form-select"
                                                     name="present_address_division"
-                                                    {...register("present_address_division", {required: "This field is required"})}
-                                                    onChange={handleSetSingleDivisionValue}
+                                                    {...register("present_address_division", { required: "This field is required" })}
+                                                    onChange={handleSetDistrict}
                                                 >
                                                     <option value="">Select Division</option>
                                                     {props.divisionList && props.divisionList.map((division) => (
@@ -320,17 +390,18 @@ const AddTeacherPage = (props) => {
                                                         </option>
                                                     ))}
                                                 </select>
-                                                <p className="text-danger">{errors.division?.message}</p>
+                                                <p className="text-danger">{errors.present_address_division?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">District</label>
                                                 <select
                                                     className="form-select"
                                                     name="present_address_district"
-                                                    {...register("present_address_district", {required: "This field is required"})}
+                                                    {...register("present_address_district", { required: "This field is required" })}
+                                                    onChange={getThanaandPostOfficeList}
                                                 >
-                                                    <option>District select</option>
-                                                    {props.districtList && props.districtList.map((district) => (
+                                                    <option value="">District select</option>
+                                                    {disctrictList && disctrictList.map((district) => (
                                                         <option
                                                             value={district.pk}
                                                             key={district.pk}
@@ -339,17 +410,17 @@ const AddTeacherPage = (props) => {
                                                         </option>
                                                     ))}
                                                 </select>
-                                                <p className="text-danger">{errors.district?.message}</p>
+                                                <p className="text-danger">{errors.present_address_district?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">Thana</label>
                                                 <select
                                                     className="form-select"
                                                     name="present_address_thana"
-                                                    {...register("present_address_thana", {required: "This field is required"})}
+                                                    {...register("present_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option>Thana Name</option>
-                                                    {props.thanaList && props.thanaList.map((thana) => (
+                                                    <option value="">Select Thana</option>
+                                                    {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
                                                             key={thana.pk}
@@ -365,10 +436,11 @@ const AddTeacherPage = (props) => {
                                                 <select
                                                     className="form-select"
                                                     name="present_address_post_office"
-                                                    {...register("present_address_post_office", {required: "This field is required"})}
+                                                    {...register("present_address_post_office", { required: "This field is required" })}
+                                                    onChange={getPostcodes}
                                                 >
-                                                    <option>Post office name</option>
-                                                    {props.postOfficeList && props.postOfficeList.map((post_office) => (
+                                                    <option value="">Post office name</option>
+                                                    {postOfficeList && postOfficeList.map((post_office) => (
                                                         <option
                                                             value={post_office.pk}
                                                             key={post_office.pk}
@@ -384,10 +456,10 @@ const AddTeacherPage = (props) => {
                                                 <select
                                                     className="form-select"
                                                     name="present_address_post_code"
-                                                    {...register("present_address_post_code", {required: "This field is required"})}
+                                                    {...register("present_address_post_code", { required: "This field is required" })}
                                                 >
-                                                    <option>Post code number</option>
-                                                    {props.postCodeList && props.postCodeList.map((post_code) => (
+                                                    <option value="">Post code number</option>
+                                                    {postCode && postCode.map((post_code) => (
                                                         <option
                                                             value={post_code.pk}
                                                             key={post_code.pk}
@@ -401,10 +473,10 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-4 mb-3">
                                                 <label className="mb-2">House Address</label>
                                                 <input type="text"
-                                                       placeholder="Address"
-                                                       className="form-control"
-                                                       name="present_address_address_info"
-                                                       {...register("present_address_address_info", {required: "This field is required"})}
+                                                    placeholder="Address"
+                                                    className="form-control"
+                                                    name="present_address_address_info"
+                                                    {...register("present_address_address_info", { required: "This field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.present_address_address_info?.message}</p>
                                             </div>
@@ -424,7 +496,7 @@ const AddTeacherPage = (props) => {
                                                     present Address are same</label>
                                             </div> */}
                                         </div>
-                                        <hr/>
+                                        <hr />
                                         {isChecked ?
                                             <h1 className="d-none">permanent and present address are same</h1> :
                                             <div className="row">
@@ -433,10 +505,10 @@ const AddTeacherPage = (props) => {
                                                     <select
                                                         className="form-select"
                                                         name="permanent_address_division"
-                                                        {...register("permanent_address_division", {required: "This field is required"})}
-                                                        onChange={handleSetSingleDivisionValue}
+                                                        {...register("permanent_address_division", { required: "This field is required" })}
+                                                        onChange={handlepSetDistrict}
                                                     >
-                                                        <option>Select Division</option>
+                                                        <option value="">Select Division</option>
                                                         {props.divisionList && props.divisionList.map((division) => (
                                                             <option
                                                                 value={division.pk}
@@ -453,10 +525,11 @@ const AddTeacherPage = (props) => {
                                                     <select
                                                         className="form-select"
                                                         name="permanent_address_district"
-                                                        {...register("permanent_address_district", {required: "This field is required"})}
+                                                        {...register("permanent_address_district", { required: "This field is required" })}
+                                                        onChange={getpThanaandPostOfficeList}
                                                     >
-                                                        <option>District select</option>
-                                                        {props.districtList && props.districtList.map((district) => (
+                                                        <option value="">District select</option>
+                                                        {pdisctrictList && pdisctrictList.map((district) => (
                                                             <option
                                                                 value={district.pk}
                                                                 key={district.pk}
@@ -472,10 +545,10 @@ const AddTeacherPage = (props) => {
                                                     <select
                                                         className="form-select"
                                                         name="permanent_address_thana"
-                                                        {...register("permanent_address_thana", {required: "This field is required"})}
+                                                        {...register("permanent_address_thana", { required: "This field is required" })}
                                                     >
-                                                        <option>Thana Name</option>
-                                                        {props.thanaList && props.thanaList.map((thana) => (
+                                                        <option value="">Thana Name</option>
+                                                        {pthanaList && pthanaList.map((thana) => (
                                                             <option
                                                                 value={thana.pk}
                                                                 key={thana.pk}
@@ -491,10 +564,11 @@ const AddTeacherPage = (props) => {
                                                     <select
                                                         className="form-select"
                                                         name="permanent_address_post_office"
-                                                        {...register("permanent_address_post_office", {required: "This field is required"})}
+                                                        {...register("permanent_address_post_office", { required: "This field is required" })}
+                                                        onChange={getpPostcodes}
                                                     >
-                                                        <option>Post office name</option>
-                                                        {props.postOfficeList && props.postOfficeList.map((post_office) => (
+                                                        <option value="">Post office name</option>
+                                                        {ppostOfficeList && ppostOfficeList.map((post_office) => (
                                                             <option
                                                                 value={post_office.pk}
                                                                 key={post_office.pk}
@@ -510,10 +584,10 @@ const AddTeacherPage = (props) => {
                                                     <select
                                                         className="form-select"
                                                         name="permanent_address_post_code"
-                                                        {...register("permanent_address_post_code", {required: "This field is required"})}
+                                                        {...register("permanent_address_post_code", { required: "This field is required" })}
                                                     >
-                                                        <option>Post code number</option>
-                                                        {props.postCodeList && props.postCodeList.map((post_code) => (
+                                                        <option value="">Post code number</option>
+                                                        {ppostCode && ppostCode.map((post_code) => (
                                                             <option
                                                                 value={post_code.pk}
                                                                 key={post_code.pk}
@@ -527,10 +601,10 @@ const AddTeacherPage = (props) => {
                                                 <div className="col-md-4 mb-3">
                                                     <label className="mb-2">House Address</label>
                                                     <input type="text"
-                                                           placeholder="Address"
-                                                           className="form-control"
-                                                           name="permanent_address_address_info"
-                                                           {...register("permanent_address_address_info", {required: "This field is required"})}
+                                                        placeholder="Address"
+                                                        className="form-control"
+                                                        name="permanent_address_address_info"
+                                                        {...register("permanent_address_address_info", { required: "This field is required" })}
                                                     />
                                                     <p className="text-danger">{errors.permanent_address_address_info?.message}</p>
                                                 </div>
@@ -540,52 +614,51 @@ const AddTeacherPage = (props) => {
 
                                     {/*Education*/}
                                     <div className="education mb-3">
-                                        <h4>Education</h4>
-                                        <hr/>
+                                        <h4>Education (last degree)</h4>
+                                        <hr />
                                         <div className="row">
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Degree Name</label>
-                                                    <input type="text"
-                                                           placeholder="Degree Name "
-                                                           className="form-control"
-                                                           name="degree_name"
-                                                           {...register("degree_name", {required: "This field is required"})}
-                                                    />
-                                                    <p className="text-danger">{errors.degree_name?.message}</p>
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Passing Year</label>
-                                                    <input type="text"
-                                                           placeholder="Passing year"
-                                                           className="form-control"
-                                                           name="passing_year"
-                                                           {...register("passing_year")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Result</label>
-                                                    <input type="text"
-                                                           placeholder="CGPA/GPA-5/First Class"
-                                                           className="form-control"
-                                                           name="result"
-                                                           {...register("result")}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label className="mb-2">Institution Name</label>
-                                                    <input type="text"
-                                                           placeholder="University/college/Madrasha"
-                                                           className="form-control"
-                                                           name="institution_name"
-                                                           {...register("institution_name")}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    {/* <button type="button"
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Degree Name</label>
+                                                <input type="text"
+                                                    placeholder="Degree Name "
+                                                    className="form-control"
+                                                    name="degree_name"
+                                                    {...register("degree_name")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Passing Year</label>
+                                                <input type="text"
+                                                    placeholder="Passing year"
+                                                    className="form-control"
+                                                    name="passing_year"
+                                                    {...register("passing_year")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Result</label>
+                                                <input type="text"
+                                                    placeholder="CGPA/GPA-5/First Class"
+                                                    className="form-control"
+                                                    name="result"
+                                                    {...register("result")}
+                                                />
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label className="mb-2">Institution Name</label>
+                                                <input type="text"
+                                                    placeholder="University/college/Madrasha"
+                                                    className="form-control"
+                                                    name="institution_name"
+                                                    {...register("institution_name")}
+                                                />
+                                            </div>
+                                            <div>
+                                                {/* <button type="button"
                                                             className={`btn btn-secondary float-md-end mb-2 col-1`}
                                                             onClick={() => educationRemove(index)}>Remove
                                                     </button> */}
-                                                </div>
+                                            </div>
                                         </div>
                                         {/* {educationFields.map((item, index) => (
                                             <div className="row" key={item.id}>
@@ -642,7 +715,7 @@ const AddTeacherPage = (props) => {
                                     {/*contact*/}
                                     <div className="contact mb-3 mt-5">
                                         <h4>Contact</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="row">
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Phone Number</label>
@@ -651,9 +724,9 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Phone"
                                                     className="form-control"
                                                     name="phone_number" //user object field
-                                                    {...register("phone_number", {required: "This number is required"})}
+                                                    {...register("phone_number", { required: "This number is required" })}
                                                 />
-                                                <p className="text-danger">{errors.phone?.message}</p>
+                                                <p className="text-danger">{errors.phone_number?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Scond Phone Number</label>
@@ -671,7 +744,8 @@ const AddTeacherPage = (props) => {
                                                     type="email"
                                                     placeholder="E-mail"
                                                     className="form-control"
-                                                    name="email" // user obj field
+                                                    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                                    name="email"
                                                     {...register("email")}
                                                 />
                                             </div>
@@ -680,7 +754,7 @@ const AddTeacherPage = (props) => {
                                     {/*Other Details*/}
                                     <div className="otherDetails mb-3">
                                         <h4>Other Details</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="row">
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">National ID</label>
@@ -689,8 +763,9 @@ const AddTeacherPage = (props) => {
                                                     placeholder="NID"
                                                     className="form-control mb-3"
                                                     name="nid"
-                                                    {...register("nid")}
+                                                    {...register("nid", { required: "NID is required" })}
                                                 />
+                                                <p className="text-danger">{errors?.nid?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Birth Certificate</label>
@@ -699,9 +774,8 @@ const AddTeacherPage = (props) => {
                                                     placeholder="Birth Certificate"
                                                     className="form-control"
                                                     name="birth_certificate"
-                                                    {...register("birth_certificate", {required: "This field is required"})}
+                                                    {...register("birth_certificate")}
                                                 />
-                                                <p className="text-danger">{errors.birth_certificate?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Nationality</label>
@@ -742,13 +816,13 @@ const AddTeacherPage = (props) => {
                                             <div className="col-md-6">
                                                 <label className="mb-2">Start Date</label>
                                                 <input
-                                                    type="text"
+                                                    // type="text"
                                                     className="form-control"
                                                     placeholder="Date"
                                                     onFocus={(e) => (e.target.type = "date")}
                                                     onBlur={(e) => (e.target.type = "text")}
                                                     name="starting_date"
-                                                    {...register("starting_date", {required: "This field is required"})}
+                                                    {...register("starting_date", { required: "This field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.starting_date?.message}</p>
                                             </div>
@@ -771,16 +845,16 @@ const AddTeacherPage = (props) => {
                                     {/*Experience*/}
                                     <div className="experience mb-4">
                                         <h4>Experience</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="mb-3">
-                                                <textarea
-                                                    className="form-control"
-                                                    placeholder="White your Experinece Here"
-                                                    name="experience_name"
-                                                    {...register(`experience_name`)}
-                                                >
-                                                </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            <textarea
+                                                className="form-control"
+                                                placeholder="White your Experinece Here"
+                                                name="experience_name"
+                                                {...register(`experience_name`)}
+                                            >
+                                            </textarea>
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => experienceRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -808,16 +882,16 @@ const AddTeacherPage = (props) => {
                                     {/* skill */}
                                     <div className="skill mb-4">
                                         <h4>Skill</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="mb-3">
-                                                <textarea
-                                                    className="form-control"
-                                                    placeholder="White your Experinece Here"
-                                                    name="skill_name"
-                                                    {...register("skill_name")}
-                                                >
-                                                </textarea>
-                                                {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
+                                            <textarea
+                                                className="form-control"
+                                                placeholder="White your Experinece Here"
+                                                name="skill_name"
+                                                {...register("skill_name")}
+                                            >
+                                            </textarea>
+                                            {/* <button type="button" className={`btn btn-secondary float-md-end my-3`}
                                                         onClick={() => skillRemove(index)}>Remove
                                                 </button> */}
                                         </div>
@@ -870,24 +944,24 @@ const AddTeacherPage = (props) => {
 };
 
 
-export async function getServerSideProps({req}) {
-    const session = await getSession({req})
+export async function getServerSideProps({ req }) {
+    const session = await getSession({ req })
     const madrasha_slug = session?.user.madrasha_slug
 
     const divisionListRes = await fetch(`${BASE_URL}/accounts/division/`)
     const divisionList = await divisionListRes.json()
 
-    const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
-    const districtList = await districtListRes.json()
+    // const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
+    // const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
-    const postCodeList = await postCodeListRes.json()
+    // const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
+    // const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
-    const postOfficeList = await postOfficeListRes.json()
+    // const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
+    // const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
-    const thanaList = await thanaListRes.json()
+    // const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
+    // const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
     const designationList = await getDesignationList(madrasha_slug).then(data => data)
@@ -896,10 +970,10 @@ export async function getServerSideProps({req}) {
     return {
         props: {
             divisionList,
-            districtList,
-            postCodeList,
-            postOfficeList,
-            thanaList,
+            // districtList,
+            // postCodeList,
+            // postOfficeList,
+            // thanaList,
             departmentList,
             designationList
         },

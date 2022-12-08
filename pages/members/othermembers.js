@@ -78,7 +78,7 @@ const OtherMemberPage = (props) => {
                 />
 
                 <AddOtherMemberModal
-                    session={props.session_data}
+                    session_data={props.session_data}
                     show={addOtherMemberModal}
                     onHide={() => setOtherMemberModal(false)}
                 />
@@ -115,7 +115,6 @@ export async function getServerSideProps({req}) {
     const session_data = await getSession({req});
     const res = await api.get(`/committee/${session_data.user?.madrasha_slug}/other-members/`);
     const other_members = await res.data;
-    console.log("Hi ", other_members);
 
     return {
         props: {

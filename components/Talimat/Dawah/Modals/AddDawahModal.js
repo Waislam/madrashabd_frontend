@@ -6,12 +6,13 @@ import {BASE_URL} from '../../../../pages/api/api';
 
 
 const AddDawahModal = (props) => {
+
     const router = useRouter();
 
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/talimat/${props.session_data.user?.madrasha_slug}/dawah/`, {
+        fetch(`${BASE_URL}/talimat/${props.session_data?.user?.madrasha_slug}/dawah/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -19,7 +20,7 @@ const AddDawahModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "program_name": values.program_name,
                     "duration": values.duration,
                     "start_time": values.start_time,
@@ -110,10 +111,7 @@ const AddDawahModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Submit</button>
                     </form>
                 </Modal.Body>
             </Modal>

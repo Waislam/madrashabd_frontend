@@ -8,3 +8,87 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #F8F9FA;
 }
+
+.brand-btn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 10px;
+    border: white;
+    border-radius: 4px;
+    margin: 2px;
+    width: 150px;
+    transition: box-shadow 2s linear;
+}
+
+.brand-btn:hover {
+    color: white;
+    box-shadow: 5px 21px 27px -3px rgba(0, 0, 0, 0.58);
+    -webkit-box-shadow: 5px 21px 27px -3px rgba(0, 0, 0, 0.58);
+    -moz-box-shadow: 5px 21px 27px -3px rgba(0, 0, 0, 0.58);
+}
+
+.primary {
+    background-image: linear-gradient(to right, #803e9f, #33ba41) !important;
+    color: white;
+    border: white;
+    border-radius: 4px;
+    transition: box-shadow 2s linear;
+}
+
+.cardDashboard {
+    border-bottom-left-radius: 120px;
+    border-top-right-radius: 120px;
+}
+
+.default-btn {
+    background-image: linear-gradient(to right, #803e9f, #33ba41);
+    color: white;
+    padding: 7px;
+    border: white;
+    width: 150px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* data grid customization */
+.css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel {
+    display: block;
+    margin-bottom: 0;
+}
+
+.css-levciy-MuiTablePagination-displayedRows {
+    margin-bottom: 0;
+}
+
+.print-banner {
+    display: none;
+}
+
+@media print {
+    .noprint {
+        display: none;
+    }
+
+    .print-banner {
+        display: block;
+        text-align: center;
+        /*margin-bottom: 3rem;*/
+        /*padding-top: 2rem;*/
+    }
+
+    .table-responsive {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        margin-top: 2rem;
+    }
+
+    .print-container {
+        background-color: #ffffff;
+        padding: 1.4rem;
+    }
+
+}
+
+
+

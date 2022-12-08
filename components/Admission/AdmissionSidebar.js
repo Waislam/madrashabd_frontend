@@ -20,13 +20,13 @@ const AdmissionSidebar = () => {
                     <div className="card-body p-0">
                         <div className={router.pathname == "/admission" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/admission">
-                                <a className="text-center">New Student</a>
+                                <a className="ps-5">New Student</a>
                             </Link>
                         </div>
 
                         <div className={router.pathname == "/admission/old-admission" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                             <Link href="/admission/old-admission">
-                                <a className="text-center">Old Student</a>
+                                <a className="ps-5">Old Student</a>
                             </Link>
                         </div>
                     </div>

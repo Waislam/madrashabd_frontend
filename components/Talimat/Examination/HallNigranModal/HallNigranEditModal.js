@@ -1,15 +1,16 @@
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
-import styles from "../../../Account/Account.module.css";
+import styles from "../../../Account/Account/Account.module.css";
 
 import api from '../../../../pages/api/api'
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const HallNigranEditModal = (props) => {
     // console.log(" HallNigranEditModal(): props modal", props)
+    // console.log("props.hallNigarData?.duty_date: ", props.hallNigarData?.duty_date)
 
     const preLoadedData = {
-        "duty_date": props.hallNigarData?.duty_date,
+        "duty_date": props.hallNigarData?.duty_date.toString(),
         "chief_of_hall": props.hallNigarData?.chief_of_hall,
         "assistant_of_hall": props.hallNigarData?.assistant_of_hall,
         "room_no": props.hallNigarData?.room_no
@@ -20,7 +21,7 @@ const HallNigranEditModal = (props) => {
         handleSubmit,
         watch,
         setError,
-        formState: {errors}
+        formState: { errors }
     } = useForm({
         mode: "all",
         defaultValues: preLoadedData
@@ -35,10 +36,11 @@ const HallNigranEditModal = (props) => {
             .then((response) => {
                 console.log("response", response.data)
                 props.handleClose()
-                // router.reload()
+                router.reload()
             }).catch((error) => {
-            console.log("error", error)
-        })
+                console.log("error", error)
+            })
+        
     };
 
     return (
@@ -52,11 +54,12 @@ const HallNigranEditModal = (props) => {
                         <div className="mb-3">
                             <label className="mb-2">Exam duty Date</label>
                             <input
-                                type="date"
+                                type="text"
                                 className="form-control"
                                 placeholder="Exam Date"
+                                onFocus={(e) => e.target.type = "date"}
                                 name="duty_date"
-                                {...register("duty_date", {required: "this field is required"})}
+                                {...register("duty_date", { required: "this field is required" })}
                             />
                             <p className="text-danger">{errors.duty_date?.message}</p>
                         </div>
@@ -68,7 +71,7 @@ const HallNigranEditModal = (props) => {
                                 className="form-control"
                                 placeholder="Chief of Nigran"
                                 name="chief_of_hall"
-                                {...register("chief_of_hall", {required: "this field is required"})}
+                                {...register("chief_of_hall", { required: "this field is required" })}
                             />
                             <p className="text-danger">{errors.chief_of_hall?.message}</p>
                         </div>

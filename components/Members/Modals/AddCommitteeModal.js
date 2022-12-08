@@ -4,15 +4,13 @@ import {useRouter} from "next/router";
 import Modal from 'react-bootstrap/Modal';
 import api, {BASE_URL} from "../../../pages/api/api";
 
+
 const AddCommitteeModal = (props) => {
-
-    console.log("Props ========", props.session);
-
     const router = useRouter();
     const {register, handleSubmit} = useForm({mode: 'all'});
 
     const onSubmit = (values) => {
-        fetch(`${BASE_URL}/committee/${props.session.user?.madrasha_slug}/list/`, {
+        fetch(`${BASE_URL}/committee/${props.session_data.user?.madrasha_slug}/list/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -20,18 +18,21 @@ const AddCommitteeModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "member_name": values.member_name,
                     "member_designation": values.member_designation,
                     "phone_number": values.phone_number
                 },
             )
         }).then((res) => res.json())
+            .then((res) => {
+                router.reload();
+            })
             .catch((err) => {
                 console.log(err.message)
             });
         props.onHide();
-        router.reload();
+
     };
 
     return (
@@ -75,8 +76,7 @@ const AddCommitteeModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
+                        <button className="brand-btn">
                             Submit
                         </button>
                     </form>

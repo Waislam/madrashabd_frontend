@@ -3,8 +3,90 @@ import SideMenu from './ExamSideMenu';
 import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
+import {isAssetError} from 'next/dist/client/route-loader';
+import React from "react";
 
-const ResutSheet = () => {
+const ResutSheet = ({result_list}) => {
+    console.log("result_list", result_list);
+
+    const columns = [
+        {
+            field: "student.student_roll_id",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            headerName: "Roll",
+            valueGetter: (parmas) => {
+                return `${parmas?.row?.student?.student_roll_id}`
+            },
+        },
+        {
+            field: "student.user",
+            headerName: "Name",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            valueGetter: (parmas) => {
+                const user = parmas?.row?.student?.user;
+                const name = `${user?.first_name} ${user?.last_name}`;
+                return name
+            }
+        },
+        {
+            field: "student_class",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            valueGetter: (parmas) => {
+                return `${parmas?.row?.student_class?.name}`
+            }
+
+        },
+        {
+            field: "exam_term",
+            headerName: "Exam Term",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            valueGetter: (params) => {
+                return `${params?.row?.exam_term?.term_name}`
+            }
+        },
+        {
+            field: "total_marks",
+            headerName: "Total Marks",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+        },
+        {
+            field: "division",
+            headerName: "Division",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+        },
+        {
+            field: "merit_position",
+            headerName: "Merit",
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+        },
+        {
+            field: 'Detail',
+            headerName: 'Detail',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            sortable: false,
+            renderCell: (params) => {
+                return <a href={`/talimat/exam/result/${params.row.id}`}>Details</a>;
+            }
+        },
+    ];
 
     return (
         <>
@@ -120,7 +202,7 @@ const ResutSheet = () => {
                                                                 <div className="col-md-1">
                                                                     <Link
                                                                         href="/talimat/exam/result_upload"
-                                                                        className={`${styles.defaultBtnResult}`}
+                                                                        className="btn btn-primary"
                                                                     >
                                                                         Add
                                                                     </Link>
@@ -129,7 +211,32 @@ const ResutSheet = () => {
                                                         </form>
                                                     </div>
                                                     <div className="result-table mt-4">
-                                                        <div className="table-responsive">
+
+                                                        <Box sx={{height: 500, width: '100%'}}>
+                                                            <DataGrid
+                                                                rows={result_list}
+                                                                columns={columns}
+                                                                // disableColumnFilter
+                                                                disableColumnSelector
+                                                                disableDensitySelector
+                                                                components={{Toolbar: GridToolbar}}
+                                                                // experimentalFeatures={{ newEditingApi: false }}
+                                                                componentsProps={{
+                                                                    toolbar: {
+                                                                        showQuickFilter: true,
+                                                                        quickFilterProps: {debounceMs: 500},
+                                                                    },
+                                                                }}
+                                                                // filterModel={{
+                                                                //     items: [{
+                                                                //         columnField: "Class",
+                                                                //         operatorValue: "isAnyOf",
+                                                                //         value: ARRAYofSelctedRowValuesInTabOne
+                                                                //     }],
+                                                                // }}
+                                                            />
+                                                        </Box>
+                                                        {/* <div className="table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
                                                                 <tr>
@@ -162,7 +269,7 @@ const ResutSheet = () => {
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                     <div className="col-md-3">
                                                         <button type="button" className={styles.defaultBtn}>Download
@@ -170,7 +277,7 @@ const ResutSheet = () => {
                                                     </div>
                                                 </div>
                                                 {/* add results */}
-                                                <div className="add-results mt-5">
+                                                {/* <div className="add-results mt-5">
                                                     <form action="#" method="POST">
                                                         <div className="row">
                                                             <div className="col-md-7 mb-3">
@@ -245,7 +352,7 @@ const ResutSheet = () => {
                                                             </button>
                                                         </div>
                                                     </form>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>

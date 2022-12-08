@@ -8,9 +8,31 @@ import styles from './StudentDetails.module.css'
 // components
 import studentLogo from '../../public/assets/admission/students.png'
 import teacher from '../../public/assets/login/teacher-2.jpg'
+import { useForm } from "react-hook-form";
+import { BASE_URL } from "../../pages/api/api";
+import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
 
 
-const StudentDetails = ({student}) => {
+const StudentDetails = ({ student }) => {
+    const { handleSubmit, register, formState: { errors }, control } = useForm()
+
+    const onSubmit = (values) => {
+        let formdata = new FormData();
+        formdata.append("avatar", values.avatar[0], values.avatar[0].name);
+
+        let requestOptions = {
+            method: 'PUT',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/accounts/avatar/${student.data.user.id}/`, requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+    };
 
     return (
         <>
@@ -23,7 +45,7 @@ const StudentDetails = ({student}) => {
                                 <div className="card">
                                     <h4 className={styles.sideBarLogo}>
                                         <Image src={studentLogo} className="img-responsive"
-                                               alt="Logo missing" height={40} width={40}/>
+                                            alt="Logo missing" height={40} width={40} />
                                     </h4>
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
@@ -46,8 +68,13 @@ const StudentDetails = ({student}) => {
                                     <div className="col">
                                         <div className="card mb-4">
                                             <div className="card-body">
-                                                <h4>Student Information</h4>
-                                                <hr/>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <h4>Student Information</h4>
+                                                    <Link href={`/students/update-student/${student.data.slug}`}>
+                                                        <button className="default-btn">Update</button>
+                                                    </Link>
+                                                </div>
+                                                <hr />
                                                 <div className="row">
                                                     <div className="col-md-9">
                                                         <div className="row">
@@ -96,7 +123,8 @@ const StudentDetails = ({student}) => {
                                                                     </dt>
                                                                     <dd className="col-sm-6">
                                                                         <span className="mx-2">:</span>
-                                                                        <span className="text-capitalize">{student.data?.religion}</span>
+                                                                        <span
+                                                                            className="text-capitalize">{student.data?.religion}</span>
                                                                     </dd>
                                                                     <dt className="col-sm-6">
                                                                         Gender
@@ -126,8 +154,42 @@ const StudentDetails = ({student}) => {
                                                         </div>
                                                     </div>
                                                     <div className="col-md-3">
-                                                        <Image src={teacher} className="img-responsive" width={400}
-                                                               height={300}/>
+                                                        <div className="text-center">
+                                                            {student?.data?.user?.avatar ?
+                                                                <img
+                                                                    src={`${BASE_URL}` + student?.data?.user?.avatar}
+                                                                    className="rounded-circle shadow-4-strong"
+                                                                    alt="Oops image missing"
+                                                                    width={70}
+                                                                    height={70}
+
+                                                                />
+                                                                :
+                                                                <Image
+                                                                    className="rounded-circle shadow-4-strong"
+                                                                    alt="avatar2"
+                                                                    src={teacher}
+                                                                    width={90}
+                                                                    height={90}
+                                                                />
+                                                            }
+                                                        </div>
+                                                        <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
+                                                            <div className="form-group mb-2">
+                                                                <input
+                                                                    className="form-control"
+                                                                    type="file"
+                                                                    id="avatar"
+                                                                    name='avatar'
+                                                                    {...register("avatar")}
+                                                                />
+                                                            </div>
+                                                            <button
+                                                                type="submit"
+                                                                className="btn btn-primary mb-2">
+                                                                Save
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,14 +201,14 @@ const StudentDetails = ({student}) => {
                                         <div className="card">
                                             <div className="card-body pb-0">
                                                 <h4>Present Address</h4>
-                                                <hr/>
+                                                <hr />
                                                 <dl className="row">
                                                     <dt className="col-sm-3">Address</dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
                                                         <span className="text-capitalize">
                                                             {student.data.present_address?.address_info}
-                                                            </span>
+                                                        </span>
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Office
@@ -191,14 +253,14 @@ const StudentDetails = ({student}) => {
                                         <div className="card">
                                             <div className="card-body pb-0">
                                                 <h4>Permanent Address</h4>
-                                                <hr/>
+                                                <hr />
                                                 <dl className="row">
                                                     <dt className="col-sm-3">Address</dt>
                                                     <dd className="col-sm-9">
                                                         <span className="mx-2">:</span>
                                                         <span className="text-capitalize">
                                                             {student.data.permanent_address?.address_info}
-                                                            </span>
+                                                        </span>
                                                     </dd>
                                                     <dt className="col-sm-3">
                                                         Post Office
@@ -243,13 +305,13 @@ const StudentDetails = ({student}) => {
 
                                 <div className="guardianInformation">
                                     <h4>Guardian Information</h4>
-                                    <hr/>
+                                    <hr />
                                     <div className="row">
                                         <div className="col-md-6 mb-4">
                                             <div className="card">
                                                 <div className="card-body  pb-0">
                                                     <h4>Father</h4>
-                                                    <hr/>
+                                                    <hr />
                                                     <dl className="row">
                                                         <dt className="col-sm-4">Name</dt>
                                                         <dd className="col-sm-8">
@@ -310,7 +372,7 @@ const StudentDetails = ({student}) => {
                                             <div className="card">
                                                 <div className="card-body pb-0">
                                                     <h4>Mother</h4>
-                                                    <hr/>
+                                                    <hr />
                                                     <dl className="row">
                                                         <dt className="col-sm-4">Name</dt>
                                                         <dd className="col-sm-8">
@@ -370,7 +432,7 @@ const StudentDetails = ({student}) => {
                                     </div>
                                     <div className="row">
                                         <h4>Guardian</h4>
-                                        <hr/>
+                                        <hr />
                                         <div className="col-md-6 mb-4">
                                             <div className="card">
                                                 <div className="card-body pb-0">
@@ -402,10 +464,10 @@ const StudentDetails = ({student}) => {
                                                             {student.data?.yearly_income}
                                                         </dd>
                                                         <dt className="col-sm-4">
-                                                            <span className="mx-2"/>
+                                                            <span className="mx-2" />
                                                         </dt>
                                                         <dd className="col-sm-8">
-                                                            <span className="mx-2"/>
+                                                            <span className="mx-2" />
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -458,19 +520,19 @@ const StudentDetails = ({student}) => {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                             <h4>Academic Information</h4>
-                                            <hr/>
+                                            <hr />
                                             <div className="row text-capitalize">
                                                 <div className="col-md-4">
-                                                    <p>Class : {student.data.admitted_class?.name}</p>
-                                                    <p>Session : {student.data?.admitted_session?.name}</p>
+                                                    <p>Class &nbsp; &nbsp;&nbsp;: {student.data.admitted_class?.name}</p>
+                                                    <p>Session : {student.data?.admitted_session?.actual_year}</p>
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <p>Section : No attribute found</p>
+                                                    <p>DepartMent : {student.data?.admitted_department?.name}</p>
                                                     {/*<p>Class Roll : {student.data?.admitted_roll}</p>*/}
                                                 </div>
                                                 <div className="col-md-4">
-                                                    {/*<p>Group : {student.data?.admitted_group}</p>*/}
-                                                    {/*<p>Shift : {student.data?.admitted_shift}</p>*/}
+                                                    <p>Group : {student.data?.admitted_group?.name}</p>
+                                                    <p>Shift &nbsp; &nbsp;: {student.data?.admitted_shift?.name}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -480,27 +542,27 @@ const StudentDetails = ({student}) => {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                             <h4>Attendance</h4>
-                                            <hr/>
+                                            <hr />
                                             <table className="table">
                                                 <thead>
-                                                <tr>
-                                                    <th scope="col">Year</th>
-                                                    <th scope="col">Month</th>
-                                                    <th scope="col">Total Class</th>
-                                                    <th scope="col">Present</th>
-                                                    <th scope="col">Absent</th>
-                                                    <th scope="col">Comment</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th scope="col">Year</th>
+                                                        <th scope="col">Month</th>
+                                                        <th scope="col">Total Class</th>
+                                                        <th scope="col">Present</th>
+                                                        <th scope="col">Absent</th>
+                                                        <th scope="col">Comment</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                </tr>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                        <td>@mdo</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>

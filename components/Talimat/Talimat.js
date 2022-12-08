@@ -22,22 +22,22 @@ const Talimat = () => {
                         <div className="card-body p-0">
                             <div className={router.pathname == "/talimat/syllabus" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                                 <Link href="/talimat/syllabus">
-                                    <a className="text-center">Syllabus</a>
+                                    <a className="ps-5">Syllabus</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "talimat/exam" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                                <Link href="/talimat/exam">
-                                    <a className="text-center">Examination</a>
+                            <div className={router.pathname == "/talimat/exam/announcement" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                                <Link href="/talimat/exam/announcement">
+                                    <a className="ps-5">Examination</a>
                                 </Link>
                             </div>
                             <div className={router.pathname == "/talimat/dawah" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
                                 <Link href="/talimat/dawah">
-                                    <a className="text-center">Dawah</a>
+                                    <a className="ps-5">Dawah</a>
                                 </Link>
                             </div>
-                            <div className={router.pathname == "/talimat/extraActivity" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
-                                <Link href="/talimat/extraActivity">
-                                    <a className="text-center">Extra-Activity</a>
+                            <div className={router.pathname == "/talimat/extra-activity" ? `${styles.activeLink}` : `${styles.inActiveLink}`}>
+                                <Link href="/talimat/extra-activity">
+                                    <a className="ps-5">Extra-Activity</a>
                                 </Link>
                             </div>
                         </div>

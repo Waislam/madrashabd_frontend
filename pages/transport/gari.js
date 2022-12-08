@@ -42,7 +42,6 @@ const GariPage = (props) => {
     // Add Post Request
     const handleAddGari = () => {
         setAddGariList(true);
-
     };
 
     // update OtherMember
@@ -59,9 +58,7 @@ const GariPage = (props) => {
     const handleGariDelete = (id) => {
         setDeleteGariList(id);
         setDeleteGariModal(true)
-
     };
-
 
     // Loading
     if (isLoading) {
@@ -74,8 +71,6 @@ const GariPage = (props) => {
         )
     }
 
-
-    //
     if (props.gari_list) {
         return (
             <>

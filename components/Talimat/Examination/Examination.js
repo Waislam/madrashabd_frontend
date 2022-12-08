@@ -1,30 +1,23 @@
-import {useState} from "react";
-
-// styles
+import { useState } from "react";
 import taliamatstyles from '../Talimat.module.css'
 import styles from './Examination.module.css'
-
-// models
+import Link from 'next/link'
 import ExamAnnouncementModal from './Modal/ExamAnnouncementModal'
 import ExamAnnouncementDeleteModal from "./Modal/ExamAnnouncementDeleteModal";
 import ExamAnnouncementEditModal from "./Modal/ExamAnnouncmentEditModal";
-
-// components
 import SideMenu from './ExamSideMenu';
 import ExamHeader from './ExamHeader'
-
-// api
 import api from "../../../pages/api/api";
 
 
-const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
+const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => {
     const [show, setShow] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [examAnnouncementId, setExamAnnouncementId] = useState(null);
 
-    const [examAnnouncementData, setExamAnnouncementData] = useState(null)
+    const [examAnnouncementData, setExamAnnouncementData] = useState(null);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -34,52 +27,50 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
     const handleDeleteAnnouncementShow = () => setShowDeleteModal(true);
 
     const handleExamAnnouncementDelete = (examAnnouncementIdValue) => {
-        setExamAnnouncementId(examAnnouncementIdValue)
+        setExamAnnouncementId(examAnnouncementIdValue);
         handleDeleteAnnouncementShow()
 
-    }
+    };
 
     // edit functionality
     const handleEditAnnouncementClose = () => setShowEditModal(false);
     const handleEditAnnouncementShow = () => setShowEditModal(true);
 
     const getExamAnnouncementData = (examAnnouncementIdValue) => {
-        setLoading(true)
+        setLoading(true);
         api.get(`/talimat/exam-announcement/detail/${examAnnouncementIdValue}/`)
             .then((response) => {
-                console.log("response", response.data)
-                setExamAnnouncementData(response.data.data)
+                setExamAnnouncementData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            console.log(error)
-            setLoading(false)
-        })
-    }
+                console.log(error);
+                setLoading(false)
+            })
+    };
 
     const handleExamAnnouncementEdit = (examAnnouncementIdValue) => {
-        getExamAnnouncementData(examAnnouncementIdValue)
-        setExamAnnouncementId(examAnnouncementIdValue)
+        getExamAnnouncementData(examAnnouncementIdValue);
+        setExamAnnouncementId(examAnnouncementIdValue);
         handleEditAnnouncementShow()
-
-    }
+    };
 
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu/>
+                        <SideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader/>
-                                        <hr/>
+                                        <ExamHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
                                                     <div className="row">
-                                                        <h2 className="col-md-7 mt-1">Examination ExamAnnouncement</h2>
+                                                        <h2 className="col-md-7 mt-1">Examination Exam Announcement</h2>
                                                         <div className="col-md-5">
                                                             <button
                                                                 type="button"
@@ -92,43 +83,48 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                                                     </div>
                                                     <div className="table-responsive">
                                                         <table className="table table-striped">
-                                                            <thead className={styles.hearderCustom}>
-                                                            <tr>
-                                                                <th scope="col">Exam</th>
-                                                                <th scope="col">Details</th>
-                                                                <th scope="col">Action</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody className={styles.tbodyCustom}>
-                                                            {examAnnouncementList && examAnnouncementList.map((exam) => (
-                                                                <tr key={exam.id}>
-                                                                    <td className="text-sm">{exam.exam_title}</td>
-                                                                    <td className="text-sm">{exam.exam_description}</td>
-                                                                    <td>
-                                                                        <button
-                                                                            type='button'
-                                                                            className="btn btn-primary"
-                                                                            onClick={() => handleExamAnnouncementEdit(exam.id)}
-
-                                                                        >
-                                                                            Edit
-                                                                        </button>
-                                                                        <button
-                                                                            type='button'
-                                                                            className="btn btn-danger ms-2"
-                                                                            onClick={() => handleExamAnnouncementDelete(exam.id)}
-                                                                        >
-                                                                            Remove
-                                                                        </button>
-                                                                    </td>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">ID</th>
+                                                                    <th scope="col"></th>
+                                                                    <th scope="col">Examination Term</th>
+                                                                    <th scope="col">Description</th>
+                                                                    <th scope="col" className="text-center">Action</th>
                                                                 </tr>
-                                                            ))}
+                                                            </thead>
+                                                            <tbody>
+                                                                {examAnnouncementList && examAnnouncementList.map((exam, index) => (
+                                                                    <tr key={exam.id}>
+                                                                        <th scope="row">{index + 1}</th>
+                                                                        <th></th>
+                                                                        <td>{exam.exam_title}</td>
+                                                                        <td>{exam.exam_description}</td>
+                                                                        <td className="text-end">
+                                                                            <Link
+                                                                                href={`/talimat/exam/announcement/${exam.id}`}>
+                                                                                <a className="btn btn-secondary primary me-4">Details</a>
+                                                                            </Link>
+                                                                            <button
+                                                                                type='button'
+                                                                                className="btn btn-primary primary"
+                                                                                onClick={() => handleExamAnnouncementEdit(exam.id)}
+                                                                            >
+                                                                                Edit
+                                                                            </button>
+                                                                            <button
+                                                                                type='button'
+                                                                                className="btn btn-danger ms-2"
+                                                                                onClick={() => handleExamAnnouncementDelete(exam.id)}
+                                                                            >
+                                                                                Remove
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-                                                {/* === Announcement body add ====== */}
-
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +135,6 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                 </div>
             </section>
 
-            // Exam announcement modal
             <ExamAnnouncementModal
                 show={show}
                 handleClose={handleClose}
@@ -152,13 +147,13 @@ const ExamAnnouncement = ({examAnnouncementList, setExamAnnouncementList}) => {
                 examAnnouncementList={examAnnouncementList}
             />
 
-            { !loading &&
+            {!loading &&
                 <ExamAnnouncementEditModal
-                show={showEditModal}
-                handleClose={handleEditAnnouncementClose}
-                examAnnouncementId={examAnnouncementId}
-                examAnnouncementData={examAnnouncementData}
-            />
+                    show={showEditModal}
+                    handleClose={handleEditAnnouncementClose}
+                    examAnnouncementId={examAnnouncementId}
+                    examAnnouncementData={examAnnouncementData}
+                />
             }
 
         </>

@@ -17,20 +17,21 @@ const AddPermanentMemberModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "member_name": values.member_name,
                     "address": values.address,
                     "phone_number": values.phone_number
                 },
             )
         }).then((res) => res.json())
+            .then((res) => {
+                router.reload();
+            })
             .catch((err) => {
                 console.log(err.message)
             });
 
         props.onHide();
-        router.reload();
-
     };
 
     return (
@@ -59,7 +60,6 @@ const AddPermanentMemberModal = (props) => {
                                     type="text"
                                     placeholder="Address"
                                     className="form-control"
-
                                     name="address"
                                     {...register("address")}
                                 />
@@ -74,10 +74,7 @@ const AddPermanentMemberModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Submit</button>
                     </form>
                 </Modal.Body>
             </Modal>

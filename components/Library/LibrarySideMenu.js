@@ -12,11 +12,11 @@ const SideMenu = () =>{
             <div className={styles.leftSide}>
                 <div className='card'>
                     <div className='card-header'>
-                        <div className='text-center my-2'>
+                        <div className='text-center'>
                             <Image src={librarylogo} className="img-responsive" alt="libary img" height={30} width={30}/>
                         </div>
                     </div>
-                    <div className='card-body p-0 my-2'>
+                    <div className='card-body p-0'>
                         <div className="leftSide">
                             <div className={router.pathname=="/library" ? `${styles.activeLink}`:`${styles.inActiveLink}`}>
                                 <Link href="/library">
@@ -34,6 +34,6 @@ const SideMenu = () =>{
             </div>
         </>
     )
-}
+};
 
 export default SideMenu;

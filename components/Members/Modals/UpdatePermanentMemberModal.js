@@ -45,7 +45,7 @@ const UpdatePermanentMemberModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Update Committee List
+                        Update Permanent Members
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -65,7 +65,6 @@ const UpdatePermanentMemberModal = (props) => {
                                     type="text"
                                     placeholder="Address"
                                     className="form-control"
-
                                     name="address"
                                     {...register("address")}
                                 />
@@ -80,10 +79,7 @@ const UpdatePermanentMemberModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Submit
-                        </button>
+                        <button className="brand-btn">Update</button>
                     </form>
                 </Modal.Body>
             </Modal>

@@ -8,66 +8,75 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
         {
             headerName: 'ID',
             field: 'id',
-            width: 70,
+            headerAlign: 'center',
+            align: 'center',
+            width: 50,
             editable: true,
         },
-        // {
-        //     headerName: 'Index',
-        //     field: 'index',
-        //     width: 30,
-        //     editable: true,
-        //     valueGetter:(params)=>{
-        //         console.log("value from map: ", params?.tabIndex)
-        //     }
-        // },
         {
             headerName: 'Number',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             field: 'number',
-            width: 100,
             editable: true,
         },
         {
             headerName: 'Name',
             field: 'name',
-            width: 150,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Category',
             field: 'category',
-            width: 150,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Part',
             field: 'part',
-            width: 50,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Original Writer',
             field: 'original_writer',
-            width: 130,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Language',
             field: 'language',
-            width: 100,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
         {
             headerName: 'Book For Class',
             field: 'book_for_class',
-            width: 120,
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
             editable: true,
         },
 
         {
             field: 'is_available',
             headerName: 'Status',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 100,
+            width: 150,
             renderCell: (params) => {
                 return (
                     <div>
@@ -90,8 +99,10 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
         {
             headerName: 'Action',
             field: 'Action',
+            headerAlign: 'center',
+            align: 'center',
             sortable: false,
-            width: 160,
+            width: 150,
 
             renderCell: (params) => {
                 return (
@@ -128,11 +139,12 @@ const BookList = ({books, handleBookUpdate, addBookModalShow, assignBookDistribu
                         <div className='col-sm-12 col-md-10 col-lg-10 col-xl-10'>
                             <div className="right-section">
                                 <div className='card'>
-                                    <div className='card-body'>
+                                    <div className="card-header">
                                         <div className="book-list">
                                             <h4><u>Book List</u></h4>
                                         </div>
-                                        <hr/>
+                                    </div>
+                                    <div className='card-body p-0'>
                                         <div className="book-list-table">
                                             <Box sx={{height: 500, width: '100%'}}>
                                                 <DataGrid

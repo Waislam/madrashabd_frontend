@@ -18,7 +18,7 @@ const AddExtraActivityModal = (props) => {
             },
             body: JSON.stringify(
                 {
-                    "madrasha": 1,
+                    "madrasha": props.session_data.user?.madrasha_id,
                     "category": values.category,
                     "duration": values.duration,
                     "start_time": values.start_time,

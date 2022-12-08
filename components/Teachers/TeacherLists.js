@@ -1,83 +1,148 @@
 import React from "react";
 import Link from 'next/link'
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import styles from './TeacherList.module.css';
+import api, { BASE_URL } from "../../pages/api/api";
+import teacherImg from '../../public/assets/login/teacher-2.jpg'
 
-const columns = [
-    {field: 'id', headerName: 'ID', width: 90},
-    {
-        field: 'teacher_id',
-        headerName: 'Teacher ID',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'father_name',
-        headerName: 'Father name',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'mother_name',
-        headerName: 'Mother Name',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'department',
-        headerName: 'Department',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-            `${params.row.department.name || ''}`,
-    },
-    {
-        field: 'Detail',
-        headerName: 'Detail',
-        sortable: false,
-        width: 160,
-        renderCell: (params) => {
-            return <a href={`/teachers/${params.row.slug}`}>Details</a>;
-        }
-    },
-];
 
-const TeacherList = ({teachers}) => {
+const TeacherList = ({ teachers }) => {
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
+            editable: true,
+            renderCell: (params) => {
+                // console.log("index vlaue: ", params)
+                // console.log("params: ", params.api.getRowsCount())
+                // const rowRange = `${params.api.getRowsCount()}`
+                // console.log("row range: ", rowRange)
+                // for (let i = 1; i > rowRange; i++){
+                //     console.log("index: ",rowRange[i])
+                // }
+                // console.log("rowRange", rowRange)
+
+                return (
+                    <div>
+                        {params.id}
+                    </div>
+                );
+            }
+        },
+
+        {
+            field: 'teacher_id',
+            headerName: 'Teacher ID',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+        },
+
+        {
+            field: 'father_name',
+            headerName: 'Father name',
+            headerAlign: 'center',
+            flex: 1,
+        },
+        {
+            field: 'mother_name',
+            headerName: 'Mother Name',
+            headerAlign: 'center',
+            flex: 1,
+        },
+
+        {
+            field: 'department',
+            headerName: 'Department',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            headerAlign: 'center',
+            flex: 1,
+            valueGetter: (params) =>
+                `${params.row.department.name || ''}`,
+        },
+        {
+            field: 'avatar',
+            headerName: 'Picture',
+            headerAlign: 'center',
+            align: 'center',
+            width: 100,
+            height: 100,
+            editable: true,
+            renderCell: (params) => {
+
+                return (
+                    <div className="text-center">
+                        <img
+                            src={`${params.row.user?.avatar}`}
+                            // alt="Oops image missing"
+                            height={40}
+                            width={40}
+                            className="rounded-circle shadow-4-strong"
+                        />
+                    </div>
+                )
+            }
+        },
+        {
+            field: 'Detail',
+            headerName: 'Detail',
+            headerAlign: 'center',
+            align: 'center',
+            flex: 1,
+            sortable: false,
+            renderCell: (params) => {
+                return <a href={`/teachers/${params.row.slug}`}>Details</a>;
+            }
+        },
+    ];
+
+
     return (
         <div>
             <div className="teacherListSection">
                 <div className="container">
                     <div className="card pb-0 mb-4">
-                        <div className="card-body pb-0">
-                            <div className="row mb-3">
-                                <div className="col-md-3">
-                                    <Link href="teachers/add-teacher">
-                                        <a className={`btn ${styles.teacherStaffButton}`}>Add Teacher</a>
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-md-6 mb-2">
+                                    <h4 className="mt-2"><u>Teacher & Staff</u></h4>
+                                </div>
+                                <div className="col-md-6 mb-2">
+                                    <Link href={`teachers/add-teacher`}>
+                                        <a className={`btn ${styles.teacherStaffButton} float-end`}>Add Teacher</a>
                                     </Link>
                                 </div>
-                                <div className="col-md-6"/>
                             </div>
+                        </div>
+                        <div className="card-body p-0">
                             <div className="row">
                                 <div className="col">
-                                    <Box sx={{height: 500, width: '100%'}}>
+                                    <Box sx={{ height: 500, width: '100%' }}>
                                         <DataGrid
-                                            rows={teachers.results}
+                                            rows={teachers}
+                                            // rows={teachers.results}
                                             columns={columns}
-                                            pageSize={5}
-                                            rowsPerPageOptions={[5]}
+                                            rowsPerPageOptions={[5, 10, 25, 100]}
                                             checkboxSelection
                                             disableSelectionOnClick
                                             disableColumnFilter
                                             disableColumnSelector
                                             disableDensitySelector
-                                            components={{Toolbar: GridToolbar}}
-                                            experimentalFeatures={{newEditingApi: false}}
+                                            localeText={{
+                                                toolbarExport: "Download"
+                                            }}
+                                            components={{ Toolbar: GridToolbar }}
+                                            // experimentalFeatures={{newEditingApi: false}}
                                             componentsProps={{
                                                 toolbar: {
                                                     showQuickFilter: true,
-                                                    quickFilterProps: {debounceMs: 500},
+                                                    quickFilterProps: { debounceMs: 500 },
                                                 },
                                             }}
                                         />
