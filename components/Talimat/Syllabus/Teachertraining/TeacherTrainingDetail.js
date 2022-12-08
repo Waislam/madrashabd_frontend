@@ -22,7 +22,11 @@ const TeacherTrainingDetail = ({teacher_training_detail}) => {
                                         <hr/>
                                         <h2 className="text-center">Teachers Training</h2>
                                         <hr/>
-                                        <div className="sub-page" ref={componentRef}>
+                                        <div className="sub-page p-3" ref={componentRef}>
+                                            <div className="print-banner">
+                                                <h6>Madrasha Name</h6>
+                                                <p>Address</p>
+                                            </div>
                                             <div className={styles.syllabus}>
                                                 <h3 className="text-center">{teacher_training_detail?.data?.training_title}</h3>
                                                 <p className="text-justify">

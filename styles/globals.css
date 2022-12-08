@@ -35,13 +35,10 @@ body {
     transition: box-shadow 2s linear;
 }
 
-
-
-.cardDashboard{
+.cardDashboard {
     border-bottom-left-radius: 120px;
     border-top-right-radius: 120px;
 }
-
 
 .default-btn {
     background-image: linear-gradient(to right, #803e9f, #33ba41);
@@ -54,12 +51,44 @@ body {
     margin-bottom: 10px;
 }
 
-
 /* data grid customization */
 .css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel {
     display: block;
     margin-bottom: 0;
 }
+
 .css-levciy-MuiTablePagination-displayedRows {
     margin-bottom: 0;
 }
+
+.print-banner {
+    display: none;
+}
+
+@media print {
+    .noprint {
+        display: none;
+    }
+
+    .print-banner {
+        display: block;
+        text-align: center;
+        /*margin-bottom: 3rem;*/
+        /*padding-top: 2rem;*/
+    }
+
+    .table-responsive {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        margin-top: 2rem;
+    }
+
+    .print-container {
+        background-color: #ffffff;
+        padding: 1.4rem;
+    }
+
+}
+
+
+
