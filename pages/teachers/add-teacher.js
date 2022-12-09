@@ -50,7 +50,7 @@ const AddTeacherPage = (props) => {
         if (ending_date_value == "") {
             ending_date_value = null
         }
-        console.log('ending_date_value', ending_date_value)
+        console.log('ending_date_value', data.second_phone_number)
 
         setIsLoading(true);
         setAdmissionFormValues(data);
@@ -113,7 +113,9 @@ const AddTeacherPage = (props) => {
         api.post(`teachers/${madrasha_slug}/`, teacher_data)
             .then((res) => {
                 console.log("success response: ", res)
-                router.push('/teachers');
+                //get this object id
+                const teacher_slug = res.data.slug
+                router.push(`/teachers/${teacher_slug}`);
                 return res && toast.success('The Teacher is Successfully added!!');
             })
             .catch((error) => {

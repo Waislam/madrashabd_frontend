@@ -12,25 +12,21 @@ const TeacherList = ({ teachers }) => {
     const columns = [
         {
             field: 'id',
-            headerName: 'ID',
+            headerName: 'Counting',
             headerAlign: 'center',
             align: 'center',
             width: 100,
             editable: true,
             renderCell: (params) => {
-                // console.log("index vlaue: ", params)
-                // console.log("params: ", params.api.getRowsCount())
-                // const rowRange = `${params.api.getRowsCount()}`
-                // console.log("row range: ", rowRange)
-                // for (let i = 1; i > rowRange; i++){
-                //     console.log("index: ",rowRange[i])
-                // }
-                // console.log("rowRange", rowRange)
-
+                const rowRange = `${params.api.getRowsCount()}`
+                const getIndexValue=()=>{
+                    for (let i = 1; i > rowRange; i++) {
+                        return i
+                    }
+                }
+                
                 return (
-                    <div>
-                        {params.id}
-                    </div>
+                    getIndexValue()
                 );
             }
         },
