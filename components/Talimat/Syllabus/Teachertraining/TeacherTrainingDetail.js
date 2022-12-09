@@ -5,6 +5,7 @@ import SyllabuSideMenu from '../SyllabusSideMenu';
 import {useState, useEffect} from 'react';
 import React, {useRef} from 'react';
 import ReactToPrint from 'react-to-print';
+import PrintBanner from '../../../PrintBanner/PrintBanner'
 
 const TeacherTrainingDetail = ({teacher_training_detail}) => {
     const componentRef = useRef();
@@ -22,10 +23,9 @@ const TeacherTrainingDetail = ({teacher_training_detail}) => {
                                         <hr/>
                                         <h2 className="text-center">Teachers Training</h2>
                                         <hr/>
-                                        <div className="sub-page p-3" ref={componentRef}>
+                                        <div className="print-container" ref={componentRef}>
                                             <div className="print-banner">
-                                                <h6>Madrasha Name</h6>
-                                                <p>Address</p>
+                                               <PrintBanner data="Teacher Training Detail" />
                                             </div>
                                             <div className={styles.syllabus}>
                                                 <h3 className="text-center">{teacher_training_detail?.data?.training_title}</h3>
