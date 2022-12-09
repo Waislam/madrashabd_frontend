@@ -7,7 +7,7 @@ import { getTeacherDetailApi } from "../../api/TeacherAPI/teacher_api";
 import TeacherUpdate from "../../../components/Teachers/TeacherUpdate";
 
 const UpdateTeacherPage = (props) => {
-    console.log("division list inside updat teacher page: ", props.divisionList)
+    // console.log("division list inside updat teacher page: ", props.divisionList)
 
     const [districtList, setDistrictList] = useState(null)
     const [thanaList, setThanaList] = useState(null);
@@ -114,14 +114,14 @@ export async function getServerSideProps({ req, params }) {
     // const districtListRes = await fetch(`${BASE_URL}/accounts/district/`)
     // const districtList = await districtListRes.json()
 
-    const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
-    const postCodeList = await postCodeListRes.json()
+    // const postCodeListRes = await fetch(`${BASE_URL}/accounts/post-code/`)
+    // const postCodeList = await postCodeListRes.json()
 
-    const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
-    const postOfficeList = await postOfficeListRes.json()
+    // const postOfficeListRes = await fetch(`${BASE_URL}/accounts/post-office/`)
+    // const postOfficeList = await postOfficeListRes.json()
 
-    const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
-    const thanaList = await thanaListRes.json()
+    // const thanaListRes = await fetch(`${BASE_URL}/accounts/thana/`)
+    // const thanaList = await thanaListRes.json()
 
     const departmentList = await getDepartmentList(madrasha_slug).then(data => data)
 
@@ -135,9 +135,9 @@ export async function getServerSideProps({ req, params }) {
         props: {
             divisionList,
             // districtList,
-            postCodeList,
-            postOfficeList,
-            thanaList,
+            // postCodeList,
+            // postOfficeList,
+            // thanaList,
             departmentList,
             teacher,
             designationList

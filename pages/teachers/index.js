@@ -6,9 +6,11 @@ import Layout from '../../layouts/Layout';
 
 // api
 import api, { BASE_URL } from '../api/api'
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 const Index = (props) => {
+
+    const { data: session } = useSession()
 
     return (
         <>
@@ -32,7 +34,7 @@ export async function getServerSideProps({ req }) {
     // Pass data to the page via props
     return {
         props: {
-            teacher_list
+            teacher_list,
         }
     }
 }
