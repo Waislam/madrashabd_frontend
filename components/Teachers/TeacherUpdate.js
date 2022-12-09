@@ -30,42 +30,42 @@ const TeacherUpdate = ({ data,
         designationList
     } = data
 
-    console.log("teacher info to uddate detaila: ", teacher.data.skill)
+    // console.log("teacher info to uddate detaila: ", teacher.data.skill)
 
-    console.log('@@@ Teacher', session)
+    // console.log('@@@ Teacher', session)
 
     const formDefaultValues = {
         // "user": teacher.data.user.id,
-        // "first_name": teacher.data.user.first_name,
-        // "last_name": teacher.data.user.last_name,
+        "first_name": teacher.data?.user?.first_name,
+        "last_name": teacher.data?.user?.last_name,
         // "madrasha": teacher.data.madrasha,
         // "teacher_id": teacher.data.teacher_id,
-        "father_name": teacher.data.father_name,
-        "mother_name": teacher.data.mother_name,
-        "date_of_birth": teacher.data.date_of_birth,
-        "gender": teacher.data.gender,
-        "religion": teacher.data.religion,
-        "marital_status": teacher.data.marital_status,
-        "present_address_division": teacher.data.present_address.division.pk,
-        "present_address_district": teacher.data.present_address.district.pk,
-        "present_address_thana": teacher.data.present_address.thana.pk,
-        "present_address_post_office": teacher.data.present_address.post_office.pk,
-        "present_address_post_code": teacher.data.present_address.post_code.pk,
-        "present_address_info": teacher.data.present_address.address_info,
+        "father_name": teacher.data?.father_name,
+        "mother_name": teacher.data?.mother_name,
+        "date_of_birth": teacher.data?.date_of_birth,
+        "gender": teacher.data?.gender,
+        "religion": teacher.data?.religion,
+        "marital_status": teacher.data?.marital_status,
+        "present_address_division": teacher.data?.present_address?.division?.pk,
+        "present_address_district": teacher.data?.present_address?.district?.pk,
+        "present_address_thana": teacher.data?.present_address?.thana?.pk,
+        "present_address_post_office": teacher.data?.present_address?.post_office?.pk,
+        "present_address_post_code": teacher.data?.present_address?.post_code?.pk,
+        "present_address_info": teacher.data?.present_address?.address_info,
 
-        "permanent_address_division": teacher.data.permanent_address.division.pk,
-        "permanent_address_district": teacher.data.permanent_address.district.pk,
-        "permanent_address_thana": teacher.data.permanent_address.thana.pk,
-        "permanent_address_post_office": teacher.data.permanent_address.post_office.pk,
-        "permanent_address_post_code": teacher.data.permanent_address.post_code.pk,
-        "permanent_address_info": teacher.data.permanent_address.address_info,
+        "permanent_address_division": teacher.data?.permanent_address?.division?.pk,
+        "permanent_address_district": teacher.data?.permanent_address?.district?.pk,
+        "permanent_address_thana": teacher.data?.permanent_address?.thana?.pk,
+        "permanent_address_post_office": teacher.data?.permanent_address?.post_office?.pk,
+        "permanent_address_post_code": teacher.data?.permanent_address?.post_code?.pk,
+        "permanent_address_info": teacher.data?.permanent_address?.address_info,
 
-        "degree_name": teacher.data.education.degree_name,
-        "institution_name": teacher.data.education.institution_name,
-        "passing_year": teacher.data.education.passing_year,
-        "result": teacher.data.education.result,
-        "skill": teacher.data.skill.skill_name,
-        "experience_name": teacher.data.experience.experience_name,
+        "degree_name": teacher.data?.education?.degree_name,
+        "institution_name": teacher.data?.education?.institution_name,
+        "passing_year": teacher.data?.education?.passing_year,
+        "result": teacher.data?.education?.result,
+        "skill": teacher.data?.skill?.skill_name,
+        "experience_name": teacher.data?.experience?.experience_name,
         // "skill": {
         //     "skill_name": props.teacher.data.skill.skill_name
         // },
@@ -73,17 +73,17 @@ const TeacherUpdate = ({ data,
         //     "experience_name": "New experience"
         // },
         // "phone_number": teacher.data.user.phone,
-        "phone_home": teacher.data.phone_home,
-        "nid": teacher.data.nid,
-        "birth_certificate": teacher.data.birth_certificate,
-        "nationality": teacher.data.nationality,
-        "blood_group": teacher.data.blood_group,
-        "department": teacher.data.department.id,
-        "designation": teacher.data.designation.id,
-        "starting_date": teacher.data.starting_date,
-        "ending_date": teacher.data.ending_date,
-        "slug": teacher.data.slug,
-        // "email": teacher.data.user.email
+        "phone_home": teacher.data?.phone_home,
+        "nid": teacher.data?.nid,
+        "birth_certificate": teacher.data?.birth_certificate,
+        "nationality": teacher.data?.nationality,
+        "blood_group": teacher.data?.blood_group,
+        "department": teacher.data?.department.id,
+        "designation": teacher.data?.designation.id,
+        "starting_date": teacher.data?.starting_date,
+        "ending_date": teacher.data?.ending_date,
+        "slug": teacher.data?.slug,
+        "email": teacher.data?.user?.email
     }
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -92,9 +92,13 @@ const TeacherUpdate = ({ data,
     });
 
     const onSubmit = data => {
-        console.log("skill name: ", data)
+        console.log("first name last name name: ", data)
         let teacher_data = {
-            // "user": teacher.data.user.id,
+            "user": {
+                "first_name": data.first_name,
+                "last_name": data.last_name,
+                "email": data.email
+            },
             "madrasha": session.user.madrasha_id,
             "father_name": data.father_name,
             "mother_name": data.mother_name,
@@ -212,26 +216,26 @@ const TeacherUpdate = ({ data,
                                     {/*Teacher*/}
                                     <div className="teacher mb-3">
                                         <div className="row">
-                                            {/* <div className="col-md-3 mb-3">
+                                            <div className="col-md-6 mb-3">
                                                 <label className="mb-2">First Name</label>
                                                 <input type="text"
-                                                       placeholder="first_name"
-                                                       className="form-control"
-                                                       name="first_name" // use obj field
-                                                       {...register("first_name", {required: "this field is required"})}
+                                                    placeholder="first_name"
+                                                    className="form-control"
+                                                    name="first_name"
+                                                    {...register("first_name", { required: "this field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.first_name?.message}</p>
                                             </div>
-                                            <div className="col-md-3 mb-3">
+                                            <div className="col-md-6 mb-3">
                                                 <label className="mb-2">Last Name</label>
                                                 <input type="text"
-                                                       placeholder="last name"
-                                                       className="form-control"
-                                                       name="last_name" //user obj field
-                                                       {...register("last_name", {required: "this field is required"})}
+                                                    placeholder="last name"
+                                                    className="form-control"
+                                                    name="last_name" 
+                                                    {...register("last_name", { required: "this field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.last_name?.message}</p>
-                                            </div> */}
+                                            </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Father Name</label>
                                                 <input type="text"
@@ -344,7 +348,7 @@ const TeacherUpdate = ({ data,
                                                     {...register("present_address_division", { required: "This field is required" })}
                                                     onChange={getDivision}
                                                 >
-                                                    <option value={teacher.data.present_address.division.pk}>{teacher.data.present_address.division.name}</option>
+                                                    <option value={teacher.data.present_address.division?.pk}>{teacher.data.present_address.division?.name}</option>
                                                     {divisionList && divisionList.map((division) => (
                                                         <option
                                                             value={division.pk}
@@ -364,7 +368,7 @@ const TeacherUpdate = ({ data,
                                                     {...register("present_address_district", { required: "This field is required" })}
                                                     onChange={getDistrict}
                                                 >
-                                                    <option value={teacher.data.present_address.district.pk}>{teacher.data.present_address.district.name}</option>
+                                                    <option value={teacher.data.present_address.district?.pk}>{teacher.data.present_address.district?.name}</option>
                                                     {districtList && districtList.map((district) => (
                                                         <option
                                                             value={district.pk}
@@ -383,7 +387,7 @@ const TeacherUpdate = ({ data,
                                                     name="present_address_thana"
                                                     {...register("present_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option value={teacher.data.present_address.thana.pk}>{teacher.data.present_address.thana.name}</option>
+                                                    <option value={teacher.data.present_address.thana?.pk}>{teacher.data.present_address.thana?.name}</option>
                                                     {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
@@ -403,8 +407,8 @@ const TeacherUpdate = ({ data,
                                                     {...register("present_address_post_office", { required: "This field is required" })}
                                                     onChange={getPostOffice}
                                                 >
-                                                    <option value={teacher.data.present_address.post_office.pk}>
-                                                        {teacher.data.present_address.post_office.name}
+                                                    <option value={teacher.data.present_address.post_office?.pk}>
+                                                        {teacher.data.present_address.post_office?.name}
                                                     </option>
                                                     {postOfficeList && postOfficeList.map((post_office) => (
                                                         <option
@@ -424,8 +428,8 @@ const TeacherUpdate = ({ data,
                                                     name="present_address_post_code"
                                                     {...register("present_address_post_code", { required: "This field is required" })}
                                                 >
-                                                    <option value={teacher.data.present_address.post_code.pk}>
-                                                        {teacher.data.present_address.post_code.name}
+                                                    <option value={teacher.data.present_address.post_code?.pk}>
+                                                        {teacher.data.present_address.post_code?.name}
                                                     </option>
                                                     {postCodeList && postCodeList.map((post_code) => (
                                                         <option
@@ -475,8 +479,8 @@ const TeacherUpdate = ({ data,
                                                     {...register("permanent_address_division", { required: "This field is required" })}
                                                     onChange={handlepSetDistrict}
                                                 >
-                                                    <option value={teacher.data.permanent_address.division.pk}>
-                                                        {teacher.data.permanent_address.division.name}
+                                                    <option value={teacher.data.permanent_address.division?.pk}>
+                                                        {teacher.data.permanent_address.division?.name}
                                                     </option>
                                                     {divisionList && divisionList.map((division) => (
                                                         <option
@@ -497,8 +501,8 @@ const TeacherUpdate = ({ data,
                                                     {...register("permanent_address_district", { required: "This field is required" })}
                                                     onChange={getpThanaandPostOfficeList}
                                                 >
-                                                    <option value={teacher.data.permanent_address.district.pk}>
-                                                        {teacher.data.permanent_address.district.name}
+                                                    <option value={teacher.data.permanent_address.district?.pk}>
+                                                        {teacher.data.permanent_address.district?.name}
                                                     </option>
                                                     {pdisctrictList && pdisctrictList.map((district) => (
                                                         <option
@@ -518,8 +522,8 @@ const TeacherUpdate = ({ data,
                                                     name="permanent_address_thana"
                                                     {...register("permanent_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option value={teacher.data.permanent_address.thana.pk}>
-                                                        {teacher.data.permanent_address.thana.name}
+                                                    <option value={teacher.data.permanent_address.thana?.pk}>
+                                                        {teacher.data.permanent_address.thana?.name}
                                                     </option>
                                                     {pthanaList && pthanaList.map((thana) => (
                                                         <option
@@ -540,8 +544,8 @@ const TeacherUpdate = ({ data,
                                                     {...register("permanent_address_post_office", { required: "This field is required" })}
                                                     onChange={getpPostcodes}
                                                 >
-                                                    <option value={teacher.data.permanent_address.post_office.pk}>
-                                                        {teacher.data.permanent_address.post_office.name}
+                                                    <option value={teacher.data.permanent_address.post_office?.pk}>
+                                                        {teacher.data.permanent_address.post_office?.name}
                                                     </option>
                                                     {ppostOfficeList && ppostOfficeList.map((post_office) => (
                                                         <option
@@ -561,8 +565,8 @@ const TeacherUpdate = ({ data,
                                                     name="permanent_address_post_code"
                                                     {...register("permanent_address_post_code", { required: "This field is required" })}
                                                 >
-                                                    <option value={teacher.data.permanent_address.post_code.pk}>
-                                                        {teacher.data.permanent_address.post_code.name}
+                                                    <option value={teacher.data.permanent_address.post_code?.pk}>
+                                                        {teacher.data.permanent_address.post_code?.name}
                                                     </option>
                                                     {ppostCode && ppostCode.map((post_code) => (
                                                         <option
@@ -600,9 +604,8 @@ const TeacherUpdate = ({ data,
                                                     placeholder="Degree Name "
                                                     className="form-control"
                                                     name="degree_name"
-                                                    {...register("degree_name", { required: "This field is required" })}
+                                                    {...register("degree_name")}
                                                 />
-                                                <p className="text-danger">{errors.degree_name?.message}</p>
                                             </div>
                                             <div className="col-md-3 mb-3">
                                                 <label className="mb-2">Passing Year</label>
@@ -717,16 +720,16 @@ const TeacherUpdate = ({ data,
                                                     {...register("phone_home")}
                                                 />
                                             </div>
-                                            {/* <div className="col-md-4 mb-4">
+                                            <div className="col-md-4 mb-4">
                                                 <label className="mb-2">Email Address</label>
                                                 <input
                                                     type="email"
                                                     placeholder="E-mail"
                                                     className="form-control"
-                                                    name="email" // user obj field
+                                                    name="email"
                                                     {...register("email")}
                                                 />
-                                            </div> */}
+                                            </div>
                                         </div>
                                     </div>
                                     {/*Other Details*/}
@@ -751,9 +754,8 @@ const TeacherUpdate = ({ data,
                                                     placeholder="Birth Certificate"
                                                     className="form-control"
                                                     name="birth_certificate"
-                                                    {...register("birth_certificate", { required: "This field is required" })}
+                                                    {...register("birth_certificate")}
                                                 />
-                                                <p className="text-danger">{errors.birth_certificate?.message}</p>
                                             </div>
                                             <div className="col-md-4 mb-2">
                                                 <label className="mb-2">Nationality</label>
@@ -788,7 +790,7 @@ const TeacherUpdate = ({ data,
                                                 type="checkbox" checked={isChecked}
                                                 onChange={handleHidingEndDate}
                                             />
-                                            <label className="form-check-label">Check the box if you are working</label>
+                                            <label className="form-check-label">Check the box if you are not working</label>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
@@ -804,7 +806,7 @@ const TeacherUpdate = ({ data,
                                                 />
                                                 <p className="text-danger">{errors.starting_date?.message}</p>
                                             </div>
-                                            {isChecked ? <h1 className="d-none">End date is hidden</h1> :
+                                            {isChecked ?
                                                 <div className="col-md-6">
                                                     <label className="mb-2">End Date</label>
                                                     <input
@@ -817,6 +819,9 @@ const TeacherUpdate = ({ data,
                                                         {...register("ending_date")}
                                                     />
                                                 </div>
+                                                :
+                                                <h1 className="d-none">End date is hidden</h1>
+                                                
                                             }
                                         </div>
                                     </div>

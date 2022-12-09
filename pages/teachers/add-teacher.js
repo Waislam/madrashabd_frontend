@@ -35,8 +35,8 @@ const AddTeacherPage = (props) => {
 
     // console.log("@@ departmentList",departmentList)
 
-    const madrasha_slug = session?.user.madrasha_slug;
-    const madrasha_id = session?.user.madrasha_id;
+    const madrasha_slug = session?.user?.madrasha_slug;
+    const madrasha_id = session?.user?.madrasha_id;
 
 
     const { handleSubmit, register, formState: { errors }, control, setError } = useForm()
@@ -50,7 +50,6 @@ const AddTeacherPage = (props) => {
         if (ending_date_value == "") {
             ending_date_value = null
         }
-        console.log('ending_date_value', ending_date_value)
 
         setIsLoading(true);
         setAdmissionFormValues(data);
@@ -112,8 +111,10 @@ const AddTeacherPage = (props) => {
         // Create New Teacher
         api.post(`teachers/${madrasha_slug}/`, teacher_data)
             .then((res) => {
-                console.log("success response: ", res)
-                router.push('/teachers');
+                // console.log("success response: ", res)
+                //get this object id
+                const teacher_slug = res.data.slug
+                router.push(`/teachers/${teacher_slug}`);
                 return res && toast.success('The Teacher is Successfully added!!');
             })
             .catch((error) => {
@@ -810,7 +811,7 @@ const AddTeacherPage = (props) => {
                                                 type="checkbox" checked={isChecked}
                                                 onChange={handleHidingEndDate}
                                             />
-                                            <label className="form-check-label">Check the box if you are working</label>
+                                            <label className="form-check-label">Check the box if you are not working</label>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
@@ -826,7 +827,7 @@ const AddTeacherPage = (props) => {
                                                 />
                                                 <p className="text-danger">{errors.starting_date?.message}</p>
                                             </div>
-                                            {isChecked ? <h1 className="d-none">End date is hidden</h1> :
+                                            {isChecked ?
                                                 <div className="col-md-6">
                                                     <label className="mb-2">End Date</label>
                                                     <input
@@ -839,6 +840,8 @@ const AddTeacherPage = (props) => {
                                                         {...register("ending_date")}
                                                     />
                                                 </div>
+                                                :
+                                                <h1 className="d-none">End date is hidden</h1>
                                             }
                                         </div>
                                     </div>
