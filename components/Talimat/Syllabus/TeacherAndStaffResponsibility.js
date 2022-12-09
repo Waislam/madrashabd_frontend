@@ -125,7 +125,7 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="sub-page">

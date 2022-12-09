@@ -3,14 +3,20 @@ import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 import HallNigranCreateModal from "./HallNigranModal/HallNigranCreateModal";
-import { useState } from "react";
+import {useState} from "react";
 import HallNigranDeleteModal from "./HallNigranModal/HallNigranDeleteModal";
 import HallNigranEditModal from "./HallNigranModal/HallNigranEditModal";
 import api from "../../../pages/api/api";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import PrintBanner from '../../PrintBanner/PrintBanner'
+import React, {useRef} from 'react';
+import ReactToPrint from 'react-to-print';
+
 
 const HallNigran = (props) => {
+    const componentRef = useRef();
+
     const [hallNigranId, setHallNigranId] = useState(null);
     const [hallNigarData, setHallNigarData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,8 +45,8 @@ const HallNigran = (props) => {
                 setHallNigarData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-                setLoading(false)
-            })
+            setLoading(false)
+        })
     };
 
     const handleHallNigranEditModalClose = () => setHallNigranEditModalShow(false);
@@ -81,38 +87,38 @@ const HallNigran = (props) => {
             headerName: 'Action',
             flex: 1,
             renderCell: (params) => {
-                console.log("parama:", params)
+                console.log("parama:", params);
                 return (
-                    < div className="float-md-end" >
-                        <button className="btn btn-primary me-3"
-                            onClick={() => handleHallNigranEdit(params.id)}
+                    < div className="float-md-end">
+                        <button className="btn btn-primary primary me-3"
+                                onClick={() => handleHallNigranEdit(params.id)}
                         >
                             Edit
                         </button>
-                        <button className="btn btn-danger me-3"
-                            onClick={() => handleHallNigranDelete(params.id)}
+                        <button className="btn btn-primary primary me-3"
+                                onClick={() => handleHallNigranDelete(params.id)}
                         >
                             Remove
                         </button>
-                    </div >
+                    </div>
                 )
             }
         },
 
-    ]
+    ];
 
     return (
         <>
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu />
+                        <SideMenu/>
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader />
-                                        <hr />
+                                        <ExamHeader/>
+                                        <hr/>
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
@@ -129,6 +135,7 @@ const HallNigran = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className="nigrani-table mt-4">
+
                                                         {/* <div className="table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
@@ -170,7 +177,12 @@ const HallNigran = (props) => {
                                                                 </tbody>
                                                             </table>
                                                         </div> */}
-                                                        <Box sx={{ height: 500, width: '100%' }}>
+                                                        <Box sx={{height: 500, width: '100%'}} ref={componentRef}>
+                                                            <div className="print-container">
+                                                                <div className="print-banner">
+                                                                    <PrintBanner data="Hall Nigranir Detail"/>
+                                                                </div>
+                                                            </div>
                                                             <DataGrid
                                                                 rows={props.hallDutyList}
                                                                 columns={columns}
@@ -181,20 +193,23 @@ const HallNigran = (props) => {
                                                                 disableColumnFilter
                                                                 disableColumnSelector
                                                                 disableDensitySelector
-                                                                components={{ Toolbar: GridToolbar }}
-                                                                experimentalFeatures={{ newEditingApi: false }}
+                                                                components={{Toolbar: GridToolbar}}
+                                                                experimentalFeatures={{newEditingApi: false}}
                                                                 componentsProps={{
                                                                     toolbar: {
                                                                         showQuickFilter: true,
-                                                                        quickFilterProps: { debounceMs: 500 },
+                                                                        quickFilterProps: {debounceMs: 500},
                                                                     },
                                                                 }}
                                                             />
                                                         </Box>
                                                     </div>
-                                                    <div>
-                                                        <button type="button" className={styles.defaultBtn}>download
-                                                        </button>
+                                                    <div className="text-end my-2">
+                                                        <ReactToPrint
+                                                            trigger={() => <button
+                                                                className="btn btn-primary primary">Print</button>}
+                                                            content={() => componentRef.current}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>

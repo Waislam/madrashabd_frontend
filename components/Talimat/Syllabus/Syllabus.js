@@ -102,6 +102,7 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                                 <div className="text-center">
                                                                     <h5 className="text-capitalize">{session?.user?.madrasha_name}</h5>
                                                                     <p>Book distribution to Teacher</p>
+                                                                    <hr/>
                                                                 </div>
                                                             </div>
                                                             <div className="table-responsive">
@@ -218,7 +219,7 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                         </div>
                                     </div>
                                 </div>
-                                <div className="text-center my-2">
+                                <div className="text-end my-2">
                                     <ReactToPrint
                                         trigger={() =>
                                             <button className="btn btn-primary primary">Print</button>}
@@ -234,6 +235,6 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
 
         </>
     )
-}
+};
 
 export default Syllabus;
