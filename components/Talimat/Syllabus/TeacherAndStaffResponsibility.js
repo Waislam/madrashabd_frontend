@@ -1,6 +1,4 @@
 import styles from './TeacherAndStaffResponsibility.module.css';
-import Talimat from '../Talimat';
-import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
 import api, {BASE_URL} from "../../../pages/api/api"
@@ -10,9 +8,14 @@ import {useForm} from "react-hook-form";
 import {useRouter} from 'next/router';
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import React, {useRef} from 'react';
+import ReactToPrint from 'react-to-print';
+import PrintBanner from '../../PrintBanner/PrintBanner'
+
 
 const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, responsibilityList, madrasha_slug, madrasha_id}) => {
 
+    const componentRef = useRef();
     const router = useRouter();
 
     const [addModalShow, setAddModalShow] = useState(false);
@@ -78,12 +81,12 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
             renderCell: (params) => {
                 return (
                     <div className="float-md-end">
-                        <button className="btn btn-primary me-3"
+                        <button className="btn btn-primary primary me-3"
                                 onClick={(e) => handlePutRequest(e, params.id)}
                         >
                             Edit
                         </button>
-                        <button className="btn btn-danger"
+                        <button className="btn btn-primary primary"
                                 onClick={() => handleDeleteRequest(params.id)}
                         >
                             Remove
@@ -107,7 +110,9 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                     <hr/>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <h4><ul>Teacher and taff Responsibility</ul></h4>
+                                            <h4>
+                                                <ul>Teacher and taff Responsibility</ul>
+                                            </h4>
                                         </div>
                                         <div className="col-md-6">
                                             <button
@@ -120,11 +125,13 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="sub-page">
                                             <div className={styles.syllabus}>
-                                                <div className="responsibility-table">
+                                                <div className="print-container responsibility-table"
+                                                     ref={componentRef}>
                                                     <Box sx={{height: 500, width: '100%'}}>
                                                         <DataGrid
                                                             rows={responsibilityList}
@@ -143,10 +150,12 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                                         />
                                                     </Box>
                                                 </div>
-                                                <div>
-                                                    <button type="button" className={styles.defaultBtn}>Download
-                                                        pdf
-                                                    </button>
+                                                <div className="text-center my-2">
+                                                    <ReactToPrint
+                                                        trigger={() => <button
+                                                            className="btn btn-primary primary">Print </button>}
+                                                        content={() => componentRef.current}
+                                                    />
                                                 </div>
                                             </div>
                                             <div className="responsiblity-add mt-4">

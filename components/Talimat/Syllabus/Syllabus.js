@@ -10,12 +10,17 @@ import {useForm} from "react-hook-form";
 import {AmPm} from "../../Utils/utils"
 import {useRouter} from 'next/router'
 import {getSession, useSession} from "next-auth/react";
+import React, {useRef} from 'react';
+import ReactToPrint from 'react-to-print';
 
 
 const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteRequest}) => {
+    const componentRef = useRef();
 
     const router = useRouter();
     const {data: session, status} = useSession();
+
+    console.log("session :", session);
 
     const [bookDistList, setBookDistList] = useState(null);
     const [showInputForm, setShowInputForm] = useState(false);
@@ -45,7 +50,7 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
     const onSubmit = async (values) => {
 
         const data = {
-            "madrasha": 1,
+            "madrasha": session?.user?.madrasha_id,
             "teacher_name": values.teacher_name,
             "kitab_name": values.kitab_name,
             "class_name": values.class_name,
@@ -92,44 +97,54 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <div className="table-responsive">
-                                                            <table className="table table-striped">
-                                                                <thead className={styles.hearderCustom}>
-                                                                <tr className="text-center">
-                                                                    <th scope="col">Counting</th>
-                                                                    <th scope="col">Teacher</th>
-                                                                    <th scope="col">Kitab Name</th>
-                                                                    <th scope="col">Class</th>
-                                                                    <th scope="col">Class Time</th>
-                                                                    <th scope="col" className="text-center">Action</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                {bookDistList && bookDistList.map((bookdist, index) => (
-                                                                    <tr key={bookdist.id} className="text-center">
-                                                                        <th>{index + 1}</th>
-                                                                        <td>{bookdist.teacher_name}</td>
-                                                                        <td>{bookdist.kitab_name}</td>
-                                                                        <td>{bookdist.class_name?.name}</td>
-                                                                        <td>{AmPm(bookdist.class_time)}</td>
-                                                                        <td>
-                                                                            <button className="btn btn-primary primary"
-                                                                                    onClick={(e) => handlePutRequest(e, bookdist.id)}>
-                                                                                Edit
-                                                                            </button>
-                                                                            <button
-                                                                                className="btn btn-danger primary ms-2"
-                                                                                onClick={() => handleDeleteRequest(bookdist.id)}>
-                                                                                Remove
-                                                                            </button>
-                                                                        </td>
+                                                        <div className="print-container" ref={componentRef}>
+                                                            <div className="print-banner">
+                                                                <div className="text-center">
+                                                                    <h5 className="text-capitalize">{session?.user?.madrasha_name}</h5>
+                                                                    <p>Book distribution to Teacher</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="table-responsive">
+                                                                <table className="table table-striped">
+                                                                    <thead>
+                                                                    <tr className="text-center">
+                                                                        <th>Counting</th>
+                                                                        <th>Teacher</th>
+                                                                        <th>Kitab Name</th>
+                                                                        <th>Class</th>
+                                                                        <th>Class Time</th>
+                                                                        <th className="noprint text-center">
+                                                                            Action
+                                                                        </th>
                                                                     </tr>
-                                                                ))}
-                                                                </tbody>
-                                                            </table>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {bookDistList && bookDistList.map((bookdist, index) => (
+                                                                        <tr key={bookdist.id} className="text-center">
+                                                                            <th>{index + 1}</th>
+                                                                            <td>{bookdist.teacher_name}</td>
+                                                                            <td>{bookdist.kitab_name}</td>
+                                                                            <td>{bookdist.class_name?.name}</td>
+                                                                            <td>{AmPm(bookdist.class_time)}</td>
+                                                                            <td className="noprint">
+                                                                                <button
+                                                                                    className="btn btn-primary primary"
+                                                                                    onClick={(e) => handlePutRequest(e, bookdist.id)}>
+                                                                                    Edit
+                                                                                </button>
+                                                                                <button
+                                                                                    className="btn btn-danger primary ms-2"
+                                                                                    onClick={() => handleDeleteRequest(bookdist.id)}>
+                                                                                    Remove
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                     {/* ========= add syllabus start =========== */}
                                                     <div className="syllabus-add-form">
                                                         <Modal show={showInputForm}
@@ -202,6 +217,13 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="text-center my-2">
+                                    <ReactToPrint
+                                        trigger={() =>
+                                            <button className="btn btn-primary primary">Print</button>}
+                                        content={() => componentRef.current}
+                                    />
                                 </div>
                             </div>
                         </div>
