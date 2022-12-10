@@ -36,7 +36,7 @@ const PreviousInstitutionForm = (props) => {
         setLoading(true)
         setAdmissionFormValues(values);
 
-        console.log("user data first namea nd last name: ", admissionData)
+        // console.log("user data first namea nd last name: ", admissionData)
 
         const user_data = {
             "phone": admissionData.student_phone_number,
@@ -125,11 +125,13 @@ const PreviousInstitutionForm = (props) => {
             "admitted_class": values.admitted_class,
             "admitted_group": values.admitted_group,
             "admitted_shift": values.admitted_shift,
-            "admitted_roll": "120",
+            "admitted_roll": values.admitted_roll,
             "admitted_session": values.admitted_session,
             "student_blood_group": values.student_blood_group,
             "special_body_sign": values.special_body_sign,
             "academic_fees": null,
+            "monthly_tution_fee": values.monthly_tution_fee,
+            "boarding_feee": values.boarding_feee,
             "talimi_murobbi_name": values.talimi_murobbi_name,
             "eslahi_murobbi_name": values.eslahi_murobbi_name
         });
@@ -148,6 +150,8 @@ const PreviousInstitutionForm = (props) => {
                 setLoading(false)
 
                 if (result.id) {
+                    const student_slug = result.slug
+                    router.push(`/students/${student_slug}`)
                     return toast.success('Student has been created!')
                 }
 
@@ -186,7 +190,7 @@ const PreviousInstitutionForm = (props) => {
                                             placeholder="New phone number"
                                             className="form-control"
                                             id="phone_number_new"
-                                            {...register("phone_number_new", {required:true})}
+                                            {...register("phone_number_new", { required: true })}
                                         />
                                     </div>
                                     {errors.phone_number_new && (
@@ -344,7 +348,7 @@ const PreviousInstitutionForm = (props) => {
                                         >
                                             <option value=''>Choose department...</option>
                                             {
-                                               props.departmentList && props.departmentList.map((department) => (
+                                                props.departmentList && props.departmentList.map((department) => (
                                                     <option value={department.id}>{department.name}</option>
                                                 ))
                                             }
@@ -413,7 +417,7 @@ const PreviousInstitutionForm = (props) => {
                                         <label htmlFor="admitted_session" className="form-label">Admitted Session</label>
                                         <select
                                             name="admitted_session"
-                                            defaultValue={admissionData.admitted_shift}
+                                            defaultValue={admissionData.admitted_session}
                                             className="form-select"
                                             id="admitted_session"
                                             {...register("admitted_session", { required: true })}
@@ -428,6 +432,17 @@ const PreviousInstitutionForm = (props) => {
                                         {errors.admitted_session && (
                                             <p className="text-danger">Session in required !!</p>
                                         )}
+                                    </div>
+                                    <div className="col-md-4">
+                                        <label htmlFor="admitted_roll" className="form-label">Admitted Roll</label>
+                                        <input
+                                            name="admitted_roll"
+                                            defaultValue={admissionData.admitted_roll}
+                                            className="form-control"
+                                            id="admitted_roll"
+                                            {...register("admitted_roll", { required: "This field is required" })}
+                                        />
+                                        <p className="text-danger">{errors.admitted_roll?.message}</p>
                                     </div>
                                 </div>
                             </div>
@@ -465,38 +480,29 @@ const PreviousInstitutionForm = (props) => {
                                 <h4>Part E</h4>
                                 <h5>Academic Fees</h5>
                                 <div className="row mb-3">
-                                    <div className="col-md-4">
-                                        <small>Food bill / boarding</small>
-                                        <div className="input-group">
-                                            <select className="form-select">
-                                                <option>Percent</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                                    <div className="col-md-6">
+                                        <label className="mb-2">Monthly tution fee</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.monthly_tution_fee}
+                                            placeholder="500"
+                                            className="form-control"
+                                            id="monthly_tution_fee"
+                                            name="monthly_tution_fee"
+                                            {...register("monthly_tution_fee")}
+                                        />
                                     </div>
-                                    <div className="col-md-4">
-                                        <small>Monthly tution fee</small>
-                                        <div className="input-group">
-                                            <select className="form-select">
-                                                <option>Percent</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <small>Scholarship</small>
-                                        <div className="input-group">
-                                            <select className="form-select">
-                                                <option>Taka</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                                    <div className="col-md-6">
+                                        <label className="mb-2">Food bill / boarding</label>
+                                        <input
+                                            type="text"
+                                            defaultValue={admissionData.boarding_feee}
+                                            placeholder="1500"
+                                            className="form-control"
+                                            id="boarding_feee"
+                                            name="boarding_feee"
+                                            {...register("boarding_feee")}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -528,10 +534,10 @@ const PreviousInstitutionForm = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="student-image mb-3">
+                            {/* <div className="student-image mb-3">
                                 <h4>Student image upload</h4>
                                 <input type="file" className="form-control" />
-                            </div>
+                            </div> */}
                             <div className="d-flex justify-content-between">
                                 <button className={styles.defaultBtn} onClick={prevStep}>Previous Step</button>
                                 <button className={styles.defaultBtn}>Save</button>

@@ -11,9 +11,15 @@ import teacher from '../../public/assets/login/teacher-2.jpg'
 import { useForm } from "react-hook-form";
 import { BASE_URL } from "../../pages/api/api";
 import { console } from "next/dist/compiled/@edge-runtime/primitives/console";
+import { useRouter } from "next/router";
 
 
 const StudentDetails = ({ student }) => {
+
+    // console.log(".....", student)
+
+    const router = useRouter()
+
     const { handleSubmit, register, formState: { errors }, control } = useForm()
 
     const onSubmit = (values) => {
@@ -30,6 +36,7 @@ const StudentDetails = ({ student }) => {
             .then(response => response.text())
             .then((result) => {
                 console.log(result)
+                router.push(`/students/${student.data.slug}`)
             })
             .catch(error => console.log('error', error));
     };
@@ -81,12 +88,21 @@ const StudentDetails = ({ student }) => {
                                                             <div className="col-md-7">
                                                                 <dl className="row">
                                                                     <dt className="col-sm-6">
-                                                                        Name of student
+                                                                        username
                                                                     </dt>
                                                                     <dd className="col-sm-6">
                                                                         <span className="mx-2">:</span>
                                                                         <span className="text-capitalize">
                                                                             {student.data.user?.username}
+                                                                        </span>
+                                                                    </dd>
+                                                                    <dt className="col-sm-6">
+                                                                        Name of student
+                                                                    </dt>
+                                                                    <dd className="col-sm-6">
+                                                                        <span className="mx-2">:</span>
+                                                                        <span className="text-capitalize">
+                                                                            {student.data.user?.first_name} {student.data.user?.last_name}
                                                                         </span>
                                                                     </dd>
                                                                     <dt className="col-sm-6">
@@ -149,33 +165,40 @@ const StudentDetails = ({ student }) => {
                                                                         <span className="mx-2">:</span>
                                                                         {student.data?.student_blood_group}
                                                                     </dd>
+                                                                    <dt className="col-sm-3">
+                                                                        Email
+                                                                    </dt>
+                                                                    <dd className="col-sm-9">
+                                                                        <span className="mx-2">:</span>
+                                                                        {student.data.user?.email}
+                                                                    </dd>
                                                                 </dl>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-3">
-                                                        <div className="text-center">
+                                                        <div className="">
                                                             {student?.data?.user?.avatar ?
                                                                 <img
                                                                     src={`${BASE_URL}` + student?.data?.user?.avatar}
-                                                                    className="rounded-circle shadow-4-strong"
-                                                                    alt="Oops image missing"
-                                                                    width={70}
-                                                                    height={70}
+                                                                    className="img-thumbnail shadow-4-strong"
+                                                                    // alt="Oops image missing"
+                                                                    width={130}
+                                                                    height={125}
 
                                                                 />
                                                                 :
                                                                 <Image
-                                                                    className="rounded-circle shadow-4-strong"
+                                                                    className="img-thumbnail"
                                                                     alt="avatar2"
                                                                     src={teacher}
-                                                                    width={90}
-                                                                    height={90}
+                                                                    width={130}
+                                                                    height={125}
                                                                 />
                                                             }
                                                         </div>
                                                         <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
-                                                            <div className="form-group mb-2">
+                                                            <div className="col-md-5 form-group mb-2">
                                                                 <input
                                                                     className="form-control"
                                                                     type="file"
@@ -522,17 +545,21 @@ const StudentDetails = ({ student }) => {
                                             <h4>Academic Information</h4>
                                             <hr />
                                             <div className="row text-capitalize">
-                                                <div className="col-md-4">
+                                                <div className="col-md-3">
                                                     <p>Class &nbsp; &nbsp;&nbsp;: {student.data.admitted_class?.name}</p>
                                                     <p>Session : {student.data?.admitted_session?.actual_year}</p>
                                                 </div>
-                                                <div className="col-md-4">
+                                                <div className="col-md-3">
                                                     <p>DepartMent : {student.data?.admitted_department?.name}</p>
-                                                    {/*<p>Class Roll : {student.data?.admitted_roll}</p>*/}
+                                                    <p>Class Roll : {student.data?.admitted_roll}</p>
                                                 </div>
-                                                <div className="col-md-4">
+                                                <div className="col-md-3">
                                                     <p>Group : {student.data?.admitted_group?.name}</p>
                                                     <p>Shift &nbsp; &nbsp;: {student.data?.admitted_shift?.name}</p>
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <p>Tution Fee &nbsp; &nbsp;&nbsp;&nbsp;: {student.data?.monthly_tution_fee} TK</p>
+                                                    <p>Boarding Fee : {student.data?.boarding_feee} TK</p>
                                                 </div>
                                             </div>
                                         </div>

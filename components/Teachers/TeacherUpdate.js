@@ -231,7 +231,7 @@ const TeacherUpdate = ({ data,
                                                 <input type="text"
                                                     placeholder="last name"
                                                     className="form-control"
-                                                    name="last_name" 
+                                                    name="last_name"
                                                     {...register("last_name", { required: "this field is required" })}
                                                 />
                                                 <p className="text-danger">{errors.last_name?.message}</p>
@@ -387,7 +387,9 @@ const TeacherUpdate = ({ data,
                                                     name="present_address_thana"
                                                     {...register("present_address_thana", { required: "This field is required" })}
                                                 >
-                                                    <option value={teacher.data.present_address.thana?.pk}>{teacher.data.present_address.thana?.name}</option>
+                                                    <option value={teacher.data.present_address.thana?.pk}>
+                                                        {teacher.data.present_address.thana?.name}
+                                                    </option>
                                                     {thanaList && thanaList.map((thana) => (
                                                         <option
                                                             value={thana.pk}
@@ -821,7 +823,7 @@ const TeacherUpdate = ({ data,
                                                 </div>
                                                 :
                                                 <h1 className="d-none">End date is hidden</h1>
-                                                
+
                                             }
                                         </div>
                                     </div>
