@@ -149,6 +149,7 @@ const ExamARegistration = (props) => {
             {/*all modals*/}
             <RegistrationCreateModal
                 show={registrationModalShow}
+                onHide={()=>setRegistrationModalShow(false)}
                 handleClose={handleRegistrationModalClose}
                 classList={classList}
                 termList={termList}

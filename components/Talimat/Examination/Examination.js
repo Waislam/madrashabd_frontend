@@ -97,8 +97,8 @@ const ExamAnnouncement = ({ examAnnouncementList, setExamAnnouncementList }) => 
                                                                     <tr key={exam.id}>
                                                                         <th scope="row">{index + 1}</th>
                                                                         <th></th>
-                                                                        <td>{exam.exam_title}</td>
-                                                                        <td>{exam.exam_description}</td>
+                                                                        <td className="text-truncate" style={{ "maxWidth": 150 }}>{exam.exam_title}</td>
+                                                                        <td className="text-truncate" style={{ "maxWidth": 250 }}>{exam.exam_description}</td>
                                                                         <td className="text-end">
                                                                             <Link
                                                                                 href={`/talimat/exam/announcement/${exam.id}`}>

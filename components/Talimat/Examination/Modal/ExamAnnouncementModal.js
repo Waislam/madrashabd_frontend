@@ -1,12 +1,12 @@
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
 import styles from "../../../Account/Account/Account.module.css";
 
 import api from '../../../../pages/api/api'
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const ExamAnnouncementModal = (props) => {
-    const {register, handleSubmit, watch, formState: {errors}} = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const router = useRouter()
 
     const onSubmit = data => {
@@ -18,8 +18,8 @@ const ExamAnnouncementModal = (props) => {
                 props.handleClose()
                 router.reload()
             }).catch((error) => {
-            console.log("error", error)
-        })
+                console.log("error", error)
+            })
     };
 
     return (
@@ -33,21 +33,23 @@ const ExamAnnouncementModal = (props) => {
                         <div className="mb-3">
                             <label className="mb-2">Exam Name / Term Name</label>
                             <input type="text"
-                                   className="form-control"
-                                   placeholder="Exam Name / Term Name"
-                                   name="exam_title"
-                                   {...register("exam_title", {required: "this field is required"})}
+                                className="form-control"
+                                placeholder="Exam Name / Term Name"
+                                name="exam_title"
+                                {...register("exam_title", { required: "this field is required" })}
                             />
                             <p className="text-danger">{errors.exam_title?.message}</p>
                         </div>
                         <div className="mb-3">
                             <label className="mb-2">Exam details</label>
-                            <input type="textarea"
-                                   className="form-control"
-                                   placeholder="Exam details"
-                                   name="exam_description"
-                                   {...register("exam_description", {required: "this field is required"})}
-                            />
+                            <textarea
+                                type="textarea"
+                                className="form-control"
+                                placeholder="Exam details"
+                                name="exam_description"
+                                {...register("exam_description", { required: "this field is required" })}
+                            >
+                            </textarea>
 
                             <p className="text-danger">{errors.exam_description?.message}</p>
                         </div>

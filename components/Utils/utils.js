@@ -2,8 +2,8 @@
 //handle time formating
 export const AmPm = (value) => {
     if (value) {
-        let hour = value.split(":")[0].toString()
-        let minute = value.split(":")[1].toString()
+        let hour = value.split(":")[0]?.toString()
+        let minute = value.split(":")[1]?.toString()
         if (hour > 12) {
             let result = (hour - 12) + ":" + minute + " " + "PM"
             return result

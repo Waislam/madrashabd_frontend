@@ -3,31 +3,31 @@ import Talimat from '../Talimat';
 import taliamatstyles from '../Talimat.module.css'
 import SyllabusHeader from './SyllabusHeader'
 import axios from 'axios';
-import api, {BASE_URL} from '../../../pages/api/api'
-import {useEffect, useState} from 'react';
+import api, { BASE_URL } from '../../../pages/api/api'
+import { useEffect, useState } from 'react';
 import Modal from "react-bootstrap/Modal";
-import {useForm} from "react-hook-form";
-import {AmPm} from "../../Utils/utils"
-import {useRouter} from 'next/router'
-import {getSession, useSession} from "next-auth/react";
-import React, {useRef} from 'react';
+import { useForm } from "react-hook-form";
+import { AmPm } from "../../Utils/utils"
+import { useRouter } from 'next/router'
+import { getSession, useSession } from "next-auth/react";
+import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 
 
-const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteRequest}) => {
+const Syllabus = ({ getClassList, classList, handlePutRequest, handleDeleteRequest }) => {
     const componentRef = useRef();
 
     const router = useRouter();
-    const {data: session, status} = useSession();
+    const { data: session, status } = useSession();
 
-    console.log("session :", session);
+    // console.log("session :", session);
 
     const [bookDistList, setBookDistList] = useState(null);
     const [showInputForm, setShowInputForm] = useState(false);
 
     // const [classList, setClassList] = useState(null)
 
-    const {register, handleSubmit} = useForm({mode: "all"});
+    const { register, handleSubmit } = useForm({ mode: "all" });
 
     //handle get request
     const getBookDistList = async () => {
@@ -54,7 +54,9 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
             "teacher_name": values.teacher_name,
             "kitab_name": values.kitab_name,
             "class_name": values.class_name,
-            "class_time": values.class_time
+            "class_time": values.class_time,
+            "end_time": values.end_time,
+
         };
 
         await axios.post(`${BASE_URL}/talimat/100/book-dist-teacher/`, data)
@@ -70,13 +72,13 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <Talimat/>
+                        <Talimat />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <SyllabusHeader/>
-                                        <hr/>
+                                        <SyllabusHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.syllabus}>
@@ -102,45 +104,47 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                                 <div className="text-center">
                                                                     <h5 className="text-capitalize">{session?.user?.madrasha_name}</h5>
                                                                     <p>Book distribution to Teacher</p>
-                                                                    <hr/>
+                                                                    <hr />
                                                                 </div>
                                                             </div>
                                                             <div className="table-responsive">
                                                                 <table className="table table-striped">
                                                                     <thead>
-                                                                    <tr className="text-center">
-                                                                        <th>Counting</th>
-                                                                        <th>Teacher</th>
-                                                                        <th>Kitab Name</th>
-                                                                        <th>Class</th>
-                                                                        <th>Class Time</th>
-                                                                        <th className="noprint text-center">
-                                                                            Action
-                                                                        </th>
-                                                                    </tr>
+                                                                        <tr className="text-center">
+                                                                            <th>Counting</th>
+                                                                            <th>Teacher</th>
+                                                                            <th>Kitab Name</th>
+                                                                            <th>Class</th>
+                                                                            <th>Start Time</th>
+                                                                            <th>End Time</th>
+                                                                            <th className="noprint text-center">
+                                                                                Action
+                                                                            </th>
+                                                                        </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    {bookDistList && bookDistList.map((bookdist, index) => (
-                                                                        <tr key={bookdist.id} className="text-center">
-                                                                            <th>{index + 1}</th>
-                                                                            <td>{bookdist.teacher_name}</td>
-                                                                            <td>{bookdist.kitab_name}</td>
-                                                                            <td>{bookdist.class_name?.name}</td>
-                                                                            <td>{AmPm(bookdist.class_time)}</td>
-                                                                            <td className="noprint">
-                                                                                <button
-                                                                                    className="btn btn-primary primary"
-                                                                                    onClick={(e) => handlePutRequest(e, bookdist.id)}>
-                                                                                    Edit
-                                                                                </button>
-                                                                                <button
-                                                                                    className="btn btn-danger primary ms-2"
-                                                                                    onClick={() => handleDeleteRequest(bookdist.id)}>
-                                                                                    Remove
-                                                                                </button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    ))}
+                                                                        {bookDistList && bookDistList.map((bookdist, index) => (
+                                                                            <tr key={bookdist.id} className="text-center">
+                                                                                <th>{index + 1}</th>
+                                                                                <td>{bookdist.teacher_name}</td>
+                                                                                <td>{bookdist.kitab_name}</td>
+                                                                                <td>{bookdist.class_name?.name}</td>
+                                                                                <td>{AmPm(bookdist.class_time)}</td>
+                                                                                <td>{AmPm(bookdist.end_time)}</td>
+                                                                                <td className="noprint text-end">
+                                                                                    <button
+                                                                                        className="btn btn-primary primary"
+                                                                                        onClick={(e) => handlePutRequest(e, bookdist.id)}>
+                                                                                        Edit
+                                                                                    </button>
+                                                                                    <button
+                                                                                        className="btn btn-danger primary ms-2"
+                                                                                        onClick={() => handleDeleteRequest(bookdist.id)}>
+                                                                                        Remove
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        ))}
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -149,9 +153,9 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                     {/* ========= add syllabus start =========== */}
                                                     <div className="syllabus-add-form">
                                                         <Modal show={showInputForm}
-                                                               onHide={() => setShowInputForm(false)}
-                                                               dialogClassName={`${styles.customDialog}`}
-                                                               size="lg"
+                                                            onHide={() => setShowInputForm(false)}
+                                                            dialogClassName={`${styles.customDialog}`}
+                                                            size="lg"
                                                         >
                                                             <Modal.Header closeButton>
                                                                 <Modal.Title>
@@ -164,19 +168,19 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                                         <div className="mb-2">
                                                                             <label className="mb-2">Teacher Name</label>
                                                                             <input type="text"
-                                                                                   placeholder="Teacher Name"
-                                                                                   className="form-control"
-                                                                                   name="teacher_name"
-                                                                                   {...register("teacher_name")}
+                                                                                placeholder="Teacher Name"
+                                                                                className="form-control"
+                                                                                name="teacher_name"
+                                                                                {...register("teacher_name")}
                                                                             />
                                                                         </div>
                                                                         <div className="mb-2">
                                                                             <label className="mb-2">Kitab Name</label>
                                                                             <input type="text"
-                                                                                   placeholder="Kitab Name"
-                                                                                   className="form-control"
-                                                                                   name="kitab_name"
-                                                                                   {...register("kitab_name")}
+                                                                                placeholder="Kitab Name"
+                                                                                className="form-control"
+                                                                                name="kitab_name"
+                                                                                {...register("kitab_name")}
                                                                             />
                                                                         </div>
                                                                         <div className="mb-2">
@@ -191,23 +195,32 @@ const Syllabus = ({getClassList, classList, handlePutRequest, handleDeleteReques
                                                                                 <option>Select class</option>
                                                                                 {classList && classList.map((classname) => (
                                                                                     <option value={classname.id}
-                                                                                            key={classname.name}>{classname.name}</option>
+                                                                                        key={classname.name}>{classname.name}</option>
                                                                                 ))}
                                                                             </select>
                                                                         </div>
                                                                         <div className="mb-2">
-                                                                            <label className="mb-2">Class time</label>
+                                                                            <label className="mb-2">Start time</label>
                                                                             <input type="time"
-                                                                                   placeholder="class time"
-                                                                                   className="form-control"
-                                                                                   name="class_time"
-                                                                                   {...register("class_time")}
+                                                                                placeholder="start time"
+                                                                                className="form-control"
+                                                                                name="class_time"
+                                                                                {...register("class_time")}
+                                                                            />
+                                                                        </div>
+                                                                        <div className="mb-2">
+                                                                            <label className="mb-2">End time</label>
+                                                                            <input type="time"
+                                                                                placeholder="end time"
+                                                                                className="form-control"
+                                                                                name="end_time"
+                                                                                {...register("end_time")}
                                                                             />
                                                                         </div>
                                                                     </div>
                                                                     <div className="mb-2">
                                                                         <button type="submit"
-                                                                                className={styles.defaultBtn}>Save
+                                                                            className={styles.defaultBtn}>Save
                                                                         </button>
                                                                     </div>
                                                                 </form>

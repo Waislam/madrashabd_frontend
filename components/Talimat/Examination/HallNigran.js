@@ -3,15 +3,16 @@ import taliamatstyles from '../Talimat.module.css'
 import ExamHeader from './ExamHeader'
 import styles from './Examination.module.css'
 import HallNigranCreateModal from "./HallNigranModal/HallNigranCreateModal";
-import {useState} from "react";
+import { useState } from "react";
 import HallNigranDeleteModal from "./HallNigranModal/HallNigranDeleteModal";
 import HallNigranEditModal from "./HallNigranModal/HallNigranEditModal";
 import api from "../../../pages/api/api";
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import PrintBanner from '../../PrintBanner/PrintBanner'
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
+import { AmPm } from "../../Utils/utils"
 
 
 const HallNigran = (props) => {
@@ -45,8 +46,8 @@ const HallNigran = (props) => {
                 setHallNigarData(response.data.data);
                 setLoading(false)
             }).catch((error) => {
-            setLoading(false)
-        })
+                setLoading(false)
+            })
     };
 
     const handleHallNigranEditModalClose = () => setHallNigranEditModalShow(false);
@@ -63,9 +64,31 @@ const HallNigran = (props) => {
 
     const columns = [
         {
-            field: "duty_date",
+            field: "date",
             headerName: 'Date',
             flex: 1,
+        },
+        {
+            field: "start_time",
+            headerName: 'Start Time',
+            flex: 1,
+            maxWidth: 100,
+            valueGetter: (params) => {
+                return(
+                    AmPm(`${params.value}`)
+                )  
+            }
+        },
+        {
+            field: "end_time",
+            headerName: 'End Time',
+            flex: 1,
+            maxWidth: 100,
+            valueGetter: (params) => {
+                return(
+                    AmPm(`${params.value}`)
+                )  
+            }
         },
         {
             field: "chief_of_hall",
@@ -91,12 +114,12 @@ const HallNigran = (props) => {
                 return (
                     < div className="float-md-end">
                         <button className="btn btn-primary primary me-3"
-                                onClick={() => handleHallNigranEdit(params.id)}
+                            onClick={() => handleHallNigranEdit(params.id)}
                         >
                             Edit
                         </button>
                         <button className="btn btn-primary primary me-3"
-                                onClick={() => handleHallNigranDelete(params.id)}
+                            onClick={() => handleHallNigranDelete(params.id)}
                         >
                             Remove
                         </button>
@@ -112,13 +135,13 @@ const HallNigran = (props) => {
             <section className={taliamatstyles.talimatSection}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SideMenu/>
+                        <SideMenu />
                         <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <div className="talimat">
                                 <div className="card">
                                     <div className="card-body">
-                                        <ExamHeader/>
-                                        <hr/>
+                                        <ExamHeader />
+                                        <hr />
                                         <div className="row">
                                             <div className="sub-page">
                                                 <div className={styles.exam}>
@@ -177,10 +200,10 @@ const HallNigran = (props) => {
                                                                 </tbody>
                                                             </table>
                                                         </div> */}
-                                                        <Box sx={{height: 500, width: '100%'}} ref={componentRef}>
+                                                        <Box sx={{ height: 500, width: '100%' }} ref={componentRef}>
                                                             <div className="print-container">
                                                                 <div className="print-banner">
-                                                                    <PrintBanner data="Hall Nigranir Detail"/>
+                                                                    <PrintBanner data="Hall Nigranir Detail" />
                                                                 </div>
                                                             </div>
                                                             <DataGrid
@@ -193,12 +216,12 @@ const HallNigran = (props) => {
                                                                 disableColumnFilter
                                                                 disableColumnSelector
                                                                 disableDensitySelector
-                                                                components={{Toolbar: GridToolbar}}
-                                                                experimentalFeatures={{newEditingApi: false}}
+                                                                components={{ Toolbar: GridToolbar }}
+                                                                experimentalFeatures={{ newEditingApi: false }}
                                                                 componentsProps={{
                                                                     toolbar: {
                                                                         showQuickFilter: true,
-                                                                        quickFilterProps: {debounceMs: 500},
+                                                                        quickFilterProps: { debounceMs: 500 },
                                                                     },
                                                                 }}
                                                             />
@@ -239,7 +262,7 @@ const HallNigran = (props) => {
             {!loading && (
                 <HallNigranEditModal
                     show={hallNigranEditModalShow}
-                    handleClose={handleHallNigranEditModalClose}
+                    onHide={handleHallNigranEditModalClose}
                     hallNigranId={hallNigranId}
                     hallNigarData={hallNigarData}
                     session_data={props.session_data}
