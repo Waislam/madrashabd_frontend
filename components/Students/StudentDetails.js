@@ -56,15 +56,15 @@ const StudentDetails = ({ student }) => {
                                     </h4>
                                     <div className="card-body p-0">
                                         <div className={styles.studentLink}>
-                                            <Link href="/">
+                                            <Link href="/students">
                                                 <a className="text-center">Student List</a>
                                             </Link>
                                         </div>
-                                        <div className={styles.promotedLink}>
+                                        {/* <div className={styles.promotedLink}>
                                             <Link href="/">
                                                 <a className="text-center">Promoted List</a>
                                             </Link>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>

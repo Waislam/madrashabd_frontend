@@ -104,11 +104,11 @@ const StudentList = ({ students }) => {
                                             </Link>
                                         </div>
 
-                                        <div className={styles.promotedLink}>
+                                        {/* <div className={styles.promotedLink}>
                                             <Link href={`/students/promoted-student`}>
                                                 <a className="ps-5">Promoted List</a>
                                             </Link>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
