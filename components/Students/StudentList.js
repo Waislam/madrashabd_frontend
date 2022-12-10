@@ -55,7 +55,7 @@ const columns = [
                 <div className="text-center">
                     <img
                         src={`${params.row.user?.avatar}`}
-                        alt="Oops image missing"
+                        // alt="Oops image missing"
                         height={40}
                         width={40}
                         className="rounded-circle shadow-4-strong"
