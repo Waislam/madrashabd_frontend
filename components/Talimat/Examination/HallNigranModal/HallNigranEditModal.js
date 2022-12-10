@@ -8,9 +8,14 @@ import { useRouter } from "next/router";
 const HallNigranEditModal = (props) => {
     // console.log(" HallNigranEditModal(): props modal", props)
     // console.log("props.hallNigarData?.duty_date: ", props.hallNigarData?.duty_date)
+    const madrasha_slug = props.session_data?.user?.madrasha_slug
+    const madrasha_id = props.session_data?.user?.madrasha_id
 
     const preLoadedData = {
-        "duty_date": props.hallNigarData?.duty_date.toString(),
+        // "duty_date": props.hallNigarData?.duty_date.toString(),
+        "date": props.hallNigarData?.date?.toString(),
+        "start_time": props.hallNigarData?.start_time,
+        "end_time": props.hallNigarData?.end_time,
         "chief_of_hall": props.hallNigarData?.chief_of_hall,
         "assistant_of_hall": props.hallNigarData?.assistant_of_hall,
         "room_no": props.hallNigarData?.room_no
@@ -31,16 +36,16 @@ const HallNigranEditModal = (props) => {
 
     const onSubmit = data => {
         console.log("data", data)
-        data.madrasha = 1
+        data.madrasha = madrasha_id
         api.put(`talimat/hall-duty/detail/${props.hallNigranId}/`, JSON.stringify(data))
             .then((response) => {
                 console.log("response", response.data)
-                props.handleClose()
+                props.onHide()
                 router.reload()
             }).catch((error) => {
                 console.log("error", error)
             })
-        
+
     };
 
     return (
@@ -58,10 +63,32 @@ const HallNigranEditModal = (props) => {
                                 className="form-control"
                                 placeholder="Exam Date"
                                 onFocus={(e) => e.target.type = "date"}
-                                name="duty_date"
-                                {...register("duty_date", { required: "this field is required" })}
+                                name="date"
+                                {...register("date", { required: "this field is required" })}
                             />
                             <p className="text-danger">{errors.duty_date?.message}</p>
+                        </div>
+                        <div className="mb-3">
+                            <label className="mb-2">Start Time</label>
+                            <input
+                                type="time"
+                                className="form-control"
+                                placeholder="Start time"
+                                name="start_time"
+                                {...register("start_time", { required: "this field is required" })}
+                            />
+                            <p className="text-danger">{errors.start_time?.message}</p>
+                        </div>
+                        <div className="mb-3">
+                            <label className="mb-2">End Time</label>
+                            <input
+                                type="time"
+                                className="form-control"
+                                placeholder="end time"
+                                name="end_time"
+                                {...register("end_time", { required: "this field is required" })}
+                            />
+                            <p className="text-danger">{errors.end_time?.message}</p>
                         </div>
 
                         <div className="mb-3">

@@ -6,7 +6,10 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const RegistrationCreateModal = (props) => {
-    // console.log("props modal", props)
+    console.log("maddrasha slug modal", props.session_data)
+
+    const madrasha_slug = props.session_data?.user?.madrasha_slug
+    const madrasha_id = props.session_data?.user?.madrasha_id
 
     const {
         register,
@@ -32,14 +35,16 @@ const RegistrationCreateModal = (props) => {
     }
 
     const onSubmit = data => {
+        console.log("data.student: ", data.student)
         api.get(`students/detail-by-id/${data.student}/`)
             .then((response) => {
+                console.log("response : ", response.data)
                 if (response.data.status) {
-                    data.madrasha = 1
+                    data.madrasha = madrasha_id
                     data.student = response.data.data.id
                     data.is_registered = true
                     data.session = 1
-                    api.post(`talimat/${props.session_data?.madrasha_slug}/exam-registration/`, JSON.stringify(data))
+                    api.post(`talimat/${madrasha_slug}/exam-registration/`, JSON.stringify(data))
                         .then((response) => {
                             console.log(response.data)
                             props.handleClose()

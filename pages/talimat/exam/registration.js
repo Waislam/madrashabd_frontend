@@ -14,6 +14,7 @@ const RegistrationPage = (props) => {
                 examRegistrationList={props.examRegistrationList}
                 termList={props.termList}
                 classList={props.classList}
+                session_data={props.session_data}
             />
         </>
     )

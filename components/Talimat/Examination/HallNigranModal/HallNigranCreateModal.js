@@ -6,7 +6,9 @@ import api from '../../../../pages/api/api'
 import {useRouter} from "next/router";
 
 const HallNigranCreateModal = (props) => {
-    // console.log("props modal", props)
+    console.log("props modal", props)
+    const madrasha_slug = props.session_data?.user?.madrasha_slug
+    const madrasha_id = props.session_data?.user?.madrasha_id
 
     const {
         register,
@@ -22,8 +24,8 @@ const HallNigranCreateModal = (props) => {
 
     const onSubmit = data => {
         console.log("data", data)
-        data.madrasha = 1
-        api.post(`talimat/${props.session_data?.madrasha_slug}/hall-duty/`, JSON.stringify(data))
+        data.madrasha = madrasha_id
+        api.post(`talimat/${madrasha_slug}/hall-duty/`, JSON.stringify(data))
             .then((response) => {
                 console.log("response", response.data)
                 props.handleClose()
@@ -47,10 +49,32 @@ const HallNigranCreateModal = (props) => {
                                 type="date"
                                 className="form-control"
                                 placeholder="Exam Date"
-                                name="duty_date"
-                                {...register("duty_date", {required: "this field is required"})}
+                                name="date"
+                                {...register("date", {required: "this field is required"})}
                             />
-                            <p className="text-danger">{errors.duty_date?.message}</p>
+                            <p className="text-danger">{errors.date?.message}</p>
+                        </div>
+                        <div className="mb-3">
+                            <label className="mb-2">Start Time</label>
+                            <input
+                                type="time"
+                                className="form-control"
+                                placeholder="Start time"
+                                name="start_time"
+                                {...register("start_time", {required: "this field is required"})}
+                            />
+                            <p className="text-danger">{errors.start_time?.message}</p>
+                        </div>
+                        <div className="mb-3">
+                            <label className="mb-2">End Time</label>
+                            <input
+                                type="time"
+                                className="form-control"
+                                placeholder="end time"
+                                name="end_time"
+                                {...register("end_time", {required: "this field is required"})}
+                            />
+                            <p className="text-danger">{errors.end_time?.message}</p>
                         </div>
 
                         <div className="mb-3">
