@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal"
 import styles from "../Syllabus.module.css";
 import axios from "axios";
-import { BASE_URL } from "../../../../pages/api/api";
+import api, { BASE_URL } from "../../../../pages/api/api";
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router";
 
@@ -14,8 +14,8 @@ const ResponsibilityDeleteModal = (props) => {
 
     const { handleSubmit } = useForm()
 
-    const onSubmit = () => {
-        axios.delete(`${BASE_URL}/talimat/responsibility/detail/${current_id}/`)
+    const deleteResponsibility = () => {
+        api.delete(`${BASE_URL}/talimat/responsibility/detail/${current_id}/`)
             .then((response) => {
                 if (response) {
                     console.log("your object has been deleted")
@@ -37,17 +37,17 @@ const ResponsibilityDeleteModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="responsibility-delete">
                         <div className="row">
                             <div className="my-4">
                                 <p className="text-danger">would you really like to delete?</p>
                             </div>
                         </div>
                         <div className="mb-2">
-                            <button className={styles.defaultBtn}>ok</button>
+                            <button className={styles.defaultBtn} onClick={deleteResponsibility}>ok</button>
                             <button className={`${styles.defaultBtn} float-end`} onClick={() => props.onHide()}>Cancel</button>
                         </div>
-                    </form>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>

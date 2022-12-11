@@ -40,7 +40,7 @@ const SyllabusPage = () => {
     };
 
     // handle delete request
-    const handleDeleteRequest = (obj_id)=>{
+    const handleDeleteRequest = (obj_id) => {
         setDeleteId(obj_id);
         setDeleteModal(true)
     };
@@ -53,7 +53,7 @@ const SyllabusPage = () => {
                 handlePutRequest={handlePutRequest}
                 handleDeleteRequest={handleDeleteRequest}
             />
-            {loader? <h1></h1>:
+            {loader ? <h1></h1> :
                 <SyllabusUpdateModal
                     show={showPutForm}
                     onHide={() => setShowPutForm(false)}
@@ -64,9 +64,9 @@ const SyllabusPage = () => {
             }
 
             <SyllabusDelteModal
-            show={showDeleteModal}
-            onHide={()=>setDeleteModal(false)}
-            delete_id={deleteId}
+                show={showDeleteModal}
+                onHide={() => setDeleteModal(false)}
+                delete_id={deleteId}
             >
             </SyllabusDelteModal>
         </>
