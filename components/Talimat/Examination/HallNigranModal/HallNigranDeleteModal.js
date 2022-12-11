@@ -18,7 +18,7 @@ const HallNigranDeleteModal = (props) => {
 
         api.delete(`talimat/hall-duty/detail/${props.hallNigranId}/`)
             .then((response) => {
-                props.handleClose()
+                props.onHide()
                 setDeleteLoading(true)
                 router.reload()
             })
@@ -36,7 +36,7 @@ const HallNigranDeleteModal = (props) => {
                 </Modal.Header>
                 <Modal.Body>OpHs! are you sure?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={props.handleClose}>
+                    <Button variant="secondary" onClick={props.onHide}>
                         Close
                     </Button>
                     {

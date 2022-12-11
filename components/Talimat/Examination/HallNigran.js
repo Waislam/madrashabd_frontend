@@ -74,9 +74,9 @@ const HallNigran = (props) => {
             flex: 1,
             maxWidth: 100,
             valueGetter: (params) => {
-                return(
+                return (
                     AmPm(`${params.value}`)
-                )  
+                )
             }
         },
         {
@@ -85,9 +85,9 @@ const HallNigran = (props) => {
             flex: 1,
             maxWidth: 100,
             valueGetter: (params) => {
-                return(
+                return (
                     AmPm(`${params.value}`)
-                )  
+                )
             }
         },
         {
@@ -129,6 +129,12 @@ const HallNigran = (props) => {
         },
 
     ];
+
+    //handle printing
+    // const printItems = () => {
+    //     printRef.current.style.display = 'none';
+    //     window.print();
+    // };
 
     return (
         <>
@@ -229,8 +235,8 @@ const HallNigran = (props) => {
                                                     </div>
                                                     <div className="text-end my-2">
                                                         <ReactToPrint
-                                                            trigger={() => <button
-                                                                className="btn btn-primary primary">Print</button>}
+                                                            trigger={() =>
+                                                                <button className="btn btn-primary primary">Print</button>}
                                                             content={() => componentRef.current}
                                                         />
                                                     </div>
@@ -254,7 +260,7 @@ const HallNigran = (props) => {
 
             <HallNigranDeleteModal
                 show={hallNigranDeleteModalShow}
-                handleClose={handleHallNigranDeleteModalClose}
+                onHide={handleHallNigranDeleteModalClose}
                 hallNigranId={hallNigranId}
                 session_data={props.session_data}
             />

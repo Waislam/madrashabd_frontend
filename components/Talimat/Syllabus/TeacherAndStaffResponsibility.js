@@ -150,7 +150,7 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                                         />
                                                     </Box>
                                                 </div>
-                                                <div className="text-center my-2">
+                                                <div className="text-end my-2">
                                                     <ReactToPrint
                                                         trigger={() => <button
                                                             className="btn btn-primary primary">Print </button>}
