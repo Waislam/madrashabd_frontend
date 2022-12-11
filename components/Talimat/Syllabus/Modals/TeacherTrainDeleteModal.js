@@ -14,7 +14,7 @@ const TeacherTrainDeleteModal = (props) => {
 
     const { handleSubmit } = useForm()
 
-    const onSubmit = () => {
+    const deleteTraining = () => {
         axios.delete(`${BASE_URL}/talimat/teacher-training/detail/${current_id}/`)
             .then((response) => {
                 if (response) {
@@ -37,17 +37,17 @@ const TeacherTrainDeleteModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="training-delete">
                         <div className="row">
                             <div className="my-4">
                                 <p className="text-danger">would you really like to delete?</p>
                             </div>
                         </div>
                         <div className="mb-2">
-                            <button className={styles.defaultBtn}>ok</button>
+                            <button className={styles.defaultBtn} onChange={deleteTraining}>ok</button>
                             <button className={`${styles.defaultBtn} float-end`} onClick={() => props.onHide()}>Cancel</button>
                         </div>
-                    </form>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>

@@ -88,6 +88,17 @@ body {
         padding: 1.4rem;
     }
 
+    .MuiDataGrid-footerContainer.css-17jjc08-MuiDataGrid-footerContainer {
+        display: none;
+        margin-bottom: 0;
+    }
+    .css-1j9kmqg-MuiDataGrid-toolbarContainer {
+        display: none;
+    }
+    .btn {
+        display: none;
+    }
+
 }
 
 

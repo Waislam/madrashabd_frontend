@@ -1,26 +1,26 @@
 import styles from './TeacherAndStaffResponsibility.module.css';
 import SyllabusHeader from './SyllabusHeader'
 import SyllabuSideMenu from './SyllabusSideMenu';
-import api, {BASE_URL} from "../../../pages/api/api"
-import {useEffect, useState} from 'react';
+import api, { BASE_URL } from "../../../pages/api/api"
+import { useEffect, useState } from 'react';
 import Modal from "react-bootstrap/Modal";
-import {useForm} from "react-hook-form";
-import {useRouter} from 'next/router';
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router';
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import PrintBanner from '../../PrintBanner/PrintBanner'
 
 
-const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, responsibilityList, madrasha_slug, madrasha_id}) => {
+const TeacherAndStaffResponsibility = ({ handlePutRequest, handleDeleteRequest, responsibilityList, madrasha_slug, madrasha_id }) => {
 
     const componentRef = useRef();
     const router = useRouter();
 
     const [addModalShow, setAddModalShow] = useState(false);
 
-    const {register, formState: {errors}, handleSubmit} = useForm({mode: "all"});
+    const { register, formState: { errors }, handleSubmit } = useForm({ mode: "all" });
 
     //handle post request
     const handleModalShow = (e) => {
@@ -48,8 +48,7 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
         {
             field: "teacher_staff.user",
             headerName: "Teacher Name",
-            headerAlign: 'center',
-            align: 'center',
+            // headerAlign: 'center',
             flex: 1,
             valueGetter: (params) => {
                 return `${params.row?.teacher_staff?.user?.first_name} ${params.row?.teacher_staff?.user?.last_name}`
@@ -58,8 +57,8 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
         {
             field: "teacher_staff.designation",
             headerName: "Designation",
-            headerAlign: 'center',
-            align: 'center',
+            // headerAlign: 'center',
+            // align: 'center',
             flex: 1,
             valueGetter: (params) => {
                 return `${params?.row?.teacher_staff?.designation?.name}`
@@ -68,26 +67,26 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
         {
             field: "responsibility",
             headerName: "Responsibility",
-            headerAlign: 'center',
-            align: 'center',
+            // headerAlign: 'center',
+            // align: 'center',
             flex: 1,
         },
         {
             field: "action",
             headerName: "Action",
             headerAlign: 'center',
-            align: 'center',
+            align: 'right',
             flex: 1,
             renderCell: (params) => {
                 return (
                     <div className="float-md-end">
                         <button className="btn btn-primary primary me-3"
-                                onClick={(e) => handlePutRequest(e, params.id)}
+                            onClick={(e) => handlePutRequest(e, params.id)}
                         >
                             Edit
                         </button>
                         <button className="btn btn-primary primary"
-                                onClick={() => handleDeleteRequest(params.id)}
+                            onClick={() => handleDeleteRequest(params.id)}
                         >
                             Remove
                         </button>
@@ -101,13 +100,13 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
         <>
             <div className="container-fluid">
                 <div className="row">
-                    <SyllabuSideMenu/>
+                    <SyllabuSideMenu />
                     <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                         <div className="talimat">
                             <div className="card">
                                 <div className="card-header">
-                                    <SyllabusHeader/>
-                                    <hr/>
+                                    <SyllabusHeader />
+                                    <hr />
                                     <div className="row">
                                         <div className="col-md-6">
                                             <h4>
@@ -131,20 +130,25 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                         <div className="sub-page">
                                             <div className={styles.syllabus}>
                                                 <div className="print-container responsibility-table"
-                                                     ref={componentRef}>
-                                                    <Box sx={{height: 500, width: '100%'}}>
+                                                    ref={componentRef}>
+                                                    <Box sx={{ height: 500, width: '100%' }}>
+                                                        <div className="print-container">
+                                                            <div className="print-banner">
+                                                                <PrintBanner data="Teacher and staff responsiblity list" />
+                                                            </div>
+                                                        </div>
                                                         <DataGrid
                                                             rows={responsibilityList}
                                                             columns={columns}
                                                             disableColumnFilter
                                                             disableColumnSelector
                                                             disableDensitySelector
-                                                            components={{Toolbar: GridToolbar}}
+                                                            components={{ Toolbar: GridToolbar }}
                                                             // experimentalFeatures={{ newEditingApi: false }}
                                                             componentsProps={{
                                                                 toolbar: {
                                                                     showQuickFilter: true,
-                                                                    quickFilterProps: {debounceMs: 500},
+                                                                    quickFilterProps: { debounceMs: 500 },
                                                                 },
                                                             }}
                                                         />
@@ -166,7 +170,7 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                                 >
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>
-                                                            Add Department
+                                                            Add Teacher/ Staff Responsibility
                                                         </Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>
@@ -175,9 +179,9 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                                                 <div className="my-4">
                                                                     <label className="mb-2">Teacher/Staff ID</label>
                                                                     <input type="text" className="form-control"
-                                                                           placeholder="Techer ID"
-                                                                           name="teacher_staff"
-                                                                           {...register("teacher_staff", {required: "Teacher ID is required"})}
+                                                                        placeholder="Techer ID"
+                                                                        name="teacher_staff"
+                                                                        {...register("teacher_staff", { required: "Teacher ID is required" })}
                                                                     />
                                                                     <p className="text-danger">{errors.teacher_staff?.message}</p>
                                                                 </div>
@@ -185,9 +189,9 @@ const TeacherAndStaffResponsibility = ({handlePutRequest, handleDeleteRequest, r
                                                                     <label className="mb-2">Teacher/Staff
                                                                         Responsibility</label>
                                                                     <input type="text" className="form-control"
-                                                                           placeholder="Responsiblity"
-                                                                           name="responsibility"
-                                                                           {...register("responsibility", {required: "Responsiblity is required"})}
+                                                                        placeholder="Responsiblity"
+                                                                        name="responsibility"
+                                                                        {...register("responsibility", { required: "Responsiblity is required" })}
                                                                     />
                                                                     <p className="text-danger">{errors.responsibility?.message}</p>
                                                                 </div>
