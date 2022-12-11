@@ -67,6 +67,7 @@ const HallNigran = (props) => {
             field: "date",
             headerName: 'Date',
             flex: 1,
+            maxWidth:100
         },
         {
             field: "start_time",

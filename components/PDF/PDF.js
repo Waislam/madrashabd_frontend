@@ -1,7 +1,8 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
+import styles from "Pdf.module.css"
 
-import {ComponentToPrint} from './ComponentToPrint';
+import { ComponentToPrint } from './ComponentToPrint';
 
 const PDF = () => {
     const componentRef = useRef();
@@ -12,7 +13,7 @@ const PDF = () => {
                 trigger={() => <button>Print this out!</button>}
                 content={() => componentRef.current}
             />
-            <ComponentToPrint ref={componentRef}/>
+            <ComponentToPrint ref={componentRef} />
         </div>
     );
 };
